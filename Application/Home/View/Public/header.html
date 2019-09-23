@@ -1,0 +1,396 @@
+<style>
+    .spot-header {
+        padding-left: 30px;
+        padding-right: 30px;
+        height: 70px;
+        background: rgb(25, 27, 44) none repeat scroll 0% 0%;
+        z-index: 200;
+    }
+
+    .spot-header .logo {
+        display: block;
+        flex-shrink: 0;
+        margin-right: 30px;
+        width: 134px;
+        height: 36px;
+        /*background: transparent url('undefined') no-repeat scroll 0% 0% / 100% 100%;*/
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+
+    /*.spot-header .logo.cn {*/
+        /*background-image: url('/Public/Home/image/common/logo_wc.png');*/
+    /*}*/
+
+    .spot-header .line {
+        width: 1px;
+        background: rgb(74, 76, 124) none repeat scroll 0% 0%;
+    }
+
+    .spot-header .line-30 {
+        height: 30px;
+    }
+
+    .spot-header .line-10 {
+        height: 10px;
+    }
+
+    .spot-header .down-select ul, .spot-header .down-select ul::before {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%);
+    }
+
+    .spot-header .down-select ul::before {
+        display: block;
+        content: "";
+        top: -5px;
+        border-bottom: 5px solid rgb(27, 29, 47);
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+    }
+
+    .spot-header .nav {
+        margin-left: 30px;
+        height: 100%;
+    }
+
+    .spot-header .nav .item {
+        position: relative;
+        margin-right: 24px;
+        height: 100%;
+    }
+
+    .spot-header .nav .item:last-child {
+        margin-right: 0px;
+    }
+
+    .spot-header .nav .item a {
+        font-size: 14px;
+        color: rgb(203, 215, 240);
+    }
+
+    .spot-header .nav .item a:hover {
+        color: #0976d9;
+    }
+
+    .spot-header .nav .item a.active {
+        color: #0976d9;
+    }
+
+    .spot-header .nav-right {
+        margin-left: 30px;
+        height: 100%;
+    }
+
+    .spot-header .nav-right .item {
+        position: relative;
+        margin-left: 24px;
+        height: 100%;
+    }
+
+    .spot-header .nav-right .item:last-child {
+        margin-right: 0px;
+    }
+
+    .spot-header .nav-right .item a {
+        font-size: 14px;
+        color: rgb(203, 215, 240);
+    }
+
+    .spot-header .nav-right .item a:hover {
+        color: rgb(126, 158, 253);
+    }
+
+    .spot-header .blank {
+        flex-grow: 1;
+    }
+
+    .spot-header .user .line {
+        margin: 0px 20px;
+    }
+
+    .spot-header .user a {
+        font-size: 14px;
+        color: rgb(126, 158, 253);
+    }
+
+    .spot-header .user a:hover {
+        color: rgb(126, 158, 253);
+    }
+
+    /*语言切换*/
+    .st-language {
+        position: relative;
+        height: 30px;
+        padding-bottom: 10px;
+    }
+
+    .st-language .current {
+        width: 110px;
+        height: 20px;
+        border: 1px solid rgb(255, 255, 255);
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    .st-language .current > span {
+        margin: 0px 2px;
+        color: rgb(203, 215, 240);
+        font-size: 12px;
+        display: block;
+    }
+
+    .st-language .current > span:last-of-type {
+        border-top: 5px solid rgb(255, 255, 255);
+        border-right: 3.5px solid transparent;
+        border-left: 3.5px solid transparent;
+        transition: all 0.5s ease 0s;
+    }
+
+    .st-language .options {
+        display: none;
+        top: 30px;
+        padding: 14px 0px 10px;
+        z-index: 1000;
+        background-color: rgb(26, 42, 72);
+        box-shadow: 0px 3px 7px 0px rgba(20, 33, 57, 0.5);
+        border-radius: 5px;
+        cursor: auto;
+    }
+
+    .st-language .options > span, .st-language .options {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%);
+    }
+
+    .st-language .options > span {
+        top: -5px;
+        border-right: 5px solid transparent;
+        border-bottom: 6px solid rgb(26, 42, 72);
+        border-left: 5px solid transparent;
+    }
+
+    .st-language .options .option {
+        height: 34px;
+        line-height: 34px;
+        padding: 0px 30px;
+        cursor: pointer;
+        white-space: nowrap;
+    }
+    .st-language .options .option a{
+        color:#fff;
+    }
+
+    .st-language .options .option:hover {
+        background-color: rgb(18, 32, 58);
+    }
+
+    .st-language .options .option:hover span {
+        color: rgb(108, 133, 174);
+    }
+
+    .st-language .options .option:last-of-type {
+        border: medium none;
+    }
+
+    .st-language .options .option span {
+        color: rgb(203, 215, 240);
+        font-size: 12px;
+        margin: 0px 2px;
+    }
+
+    .st-language:hover .current {
+        border-color: rgb(108, 133, 174);
+    }
+
+    .st-language:hover .current > span,.st-language:hover .current > span a{
+        color: rgb(108, 133, 174);
+    }
+
+    .st-language:hover .current > span:last-of-type {
+        transform: rotate(180deg);
+        border-top-color: rgb(108, 133, 174);
+    }
+
+    .st-language:hover .options {
+        display: block;
+    }
+
+    .st-language .flag {
+        width: 13px;
+        height: 9px;
+        background-size: 13px 9px;
+    }
+
+    .st-language .flag.cn {
+        background-image: url('/Public/Home/image/common/cn.png');
+    }
+
+    .st-language .flag.en {
+        background-image: url('/Public/Home/image/common/en.png');
+    }
+
+    .st-language .flag.ko {
+        background-image:url('/Public/Home/image/common/ko.png');
+    }
+
+    .st-language .flag.ru {
+        background-image: url('/Public/Home/image/common/ru.png');
+    }
+
+    .st-language .flag.ja {
+        background-image: url('/Public/Home/image/common/ja.png');
+    }
+
+
+    .st-input:-moz-placeholder, .st-input::-moz-placeholder {
+        color: rgb(204, 204, 204);
+    }
+
+</style>
+
+<div class="spot-header flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+    <a class="logo cn" href="/Index/index" style="background-image: url('/Upload/public/{$web_logo}'); width:115px;height:45px;"></a>
+    <div class="line line-30"></div>
+    <div class="nav flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+        <div class="item product2 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+            <a class="" onclick="cy()">{$GLOBALS['c2c']}</a></div>
+        <div class="item product2 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+            <a class="" href="/Trade/index/market/eth_jeff">{$GLOBALS['trade']}</a></div>
+        <div class="item product2 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+            <a class="" href="/Lever/borrowMoney/market/usdt_jeff">{$GLOBALS['borrowMoney']}</a></div>
+		<div class="item product2 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+            <a class="" href="/Article/officialAdModal" target="_blank">{$GLOBALS['office-notice']}</a></div>
+        <div class="item product2 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap"></div>
+        <div class="item product2 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap"></div>
+    </div>
+    <div class="blank"></div>
+    <div class="nav-right flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+        <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+            <a onclick="logins(1)">{$GLOBALS['qianbao']}</a></div>
+        <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+            <a onclick="logins(2)">{$GLOBALS['recharge']}</a></div>
+        <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+            <a onclick="logins(3)">{$GLOBALS['withdraw']}</a></div>
+    </div>
+    <div class="user flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+
+        <if condition="$_SESSION['userName'] neq ''">
+            <a style="margin-left:30px;" href="/User/index">{$GLOBALS['user']}：<span id="userName">{$_SESSION['userName']}</span></a>
+            <div class="line line-10"></div>
+            <a onclick="loginout();">{$GLOBALS['loginout']}</a>
+        <else />
+            <a style="margin-left: 30px;" href="/Login/register?login">{$GLOBALS['login']}</a>
+            <div class="line line-10"></div>
+            <a href="/Login/register?register">{$GLOBALS['register']}</a>
+        </if>
+    </div>
+    <div style="margin: 10px 0px 0px 30px;" class="st-language flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+        <div class="current flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap">
+            <!-- <span class="flag cn"></span> -->
+			<eq name="yuyan" value=""><span class="flag cn"  ></span></eq>
+            <eq name="yuyan" value="1"><span class="flag cn"  ></span></eq>
+            <eq name="yuyan" value="2"><span class="flag ru"  ></span></eq>
+            <eq name="yuyan" value="3"><span class="flag en"  ></span></eq>
+			<span>
+                <eq name="yuyan" value="">中文简体</eq>
+    			<eq name="yuyan" value="1">中文简体</eq>
+    			<eq name="yuyan" value="2">Русский</eq>
+    			<eq name="yuyan" value="3">English</eq>
+			</span>
+            <!-- <span>中文简体</span> -->
+            <span></span>
+        </div>
+        <div class="options">
+            <span></span>
+            <div class="option flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                <span class="flag cn"></span>
+                <span><a href="/User/Lang/lang/1">中文简体</a></span>
+            </div>
+            <div class="option flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                <span class="flag en"></span>
+                <span><a href="/User/Lang/lang/3">English</a></span>
+            </div>
+            <!-- <div class="option flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                <span class="flag ko"></span>
+                <span>한국어</span></div>
+            <div class="option flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                <span class="flag ja"></span>
+                <span>日本語</span></div> -->
+            <div class="option flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                <span class="flag ru"></span>
+                <span><a href="/User/Lang/lang/2">Русский</a></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        // 选择语言栏
+        $(".option").click(function () {
+            var oneSpan=$(this).find("span:first-child").attr("class");
+            var twoSpan=$(this).find("span:nth-child(2)").html();
+            $(".st-language .current").find("span:first-child").attr("class",oneSpan);
+            $(".st-language .current").find("span:nth-child(2)").html(twoSpan);
+        });
+    });
+
+
+    /*隐藏手机号中间4位*/
+    var phone = $('#userName').html();
+    var mphone = phone.substr(0, 3) + '****' + phone.substr(7);
+    $('#userName').html(mphone);
+
+</script>
+<script>
+	function cy(){
+						var uid = "{$uid}";
+						var zhifubao = "{$c2c_user['zhifubao']}";
+						var weixin = "{$c2c_user['weixin']}";
+						var bank = "{$c2c_user['bank']}";
+						var paypwd = "{$c2c_user['paypassword']}";
+						//alert(zhifubao);
+						if(uid>0){
+							if((zhifubao == '' || zhifubao=='NULL')&&(weixin == '' || weixin=='NULL')&&(bank == '' || bank=='NULL')){
+								layer.msg('请设置收款方式', {icon: 2});
+								location.href="/User/myCenter";
+							}
+							else if(paypwd == "" || paypwd == "NULL"){
+								layer.msg('请设置资金密码', {icon: 2});
+								location.href="/User/resetFiancePwd";
+							}else{
+								location.href="/C2c/index/market/jeff/money/0";
+							}
+							
+						}else{
+							layer.msg('请先登录', {icon: 2});
+							location.href="/C2c/index/market/jeff/money/0";
+						}
+					}	
+	
+	function logins(id){
+	    var uid = "{$uid}";
+		if(uid>0){
+		    if(id == 1){
+		        location.href="/Finance/qianbao";
+		    }else if(id == 2){
+		        location.href="/Finance/myzr/name/jeff";
+		    }else if(id==3){
+		        location.href="/Finance/myzc/name/jeff";
+		    }
+		}else{
+			layer.msg("{$GLOBALS['first-login']}", {icon: 2});
+	    }
+	}
+	function loginout(){
+						$.post("/Login/loginout",{},function(data){
+							if(data.status==1){
+								layer.msg(data.info,{icon:1});
+								window.setTimeout("window.location='/Index'",1000);
+							}
+						},"json");
+					}
+</script>

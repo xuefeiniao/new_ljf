@@ -1,0 +1,283 @@
+<include file="Publics:header-black"/>
+    
+	<body class="">
+      
+        <div class="content">
+            
+            <include file="Publics:leftbar"/>
+            
+            <script type="text/javascript">
+</script>
+            <div class="main_content acc-m-con" style="border:none;">
+                <div class="right_mcontent myacc-con" >
+                    <ul class="my-top-info clearfix">
+                        <li>
+                            	<h3>我的账号ID</h3>
+	<b>{$cny['uid']}</b>
+
+                        </li>
+                        <li>
+                        	<h3><a href="#" >可用BDB</a></h3>
+	<strong>{$cny['ky']|NumToStr}</strong>
+
+                        </li>
+                        <li>
+                            	<h3>冻结BDB</h3>
+	<strong>{$cny['dj']|NumToStr}</strong>
+
+                        </li>
+                        <li>
+						<h3>预估总资产</h3>
+	<strong>{$cny['zj']|NumToStr}</strong><i class="vol30-unit"> BDB</i> 
+                            <div class="fund-top-small">或 <strong>{$cny['bdb_btc']|NumToStr}</strong> BTC</div>
+                        </li>
+                    </ul>
+                  
+                    <!--<div class="lv-prog">	<span class="pro-dtl">升级还需要 <strong class="red">3.0</strong> BTC 或者 <strong class="red">123131</strong> CNY 30天交易量或等值资产</span>
+
+                        <div id="fprogrLi">
+                            <div id="fproBar" style="width: 0%;"><span>升级进度: <b>0.0%</b></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="crFund">当前资金总估：	<i class="red">0.00 人民币</i> 或 <i class="red">0.00 美元</i> 或 <i class="red">0.00000 比特币</i>
+
+                        <p class="fund-tips">注：资金总估是由历史行情估算值，仅为用户提供一个参考，请以单项资金为准</p>
+                    </div>-->
+                  <br />
+                    <div class="sectioncont funds-dtl myfunds-dtl">
+                        <div class="m_title" id="wallet">资金(我的在线钱包):</div>
+                       <!-- <div class="HideZeroDiv pull-left" id="hideZbtn">
+                            <label for="hidezero">
+                                <input type="checkbox" id="hidezero" name="hidezero" style="width: 20px;">
+                                <label for="hidezero" class="vr-btn"></label> <span class="hidezero-span">只显示有资金币种（隐藏0资金币种）</span>
+
+                            </label>
+                            <input type="hidden" id="min" value="">
+                            <input type="hidden" id="max" value="">
+                        </div>-->
+                        <div id="defaultOrder" class="r-btn">默认排序</div>
+                        <div id="funds_wrapper" class="dataTables_wrapper no-footer">
+                          <!--
+                            <div class="top">
+                                <div id="funds_filter" class="dataTables_filter">
+                                    <label>
+                                        <input type="search" class="" placeholder="" aria-controls="funds">
+                                    </label>
+                                </div>
+                            </div>-->
+                            <table id="funds" class="dataTable sf-grid all-funds-table initial-order no-footer" cellspacing="0" cellpadding="0" role="grid" aria-describedby="funds_info" style="text-align:center;">
+                                <thead>
+                                    <tr role="row" style="height:40px;">
+                                        <th align="right" class="sorting_asc" tabindex="0" aria-controls="funds" rowspan="1" colspan="1" aria-label="币种: activate to sort column ascending"><b>币种</b>
+                                        </th>
+                                      <!--  <th align="" class="sorting" tabindex="0" aria-controls="funds" rowspan="1" colspan="1" aria-label="可用余额: activate to sort column ascending"><b>可用余额</b> 
+                                        </th> --> 
+                                        <th align="" class="sorting" tabindex="0" aria-controls="funds" rowspan="1" colspan="1" aria-label="可用金额: activate to sort column ascending"><b>可用金额</b>
+                                        </th>
+                                        <th align="" class="sorting" tabindex="0" aria-controls="funds" rowspan="1" colspan="1" aria-label="总计: activate to sort column ascending"><b>冻结</b>
+                                        </th>
+                                        <th align="" class="sorting" tabindex="0" aria-controls="funds" rowspan="1" colspan="1" aria-label="估算为人民币: activate to sort column ascending" aria-sort="descending"><b>总计</b>
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="funds" rowspan="1" colspan="1" aria-label=": activate to sort column ascending"></th>
+                                        <th align="" class="sorting_disabled" rowspan="1" colspan="1" aria-label="操作"><b>操作</b>
+                                        </th>
+                                    </tr>
+                                </thead>
+                              
+                              	<volist name="coinList" id="vo">
+                                <tbody role="alert" aria-live="polite" aria-relevant="all">
+                                    <tr data-id="zero" role="row" class="odd">
+                                        <td align="right" class="sorting_3"><span style="color:#08a287"><img src="__UPLOAD__/coin/{$vo['img']}" alt="" width="40" style="width: 20px;margin-left: 10px;margin-right: 9px;margin-bottom: -4px;"/>{$vo['title']}</span>
+                                        </td>
+                                    <!--   <td align="center">{$vo['jia']|NumToStr}</td>  -->
+                                        <td align="center" class="no-od">{$vo['xnb']|NumToStr}</td>
+                                        <td align="center">{$vo['xnbd']+$vo['xnbc']|NumToStr}</td>
+                                        <td align="center" class="sorting_1" style="text-align:center;">{$vo['xnbz']|NumToStr}</td>
+                                       
+                                        <td align="" style="text-align:center;">	<a href="/Finance/myzr/name/{$vo['name']}" class="normal-depo fund-deposit" title="充值正常">充值</a>
+										<a href="/Finance/myzc/name/{$vo['name']}" class="normal-depo fund-withdraw" title="提现正常">提现</a>
+										<a href="/trade/index/market/{$vo['name']}_bb" class="normal-depo fund-to-trade" title="交易正常">交易</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                </volist>
+                              
+                            </table>
+                           <!--  <div class="bottom">
+                                <div class="dataTables_info" id="funds_info" role="status" aria-live="polite">当前显示第 1 至 12 币种，共 184 币种</div>
+                                <div class="dataTables_paginate paging_simple_numbers" id="funds_paginate"><a class="paginate_button previous disabled" aria-controls="funds" data-dt-idx="0" tabindex="0" id="funds_previous">上页</a><span><a class="paginate_button current" aria-controls="funds" data-dt-idx="1" tabindex="0">1</a><a class="paginate_button " aria-controls="funds" data-dt-idx="2" tabindex="0">2</a><a class="paginate_button " aria-controls="funds" data-dt-idx="3" tabindex="0">3</a><a class="paginate_button " aria-controls="funds" data-dt-idx="4" tabindex="0">4</a><a class="paginate_button " aria-controls="funds" data-dt-idx="5" tabindex="0">5</a><span class="ellipsis">…</span>
+                                    <a
+                                    class="paginate_button " aria-controls="funds" data-dt-idx="6" tabindex="0">16</a>
+                                        </span><a class="paginate_button next" aria-controls="funds" data-dt-idx="7" tabindex="0" id="funds_next">下页</a>
+                                </div>
+                            </div> -->
+                            <div class="clear"></div>
+                        </div>	
+                       <!--  <b class="delisted-title">已经下架币种列表(请提现): </b>
+
+                        <table class="sf-grid all-funds-table dataTable delisted-table">
+                            <thead>
+                                <tr class="pur-td" role="row" style="height:40px">
+                                    <th align="left"><b>类型</b>
+                                    </th>
+                                    <th align="right"><b>可用余额</b>
+                                    </th>
+                                    <th align="right"><b>挂单金额</b>
+                                    </th>
+                                    <th align="right"><b>总计</b>
+                                    </th>
+                                    <th align="right"><b>估算为人民币</b>
+                                    </th>
+                                    <th align="right"><b>操作</b>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-id="zero">
+                                    <td align="left"><span class="cionpic"><img src="./001_files/ppt.png"></span>  <span style="text-decoration:line-through;"><span class="icon-16 icon-16-ppt"></span><span style="color:#112b44"><b>PPT</b> Populous</span></span>
+                                    </td>
+                                    <td align="right">0.000000</td>
+                                    <td align="right" class="no-od">0.000000</td>
+                                    <td align="right">0.000000</td>
+                                    <td align="right">0.00</td>
+                                    <td align="right"><a href="https://gateio.io/myaccount/withdraw/PPT">提现</a>
+                                            <a href='/trade/ppt_qtum'>交易</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table> -->
+                      
+                      
+                      <div class="m_title">最近充值记录（<a href="#">更多</a>）:</div>
+                      <table id="funds" class="dataTable sf-grid all-funds-table initial-order no-footer" cellspacing="0" cellpadding="0" role="grid" aria-describedby="funds_info" style="text-align:center;">
+                                <thead>
+                                    <tr role="row" style="height:40px">
+                                        <th align="right" class="sorting_asc" tabindex="0" aria-controls="funds" rowspan="1" colspan="1" aria-label="" style="width:20%;"><b>转入时间</b>
+                                        </th>
+                                        <th align="" class="sorting" tabindex="0" aria-controls="funds" rowspan="1" colspan="1" aria-label=""><b>转入币种</b>
+                                        </th>
+                                      
+                                        <th align="" class="sorting" tabindex="0" aria-controls="funds" rowspan="1" colspan="1" aria-label=" "><b>转入数量</b>
+                                        </th>
+                                        <th align="" class="sorting" tabindex="0" aria-controls="funds" rowspan="1" colspan="1" aria-label=""><b>到账数量</b>
+                                        </th>
+                                      <!--
+                                        <th align="right" class="sorting" tabindex="0" aria-controls="funds" rowspan="1" colspan="1" aria-label="估算为人民币: activate to sort column ascending" aria-sort="descending"><b></b>
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="funds" rowspan="1" colspan="1" aria-label=": activate to sort column ascending"></th>
+-->
+                                        <th align="" class="sorting_disabled" rowspan="1" colspan="1" ><b>状态</b>
+                                        </th>
+                                    </tr>
+                                </thead>
+                              	
+
+                        
+                              	<volist name="usermylog['myzr']" id="zr" offset="0" length='5'>
+                                <tbody role="alert" aria-live="polite" aria-relevant="all">
+                                    <tr data-id="zero" role="row" class="odd">
+                                        <td align="right" class="sorting_3"><span style="color:#08a287">{$zr.addtime|addtime}</span>
+                                        </td>
+                                        <td align="">{$zr.coinname|strtoupper}</td>
+                                      	
+                                        <td align="" class="no-od">{$zr.num}</td>
+                                        <td align="">{$zr.mum}</td>
+                                      	<if condition="$zr['status'] eq 1">
+                                        	<td>转入成功</td>
+                                        <else/>
+                                          	<td>等待处理,还需要{$zr.status|abs}个确认</td>
+                                        </if>
+                                    </tr>
+                                </tbody>
+                                </volist>
+                              
+                            </table>
+                        <!--<table class="sf-grid table-inacc table-inacc-head">
+                            <thead>
+                                <tr>
+                                    <th><b>单号</b>
+                                    </th>
+                                    <th align="left"><b>时间</b>
+                                    </th>
+                                    <th align="right"><b>金额</b>
+                                    </th>
+                                    <th align="right"><b>转账ID</b>
+                                    </th>
+                                    <th align="right"><b>确认个数</b>
+                                    </th>
+                                    <th align="right"><b>状态</b>
+                                    </th>
+                                </tr>
+                            </thead>
+                        </table>
+                        <div class="table-scroll">
+                            <table class="sf-grid table-inacc table-inacc-body" id="latestDepo">
+                                <tbody>
+                                    <tr class="table-empty" style="display: table-row;">
+                                        <td style="text-align: center">
+                                            <p><i>i</i>暂无充值记录</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>-->
+                        <div class="m_title">最近提现记录（<a href="https://gateio.io/myaccount/mywithdrawals">更多</a>）:</div>
+                       <table id="funds" class="dataTable sf-grid all-funds-table initial-order no-footer" cellspacing="0" cellpadding="0" role="grid" aria-describedby="funds_info" style="text-align:center;">
+                                <thead>
+                                    <tr role="row" style="height:40px">
+                                        <th align="right" class="sorting_asc" tabindex="0" aria-controls="funds" rowspan="1" colspan="1" aria-label="" style="width:20%;"><b>提现时间</b>
+                                        </th>
+                                        <th align="" class="sorting" tabindex="0" aria-controls="funds" rowspan="1" colspan="1" aria-label=""><b>转入币种</b>
+                                        </th>
+                                        
+                                        <th align="" class="sorting" tabindex="0" aria-controls="funds" rowspan="1" colspan="1" aria-label=""><b>转出数量</b>
+                                        </th>
+                                      <th align="" class="sorting" tabindex="0" aria-controls="funds" rowspan="1" colspan="1" aria-label=""><b>实际到账</b>
+                                        </th>
+                                      <!--
+                                        <th align="right" class="sorting" tabindex="0" aria-controls="funds" rowspan="1" colspan="1" aria-label="估算为人民币: activate to sort column ascending" aria-sort="descending"><b></b>
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="funds" rowspan="1" colspan="1" aria-label=": activate to sort column ascending"></th>
+-->
+                                        <th align="" class="sorting_disabled" rowspan="1" colspan="1" ><b>状态</b>
+                                        </th>
+                                    </tr>
+                                </thead>
+                              
+                              	<volist name="usermylog['myzc']" id="zc" offset="0" length='5'>
+                                <tbody role="alert" aria-live="polite" aria-relevant="all">
+                                    <tr data-id="zero" role="row" class="odd">
+                                        <td class="sorting_3"><span style="color:#08a287">{$zc.addtime|addtime}</span></td>
+                                        <td>{$zc.coinname|strtoupper}</td>
+                                        <td>{$zc['num']|NumToStr}</td>
+                                      	<td>{$zc['mum']|NumToStr}</td>
+                                      	<if condition="$zc['status'] eq 1">
+                                        	<td>转出成功</td>
+                                        <else/>
+                                          	<td>正在处理</td>
+                                        </if>
+                                    </tr>
+                                </tbody>
+                                </volist>
+                              
+                            </table>
+                        
+                    </div>
+                    <br>
+                    <!--<script src="./001_files/jquery.dataTables.min.js"></script>-->
+                    <script>
+</script>
+ 
+                </div>
+                <!-- right_mcontent -->
+            </div>
+            <!-- main content -->
+        </div>
+        <script>
+</script>
+<include file="Publics:footer"/>
+    </body>
+
+</html>

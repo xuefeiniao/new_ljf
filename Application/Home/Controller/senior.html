@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="比特币交易平台，比特币交易所，数字资产交易所,数字货币交易平台" />
+    <meta name="format-detection" content="telephone=no,email=no,address=no" />
+    <title>高级认证</title>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/base.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/common.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/newcss/seniorCert.css" media="all"/>
+    <script data-n-head="true" src="__PUBLIC__/Home/js/newjs/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/layer/layer.js"></script>
+
+</head>
+<body>
+<!--<img src="https://mon.58coin.com/mon.gif" id="img-hidden" />-->
+<div id="__nuxt">
+    <div class="nuxt-progress" style="width: 0%; height: 2px; background-color: rgb(59, 128, 112); opacity: 0;"></div>
+    <div id="__layout">
+        <div>
+            <!--头部内容-->
+            <include file="Public:header1"/>
+            <!--头部内容   end-->
+
+            <div class="wrap">
+                <section class="container users-auth-two">
+                    <div class="bread flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                        <div>
+                            <a href="/User/index" class="" style="color:#0976d9;">我的</a>
+                            <span> &gt; </span>
+                        </div>
+                        <p>高级认证</p>
+                    </div>
+                    <div class="info">
+                        <h4>高级认证</h4>
+                        <div class="info-message">
+                            <span></span>
+                            <p>请保证你上传的证件清晰、完整，手持身份证照片不遮挡脸部特征。 </p>
+                            <p>提交本申请代表承诺你的身份信息真实可靠，不存在盗用他人信息的情况。</p>
+                            <p>您的申请我们将在一个工作日内进行审核，并公知您审核结果。</p>
+                        </div>
+                        <div class="info-img flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+                            <div class="item">
+                                <eq name="img['senior_past']" value='0'>
+                                <div class="set_upload_img">
+                                    <img class="new-img" id="up_img1" src="/Public/Home/image/seniorCert/zheng.eff5105.png" alt="" />
+                                </div>
+                                <else />
+                                <div class="set_upload_img">
+                                    <img class="new-img" id="" src="/Upload/idcard/{$img['idcardimg1']}" alt="" />
+                                </div>
+                            </eq>
+                                <p>身份证正面</p>
+                                <div class="upload" style="width: 60px;">
+                                    <div class="upload">
+                                        <input type="file" accept="image/gif, image/jpeg, image/jpg, image/png" id="inputfile1"/>
+                                    </div>
+                                    <div class="range"></div>
+                                    <eq name="img['senior_past']" value='0'>
+                                    <a onclick="getElementById('inputfile1').click()" style="width: 60px;">上传</a>
+                                    </eq>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <eq name="img['senior_past']" value='0'>
+                                <div class="set_upload_img">
+                                    <img class="new-img" id="up_img2" src="/Public/Home/image/seniorCert/fan.0b040da.png" alt="" />
+                                </div>
+                                <else />
+                                <div class="set_upload_img">
+                                    <img class="new-img" id="" src="/Upload/idcard/{$img['idcardimg2']}" alt="" />
+                                </div>
+                            </eq>
+                                <p>身份证反面</p>
+                                <div class="upload" style="width: 60px;">
+                                    <div class="upload">
+                                        <input type="file" accept="image/gif, image/jpeg, image/jpg, image/png" id="inputfile2"/>
+                                    </div>
+                                    <div class="range"></div>
+                                    <eq name="img['senior_past']" value='0'>
+                                    <a onclick="getElementById('inputfile2').click()" style="width: 60px;">上传</a>
+                                </eq>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <eq name="img['senior_past']" value='0'>
+                                <div class="set_upload_img">
+                                    <img class="new-img" id="up_img3" src="/Public/Home/image/seniorCert/heying.63edb84.png" alt="" />
+                                </div>
+                                <else />
+                                <div class="set_upload_img">
+                                    <img class="new-img" id="" src="/Upload/idcard/{$img['idcardimg3']}" alt="" />
+                                </div>
+                            </eq>
+                                <p>手持身份证</p>
+                                <div class="upload" style="width: 60px;">
+                                    <div class="upload">
+                                        <input type="file" accept="image/gif, image/jpeg, image/jpg, image/png" id="inputfile3"/>
+                                    </div>
+                                    <div class="range"></div>
+                                    <eq name="img['senior_past']" value='0'>
+                                    <a onclick="getElementById('inputfile3').click()" style="width: 60px;">上传</a>
+                                </eq>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="submit flex-box flex-direction-row flex-justify-center flex-align-item-start flex-wrap-nowrap">
+                            <!---->
+                            <p  class="error-tip" style="margin: 6px 0px -35px;display: none;">请上传第<span>一</span>张证件照！</p>
+                            <if condition="$user['senior_past'] eq 1">
+                            <a class="sub">正在审核</a>
+                            <elseif condition="$user['idcardauth'] eq 2" />
+                             <a class="sub">审核通过</a>
+                             <else />   
+                            <a class="sub" id="suub">提交申请</a>
+                            </if>
+                        </div>
+                    </div>
+                </section>
+                <!--底部内容-->
+                <include file="Public:footer"/>
+                <!--底部内容   end-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="__PUBLIC__/Home/js/newjs/senior.js"></script>
+<script>
+    /*上传身份证照片*/
+    $(document).ready(function () {
+        if($('.img-all').attr('src') && $('.img-all1').attr('src') && $('.img-all2').attr('src')){
+            // console.log($('.img-all1'));
+            $('#shang_zhisucom_chuandiv').hide();
+            $('.assets_content').css('min-height','595px')
+            return;
+        }
+        $('.assets_content').css('min-height','895px')
+
+        $("#inputfile1").change(function () {
+            sendAjax("inputfile1")
+        });
+        $("#inputfile2").change(function () {
+            sendAjax("inputfile2")
+        });
+        $("#inputfile3").change(function () {
+            sendAjax("inputfile3")
+        });
+        function sendAjax(name){
+            var data = new FormData();
+            data.append(name,$("#"+name)[0].files[0]);
+            $.ajax({
+                url: '/ajax/imgUser',
+                type: 'POST',
+                data: data,
+                cache: false,
+                contentType: false,		//不可缺参数
+                processData: false,		//不可缺参数
+                success: function (data) {
+                    if (data) {
+                        if(data=="error"){
+                            alert("请选择正确的文件类型和大小！");
+                            return false;
+                        }
+                        $("#"+name).closest(".item").find('.set_upload_img').find("img.new-img")
+                            .attr({'src':'/Upload/idcard/' + data}).addClass("newImg");
+                        //console.log(data)
+                        if($('.newImg').length === 3){
+                            $('#suub').on('click',function(){
+							$.ajax({
+								url:"/Ajax/gaoji",
+								type:'POST',
+								dataType:'json',
+								data:{s:1},
+							});
+                                layer.msg('提交成功！', {icon: 1});
+                                location.reload();
+                            })
+                        }
+                        $('.error-tip').hide()
+
+
+                    }
+                },
+                error: function () {
+                    alert('上传出错');
+                    // $('.set_upload_img').hide();
+                }
+            });
+        }
+    });
+
+
+    /*点击“上传”按钮*/
+    $("#suub").click(function () {
+        if(!($(".info-img .item:first-child").find("img").hasClass("newImg"))){
+            $('.error-tip').show().find("span").html("一");
+        }else if(!($(".info-img .item:nth-child(2)").find("img").hasClass("newImg"))){
+            $('.error-tip').show().find("span").html("二");
+        }else if(!($(".info-img .item:nth-child(3)").find("img").hasClass("newImg"))){
+            $('.error-tip').show().find("span").html("三");
+        }else{
+            $('.error-tip').hide();
+			
+            //console.log("成功")
+        }
+		
+    });
+
+</script>
+</body>
+</html>

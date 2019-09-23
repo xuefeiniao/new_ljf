@@ -1,0 +1,66 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+.main_content{
+	margin: 0 auto;
+	float:right;
+}
+.m_title { height: 42px; width: 100%; font-size: 1.5em; color: #111;border-bottom: 1px solid #C8DAE2; margin: 10px 0 20px;line-height: 46px}
+.myacc-con .m_title h4{ font-weight: normal}
+.myacc-con .sectioncont p {margin-bottom:10px ;font-weight: normal;}
+.formbox {min-height:20px;margin:0 auto;border:1px;min-width:60px;}
+    .formbox table {width:70%;margin:0 auto;}
+    .formbox table th {line-height:26px;padding:10px;vertical-align:top;text-align:center;border:none;font-weight:normal;font-size:16px;color:#333;}
+    .formbox table td {border:none}
+    .formbox table th b {color:#ff5e23;margin:0 3px;}
+    .formbox .sfz {position:relative;border:1px solid #f0f0f0;text-align:center;padding:20px;min-width:60px;min-height:155px;max-height:300px;}
+    @media screen and (min-width:1800px) {.formbox .sfz {min-height:260px;}}
+    .formbox .sfz:before {content:'>';position:absolute;top:50%;right:-30%;font-size:48px;color:#ccc;font-weight:100;}
+    .formbox .sfz.pho-active:before {color:#44d5bc;}
+    .upfile-form-con form:last-child .sfz:before {display:none;}
+    .formbox .sfz-img {overflow:hidden;}
+    .formbox .sfz-img img {height:auto;width:100%}
+    .formbox select {border:1px solid rgb(204,204,204);padding:0 5px;border-radius:3px;height:30px;}
+    .formbox option {padding:4px 7px;border-bottom:1px dashed #eee;}
+    .formbox .file {position:absolute;top:0;left:0;z-index:3;height:100%;width:100%;overflow:hidden;line-height:120px;filter:alpha(Opacity=1);-moz-opacity:0.01;opacity:0.01;cursor:pointer;padding:0;margin:0!important;}
+    .id-info-table tr td:first-child {width:150px}
+    .sfz {position:relative}
+    .sfz i {position:absolute;right:0;bottom:0;width:20px;height:20px;line-height:20px;background:#44d5bc;font-style:normal;text-align:center;color:#fff;#display:none;}
+    .red {color:#ff5e23}
+    .sfz b {position:absolute;left:0;top:0;width:100%;height:100%;}
+    .sfz-cover {width:100%;height:100%;position:absolute;top:0;left:0;background:rgba(0,0,0,0.6);z-index:-1;opacity:0}
+    .sfz:hover .sfz-cover {opacity:1;z-index:2}
+    .sectioncont .upfile-btn {margin:50% auto;}
+    .sectioncont .btn-primary {background:#0c9c83;}
+    .sectioncont .btn-warning {background:#ff5e23;}
+    .re-btn {padding:10px 20px;border:1px solid #ddd;margin-left:15px}
+    .upfile-form-con form {width:25%;float:left; margin: 0}
+    .step-title {text-align:center;margin-top:10px;font-size:16px;color:#888}
+    .re-btn {
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+    margin-left: 15px;
+    text-decoration: none;
+    color: #666;
+}
+
+.upfile-btn{
+	width: 80%;
+	height:40px;
+	line-height: 40px;
+	margin-top: 125px;
+	color: white;
+}
+#submit{
+	width: 637.69px;
+	height:41px;
+	 background: rgb(212,88,88);
+	 outline: 0;
+	 border: none;
+	 color: white;
+	 margin-top: 30px;
+}
+.sub-btn:hover{
+	background: #ca4141 !important;
+}

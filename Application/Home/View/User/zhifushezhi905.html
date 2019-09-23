@@ -1,0 +1,846 @@
+<include file="Publics:header-black"/>
+	<body>
+	<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			html,
+			body {
+				width: 100%;
+			}
+			
+			.header {
+				width: 100%;
+				height: 45px;
+				background: red;
+			}
+			
+			.contents {
+				width: 100%;
+				clear: both;
+			}
+			
+			.leftbar {
+				width: 23%;
+				float: left;
+			}
+			
+			.main_content {
+				width: 75%;
+				float: right;
+				margin: 10px auto;
+				margin-left: 2%;
+				min-width: 918px;
+				background: #fff;
+				margin-bottom: -18px;
+				float: left;
+				position: relative;
+				box-sizing: border-box;
+			}
+			
+			.m_title {
+				height: 42px;
+				width: 100%;
+				color: #111;
+				border-bottom: 1px solid #C8DAE2;
+				margin: 10px 0 20px;
+				line-height: 46px;
+			}
+			
+			.c_tab {
+				width: 100%;
+				margin-top: 50px;
+				margin-left: 150px;
+			}
+			
+			.c_tab .tab {
+				width: 660px;
+				height: 40px;
+				margin-top: 20px;
+				border: 1px solid #ccc;
+				border-left: none;
+				text-align: center;
+			}
+			
+			ul li {
+				list-style: none;
+			}
+			
+			.c_tab .tab li {
+				width: 219px;
+				float: left;
+				border-left: 1px solid #CCCCCC;
+				line-height: 40px;
+			}
+			
+			.active {
+				background: #d45858;
+				color: white;
+			}
+			
+			.sectioncont,
+			.sectioncont table {
+				width: 100%;
+			}
+			
+			.payment-setup-con tbody tr:first-child td {
+				padding-bottom: 15px;
+			}
+			
+			form table td:first-child,
+			.payment-setup-con td:first-child {
+				width: 25%;
+				padding-right: 5px;
+			}
+			
+			.sectioncont #submit.sub-btn,
+			.sectioncont form input,
+			.sectioncont form select,
+			.sectioncont .sub-btn,
+			.payment-setup-con input,
+			.payment-setup-con select {
+				width: 60%;
+			}
+			
+			.sectioncont select {
+				height: 38px;
+				padding: 0 10px;
+			}
+			
+			.sectioncont input,
+			.sectioncont select,
+			.txt-memo {
+				margin: 5px 5px 5px 0;
+				border: 1px solid #ccc;
+				border-radius: 3px;
+				padding: 10px;
+				-webkit-box-sizing: border-box;
+				box-sizing: border-box;
+				outline: none;
+			}
+			
+			.sectioncont #submit.sub-btn,
+			.sectioncont form input,
+			.sectioncont form select,
+			.sectioncont .sub-btn,
+			.payment-setup-con input,
+			.payment-setup-con select {
+				width: 60%;
+			}
+			
+			.sectioncont input,
+			.sectioncont select,
+			.txt-memo {
+				margin: 5px 5px 5px 0;
+				border: 1px solid #ccc;
+				border-radius: 3px;
+				padding: 10px;
+				font-size: 14px;
+				-webkit-box-sizing: border-box;
+				outline: none;
+			}
+			
+			.wd-tip {
+				font-size: 13px;
+				color: #888;
+				display: block;
+				margin-bottom: 5px;
+			}
+			
+			.sectioncont .sub-btn {
+				width: 60%;
+			}
+			
+			.sectioncont .sub-btn,
+			.sub-btn {
+				background: #d45858;
+			}
+			
+			.sectioncont .sms-setup #submit,
+			.sectioncont #submit.sub-btn,
+			.sectioncont .sub-btn,
+			.sub-btn {
+				box-shadow: none;
+				border: none;
+				color: #fff;
+				font-family: 'Microsoft YaHei';
+				font-size: 16px;
+				text-indent: 0;
+				padding: 10px;
+				height: auto;
+				cursor: pointer;
+			}
+			
+			.bind-acc-btn {
+				margin-top: 15px;
+			}
+			
+			#agrCheckLabel {
+				margin-top: 10px;
+			}
+			
+			.bind-addr {
+				margin-top: 60px;
+				margin-right: 500px;
+			}
+			
+			.payment-setup .i-z {
+				width: 128px;
+				max-height: 195px;
+				min-height: 128px;
+				position: relative;
+				margin-bottom: 10px;
+			}
+			
+			.payment-setup .sfz-img {
+				width: 100%;
+				height: 100%;
+				min-height: 128px;
+				overflow: hidden;
+				background: #eee;
+				border: 1px solid #ccc;
+				border-radius: 3px;
+			}
+			
+			.payment-setup .sfz-img img {
+				width: 100%;
+				max-height: 195px;
+				min-height: 64px;
+				text-align: center;
+				line-height: 128px;
+				color: #888;
+				display: block;
+			}
+			
+			.payment-setup #file {
+				position: absolute;
+				top: 1px;
+				left: 1px;
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				opacity: 0;
+			}
+			
+			.re-select {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				text-align: center;
+				z-index: 2;
+				display: none;
+			}
+			
+			.re-select .r-btn {
+				padding: 9px 13px;
+				cursor: pointer;
+				opacity: 1;
+				margin-top: 50%;
+				display: inline-block;
+			}
+			
+			.txt-memo {
+				font-family: "Microsoft Yahei", sans-serif;
+				height: 80px;
+				max-width: 60%;
+				min-width: 60%;
+				min-height: 80px;
+			}
+			
+			.sectioncont input,
+			.sectioncont select,
+			.txt-memo {
+				margin: 5px 5px 5px 0;
+				width: 50%;
+				border: 1px solid #ccc;
+				border-radius: 3px;
+				padding: 10px;
+				font-size: 14px;
+				box-sizing: border-box;
+				outline: none;
+			}
+			
+			.footer {
+				margin: 0 auto;
+				width: 100%;
+				clear: both;
+				margin-bottom: -19px;
+				border-top: 1px solid #ddd;
+				z-index: 2;
+				position: relative;
+			}
+			
+			.m_title {
+				margin-bottom: 0;
+				border: none;
+				height: 42px;
+				width: 100%;
+				font-size: 1.5em;
+				color: #111;
+				border-bottom: 1px solid #C8DAE2;
+				margin: 10px 0 20px;
+				line-height: 46px;
+				margin-top: 40px;
+			}
+			
+			.m_title h4 {
+				font-weight: normal;
+			}
+			
+			.sectioncont,
+			.sectioncont table {
+				width: 100%;
+			}
+			
+			thead,
+			thead tr {
+				height: 40px;
+			}
+			
+			.sf-grid tr td:first-child {
+				text-align: left;
+			}
+			
+			.myacc-con thead td {
+				border-bottom: 1px solid #e4ebf0;
+			}
+     	html body .payment-setup-con tbody tr:first-child td{padding-bottom:0;}
+     	html body .payment-setup-con tbody tr td:nth-child(2){padding-bottom:4px;}
+		</style>
+		<!-- <div class="header"></div> -->
+		<div class="contents">
+			<include file="Publics:leftbar"/>
+			<div class="main_content" style="height:1300px;border:none;">
+				<div class="m_title">
+					<h4>支付设置</h4>
+				</div>
+				<p>设置收款方式，必须是本人账号。<b>（支付时必须本人实际操作，非自动扣款）</b></p>
+				<div class="c_tab">
+					<ul class="tab">
+						<li class="active">
+							绑定银行卡
+						</li>
+						<li>
+							绑定支付宝
+						</li>
+						<li>
+							绑定微信
+						</li>
+					</ul>
+					<div class="container">
+						<div class="yinhangka" id="bindBankDiv" style="">
+							<div name="bindbankaddr" id="bindbankaddr" class="bind-addr">
+								<div class="sectioncont payment-setup-con">
+									<input type="hidden" name="bank_id" id="bank_id" value="">
+									<input type="hidden" name="can_bind_bank" id="can_bind_bank" value="1">
+									<table id="tableBank">
+										<tbody>
+											<tr>
+												<td align="right">姓名：</td>
+												<td><input type="text" id="bank_user" placeholder="银行卡持有人姓名" /></td>
+											</tr>
+											<tr>
+												<td align="right">开户银行：</td>
+												<td>
+													<select name="bank_name" id="bank_name" style="height:40px">
+														<option value="" label="" selected="">请选择开户银行</option>
+														<option value="工商银行">工商银行</option>
+														<option value="中国银行">中国银行</option>
+														<option value="农业银行">农业银行</option>
+														<option value="建设银行">建设银行</option>
+														<option value="招商银行">招商银行</option>
+														<option value="交通银行">交通银行</option>
+														<option value="中国邮政储蓄银行">中国邮政储蓄银行</option>
+														<option value="民生银行">民生银行</option>
+														<option value="兴业银行">兴业银行</option>
+														<option value="中信银行">中信银行</option>
+														<option value="光大银行">光大银行</option>
+														<option value="华夏银行">华夏银行</option>
+														<option value="广发银行">广发银行</option>
+														<option value="平安银行">平安银行</option>
+														<option value="徽商银行">徽商银行</option>
+														<option value="广州银行">广州银行</option>
+														<option value="渤海银行">渤海银行</option>
+														<option value="上海浦东发展银行">上海浦东发展银行</option>
+														<option value="深圳发展银行">深圳发展银行</option>
+														<option value="浙商银行">浙商银行</option>
+														<option value="恒丰银行">恒丰银行</option>
+														<option value="天津银行">天津银行</option>
+														<option value="北京银行">北京银行</option>
+														<option value="上海银行">上海银行</option>
+														<option value="江苏银行">江苏银行</option>
+														<option value="南京银行">南京银行</option>
+														<option value="北京农商银行">北京农商银行</option>
+														<option value="上海农商银行">上海农商银行</option>
+														<option value="重庆银行">重庆银行</option>
+														<option value="宁波银行">宁波银行</option>
+														<option value="齐鲁银行">齐鲁银行</option>
+
+													</select>
+												</td>
+											</tr>
+
+											<tr>
+												<td align="right">开户支行：</td>
+												<td>
+													<input type="text" name="bank_branch" id="bank_branch" value="" size="20" maxlength="34">
+												</td>
+											</tr>
+											<tr>
+												<td></td>
+												<td><span class="wd-tip">可填写所在支行、市分行、分行营业部或分行核算中心</span></td>
+											</tr>
+											<tr>
+												<td align="right">银行卡号：</td>
+												<td>
+													<input type="text" name="bank_addr" id="bank_addr" value="" placeholder="请输入您要绑定的银行卡号" onkeyup="/*validBankAddr(this);*/">
+												</td>
+											</tr>
+											<tr>
+												<td align="right">资金密码：</td>
+												<td>
+													<input type="password" name="fund_pwd" id="fund_pwd_bank" value="" placeholder="请输入您的资金密码" autocomplete="new-password">
+												</td>
+											</tr>
+											<tr style="position: relative;top: 15px;">
+												<td align="right">风险提示：</td>
+												<td>
+													<div style="width:60%;display:block;color:#b15c00;font-size: 14px;margin-top: 15px;">C2C属于场外交易，法币不经过平台，平台不会自动扣款，需要您手动自行转账给对方，对方才能收到款项。 绑定银行卡等收款信息只为核对信息之用，不是扣款依据。
+													</div>
+													<p>
+													</p>
+												</td>
+											</tr>
+											<tr>
+												<td class="noty-td"></td>
+												<td>
+													<label id="agrCheckLabel" class="haschecked">
+				<input class="form-control" type="checkbox" name="agreeCheck" id="agreeCheck" value="1" style="width: 17px;height:17px;margin-right: 9px;margin-top: 10px;position: relative;top: 4px;"> 
+				<b><span id="agrTxt" class="red" style="color: #d45858;font-size: 14px;">我已阅读并充分理解上述内容，由于款项造成的交易风险自行承担</span></b>
+				</label>
+												</td>
+											</tr>
+											<tr>
+												<td class="noty-td"></td>
+												<td><label id="bind_bank_tips"></label></td>
+											</tr>
+											<tr>
+												<td>
+
+												</td>
+												<td>
+													<div class="noty_buttons">
+														<button id="bindBankBtn" class="sub-btn bind-acc-btn disabled" onclick="OnBindBank()">确定绑定</button>
+													</div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									<div class="list_item" style="z-index:100;">
+									<div class="m_title">
+										<h4>绑卡记录</h4>
+									</div>
+									<div class="sectionconts" style="z-index:100;">
+										<table class="sf-grid" style="z-index:100;">
+											<thead>
+												<tr>
+													<td align="center" ><b>持卡人姓名</b></td>
+													<td align="center"><b>开户银行</b></td>
+													<td align="center" ><b>银行卡号</b></td>
+													<td align="center" ><b>绑定时间</b></td>
+													<td align="center" ><b>操作</b></td>
+												</tr>
+												<volist name="info" id="vo">
+												<tr>
+													<td align="center">{$vo['bankuname']}</td>
+													<td align="center">{$vo['bank']}</td>
+													<td align="center">{$vo['bankcard']}</td>
+													<td align="center">{$vo['addtime']|date="Y-m-d H:i:s",###}</td>
+													<td align="center" ><button  onclick="OnDelBank({$vo.id})">解绑</button></td>
+												</tr>
+												</volist>
+											</thead>
+										</table>
+									</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+						<!--
+							绑定支付宝
+						-->
+						<div class="sectioncont payment-setup-con zhifubao" style="margin-top: 60px;margin-right: 500px;">
+							<div name="bindbankaddr" id="bindbankaddr" class="bind-addr">
+								<table id="tableAli">
+									<tbody>
+										<tr>
+											<td align="right" width="25%">支付宝账号姓名：</td>
+											<td width="70%"><input type="text" value="{$userinfo.ddpayname}" id="pay_name" placeholder="请填写支付宝账号持有人姓名" /></td>
+										</tr>
+										<!--<tr>
+											<td></td>
+											<td>
+												<label id="bindAli_tips"></label>
+												<div class="wd-tip">支付宝收款码获取方法：打开支付宝APP，在首页点击“收钱”，在打开的个人收钱二维码下方点击“保存图片”即可（每天最多修改三次）。</div>
+											</td>
+										</tr>-->
+										<tr>
+											<td align="right">支付宝账号：</td>
+											<td>
+												<input type="text" name="ali_name" id="ali_name" value="{$userinfo.ddpay}" placeholder="请输入您要绑定的支付宝账号">
+											</td>
+										</tr>
+                                      <tr>
+											<td align="right">上传支付二维码：</td>
+											
+											<td class="up-pay-ma" style="position:relative;">
+                                              <div style="width:160px;height:160px;background:#f3f3f3 url(/zhisucom/images/upimage.svg) no-repeat center;"></div>
+                                              <input class="file" name="file" id="up-img-zfb" type="file" accept="image/jpeg,image/jpg,image/png" style="position:absolute;width:160px;height:160px;top:0;left:0;opacity:0;margin:0;padding:0;border-radius:0;border:none;cursor:pointer;">
+                                              <img <neq name="userinfo.ali_img" value=''> src="/Upload/zhifu/{$userinfo['ali_img']}" </neq> id="up-img-zfb_ali" style="position:absolute;width:160px;height:160px;top:0;left:0;margin:0;padding:0;border-radius:0;border:none;" onclick="getElementById('up-img-zfb').click()"/>
+											</td>
+											
+
+                                        	
+										</tr>
+										<tr>
+											<td align="right">备注信息：</td>
+											<td>
+												<textarea class="txt-memo" name="ali_memo"  id="ali_memo" autocomplete="off" placeholder="请输入显示给对方的备注信息">{$userinfo.ddmemo}</textarea>
+												<div class="wd-tip">如果希望对方快速联系，可以在备注中添加联系方式，务必防御电话诈骗。</div>
+											</td>
+										</tr>
+										<tr>
+											<td align="right">资金密码：</td>
+											<td>
+												<input type="password" name="fund_pwd" id="fund_pwd_ali" value="" placeholder="请输入您的资金密码" autocomplete="new-password">
+											</td>
+										</tr>
+										<tr>
+											<td class="noty-td"></td>
+											<td><label id="bind_ali_tips"></label></td>
+										</tr>
+										<tr>
+											<td class="noty-td" style="color:red"></td>
+											<td><label id="bind_ali_tips" style="color:red">*重新提交即可换绑</label></td>
+										</tr>
+										<tr>
+											<td></td>
+											<td>
+												<button type="button" id="bindAliBtn" class="sub-btn bind-acc-btn" onclick="OnBindAli()">确定绑定</button>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<!--
+							绑定微信
+						-->
+						<div class="sectioncont payment-setup-con zhifubao" style="margin-top: 60px;margin-right: 500px;">
+							<div name="bindbankaddr" id="bindbankaddr" class="bind-addr">
+								<table id="tableAli">
+									<tbody>
+										<tr>
+											<td align="right" width="25%">微信账号姓名：</td>
+											<td width="70%"><input type="text" id="wei_name" value="{$userinfo.weixin_name}" placeholder="请绑定微信账号持有人姓名" /></td>
+										</tr>
+										<!--<tr>
+											<td></td>
+											<td>
+												<label id="bindAli_tips"></label>
+												<div class="wd-tip">支付宝收款码获取方法：打开支付宝APP，在首页点击“收钱”，在打开的个人收钱二维码下方点击“保存图片”即可（每天最多修改三次）。</div>
+											</td>
+										</tr>-->
+										<tr>
+											<td align="right">微信账号：</td>
+											<td>
+												<input type="text" name="ali_name" value="{$userinfo.weixin}" id="wei_nameid"  placeholder="请输入您要绑定的微信账号">
+											</td>
+										</tr>
+                                      <tr>
+											<td align="right">上传支付二维码：</td>
+											<td class="up-pay-ma" style="position:relative;">
+                                              <div style="width:160px;height:160px;background:#f3f3f3 url(/zhisucom/images/upimage.svg) no-repeat center;"></div>
+                                              <input class="file" name="file" id="up-img-wx" type="file" accept="image/jpeg,image/jpg,image/png" style="position:absolute;width:160px;height:160px;top:0;left:0;opacity:0;margin:0;padding:0;border-radius:0;border:none;cursor:pointer;">
+                                              <img <neq name="userinfo.weixin_img" value=''> src="/Upload/zhifu/{$userinfo['weixin_img']}" </neq> id="up-img-wx_wx" style="position:absolute;width:160px;height:160px;top:0;left:0;margin:0;padding:0;border-radius:0;border:none;" onclick="getElementById('up-img-wx').click()"/>
+                                          </if>
+											</td>
+                                        	
+										</tr>
+										<tr>
+											<td align="right">备注信息：</td>
+											<td>
+												<textarea class="txt-memo" name="ali_memo" id="wei_memo" autocomplete="off" placeholder="请输入显示给对方的备注信息">{$userinfo.weixin_memo}</textarea>
+												<div class="wd-tip">如果希望对方快速联系，可以在备注中添加联系方式，务必防御电话诈骗。</div>
+											</td>
+										</tr>
+										<tr>
+											<td align="right">资金密码：</td>
+											<td>
+												<input type="password" name="fund_pwd" id="fund_pwd_wei" value="" placeholder="请输入您的资金密码" autocomplete="new-password">
+											</td>
+										</tr>
+										<tr>
+											<td class="noty-td"></td>
+											<td><label id="bind_ali_tips"></label></td>
+										</tr>
+										<tr>
+											<td class="noty-td" style="color:red"></td>
+											<td><label id="bind_ali_tips" style="color:red">*重新提交即可换绑</label></td>
+										</tr>
+										<tr>
+											<td></td>
+											<td>
+												<button type="button" id="bindAliBtn" class="sub-btn bind-acc-btn" onclick="OnBindwei()">确定绑定</button>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<include file="Publics:footer"/>
+	</body>
+	<!-- <script src="js/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script> -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".tab li").on("click", function() {
+				$(this).addClass("active").siblings().removeClass("active");
+			});
+			$(".container>div").hide(); //隐藏所有div+
+			$(".container>div:eq(0)").show(); //默认第一个展开 
+
+			$(".tab li").click(function() {
+				var n = $(".tab li").index(this); //拿到索引值
+				$(".container>div").hide();
+				$(".container>div:eq(" + n + ")").show();
+			})
+		})
+	</script>
+	<script>
+		function OnBindBank(){
+			var bank_user = $('#bank_user').val();
+			var bank_name = $('#bank_name').val();
+			var bank_branch = $('#bank_branch').val();
+			var bank_addr = $('#bank_addr').val();
+			var fund_pwd_bank = $('#fund_pwd_bank').val();
+			if (bank_user == "" || bank_user == null) {
+				layer.tips("请输入持有人姓名", '#bank_user', {tips: 3});
+				return false;
+			}
+			if (bank_name == "" || bank_name == null) {
+				layer.tips("请选择开户银行", '#bank_name', {tips: 3});
+				return false;
+			}
+			if (bank_branch == "" || bank_branch == null) {
+				layer.tips("请输入银行支行", '#bank_branch', {tips: 3});
+				return false;
+			}
+			if (bank_addr == "" || bank_addr == null) {
+				layer.tips("请输入银行卡号", '#bank_addr', {tips: 3});
+				return false;
+			}
+          
+			if (fund_pwd_bank == "" || fund_pwd_bank == null) {
+				layer.tips("请输入资金密码", '#fund_pwd_bank', {tips: 3});
+				return false;
+			}
+			if (!$("#agreeCheck").is(':checked')) {
+				layer.tips("请同意风险协议", '#agreeCheck', {tips: 3});
+				return false;
+			}
+			$.ajax({
+				url:"/user/bind_bank",
+				data:{bank_user:bank_user,bank_name:bank_name,bank_branch:bank_branch,bank_addr:bank_addr,fund_pwd_bank:fund_pwd_bank},
+				dataType:"json",
+				type:"POST",
+				success:function(data){
+					if(data.status == 1){
+						layer.msg(data.info,{icon: 1});
+						window.location="/user/zhifushezhi";
+					}else{
+						layer.msg(data.info,{icon: 2});
+						return false;
+					}	
+				}
+			});
+		}
+		
+		
+		//删除绑定的银行卡记录
+		function OnDelBank(id){
+			if (id == "" || id == null) {
+				layer.msg("记录不存在");
+				return false;
+			}
+			
+			$.ajax({
+				url:"/user/del_bind_bank",
+				data:{bank_id:id},
+				dataType:"json",
+				type:"POST",
+				success:function(data){
+					if(data.code == 200){
+						layer.msg(data.result);
+						window.location="/user/zhifushezhi";
+					}else{
+						layer.msg(data.result,{icon: 2});
+						return false;
+					}	
+				}
+			});
+		}
+
+		//上传支付宝照片
+	$(document).ready(function () {
+        $("#up-img-zfb").change(function () {
+			sendAjax("up-img-zfb")
+        	});
+        function sendAjax(name){
+            var data = new FormData();
+            data.append(name,$("#"+name)[0].files[0]);
+            $.ajax({
+                url: '/user/ali_img',
+                type: 'POST',
+                data: data,
+                cache: false,
+                contentType: false,		//不可缺参数
+                processData: false,		//不可缺参数
+                success: function (data) {
+                    console.log(name)
+                    if (data) {
+                        if(data=="error"){
+                            alert("请选择正确的文件类型和大小！");
+                            return false;
+                        }else{
+    						$("#up-img-zfb_ali").attr('src','/Upload/zhifu/'+data);
+                        }
+						
+                    }
+                },
+                error: function () {
+                    alert('上传出错');
+                    $('.set_upload_img').hide();
+                }
+            });
+		}
+	});
+
+
+
+
+
+	
+	 function OnBindAli(){
+		var pay_name = $('#pay_name').val();
+		var ali_name = $('#ali_name').val();
+		var ali_memo = $('#ali_memo').val();
+		var fund_pwd_ali = $('#fund_pwd_ali').val();
+		if (pay_name == "" || pay_name == null) {
+			layer.tips("请输入持有人姓名", '#pay_name', {tips: 3});
+			return false;
+		}
+		if (ali_name == "" || ali_name == null) {
+			layer.tips("请输入支付宝账号", '#ali_name', {tips: 3});
+			return false;
+		}
+		if (fund_pwd_ali == "" || fund_pwd_ali == null) {
+			layer.tips("请输入资金密码", '#fund_pwd_ali', {tips: 3});
+			return false;
+		}
+		$.ajax({
+			url:"/user/bind_ali",
+			data:{pay_name:pay_name,ali_name:ali_name,ali_memo:ali_memo,fund_pwd_ali:fund_pwd_ali},
+			type:"post",
+			dataType:"json",
+			success:function(data){
+					if(data.status == 1){
+						layer.msg(data.info,{icon: 1});
+						//window.location="/user/zhifushezhi";
+					}else{
+						layer.msg(data.info,{icon: 2});
+						return false;
+					}	
+				}
+		});
+	}
+	//上传微信照片
+	$(document).ready(function () {
+        $("#up-img-wx").change(function () {
+			sendAjax("up-img-wx")
+        	});
+        function sendAjax(name){
+            var data = new FormData();
+            data.append(name,$("#"+name)[0].files[0]);
+            $.ajax({
+                url: '/user/weixin_img',
+                type: 'POST',
+                data: data,
+                cache: false,
+                contentType: false,		//不可缺参数
+                processData: false,		//不可缺参数
+                success: function (data) {
+                    console.log(name)
+                    if (data) {
+                        if(data=="error"){
+                            alert("请选择正确的文件类型和大小！");
+                            return false;
+                        }else{
+                        	$("#up-img-wx_wx").attr('src','/Upload/zhifu/'+data);
+                        }
+						//window.location.replace("/User/zhifushezhi");
+                      
+                    }
+                },
+                error: function () {
+                    alert('上传出错');
+                    $('.set_upload_img').hide();
+                }
+            });
+		}
+	});
+	
+	function OnBindwei(){
+		var wei_name = $('#wei_name').val();
+		var wei_nameid = $('#wei_nameid').val();
+		var wei_memo = $('#wei_memo').val();
+		var fund_pwd_wei = $('#fund_pwd_wei').val();
+		if (wei_name == "" || wei_name == null) {
+			layer.tips("请输入持有人姓名", '#wei_name', {tips: 3});
+			return false;
+		}
+		if (wei_nameid == "" || wei_nameid == null) {
+			layer.tips("请输入微信号", '#wei_nameid', {tips: 3});
+			return false;
+		}
+		if (fund_pwd_wei == "" || fund_pwd_wei == null) {
+			layer.tips("请输入资金密码", '#fund_pwd_wei', {tips: 3});
+			return false;
+		}
+		$.ajax({
+			url:"/user/weixin",
+			data:{wei_name:wei_name,wei_nameid:wei_nameid,wei_memo:wei_memo,fund_pwd_wei:fund_pwd_wei},
+			type:"post",
+			datatype:"json",
+			success:function(data){
+					if(data.status == 1){
+						layer.msg(data.info,{icon: 1});
+						//window.location="/user/zhifushezhi";
+					}else{
+						layer.msg(data.info,{icon: 2});
+						return false;
+					}	
+				}
+		});
+	}
+	</script>
+
+</html>

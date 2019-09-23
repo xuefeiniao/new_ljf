@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html data-n-head="">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="比特币交易平台，比特币交易所，数字资产交易所,数字货币交易平台" />
+    <meta name="format-detection" content="telephone=no,email=no,address=no" />
+    <eq name="Think.session.lang" value="1">
+									<notempty name="coninfo['web_name']" value=" ">
+								
+										<title>{$coninfo['web_name']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="2">
+									<notempty name="coninfo['web_name_e']" value=" ">
+										<title>{$coninfo['web_name_e']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="3">
+									<notempty name="coninfo['web_name_en']" value=" ">
+										<title>{$coninfo['web_name_en']}</title>
+									</notempty>
+								</eq>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/common.css" />
+    <link rel="stylesheet" href="../css/login.css" />
+
+</head>
+<body>
+<!--<img src="https://mon.58coin.com/mon.gif" id="img-hidden" />-->
+<div id="__nuxt">
+    <div class="nuxt-progress" style="width: 0%; height: 2px; background-color: rgb(59, 128, 112); "></div>
+    <div id="__layout">
+        <div class="layout-manage">
+            <div class="container">
+                <a href="index.html" class="nuxt-link-active logo cn"></a>
+                <div class="login-and-register">
+                    <div class="title flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap">
+                        <h2>欢迎登录58COIN</h2>
+                    </div>
+                    <div class="nav flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                        <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                            <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                <a href="login.html" class="active">登录</a>
+                                <span></span>
+                            </div>
+                        </div>
+                        <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                            <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                <a href="login.html" class="">注册</a>
+                                <span style="display: none;"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <!--登录部分-->
+                        <div class="loginDiv" >
+                            <div class="st-form" autocomplete="off">
+                                <div class="st-form-item">
+                                    <p class="label" style="padding-right: 16px;"></p>
+                                    <input type="text" placeholder="请输入账号" class="st-input" />
+                                    <span class="icon"></span>
+                                    <p class="tips" style="display: none;"></p>
+                                    <p class="message" style="display: none;">请输入登录账号！</p>
+                                </div>
+                                <div class="st-form-item">
+                                    <p class="label" style="padding-right: 16px;"></p>
+                                    <input type="password" placeholder="请输入密码" class="st-input" />
+                                    <span class="icon"></span>
+                                    <p class="tips" style="display: none;"></p>
+                                    <p class="message" style="display: none;">请输入密码！</p>
+                                </div>
+                                <input type="submit" id="sub" value="登录" />
+                                <a href="resetPwd.html" class="" style="display: block; margin-top: 20px; font-size: 14px; text-align: center; color: rgb(136, 136, 136);">忘记密码？</a>
+                            </div>
+                        </div>
+                        <!--登录部分 end-->
+
+                        <!--注册部分-->
+                        <div class="st-form register" style="display: none;">
+                            <div class="st-form-item">
+                                <p class="label" style="padding-right: 16px;"></p>
+                                <div class="entrust-filter-item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <div class="select flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" style="height: 100%;">
+                                        <p class="">+86</p>
+                                        <div class="arrow"></div>
+                                        <input autocomplete="off" readonly="readonly" />
+                                        <ul style="display: none;">
+                                            <li class="select-option"><p>阿布哈兹 +940</p></li>
+                                            <li class="select-option"><p>安道尔 +376</p></li>
+                                            <li class="select-option"><p>奥地利 +43</p></li>
+                                            <li class="select-option"><p>澳大利亚 +61</p></li>
+                                            <li class="select-option"><p>阿尔巴尼亚 +355</p></li>
+                                            <li class="select-option"><p>阿尔及利亚 +213</p></li>
+                                            <li class="select-option"><p>爱尔兰 +353</p></li>
+                                            <li class="select-option"><p>阿富汗 +93</p></li>
+                                            <li class="select-option"><p>安哥拉 +244</p></li>
+                                            <li class="select-option"><p>安圭拉岛 +1264</p></li>
+                                            <li class="select-option"><p>阿根廷 +54</p></li>
+                                            <li class="select-option"><p>埃及 +20</p></li>
+                                            <li class="select-option"><p>阿鲁巴 +297</p></li>
+                                            <li class="select-option"><p>阿拉伯联合酋长国 +971</p></li>
+                                            <li class="select-option"><p>中国澳门 +853</p></li>
+                                            <li class="select-option"><p>阿曼 +968</p></li>
+                                            <li class="select-option"><p>阿塞拜疆 +994</p></li>
+                                            <li class="select-option"><p>埃塞俄比亚 +251</p></li>
+                                            <li class="select-option"><p>爱沙尼亚 +372</p></li>
+                                            <li class="select-option"><p>安提瓜 +1268</p></li>
+                                            <li class="select-option"><p>巴巴多斯 +1246</p></li>
+                                            <li class="select-option"><p>巴布亚新几内亚 +675</p></li>
+                                            <li class="select-option"><p>博茨瓦纳 +267</p></li>
+                                            <li class="select-option"><p>不丹 +975</p></li>
+                                            <li class="select-option"><p>冰岛 +354</p></li>
+                                            <li class="select-option"><p>白俄罗斯 +375</p></li>
+                                            <li class="select-option"><p>波黑 +387</p></li>
+                                            <li class="select-option"><p>北韓 +850</p></li>
+                                            <li class="select-option"><p>巴哈马 +1242</p></li>
+                                            <li class="select-option"><p>保加利亚 +359</p></li>
+                                            <li class="select-option"><p>布基纳法索 +226</p></li>
+                                            <li class="select-option"><p>巴基斯坦 +92</p></li>
+                                            <li class="select-option"><p>巴林 +973</p></li>
+                                            <li class="select-option"><p>波兰 +48</p></li>
+                                            <li class="select-option"><p>布隆迪 +257</p></li>
+                                            <li class="select-option"><p>巴拉圭 +595</p></li>
+                                            <li class="select-option"><p>比利时 +32</p></li>
+                                            <li class="select-option"><p>巴勒斯坦领土 +970</p></li>
+                                            <li class="select-option"><p>玻利维亚 +591</p></li>
+                                            <li class="select-option"><p>伯利兹 +501</p></li>
+                                            <li class="select-option"><p>百慕大 +1441</p></li>
+                                            <li class="select-option"><p>贝宁 +229</p></li>
+                                            <li class="select-option"><p>巴拿马 +507</p></li>
+                                            <li class="select-option"><p>巴西 +55</p></li>
+                                            <li class="select-option"><p>赤道几内亚 +240</p></li>
+                                            <li class="select-option"><p>东帝汶 +670</p></li>
+                                            <li class="select-option"><p>德国 +49</p></li>
+                                            <li class="select-option"><p>多哥 +228</p></li>
+                                            <li class="select-option"><p>丹麦 +45</p></li>
+                                            <li class="select-option"><p>多米尼加共和国 +1809</p></li>
+                                            <li class="select-option"><p>多米尼加共和国 +1829</p></li>
+                                            <li class="select-option"><p>多米尼加共和国 +1849</p></li>
+                                            <li class="select-option"><p>多米尼克 +1767</p></li>
+                                            <li class="select-option"><p>厄瓜多尔 +593</p></li>
+                                            <li class="select-option"><p>俄罗斯 +7</p></li>
+                                            <li class="select-option"><p>厄立特里亚 +291</p></li>
+                                            <li class="select-option"><p>佛得角 +238</p></li>
+                                            <li class="select-option"><p>法国 +33</p></li>
+                                            <li class="select-option"><p>斐济 +679</p></li>
+                                            <li class="select-option"><p>福克兰群岛 +500</p></li>
+                                            <li class="select-option"><p>芬兰 +358</p></li>
+                                            <li class="select-option"><p>菲律宾 +63</p></li>
+                                            <li class="select-option"><p>法罗群岛 +298</p></li>
+                                            <li class="select-option"><p>法属波利尼西亚 +689</p></li>
+                                            <li class="select-option"><p>古巴 +53</p></li>
+                                            <li class="select-option"><p>冈比亚 +220</p></li>
+                                            <li class="select-option"><p>刚果共和国 +242</p></li>
+                                            <li class="select-option"><p>刚果民主共和国 +243</p></li>
+                                            <li class="select-option"><p>哥伦比亚 +57</p></li>
+                                            <li class="select-option"><p>格鲁吉亚 +995</p></li>
+                                            <li class="select-option"><p>格陵兰 +299</p></li>
+                                            <li class="select-option"><p>格林纳达 +1473</p></li>
+                                            <li class="select-option"><p>哥斯达黎加 +506</p></li>
+                                            <li class="select-option"><p>圭亚那 +592</p></li>
+                                            <li class="select-option"><p>海地 +509</p></li>
+                                            <li class="select-option"><p>洪都拉斯 +504</p></li>
+                                            <li class="select-option"><p>荷兰 +31</p></li>
+                                            <li class="select-option"><p>荷属安的列斯 +599</p></li>
+                                            <li class="select-option"><p>哈萨克斯坦 +7</p></li>
+                                            <li class="select-option"><p>津巴布韦 +263</p></li>
+                                            <li class="select-option"><p>吉布提 +253</p></li>
+                                            <li class="select-option"><p>吉尔吉斯斯坦 +996</p></li>
+                                            <li class="select-option"><p>捷克共和国 +420</p></li>
+                                            <li class="select-option"><p>基里巴斯 +686</p></li>
+                                            <li class="select-option"><p>加纳 +233</p></li>
+                                            <li class="select-option"><p>加拿大 +1</p></li>
+                                            <li class="select-option"><p>几内亚 +224</p></li>
+                                            <li class="select-option"><p>几内亚比绍 +245</p></li>
+                                            <li class="select-option"><p>加蓬 +241</p></li>
+                                            <li class="select-option"><p>柬埔寨 +855</p></li>
+                                            <li class="select-option"><p>库克群岛 +682</p></li>
+                                            <li class="select-option"><p>克罗地亚 +385</p></li>
+                                            <li class="select-option"><p>喀麦隆 +237</p></li>
+                                            <li class="select-option"><p>科摩罗和马约特 +269</p></li>
+                                            <li class="select-option"><p>开曼群岛 +1345</p></li>
+                                            <li class="select-option"><p>肯尼亚 +254</p></li>
+                                            <li class="select-option"><p>科特迪瓦共和国 +225</p></li>
+                                            <li class="select-option"><p>卡塔尔 +974</p></li>
+                                            <li class="select-option"><p>科威特 +965</p></li>
+                                            <li class="select-option"><p>利比里亚 +231</p></li>
+                                            <li class="select-option"><p>黎巴嫩 +961</p></li>
+                                            <li class="select-option"><p>利比亚 +218</p></li>
+                                            <li class="select-option"><p>罗马尼亚 +40</p></li>
+                                            <li class="select-option"><p>留尼汪 +262</p></li>
+                                            <li class="select-option"><p>卢森堡 +352</p></li>
+                                            <li class="select-option"><p>莱索托 +266</p></li>
+                                            <li class="select-option"><p>立陶宛 +370</p></li>
+                                            <li class="select-option"><p>拉脱维亚 +371</p></li>
+                                            <li class="select-option"><p>老挝 +856</p></li>
+                                            <li class="select-option"><p>卢旺达 +250</p></li>
+                                            <li class="select-option"><p>列支敦士登 +423</p></li>
+                                            <li class="select-option"><p>缅甸 +95</p></li>
+                                            <li class="select-option"><p>马达加斯加 +261</p></li>
+                                            <li class="select-option"><p>马尔代夫 +960</p></li>
+                                            <li class="select-option"><p>摩尔多瓦 +373</p></li>
+                                            <li class="select-option"><p>马耳他 +356</p></li>
+                                            <li class="select-option"><p>蒙古 +976</p></li>
+                                            <li class="select-option"><p>美国 +1</p></li>
+                                            <li class="select-option"><p>孟加拉国 +880</p></li>
+                                            <li class="select-option"><p>马里 +223</p></li>
+                                            <li class="select-option"><p>秘鲁 +51</p></li>
+                                            <li class="select-option"><p>摩洛哥 +212</p></li>
+                                            <li class="select-option"><p>毛里求斯 +230</p></li>
+                                            <li class="select-option"><p>毛里塔尼亚 +222</p></li>
+                                            <li class="select-option"><p>马拉维 +265</p></li>
+                                            <li class="select-option"><p>马来西亚 +60</p></li>
+                                            <li class="select-option"><p>摩纳哥 +377</p></li>
+                                            <li class="select-option"><p>马其顿 +389</p></li>
+                                            <li class="select-option"><p>莫桑比克 +258</p></li>
+                                            <li class="select-option"><p>蒙特內哥羅 +382</p></li>
+                                            <li class="select-option"><p>马提尼克岛 +596</p></li>
+                                            <li class="select-option"><p>蒙特塞拉特 +1664</p></li>
+                                            <li class="select-option"><p>墨西哥 +52</p></li>
+                                            <li class="select-option"><p>尼泊尔 +977</p></li>
+                                            <li class="select-option"><p>南非 +27</p></li>
+                                            <li class="select-option"><p>南韓 +82</p></li>
+                                            <li class="select-option"><p>尼加拉瓜 +505</p></li>
+                                            <li class="select-option"><p>瑙鲁 +674</p></li>
+                                            <li class="select-option"><p>纳米比亚 +264</p></li>
+                                            <li class="select-option"><p>尼日尔 +227</p></li>
+                                            <li class="select-option"><p>尼日利亚 +234</p></li>
+                                            <li class="select-option"><p>挪威 +47</p></li>
+                                            <li class="select-option"><p>帕劳 +680</p></li>
+                                            <li class="select-option"><p>葡萄牙 +351</p></li>
+                                            <li class="select-option"><p>日本 +81</p></li>
+                                            <li class="select-option"><p>瑞典 +46</p></li>
+                                            <li class="select-option"><p>瑞士 +41</p></li>
+                                            <li class="select-option"><p>苏丹 +249</p></li>
+                                            <li class="select-option"><p>萨尔瓦多 +503</p></li>
+                                            <li class="select-option"><p>塞尔维亚 +381</p></li>
+                                            <li class="select-option"><p>圣基茨和尼维斯 +1869</p></li>
+                                            <li class="select-option"><p>斯洛伐克 +421</p></li>
+                                            <li class="select-option"><p>塞拉利昂 +232</p></li>
+                                            <li class="select-option"><p>斯里兰卡 +94</p></li>
+                                            <li class="select-option"><p>所罗门群岛 +677</p></li>
+                                            <li class="select-option"><p>苏里南 +597</p></li>
+                                            <li class="select-option"><p>斯洛文尼亚 +386</p></li>
+                                            <li class="select-option"><p>圣卢西亚 +1758</p></li>
+                                            <li class="select-option"><p>索马里 +252</p></li>
+                                            <li class="select-option"><p>圣马力诺 +378</p></li>
+                                            <li class="select-option"><p>萨摩亚 +685</p></li>
+                                            <li class="select-option"><p>塞内加尔 +221</p></li>
+                                            <li class="select-option"><p>塞浦路斯 +357</p></li>
+                                            <li class="select-option"><p>塞舌尔 +248</p></li>
+                                            <li class="select-option"><p>沙特阿拉伯 +966</p></li>
+                                            <li class="select-option"><p>斯威士兰 +268</p></li>
+                                            <li class="select-option"><p>圣文森特和格林纳丁斯 +1784</p></li>
+                                            <li class="select-option"><p>土耳其 +90</p></li>
+                                            <li class="select-option"><p>泰国 +66</p></li>
+                                            <li class="select-option"><p>汤加 +676</p></li>
+                                            <li class="select-option"><p>塔吉克斯坦 +992</p></li>
+                                            <li class="select-option"><p>土库曼斯坦 +993</p></li>
+                                            <li class="select-option"><p>特克斯和凯科斯群岛 +1649</p></li>
+                                            <li class="select-option"><p>特立尼达和多巴哥 +1868</p></li>
+                                            <li class="select-option"><p>突尼斯 +216</p></li>
+                                            <li class="select-option"><p>坦桑尼亚 +255</p></li>
+                                            <li class="select-option"><p>中国台灣 +886</p></li>
+                                            <li class="select-option"><p>危地马拉 +502</p></li>
+                                            <li class="select-option"><p>乌干达 +256</p></li>
+                                            <li class="select-option"><p>乌克兰 +380</p></li>
+                                            <li class="select-option"><p>文莱 +673</p></li>
+                                            <li class="select-option"><p>乌拉圭 +598</p></li>
+                                            <li class="select-option"><p>瓦努阿图 +678</p></li>
+                                            <li class="select-option"><p>委内瑞拉 +58</p></li>
+                                            <li class="select-option"><p>乌兹别克斯坦 +998</p></li>
+                                            <li class="select-option"><p>西班牙 +34</p></li>
+                                            <li class="select-option"><p>中国香港 +852</p></li>
+                                            <li class="select-option"><p>新加坡 +65</p></li>
+                                            <li class="select-option"><p>新喀里多尼亚 +687</p></li>
+                                            <li class="select-option"><p>希腊 +30</p></li>
+                                            <li class="select-option"><p>叙利亚 +963</p></li>
+                                            <li class="select-option"><p>新西兰 +64</p></li>
+                                            <li class="select-option"><p>匈牙利 +36</p></li>
+                                            <li class="select-option"><p>印度 +91</p></li>
+                                            <li class="select-option"><p>约旦 +962</p></li>
+                                            <li class="select-option"><p>意大利 +39</p></li>
+                                            <li class="select-option"><p>印度尼西亚 +62</p></li>
+                                            <li class="select-option"><p>英国 +44</p></li>
+                                            <li class="select-option"><p>伊朗 +98</p></li>
+                                            <li class="select-option"><p>伊拉克 +964</p></li>
+                                            <li class="select-option"><p>也门 +967</p></li>
+                                            <li class="select-option"><p>牙买加 +1876</p></li>
+                                            <li class="select-option"><p>亚美尼亚 +374</p></li>
+                                            <li class="select-option"><p>越南 +84</p></li>
+                                            <li class="select-option"><p>以色列 +972</p></li>
+                                            <li class="select-option"><p>英属维京群岛 +1284</p></li>
+                                            <li class="select-option"><p>直布罗陀 +350</p></li>
+                                            <li class="select-option"><p>赞比亚 +260</p></li>
+                                            <li class="select-option"><p>乍得 +235</p></li>
+                                            <li class="select-option"><p>中非共和国 +236</p></li>
+                                            <li class="select-option"><p>中国大陆 +86</p></li>
+                                            <li class="select-option"><p>智利 +56</p></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <input type="text" placeholder="请输入手机号" class="st-input" />
+                                <p class="tips" style="display: none;"></p>
+                                <p class="message" style="display: none;">请输入手机号！</p>
+                            </div>
+                            <div class="st-form-item">
+                                <p class="label" style="padding-right: 16px;"></p>
+                                <span>验证码</span>
+                                <input type="text" maxlength="6" placeholder="请输入 6 位短信验证码" class="down-input st-input"/>
+                                <div data-v-2ca86256="" class="send-SMS code" onclick="settime(this)">
+                                    <a data-v-2ca86256="" class="get-code button">
+                                        <div data-v-2ca86256="">
+                                            发送短信验证码
+                                        </div></a>
+                                    <!---->
+                                </div>
+                                <p class="tips" style="display: none;"></p>
+                                <p class="message" style="display: none;">请点击获取短信验证码！</p>
+                            </div>
+                            <div class="st-form-item">
+                                <p class="label" style="padding-right: 16px;"></p>
+                                <input type="password" placeholder="请设置登录密码" class="st-input" />
+                                <p class="tips" style="display: none;"></p>
+                                <p class="message" style="display: none;">请输入密码！</p>
+                            </div>
+                            <div class="st-form-item" id="checkbox-one">
+                                <p class="label" style="padding-right: 16px;"></p>
+                                <label for="user-agree-one">
+                                    <input type="checkbox" id="user-agree-one" />
+                                    <span class="checkboxSpan active"></span>
+                                    <p >58COIN不支持来自下列国家的用户：伊朗、朝鲜、克里米亚、苏丹、马来西亚、古巴、叙利亚、美国[包括所有美国领土，如波多黎各、美属萨摩亚、关岛、北马里亚纳群岛邦、美属维尔京群岛（圣克罗伊岛，圣约翰岛和圣托马斯岛）]、中华人民共和国、孟加拉国、玻利维亚、厄瓜多尔和吉尔吉斯斯坦。如欲了解更多详情，请参阅我们的服务条款及风险与合规声明。</p>
+                                </label>
+                                <p class="tips" style="display: none;"></p>
+                                <p class="message" style="display: none;margin-left:0;">请勾选公司声明!</p>
+                            </div>
+                            <div class="st-form-item">
+                                <p class="label" style="padding-right: 16px;"></p>
+                                <label for="user-agree">
+                                    <input type="checkbox" id="user-agree" />
+                                    <span class="checkboxSpan active"></span>
+                                    <p>我已阅读并同意<a href="" target="_blank">《58COIN用户协议》</a></p>
+                                </label>
+                                <p class="tips" style="display: none;"></p>
+                                <p class="message" style="display: none;margin-left:0;">请阅读并同意《58COIN用户协议》!</p>
+                            </div>
+                            <input type="submit" id="reg" value="注册" />
+                            <p class="tip">风险警示：基于数字货币交易本身所存在的极大风险，用户在本网站进行数字货币交易前，应充分了解数字货币本身的特点、交易机制及价格波动等。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="toast" style="display: none;">
+    <span class="text"></span>
+</div>
+
+
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/login.js"></script>
+</body>
+</html>

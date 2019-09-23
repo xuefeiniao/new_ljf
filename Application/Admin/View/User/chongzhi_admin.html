@@ -1,0 +1,190 @@
+<include file="Base:header"/>
+
+<body>
+<article class="page-container">
+	<form class="form form-horizontal" id="form-article-add" action="{:U('User/chongzhi_ac')}" method="post" enctype="multipart/form-data">
+      <div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>用户名:</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="" id="articletitle" name="username">
+			</div>
+		</div>
+      <div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>充值币种 :</label>
+			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
+					<select name="coinname" class="select">
+                      <volist name="coin" id="vo">
+						<option value="{$vo['name']}">{$vo['name']|strtoupper}</option>
+                        </volist>
+					</select>
+				</span> </div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>充值数量:</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="" id="articletitle" name="num">
+			</div>
+		</div>
+		
+		
+		 
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+				<button class="ajax-post btn btn-primary radius" id="submit" type="submit" target-form="form-horizontal"><i class="Hui-iconfont">&#xe632;</i> 确 定
+			</button>
+			
+			</div>
+		</div>
+	</form>
+</article>
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript">
+// alert(window.parent.location);
+// alert(window.location.href);
+	//提交表单
+	/*$('#submit').click(function () {
+		$('#form').submit();
+	});*/
+	$(function() {
+        $("#form-add").ajaxForm(function(data){
+        	if (data.status==1) {
+        	layer.alert(data.info);
+        }else
+            layer.alert(data.info);
+        },'json');
+         
+    });
+</script>
+<script type="text/javascript" src="__PUBLIC__/kindeditor/kindeditor-min.js"></script>
+<script type="text/javascript">
+	var editor;
+	KindEditor.ready(function (K) {
+		editor = K.create('textarea[name="web_reg"]', {
+			width: '1250px',
+			height: '250px',
+			allowPreviewEmoticons: false,
+			allowImageUpload: true,
+			uploadJson: "{:U('Article/edit','type=images')}",//图片上传后的处理地址
+			items: [
+				'source', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+				'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+				'insertunorderedlist', '|', 'emoticons', 'image', 'link', 'fullscreen'],
+			afterBlur: function () {
+				this.sync();
+			}
+		});
+	});
+	
+	
+	$(document).ready(function () {
+		//响应文件添加成功事件
+		$("#inputfile").change(function () {
+			//创建FormData对象
+			var data = new FormData();
+			//为FormData对象添加数据
+			$.each($('#inputfile')[0].files, function (i, file) {
+				data.append('upload_file' + i, file);
+			});
+
+
+			//发送数据
+			$.ajax({
+				url: '/Admin/Config/log_image',
+				type: 'POST',
+				data: data,
+				cache: false,
+				contentType: false,		//不可缺参数
+				processData: false,		//不可缺参数
+				success: function (data) {
+					console.log(data);
+					if (data) {
+						$('#up_img').attr("src", '/Upload/public/' + data);
+						$('#img').val(data);
+						$('#up_img').show();
+					}
+				},
+				error: function () {
+					alert('上传出错');
+					$(".loading").hide();	//加载失败移除加载图片
+				}
+			});
+
+		});
+	});
+
+		$(document).ready(function () {
+		//响应文件添加成功事件
+		$("#inputfileb").change(function () {
+			//创建FormData对象
+			var data = new FormData();
+			//为FormData对象添加数据
+			$.each($('#inputfileb')[0].files, function (i, file) {
+				data.append('upload_file' + i, file);
+			});
+
+
+			//发送数据
+			$.ajax({
+				url: '/Admin/Config/log_image',
+				type: 'POST',
+				data: data,
+				cache: false,
+				contentType: false,		//不可缺参数
+				processData: false,		//不可缺参数
+				success: function (data) {
+					if (data) {
+						$('#up_imgb').attr("src", '/Upload/public/' + data);
+						$('#imgb').val(data);
+						$('#up_imgb').show();
+					}
+				},
+				error: function () {
+					alert('上传出错');
+					$(".loading").hide();	//加载失败移除加载图片
+				}
+			});
+
+		});
+	});
+
+	$(document).ready(function () {
+		//响应文件添加成功事件
+		$("#inputfilea").change(function () {
+			//创建FormData对象
+			var data = new FormData();
+			//为FormData对象添加数据
+			$.each($('#inputfilea')[0].files, function (i, file) {
+				data.append('upload_file' + i, file);
+			});
+
+
+			//发送数据
+			$.ajax({
+				url: '/Admin/Config/log_image',
+				type: 'POST',
+				data: data,
+				cache: false,
+				contentType: false,		//不可缺参数
+				processData: false,		//不可缺参数
+				success: function (data) {
+					if (data) {
+						$('#up_imga').attr("src", '/Upload/public/' + data);
+						$('#imga').val(data);
+						$('#up_imga').show();
+					}
+				},
+				error: function () {
+					alert('上传出错');
+					$(".loading").hide();	//加载失败移除加载图片
+				}
+			});
+
+		});
+	});
+</script>
+
+<!--/请在上方写此页面业务相关的脚本-->
+ 
+</body>
+</html>

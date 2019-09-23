@@ -1,0 +1,68 @@
+<include file="Publics:header-black" />
+<style type="text/css">*{margin:0;padding:0}li,ol,ul{list-style:none}body,html{width:100%}.header{width:100%}.content{width:100%;clear:both}.leftbar{width:23%;float:left}.main_content{width:75%;float:right;margin:10px auto}.right_mcontent{position:relative}.m_title{height:42px;width:100%;font-size:1.5em;color:#111;border-bottom:1px solid #C8DAE2;margin:10px 0 20px;line-height:46px}.m_title a{color:#666;text-decoration:none}.myacc-con .m_title h4{font-weight:400}.sectioncont{width:100%}.sectioncont a{color:#666;text-decoration:none}.sectioncont a:hover{color:#d45858}.sectioncont .coin_add{border:0;box-shadow:none;background:#f1f1f1;width:100%;padding:10px;font-size:26px;color:#de5959}.sectioncont,f .sectioncont table{width:100%}thead,thead tr{height:40px}.sf-grid tr td:first-child,.sf-grid tr th:first-child{text-align:left}.myacc-con thead td{border-bottom:1px solid #e4ebf0}.sf-grid td{padding:8px 0;border-bottom:1px solid #f3f3f3}.footer{margin:0 auto;width:100%;clear:both;margin-bottom:-19px;border-top:1px solid #ddd;z-index:2;position:relative}.sectioncont{font-size:14px}.sectioncont .test-btn{padding:10px 10px;background:#D45858;color:#fff}.sectioncont .test-btn:hover{background:red;color:#fff}.sectioncont li{margin-bottom:20px;line-height:20px}					
+		</style>
+	<body>
+		<!--
+			头部
+		-->
+		<div class="header">
+
+		</div>
+		<!--
+			右侧内容部分
+		-->
+		<div class="content">
+			<include file="Publics:leftbar" />
+			<div class="main_content acc-m-con" style='border:none;'>
+				<div class="right_mcontent myacc-con">
+
+					<div class="m_title">
+						
+							<h4>谷歌验证器绑定   (Google Authentication) </h4>
+					</div>
+					<div class="sectioncont">
+						用于登录，提现，修改密码及安全设置时使用。<strong>经常不能收到短信验证码，建议绑定谷歌验证器。</strong>
+						<br />
+						<div style="margin: 20px 0 30px 0;" >
+							<eq name="status" value="1">
+								<a href="#">已经启用谷歌验证</a>
+								<a href="/user/googlerelieve" class="test-btn">重置或取消绑定谷歌验证</a>
+							<else/>
+								<a href="/user/googleauths" class="test-btn">立即启用谷歌验证</a>
+							</eq>   
+						
+					
+					
+						</div>
+						<h4 style="margin-bottom: 5px; font-size: 16px;">注意:</h4>
+						<ul>
+							<li>1. <strong>切勿删除谷歌验证器应用程序内的谷歌验证码账户，否则会导致您无法进行账户操作。</strong>如果遇到手机丢失，
+								软件卸载等无法输入谷歌验证码的情况，请联系管理员 Email: *****@mail.com 。</li>
+							<li>2. 如果一直提示谷歌验证码不对，请检查和校准手机时间，当前服务器时间: <b></b></li>
+							<li>3. 谷歌验证为您的交易密码带来第二重保护。启用这一功能后，在您每次登录，或者提取现金操作前都必须输入手机应
+								用程序上显示的谷歌验证码。本功能目前支持 iOS 和 Android 设备。</li>
+							<li>4. 谷歌验证详细信息请阅读：Google Authenticator安装及使用说明</li>
+						</ul>
+						
+						
+					</div>
+
+					<br>
+					
+				</div>
+			</div>
+		</div>
+		<!--
+			尾部
+		-->
+		<include file="Publics:footer"/>
+		
+	</body>
+
+</html>
+<script src="js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var dd=new Date().toLocaleString();
+	$('.sectioncont li b').html(dd);
+	
+</script>

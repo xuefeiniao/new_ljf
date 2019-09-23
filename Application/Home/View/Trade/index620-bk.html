@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<!-- saved from url=(0032)https://ss.ss/trade/bto_usdt -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>{:C('web_title')}</title>
+    <meta name="description" content="{:C('web_description')}">
+    <meta name="keywords" content="{:C('web_keywords')}">
+    <meta name="format-detection" content="telephone=no">
+
+    <link href="__PUBLIC__/Home/trade/css/style.css" rel="stylesheet" type="text/css">
+    <!--<link href="./001_files/coins_16.css" rel="stylesheet" type="text/css">-->
+    <!--<link href="./001_files/coins_32.css" rel="stylesheet" type="text/css">-->
+    <!--<link href="./001_files/coins_48.css" rel="stylesheet" type="text/css">-->
+    <link href="__PUBLIC__/Home/trade/css/trade.css" rel="stylesheet" type="text/css">
+    <!--<link href="./001_files/theme_dark.css" rel="stylesheet" type="text/css" id="darkStyle" disabled="disabled">-->
+
+    <link href="/favicon.ico" rel="shortcut icon">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://ss.ss/images/apple-touch-icon-120x120.png">
+
+    <script src="__PUBLIC__/Home/trade/js/jquery-1.8.2.min.js"></script>
+    <!--<script src="./001_files/jquery.common.tools.js"></script>-->
+    
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/font-awesome.min.css"/>
+    <script type="text/javascript" src="__PUBLIC__/Home/js/script.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Home/js/jquery.flot.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Home/js/jquery.cookies.2.2.0.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/layer/layer.js"></script>
+</head>
+<body class="">
+
+<div class="header clearfix">
+    <div class="top-up">
+        <div class="top-con">
+            <!--
+            <ul class="topprice">
+				<li> BTC/CNY : ￥ <span class="topnum">42417.90</span><i class="icon-arrow-down">↓</i> </li>
+                <li> ETH/CNY : ￥ <span class="topnum">3244.50</span><i class="icon-arrow-down">↓</i> </li>
+                <li> LTC/CNY : ￥ <span class="topnum">627.99</span><i class="icon-arrow-down">↓</i> </li>
+                <li> QTUM/CNY : ￥ <span class="topnum">68.89</span><i class="icon-arrow-down">↓</i> </li>
+            </ul>
+            -->
+            <ul class="login_lan">
+                <!--<li class="top-links">
+                    <a href="https://ss.ss/mobileapp" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="244 244 24 24"><path fill="#010101" d="M262 244h-12c-.83 0-1.5.672-1.5 1.5v21c0 .83.67 1.5 1.5 1.5h12c.83 0 1.5-.67 1.5-1.5v-21c0-.828-.67-1.5-1.5-1.5zm-8.625 1.5h5.25c.208 0 .375.168.375.375s-.167.375-.375.375h-5.25c-.208 0-.375-.168-.375-.375s.167-.375.375-.375zM256 267.25c-.62 0-1.125-.504-1.125-1.125S255.38 265 256 265s1.125.504 1.125 1.125-.504 1.125-1.125 1.125zm6-3h-12v-16.5h12v16.5z"></path></svg>
+                        <span>手机APP</span>
+                        <div class="add-dn-qr">
+                            <h3>扫码下载ss.ss APP</h3>
+                            <img src="./001_files/app-code.png" alt="ss.ss APP">
+                        </div>
+                    </a>
+                </li>-->
+                <li class="toplogin"><a href="{:U('Login/register')}">注册&nbsp;</a>|&nbsp; </li>
+                <li class="toplogin" id="toplogin"><a href="{:U('/index#login')}">登录</a></li>
+
+                <!--<li class="lang-option">
+                    <span>中文版</span><i class="caret"></i>
+                    <div class="more-lan">
+                        <a href="https://ss.ss/lang/en">English</a>
+                        <a href="https://ss.ss/lang/kr">한국어</a>
+                    </div>
+                </li>-->
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="top-dn">
+        <div class="logo">
+            <a href="/" target="_top">
+                <!--[if !IE]--><img src="/Public/home/images/whitelogo.png" alt="LOGO"><!--[endif]-->
+                <!--[if IE]><img src="/images/logo.png" alt="LOGO"/><![endif]-->
+            </a>
+        </div>
+
+        <ul class="gateio-nav">
+            <li class="">
+                <a href="/">首页</a>
+            </li>
+			
+
+            <li class="nav-trade-item nav-active">
+                <a href="javascript:;">交易中心<i class="caret"></i></a>
+                <ul class="second-nav clearfix">
+                      
+                    <foreach name="coinlist" item="v" key="k" >
+                    
+                    <li>
+                        <a href="javascript:;">{$k}交易区<i class="caret"></i></a>
+                         
+                        <ul class="third-nav clearfix">
+                            <foreach name="v" item="vs" >
+                            <li><a href="/Trade/index/market/{$vs['name']}"><span class="icon-16-ad"></span><strong style="overflow: visible;"><img src="__UPLOAD__/coin/{$vs['xnbimg']}" alt="" width="10px">{$vs['navtitle']}</strong></a></li>
+                         </foreach>
+                        </ul>
+                       
+                    </li> 
+                    
+                    </foreach>
+                </ul>
+            </li>
+            
+            
+            <volist name="daohang" id="vo">
+            
+            <li class="">
+                <a href="/{$vo['url']}" class="tooltip" title="{$vo['title']}" id="{$vo['name']}_box">{$vo['title']}</a>
+            </li>
+            
+            </volist>
+             
+        </ul>
+
+    </div>
+</div>
+
+<div class="content index-content clearfix">
+	<div class="leftbar trade-warn-mark">
+    <table class="marketlist dataTable" id="tradelist">
+        <tbody>
+        <tr>
+            <td class="alignRight" style="border-bottom:0">
+                <div id="market_controller" class="clearfix">
+                    <foreach name="coinlist" item="v" key="k" >
+                    <button value="USDT" class="tline_btn left_btn tn_selected" title="对{$k}交易" style="width: 33%;">{$k}交易区</button>
+                    </foreach>
+                </div>
+                <!--<input type="text" class="search" id="marketSearch" placeholder="搜索...">-->
+            </td>
+        </tr>
+        <tr id="marketlistTabCon">
+            <td id="marketlist_container_usdt" class="alignRight" style="display:block">
+                <div class="market_wrapper">
+                    <table id="marketlist_usdt" style="margin-top: 19px;">
+                        <thead>
+                        <tr style="height:40px">
+                            <th class="sortable sorting"><b>币种</b></th>
+                            <th class="sortable sorting">价格<span class="left-price-type">(USDT)</span></th>
+                            <th class="sortable sorting">日涨跌</th>
+                            <th class="sorting_disabled sorting">自选</th>
+                        </tr>
+                        </thead>
+                        
+                        <tbody id="usdtTbody">
+                            
+                            <volist name="coinlist.BB" id="v">
+                                <tr id="market_eth_usdt_usdt" style="">
+                                    <td><span><img src="__UPLOAD__/coin/{$v['xnbimg']}" alt="" style="margin-bottom: -4px;margin-right: 6px;width:20px;"></span><span class="bizhong_en">{$v['xnb']|strtoupper}/{$v['rmb']|strtoupper}</span>
+                                    </td>
+                                    <td><span class="left-price <egt name="v.change" value="0">rate_up<else/>rate_down</egt>">{$v.new_price|sprintf="%.6f",###}</span>
+                                    </td>
+                                    <td class="rzd"><span class="<egt name="v.change" value="0">red<else/>green</egt>"><span class="p-num">{$v.change|round=2}%</span> </span>
+                                    </td>
+                                    <td class="custom-option"><i class="add-fav" data-id="eth_usdt" title="加自选"></i>
+                                    </td>
+                                </tr>
+                           </volist>
+                           
+                            <volist name="coinlist.USDT" id="u">
+                                <tr id="market_eth_usdt_usdt" style="">
+                                    <td><span><img src="__UPLOAD__/coin/{$u['xnbimg']}" alt="" style="margin-bottom: -4px;margin-right: 6px;width:20px;"></span><span class="bizhong_en">{$u['xnb']|strtoupper}/{$u['rmb']|strtoupper}</span>
+                                    </td>
+                                    <td><span class="left-price <egt name="u.change" value="0">rate_up<else/>rate_down</egt>">{$u.new_price|sprintf="%.6f",###}</span>
+                                    </td>
+                                    <td class="rzd"><span class="<egt name="u.change" value="0">red<else/>green</egt>"><span class="p-num">{$u.change|round=2}%</span> </span>
+                                    </td>
+                                    <td class="custom-option"><i class="add-fav" data-id="eth_usdt" title="加自选"></i>
+                                    </td>
+                                </tr>
+                           </volist>
+                           
+                            <volist name="coinlist.BTC" id="b">
+                                <tr id="market_eth_usdt_usdt" style="">
+                                    <td><span><img src="__UPLOAD__/coin/{$b['xnbimg']}" alt="" style="margin-bottom: -4px;margin-right: 6px;width:20px;"></span><span class="bizhong_en">{$b['xnb']|strtoupper}/{$b['rmb']|strtoupper}</span>
+                                    </td>
+                                    <td><span class="left-price <egt name="b.change" value="0">rate_up<else/>rate_down</egt>">{$b.new_price|sprintf="%.6f",###}</span>
+                                    </td>
+                                    <td class="rzd"><span class="<egt name="b.change" value="0">red<else/>green</egt>"><span class="p-num">{$b.change|round=2}%</span> </span>
+                                    </td>
+                                    <td class="custom-option"><i class="add-fav" data-id="eth_usdt" title="加自选"></i>
+                                    </td>
+                                </tr>
+                           </volist>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            
+           
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+	<div id="main_content" class="main_content">
+        	<div class="main_title has-t-warn">
+            	<h1>
+				<span id="mianTlist" class="clearfix">
+					<span class="coin-title"><a href="https://ss.ss/coininfo/BTO" target="_blank"><span class="icon-32 icon-32-bto"><img src="__UPLOAD__/coin/{$coininfo['img']}" alt="" ></span></a><a href="https://ss.ss/coininfo/BTO" target="_blank">{$coininfo.title} {$coininfo.name|strtoupper}</a> 对<strong style="margin-right: 20px">{$data.s2|strtoupper} </strong></span>
+					<span class="top_last_li">
+						<span style="display:none;" id="market_unit_symbol">$</span>
+						<span id="top_last_rate_change"><span class="price-dl"><em>$</em><i id="currPrice">0.1354</i><small> 或 </small><i id="currFiat"><em>￥</em>0.88</i></span><em><span class="red">+<strong id="currRateNum">2.96</strong>%</span></em></span>
+						<span class="arr-con"><i class="caret" id="upArrow" style="opacity: 0;"></i><i class="caret" id="dnArrow" style="opacity: 0;"></i></span>
+						<i id="currVol" title="24h 成交量"><small>量：</small>$<span id="ticker_vol_b">260.04万</span></i>
+					</span>
+
+				</span>
+				</h1>
+            </div>
+
+			<div class="right_mcontent clearfix has-trade-warn">
+				<div id="topSection" class=" ">
+					<div class="kline-title">BTO / USDT K线图</div>
+					<div class="top-risk-tip">
+						<!--<span class="red"><b>提示：</b> USDT币种说明<a target="_blank" href="https://ss.ss/article/16269">请点击这里查看详情</a>，充提请使用C2C <a target="_blank" href="https://ss.ss/c2c/usdt_cny">请点击这里进行C2C交易</a> 。</span>-->
+					</div>
+                            <div class="k-line-container box-padding clearfix">
+							    <!--
+								<ul class="top_botton">
+									<li>
+										<span class="button k-tools" title="工具"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-2.4 120.9 600 600" width="17" height="17"><path d="M594 473.5V368.8h-76c-5.7-23.8-15.2-46.4-27.5-66.4l53.8-53.8-73.9-73.9-53.8 53.4c-20.6-12.8-42.7-21.8-66.4-27.5v-75.9H245.5v75.9c-23.8 5.7-46.4 15.2-66.4 27.5l-53.8-53.8-73.9 73.9 53.4 53.8C92 322.6 83 344.7 77.3 368.4h-76V473h75.9c5.7 23.8 15.2 46.4 27.5 66.4L51 593.3l73.9 73.9 53.8-53.4c20.6 12.8 42.7 21.8 66.4 27.5v75.9h104.6v-75.9c23.8-5.7 46.4-15.2 66.4-27.5l53.8 53.8 73.9-73.9-53.4-53.8c12.8-20.6 21.8-42.7 27.5-66.4H594zm-296.4 69.7c-67.3 0-122.3-54.6-122.3-122.3 0-67.3 54.6-122.3 122.3-122.3 67.3 0 122.3 54.6 122.3 122.3-.4 67.4-54.9 122.3-122.3 122.3z"></path></svg></span>
+									</li>
+									<li>
+										<span class="button fullscreen" title="全屏"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M4.712 10.043L2.045 12.71 0 10.667V16h5.334L3.29 13.955l2.667-2.667M5.334 0H0v5.334L2.045 3.29l2.667 2.667 1.245-1.245L3.29 2.045M10.666 0l2.045 2.045-2.666 2.667 1.245 1.245 2.666-2.667L16 5.334V0m-4.712 10.043l-1.245 1.245 2.668 2.667L10.668 16H16v-5.334l-2.045 2.045"></path></svg></span>
+									</li>
+									<li>
+										<span class="button kline-on-off" title="隐藏"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path d="M0 0v5.333h16V0H0zm15 4.167H1v-3h14v3zM0 16v-5.333h7.12v-1.5H4.23L8 5.393l3.77 3.772H8.88v1.5H16V16H0z"></path></svg></span>
+									</li>
+								</ul>
+								-->
+								<div id="kline" class="box-container clearfix" style="padding:0;">
+								<div id="kline">
+            <div id="paint_chart" style="height: 400px">
+                <iframe style="border-style: none;" border="0" width="100%" height="400" id="market_chart"
+                        src="/Trade/ordinary?market={$market}"></iframe>
+            </div>
+         </div>
+	
+	</div>
+							</div>
+							<div id="globalInfoCon">
+								<div id="gInfoTitle" class="m_title clearfix">
+									<span id="gmTitle" class="rightinfo-active r-title">全球行情</span>
+									<span class="button gm-on-off pull-right" title="隐藏"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"><path d="M16 0h-5.333v16H16V0zm-4.167 15V1h3v14h-3zM0 0h5.333v7.12h1.5V4.23L10.607 8l-3.772 3.77V8.88h-1.5V16H0V0z"></path></svg></span>
+								</div>
+								<div id="gmCon">
+									<div class="gm-head clearfix">
+										<span>交易所</span><span>交易对</span><span>交易价</span><span>成交量(BTO)</span>
+									</div>
+									<div id="globalMarkets">
+										<ul id="ulGlobalMarkets" data-id="global-markets"><li class="clearfix"><span class="ex-name">ss.ss</span><span class="ex-pair">BTO/USDT</span><span class="ex-price">0.1349<div class="green">￥0.88</div></span><span class="ex-amount">1973.3万<div class="green">￥1746.2万</div></span></li><li class="clearfix"><span class="ex-name">bibox<div><i>!</i><span><em class="caret"></em>有交易量造假嫌疑，容易误导投资者，请谨慎对待此行数据。<a href="https://medium.com/@sylvainartplayribes/ea1a3c1e0b5e" target="_blank">信息来源</a></span></div></span><span class="ex-pair">BTO/ETH</span><span class="ex-price">0.000270<div class="green">￥0.88</div></span><span class="ex-amount">828.2万<div class="green">￥715.5万</div></span></li><li class="clearfix"><span class="ex-name">lbank<div><i>!</i><span><em class="caret"></em>有交易量造假嫌疑，容易误导投资者，请谨慎对待此行数据。<a href="https://medium.com/@sylvainartplayribes/ea1a3c1e0b5e" target="_blank">信息来源</a></span></div></span><span class="ex-pair">BTO/ETH</span><span class="ex-price">0.000269<div class="green">￥0.88</div></span><span class="ex-amount">86.4万<div class="green">￥75.9万</div></span></li><li class="clearfix"><span class="ex-name">bit-z<div><i>!</i><span><em class="caret"></em>有交易量造假嫌疑，容易误导投资者，请谨慎对待此行数据。<a href="https://medium.com/@sylvainartplayribes/ea1a3c1e0b5e" target="_blank">信息来源</a></span></div></span><span class="ex-pair">BTO/BTC</span><span class="ex-price">0.0000228<div class="green">￥0.97</div></span><span class="ex-amount">20.5万<div class="green">￥19.9万</div></span></li><li class="clearfix"><span class="ex-name">bigone</span><span class="ex-pair">BTO/BTC</span><span class="ex-price">0.0000210<div class="green">￥0.89</div></span><span class="ex-amount">2.3万<div class="green">￥2.0万</div></span></li><li class="clearfix"><span class="ex-name">coinegg<div><i>!</i><span><em class="caret"></em>有交易量造假嫌疑，容易误导投资者，请谨慎对待此行数据。<a href="https://medium.com/@sylvainartplayribes/ea1a3c1e0b5e" target="_blank">信息来源</a></span></div></span><span class="ex-pair">BTO/ETH</span><span class="ex-price">0.000269<div class="green">￥0.88</div></span><span class="ex-amount">1402.9万<div class="green">￥1234.9万</div></span></li><li class="clearfix"><span class="ex-name">idex</span><span class="ex-pair">BTO/ETH</span><span class="ex-price">0.000240<div class="green">￥0.78</div></span><span class="ex-amount">6122.99<div class="green">￥4803.08</div></span></li></ul>
+									</div>
+									<span class="gdata-from">数据来源 <a href="https://block.cc/q/BTO" target="_blank">block.cc</a></span>
+								</div>
+
+							</div>
+
+									</div>
+                <!--<div class="right-kline">
+					<div id="chartContainer"></div>
+                </div>-->
+				<div class="trade-main clearfix" style="margin-top: 91px;">
+					<div class="maichu maichu-form">
+						<div class="m_title">
+							<span>买入{$data.s1|strtoupper}</span>
+													</div>
+						<div class="m_con_buy">
+
+							<table class="dealbox" cellspacing="0">
+								<tbody><tr class="tableOrderTr" t="static" style="display: none">
+									<td width="16%" align="right">最佳买价</td>
+									<td width="61%"><span id="rate_best_ask" style="font-weight:600">0.1348</span><span class="coin-unit">USDT/BTO</span></td>
+									<td width="23%"></td>
+								</tr>
+								<tr class="tableOrderTr" t="static">
+									<td align="right" colspan="3">
+									<span class="red">我的余额</span>
+									<span id="buyYuE" class="red"><span id="balance_ask_able" style="font-weight:bold">0.0000</span><span class="coin-unit" style="color:#de5959">{$data.s2|strtoupper}</span><a class="dp-link" href="https://ss.ss/myaccount/deposit/USDT">充值</a><a class="dp-link" href="https://ss.ss/myaccount/withdraw/USDT">提现</a></span>
+									</td>
+								</tr>
+								<tr class="tableOrderTr" t="static">
+									<td align="right" colspan="3">可买入量
+										<span id="amount_ask_able" style="font-weight:bold">0.0000</span><span class="coin-unit">{$data.s1|strtoupper}</span>
+									</td>
+								</tr>
+
+								<tr>
+									<!--<td align="right">买入价</td>-->
+									<td colspan="3" class="input-td">
+										<span class="b-unit ask-bid-price input-title">买入价 <span>{$data.s2|strtoupper}/{$data.s1|strtoupper}</span></span>
+										<input id="ask_rate" class="inputRate" maxlength="14" onkeyup="_page.obj.on_input_ask_rate();_page.obj.recalc_fee(&#39;ask&#39;);" value="">
+									</td>
+									<!--<td class="b-unit ask-bid-price">USDT/BTO</td>-->
+								</tr>
+								<tr>
+									<!--<td align="right">买入量</td>-->
+									<td colspan="3" class="input-td">
+										<span class="b-unit input-title">买入量 {$data.s1|strtoupper}</span>
+										<input id="ask_vol" class="inputRate" maxlength="14" onkeyup="_page.obj.on_input_ask_vol();_page.obj.recalc_fee(&#39;ask&#39;);" value="0">
+									</td>
+
+								</tr>
+								<tr>
+									<!--<td align="right">兑换额</td>-->
+									<td colspan="3" class="input-td">
+										<span class="b-unit input-title" id="bid_total_label">兑换额 <span class="currb-unit">{$data.s2|strtoupper}</span></span>
+										<input id="ask_amount" class="inputRate" maxlength="14" onkeyup="_page.obj.on_input_ask_amount();_page.obj.recalc_fee(&#39;ask&#39;);" value="0">
+									</td>
+
+								</tr>
+								<tr>
+									<td align="right" colspan="3">手续费
+										<span id="ask_fee">0</span><span class="coin-unit">{$data.s2|strtoupper}</span>
+										<i>(<span class="red">0.2%</span> 成交才收，撤单退回)</i>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="3" class="input-td" style="border:0">
+										<input type="button" class="btnAskBid jiaoyi_btn  button button-flat-action" t="ask" onclick="_page.obj.on_request_ask_bid( &#39;ask&#39;,  get_element(&#39;ask_rate&#39;).value, get_element(&#39;ask_vol&#39;).value );" value="买入 (USDT→BTO)">
+									</td>
+								</tr>
+							</tbody></table>
+
+						</div>
+					</div>
+					<div class="mairu mairu-form">
+						<div class="m_title">
+							<span>卖出{$data.s1|strtoupper}</span>
+
+							<div class="b-s-t-right" id="showFiatRate">
+								<label for="hideprice" class="fiat-hide-show" title="实际成交价以币币交易价格为准，CNY计价只提供估值参考">
+									<input type="checkbox" id="hideprice" name="hideprice" style="width: 20px;">
+									<label for="hideprice" class="vr-btn"></label>
+									<span class="hidefiat-span">CNY计价</span>
+								</label>
+							</div>
+						</div>
+						<div class="m_con">
+
+							<table class="dealbox" cellspacing="0">
+
+								<tbody><tr class="tableOrderTr" t="static" style="display: none">
+									<td width="16%" align="right">最佳卖价</td>
+									<td width="61%"><span id="rate_best_bid" style="font-weight:bold">0.1347</span><span class="coin-unit">USDT/BTO</span></td>
+									<td width="23%"></td>
+								</tr>
+								<tr class="tableOrderTr" t="static">
+									<td align="right" colspan="3">
+										<span class="green">我的余额</span>
+										<span id="sellYuE" class="green"><span id="balance_bid_able" style="font-weight:bold">0.0000</span><span class="coin-unit" style="color:#36a792">BTO</span><a class="dp-link" href="https://ss.ss/myaccount/deposit/BTO">充值</a><a class="dp-link" href="https://ss.ss/myaccount/withdraw/BTO">提现</a></span>
+									</td>
+								</tr>
+								<tr class="tableOrderTr" t="static">
+									<td align="right" colspan="3">可兑换额
+										<span id="amount_bid_able" style="font-weight:bold">0.0000</span><span class="coin-unit">USDT</span>
+									</td>
+								</tr>
+
+								<tr>
+									<td colspan="3" class="input-td">
+										<span class="b-unit ask-bid-price input-title">卖出价 <span>USDT/BTO</span></span>
+										<input id="bid_rate" class="inputRate" maxlength="14" onkeyup="_page.obj.on_input_bid_rate();_page.obj.recalc_fee(&#39;bid&#39;);" value="">
+									</td>
+
+								</tr>
+								<tr>
+									<td colspan="3" class="input-td">
+										<span class="b-unit input-title">卖出量 BTO</span>
+										<input id="bid_vol" class="inputRate" maxlength="14" onkeyup="_page.obj.on_input_bid_vol();_page.obj.recalc_fee(&#39;bid&#39;);" value="0">
+									</td>
+								</tr>
+								<tr>
+									<td colspan="3" class="input-td">
+										<span class="b-unit input-title" id="ask_total_label">兑换额 <span class="currb-unit">USDT</span></span>
+										<input id="bid_amount" class="inputRate" maxlength="14" onkeyup="_page.obj.on_input_bid_amount();_page.obj.recalc_fee(&#39;bid&#39;);" value="0">
+									</td>
+								</tr>
+								<tr>
+									<td align="right" colspan="3">手续费
+										<span id="bid_fee">0</span><span class="coin-unit">BTO</span>
+										<i>(<span class="green">0.2%</span> 成交才收，撤单退回)</i>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="3" class="input-td" style="border:0">
+										<input type="button" class="btnAskBid jiaoyi_btn  button button-flat-action" t="bid" onclick="_page.obj.on_request_ask_bid( &#39;bid&#39;,  get_element(&#39;bid_rate&#39;).value, get_element(&#39;bid_vol&#39;).value );" value="卖出 (BTO→USDT)">
+									</td>
+								</tr>
+							</tbody></table>
+
+						</div>
+					</div>
+
+					<div id="divMyOrderSection"><!--style='display:none'-->
+						<div class="mairu my-order-box">
+
+			<div id="myOrderTab" class="m_title">
+                <span class="order-tab order-t-active">当前委托</span>
+				<span id="hisTab" class="order-tab">历史委托</span>
+				            </div>
+
+			<div id="currOrder" class="m_con cjbox" style="height: 272px;border: 1px solid #ddd;background: #fff;">
+				<div id="order-info-box" class="box">
+					<div class="list-wrapper">
+						<ul class="trade-list_re">
+						<li class="number sorting dealtop">
+							<span class="right-align" id="tlist-date">日期</span>
+							<span class="right-align my-type">类型</span>
+							<span class="right-align">
+								<em id="odPriceCol">价格(USDT)
+																	</em>
+							</span>
+							<span class="right-align">挂单量(BTO)</span>
+							<span class="right-align">操作</span>
+						</li>
+						</ul>
+						<ul id="ulMyOrderList" class="trade-list_re" style="height: 231px; overflow-y: scroll; overflow-x: hidden;">
+													</ul>
+					</div>
+					<div class="index-modal"><a class="sub-btn" href="https://ss.ss/login">登录后查看</a></div>
+									</div>
+			</div>
+			<div id="historyOrder" class="m_con cjbox" style="height: 272px;border: 1px solid #ddd;background: #fff;display: none">
+				<div id="history-info-box" class="box">
+					<div class="list-wrapper">
+						<ul class="trade-list_re" id="my-tlist-title">
+							<li class="number sorting dealtop">
+								<span class="right-align" id="tlist-date">日期</span>
+								<span class="right-align my-type">类型</span>
+								<span class="right-align">价格(USDT)</span>
+								<span class="right-align">成交量(BTO)</span>
+							</li>
+						</ul>
+						<ul id="my-trade-list" class="trade-list_re" style="height: 231px; overflow-y: scroll; overflow-x: hidden;">
+													</ul>
+					</div>
+					<div class="index-modal"><a class="sub-btn" href="https://ss.ss/login">登录后查看</a></div>
+									</div>
+			</div>
+
+
+						</div>
+						<div class="maichu my-order-box">
+
+	<div class="m_title" id="myFunds">
+		我的资金 <em>(<a href="https://ss.ss/myaccount">查看全部</a>) </em>
+			</div>
+
+	<div id="currFunds" class="m_con cjbox" style="border: 1px solid #ddd;background: #fff;">
+		<div id="fund-info-box" class="box">
+			<div class="list-wrapper">
+				<ul class="trade-list_re" id="my-fund-title">
+				<li class="number sorting dealtop">
+					<span class="right-align my-type">币种</span>
+					<span class="right-align">可用余额<span style="float: right;padding-right: 28px;">充值/提现</span></span>
+					<span class="right-align">挂单金额</span>
+					<span class="right-align">总计</span>
+				</li>
+				</ul>
+				<div id="myFundCon" style="height: 231px; overflow-y: auto; overflow-x: hidden; text-align: center;position: relative">
+									</div>
+			</div>
+			<div class="index-modal"><a class="sub-btn" href="https://ss.ss/login">登录后查看</a></div>
+					</div>
+	</div>
+
+						</div>
+					</div>
+
+				</div>
+				<!--end of place order box -->
+
+
+				<div id="sectioncont" class="buy-sell-order clearfix ">
+					<div id="tableAskList" data-id="sectioncont">
+
+						<div class="mairu">
+							<div class="b-s-title clearfix">
+								<div class="b-s-t-left">
+									最新价 <span class="unit-symbol" id="orderUnitSymbol">$</span><span class="unit-symbol hide" id="cnySymbol" style="display: none;">￥</span>
+									<span class="red" id="orderbook_last_rate">0.1354</span>
+								</div>
+								<div class="b-s-t-right" id="moreOrders">
+									<span>更多<i class="caret"></i></span>
+								</div>
+							</div>
+							<div class="m_con maidan">
+								<div class="right-list list">
+									<div class="title-line sorting" style="height:30px; margin-top:15px;border-bottom: 1px solid #e4ebf0">
+										<span class="right-align price"><b>价格(<span class="currb-unit">USDT</span>)</b></span>
+										<span class="volume right-align"><b>数量(BTO)</b></span>
+										<span class="total right-align"><b>总计(<span class="currb-unit">USDT</span>)</b></span>
+									</div>
+                                    <div id="ask-list">
+                                        <ul id="ul-ask-list" data-id="ask-list">
+                                            <li onclick="set_price(1,0.1354,18327.621,2481.56)">  <span data-id="price" class="price right-align">0.1354</span>  <span data-id="volume" class="volume right-align">18327.621</span>  <span data-id="total" class="right-align total">2481.560</span>  <span data-id="rect" class="right-align rect orange" style="width: 11.464391545763817px;"></span>
+                                            </li>
+                                            <li onclick="set_price(1,0.1355,25099.178,3399.1059999999998)">   <span data-id="price" class="price right-align">0.1355</span>  <span data-id="volume" class="volume right-align">6771.557</span>  <span data-id="total" class="right-align total">917.546</span>  <span data-id="rect" class="right-align rect orange" style="width: 13.416144021519512px;"></span>
+                                            </li>
+                                        </ul>
+                                    </div>
+								</div>
+							</div>
+						</div>
+						<div class="maichu">
+							<div class="m_con maidan">
+								<div class="right-list list">
+                                    <div id="bid-list">
+                                        <ul id="ul-bid-list" data-id="bid-list">
+                                            <li onclick="set_price(0,0.1348,13555.271,1827.25)"><span data-id="price" class="price right-align">0.1348</span>  <span data-id="volume" class="right-align volume">13555.271</span>  <span data-id="total" class="right-align total">1827.250</span>  <span data-id="rect" class="right-align rect fenlv" style="width: 9.859434397793903px;"></span>
+                                            </li>
+                                            <li onclick="set_price(0,0.1347,17163.767,2313.314)"><span data-id="price" class="price right-align">0.1347</span>  <span data-id="volume" class="right-align volume">3608.496</span>  <span data-id="total" class="right-align total">486.064</span>  <span data-id="rect" class="right-align rect fenlv" style="width: 11.09354398022474px;"></span>
+                                            </li>
+                                            </ul>
+                                    </div>
+								</div>
+							</div>
+						</div>
+					</div>
+					 <div class="chengjiao clearfix">
+	<div class="bottom_maidan">
+		<div class="m_title" style="margin:18px 0 0">
+			最新成交
+			<ul class="high-low">
+				<li>
+					最高价: <b id="tHigh">0.1417</b>
+				</li>
+				<li>
+					最低价: <b id="tLow">0.125</b>
+				</li>
+			</ul>
+		</div>
+
+		<div class="m_con maidan cjbox clearfix" id="sectioncont-history">
+			<div id="deal-info-box" class="box">
+				<div class="list-wrapper">
+					<ul class="trade-list_re">
+					<li class="number sorting dealtop">
+						<span class="time">时间</span>
+						<!--<span class="type">交易类型</span>-->
+						<span class="price">成交价(<span class="currb-unit">USDT</span>)</span>
+						<span class="amount">成交量(BTO)</span>
+						<span class="total">总计(<span class="currb-unit">USDT</span>)</span>
+					</li>
+					</ul>
+                    <div id="trade-list">
+                        <ul id="ul-trade-list" data-id="trade-list" class="trade-list_re">
+                            <li title="buy" data-id="list-item" tid="68544781" class="up"><span class="time" data-id="time">19:10:25</span><span class="price" data-id="price">0.1354</span><span class="amount" data-id="amount">6753.887</span><span class="total" data-id="total">914.476</span>
+                            </li>
+                            <li title="buy" data-id="list-item" tid="68544780" class="up"><span class="time" data-id="time">19:10:25</span><span class="price" data-id="price">0.1354</span><span class="amount" data-id="amount">18121.250</span><span class="total" data-id="total">2453.617</span>
+                            </li>
+                        </ul>
+                    </div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+				</div> <!--end of order lists -->
+
+			</div> <!--end of right content-->
+		</div> <!-- end of main content-->
+
+  </div> <!-- content -->
+
+
+
+<div class="footer">
+    <br />
+    <!--
+    <div class="fkicon">
+        <ul class="clearfix">
+            <li><a href="javascript:ticketsRoute();" title="Ticket"><div class="fico fc5"></div>
+                <div class="fkcont">
+                    <div class="ftel">Ticket</div>
+                    <div class="ftelnum">Submit a request</div>
+                </div></a>
+            </li>
+            <li><a href="https://twitter.com/gate_io" target="_blank" title="Twitter"><div class="fico fc-twi"></div>
+                <div class="fkcont">
+                    <div class="ftel">Twitter</div>
+                    <div class="ftelnum">twitter.com/gate_io</div>
+                </div></a>
+            </li>
+            <li><a href="https://t.me/gate_io" target="_blank" title="Telegram"><div class="fico fc3"></div></a></li>
+            <li><a href="https://www.instagram.com/ss.ss/" target="_blank" title="Instagram"><div class="fico fc7"></div></a></li>
+			<li><a href="mailto:support@mail.ss.ss" target="_blank" title="Email"><div class="fico fc6"></div>
+                <div class="fkcont">
+                    <div class="ftel">Email</div>
+                    <div class="ftelnum">Email us</div>
+                </div></a>
+            </li>
+            <li><a href="https://github.com/gateio" target="_blank" title="Github"><div class="fico fc4"></div>
+                <div class="fkcont">
+                    <div class="ftel">Github</div>
+                    <div class="ftelnum">ss.ss Github</div>
+                </div></a>
+            </li>
+        </ul>
+        <div class="fxts">
+            <p style="text-align: center"><i>!</i>比特币等密码币的交易存在风险，在全球范围内一周7天，一天24小时无休止交易，没有每日涨停跌停限制，价格受到新闻事件，各国政策，市场需求等多种因素影响，浮动很大。我们强烈建议您事先调查了解，在自身所能承受的风险范围内参与交易。</p>
+        </div>
+    </div>
+-->
+    <!--
+    <div class="fnav">
+        <div class="fnavcon">
+            <ul>
+                <li class="fnav_list">
+                    &lt;!&ndash;<div class="fnav_title">关于我们</div>&ndash;&gt;
+                    <ul>
+                        <li><a href="https://ss.ss/page/contacts">联系我们</a></li>
+                        <li><a href="https://ss.ss/fee">费率标准</a></li>
+                        <li><a href="https://ss.ss/api2">API文档</a></li>
+                        <li><a href="https://ss.ss/docs/agreement.pdf">用户协议</a></li>
+						<li><a href="https://ss.ss/articlelist/ann">本站公告</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="tail">
+            <span>ss.ss&nbsp;&nbsp;版权所有 © 2018</span>
+            <div class="vol-all">
+                <span>成交量:</span>
+				<span> USDT : $<span id="usdtAll">46,296,216</span> </span>
+                <span> BTC : ฿<span id="btcAll">738</span> </span>
+                <span> LTC : Ł<span id="ltcAll">3,398</span> </span>
+                <span> ETH : E<span id="ethAll">31,203</span> </span>
+            </div>
+            <span id="runTime">
+                &lt;!&ndash;<a href="#">ss.ss</a> is powered by <a href="#">ss.ss Dev Team</a>&ndash;&gt;
+                <span class="admin-view"> Elapsed:18.087ms - .60;cnst:0.1;s2:0.0;s3:0.1;f:2.0;3:0.0;41ca:0.3;4:0.4;5:1.4;6:0.0;<br>h:0.0;8:0.7;9:0.1;10:10.2;11:0.0;12:0.2;13:1.7;14:0.3;w:0.0;c:0.0;n:0.0;g:0.3;p:0.3;run:17.8; p:.60 &nbsp; a/e/r </span>
+            </span>
+        </div>
+    </div>
+    -->
+
+<span class="backToTop" style="display: none;">^</span></div>
+
+<script src="./001_files/webim.min.js"></script>
+ 
+<script type="text/javascript">
+    var market = "{$market}";
+    var market_round = "{$C['market'][$market]['round']}";
+    var market_round_num = 8 - "{$C['market'][$market]['round']}";
+    var userid = "{$Think.session.userId}";
+    var trade_moshi = 1;
+    var getDepth_tlme = null;
+    var trans_lock = 0;
+
+
+	var time = 5;
+	var isInterval = setInterval(function () {
+		$('#coins_timer').html(time + 's后刷新');
+		time--;
+		if (time == -1) {
+			//clearInterval(isInterval);
+			time=5;
+		}
+	}, 1000);
+
+ 
+    function moshi(id) {
+        trade_moshi = id;
+        $('.trade_moshi').removeClass('on');
+        $('#trade_moshi_' + id).addClass('on');
+        if (id == 3) {
+            $('#selllist').hide();
+        } else {
+            $('#selllist').show();
+        }
+
+        if (id == 4) {
+            $('#buylist').hide();
+        } else {
+            $('#buylist').show();
+        }
+
+        if (id == 2) {
+            //$('#trade_moshi_liaotian_2').hide();
+            //$('#trade_moshi_liaotian_1').show();
+            getChat();
+        } else {
+            $('#trade_moshi_liaotian_2').show();
+            //$('#trade_moshi_liaotian_1').hide();
+            getDepth();
+        }
+    }
+
+
+    function layertpwd() {
+        var html = '<div id="all_mask" class="all_mask"></div><div id="tpwd" class="all_mask_loginbox">' +
+                '<div class="login_title pl20">交易密码输入设置</div><form id="tpwdsetting" class="set_verify">' +
+                '<ul class="tpwd"><li><label for="only"><input type="radio" id="only" value="1" name="aaatpwdsetting"> 每次登录只输入一次交易密码 </label></li><li>' +
+                '<label for="every"><input type="radio" checked id="every" value="2" name="aaatpwdsetting"> 每笔交易都输入交易密码</label></li><li><label for="none">' +
+                '<input type="radio" id="none" name="aaatpwdsetting" value="3"> 每次交易都不需要输入交易密码</label></li><li><input type="password" id="aaapaypassword" name="paypassword" placeholder="请输入交易密码" class="text"/>' +
+                '</li></ul><div class="save_verify"><input type="button" value="保存" onclick="tpwdsettingaa()" /></div><div class="mask_wrap_close" id="pwd_close"></div></form></div>';
+        $('body').append(html);
+        $('#tpwd').css('top', ($(window).height() / 2) - (265 / 2) + $(document).scrollTop());
+        $('.all_mask').css({'height': $(document).height()});
+        $('#pwd_close').click(function () {
+            $('#tpwd').remove();
+            $('#all_mask').remove();
+            $('#all_mask').remove();
+        })
+
+
+        $.get('/user/tpwdsetting', function (d) {
+            if (d == 1) {
+                $('#only').prop('checked', true);
+            }
+            if (d == 2) {
+                $('#every').prop('checked', true);
+            }
+            if (d == 3) {
+                $('#none').prop('checked', true);
+            }
+        })
+    }
+
+    //保存交易密码设置
+    function tpwdsettingaa() {
+        var paypassword = $("#aaapaypassword").val();
+        var tpwdsetting = $("input[name='aaatpwdsetting']:checked").val();
+        if (paypassword == "" || paypassword == null) {
+            layer.tips('请输入交易密码', '#paypassword', {tips: 3});
+            return false;
+        }
+        if (tpwdsetting == "" || tpwdsetting == null) {
+            layer.tips('请输入选择一个', '#tpwdsetting', {tips: 3});
+            return false;
+        }
+
+
+        $.post('/user/uptpwdsetting', {paypassword: paypassword, tpwdsetting: tpwdsetting}, function (d) {
+            if (d.status) {
+                layer.msg('设置成功', {icon: 1});
+                window.location.reload();
+            } else {
+                layer.msg(d.info, {icon: 2});
+            }
+
+        }, 'json');
+    }
+
+    function tradeadd_buy() {
+        if (trans_lock) {
+            layer.msg('不要重复提交', {icon: 2});
+            return;
+        }
+        trans_lock = 1;
+
+        var price = parseFloat($('#buy_price').val());
+        var num = parseFloat($('#buy-num').val());
+        var paypassword = $('#buy_paypassword').val();
+        if (price == "" || price == null) {
+            layer.tips('请输入内容', '#buy_price', {tips: 3});
+            return false;
+        }
+        if (num == "" || num == null) {
+            layer.tips('请输入内容', '#buy_num', {tips: 3});
+            return false;
+        }
+
+        //加载层-风格3
+        layer.load(2);
+
+
+        //此处演示关闭
+        setTimeout(function () {
+            layer.closeAll('loading');
+            trans_lock = 0;
+        }, 10000);
+        $.post("{:U('Trade/upTrade')}", {
+            price: $('#buy_price').val(),
+            num: $('#buy_num').val(),
+            paypassword: $('#buy_paypassword').val(),
+            market: market,
+            type: 1
+        }, function (data) {
+            layer.closeAll('loading');
+            trans_lock = 0;
+            if (data.status == 1) {
+
+                $("#buy_price").val('');
+                $("#buy_num").val('');
+                $("#sell_price").val('');
+                $("#sell_num").val('');
+                layer.msg(data.info, {icon: 1});
+            } else {
+                layer.msg(data.info, {icon: 2});
+            }
+        }, 'json');
+    }
+
+    function tradeadd_sell() {
+        if (trans_lock) {
+            layer.msg('不要重复提交', {icon: 2});
+            return;
+        }
+        trans_lock = 1;
+        var price = parseFloat($('#sell_price').val());
+        var num = parseFloat($('#sell_num').val());
+        var paypassword = $('#sell_paypassword').val();
+        if (price == "" || price == null) {
+            layer.tips('请输入内容', '#sell_price', {tips: 3});
+            return false;
+        }
+        if (num == "" || num == null) {
+            layer.tips('请输入内容', '#sell_num', {tips: 3});
+            return false;
+        }
+        layer.load(2);
+        //此处演示关闭
+        setTimeout(function () {
+            layer.closeAll('loading');
+            trans_lock = 0;
+        }, 10000);
+
+
+        $.post("{:U('Trade/upTrade')}", {
+            price: $('#sell_price').val(),
+            num: $('#sell_num').val(),
+            paypassword: $('#sell_paypassword').val(),
+            market: market,
+            type: 2
+        }, function (data) {
+            layer.closeAll('loading');
+            trans_lock = 0;
+            if (data.status == 1) {
+                $("#buy_price").val('');
+                $("#buy_num").val('');
+                $("#sell_price").val('');
+                $("#sell_num").val('');
+                layer.msg(data.info, {icon: 1});
+            } else {
+                layer.msg(data.info, {icon: 2});
+            }
+        }, 'json');
+    }
+
+
+    //撤销
+    function cancelaa(id) {
+        $.post("{:U('Trade/chexiao')}", {id: id}, function (data) {
+            if (data.status == 1) {
+                getEntrustAndUsercoin();
+                layer.msg(data.info, {icon: 1});
+            } else {
+                layer.msg(data.info, {icon: 2});
+            }
+        });
+    }
+
+    function getTradelog() {
+        $.getJSON("/Ajax/getTradelog?market=" + market + "&t=" + Math.random(), function (data) {
+            if (data) {
+                if (data['tradelog']) {
+                    var list = '';
+                    var type = '';
+                    var typename = '';
+                    for (var i in data['tradelog']) {
+                        if (data['tradelog'][i]['type'] == 1) {
+                            list += '<tr title="以这个价格卖出" onclick="autotrust(this,\'buy\',2)"><td class="buy"   width="180">' + data['tradelog'][i]['addtime'] + '</td><td class="buy"   width="80">买</td><td class="buy"   width="250">' + data['tradelog'][i]['price'] + '</td><td class="buy"  width="250">' + data['tradelog'][i]['num'] + '</td><td class="buy">' + data['tradelog'][i]['mum'] + '</td></tr>';
+                        } else {
+                            list += '<tr title="以这个价格买入" onclick="autotrust(this,\'sell\',2)"><td class="sell"   width="180">' + data['tradelog'][i]['addtime'] + '</td><td class="sell"   width="80">卖</td><td class="sell"   width="250">' + data['tradelog'][i]['price'] + '</td><td class="sell"  width="250">' + data['tradelog'][i]['num'] + '</td><td class="sell">' + data['tradelog'][i]['mum'] + '</td></tr>';
+                        }
+                    }
+                    $("#orderlist").html(list);
+                }
+            }
+        });
+        setTimeout('getTradelog()', 5000);
+    }
+
+    function getDepth() {
+        if (trade_moshi != 2) {
+
+            $.getJSON("/Ajax/getDepth?market=" + market + "&trade_moshi=" + trade_moshi + "&t=" + Math.random(), function (data) {
+                if (data) {
+
+                    if (data['depth']) {
+                        var list = '';
+                        var sellk = data['depth']['sell'].length;
+                        if (data['depth']['sell']) {
+                            for (i = 0; i < data['depth']['sell'].length; i++) {
+                                list += '<dl title="以这个价格买入" style="cursor: pointer;" onclick="autotrust(this,\'sell\',1)"><dt class="sell"  style="width: 40px;padding-left: 5px;">卖' + (sellk - i) + '</dt><dd class="sell"  style="width: 90px">' + data['depth']['sell'][i][0] + '</dd><dd class="sell"  style="width: 110px">' + data['depth']['sell'][i][1] + '</dd><dd class="sell"  style="width: 100px">' + (data['depth']['sell'][i][0] * data['depth']['sell'][i][1]).toFixed(6) + '</dd></dl>';
+                            }
+
+                        }
+                        $("#selllist").html(list);
+                        list = '';
+                        if (data['depth']['buy']) {
+                            for (i = 0; i < data['depth']['buy'].length; i++) {
+                                list += '<dl title="以这个价格卖出" style="cursor: pointer;" onclick="autotrust(this,\'buy\',1)"><dt class="buy"  style="width: 40px;padding-left: 5px;">买' + (i + 1) + '</dt><dd class="buy"  style="width: 90px">' + data['depth']['buy'][i][0] + '</dd><dd class="buy"  style="width: 110px">' + data['depth']['buy'][i][1] + '</dd><dd class="buy"  style="width: 100px">' + (data['depth']['buy'][i][0] * data['depth']['buy'][i][1]).toFixed(6) + '</dd></dl>';
+                            }
+
+                        }
+                        $("#buylist").html(list);
+                    }
+
+                }
+            });
+            clearInterval(getDepth_tlme);
+
+            var wait = second = 5;
+            getDepth_tlme = setInterval(function () {
+                wait--;
+                if (wait < 0) {
+                    clearInterval(getDepth_tlme);
+                    getDepth();
+                    wait = second;
+                }
+            }, 1000);
+        }
+    }
+
+    function getEntrustAndUsercoin() {
+        $.getJSON("/Ajax/getEntrustAndUsercoin?market=" + market + "&t=" + Math.random(), function (data) {
+            if (data) {
+                if (data['entrust']) {
+                    $('#entrust_over').show();
+                    var list = '';
+                    var cont = data['entrust'].length;
+                    for (i = 0; i < data['entrust'].length; i++) {
+                        if (data['entrust'][i]['type'] == 1) {
+                            list += '<tr title="以这个价格卖出" onclick="autotrust(this,\'buy\',2)"><td class="buy">' + data['entrust'][i]['addtime'] + '</td><td class="buy">买</td><td class="buy">' + data['entrust'][i]['price'] + '</td><td class="buy">' + data['entrust'][i]['num'] + '</td><td class="buy">' + data['entrust'][i]['deal'] + '</td><td class="buy">' + (data['entrust'][i]['price'] * data['entrust'][i]['num']).toFixed(6) + '</td><td><a style="color: #2674FF;" class="cancelaa" id="' + data['entrust'][i]['id'] + '" onclick="cancelaa(\'' + data['entrust'][i]['id'] + '\')" href="javascript:void(0);">撤销</a></td></tr>';
+                        } else {
+                            list += '<tr title="以这个价格买入" onclick="autotrust(this,\'sell\',2)"><td class="sell">' + data['entrust'][i]['addtime'] + '</td><td class="sell">卖</td><td class="sell">' + data['entrust'][i]['price'] + '</td><td class="sell">' + data['entrust'][i]['num'] + '</td><td class="sell">' + data['entrust'][i]['deal'] + '</td><td class="sell">' + (data['entrust'][i]['price'] * data['entrust'][i]['num']).toFixed(6) + '</td><td><a style="color: #2674FF;" class="cancelaa" id="' + data['entrust'][i]['id'] + '" onclick="cancelaa(\'' + data['entrust'][i]['id'] + '\')" href="javascript:void(0);">撤销</a></td></tr>';
+                        }
+                    }
+                    if (cont == 10) {
+                        list += '<tr><td style="text_align:center;" colspan="7"><a href="/Finance/mywt" style="color: #2674FF;">更多委托信息</a>&nbsp;&nbsp;</td></tr>';
+                    }
+                    $('#entrustlist').html(list);
+                } else {
+                    $('#entrust_over').hide();
+                }
+
+                if (data['usercoin']) {
+                    if (data['usercoin']['cny']) {
+                        $("#my_rmb").html(data['usercoin']['cny']);
+                    } else {
+                        $("#my_rmb").html('0.00');
+                    }
+
+                    if (data['usercoin']['cnyd']) {
+                        $("#my_rmbd").html(data['usercoin']['cnyd']);
+                    } else {
+                        $("#my_rmbd").html('0.00');
+                    }
+
+                    if (data['usercoin']['xnb']) {
+                        $("#my_xnb").html(data['usercoin']['xnb']);
+                    } else {
+                        $("#my_xnb").html('0.00');
+                    }
+
+                    if (data['usercoin']['xnbd']) {
+                        $("#my_xnbd").html(data['usercoin']['xnbd']);
+                    } else {
+                        $("#my_xnbd").html('0.00');
+                    }
+                }
+
+            }
+        });
+        $.getJSON("/Ajax/allfinance?t=" + Math.random(), function (data) {
+
+            $('#user_finance').html(data);
+        });
+
+
+        setTimeout('getEntrustAndUsercoin()', 5000);
+    }
+
+
+    $(function () {
+        getTradelog();
+        getDepth();
+        if (userid > 0) {
+            getEntrustAndUsercoin();
+        } else {
+            $('#entrust_over').hide();
+        }
+
+
+    });
+
+
+    function toNum(num, round) {
+        return Math.round(num * Math.pow(10, round) - 1) / Math.pow(10, round);
+    }
+
+
+
+
+    // 自动填价格
+    function autotrust(_this, type, cq) {
+
+        if (type == 'sell') {
+            $('#buy_price').val($(_this).children().eq(cq).html()).css({'font_size': '14px'});
+            if ($("#my_rmb").html() > 0) {
+                $("#buy_max").html(toNum(($("#my_rmb").html() / $('#buy_price').val()), market_round_num));
+            }
+            if ($('#buy_num').val()) {
+                $("#buy_mum").html(($('#buy_num').val() * $('#buy_price').val()).toFixed(8) * 1);
+            }
+
+        }
+        if (type == 'buy') {
+            $('#sell_price').val($(_this).children().eq(cq).html()).css({'fontSize': '14px'});
+            if ($("#my_xnb").html() > 0) {
+                $("#sell_max").html($("#my_xnb").html());
+            }
+            if ($('#sell_num').val()) {
+                $("#sell_mum").html(($('#sell_num').val() * $('#sell_price').val()).toFixed(8) * 1);
+            }
+        }
+
+    }
+
+	function  setMaiChu(){
+		$('#sell_price').val($.trim($('#sell_best_price').html().replace('￥', '')));
+        var buyprice = parseFloat($('#buy_price').val());
+        var buynum = parseFloat($('#buy_num').val());
+        var sellprice = parseFloat($('#sell_price').val());
+        var sellnum = parseFloat($('#sell_num').val());
+        var buymum = buyprice * buynum;
+        var sellmum = sellprice * sellnum;
+        var myrmb = $("#my_rmb").html();
+        var myxnb = $("#my_xnb").html();
+        var buykenum = 0;
+        var sellkenum = 0;
+        if (myrmb > 0) {
+            buykenum = myrmb / buyprice;
+        }
+        if (myxnb > 0) {
+            sellkenum = myxnb;
+        }
+
+        if (buyprice != null && buyprice.toString().split(".") != null && buyprice.toString().split(".")[1] != null) {
+            if (buyprice.toString().split('.')[1].length > market_round) {
+                $('#buy_price').val(buyprice.toFixed(market_round));
+            }
+        }
+        if (buynum != null && buynum.toString().split(".") != null && buynum.toString().split(".")[1] != null) {
+            if (buynum.toString().split('.')[1].length > market_round_num) {
+                $('#buy_num').val(toNum(buynum, market_round_num));
+            }
+        }
+        if (sellprice != null && sellprice.toString().split(".") != null && sellprice.toString().split(".")[1] != null) {
+            if (sellprice.toString().split('.')[1].length > market_round) {
+                $('#sell_price').val(sellprice.toFixed(market_round));
+            }
+        }
+        if (sellnum != null && sellnum.toString().split(".") != null && sellnum.toString().split(".")[1] != null) {
+            if (sellnum.toString().split('.')[1].length > market_round_num) {
+                $('#sell_num').val(toNum(sellnum, market_round_num));
+            }
+        }
+        if (buymum != null && buymum > 0) {
+            $('#buy_mum').html(buymum.toFixed(8) * 1);
+        }
+        if (sellmum != null && sellmum > 0) {
+            $('#sell_mum').html(sellmum.toFixed(8) * 1);
+        }
+        if (buykenum != null && buykenum > 0 && buykenum != 'Infinity') {
+            $('#buy_max').html(toNum(buykenum, market_round_num));
+        }
+        if (sellkenum != null && sellkenum > 0 && sellkenum != 'Infinity') {
+            $('#sell_max').html(sellkenum);
+        }
+
+	}
+
+	function setMaiRu(){
+		$('#buy_price').val($.trim($('#buy_best_price').html().replace('￥', '')));
+        var buyprice = parseFloat($('#buy_price').val());
+        var buynum = parseFloat($('#buy_num').val());
+        var sellprice = parseFloat($('#sell_price').val());
+        var sellnum = parseFloat($('#sell_num').val());
+        var buymum = buyprice * buynum;
+        var sellmum = sellprice * sellnum;
+        var myrmb = $("#my_rmb").html();
+        var myxnb = $("#my_xnb").html();
+        var buykenum = 0;
+        var sellkenum = 0;
+        if (myrmb > 0) {
+            buykenum = myrmb / buyprice;
+        }
+        if (myxnb > 0) {
+            sellkenum = myxnb;
+        }
+
+        if (buyprice != null && buyprice.toString().split(".") != null && buyprice.toString().split(".")[1] != null) {
+            if (buyprice.toString().split('.')[1].length > market_round) {
+                $('#buy_price').val(buyprice.toFixed(market_round));
+            }
+        }
+        if (buynum != null && buynum.toString().split(".") != null && buynum.toString().split(".")[1] != null) {
+            if (buynum.toString().split('.')[1].length > market_round_num) {
+                $('#buy_num').val(toNum(buynum, market_round_num));
+            }
+        }
+        if (sellprice != null && sellprice.toString().split(".") != null && sellprice.toString().split(".")[1] != null) {
+            if (sellprice.toString().split('.')[1].length > market_round) {
+                $('#sell_price').val(sellprice.toFixed(market_round));
+            }
+        }
+        if (sellnum != null && sellnum.toString().split(".") != null && sellnum.toString().split(".")[1] != null) {
+            if (sellnum.toString().split('.')[1].length > market_round_num) {
+                $('#sell_num').val(toNum(sellnum, market_round_num));
+            }
+        }
+        if (buymum != null && buymum > 0) {
+            $('#buy_mum').html(buymum.toFixed(8) * 1);
+        }
+        if (sellmum != null && sellmum > 0) {
+            $('#sell_mum').html(sellmum.toFixed(8) * 1);
+        }
+        if (buykenum != null && buykenum > 0 && buykenum != 'Infinity') {
+            $('#buy_max').html(toNum(buykenum, market_round_num));
+        }
+        if (sellkenum != null && sellkenum > 0 && sellkenum != 'Infinity') {
+            $('#sell_max').html(sellkenum);
+        }
+	}
+
+
+    $('#buy_price,#buy_num,#sell_price,#sell_num').css("ime-mode", "disabled").bind('keyup change', function () {
+        var buyprice = parseFloat($('#buy_price').val());
+        var buynum = parseFloat($('#buy_num').val());
+        var sellprice = parseFloat($('#sell_price').val());
+        var sellnum = parseFloat($('#sell_num').val());
+        var buymum = buyprice * buynum;
+        var sellmum = sellprice * sellnum;
+        var myrmb = $("#my_rmb").html();
+        var myxnb = $("#my_xnb").html();
+        var buykenum = 0;
+        var sellkenum = 0;
+        if (myrmb > 0) {
+            buykenum = myrmb / buyprice;
+        }
+        if (myxnb > 0) {
+            sellkenum = myxnb;
+        }
+		//alert("wobianliao");
+
+        if (buyprice != null && buyprice.toString().split(".") != null && buyprice.toString().split(".")[1] != null) {
+            if (buyprice.toString().split('.')[1].length > market_round) {
+                $('#buy_price').val(buyprice.toFixed(market_round));
+            }
+        }
+        if (buynum != null && buynum.toString().split(".") != null && buynum.toString().split(".")[1] != null) {
+            if (buynum.toString().split('.')[1].length > market_round_num) {
+                $('#buy_num').val(toNum(buynum, market_round_num));
+            }
+        }
+        if (sellprice != null && sellprice.toString().split(".") != null && sellprice.toString().split(".")[1] != null) {
+            if (sellprice.toString().split('.')[1].length > market_round) {
+                $('#sell_price').val(sellprice.toFixed(market_round));
+            }
+        }
+        if (sellnum != null && sellnum.toString().split(".") != null && sellnum.toString().split(".")[1] != null) {
+            if (sellnum.toString().split('.')[1].length > market_round_num) {
+                $('#sell_num').val(toNum(sellnum, market_round_num));
+            }
+        }
+        if (buymum != null && buymum > 0) {
+            $('#buy_mum').html(buymum.toFixed(8) * 1);
+        }
+        if (sellmum != null && sellmum > 0) {
+            $('#sell_mum').html(sellmum.toFixed(8) * 1);
+        }
+        if (buykenum != null && buykenum > 0 && buykenum != 'Infinity') {
+            $('#buy_max').html(toNum(buykenum, market_round_num));
+        }
+        if (sellkenum != null && sellkenum > 0 && sellkenum != 'Infinity') {
+            $('#sell_max').html(sellkenum);
+        }
+    }).bind("paste", function () {
+        return false;
+    }).bind("blur", function () {
+        if (this.value.slice(-1) == ".") {
+            this.value = this.value.slice(0, this.value.length - 1);
+        }
+    }).bind("keypress", function (e) {
+        var code = (e.keyCode ? e.keyCode : e.which); //兼容火狐 IE
+        if (this.value.indexOf(".") == -1) {
+            return (code >= 48 && code <= 57) || (code == 46);
+        } else {
+            return code >= 48 && code <= 57
+        }
+    });
+
+
+</script>
+
+ 
+</body>
+</html>

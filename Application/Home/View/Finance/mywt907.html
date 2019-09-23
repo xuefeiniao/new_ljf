@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="比特币交易平台，比特币交易所，数字资产交易所,数字货币交易平台" />
+    <meta name="format-detection" content="telephone=no,email=no,address=no" />
+    <title>账单明细</title>
+    <link data-n-head="true" rel="icon" type="image/x-icon" href="__PUBLIC__/favicon.ico"/>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/base.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/common.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/newcss/accountBill.css" media="all"/>
+    <script data-n-head="true" src="__PUBLIC__/Home/js/newjs/jquery-3.3.1.min.js"></script>
+
+</head>
+<body>
+<!--<img src="https://mon.58coin.com/mon.gif" id="img-hidden" />-->
+<div id="__nuxt">
+    <div class="nuxt-progress" style="width:0%;height:2px;background-color:#3B8070;opacity:0;"></div>
+    <div id="__layout">
+        <div>
+            <!--头部内容-->
+            <include file="Public:header1"/>
+            <!--头部内容   end-->
+            <div class="wrap">
+                <div class="st-content detail-index container" style="margin-top: 0px;">
+                    <h2 >账单明细</h2>
+                    <div  class="line"></div>
+                    <div  style="padding-top: 0px; padding-bottom: 30px;">
+                        <div  class="filter-detail flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap" >
+                            <div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                <div class="st-form-item" style="min-height: 30px;">
+                                    <p class="label" style="padding-right: 10px;">选择账户</p>
+                                    <div tabindex="0" class="st-select item" value="3" style="width: 150px; margin-right: 110px;">
+                                        <div class="box flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                            <p>充值提现账户</p>
+                                            <span class=""></span>
+                                        </div>
+                                        <ul style="width: 150px; display: none;">
+                                            <li class="st-option" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">币币账户</li>
+                                            <li class="st-option" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">充值提现账户</li>
+                                            <li class="st-option" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">永续合约账户</li>
+                                            <li class="st-option" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">融资融币账户</li>
+                                        </ul>
+                                    </div>
+                                    <p class="tips" style="display: none;"></p>
+                                    <p class="message" style="display: none;"></p>
+                                </div>
+                                <!---->
+                                <div class="st-form-item" style="min-height: 30px;">
+                                    <p class="label" style="padding-right: 10px;">选择时间</p>
+                                    <div tabindex="0" class="st-select item" value="" style="width: 130px;">
+                                        <div class="box flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                            <p>近7日账单</p>
+                                            <span class=""></span>
+                                        </div>
+                                        <ul style="width: 130px; display: none;">
+                                            <li class="st-option">近7日账单</li>
+                                            <li class="st-option">历史账单</li>
+                                        </ul>
+                                    </div>
+                                    <p class="tips" style="display: none;"></p>
+                                    <p class="message" style="display: none;"></p>
+                                </div>
+                                <div class="st-form-item" style="min-height: 30px;">
+                                    <p class="label" style="padding-right: 10px;">选择币种</p>
+                                    <div tabindex="0" class="st-select item" value="" style="width: 100px;">
+                                        <div class="box flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                            <p>全部</p>
+                                            <span class=""></span>
+                                        </div>
+                                        <ul style="width: 100px; display: none;">
+                                            <volist name="coin" id="vo">
+                                                <li class="st-option" value="{$vo.id}" <if condition="$vo['id'] eq $cointype">selected</if>><?php echo str_replace('_',"/",strtoupper($vo['curr']));?></li>
+                                            </volist>
+                                            <!--<li class="st-option">全部</li>-->
+                                            <!--<li class="st-option">USDT</li>-->
+                                            <!--<li class="st-option">BTC</li>-->
+                                            <!--<li class="st-option">UCC</li>-->
+                                            <!--<li class="st-option">LTC</li>-->
+                                            <!--<li class="st-option">ETH</li>-->
+                                            <!--<li class="st-option">BCH</li>-->
+                                            <!--<li class="st-option">DASH</li>-->
+                                            <!--<li class="st-option">ETC</li>-->
+                                            <!--<li class="st-option">TRX</li>-->
+                                            <!--<li class="st-option">VET</li>-->
+                                            <!--<li class="st-option">OMG</li>-->
+                                            <!--<li class="st-option">ZRX</li>-->
+                                            <!--<li class="st-option">EOS</li>-->
+                                            <!--<li class="st-option">OBC</li>-->
+                                            <!--<li class="st-option">WICC</li>-->
+                                            <!--<li class="st-option">ELF</li>-->
+                                            <!--<li class="st-option">ZSC</li>-->
+                                            <!--<li class="st-option">VNS</li>-->
+                                            <!--<li class="st-option">ABT</li>-->
+                                            <!--<li class="st-option">AIDOC</li>-->
+                                            <!--<li class="st-option">AST</li>-->
+                                            <!--<li class="st-option">CVC</li>-->
+                                            <!--<li class="st-option">GNT</li>-->
+                                            <!--<li class="st-option">IOST</li>-->
+                                            <!--<li class="st-option">ITC</li>-->
+                                            <!--<li class="st-option">SNT</li>-->
+                                            <!--<li class="st-option">SOC</li>-->
+                                            <!--<li class="st-option">STORJ</li>-->
+                                            <!--<li class="st-option">THETA</li>-->
+                                            <!--<li class="st-option">ZIL</li>-->
+                                            <!--<li class="st-option">SMT</li>-->
+                                            <!--<li class="st-option">MDS</li>-->
+                                            <!--<li class="st-option">DTA</li>-->
+                                            <!--<li class="st-option">RUFF</li>-->
+                                            <!--<li class="st-option">BTM</li>-->
+                                            <!--<li class="st-option">CHAT</li>-->
+                                            <!--<li class="st-option">CMT</li>-->
+                                            <!--<li class="st-option">CTXC</li>-->
+                                            <!--<li class="st-option">DAT</li>-->
+                                            <!--<li class="st-option">DGD</li>-->
+                                            <!--<li class="st-option">ENG</li>-->
+                                            <!--<li class="st-option">EVX</li>-->
+                                            <!--<li class="st-option">GNX</li>-->
+                                            <!--<li class="st-option">ICX</li>-->
+                                            <!--<li class="st-option">KNC</li>-->
+                                            <!--<li class="st-option">LINK</li>-->
+                                            <!--<li class="st-option">MANA</li>-->
+                                            <!--<li class="st-option">MCO</li>-->
+                                            <!--<li class="st-option">MTL</li>-->
+                                            <!--<li class="st-option">OST</li>-->
+                                            <!--<li class="st-option">PAY</li>-->
+                                            <!--<li class="st-option">QUN</li>-->
+                                            <!--<li class="st-option">RCN</li>-->
+                                            <!--<li class="st-option">REQ</li>-->
+                                            <!--<li class="st-option">SALT</li>-->
+                                            <!--<li class="st-option">SNC</li>-->
+                                            <!--<li class="st-option">TNB</li>-->
+                                            <!--<li class="st-option">TOPC</li>-->
+                                            <!--<li class="st-option">UTK</li>-->
+                                            <!--<li class="st-option">YEE</li>-->
+                                            <!--<li class="st-option">POWR</li>-->
+                                            <!--<li class="st-option">BAT</li>-->
+                                            <!--<li class="st-option">QASH</li>-->
+                                            <!--<li class="st-option">RDN</li>-->
+                                            <!--<li class="st-option">SRN</li>-->
+                                            <!--<li class="st-option">QSP</li>-->
+                                            <!--<li class="st-option">APPC</li>-->
+                                            <!--<li class="st-option">ADX</li>-->
+                                            <!--<li class="st-option">TNT</li>-->
+                                            <!--<li class="st-option">LUN</li>-->
+                                            <!--<li class="st-option">PROPY</li>-->
+                                            <!--<li class="st-option">EKO</li>-->
+                                            <!--<li class="st-option">WAX</li>-->
+                                            <!--<li class="st-option">SWFTC</li>-->
+                                            <!--<li class="st-option">DBC</li>-->
+                                            <!--<li class="st-option">MEET</li>-->
+                                            <!--<li class="st-option">OCN</li>-->
+                                            <!--<li class="st-option">ZLA</li>-->
+                                            <!--<li class="st-option">STK</li>-->
+                                            <!--<li class="st-option">WPR</li>-->
+                                            <!--<li class="st-option">MTN</li>-->
+                                            <!--<li class="st-option">MTX</li>-->
+                                            <!--<li class="st-option">EDU</li>-->
+                                            <!--<li class="st-option">BLZ</li>-->
+                                            <!--<li class="st-option">BFT</li>-->
+                                            <!--<li class="st-option">WAN</li>-->
+                                            <!--<li class="st-option">ACE</li>-->
+                                            <!--<li class="st-option">AMM</li>-->
+                                            <!--<li class="st-option">YCC</li>-->
+                                            <!--<li class="st-option">ATL</li>-->
+                                            <!--<li class="st-option">AUTO</li>-->
+                                            <!--<li class="st-option">AVT</li>-->
+                                            <!--<li class="st-option">BKX</li>-->
+                                            <!--<li class="st-option">BNT</li>-->
+                                            <!--<li class="st-option">BRD</li>-->
+                                            <!--<li class="st-option">CBT</li>-->
+                                            <!--<li class="st-option">DADI</li>-->
+                                            <!--<li class="st-option">DENT</li>-->
+                                            <!--<li class="st-option">DNA</li>-->
+                                            <!--<li class="st-option">DNT</li>-->
+                                            <!--<li class="st-option">DPY</li>-->
+                                            <!--<li class="st-option">EDO</li>-->
+                                            <!--<li class="st-option">ENJ</li>-->
+                                            <!--<li class="st-option">FUN</li>-->
+                                            <!--<li class="st-option">GSC</li>-->
+                                            <!--<li class="st-option">HMC</li>-->
+                                            <!--<li class="st-option">HOT</li>-->
+                                            <!--<li class="st-option">ICN</li>-->
+                                            <!--<li class="st-option">INS</li>-->
+                                            <!--<li class="st-option">INSUR</li>-->
+                                            <!--<li class="st-option">KEY</li>-->
+                                            <!--<li class="st-option">LA</li>-->
+                                            <!--<li class="st-option">LEND</li>-->
+                                            <!--<li class="st-option">LEV</li>-->
+                                            <!--<li class="st-option">LRC</li>-->
+                                            <!--<li class="st-option">MDA</li>-->
+                                            <!--<li class="st-option">MITH</li>-->
+                                            <!--<li class="st-option">MKR</li>-->
+                                            <!--<li class="st-option">MOF</li>-->
+                                            <!--<li class="st-option">MOT</li>-->
+                                            <!--<li class="st-option">NGC</li>-->
+                                            <!--<li class="st-option">NULS</li>-->
+                                            <!--<li class="st-option">OAX</li>-->
+                                            <!--<li class="st-option">POE</li>-->
+                                            <!--<li class="st-option">PPT</li>-->
+                                            <!--<li class="st-option">PST</li>-->
+                                            <!--<li class="st-option">QVT</li>-->
+                                            <!--<li class="st-option">R</li>-->
+                                            <!--<li class="st-option">RCT</li>-->
+                                            <!--<li class="st-option">REF</li>-->
+                                            <!--<li class="st-option">REN</li>-->
+                                            <!--<li class="st-option">RFR</li>-->
+                                            <!--<li class="st-option">RNT</li>-->
+                                            <!--<li class="st-option">SAN</li>-->
+                                            <!--<li class="st-option">SHOW</li>-->
+                                            <!--<li class="st-option">SNGLS</li>-->
+                                            <!--<li class="st-option">SUB</li>-->
+                                            <!--<li class="st-option">TCT</li>-->
+                                            <!--<li class="st-option">TRIO</li>-->
+                                            <!--<li class="st-option">TRUE</li>-->
+                                            <!--<li class="st-option">UGC</li>-->
+                                            <!--<li class="st-option">UKG</li>-->
+                                            <!--<li class="st-option">VEE</li>-->
+                                            <!--<li class="st-option">VIB</li>-->
+                                            <!--<li class="st-option">VIU</li>-->
+                                            <!--<li class="st-option">WRC</li>-->
+                                            <!--<li class="st-option">WTC</li>-->
+                                            <!--<li class="st-option">XUC</li>-->
+                                            <!--<li class="st-option">AE</li>-->
+                                            <!--<li class="st-option">AION</li>-->
+                                            <!--<li class="st-option">AMB</li>-->
+                                            <!--<li class="st-option">ARN</li>-->
+                                            <!--<li class="st-option">BCPT</li>-->
+                                            <!--<li class="st-option">BQX</li>-->
+                                            <!--<li class="st-option">CDT</li>-->
+                                            <!--<li class="st-option">CND</li>-->
+                                            <!--<li class="st-option">DLT</li>-->
+                                            <!--<li class="st-option">FUEL</li>-->
+                                            <!--<li class="st-option">GVT</li>-->
+                                            <!--<li class="st-option">LOOM</li>-->
+                                            <!--<li class="st-option">MTH</li>-->
+                                            <!--<li class="st-option">NCASH</li>-->
+                                            <!--<li class="st-option">REP</li>-->
+                                            <!--<li class="st-option">RLC</li>-->
+                                            <!--<li class="st-option">SNM</li>-->
+                                            <!--<li class="st-option">STORM</li>-->
+                                            <!--<li class="st-option">TUSD</li>-->
+                                            <!--<li class="st-option">VIBE</li>-->
+                                            <!--<li class="st-option">WABI</li>-->
+                                            <!--<li class="st-option">WINGS</li>-->
+                                            <!--<li class="st-option">YOYO</li>-->
+                                            <!--<li class="st-option">STB</li>-->
+                                            <!--<li class="st-option">NEXO</li>-->
+                                            <!--<li class="st-option">NRC</li>-->
+                                            <!--<li class="st-option">BQT</li>-->
+                                            <!--<li class="st-option">EON</li>-->
+                                            <!--<li class="st-option">EOP</li>-->
+                                            <!--<li class="st-option">XMC</li>-->
+                                            <!--<li class="st-option">XRP</li>-->
+                                            <!--<li class="st-option">SCTK</li>-->
+                                            <!--<li class="st-option">QQB</li>-->
+                                            <!--<li class="st-option">NXCT</li>-->
+                                        </ul>
+                                    </div>
+                                    <p class="tips" style="display: none;"></p>
+                                    <p class="message" style="display: none;"></p>
+                                </div>
+                                <div class="st-form-item" style="min-height: 30px;">
+                                    <p class="label" style="padding-right: 10px;">筛选类型</p>
+                                    <div tabindex="0" class="st-select item" value="" style="width: 160px; margin-right: 0px;">
+                                        <div class="box flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                            <p>全部</p>
+                                            <span class=""></span>
+                                        </div>
+                                        <ul style="width: 160px; display: none;">
+                                            <li class="st-option">全部</li>
+                                            <li class="st-option">转入</li>
+                                            <li class="st-option">转出</li>
+                                            <li class="st-option">充值</li>
+                                            <li class="st-option">提现</li>
+                                            <li class="st-option">提现手续费</li>
+                                            <li class="st-option">活动收入</li>
+                                        </ul>
+                                    </div>
+                                    <p class="tips" style="display: none;"></p>
+                                    <p class="message" style="display: none;"></p>
+                                </div>
+                            </div>
+                            <!---->
+                        </div>
+                        <div class="detail-list" >
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th width="170" align="left">操作时间</th>
+                                    <th width="156" align="right">账户</th>
+                                    <th width="126" align="right">币种</th>
+                                    <th width="136" align="right">类型</th>
+                                    <th width="172" align="right">数额</th>
+                                    <th width="172" align="right">手续费</th>
+                                    <th width="188" align="right">余额</th>
+                                </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                            <div class="no-list">
+                                <img src="/Public/Home/image/accountMsg/noDate.jpg" alt="" />
+                                <h6>暂无数据</h6>
+                            </div>
+                            <!---->
+                        </div>
+                    </div>
+                </div>
+                <!--底部内容-->
+                <include file="Public:footer"/>
+                <!--底部内容   end-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="__PUBLIC__/Home/js/newjs/accountBill.js"></script>
+
+</body>
+</html>

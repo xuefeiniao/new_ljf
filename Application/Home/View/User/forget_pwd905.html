@@ -1,0 +1,140 @@
+<include file="Publics:header-black" />
+
+<link rel="stylesheet" type="text/css" href="/zhisucom/css/chongzhmima.css" />
+	<body>
+		<div class="left_con_login reset-psw-con" style="padding-top: 30px;">
+			<div class="login_incontent">
+
+				<div class="right_mcontent">
+
+					<div class="mairu">
+						<div class="m_title">
+							<h4>忘记密码</h4></div>
+						<div class="m_con_buy leftregi">
+							<form name="login" action="">
+								<dl style="text-align:left; padding-top:20px">
+									<dt><label for="text">新密码</label></dt>
+									<dd><input type="password" name="oldpassword" id="moble_new" value=""></dd>
+									<input type="text" id="mobles_new" class="texts" style="display: none;">
+									<dt><label for="text">绑定手机号</label></dt>
+									<dd><input type="text" name="oldpassword" id="phone" value=""></dd>
+									<!-- <input type="password" name="newpassword" id="newpassword" value=""> -->
+									<dt>验证码：</dt>
+							<dd class="yuyin">
+								<div class="clear">
+									<input type="text" name="oldpassword" id="moble_verify_new" value="">
+																		<input type="button" id="smsbtn" value="发送短信验证码" class="sub-btn" onclick="sendMessage();" style="width: 100px;font-size: 12px;"/>
+																										</div>
+							</dd>
+									
+									<div style="clear:both"></div>
+									<dd><input type="button" id="genghuan" value="更换绑定"  class="sub-btn" style="height:40px; margin-bottom:20px" onclick="moble_news()"></dd>
+									<dd>
+									</dd>
+								</dl>
+							</form>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<include file="Publics:footer"/>
+	</body>
+	<script src="/zhisucom/js/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+					var InterValObj; //timer变量，控制时间  
+var count = 60; //间隔函数，1秒执行  
+var curCount;//当前剩余秒数 
+function sendMessage() {  
+var mobile = $('#phone').val(); 
+var reg = /^1[34578][0-9]{9}$/;
+if(mobile == '' || mobile == null){
+	layer.tips("请输入手机号码", '#phone', {tips: 3});
+							return false;
+}
+if(!reg.test(mobile)){
+layer.tips("手机号格式错误", '#phone', {tips: 3});
+							return false;
+}
+//var bj =  document.getElementById("y").value;
+         //validatemobile(mobile);//调用上边的方法验证手机号码的正确性 
+		 $.ajax({  
+     　　type: "POST", //用POST方式传输     　　  
+         dataType: "json", //数据格式:JSON  
+         data: {mobile:mobile},  
+     　　url: "{:U('Login/real')}", //目标地址.   
+     　　success:function(data){
+			if(data.status != 1){
+				layer.msg(data.info, {icon: 2});
+			}
+		}
+     });  
+		 
+    curCount = count;  
+　　//设置button效果，开始计时  
+     $("#smsbtn").attr("disabled", "true"); 
+	$("#smsbtn").val("请在" + curCount + "秒内输入验证码");	 
+     InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次  
+　　  //向后台发送处理数据  
+      
+             
+       
+}  
+  
+//timer处理函数  
+function SetRemainTime() {  
+            if (curCount == 0) {                  
+                window.clearInterval(InterValObj);//停止计时器  
+                $("#smsbtn").removeAttr("disabled");//启用按钮  
+                $("#smsbtn").val("重新发送验证码");  
+            }  
+            else {  
+                curCount--;  
+				$("#smsbtn").val("请在" + curCount + "秒内输入验证码");				
+            }  
+        } 
+					function moble_news() {
+						var pwd        = $("#moble_new").val();
+						var mobles_new       = $("#mobles_new").val();
+						var moble_verify_new = $("#moble_verify_new").val();
+                      	var mobile = $('#phone').val();
+                      	var reg = /^1[34578][0-9]{9}$/;
+						if (pwd == "" || pwd == null) {
+							layer.tips("请输入新密码", '#moble_new', {tips: 3});
+							return false;
+						}
+                      
+                        if(mobile == '' || mobile == null){
+                            layer.tips("请输入手机号码", '#phone', {tips: 3});
+                                                    return false;
+                        }
+                        if(!reg.test(mobile)){
+                        layer.tips("手机号格式错误", '#phone', {tips: 3});
+                                                    return false;
+                        }
+						if (moble_verify_new == "" || moble_verify_new == null) {
+							layer.tips("请输入短信验证码", '#moble_verify_new', {tips: 3});
+							return false;
+						}
+						$.post("/User/upmoble_zhisucom.html", {
+							moble_new: pwd,
+							mobles_new: mobles_new,
+							moble_verify_new: moble_verify_new,
+                          	mobile:mobile
+						}, function (data) {
+							if (data.status == 1) {
+								layer.msg(data.info, {icon: 1});
+								window.location = "/user/forget";
+							} else {
+								layer.msg(data.info, {icon: 2});
+								if (data.url) {
+									window.location = data.url;
+								}
+							}
+						}, "json");
+					}
+				</script>
+
+</html>

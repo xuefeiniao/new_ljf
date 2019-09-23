@@ -1,0 +1,91 @@
+
+	<link rel="stylesheet" href="/public/home/ss/css/cnbtc2014.css">
+    <link rel="stylesheet" href="/public/home/ss/css/module.base.css">
+    <link rel="stylesheet" href="/public/home/ss/css/module.common.css">
+    <script src="/public/home/ss/js/webcommon.js" charset="UTF-8"></script>
+    <link rel="stylesheet" href="/public/home/ss/css/module.user.css">
+    <link rel="stylesheet" href="/public/home/ss/css/upload.css">
+    <link rel="stylesheet" href="/public/home/ss/css/safe.css">
+
+    <style>
+        .uploadipic .pm-itemcont .item .upload input[type=file] {  width:202px; height:180px; }
+        .uploadipic .pm-itemcont .item .upload  a, .uploadipic .pm-itemcont .item .upload, .uploadipic .pm-itemcont .item {  width:202px; height:180px;  }
+    </style>
+<div class="bk-body" style="height:auto">
+
+    <!--页面中部内容开始-->
+    <div class="bk-onekey">
+        <div class="bk-safe">
+            <div class="container">
+                <div class="safe-rd snav-rd" style=" margin-left: 0px; ">
+
+                    <div class="authbody">
+
+                        <div class="container">
+
+                            <style>
+                                #photoA { width:202px; height:180px; background:url(/public/home/ss/images/a.jpg) center center no-repeat; background-size:cover; cursor:pointer; float:none; border:1px solid #eee; }
+                                #photoB { width:202px; height:180px; background:url(/public/home/ss/images/b.jpg) center center no-repeat;  background-size:cover; cursor:pointer; float:none; border:1px solid #eee;}
+                                #photoC { width:202px; height:180px; background:url(/public/home/ss/images/c.jpg) center center no-repeat;  background-size:cover; cursor:pointer; float:none; border:1px solid #eee;}
+                            </style>
+
+                            <h3>1、提交证件信息</h3><br /><br /><br />
+                            <div>
+                                <div class="form-line row">
+                                    <div class="col-sm-4 textright">证件姓名：</div>
+                                    <div class="col-sm-7">
+                                        <input type="text"
+                                               class="form-control form-second pull-left inputlong smallfont"
+                                               name="realName" id="realName" value="{$user.truename}" position="s"
+                                               mytitle="请填写有效的银行卡号" errormsg="证件姓名错误" pattern="limit(10,30)"
+                                               disabled="disabled">
+                                    </div>
+                                </div>
+                                <div class="form-line row">
+                                    <div class="col-sm-4 textright">身份证号码：</div>
+                                    <div class="col-sm-7">
+                                        <input type="text"
+                                               class="form-control form-second pull-left inputlong smallfont"
+                                               name="documentNumber" id="documentNumber" value="{$user.idcard}"
+                                               position="s" mytitle="请填写有效的证件号码" errormsg="证件号错误"
+                                               pattern="limit(10,30)" disabled="disabled">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div id="cn-form" class="">
+ 
+                                <div class="row uploadipic" style="color:#3c515e;">
+                                    <div id="frontalImgDiv" class="col-sm-4">
+                                        <p>
+                                            手持身份证<a data-toggle="popover" data-placement="top" data-trigger="hover"
+                                                    data-html="true"
+                                                    data-content="&lt;img src=&#39;https://s.bitkk.com/statics/img/v2/user/zhengdemo3qx.jpg&#39;  style=&#39;width:237px; height:237px;&#39;&gt;"
+                                                    data-original-title="" title=""></a>
+                                        </p>
+                                        <div class="pm-itemcont" id="photoA" errorname="手持证件照"><input
+                                                    style="width:0px;height:0px;margin:0 0 0 100px;border:none;padding:0px;"
+                                                    position="s" type="text"
+                                                    pattern="fileIsUploading('upload_pics_path_hidden_id_1');fileNumIsRight(1 , 'upload_pics_path_hidden_id_1')"
+                                                    errormsg="你至少上传1张图片" id="upload_pics_path_hidden_id_1"
+                                                    name="loadImg">
+                                            <form name="uploadForm_1" action="https://img1.bitkk.com/fileaction"
+                                                  enctype="multipart/form-data" method="post" target="uploadTar">
+                                                <div class="item "><span class="preview"><a>请上传</a><span
+                                                                class="deal-file"><em class="left"></em><em
+                                                                    class="right"></em><em
+                                                                    class="del"></em></span></span><span
+                                                            class="upload "><a href="javascript:;"><input type="file"
+                                                                                                          name="_fma.pu._0.ima"></a></span>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div id="backImgDiv" class="col-sm-4">
+                                        <p>
+                                            证件正面图<a data-toggle="popover" data-placement="top" data-trigger="hover"
+                                                    data-html="true"
+                                                    data-content="<img src='https://s.bitkk.com/statics/img/v2/user/zhengdemo2qx.jpg'  style='width:237px; height:237px;'>"
+                                                    data-original-title="" title=""></a>
+                                        </p>
+                                        <div class="pm-itemcont" id="photoB" errorname="�

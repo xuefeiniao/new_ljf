@@ -1,0 +1,208 @@
+<include file="Publics:header-black" />
+
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="/zhisucom/css/chongzhmima.css" />
+      <style>
+        #zhu-form{width:100%;}
+        #zhu-form dl{overflow:hidden;width:100%;}
+        #zhu-form .zhu-float1q{font-weight:bold;width:25%;text-align:right;height:42px;line-height:42px;}
+        #zhu-form .zhu-floatlq1{width:75%;}
+        #zhu-form .zhu-floatlq1 input{width:60%;}
+        @media screen and (max-width: 1410px){.zhu-floatlq{width:22%;} .zhu-floatlq1{width:78%;} #zhu-form .zhu-floatlq1 .zhu-input{width:70%;}}
+        #zhu-form .zhu-float{float:left;}
+        #zhu-form .zhu-input{width:80%;height:42px;padding:12px 8px;margin:0;}
+        #zhu-form .zhu-eamil{font-weight:bold;margin-right:12px;}
+        #zhu-form .zhu-email-ma{width:50%;}
+        html body .login_incontent .m_title{border-bottom:1px solid #C8DAE2;}
+        body .main_content{border:none;}
+        #zhu-form dl dd{margin-bottom:20px;}
+        
+      </style>
+	</head>
+
+	<body>
+      <include file="Publics:leftbar" />
+		<div class="main_content acc-m-con" style="padding-top: 30px;">
+			
+			<div class="login_incontent">
+
+				<div class="right_mcontent">
+
+					<div class="mairu">
+						<div class="m_title">
+							<h4>绑定邮箱</h4></div>
+						<div class="m_con_buy leftregi">
+							<form name="login" action="" id="zhu-form">
+								<dl style="text-align:left; padding-top:20px;overflow:hidden;">
+                                  <dd class="zhu-float zhu-float1q"><label for="text" class="zhu-eamil">邮箱</label></dd>
+									<dd  class="zhu-float zhu-floatlq1">
+                                      
+                                      <if condition="$user_info['email'] neq ''">
+                                      <input class="zhu-input" type="text" name="oldpassword" id="email" value="{$user_info['email']}">
+                                        <else/>
+                                      <input class="zhu-input" type="text" name="oldpassword" id="email" value="">
+                                        </if>
+                                        </dd>
+									<!--<input type="text" id="mobles_new" class="texts" style="display: none;">-->
+								
+							<!--<dd class="yuyin">
+                              
+								<div class="clear">
+                                  <label for="text" class="zhu-eamil">邮箱验证码</label>
+									<input class="zhu-email-ma" type="text" name="oldpassword" id="email_verifyw" value="">
+										<input type="button" id="smsbtn" value="发送邮箱验证码" class="sub-btn" onclick="sendMessage();" style="width: 124px;font-size: 12px;"/>
+																										</div>
+							</dd>-->
+									
+									
+								</dl>
+                              <dl style="padding-top:0">
+                              	 <dd class="zhu-float zhu-float1q"><label for="text" class="zhu-eamil">邮箱验证码</label></dd>
+                                <dd class="zhu-float zhu-floatlq1"><input class="zhu-email-ma" type="text" name="oldpassword" id="email_verifyw" value="">
+                                  <input type="button" id="smsbtn" value="发送邮箱验证码" class="sub-btn" onclick="sendMessage();" style="width: 160px;font-size: 12px;"/></dd>
+                              </dl>
+                              <dl style="padding-top:0">
+                              	 <dd class="zhu-float zhu-float1q"><label for="text" class="zhu-eamil">资金密码</label></dd>
+                                <dd class="zhu-float zhu-floatlq1"><input class="zhu-input" type="text" name="oldpassword1" id="email_verifyw1" value="">
+                                  </dd>
+                              </dl>
+                              <dl>
+                              	<div style="clear:both"></div>
+                                <dd class="zhu-float zhu-float1q"><label for="text" class="zhu-eamil"></label></dd>
+                                  <if condition="$user_info['email'] eq ''">
+									<dd class="zhu-float zhu-floatlq1"><input type="button" id="genghuan" value="确认绑定"  class="sub-btn zhu-input" style="height:42px; margin-bottom:20px" onclick="binding()"></dd>
+                                    <else/>
+                                    <dd class="zhu-float zhu-floatlq1"><input type="button" id="genghuan" value="更换绑定"  class="sub-btn zhu-input" style="height:42px; margin-bottom:20px" onclick="binding()"></dd>
+                                   </if>
+									<dd>
+									</dd>
+                              </dl>
+                              
+							</form>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+		
+		<include file="Publics:footer"/>
+	</body>
+	<script src="/zhisucom/js/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+					var InterValObj; //timer变量，控制时间  
+var count = 60; //间隔函数，1秒执行  
+var curCount;//当前剩余秒数 
+function sendMessage() {  
+var email = document.getElementById("email").value;
+  var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$");
+  if(!reg.test(email)){
+  	layer.msg('邮箱格式错误', {icon: 2});
+    return false;
+  }
+		 $.ajax({  
+     　　type: "POST", //用POST方式传输     　　  
+         dataType: "json", //数据格式:JSON  
+         data: {email:email},  
+     　　url: "{:U('Finance/send_email')}", //目标地址.   
+     　　success:function(data){
+			if(data.status != 1){
+				layer.msg(data.info, {icon: 2});
+             	 return false;
+			}else{
+            	layer.msg(data.info, {icon: 1});
+            }
+		}
+     });  
+		 
+    curCount = count;  
+　　//设置button效果，开始计时  
+     $("#smsbtn").attr("disabled", "true"); 
+	$("#smsbtn").val("请在" + curCount + "秒内输入验证码");	 
+     InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次  
+　　  //向后台发送处理数据  
+      
+             
+       
+}  
+  
+//timer处理函数  
+function SetRemainTime() {  
+            if (curCount == 0) {                  
+                window.clearInterval(InterValObj);//停止计时器  
+                $("#smsbtn").removeAttr("disabled");//启用按钮  
+                $("#smsbtn").val("重新发送验证码");  
+            }  
+            else {  
+                curCount--;  
+				$("#smsbtn").val("请在" + curCount + "秒内输入验证码");				
+            }  
+        } 
+					function moble_news() {
+						var moble_new        = $("#moble_new").val();
+						var mobles_new       = $("#mobles_new").val();
+						var moble_verify_new = $("#moble_verify_new").val();
+						if (moble_new == "" || moble_new == null) {
+							layer.tips("请输入手机号码", '#moble_new', {tips: 3});
+							return false;
+						}
+						if (moble_verify_new == "" || moble_verify_new == null) {
+							layer.tips("请输入短信验证码", '#moble_verify_new', {tips: 3});
+							return false;
+						}
+						$.post("/User/upmoble_zhisucom.html", {
+							moble_new: moble_new,
+							mobles_new: mobles_new,
+							moble_verify_new: moble_verify_new
+						}, function (data) {
+							if (data.status == 1) {
+								layer.msg(data.info, {icon: 1});
+								window.location = "/Finance/index";
+							} else {
+								layer.msg(data.info, {icon: 2});
+								if (data.url) {
+									window.location = data.url;
+								}
+							}
+						}, "json");
+					}
+      
+      
+      function binding(){
+      	var email = $('#email').val();
+        var email_verifyw = $('#email_verifyw').val();
+        var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$");
+        if(!reg.test(email)){
+          layer.msg('邮箱格式错误', {icon: 2});
+          return false;
+        }
+        if(email_verifyw == ''){
+        	layer.msg('请输入验证码', {icon: 2});
+          	return false;
+        }
+        $.ajax({  
+     　　type: "POST", //用POST方式传输     　　  
+         dataType: "json", //数据格式:JSON  
+         data: {email:email,email_verifyw:email_verifyw},  
+     　　url: "{:U('User/email_bind')}", //目标地址. 
+          success:function(data){
+          	if(data.status == 1){
+            	layer.msg(data.info, {icon: 1});
+              window.location="/Finance/index";
+            }else{
+            	layer.msg(data.info, {icon: 2});
+              return false;
+            }
+          }
+        });
+        
+      }
+				</script>
+
+</html>

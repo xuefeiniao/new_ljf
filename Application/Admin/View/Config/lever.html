@@ -1,0 +1,132 @@
+<include file="Base:header"/>
+<style type="text/css">
+	.input-text{
+		width: 600px;
+	}
+</style>
+<body>
+<article class="page-container">
+	<form class="form form-horizontal" id="form-article-add" action="{:U('Config/lever')}" method="post" enctype="multipart/form-data">
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>杠杆倍数 :</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$C['lever_bs']}" placeholder="" id="articletitle" name="lever_bs">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>杠杆利率 :</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$C['lever_lixi']}" placeholder="" id="articletitle" name="lever_lixi"><span style="padding-left: 20px;">%</span>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>风险率 :</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$C['lever_fx']}" placeholder="" id="articletitle" name="lever_fx">
+				<span style="width:100px;padding-left:20px;">%</span>
+			</div>
+		</div>
+		
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+				<button class="ajax-post btn btn-primary radius" id="submit" type="submit" target-form="form-horizontal"><i class="Hui-iconfont">&#xe632;</i> 确 定
+			</button>
+			<!-- <a class="btn btn-default radius" href="{$Think.server.HTTP_REFERER}">返 回</a> -->
+			</div>
+		</div>
+	</form>
+</article>
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript">
+// alert(window.parent.location);
+// alert(window.location.href);
+	//提交表单
+	/*$('#submit').click(function () {
+		$('#form').submit();
+	});*/
+	$(function() {
+        $("#form-add").ajaxForm(function(data){
+        	if (data.status==1) {
+        	layer.alert(data.info);
+        }else
+            layer.alert(data.info);
+        },'json');
+         
+    });
+</script>
+<script type="text/javascript">
+	$(document).ready(function () {
+		//响应文件添加成功事件
+		$("#inputfile").change(function () {
+			//创建FormData对象
+			var data = new FormData();
+			//为FormData对象添加数据
+			$.each($('#inputfile')[0].files, function (i, file) {
+				data.append('upload_file' + i, file);
+			});
+
+
+			//发送数据
+			$.ajax({
+				url: '/Admin/Config/image',
+				type: 'POST',
+				data: data,
+				cache: false,
+				contentType: false,		//不可缺参数
+				processData: false,		//不可缺参数
+				success: function (data) {
+					if (data) {
+						$('#up_img').attr("src", '/Upload/public/' + data);
+						$('#img').val(data);
+						$('#up_img').show();
+					}
+				},
+				error: function () {
+					alert('上传出错');
+					$(".loading").hide();	//加载失败移除加载图片
+				}
+			});
+
+		});
+	});
+	$(document).ready(function () {
+		//响应文件添加成功事件
+		$("#inputfilea").change(function () {
+			//创建FormData对象
+			var data = new FormData();
+			//为FormData对象添加数据
+			$.each($('#inputfilea')[0].files, function (i, file) {
+				data.append('upload_file' + i, file);
+			});
+
+
+			//发送数据
+			$.ajax({
+				url: '/Admin/Config/image',
+				type: 'POST',
+				data: data,
+				cache: false,
+				contentType: false,		//不可缺参数
+				processData: false,		//不可缺参数
+				success: function (data) {
+					if (data) {
+						$('#up_imga').attr("src", '/Upload/public/' + data);
+						$('#imga').val(data);
+						$('#up_imga').show();
+					}
+				},
+				error: function () {
+					alert('上传出错');
+					$(".loading").hide();	//加载失败移除加载图片
+				}
+			});
+
+		});
+	});
+</script>
+
+<!--/请在上方写此页面业务相关的脚本-->
+ 
+</body>
+</html>

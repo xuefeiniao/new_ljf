@@ -1,0 +1,616 @@
+﻿<include file="Base:header1"/>
+<include file="Base:header"/>
+<link rel="stylesheet" href="/public/home/ss/css/otc.css">
+
+<div class="page-main">
+    <div class="container">
+
+        <div class="c2c-nav">
+            <ul>
+                <li>
+                    <div class="lev-1 on"><span>CNY </span><i class="fa fa-angle-up"></i><i class="fa fa-angle-down"></i></div>
+                    <ul>
+                        <li>
+                            <a href="/otc/trade/qc_cny?type=2" class="lev-2 buycoin active" rel="buyCoin"><i></i>我要买币</a>
+                            <ul>
+
+                                <li><a href="/otc/trade/btc_cny?type=2" rel="buyCoin">BTC</a></li>
+
+                                <li><a href="/otc/trade/ltc_cny?type=2" rel="buyCoin">LTC</a></li>
+
+                                <li><a href="/otc/trade/eth_cny?type=2" rel="buyCoin">ETH</a></li>
+
+                                <li><a href="/otc/trade/etc_cny?type=2" rel="buyCoin">ETC</a></li>
+
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/otc/trade/qc_cny?type=1" class="lev-2 sellcoin" rel="sellCoin"><i></i>我要卖币</a>
+                            <ul>
+
+                                <li><a href="/otc/trade/btc_cny?type=1" rel="sellCoin">BTC</a></li>
+
+                                <li><a href="/otc/trade/ltc_cny?type=1" rel="sellCoin">LTC</a></li>
+
+                                <li><a href="/otc/trade/eth_cny?type=1" rel="sellCoin">ETH</a></li>
+
+                                <li><a href="/otc/trade/etc_cny?type=1" rel="sellCoin">ETC</a></li>
+
+                            </ul>
+                        </li>
+                        <li><a class="lev-2" href="/otc/order/list" rel="orderList">订单管理</a></li>
+                    </ul>
+                </li>
+               <!-- <li>
+                    <div class="lev-1 on">商户管理<i class="fa fa-angle-up"></i><i class="fa fa-angle-down"></i></div>
+                    <ul>
+                        <li><a class="lev-2" href="/otc/user/business?isSelect=true" rel="Becomebusiness">商家申请</a></li>
+                        <li><a class="lev-2" href="/otc/mad/publishSell" rel="publishSell">发布广告</a></li>
+                        <li><a class="lev-2" href="/otc/mad/list/1" rel="tradeManage">广告管理</a></li>
+                        <li><a class="lev-2" href="/otc/mad/orderList/0" rel="buyList">商家订单</a></li>
+
+                        <li><a class="lev-2" href="/otc/user/" rel="businessinfo">商家信息</a></li>
+                        <li><a class="lev-2" href="/otc/orderstats" rel="financeStatistics">财务报表</a></li>
+
+                    </ul>
+                </li>-->
+                <li>
+                    <div class="lev-1 on">OTC设置<i class="fa fa-angle-up"></i><i class="fa fa-angle-down"></i></div>
+                    <ul>
+                        <li><a class="lev-2" href="/otc/user/setpay" rel="setpay">支付设置</a></li>
+                        <li><a class="lev-2" href="/otc/user/settingOrder" rel="settingOrder">接单设置</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <script>
+            $(function(){
+
+                $("#m-asset-tabs a").on('click', function(){
+                    var target = $(this).attr('href');
+                    $("#m-asset-tabs a").removeClass('on');
+                    $(this).addClass('on');
+                    $("#M_userDrop2 .tab-content").removeClass('active');
+                    $(target).addClass('active');
+                    // if (target == '#m-userLeverAssets') {
+                    //     //$("#pay-action").hide();
+                    //     window.assetType = 'lever';
+                    //     ASSET.changeUserAssetType('lever');
+                    // } else {
+                    //     window.assetType = 'spot';
+                    //     ASSET.changeUserAssetType('spot');
+                    //     //$("#pay-action").show();
+                    // }
+                    return false;
+                });
+                $('#fund-dropdown').on('mouseenter', function(e){
+                    $(this).addClass('open');
+                });
+                $('#fund-dropdown').on('mouseleave', function(e){
+                    var _this = $(this);
+                    setTimeout(function () {
+                        _this.removeClass('open');
+                    }, 300);
+                });
+
+                $('body').on('click', function (e) {
+                    if (!$('#fund-dropdown').is(e.target)
+                        && $('#fund-dropdown').has(e.target).length === 0
+                    ) {
+                        $('#fund-dropdown').removeClass('open');
+                    }
+                });
+
+                $(".topmenuhover .titlelist a").on('mouseenter',function(){
+                    $(this).addClass("on").siblings("a").removeClass("on");
+                    $(this).parents(".topmenuhover").find("ul").eq($(this).index()).addClass("on").siblings("ul").removeClass("on");
+                })
+
+                $(".down-market-table .d-hd a").on('mouseenter',function(){
+                    $(this).addClass("on").siblings("a").removeClass("on");
+                    $(this).parents(".down-market-table").find("table").eq($(this).index()).addClass("on").siblings("table").removeClass("on");
+                    var coin = $(this).data('coin');
+                    var channel = "top_all_" + coin;
+                    if (webSocket && channel != oldTopallChannel) {
+                        MARKET.closeTopallSocket(oldTopallChannel);
+                        webSocket.sendMessage("{'event':'addChannel','channel':'" + channel + "','isZip':'" + isZipData() + "'}");
+                    }
+                    oldTopallChannel = channel;
+                });
+
+                $(".top-market-show").on('mouseleave', function(){
+                    var moneyType = "";
+                    if (webSocket && moneyType) {
+                        var channel = "top_all_" + moneyType.toLowerCase();
+                        if (channel != oldTopallChannel) {
+                            MARKET.closeTopallSocket(oldTopallChannel);
+                            webSocket.sendMessage("{'event':'addChannel','channel':'" + channel + "','isZip':'" + isZipData() + "'}");
+                        }
+                        oldTopallChannel = channel;
+                    }
+                });
+
+
+                $(".cnyonoff").on("click",function(){
+                    $(this).toggleClass("on");
+                    $(".nocny").toggleClass("on");
+                    $(".iscny").toggleClass("on");
+                })
+
+                //定时检查
+//                var init = window.setInterval("checkNewOrder()",1000);
+
+            })
+        </script>
+
+
+        <div class="page-content">
+            <div class="sel-coin">
+                <div class="title"><i></i>法币分类</div>
+                <div class="coin-group">
+
+                    <a href="/otc/trade/qc_cny?type=2" class="btn active">CNY</a>
+
+<!--                    <a href="/otc/trade/qc_usd?type=2" class="btn ">USD</a>-->
+
+                </div>
+
+<!--                <a href="/otc/mad/publishSell" class="publishbtn">发布广告</a>-->
+
+            </div>
+            <div class="tabs order-type">
+                <a href="/otc/trade/qc_cny?type=2" class="active">我要买入</a>
+                <a href="/otc/trade/qc_cny?type=1" class="">我要卖出</a>
+            </div>
+            <div class="tab-content">
+                <div class="table-wrap">
+                    <table class="table table-noborder c2c-table">
+                        <thead>
+                        <tr>
+                            <td class="user" width="15%">用户昵称</td>
+                            <td class="" width="5%">广告ID</td>
+                            <td class="tran-num" width="7%">近30天成交</td>
+                            <td class="pay-method" width="10%">付款方式</td>
+                            <td class="num" width="10%"><a class="sort " id="numsort">数量<span></span></a></td>
+                            <td class="price" width="10%"><a class="sort up" id="priceSort">价格<span></span></a></td>
+                            <td class="price" width="18%">备注（MEMO）</td>
+                            <td class="action" width="10%">操作</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+
+
+
+                        <tr>
+                            <td class="user is-auth">
+
+                                <a href="/otc/user/1029327">
+                                    <div class="avatar"></div>
+                                    <div class="username" data-original-title="" title="">
+                                        币发
+
+
+                                        <br>
+                                        <span class="auth-band"></span>
+
+                                    </div>
+                                </a>
+                            </td>
+                            <td>23111</td>
+                            <td class="tran-num">172</td>
+                            <td class="pay-method">
+
+                                <i class="pm-icon pm-unionpay"></i>
+
+                                <i class="pm-icon pm-alipay"></i>
+
+                            </td>
+                            <td class="num">165860 </td>
+                            <td class="price">
+                                0.996 CNY <br>
+                                <span>1000-1000000</span>
+                            </td>
+                            <td style="color: #7E7E7E;text-align: left">
+                                在线接单中.... 发财热线 xxxx2013574
+                            </td>
+                            <td class="action">
+
+
+                                <a class="btn btn-buy" href="/otc/order/buy/23111">买入</a>
+
+
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="user ">
+
+                                <a href="/otc/user/1012309">
+                                    <div class="avatar"></div>
+                                    <div class="username">
+                                        陈剑美
+
+                                    </div>
+                                </a>
+                            </td>
+                            <td>23106</td>
+                            <td class="tran-num">516</td>
+                            <td class="pay-method">
+
+                                <i class="pm-icon pm-unionpay"></i>
+
+                                <i class="pm-icon pm-alipay"></i>
+
+                            </td>
+                            <td class="num">9006 </td>
+                            <td class="price">
+                                0.996 CNY <br>
+                                <span>100-1000000</span>
+                            </td>
+                            <td style="color: #7E7E7E;text-align: left">
+                                在线秒接。。。11111160950
+                            </td>
+                            <td class="action">
+
+
+                                <a class="btn btn-buy" href="/otc/order/buy/23106">买入</a>
+
+
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="user ">
+
+                                <a href="/otc/user/1076699">
+                                    <div class="avatar"></div>
+                                    <div class="username">
+                                        聪哥秒兑
+
+                                    </div>
+                                </a>
+                            </td>
+                            <td>23107</td>
+                            <td class="tran-num">39</td>
+                            <td class="pay-method">
+
+                                <i class="pm-icon pm-unionpay"></i>
+
+                            </td>
+                            <td class="num">100003 </td>
+                            <td class="price">
+                                0.996 CNY <br>
+                                <span>3000-1000000</span>
+                            </td>
+                            <td style="color: #7E7E7E;text-align: left">
+                                在线，11111172382
+                            </td>
+                            <td class="action">
+
+
+                                <a class="btn btn-buy" href="/otc/order/buy/23107">买入</a>
+
+
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="user ">
+
+                                <a href="/otc/user/1025828">
+                                    <div class="avatar"></div>
+                                    <div class="username">
+                                        625
+
+                                    </div>
+                                </a>
+                            </td>
+                            <td>23108</td>
+                            <td class="tran-num">5</td>
+                            <td class="pay-method">
+
+                                <i class="pm-icon pm-unionpay"></i>
+
+                            </td>
+                            <td class="num">20000 </td>
+                            <td class="price">
+                                0.996 CNY <br>
+                                <span>100-20000</span>
+                            </td>
+                            <td style="color: #7E7E7E;text-align: left">
+                                急催11111107821
+                            </td>
+                            <td class="action">
+
+
+                                <a class="btn btn-buy" href="/otc/order/buy/23108">买入</a>
+
+
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="user ">
+
+                                <a href="/otc/user/1060671">
+                                    <div class="avatar"></div>
+                                    <div class="username">
+                                        火火
+
+                                    </div>
+                                </a>
+                            </td>
+                            <td>23112</td>
+                            <td class="tran-num">52</td>
+                            <td class="pay-method">
+
+                                <i class="pm-icon pm-unionpay"></i>
+
+                            </td>
+                            <td class="num">1774 </td>
+                            <td class="price">
+                                0.996 CNY <br>
+                                <span>100-1000000</span>
+                            </td>
+                            <td style="color: #7E7E7E;text-align: left">
+                                在线 微信电话11111163708
+                            </td>
+                            <td class="action">
+
+
+                                <a class="btn btn-buy" href="/otc/order/buy/23112">买入</a>
+
+
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="user is-auth">
+
+                                <a href="/otc/user/1029327">
+                                    <div class="avatar"></div>
+                                    <div class="username" data-original-title="" title="">
+                                        币发
+
+
+                                        <br>
+                                        <span class="auth-band"></span>
+
+                                    </div>
+                                </a>
+                            </td>
+                            <td>23100</td>
+                            <td class="tran-num">172</td>
+                            <td class="pay-method">
+
+                                <i class="pm-icon pm-unionpay"></i>
+
+                                <i class="pm-icon pm-alipay"></i>
+
+                            </td>
+                            <td class="num">26233 </td>
+                            <td class="price">
+                                0.997 CNY <br>
+                                <span>1000-1000000</span>
+                            </td>
+                            <td style="color: #7E7E7E;text-align: left">
+                                在线接单中...... 11111013574
+                            </td>
+                            <td class="action">
+
+
+                                <a class="btn btn-buy" href="/otc/order/buy/23100">买入</a>
+
+
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="user ">
+
+                                <a href="/otc/user/1026911">
+                                    <div class="avatar"></div>
+                                    <div class="username">
+                                        becrazy722
+
+                                    </div>
+                                </a>
+                            </td>
+                            <td>23103</td>
+                            <td class="tran-num">156</td>
+                            <td class="pay-method">
+
+                                <i class="pm-icon pm-unionpay"></i>
+
+                                <i class="pm-icon pm-alipay"></i>
+
+                            </td>
+                            <td class="num">37000 </td>
+                            <td class="price">
+                                0.997 CNY <br>
+                                <span>100-1000000</span>
+                            </td>
+                            <td style="color: #7E7E7E;text-align: left">
+                                111111532232在线
+                            </td>
+                            <td class="action">
+
+
+                                <a class="btn btn-buy" href="/otc/order/buy/23103">买入</a>
+
+
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="user ">
+
+                                <a href="/otc/user/1015535">
+                                    <div class="avatar"></div>
+                                    <div class="username">
+                                        姚
+
+                                    </div>
+                                </a>
+                            </td>
+                            <td>23099</td>
+                            <td class="tran-num">217</td>
+                            <td class="pay-method">
+
+                                <i class="pm-icon pm-unionpay"></i>
+
+                                <i class="pm-icon pm-alipay"></i>
+
+                            </td>
+                            <td class="num">39322.34 </td>
+                            <td class="price">
+                                0.998 CNY <br>
+                                <span>100-1000000</span>
+                            </td>
+                            <td style="color: #7E7E7E;text-align: left">
+                                电话：11110012700
+                            </td>
+                            <td class="action">
+
+
+                                <a class="btn btn-buy" href="/otc/order/buy/23099">买入</a>
+
+
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="user ">
+
+                                <a href="/otc/user/1011501">
+                                    <div class="avatar"></div>
+                                    <div class="username">
+                                        everyback
+
+                                    </div>
+                                </a>
+                            </td>
+                            <td>23038</td>
+                            <td class="tran-num">7</td>
+                            <td class="pay-method">
+
+                                <i class="pm-icon pm-alipay"></i>
+
+                            </td>
+                            <td class="num">195 </td>
+                            <td class="price">
+                                0.999 CNY <br>
+                                <span>100-1000000</span>
+                            </td>
+                            <td style="color: #7E7E7E;text-align: left">
+
+                            </td>
+                            <td class="action">
+
+
+                                <a class="btn btn-buy" href="/otc/order/buy/23038">买入</a>
+
+
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="user ">
+
+                                <a href="/otc/user/1012517">
+                                    <div class="avatar"></div>
+                                    <div class="username">
+                                        聚沙成塔
+
+                                    </div>
+                                </a>
+                            </td>
+                            <td>23035</td>
+                            <td class="tran-num">326</td>
+                            <td class="pay-method">
+
+                                <i class="pm-icon pm-unionpay"></i>
+
+                                <i class="pm-icon pm-alipay"></i>
+
+                            </td>
+                            <td class="num">94532 </td>
+                            <td class="price">
+                                1 CNY <br>
+                                <span>900-1000000</span>
+                            </td>
+                            <td style="color: #7E7E7E;text-align: left">
+                                4月22日，下午，在线接单中，电话11155806130
+                            </td>
+                            <td class="action">
+
+
+                                <a class="btn btn-buy" href="/otc/order/buy/23035">买入</a>
+
+
+
+                            </td>
+                        </tr>
+
+
+
+                        </tbody>
+
+                        <tfoot>
+                        <tr>
+                            <td colspan="8">
+                                <div id="page_navA" class="page_nav">
+                                    <div class="con">
+
+
+
+                                        <a class="Pbtn next" href="/otc/trade/qc_cny?type=2&amp;pageNo=2&amp;numSort=0">下一页 <i>&gt;</i></a>
+
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        </tfoot>
+
+                    </table>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+    <include file="Base:footer"/>
+
+
+  <script>
+$(".toolbar .item-online").click(function(){
+    $("#chatBtn").trigger("click");
+})
+</script>
+
+</div>
+<script type="text/javascript" src="/public/home/ss/js/index.js"></script>
+<script type="text/javascript" src="/public/home/ss/js/baidupush.js"></script>
+
+
+</body>
+</html>

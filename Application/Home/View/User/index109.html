@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="比特币交易平台，比特币交易所，数字资产交易所,数字货币交易平台" />
+    <meta name="format-detection" content="telephone=no,email=no,address=no" />
+    <eq name="Think.session.lang" value="1">
+									<notempty name="coninfo['web_name']" value=" ">
+								
+										<title>{$coninfo['web_name']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="2">
+									<notempty name="coninfo['web_name_e']" value=" ">
+										<title>{$coninfo['web_name_e']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="3">
+									<notempty name="coninfo['web_name_en']" value=" ">
+										<title>{$coninfo['web_name_en']}</title>
+									</notempty>
+								</eq>
+    <link data-n-head="true" rel="icon" type="image/x-icon" href="__PUBLIC__/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/newcss/accountMsg.css" media="all"/>
+    <script data-n-head="true" src="__PUBLIC__/Home/js/newjs/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/layer/layer.js"></script>
+
+</head>
+<body>
+
+<!--<img src="https://mon.58coin.com/mon.gif" id="img-hidden" />-->
+<div id="__nuxt">
+    <div class="nuxt-progress" style="width: 0%; height: 2px; background-color: rgb(59, 128, 112); opacity: 0;"></div>
+    <div id="__layout">
+        <div>
+            <!--头部内容-->
+            <include file="Public:header1"/>
+            <!--头部内容   end-->
+            <div class="wrap">
+                <div class="users-info container">
+                    <div class="user-nav flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                        <div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap item active">
+                            <a class="nuxt-link-exact-active nuxt-link-active">账户信息</a>
+                        </div>
+                        <div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap item">
+                            <a class="">账户安全</a>
+                        </div>
+                        <!--<div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap item">-->
+                            <!--<a class="">开发者工具</a>-->
+                        <!--</div>-->
+                        <div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap item">
+                            <a class="">我的邀请</a>
+                        </div>
+                    </div>
+                    <!--账户信息-->
+                    <div class="users-info users-message">
+                        <div class="st-content" style="margin-top: 30px;">
+                            <h2>基本信息</h2>
+                            <div class="line"></div>
+                            <div style="padding-top: 0px; padding-bottom: 40px;">
+                                <div class="user-info flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <span class="portrait"></span>
+                                    <div class="content">
+                                        <div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                            <p class="nickname">{$user['moble']}</p>
+                                            <!-- <a class="set-nickname">设置昵称</a> -->
+                                        </div>
+                                        <!--点击出现-->
+                                        <div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" style="display: none;">
+                                            <input type="text" class="nickname-input">
+                                            <a class="set-nickname">确定</a>
+                                            <a class="set-nickname">取消</a>
+                                        </div>
+                                        <!--点击出现  end-->
+                                        <div class="flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                                            <p class="login">上次登录时间：{$user_log['addtime']|addtime}</p>
+                                            <p class="login">上次登录IP：{$user_log['addip']}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="user-status">
+                                    <div class="title flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                        <h3>账户状态</h3>
+                                    </div>
+                                    <!-- <div class="list first flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                        <div class="icon flex-box flex-direction-row flex-justify-center flex-align-item-start flex-wrap-nowrap">
+                                            <span class="level"></span>
+                                        </div>
+                                        <h4>账户安全等级</h4>
+                                        <div class="safe-level flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                            <div class="level-progress">
+                                                <div class="level" style="width: 30px; background-color: rgb(230, 73, 26);"></div>
+                                            </div>
+                                            <p style="color: rgb(230, 73, 26);">危险</p>
+                                        </div>
+                                        <div class="blank"></div>
+                                        <a class="moreSafe">提升安全</a>
+                                    </div> -->
+                                    <div class="list flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                        <div class="icon flex-box flex-direction-row flex-justify-center flex-align-item-start flex-wrap-nowrap">
+                                            <span class="bind-mobile"></span>
+                                        </div>
+                                        <h4>绑定手机</h4>
+                                        <p class="mobile">{$user['moble']}</p>
+                                        <div class="blank"></div>
+                                        <a href="/User/moble" class="" >修改绑定手机号</a>
+                                    </div>
+                                    <!---->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="st-content" style="margin-top: 20px;">
+                            <h2>实名认证</h2>
+                            <div class="line"></div>
+                            <div style="padding-top: 30px; padding-bottom: 40px;">
+                                <div class="user-auth">
+                                    <div class="flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                        <div class="flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                            <div class="icon flex-box flex-direction-row flex-justify-center flex-align-item-start flex-wrap-nowrap">
+                                                <span class="baseAuth"></span>
+                                            </div>
+                                            <p class="authLevel">初级认证</p>
+                                        </div>
+                                        <!---->
+                                        <!--<a class="authTrue" style="cursor: default;">认证成功</a>-->
+                                        <a class="">
+                                            <eq name="user['idcard']" value=''>
+                                                <a href="/User/nameauth">去认证</a>
+                                                <else/>
+                                                <span style="color:#999;">认证成功</span>
+                                            </eq>
+                                        </a>
+                                    </div>
+                                    <div class="flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap" style="margin-top: 27px;">
+                                        <div class="flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                            <div class="icon flex-box flex-direction-row flex-justify-center flex-align-item-start flex-wrap-nowrap">
+                                                <span class="highAuth"></span>
+                                            </div>
+                                            <p class="authLevel"> 高级认证
+                                                <!----></p>
+                                        </div>
+                                        <neq name="user['idcardauth']" value='1'>
+                                        <a href="/User/senior" class="">去认证</a>
+                                        <else />
+                                        <span style="color:#999;">认证成功</span>
+                                        </neq>
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--账户安全-->
+                    <div class="users-safe" style="display: none;">
+                        <div class="item" style="height: 244px;">
+                            <a class="item-click"></a>
+                            <div class="st-content" style="margin-top: 0px;">
+                                <!---->
+                                <div class="title flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                    <h2>密码安全</h2>
+                                    <a class="active"></a>
+                                </div>
+                                <div class="line"></div>
+                                <div style="padding-top: 0px; padding-bottom: 50px;">
+                                    <div class="safe-password">
+                                        <div class="user-safe-item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                            <h3>登录密码</h3>
+                                            <p>用于登录网站</p>
+                                            <div class="blank"></div>
+                                            <a href="/User/password" class="">修改登录密码</a>
+                                        </div>
+                                        <div class="user-safe-item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                            <h3>资金密码</h3>
+                                            <p>用于交易及提现</p>
+                                            <div class="blank"></div>
+                                            <!--<a href="/User/setFinancePwd" class="">立即设置</a>-->
+                                            <a href="/User/paypassword" class="">修改资金密码</a>
+                                            <div class="line"></div>
+                                            <a href="/User/resetFiancePwd" class="">重置资金密码</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" style="height: 305px;">
+                            <a class="item-click"></a>
+                            <div class="st-content" style="margin-top: 0px;">
+                                <!---->
+                                <div class="title flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                    <h2>安全设置</h2>
+                                    <a class="active"></a>
+                                </div>
+                                <div class="line"></div>
+                                <div style="padding-top: 0px; padding-bottom: 50px;">
+                                    <div  class="safe-setting">
+                                        <div  class="user-safe-item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                            <h3>绑定手机</h3>
+                                            <p>用于二次确认和接收通知信息</p>
+                                            <div class="blank"></div>
+                                            <!--<span class="editPhone">修改绑定手机号</span>-->
+                                            <a href="/User/moble">修改绑定手机号</a>
+                                        </div>
+                                        <!-- <div  class="user-safe-item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                            <h3>绑定谷歌</h3>
+                                            <p>用于二次确认，以及不能及时获取短信的用户</p>
+                                            <div class="blank"></div>
+                                            <a  href="/User/googleauths" class="">绑定谷歌</a>
+                                        </div> -->
+                                        <div  class="user-safe-item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                            <h3>绑定邮箱</h3>
+                                            <p>用于修改密码，提现二次确认等</p>
+                                            <div class="blank"></div>
+                                            <a  href="/User/email" class="">绑定邮箱</a>
+                                        </div>
+                                        <!---->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       <!-- <div class="item" style="height: 305px;">
+                            <a class="item-click"></a>
+                            <div class="st-content" style="margin-top: 0px;">
+                               
+                                <div class="title flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                    <h2>安全策略</h2>
+                                    <a class="active"></a>
+                                </div>
+                                <div class="line"></div>
+                                <div style="padding-top: 0px; padding-bottom: 50px;">
+                                    <div class="safe-strategy">
+                                        <div class="user-safe-item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                            <h3>登录验证</h3>
+                                            <p>通过 登录密码 登录 易尔国际</p>
+                                            <div class="blank"></div>
+                                            <a href="/User/loginVerify" class="">更换</a>
+                                        </div>
+                                        <div class="user-safe-item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                            <h3>二次验证</h3>
+                                            <p>通过 手机短信 进行二次验证</p>
+                                            <div class="blank"></div>
+                                            <a href="/User/twiceVerify" class="">更换</a>
+                                        </div>
+                                        <div class="user-safe-item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                            <h3>交易验证</h3>
+                                            <p>不输入资金密码 即可交易</p>
+                                            <div class="blank"></div>
+                                            <a href="/User/tradeVerify" class="">更换</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <!--<div class="item" style="height: 549px;">
+                            <a class="item-click"></a>
+                            <div class="st-content" style="margin-top: 0px;">
+                                
+                                <div class="title flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                    <h2>安全通知</h2>
+                                    <a class="active"></a>
+                                </div>
+                                <div class="line"></div>
+                                <div style="padding-top: 18px; padding-bottom: 50px;">
+                                    <div class="safe-notice">
+                                        <div class="st-prompt" style="margin-bottom: 3px;">
+                                            <span></span>
+                                            <p>当以下操作发生时，将进行短信通知（绑定邮箱后，也可接收通知)</p>
+                                        </div>
+                                        <div class="user-safe-item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                            <h3>修改登录密码</h3>
+                                            <p></p>
+                                            <div class="blank"></div>
+                                            <a class="st-switch"><span class=""></span></a>
+                                        </div>
+                                        <div class="user-safe-item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                            <h3>修改资金密码</h3>
+                                            <p></p>
+                                            <div class="blank"></div>
+                                            <a class="st-switch"><span class=""></span></a>
+                                        </div>
+                                        <div class="user-safe-item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                            <h3>充值</h3>
+                                            <p></p>
+                                            <div class="blank"></div>
+                                            <a class="st-switch"><span class=""></span></a>
+                                        </div>
+                                        <div class="user-safe-item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                            <h3>提现</h3>
+                                            <p></p>
+                                            <div class="blank"></div>
+                                            <a class="st-switch"><span class=""></span></a>
+                                        </div>
+                                        <div class="user-safe-item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                            <h3>修改安全设置</h3>
+                                            <p></p>
+                                            <div class="blank"></div>
+                                            <a class="st-switch"><span class=""></span></a>
+                                        </div>
+                                        <div class="user-safe-item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                            <h3>异地登录</h3>
+                                            <p></p>
+                                            <div class="blank"></div>
+                                            <a class="st-switch"><span class=""></span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>-->
+                        <div class="item" style="height: 492px;">
+                            <a class="item-click"></a>
+                            <div class="st-content" style="margin-top: 0px;">
+                                <!---->
+                                <div class="title flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                    <h2>登录记录</h2>
+                                    <a class="active"></a>
+                                </div>
+                                <div class="line"></div>
+                                <div style="padding-top: 20px; padding-bottom: 50px;">
+                                    <table class="safe-login-record">
+                                        <thead>
+                                        <tr>
+                                            <th width="200" align="left" style="padding-left: 22px;">登录时间</th>
+                                            <th width="262" align="right">登录IP</th>
+                                            <!-- <th width="278" align="right">登录地区</th> -->
+                                            <th width="340" align="right" style="padding-right: 20px;">登录设备</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            <volist name="user_logs" id="vo">
+                                        <tr>
+                                            <td align="left" style="padding-left: 22px; color: rgb(153, 153, 153);">{$vo['addtime']|addtime}</td>
+                                            <td align="right">{$vo['addip']}</td>
+                                            <!-- <td align="right">中国河南郑州</td> -->
+                                            <td align="right" style="padding-right: 20px;">WEB</td>
+                                        </tr>
+                                        </volist>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--开发者工具-->
+                    <!--<div class="users-tool" style="display: none;">-->
+                        <!--<div class="st-content" style="margin-top: 30px;">-->
+                            <!--<h2>我的API</h2>-->
+                            <!--<div class="line"></div>-->
+                            <!--<div style="padding-top: 20px; padding-bottom: 50px;">-->
+                                <!--<div class="st-prompt">-->
+                                    <!--<span></span>-->
+                                    <!--<p>提示：创建API密钥可以让您借助第三方网站或移动应用使用 58COIN 的行情查询，实时交易等服务。请务必谨慎使用API访问服务，以免造成您的资产损失。</p>-->
+                                    <!--<p>每个用户最多只能创建5个密钥对。为了您的账户安全考虑，建议为您的API密钥绑定IP，每个密钥最多绑定4个IP。单个地址直接填写，多个IP地址用半角逗号分隔，</p>-->
+                                    <!--<p>如：192.168.1.1,192.168.1.2,192.168.1.3 。</p>-->
+                                    <!--<p>欢迎比特币行业的开发者加入 易尔国际 群讨论</p>-->
+                                <!--</div>-->
+                                <!--<div class="title flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">-->
+                                    <!--<h2>API列表</h2>-->
+                                    <!--<a class="api-create">创建新API</a>-->
+                                <!--</div>-->
+                                <!--<div class="aa" style="margin-top: 20px;">-->
+                                    <!--<div style="display: none;">-->
+                                        <!--<div>-->
+                                            <!--<div class="api-handle"></div>-->
+                                        <!--</div>-->
+                                        <!--<div></div>-->
+                                        <!--<div></div>-->
+                                        <!--<div></div>-->
+                                        <!--<div></div>-->
+                                        <!--<div>-->
+                                            <!--<div class="api-handle">-->
+                                                <!--<a>查看</a>-->
+                                                <!--<a>修改</a>-->
+                                                <!--<a>删除</a>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<table class="table-theme-2">-->
+                                        <!--<thead>-->
+                                        <!--<tr>-->
+                                            <!--<th width="210" style="padding-left: 22px;">创建时间</th>-->
+                                            <!--<th width="180">备注</th>-->
+                                            <!--<th width="210">APIKey</th>-->
+                                            <!--<th width="180">权限</th>-->
+                                            <!--<th width="140">状态</th>-->
+                                            <!--<th width="128" style="padding-right: 20px; text-align: right;">操作</th>-->
+                                        <!--</tr>-->
+                                        <!--</thead>-->
+                                        <!--<tbody>-->
+                                            <!--&lt;!&ndash;<tr>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<td style="padding-left: 22px;">&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<div>&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;<div class="api-handle">2018-08-25 09:19:52</div>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<td>测试</td>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<td>ae067e72-85d8-4529-a570-86ed79693d4c</td>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<td>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<div></div>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<td>正常</td>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;<td style="padding-right: 20px; text-align: right;">&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<div>&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;<div class="api-handle">&ndash;&gt;-->
+                                                            <!--&lt;!&ndash;<a class="check">查看</a>&ndash;&gt;-->
+                                                            <!--&lt;!&ndash;<a class="edit">修改</a>&ndash;&gt;-->
+                                                            <!--&lt;!&ndash;<a class="delete">删除</a>&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                                                <!--&lt;!&ndash;</td>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+                                        <!--</tbody>-->
+                                    <!--</table>-->
+                                <!--</div>-->
+                                <!--<div class="api-empty">-->
+                                    <!--<p>暂无可用的API，<a>马上创建</a></p>-->
+                                <!--</div>-->
+                                <!--&lt;!&ndash;&ndash;&gt;-->
+                                <!--&lt;!&ndash;&ndash;&gt;-->
+                                <!--&lt;!&ndash;&ndash;&gt;-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--我的邀请-->
+                    <div class="users-invite container" style="display: none;">
+                        <div class="st-content" style="margin-top: 30px;">
+                            <h2>邀请链接</h2>
+                            <div class="line"></div>
+                            <div style="padding-top: 40px; padding-bottom: 56px;">
+                                <div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <p>https://www.xxx.com/shareregister/?shareid=8df622a9b3f70a5b</p>
+                                    <span class="js-copy1" data-clipboard-text="https://www.xxx.com/shareregister/?shareid=8df622a9b3f70a5b" style="margin-left:40px;">
+                                        <a class="copy sub-btn" style="margin-left:0;">复制链接</a>
+                                    </span>
+                                    <div class="wx flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap">
+                                        <span class="wx-icon"></span>
+                                        <span>分享到微信</span>
+                                        <div>
+                                            <!--<canvas width="116" height="116" style="height: 116px; width: 116px;"></canvas>-->
+                                            <img src="/Public/Home/image/accountMsg/AppStoreDown.15f5986.png" width="116px" height="116px" style="height: 116px; width: 116px;"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="copytip c-tip1" style="display: none;color:#7eb9ef;">复制成功，现在您可以去粘贴了</p>
+                                <div class="methods">
+                                    <h3>使用方法</h3>
+                                    <p>将链接分享给好友，好友点击链接并注册后即可完成邀请。</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="st-content" style="margin-top: 20px;">
+                            <h2>我的战绩</h2>
+                            <div class="line"></div>
+                            <div style="padding-top: 50px; padding-bottom: 40px;">
+                                <div class="invite-record">
+                                    <div class="invited">
+                                        <p>成功邀请</p>
+                                        <p><span>0</span>人</p>
+                                    </div>
+                                    <table class="invite-record-table" id="refUser">
+                                        <thead>
+                                        <tr>
+                                            <th width="200" align="left" style="padding-left: 22px;">注册时间</th>
+                                            <th width="262" align="left">用户名</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                            <empty name="invituser">
+                                                <tr class="table-empty" style="display: table-row;">
+                                                    <td colspan="2" style="text-align: center">
+                                                        <div class="no-list" style="margin-top:60px;">
+                                                            <img src="/Public/Home/image/accountMsg/noDate.jpg" alt="" />
+                                                            <p>暂无数据</p>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <else/>
+                                                <foreach name="invituser" item="vo">
+                                                    <tr class="table-empty" style="display: table-row;">
+                                                        <td style="text-align: left;padding: 0px 0;">
+                                                            <p>{$vo['addtime']|date=("Y-m-d H:i"),###}</p>
+                                                        </td>
+                                                        <td style="text-align: center;padding: 0px 0;">
+                                                            <p>{$vo.username}</p>
+                                                        </td>
+                                                    </tr>
+                                                </foreach>
+                                            </empty>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--修改绑定手机号弹框-->
+                <div class="popup popupMobile flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap" style="display: none;">
+                    <div class="popup-box" style="width: 500px; min-height: 270px;">
+                        <div class="header flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                            <h3>修改绑定手机号</h3>
+                            <a></a>
+                        </div>
+                        <div class="create-item flex-box flex-direction-column flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                            <h3>修改绑定手机号需绑定邮箱，立即去绑定？</h3>
+                            <div class="flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+                                <a href="/User/email" class="create-submit cn">绑定邮箱</a>
+                                <!-- <a href="/User/googleauths" class="create-submit cn" >绑定谷歌</a> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--创建API-->
+                <div class="popup popupApi flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap" style="display: none;">
+                    <div class="popup-box">
+                        <div class="header flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                            <h3>创建API</h3>
+                            <a></a>
+                        </div>
+                        <div class="st-form" >
+                            <div class="st-form-item error">
+                                <p class="label" style="padding-right: 16px;">API备注</p>
+                                <input type="text" placeholder="请输入API备注" class="st-input"/>
+                                <p class="tips" style="display: none;"></p>
+                                <p class="message" style="display: none;">请输入API备注！</p>
+                            </div>
+                            <div class="st-form-item" >
+                                <p class="label" style="padding-right: 16px;">IP 白名单（可选）</p>
+                                <textarea></textarea>
+                                <p class="create-ip-tip">IP 白名单为空时，表示所有 IP 均可使用此 API</p>
+                                <p class="tips" style="display: none;"></p>
+                                <p class="message" style="display: none;"></p>
+                            </div>
+                            <div class="st-form-item" style="margin-top: 10px;">
+                                <p class="label" style="padding-right: 16px;">短信验证码</p>
+                                <input type="number" maxlength="6" placeholder="请输入 6 位短信验证码" class="st-input" style="width: 200px;" />
+                                <div class="send-SMS code" >
+                                    <a class="get-code button">
+                                        <div>
+                                            发送短信验证码
+                                        </div>
+                                    </a>
+                                    <!---->
+                                </div>
+                                <p class="tips" style="display: none;"></p>
+                                <p class="message" style="display: none;">请点击获取短信验证码！</p>
+                            </div>
+                            <!---->
+                            <input type="submit" value="创 建" style="margin-left: 210px;" id="createBtn" />
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--图像验证码-->
+                <div class="popupImg" style="display: none;">
+                    <div class="flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap captcha">
+                        <div class="bg"></div>
+                        <div class="box">
+                            <div class="header flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                <h3 >图形验证码</h3><a></a>
+                            </div>
+                            <div class="st-form">
+                                <div class="st-form-item" style="min-height: 70px;" >
+                                    <p class="label" style="padding-right: 16px;"></p>
+                                    <input type="text" maxlength="6" placeholder="" class="st-input" >
+                                    <a class="img">
+                                        <img src="https://api.58coin.com/user/security/captcha/show?ticket=cc582444-b572-41c7-8311-685a78c995e1&amp;rnd=0.5844601915288117">
+                                    </a>
+                                    <a class="change-pic">换一张</a>
+                                    <p  class="tips" style="display: none;"></p>
+                                    <p class="message" style="display: none;">请输入正确的图形验证码！</p>
+                                </div>
+                                <input type="submit" value="提交" style="margin-bottom:30px;" id="submitBtn">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--查看API-->
+                <div class="popup popupCheck1 flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap" style="display: none;">
+                    <div class="popup-box">
+                        <div class="header flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                            <h3>查看API</h3><a></a>
+                        </div>
+                        <div>
+                            <div>
+                                <!--<form class="st-form" style="margin-left:210px;">-->
+                                <div class="st-form" style="margin-left:210px;">
+                                    <div class="st-form-item error" style="position: relative;">
+                                        <p class="label" style="padding-right: 16px;">短信验证码</p>
+                                        <input type="number" maxlength="6" placeholder="请输入 6 位短信验证码" class="st-input" style="width: 200px;">
+                                        <div class="send-SMS code">
+                                            <a class="get-code button">
+                                                <div>发送短信验证码</div>
+                                            </a><!----></div>
+                                        <p class="tips" style="display: none;"></p>
+                                        <p class="message" style="display: none;">请点击获取短信验证码！</p>
+                                    </div><!----><input type="submit" value="确定" id="checkSure"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--APi内容-->
+                <div class="popup popupContent flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap" style="display: none;">
+                    <div class="popup-box">
+                        <div class="header flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                            <h3>查看API</h3><a></a>
+                        </div>
+                        <div>
+                            <form class="st-form">
+                                <div class="st-form-item">
+                                    <p class="label" style="padding-right: 16px;">API Key：</p><span>ae067e72-85d8-4529-a570-86ed79693d4c</span>
+                                </div>
+                                <div class="st-form-item">
+                                    <p class="label" style="padding-right: 16px;">Secret Key：</p><span>6860D25AC429B049491D93BAC561008A</span>
+                                </div>
+                                <div class="st-form-item" style="margin-bottom: 35px;">
+                                    <p class="label" style="padding-right: 16px;">IP 白名单</p>
+                                    <div class="">
+                                        <span>12222</span>
+                                    </div>
+                                </div>
+                                <a class="close-btn">关闭</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!--底部内容-->
+                <include file="Public:footer"/>
+                <!--底部内容   end-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="__PUBLIC__/Home/js/newjs/accountMsg.js"></script>
+<script src="/zhisucom/js/clipboard.min.js"></script>
+<script>
+    $(function() {
+        /*隐藏手机号中间5位*/
+        var tel = $('.nickname').html();
+        var mtel = tel.substr(0, 3) + '****' + tel.substr(7);
+        $('.nickname').text(mtel);
+    });
+</script>
+
+<script>
+    //复制
+    var clipboard1 = new Clipboard('.js-copy1');
+    clipboard1.on('success', function(e) {
+        console.log(11)
+        $(".c-tip1").fadeIn(500);
+        setTimeout(function() {
+            $(".c-tip1").fadeOut(500);
+        }, 2000)
+    });
+    
+</script>
+
+
+</body>
+</html>

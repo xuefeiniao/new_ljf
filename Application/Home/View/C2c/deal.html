@@ -1,0 +1,586 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="format-detection" content="telephone=no,email=no,address=no">
+    <eq name="Think.session.lang" value="1">
+									<notempty name="coninfo['web_name']" value=" ">
+								
+										<title>{$coninfo['web_name']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="2">
+									<notempty name="coninfo['web_name_e']" value=" ">
+										<title>{$coninfo['web_name_e']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="3">
+									<notempty name="coninfo['web_name_en']" value=" ">
+										<title>{$coninfo['web_name_en']}</title>
+									</notempty>
+								</eq>
+    <link data-n-head="true" rel="icon" type="image/x-icon" href="__PUBLIC__/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/newcss/base.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/newcss/common.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/newcss/readyPay.css" />
+    <script data-n-head="true" src="__PUBLIC__/Home/js/newjs/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/layer/layer.js"></script>
+
+
+</head>
+<body>
+<!--<img src="https://mon.58coin.com/mon.gif" id="img-hidden" />-->
+<div id="__nuxt">
+    <div class="nuxt-progress" style="width: 0%; height: 2px; background-color: rgb(59, 128, 112); opacity: 0;"></div>
+    <div id="__layout">
+        <div>
+            <!--头部内容-->
+            <include file="Public:header2"/>
+            <!--头部内容  end-->
+            <div class="wrap">
+                <section class="container">
+                    <div class="order-title flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                        <h2>{$GLOBALS['purchase']}{$c2c['market']}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>{$GLOBALS['order-number']}：{$c2c['number']}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>
+						<if condition="$c2c['is_cancel'] eq 0">
+						<eq name="c2c['is_pay']" value="1">
+                            <eq name="c2c['is_done']" value="1">
+								{$GLOBALS['completed']}
+                            <else/>
+								<eq name="c2c['is_get']" value="1"> {$GLOBALS['ready-sure']} <else/> {$GLOBALS['nopay']} </eq>
+                            </eq>
+                        </eq>
+						</if>
+						<eq name="c2c['is_cancel']" value="1">
+							{$GLOBALS['canceled']}
+						</eq>
+						</span></h2>
+						
+						<eq name="c2c['is_done']" value="1">
+                        <p id="timeShow" style="display:none"> （{$GLOBALS['time-remain']} <span id="daojishi"></span>） </p>
+                       
+                        </eq>
+                        <eq name="c2c['is_cancel']" value="1">
+							<p id="timeShow" style="display:none"> （{$GLOBALS['time-remain']} <span id="daojishi"></span>） </p>
+						
+						</eq>
+                        <p id="timeShow2" style="display: none;" > {$GLOBALS['wait-coin']}（{$GLOBALS['time-remain']} <span id="daojishi2"></span>） </p>
+                    </div>
+                    <div class="order-detail">
+                        <div class="prompt">
+                            <div class="flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                <p><span></span>{$GLOBALS['payment-time']}</p>
+                                <div></div>
+                            </div>
+                        </div>
+                        <div class="detail">
+                            <div class="detail-top flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+                                <div class="detail-top-one">
+                                    <div>
+                                        <p class="p-title">{$GLOBALS['trade-price']}：</p>
+                                        <h6>{$c2c['price']} </h6>
+                                    </div>
+                                    <div>
+                                        <p class="p-title">{$GLOBALS['trade-number']}：</p>
+                                        <h6>{$c2c['num']}<span>{$c2c['market']}</span></h6>
+                                    </div>
+                                     <div>
+                                        <p class="p-title">{$GLOBALS['trade-money']}：</p>
+                                        <h6>{$c2c['cprice']}</h6>
+                                    </div> 
+                                </div>
+                                <div class="detail-top-two">
+                                    <p class="p-title">{$GLOBALS['pay-type']}：</p>
+                                    <ul>
+                                        <li>
+                                            <div class="flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                                                <notempty name="bank" value="">
+                                                <div class="img-pay pay0"></div>
+                                                <div>
+                                                    <p style="max-width: 240px;">{$bank['name']}&nbsp;&nbsp;{$bank['bank']}</p>
+                                                    <p> {$bank['bankaddr']} </p>
+                                                    <p style="max-width: 240px; word-wrap: break-word;">{$bank['bankcard']}</p>
+                                                </div>
+                                                </notempty>
+                                                <p></p>
+                                                <div class="img-ewm">
+                                                    <!---->
+                                                </div>
+                                            </div></li>
+                                        <li>
+                                            <div class="flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                                                
+                                                <div class="img-pay pay1"></div>
+                                                <!--<div>
+                                                     <p style="max-width: 240px;">刘会杰&nbsp;&nbsp;支付宝</p> 
+                                                    <p> </p>
+                                                    <p style="max-width: 240px; word-wrap: break-word;">328311897@qq.com</p>
+                                                </div>-->
+                                                <p></p>
+                                                <div class="img-ewm">
+                                                    <i>
+                                                        <div class="cart-sm-ewm">
+                                                            <span></span>
+                                                            <img src="/Upload/zhifu/{$sell_user['ali_img']}" />
+                                                        </div></i>
+                                                </div>
+                                                
+                                            </div></li>
+                                    </ul>
+                                </div>
+                                <div class="detail-top-three">
+                                    <p class="p-title"><span></span>{$GLOBALS['matters-need']}：</p>
+                                    <ul>
+                                        <li>1.<span>{$GLOBALS['attention1']}</span></li>
+                                        <li>2.<span>{$GLOBALS['attention2']}</span></li>
+                                        <li>3.<span>{$GLOBALS['attention3']}<a target="_blank" href="http://eraru.com/Article/detail/id/186" style="color: rgb(255, 115, 0);">{$GLOBALS['rule']}</a></span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="detail-bottom flex-box flex-direction-row flex-justify-between flex-align-item-end flex-wrap-nowrap">
+                                <div class="detail-bottom-left">
+                                    <p>{$GLOBALS['remark']}：<span></span></p>
+                                    <p style="width: 600px;"><span></span> {$GLOBALS['forget']}</p>
+                                </div>
+                                <div class="detail-bottom-right flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                                    <input type="hidden" id="sss" value="{$Think.get.id}">
+                                    <!-- <if condition="$c2c['is_done'] eq 0 and $c2c['is_get'] eq 0 and $c2c['is_cancel'] eq 0"> -->
+										<!-- <a class="btn-one" onclick="cancel()">{$GLOBALS['cancel-trade']}</a> -->
+                                    <!-- </if> -->
+									<!-- <if condition="$c2c['is_cancel'] eq 1"> -->
+										<!-- <a class="btn-one" >{$GLOBALS['trade-canceled']}</a> -->
+                                    <!-- </if> -->
+									<!-- <eq name="c2c['is_cancel']" vlaue="0"> -->
+										<!-- <eq name="c2c['is_done']" value='0'> -->
+											<!-- <eq name="c2c['is_get']" value='0'> -->
+												<!-- <eq name="c2c['is_pay']" value='1'>	 -->
+												<!-- <a class="btn-two" onclick="aaa()">{$GLOBALS['sure-pay']}</a> -->
+												<!-- </eq> -->
+											<!-- </eq> -->
+										<!-- </eq> -->
+										
+										<!-- <eq name="c2c['is_done']" value='0'> -->
+											<!-- <eq name="c2c['is_get']" value='1'> -->
+												<!-- <a class="btn-two" style="width:100%">{$GLOBALS['payed']}</a> -->
+											<!-- </eq> -->
+										<!-- </eq> -->
+										
+										<!-- <eq name="c2c['is_done']" value='1'> -->
+											<!-- <a class="btn-two">{$GLOBALS['completed']}</a> -->
+										<!-- </eq> -->
+									<!-- </eq> -->
+									
+									
+									
+									<if condition="$c2c['is_cancel'] eq 0">
+									<eq name="c2c['is_pay']" value="1">
+										<eq name="c2c['is_done']" value="1">
+											<a class="btn-two">{$GLOBALS['completed']}</a>
+										<else/>
+											<eq name="c2c['is_get']" value="1"> 
+											<a class="btn-two">{$GLOBALS['ready-sure']} </a>
+											<else/> 
+											<a class="btn-one" onclick="cancel()">{$GLOBALS['cancel-trade']}</a>&nbsp;&nbsp;<a class="btn-two" onclick="aaa()">{$GLOBALS['sure-pay']}</a> 
+											</eq>
+										</eq>
+									</eq>
+									
+									</if>
+									<eq name="c2c['is_cancel']" value="1">
+										<a class="btn-one">{$GLOBALS['canceled']}</a>
+									</eq>
+									
+									
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <!---->
+                    </div>
+                    <script type="text/javascript">
+                        function aaa(){
+                            var id = $('#sss').val();
+                            $.ajax({
+                                url:'/C2c/confirm_pay',
+                                data:{id:id},
+                                type:'post',
+                                dataType:'json',
+                                success:function(data){
+                                    if(data.status == 1){
+                                        layer.msg(data.msg,{icon : 1});
+                                        location.reload();
+                                    }else{
+                                        layer.msg(data.msg,{icon : 2});
+                                    }
+                                }
+                            });
+                        }
+                        function bbb(){
+                            var id = $('#sss').val();
+                            $.ajax({
+                                url:'/C2c/confirm_get',
+                                data:{id:id},
+                                type:'post',
+                                dataType:'json',
+                                success:function(data){
+                                    if(data.status == 1){
+                                        layer.msg(data.msg,{icon : 1});
+                                        location.reload();
+                                    }else{
+                                        layer.msg(data.msg,{icon : 2});
+                                    }
+                                }
+                            });
+                        }
+
+                        function cancel(){
+                            var id = $('#sss').val();
+                            $.ajax({
+                                url:'/C2c/new_cancel',
+                                data:{id:id},
+                                type:'post',
+                                dataType:'json',
+                                success:function(data){
+                                    if(data.status == 1){
+                                        layer.msg(data.info,{icon : 1 });
+                                        location.reload();
+                                    }else{
+                                        layer.msg(data.info,{icon : 2 });
+                                    }
+                                }
+                            });
+                        }
+                    </script>
+                    <!--订单完成-->
+                    <div class="order-comments" style="display:none;">
+                        <div class="flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+                            <div class="comments-one">
+                                <div>
+                                    <p class="p-title">{$GLOBALS['trade-money']}：</p>
+                                    <h6>502.5<span> CNY</span></h6>
+                                </div>
+                                <div>
+                                    <p class="p-title">{$GLOBALS['trade-number']}：</p>
+                                    <h6>500 UCC</h6>
+                                </div>
+                                <div>
+                                    <p class="p-title">{$GLOBALS['trade-price2']}：</p>
+                                    <h6>1.005 CNY</h6>
+                                </div>
+                            </div>
+                            <div class="comments-two">
+                                <h3>{$GLOBALS['comment-trade']}</h3>
+                                <div class="flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                                    <a>
+                                        <div class="good flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                            <span class="active"></span>
+                                            <span></span>
+                                            <span>{$GLOBALS['good']}</span>
+                                        </div></a>
+                                    <a>
+                                        <div class="poor flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                            <span class=""></span>
+                                            <span></span>
+                                            <span>{$GLOBALS['bad']}</span>
+                                        </div></a>
+                                </div>
+                                <div class="btn flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                                    <a>{$GLOBALS['comment']}</a>
+                                </div>
+                            </div>
+                            <div class="comments-three">
+                                <h3>{$GLOBALS['trade-discuss']}</h3>
+                                <div class="comments-three-pl flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                    <div class="img flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                        <span class="img-good"></span>{$GLOBALS['good']}
+                                    </div>
+                                    <p style="color: rgb(103, 193, 140);">速速(卖)</p>
+                                    <p>2018-09-28 18:33:30</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="detail-bottom-left">
+                            <p>{$GLOBALS['sell-mark']}：<span></span></p>
+                            <p>{$GLOBALS['note-code']}：<span>756314</span> {$GLOBALS['forget']}</p>
+                        </div>
+                    </div>
+                    <!--订单完成 end-->
+                    <div class="flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap" style="margin-top: 20px;">
+                        <div class="order-user">
+                            <h3>{$GLOBALS['sellUser-message']}</h3>
+                            <div class="flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap" style="width:400px;float:left;">
+                                <div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <!-- <div class="user-logo">
+                                        速
+                                        <em class="logo"></em>
+                                    </div> -->
+
+                                    <div class="user-info">
+                                        {$GLOBALS['name']}：<p>{$sell_user['truename']}</p>
+                                        <!---->
+                                    </div>
+                                </div>
+                                <a>
+                                    <div class="phone">
+                                        <span></span>{$GLOBALS['telephone-connect']}{$sell_user['moble']}
+                                    </div></a>
+                            </div>
+                            <!-- <div class="number flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap" style="width:400px; float:right;">
+                                <div>
+                                    <p>成功交易</p>
+                                    <h5>2771</h5>
+                                </div>
+                                <div>
+                                    <p>好评率</p>
+                                    <h5>99%</h5>
+                                </div>
+                                <div>
+                                    <p>好评数</p>
+                                    <h5>840</h5>
+                                </div>
+                            </div> -->
+                            <!---->
+                            <!--弹框通知-->
+                            <div class="popup popuptz flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap">
+                                <div class="popup-box" style="width: 480px;">
+                                    <div class="header flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                        <h3>{$GLOBALS['connect-people']}</h3>
+                                        <a></a>
+                                    </div>
+                                    <div class="order-phone-window">
+                                        <div class="user flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+                                            <div>
+                                                {$GLOBALS['sellUser']}：
+                                                <span>{$sell_user['truename']}</span>
+                                            </div>
+                                            <div>
+                                                {$GLOBALS['contact-number']}：
+                                                <span>{$sell_user['moble']}</span>
+                                            </div>
+                                        </div>
+                                        <p class="p1">{$GLOBALS['contract-detail1']}</p>
+                                        <p class="p2">{$GLOBALS['contract-detail2']}</p>
+                                        <div class="flex-box flex-direction-row flex-justify-end flex-align-item-start flex-wrap-nowrap">
+                                            <a class="btn2 know">{$GLOBALS['know']}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--我已转账弹框-->
+                           <!-- <div class="popup popupzh flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap">
+                                <div class="popup-box" style="width: 480px;">
+                                    <div  class="header flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                        <h3>确认付款</h3>
+                                        <a></a>
+                                    </div>
+                                    <div class="order-two-confirm-window flex-box flex-direction-column flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                        <h4>请确认您已向卖方付款。</h4>
+                                        <p>*恶意点击将直接冻结账户！</p>
+                                        <div class="check">
+                                            <a class="checkbox"></a> 我已确认向卖家打款，同时为我的操作负责
+                                        </div>
+                                        <form class="st-form form">
+                                            
+                                            <div class="btn flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap" data-v-4d8a7664="">
+                                                <a class="btn1">取消</a>
+                                                <input type="submit" class="btn2 three" value="确认付款" />
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+-->
+                            <!--取消订单弹框通知-->
+                            <div class="popup popupqx flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap">
+                                <div class="popup-box" style="width: 480px;">
+                                    <div  class="header flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                        <h3>{$GLOBALS['cancel-trade']}</h3>
+                                        <a></a>
+                                    </div>
+                                    <div class="order-two-confirm-window flex-box flex-direction-column flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                        <h4>{$GLOBALS['cancel-detail1']}</h4>
+                                        <p>*{$GLOBALS['cancel-detail2']}</p>
+                                        <div class="check">
+                                            <a class="checkbox"></a> {$GLOBALS['responsible']}
+                                        </div>
+                                        <form class="st-form form">
+                                            <!---->
+                                            <div class="btn flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap" data-v-4d8a7664="">
+                                                <a class="btn1">{$GLOBALS['continue-trade']}</a>
+                                                <input type="submit" class="btn2 three" value="{$GLOBALS['cancelBtn']}" />
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="chat-index" style="display: none;">
+                            <div class="chat-title">
+                                <h2>{$GLOBALS['chat']}</h2>
+                            </div>
+                            <div class="chat-content">
+                                <div class="scroll" style="height: 400px;">
+                                    <!---->
+                                    <div class="chat-item">
+                                        <h4 class="chat-time"> 2018-09-28 </h4>
+                                        <div class="chat-message">
+                                            <div class="chat-message-center">
+                                                <p>{订单已创建}</p>
+                                                <div>
+                                                    <span>13:48:35</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="chat-item">
+                                        <!---->
+                                        <div class="chat-message">
+                                            <div class="chat-message-left flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                                                <div class="head-portrait">
+                                                    速
+                                                    <em class=""></em>
+                                                </div>
+                                                <div class="message">
+                                                    <h6>速速</h6>
+                                                    <div class="message-chat-content">
+                                                        <p> 在的 </p>
+                                                    </div>
+                                                    <div class="message-time-content">
+                                                        <span>13:48:59</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chat-send">
+                                <i></i>
+                                <div>
+                                    <div class="upload">
+                                        <input type="file" />
+                                    </div>
+                                </div>
+                                <input maxlength="250" type="text" placeholder="{$GLOBALS['input-send']}" />
+                                <a></a>
+                                <i></i>
+                            </div>
+                            <div class="maxImg flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap" style="display: none;">
+                                <img src="" />
+                                <i>+</i>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!--尾部内容-->
+                <include file="Public:footer"/>
+                <!--尾部内容  end-->
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    /*点击手机出现弹出框*/
+    $(".phone").click(function () {
+       $(".popuptz").css("display","flex");
+    });
+
+    /*点击我已完成转账弹出框*/
+    /*$(".btn-two").click(function () {
+        $(".popupzh").css("display","flex");
+    });*/
+
+    /*点击“取消订单”弹出框*/
+    /*$(".btn-one").click(function () {
+        $(".popupqx").css("display","flex");
+    });*/
+    /*弹出框消失*/
+    $(".header a,.know,.btn1").click(function () {
+        $(".popup").css("display","none");
+    });
+    /*弹出框消失*/
+    $(".popupqx .btn2").click(function () {
+        $(".popupqx").css("display","none");
+        $(".timeShow").html("{$GLOBALS['order-canceled']}");
+        $(".detail-bottom-right").hide();
+    });
+    /*倒计时*/
+    var a={$timeout};
+    var t=null;
+    t=setInterval(djs,1000);
+    function djs(){
+        var now=new Date();
+        var end=a;
+        var miao=(end-now.getTime())/1000;
+        if(miao>0){
+            // var day=ay=Math.floor(mia(miao/60/60/24);
+            // var hour=ur=Math.floor((mi((miao/60/60%24));
+            var minute=Math.floor(miao/60%60)<10?'0'+Math.floor(miao/60%60):Math.floor(miao/60%60);
+            var second=Math.floor(miao%60)<10?'0'+Math.floor(miao%60):Math.floor(miao%60);
+            // // document.getElementByItById("daojishi").innerText=day+'天'+hour+'小时'+minute+'分'+second+'秒';
+            document.getElementById("daojishi").innerText=minute+':'+second+'s';
+        }else{
+            clearInterval(t);
+            document.getElementById("timeShow").innerText='{$GLOBALS[\'order-canceled\']}';
+            document.getElementsByClassName("detail-bottom-right").style.display="none";
+        }
+    }
+
+    // 打币倒计时
+    var a2={$timeout};
+    var t2=null;
+    t2=setInterval(djs2,1000);
+    function djs2(){
+        var now=new Date();
+        var end=a2;
+        var miao=(end-now.getTime())/1000;
+        if(miao>0){
+            // var day=ay=Math.floor(mia(miao/60/60/24);
+             var hour=ur=Math.floor((miao/60/60%24));
+            var minute=Math.floor(miao/60%60)<10?'0'+Math.floor(miao/60%60):Math.floor(miao/60%60);
+            var second=Math.floor(miao%60)<10?'0'+Math.floor(miao%60):Math.floor(miao%60);
+             document.getElementById("daojishi2").innerText=hour+':'+minute+':'+second+'s';
+           // document.getElementById("daojishi2").innerText=hour+":"+minute+':'+second+'s';
+        }else{
+            clearInterval(t2);
+        }
+    }
+
+
+    /*好评/差评点击效果*/
+    $(".good,.poor").click(function () {
+        $(".good").find("span:first-child").removeClass("active");
+        $(".poor").find("span:first-child").removeClass("active");
+        $(this).find("span:first-child").toggleClass("active");
+    });
+
+    /*同意协议*/
+    $(".checkbox").click(function () {
+        $(this).toggleClass("active");
+        if($(this).hasClass("active")){
+            $(".btn2").removeClass("three");
+        }else{
+            $(".btn2").addClass("three");
+        }
+    });
+
+    /*确认付款*/
+    $(".btn .btn2").click(function () {
+        if($(this).hasClass("three")){
+            return false;
+        }else{
+            // $(".order-detail").hide();
+            // $(".order-comments").show();
+            // $("#timeShow").html("交易已完成");
+            $("#timeShow").hide();
+            clearInterval(t);
+            $("#timeShow2").show();
+
+        }
+    });
+
+</script>
+
+</body>
+</html>

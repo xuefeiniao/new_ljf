@@ -1,0 +1,161 @@
+<include file="Public:header" />
+
+<div class="autobox">
+	<div class="now">
+		<i class="fa fa-home fa-lg move mr5"></i>
+		<a href="/" class="">首页 </a> &gt; 
+		<a href="/user/index.html" class="">安全中心 </a> &gt;实名认证
+		</div>
+	<div class="main-content">
+		<style>
+	.nav-tab-list .nav-tab-hover{
+		width:100%;
+		top:60px;
+		height:50px;
+		line-height:50px;
+		background:#EAEDF4;
+		position:absolute;
+		box-sizing:content-box;
+		z-index:1;
+		transition:all 0.5s;
+		-webkit-transition:all 0.5s;
+		display:none;
+	}
+</style>
+<script type="text/javascript">
+	$(function () {
+		(function () {
+			var tab   = $('.nav-tab-list dd');
+			var hover = $('.nav-tab-hover');
+			var pos   = 0;
+			tab.each(function (index) {
+				var $this = $(this);
+				if ($this.hasClass('active')) {
+					pos = index;
+				}
+				$this.hover(function () {
+					_moveTo(index);
+				}, function () {
+					_moveTo(pos);
+				});
+			});
+			_moveTo(pos);
+			$('.nav-tab-hover').show();
+			function _moveTo(index) {
+				hover.css("top", 60 + 50 * index);
+				tab.removeClass('active');
+				tab.eq(index).addClass('active');
+			}
+		})();
+	});
+	$(window).on('scroll resize', function () {
+		if (document.body.scrollTop < 100) {
+			$('#left-nav-bar').css("top", 0);
+		} else if (document.body.scrollTop > ($('.tag-list-content').height() - $('#left-nav-bar').height() + 100)) {
+			$('#left-nav-bar').css("top", ($('.tag-list-content').height() - $('#left-nav-bar').height()));
+		} else {
+			$('#left-nav-bar').css("top", document.body.scrollTop - 100);
+		}
+	});
+</script>
+
+<include file="User:left" />
+
+<style>
+.assets_content{min-height: 895px;}
+</style>
+
+
+		<div class="tag-list-content assets_content bg_w">
+			<iframe src="/user/numeauth1" width="100%" height="890px" style="border: none;"></iframe>
+			
+		</div>
+	</div>
+</div>
+
+
+
+
+
+<script>
+					var hints = "0";
+					if(hints == 1){
+						$('#hints').show();
+					}
+				</script>
+<script>
+    $(document).ready(function () {
+        //响应文件添加成功事件
+        $("#inputfile").change(function () {
+            //创建FormData对象
+            var data = new FormData();
+            //为FormData对象添加数据
+            $.each($('#inputfile')[0].files, function (i, file) {
+                data.append('upload_file' + i, file);
+            });
+
+
+            //发送数据
+            $.ajax({
+                url: '/ajax/imgUser',
+                type: 'POST',
+                data: data,
+                cache: false,
+                contentType: false,		//不可缺参数
+                processData: false,		//不可缺参数
+                success: function (data) {
+                    if (data) {
+						if(data=="error"){
+							alert("请选择正确的文件类型和大小！");
+							return false;
+						}
+						
+						if(data=="error2"){
+							alert("您已经上传了3张图片！");
+							return false;
+						}
+					
+						  $('<img />', {
+							src : '/Upload/idcard/' + data,
+							
+							
+						  }).appendTo($('.set_upload_img'));
+					
+						
+					
+						$('.set_upload_img').show();
+
+						if($('.set_upload_img').find('img').length >= 3){
+							$('#shang_zhisucom_chuandiv').hide();
+							alert("您已经成功上传3张认证图片,请等待审核");
+							window.location.reload();
+						}
+					
+                        //$('#up_img').attr("src", '/Upload/idcard/' + data);
+						//$('#up_img').attr("height", '100px');
+						//$('#up_img').attr("width", '300px');
+						//$('#up_img').attr("disabled", 'true');
+                       //$('#up_img').show();
+                    }
+                },
+                error: function () {
+                    alert('上传出错');
+					$('.set_upload_img').hide();
+                    //$(".loading").hide();	//加载失败移除加载图片
+                }
+            });
+
+        });
+    });
+
+</script>
+<script>
+	$('.user_truename').addClass('active');
+</script>
+
+
+
+
+
+
+<include file="Public:footer" />

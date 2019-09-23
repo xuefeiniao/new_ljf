@@ -1,0 +1,100 @@
+<include file="Base:header"/>
+<style type="text/css" media="all">
+    .input-text{
+        width: 800px;
+    }
+    .select-box{
+        width: 800px;
+    }
+</style>
+<body>
+<article class="page-container">
+	<form class="form form-horizontal" id="form-article-add" action="{:U('Config/qitaEdit')}" method="post" enctype="multipart/form-data">
+		
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>默认币种：</label>
+			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
+				<select name="xnb_mr" class="select">
+				    <volist name="C['xnb_list']" id="vo">
+						<option value="{$vo['name']}" <eq name="vo['name']" value="$C['xnb_mr']">selected</eq>> {$vo['title']}</option>
+					</volist>
+				</select>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>默认市场：</label>
+			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
+				<select name="market_mr" class="select">
+				    <volist name="C['market']" id="vo">
+						<option value="{$vo['name']}"<eq name="vo['name']" value="$C['market_mr']">selected</eq>>{$vo['title']}</option>
+					</volist>
+				</select>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>交易行情显示：</label>
+			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
+				<select name="trade_hangqing" class="select">
+				    <option value="1"<eq name="C['trade_hangqing']" value="1">selected</eq>>显示行情</option>
+					<option value="0"<eq name="C['trade_hangqing']" value="0">selected</eq>>不显示行情</option>
+				</select>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>显示累计交易额：</label>
+			<div class="formControls col-xs-8 col-sm-9"> 
+				<span class="select-box">
+					<select name="index_lejimum" class="select">
+					    <option value="1"<eq name="C['index_lejimum']" value="1">selected</eq>>显示</option>
+	                    <option value="0"<eq name="C['index_lejimum']" value="0">selected</eq>>不显示</option>
+					</select>
+				</span>
+				&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#ef8b0a;font-weight:bold;">首页显示累计交易额
+			</div>
+		</div>
+		<!--<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>注册认证后自己奖励数量：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$C['reg_award_num']}" placeholder="" id="articletitle" name="reg_award_num">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>注册认证后上级奖励数量：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$C['reg_award_num_up']}" placeholder="" id="articletitle" name="reg_award_num_up">
+			</div>
+		</div>-->
+		 
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+				<button class="ajax-post btn btn-primary radius" id="submit" type="submit" target-form="form-horizontal"><i class="Hui-iconfont">&#xe632;</i> 确 定
+			</button>
+			</div>
+		</div>
+	</form>
+</article>
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript">
+// alert(window.parent.location);
+// alert(window.location.href);
+	//提交表单
+	/*$('#submit').click(function () {
+		$('#form').submit();
+	});*/
+	 $(function() {
+        $("#form-add").ajaxForm(function(data){
+        	if (data.status==1) {
+        	layer.alert(data.info);
+        }else
+            layer.alert(data.info);
+        },'json');
+         
+    });
+</script>
+
+
+<!--/请在上方写此页面业务相关的脚本-->
+ 
+</body>
+</html>

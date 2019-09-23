@@ -1,0 +1,318 @@
+<include file="Public:header" />
+
+<div class="autobox">
+	<div class="now">
+		<i class="fa fa-home fa-lg move mr5"></i>
+		<a href="/" class="">首页 </a> &gt; 
+		<a href="/user/index.html" class="">安全中心 </a> &gt;实名认证
+		</div>
+	<div class="main-content">
+		<style>
+	.nav-tab-list .nav-tab-hover{
+		width:100%;
+		top:60px;
+		height:50px;
+		line-height:50px;
+		background:#EAEDF4;
+		position:absolute;
+		box-sizing:content-box;
+		z-index:1;
+		transition:all 0.5s;
+		-webkit-transition:all 0.5s;
+		display:none;
+	}
+</style>
+<script type="text/javascript">
+	$(function () {
+		(function () {
+			var tab   = $('.nav-tab-list dd');
+			var hover = $('.nav-tab-hover');
+			var pos   = 0;
+			tab.each(function (index) {
+				var $this = $(this);
+				if ($this.hasClass('active')) {
+					pos = index;
+				}
+				$this.hover(function () {
+					_moveTo(index);
+				}, function () {
+					_moveTo(pos);
+				});
+			});
+			_moveTo(pos);
+			$('.nav-tab-hover').show();
+			function _moveTo(index) {
+				hover.css("top", 60 + 50 * index);
+				tab.removeClass('active');
+				tab.eq(index).addClass('active');
+			}
+		})();
+	});
+	$(window).on('scroll resize', function () {
+		if (document.body.scrollTop < 100) {
+			$('#left-nav-bar').css("top", 0);
+		} else if (document.body.scrollTop > ($('.tag-list-content').height() - $('#left-nav-bar').height() + 100)) {
+			$('#left-nav-bar').css("top", ($('.tag-list-content').height() - $('#left-nav-bar').height()));
+		} else {
+			$('#left-nav-bar').css("top", document.body.scrollTop - 100);
+		}
+	});
+</script>
+
+<include file="User:left" />
+
+<style>
+.assets_content{min-height: 895px;}
+</style>
+
+
+		<div class="tag-list-content assets_content bg_w">
+			<div class="safe_center clear">
+				<h1>
+					<span>
+						实名认证					</span>
+					<span>
+												<a class="right" onclick="$('#hints').slideToggle();"><i class="fa fa-hand-o-right move fz_14 mr5"></i><span class="fz_12 move">查看介绍</span> </a>
+											</span>
+				</h1>
+			</div>
+			<div id="hints" class="mytips" style="display:none;">
+				
+				<p><notempty name="prompt_text">{$prompt_text}</notempty></p>			</div>
+			<div class="pwtrade">
+			
+				
+				
+					<!--<eq name="user['idcardauth']" value='0'>-->
+					
+						<eq name="user['senior_past']" value='0'>
+						
+						
+							<div class="band_succ move" style="padding-left: 210px;color: red !important;">	
+								<i class="fa fa-check mr5"></i>	 
+							  未通过实名认证
+							</div> 
+							
+							
+					    </eq>
+						
+							<div class="band_succ move" style="padding-left: 210px;color: red !important;">	
+								 
+							  <eq name="user['senior_past']" value='0'>	<i class="fa fa-check mr5"></i>上传成功，等待管理员审核中。。。
+							 
+							  </eq>
+							   <eq name="user['senior_past']" value="">
+								{$user['idcardinfo']}.<br>
+								请上传身份证正面照，身份证反面照，手持半身身份证照,完善认证资料。1-3个工作日审核
+								</eq>
+							</div> 
+
+						
+					 <eq name="user['senior_past']" value="1">
+					<div class="band_succ move" style="padding-left: 210px;">
+						<i class="fa fa-check mr5"></i>	 
+					  已通过实名认证
+					</div>  
+					</eq>
+					<!--</eq>		-->
+								<br>
+				<div class="set_verify">
+					<ul>
+						<!--<li>您的身份信息</li>-->
+						<!--<li>真实姓名：{$user.truename}</li>-->
+						<!--<li>证件类型：身份证</li>-->
+						<!--<li>证件号码：{$user.idcard}</li>-->
+						<neq name="user['senior_img']" value=''>
+						    <?php 
+						        	$user = M('User')->where(array('id' => userid()))->find();
+		$imgstr = "";
+		$senior_img = explode(',' , $user['senior_img']);
+// 		var_dump($senior_img);die;
+		foreach($senior_img as $k=>$v){
+		    //var_dump($v);
+		    if($v != ''){
+		   echo  $imgstr = '<li  style="height:100px;float:left;"><img class="img-all" style="height:100px;margin-right:20px;" src="/Upload/senior/'.$v.'" /></li>';
+		    }
+		  
+		}
+						    ?>
+							<!--<neq name="userimg" value=''>-->
+								<!--{$userimg}-->
+								<!--<volist name="userimg" id="vo">-->
+								<!--<li  style="height:100px;float:left;"><img class="img-all" style="height:100px;margin-right:20px;" src="/Upload/senior/'.$vo.'" /></li>-->
+								<!--</volist>-->
+							<!--</neq>-->
+						</neq>
+						<li style="clear:both;">认证时间：{$user['senior_time']|addtime}</li>
+					</ul>
+				</div>
+			</div>
+		
+		<!--<eq name="allowImg" value="true">	-->
+			<div class="pwtrade" id="shang_zhisucom_chuandiv">
+<eq name="user['senior_past']" value="">
+			<div class="band_succ move" style="padding-left: 210px;color: red !important;">
+					<i class="fa fa-check mr5"></i>请上传4张至9张不同姿势的本人照片,完善高级认证。1-3个工作日审核	
+					<br/>
+					仅支持png,jpg格式，大小不超过2M
+			</div>
+			</eq>
+
+				<br>
+				<eq name="user['senior_past']" value=''>
+				<form action="/user/imgup" enctype="multipart/form-data" method="post">
+				<div class="set_verify">
+					<ul class="new-ul">
+						<li>
+						<style>
+							.file {position: relative;display: inline-block;background: #D0EEFF;border: 1px solid #99D3F5;border-radius: 4px;padding: 4px 12px;overflow: hidden;color: #1E88C7;text-decoration: none;text-indent: 0;line-height: 20px;}
+							.file input {position: absolute;font-size: 100px;right: 0;top: 0;opacity: 0;}
+							.file:hover {background: #AADFFD;border-color: #78C3F3;color: #004974;text-decoration: none;}
+							.sv_text p {padding-left: 5px;}
+							/*.set_upload_img img{height: 100px;position: relative;bottom: -301px;right: -261px;padding-right: 79px;}*/
+							.new-img{width:200px;}
+							.new-ul{position:relative;}
+							#up_img2{margin-left:14px;margin-right:14px;}
+							.set_upload_img{position:absolute;top:40px;left:2px;}
+							.set_upload_img img{position:absolute;top:1px;width:200px;height:200px;}
+                            .set_upload_img .inputfile1-new{left:-1px;}
+							.set_upload_img .inputfile2-new{left:219px;}
+							.set_upload_img .inputfile3-new{left:439px;}
+							   .set_verify .set_upload_img{ height: auto;
+    line-height: auto;
+    font-size: normal;}
+                            .new-button{width:100%;background:#fff;height:150px;}
+                            .new-button {width:200px;height:36px;line-height:36px;text-align:center;position:absolute;left:0;right:0;margin:0 auto;font-size:16px;border:1px solid #3dc18e;color:#3dc18e;cursor:pointer;border-radius:4px;margin-left:200px;
+                            }
+                            .assets_content bg_w{position:relative;}
+						</style>
+                        
+                     <li class="set_upload_img" style="display:none;">
+			        	</li>
+						<!--
+							<input type="file" accept="image/gif, image/jpeg, image/jpg, image/png" id="inputfile" style="height:0;width:0; position: absolute;left: 10px;top: 5px;background:url('/public/home/ss/images/c.jpg');" value=""/>
+							<input type="file" accept="image/gif, image/jpeg, image/jpg, image/png" id="inputfile" style="height:0;width:0; position: absolute;left: 10px;top: 5px;background:url('/public/home/ss/images/c.jpg');" value=""/>
+							<input type="file" accept="image/gif, image/jpeg, image/jpg, image/png" id="inputfile" style="height:0;width:0; position: absolute;left: 10px;top: 5px;background:url('/public/home/ss/images/c.jpg');" value=""/>
+						-->
+
+							<img class="new-img" id="up_img1" onclick="getElementById('inputfile1').click()" style="cursor:pointer;max-width:500px;border: 1px solid;" title="" alt="" src="/public/home/ss/images/a.jpg">
+							<!--<img class="new-img" id="up_img2" onclick="getElementById('inputfile2').click()" style="cursor:pointer;max-width:500px;border: 1px solid;" title="" alt="" src="/public/home/ss/images/b.jpg">-->
+							<!--<img class="new-img" id="up_img3" onclick="getElementById('inputfile3').click()" style="cursor:pointer;max-width:500px;border: 1px solid;" title="" alt="" src="/public/home/ss/images/c.jpg">-->
+<!--<input type="file" name="photo[]"  multiple="multiple"/>-->
+
+							<input type="file" accept="image/gif, image/jpeg, image/jpg, image/png" id="inputfile1" style="height:0;width:0;position: absolute;left: 10px;top: 5px;background:url('/public/home/ss/images/c.jpg');" value="" name="photo[]" multiple="multiple"/>
+							<!--<input type="file" accept="image/gif, image/jpeg, image/jpg, image/png" id="inputfile2" style="height:0;width:0;position: absolute;left: 10px;top: 5px;background:url('/public/home/ss/images/c.jpg');" value=""/>-->
+							<!--<input type="file" accept="image/gif, image/jpeg, image/jpg, image/png" id="inputfile3" style="height:0;width:0;position: absolute;left: 10px;top: 5px;background:url('/public/home/ss/images/c.jpg');" value=""/>-->
+
+							<!--
+                                                        <input type="file" accept="image/gif, image/jpeg, image/jpg, image/png" id="inputfile1" name="inputfile1">
+                                                        <input type="file" accept="image/gif, image/jpeg, image/jpg, image/png" id="inputfile2" name="inputfile2">
+                                                        <input type="file" accept="image/gif, image/jpeg, image/jpg, image/png" id="inputfile3" name="inputfile3">
+                                                        -->
+
+
+
+
+
+						</li>
+					
+						
+						<br /><br /><br /><br />
+						<li><div class="new-button"><div>
+						        <input type="submit" value="提交认证信息"/>
+						    </div></div></li>
+						<br><br>  <br><br><br>
+				
+					</ul>
+
+				</div>
+                
+				</form>					
+                </eq>
+
+
+			</div>
+			
+		<!--</eq>-->
+		
+		
+		</div>
+		
+	</div>
+</div>
+ 
+<script>
+var hints = "0";
+if(hints == 1){
+	$('#hints').show();
+}
+</script>
+
+<script>
+//     $(document).ready(function () {
+//         if($('.img-all').attr('src') && $('.img-all1').attr('src') && $('.img-all2').attr('src')){
+//             console.log($('.img-all1'))
+//             $('#shang_zhisucom_chuandiv').hide();
+//             $('.assets_content').css('min-height','595px')
+//             return;
+//         }
+//         $('.assets_content').css('min-height','895px')
+        
+//         $("#inputfile1").change(function () {
+// 			sendAjax("inputfile1")
+//         	});
+//         $("#inputfile2").change(function () {
+//             sendAjax("inputfile2")
+//         });
+//         $("#inputfile3").change(function () {
+//             sendAjax("inputfile3")
+//         });
+//         function sendAjax(name){
+//             var data = new FormData();
+//             data.append(name,$("#"+name)[0].files[0]);
+//             $.ajax({
+//                 url: '/ajax/imgUser',
+//                 type: 'POST',
+//                 data: data,
+//                 cache: false,
+//                 contentType: false,		//不可缺参数
+//                 processData: false,		//不可缺参数
+//                 success: function (data) {
+//                     console.log(name)
+//                     if (data) {
+//                         if(data=="error"){
+//                             alert("请选择正确的文件类型和大小！");
+//                             return false;
+//                         }
+//                         $('<img />', {
+//                             src : '/Upload/idcard/' + data,class:name +'-new'
+//                         }).appendTo($('.set_upload_img'));
+
+//                         $('.set_upload_img').show();
+//                         //
+//                         if($('.set_upload_img img').length === 3){
+//                             $('.new-button').on('click',function(){
+//                                 alert('提交成功');
+//                               window.reload(true)
+    
+                                
+//                             })
+//                         }
+                      
+//                     }
+//                 },
+//                 error: function () {
+//                     alert('上传出错');
+//                     $('.set_upload_img').hide();
+//                 }
+//             });
+// 		}
+// 	});
+</script>
+<script>
+	$('.user_truename').addClass('active');
+</script>
+
+ 
+
+<include file="Public:footer" />

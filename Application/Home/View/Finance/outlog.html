@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="比特币交易平台，比特币交易所，数字资产交易所,数字货币交易平台" />
+    <meta name="format-detection" content="telephone=no,email=no,address=no" />
+    <eq name="Think.session.lang" value="1">
+									<notempty name="coninfo['web_name']" value=" ">
+								
+										<title>{$coninfo['web_name']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="2">
+									<notempty name="coninfo['web_name_e']" value=" ">
+										<title>{$coninfo['web_name_e']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="3">
+									<notempty name="coninfo['web_name_en']" value=" ">
+										<title>{$coninfo['web_name_en']}</title>
+									</notempty>
+								</eq>
+    <link data-n-head="true" rel="icon" type="image/x-icon" href="__PUBLIC__/favicon.ico"/>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/base.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/common.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/newcss/rechargeRecord.css" media="all"/>
+    <script data-n-head="true" src="__PUBLIC__/Home/js/newjs/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/layer/layer.js"></script>
+
+</head>
+<body>
+<!--<img src="https://mon.58coin.com/mon.gif" id="img-hidden" />-->
+<div id="__nuxt">
+    <div class="nuxt-progress" style="width:0%;height:2px;background-color:#3B8070;opacity:0;"></div>
+    <div id="__layout">
+        <div>
+            <!--头部内容-->
+            <include file="Public:header1"/>
+            <!--头部内容   end-->
+            <div class="wrap">
+
+                <div class="container">
+                    <div class="user-bread flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                        <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                            <a href="/Finance/myzc" class="">
+                                <div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <span>{$GLOBALS['withdraw']}</span>
+                                    <i></i>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                            <p>{$_GET['coin']|strtoupper}{$GLOBALS['withdraw-record']}</p>
+                        </div>
+                    </div>
+                    <div class="st-content deposit-record list" style="margin-top: 20px;">
+                        <!---->
+                        <div class="title flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                            <h2 class="history">{$_GET['coin']|strtoupper}{$GLOBALS['withdraw-record']}</h2>
+                        </div>
+                        <div class="line"></div>
+                        <div style="padding-top: 20px; padding-bottom: 50px;">
+                            <div class="st-table">
+                                <div style="display: none;">
+                                    <div></div>
+                                    <div></div>
+                                    <div>
+                                        <p class="time"></p>
+                                    </div>
+                                    <div>
+                                    </div>
+                                </div>
+                                <table class="table-theme-1">
+                                    <thead>
+                                    <tr>
+                                        <!--<th>提现时间</th>-->
+                                        <!--<th style="text-align: left;">提现账户</th>-->
+                                        <!--<th>提现数量</th>-->
+                                        <!--<th>手续费</th>-->
+                                        <!--<th>实际手续费</th>-->
+                                        <!--<th>处理状态</th>-->
+                                        <!--<th>操作</th>-->
+                                        <th align="right" width="10%"><b>{$GLOBALS['odd-number']}</b></th>
+                                        <th align="center"><b>{$GLOBALS['withdraw-address']}</b></th>
+                                        <th align="center" width="15%"><b>{$GLOBALS['money']}</b></th>
+                                        <th align="center" width="20%"><b>{$GLOBALS['withdraw-time']}</b></th>
+                                        <th align="center" width="15%"><b>{$GLOBALS['order-status']}/{$GLOBALS['order-operate']}</b></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <if condition="$list neq null">
+                                        <volist name="list" id="vo">
+                                            <tr>
+                                                <td>{$vo.addtime|addtime}</td>
+                                                <td>{$vo.coinname}</td>
+                                                <td>{$vo['num']|NumToStr}</td>
+                                                <td>{$vo['fee']|NumToStr}</td>
+                                                <td>
+                                                    <eq name="vo.status" value="1">
+                                                        <font color="#23a800">{$GLOBALS['turn-succeed']} </font>
+                                                        <else/>
+                                                        <font color="red">{$GLOBALS['ready-deal']}{$vo.status|abs}{$GLOBALS['number-sure']}</font>
+                                                    </eq>
+                                                </td>
+                                            </tr>
+                                        </volist>
+                                        <else/>
+                                        <tr style="border:0;">
+                                            <td colspan="5">
+                                                <div  class="no-list">
+                                                    <img  src="/Public/Home/image/accountMsg/noDate.jpg" alt="" />
+                                                    <p >{$GLOBALS['noData']}</p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </if>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--底部内容-->
+                <include file="Public:footer"/>
+                <!--底部内容   end-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<script src="../js/accountBill.js"></script>-->
+
+<script>
+
+    function out_chexiao(_this) {
+        var id = $(_this).attr('data');
+        $.post("{:U('Finance/mytxChexiao')}", {id: id}, function (data) {
+            if (data.status == 1) {
+                layer.msg(data.info, {icon: 1});
+                window.location.reload();
+            } else {
+                layer.msg(data.info, {icon: 2});
+            }
+        }, "json");
+    }
+</script>
+</body>
+</html>

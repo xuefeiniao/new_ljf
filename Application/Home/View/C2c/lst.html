@@ -1,0 +1,138 @@
+﻿<div class="c2c-nav">
+    <ul>
+        <li>
+            <div class="lev-1 on"><span>CNY </span><i class="fa fa-angle-up"></i><i class="fa fa-angle-down"></i></div>
+            <ul>
+                <li>
+                    <a href="{:U('otc/index/type/1/market/btc_cny')}" class="lev-2 buycoin active" rel="buyCoin"><i></i>我要买币</a>
+                    <ul>
+                        <volist name="rmbjy" id="vo">
+                            <li><a href="{:U('otc/index',array('type'=>1,'market'=>$vo['name']))}" rel="buyCoin">{$vo.names}</a></li>
+                        </volist>
+
+                    </ul>
+                </li>
+                <li>
+                    <a href="{:U('otc/index/type/2/market/btc_cny')}" class="lev-2 sellcoin" rel="sellCoin"><i></i>我要卖币</a>
+                    <ul>
+
+                        <volist name="rmbjy" id="vos">
+                            <li><a href="{:U('otc/index',array('type'=>2,'market'=>$vos['name']))}" rel="buyCoin">{$vos.names}</a></li>
+                        </volist>
+
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript:;" class="lev-2 sellcoin" rel="sellCoin"><i></i>发布广告</a>
+                    <ul>
+
+                        <volist name="rmbjy" id="vos">
+                            <li><a href="{:U('otc/info',array('type'=>2,'market'=>$vos['names']))}" rel="buyCoin">{$vos.names}</a></li>
+                        </volist>
+
+                    </ul>
+                </li>
+
+                <li><a class="lev-2" href="{:U('otc/otclst')}" rel="orderList">订单管理</a></li>
+            </ul>
+        </li>
+        <!-- <li>
+             <div class="lev-1 on">商户管理<i class="fa fa-angle-up"></i><i class="fa fa-angle-down"></i></div>
+             <ul>
+                 <li><a class="lev-2" href="/otc/user/business?isSelect=true" rel="Becomebusiness">商家申请</a></li>
+                 <li><a class="lev-2" href="/otc/mad/publishSell" rel="publishSell">发布广告</a></li>
+                 <li><a class="lev-2" href="/otc/mad/list/1" rel="tradeManage">广告管理</a></li>
+                 <li><a class="lev-2" href="/otc/mad/orderList/0" rel="buyList">商家订单</a></li>
+                 <li><a class="lev-2" href="/otc/user/" rel="businessinfo">商家信息</a></li>
+                 <li><a class="lev-2" href="/otc/orderstats" rel="financeStatistics">财务报表</a></li>
+             </ul>
+         </li>-->
+       <!-- <li>
+            <div class="lev-1 on">OTC设置<i class="fa fa-angle-up"></i><i class="fa fa-angle-down"></i></div>
+            <ul>
+                <li><a class="lev-2" href="/otc/otclst905.html" rel="setpay">支付设置</a></li>
+                <li><a class="lev-2" href="/otc/otclst905.html" rel="settingOrder">接单设置</a></li>
+            </ul>
+        </li>-->
+    </ul>
+</div>
+<script>
+    $(function(){
+
+        $("#m-asset-tabs a").on('click', function(){
+            var target = $(this).attr('href');
+            $("#m-asset-tabs a").removeClass('on');
+            $(this).addClass('on');
+            $("#M_userDrop2 .tab-content").removeClass('active');
+            $(target).addClass('active');
+            // if (target == '#m-userLeverAssets') {
+            //     //$("#pay-action").hide();
+            //     window.assetType = 'lever';
+            //     ASSET.changeUserAssetType('lever');
+            // } else {
+            //     window.assetType = 'spot';
+            //     ASSET.changeUserAssetType('spot');
+            //     //$("#pay-action").show();
+            // }
+            return false;
+        });
+        $('#fund-dropdown').on('mouseenter', function(e){
+            $(this).addClass('open');
+        });
+        $('#fund-dropdown').on('mouseleave', function(e){
+            var _this = $(this);
+            setTimeout(function () {
+                _this.removeClass('open');
+            }, 300);
+        });
+
+        $('body').on('click', function (e) {
+            if (!$('#fund-dropdown').is(e.target)
+                && $('#fund-dropdown').has(e.target).length === 0
+            ) {
+                $('#fund-dropdown').removeClass('open');
+            }
+        });
+
+        $(".topmenuhover .titlelist a").on('mouseenter',function(){
+            $(this).addClass("on").siblings("a").removeClass("on");
+            $(this).parents(".topmenuhover").find("ul").eq($(this).index()).addClass("on").siblings("ul").removeClass("on");
+        })
+
+        $(".down-market-table .d-hd a").on('mouseenter',function(){
+            $(this).addClass("on").siblings("a").removeClass("on");
+            $(this).parents(".down-market-table").find("table").eq($(this).index()).addClass("on").siblings("table").removeClass("on");
+            var coin = $(this).data('coin');
+            var channel = "top_all_" + coin;
+            if (webSocket && channel != oldTopallChannel) {
+                MARKET.closeTopallSocket(oldTopallChannel);
+                webSocket.sendMessage("{'event':'addChannel','channel':'" + channel + "','isZip':'" + isZipData() + "'}");
+            }
+            oldTopallChannel = channel;
+        });
+
+        $(".top-market-show").on('mouseleave', function(){
+            var moneyType = "";
+            if (webSocket && moneyType) {
+                var channel = "top_all_" + moneyType.toLowerCase();
+                if (channel != oldTopallChannel) {
+                    MARKET.closeTopallSocket(oldTopallChannel);
+                    webSocket.sendMessage("{'event':'addChannel','channel':'" + channel + "','isZip':'" + isZipData() + "'}");
+                }
+                oldTopallChannel = channel;
+            }
+        });
+
+
+        $(".cnyonoff").on("click",function(){
+            $(this).toggleClass("on");
+            $(".nocny").toggleClass("on");
+            $(".iscny").toggleClass("on");
+        })
+
+        //定时检查
+//                var init = window.setInterval("checkNewOrder()",1000);
+
+    })
+</script>

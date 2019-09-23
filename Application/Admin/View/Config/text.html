@@ -1,0 +1,235 @@
+<include file="Base:header"/>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <neq name='path.group' value=''><span class="c-gray en">&gt;</span>{$path['group']}</neq><neq name='path.title' value=''><span class="c-gray en">&gt;</span>{$path['title']}</neq><a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">
+
+	</script>
+	<div class="cl pd-5 bg-1 bk-gray mt-20">
+		<!--<span class="l">
+			<a href="javascript:;" onclick="chk_qianbao();" class="btn btn-success radius">
+				<i class="Hui-iconfont">&#xe6e2;</i> 一键检查所有钱包
+			</a>
+			 <a href="javascript:;" onclick="del(this,'idAll')" class="btn btn-danger radius">
+				<i class="Hui-iconfont">&#xe6e2;</i> 批量删除
+			</a> 
+			<a class="btn btn-primary radius" onclick="add('添加','__MODULE__/Config/coinEdit.html')" href="javascript:;">
+				<i class="Hui-iconfont"></i> 添加
+			</a>
+		</span>-->
+		<span class="r">共有数据：<strong>{$count}</strong> 条</span> 
+	</div>
+	<div class="mt-20">
+		<table class="table table-border table-bordered table-bg table-hover table-sort table-responsive">
+			<thead>
+				<tr class="text-c" id="row1">
+					<th width="20"><input type="checkbox" name="" value=""></th>
+					<th width="40">ID</th>
+					<th width="70">提示标识</th>
+					<th width="70">提示位置</th>
+					<th width="70">更新时间</th>
+					<th width="60">状态</th>
+					
+					<th width="80">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+			
+			
+			
+			<notempty name="list">
+				<volist name="list" id="vo">
+				<tr class="text-c" >
+					<td><input type="checkbox" value="{$vo.id}" name="id[]"></td>
+					<td>{$vo.id}</td>
+					<td>{$vo.name}</td>
+					<td>{$vo['title']}</td>
+					<td>{$vo.addtime|addtime}</td>
+					
+					<td>
+						<eq name="vo.status" value="1">
+							可用
+						<else/>
+							禁用
+						</eq>
+					</td>
+					
+
+
+					<td class="f-14 td-manage">
+						<eq name="vo.status" value="0">
+						<a style="text-decoration:none" onClick="start(this,{$vo.id})" title="启用" href="javascript:;"><i class="Hui-iconfont">&#xe603;</i></a>
+						</eq>
+						
+						<eq name="vo.status" value="1">
+						<a style="text-decoration:none" onClick="stop(this,{$vo.id})" href="javascript:;" title="禁用"><i class="Hui-iconfont">&#xe6de;</i></a>
+						</eq>
+						
+						
+						<a style="text-decoration:none" class="ml-5" onClick="edit('编辑','__MODULE__/Config/textEdit/id/'+{$vo.id})" href="javascript:;" title="编辑">
+							<i class="Hui-iconfont">&#xe6df;</i>
+						</a> 
+						<!-- <a style="text-decoration:none" class="ml-5" onClick="del(this,'{$vo.id}')" href="javascript:;" title="删除">
+							<i class="Hui-iconfont">&#xe6e2;</i>
+						</a> -->
+					</td>
+				</tr>
+				</volist>
+					<else/>
+				<tr colspan="12" class="text-center">Oh! 暂时还没有内容!</tr>
+				</notempty>
+				
+			</tbody>
+		</table>
+	</div>
+</div>
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="__PUBLIC__/rs/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/rs/lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/rs/static/h-ui/js/H-ui.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/rs/static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="__PUBLIC__/rs/lib/My97DatePicker/4.8/WdatePicker.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/rs/lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/rs/lib/laypage/1.2/laypage.js"></script>
+<script type="text/javascript">
+function chk_qianbao() {
+		window.location.href = "{:U('Tools/qianbao')}";
+	}
+
+$('.table-sort').dataTable({
+	"aaSorting": [[ 1, "desc" ]],//默认第几个排序
+	"bStateSave": true,//状态保存
+	"pading":false,
+	"aoColumnDefs": [
+	  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
+	  {"orderable":false,"aTargets":[0,6]}// 不参与排序的列
+	]
+});
+
+
+//刷新页面
+function refresh(){
+window.location.reload();//强制刷新
+}
+
+/*添加*/
+function add(title,url,w,h){
+    var index = layer.open({
+        type: 2,
+        title: title,
+        content: url
+    });
+    layer.full(index);
+}
+
+/*编辑*/
+function edit(title,url){
+    var index = layer.open({
+        type: 2,
+        title: title,
+        content: url
+    });
+    layer.full(index);
+}
+
+/*删除*/
+function del(obj,id){
+
+    var check = document.getElementsByName("id[]");
+    console.log(check);
+
+
+    var len=check.length;
+    var idAll="";
+    for(var i=0;i<len;i++){
+    if(check[i].checked){
+    idAll+=check[i].value+",";
+
+        }
+
+        console.log(idAll);
+
+}
+
+
+
+
+    layer.confirm('确认要删除吗？',function(index){
+        $.ajax({
+            type: 'GET',
+            url: '{:U('Config/coinStatus',array('type'=>'delete'))}',
+            data:{id:id},
+            dataType: 'json',
+            success: function(data){
+                console.log(id);
+
+                $(obj).parents("tr").remove();
+                layer.msg('已删除!',{icon:1,time:1000});
+                refresh();
+            },
+            error:function(data) {
+                console.log(data.msg);
+            },
+        });
+ 
+    });
+
+
+
+}
+
+
+/*下架*/
+function stop(obj,id){
+    layer.confirm('确认要禁用吗？',function(index){
+        $(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="start(this,id)" href="javascript:;" title="发布"><i class="Hui-iconfont">&#xe603;</i></a>');
+        $(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">已禁用</span>');
+        $(obj).remove();
+    
+        $.ajax({
+            type: 'GET',
+            url: '{:U('Config/textStatus',array('type'=>'forbid'))}',
+            data:{id:id},
+            dataType: 'json',
+            success: function(data){
+                //$(obj).parents("tr").remove();
+                layer.msg('已禁用!',{icon:5,time:1000});
+                window.location.reload();
+            },
+            error:function(data) {
+                console.log(data.msg);
+            },
+        });     
+    });
+}
+
+/*发布*/
+function start(obj,id){
+    layer.confirm('确认要发布吗？',function(index){
+        $(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="stop(this,id)" href="javascript:;" title="禁用"><i class="Hui-iconfont">&#xe6de;</i></a>');
+        $(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已发布</span>');
+        $(obj).remove();
+        
+        $.ajax({
+            type: 'GET',
+            url: '{:U('Config/textStatus',array('type'=>'resume'))}',
+            data:{id:id},
+            dataType: 'json',
+            success: function(data){
+                // $(obj).parents("tr").remove();
+                layer.msg('已发布!',{icon:1,time:1000});
+                window.location.reload();
+            },
+            error:function(data) {
+                console.log(data.msg);
+            },
+        });     
+    });
+}
+
+</script> 
+
+</script> 
+</body>
+</html>

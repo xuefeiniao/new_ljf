@@ -1,0 +1,497 @@
+<include file="Publics:header-black"/>
+
+	<body>
+		<style type="text/css">
+			{
+				margin: 0;
+				padding: 0;
+			}
+			html,
+			body {
+				width: 100%;
+			}
+			
+			.header {
+				width: 100%;
+			}
+			
+			.content {
+				width: 100%;
+				clear: both;
+			}
+			
+			.leftbar {
+				width: 23%;
+				float: left;
+			}
+			
+			.main_content {
+				width: 75%;
+				float: right;
+				margin: 10px auto;
+				margin-left: 2%;
+			}
+			
+			.right_mcontent {
+				position: relative;
+			}
+			
+			.myacc-con .m_title {
+				font-size: 20px;
+				height: 42px;
+				width: 100%;
+				color: #111;
+				border-bottom: 1px solid #C8DAE2;
+				margin: 10px 0 20px;
+				line-height: 46px;
+			}
+			
+			.myacc-con .m_title h4 {
+				font-weight: normal;
+			}
+			
+			.sectioncont {
+				width: 100%;
+			}
+			
+			ul,
+			li {
+				list-style: none;
+			}
+			
+			.ref-ul li:first-child {
+				border-right: 1px solid #ddd;
+				position: relative;
+			}
+			
+			.ref-ul li {
+				width: 50%;
+				float: left;
+				text-align: center;
+				margin: 20px 0 0;
+				box-sizing: border-box;
+			}
+			
+			.myacc-con .sectioncont p {
+				margin-bottom: 10px;
+			}
+			
+			.myacc-con .sectioncont p {
+				margin-bottom: 10px;
+			}
+			
+			.ref-ul input {
+				display: inline-block;
+				text-align: center;
+				font-size: 20px;
+				padding: 0;
+				border: none;
+				font-weight: bold;
+			}
+			
+			.sectioncont input,
+			.sectioncont select,
+			.txt-memo {
+				margin: 5px 5px 5px 0;
+				width: 50%;
+				border-radius: 3px;
+				box-sizing: border-box;
+				outline: none;
+			}
+			
+			.js-copy1 {
+				margin: 20px 0;
+				display: inline-block;
+			}
+			
+			.ref-ul .sub-btn {
+				padding: 10px 33px;
+				background: #d45858;
+				color: white;
+			}
+			
+			.ref-ul .sub-btn:hover {
+				background: #ca4141 !important;
+			}
+			
+			.footer {
+				margin: 0 auto;
+				width: 100%;
+				clear: both;
+				margin-bottom: -19px;
+				border-top: 1px solid #ddd;
+				z-index: 2;
+				position: relative;
+			}
+			
+			.r-btn {
+				padding: 3px 8px;
+				background: #d45858;
+				color: #fff;
+				text-decoration: none;
+			}
+			
+			.js-copy1,
+			.js-copy2 {
+				margin: 20px 0;
+				display: inline-block
+			}
+			
+			.ref-ul li {
+				width: 50%;
+				float: left;
+				text-align: center;
+				margin: 20px 0 0;
+				box-sizing: border-box
+			}
+			
+			.ref-ul li:first-child {
+				border-right: 1px solid #ddd;
+				position: relative
+			}
+			
+			.ref-ul li:first-child:after {
+				content: '\6216';
+				display: inline-block;
+				position: absolute;
+				right: -8px;
+				top: 46%;
+				background: #fff;
+				padding: 5px 0;
+				color: #888
+			}
+			
+			.ref-ul input {
+				display: inline-block;
+				text-align: center;
+				font-size: 20px;
+				padding: 0;
+				border: none;
+				font-weight: bold
+			}
+			
+			.ref-ul .sub-btn {
+				padding: 10px 33px;
+			}
+			
+			.sf-grid td {
+				padding: 12px 0;
+			}
+			
+			.QrCode {
+				cursor: pointer
+			}
+			
+			.QrCode p {
+				padding-top: 0;
+			}
+			
+			.QrCode:hover {
+				color: #de5959;
+			}
+			
+			.QrCode:hover img {
+				opacity: 0.8
+			}
+			
+			.dark-body .ref-ul li:first-child {
+				border-color: #343a48;
+			}
+			
+			.dark-body .ref-ul li:first-child:after,
+			.dark-body .ref-ul input {
+				background: #131a21
+			}
+			
+			.green {
+				color: #008069;
+			}
+			
+			.ref-way {
+				margin-top: 10px;
+			}
+			
+			.sectioncont,
+			.sectioncont table {
+				width: 100%;
+			}
+			
+			.table-empty i {
+				display: inline-block;
+				width: 18px;
+				height: 18px;
+				line-height: 18px;
+				font-style: normal;
+				border-radius: 50%;
+				border: 2px solid #ccc;
+				color: #ccc;
+				font-weight: bold;
+				margin-right: 3px;
+				resize: none;
+			}
+          body .formbox form{width:30%;}
+		</style>
+		<div class="content">
+			<include file="Publics:leftbar"/>
+			<div class="main_content acc-m-con" style="border:none;">
+				<!--
+				<div style="height: 38px; line-height: 52px; color: #d45858; font-size: 15px;text-align: center">
+					您尚未实名认证！为保障您的资金安全，在完成实名认证之前，您将不能进行c2c交易、提币等操作。
+					<a class="r-btn" href="">立即去认证</a>
+				</div>
+				-->
+				<div class="right_mcontent myacc-con">
+					<div class="m_title">
+						<h4>我的推广链接</h4></div>
+					<div class="sectioncont">
+						<div style="text-align: center">
+							<p>通过以下链接推荐其他用户访问本站并注册，您可以获得被推荐用户一年内交易手续的 <span class="red"><strong>30%</strong></span> 作为佣金，被推荐用户享受一年内交易费<span class="red"><strong> 9折 </strong></span>优惠。</p>
+							<p>注：推荐用户跟本人账户IP地址相同的推荐无效，新注册1天内的帐号推荐别人无效。</p>
+						</div>
+						<ul class="ref-ul clearfix">
+							<li id="toSignIn">
+								<p>推荐到互金工厂注册页面的链接：</p>
+								<input type="text" value="{$link}" readonly="">
+								<div>
+									<span class="js-copy1" data-clipboard-text="{$link}">
+                    <span class="sub-btn">点击复制</span>
+									</span>
+									<br /><br /><br />
+								</div>
+								<p class="copytip c-tip1 green" style="display: none;">复制成功，现在您可以去您的社交媒体粘贴了</p>
+								<div class="clearfix">
+									<span id="toSignInCode" class="QrCode" >
+                   <!-- <img class="QrCodeImg" src="img/download.png" alt="QR code" style="width: 160px; height: 160px">-->
+                                      <!-- <span id="codeaa" style="display:block;position:relative;left:50%;margin-left:-50px;"></span>-->
+									<p style="margin-top:10px;"> <a href="http://qr.liantu.com/api.php?text={$link}" target="_blank"><img src="http://qr.liantu.com/api.php?text={$link}" style="width: 160px; height: 160px;margin-top:-30px"></a></p>
+									<p>右击保存二维码，去您的社交媒体推广</p>
+									</span>
+								</div>
+							</li>
+							<li id="toIndex">
+								<p>推荐到互金首页的链接：</p>
+								<input type="text" value="{$link2}" readonly="">
+								<div>
+									<span class="js-copy2" data-clipboard-text="{$link2}">
+                    <span class="sub-btn">点击复制</span>
+									</span>
+									<br /><br /><br />
+								</div>
+								<p class="copytip c-tip2 green" style="display: none;">复制成功，现在您可以去您的社交媒体粘贴了</p>
+								<div class="clearfix">
+									<span class="QrCode">
+                   <!-- <img class="QrCodeImg" src="img/download1.png" alt="QR code" style="width: 160px; height: 160px">-->
+                                      <p style="margin-top:10px;"><img src="http://qr.liantu.com/api.php?text={$link2}" style="width: 160px; height: 160px;margin-top:-30px"></p>
+									  <p id="btn1">右击保存二维码，去您的社交媒体推广</p>
+									</span>
+								</div>
+							</li>
+						</ul>
+						<div class="ref-way">
+							<h4>推广方法：</h4>
+							<p>1. 复制以上任一推广链接，或者下载保存以上二维码，去您的社交媒体推广，让您的朋友们通过此链接访问本站并注册。</p>
+							<p>2. 移动端扫码以上二维码，并把打开的互金工厂页面分享到您的社交媒体。如微信，扫码以上二维码后，在打开的互金工厂页面，点击微信右上角菜单，在弹窗的对话框中，点击发送给朋友、分享到朋友圈、分享到手机QQ或者分享到QQ空间即可。</p>
+						</div>
+					</div>
+					
+					<div class="m_title">
+						<h4>最近接受推荐的用户</h4></div>
+					<div class="sectioncont">
+						<div id="divMyReferralsList" style="overflow-y: scroll; overflow-x:hidden; max-height: 550px;">
+							<table class="sf-grid" id="refUser">
+								<thead>
+									<tr style="text-align: center">
+										<td style="text-align: left"><b>注册日期</b></td>
+										<td style="text-align: center"><b>用户名</b></td>
+									</tr>
+								</thead>
+								<tbody>
+								
+								<empty name="invituser">
+									<tr class="table-empty" style="display: table-row;">
+										<td style="text-align: center">
+											<p>暂无有效推荐用户</p>
+										</td>
+									</tr>
+								<else/>										
+										<foreach name="invituser" item="vo">	
+											<tr class="table-empty" style="display: table-row;">
+												<td style="text-align: left;padding: 0px 0;">
+													<p>{$vo['addtime']|date=("Y-m-d H:i"),###}</p>
+												</td>
+												<td style="text-align: center;padding: 0px 0;">
+													<p>{$vo.username}</p>
+												</td>
+											</tr>
+										</foreach>																					
+								</empty>			
+								
+								
+								</tbody>
+							</table>
+						</div>
+
+						<br>
+						<p>我的有效推荐用户个数为：
+							<font color="red"><strong>{$sum}</strong></font>
+						</p>
+
+					</div>
+
+					<div class="m_title">
+						<h4>我的最近30天佣金</h4></div>
+					<div class="sectioncont">
+						<div id="divMyReferralFundsList" style="overflow-y: scroll; overflow-x:hidden; max-height: 550px;">
+							<table class="sf-grid" id="refFund">
+								<thead>
+									<tr style="text-align: center">
+										<td style="text-align: left"><b>用户名</b></td>
+										<td><b>日期</b></td>
+										<td><b>类型</b></td>
+										<td><b>数量</b></td>
+										<td><b>总额</b></td>
+										<td><b>佣金</b></td>
+									</tr>
+								</thead>
+								<tbody>
+								
+								<foreach name="yongjin" item="yongjin">
+									<tr class="table-empty" style="display: table-row;text-align: center">
+										<td style="text-align: left; padding: 0px 0;">
+											<p>{$yongjin.username}</p>
+										</td>
+										<td style="text-align: center; padding: 0px 0;">
+											<p>{$yongjin.addtime|date=('Y-m-d H:i'),###}</p>
+										</td>
+										<td style="text-align: center; padding: 0px 0;">
+											<p>{$yongjin.type}</p>
+										</td>
+										<td style="text-align: center; padding: 0px 0;">
+											<p>{$yongjin.num}</p>
+										</td>
+										<td style="text-align: center; padding: 0px 0;">
+											<p>{$yongjin.mum}</p>
+										</td>
+										<td style="text-align: center; padding: 0px 0;">
+											<p>{$yongjin.fee}BDB</p>
+										</td>
+									</tr>
+								</foreach>
+								
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<br>
+				</div>
+			</div>
+		</div>
+		<include file="Publics:footer"/>
+	</body>
+	<script src="/zhisucom/js/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/zhisucom/js/clipboard.min.js"></script>
+  <script type="text/javascript" src="/zhisucom/js/jquery.qrcode.min.js"></script>
+  
+<script type="text/javascript">
+		$('#codeaa').qrcode({
+		render: "table", //table方式
+		width: 100, //宽度
+		height: 100, //高度
+		text: "http://{$_SERVER['HTTP_HOST']}/Login/register/?invit={$user['invit']}" //任意内容
+	});
+  
+  $('#codeab').qrcode({
+		render: "table", //table方式
+		width: 100, //宽度
+		height: 100, //高度
+		text: "http://{$_SERVER['HTTP_HOST']}/?invit={$user['invit']}" //任意内容
+	});
+  </script>
+	<script>
+		//复制
+		var clipboard1 = new Clipboard('.js-copy1'),
+			clipboard2 = new Clipboard('.js-copy2');
+		clipboard1.on('success', function(e) {
+			$(".c-tip1").show();
+			$(".c-tip2").hide();
+			setTimeout(function() {
+				$(".c-tip1").hide();
+			}, 6000)
+		});
+		clipboard2.on('success', function(e) {
+			$(".c-tip2").show();
+			$(".c-tip1").hide();
+			setTimeout(function() {
+				$(".c-tip2").hide();
+			}, 6000)
+		});
+
+		var $user = $("#refUser"),
+			$fund = $("#refFund");
+		if($user.find("tr").size() == 2) {
+			$user.find(".table-empty").show()
+		}
+		if($fund.find("tr").size() == 2) {
+			$fund.find(".table-empty").show()
+		}
+
+		window.downloadFile = function(sUrl, isSign) {
+
+			//iOS devices do not support downloading. We have to inform user about this.
+			if(/(iP)/g.test(navigator.userAgent)) {
+				alert('Your device does not support files downloading. Please try again in desktop browser.');
+				return false;
+			}
+
+			//If in Chrome or Safari - download via virtual link click
+			if(window.downloadFile.isChrome || window.downloadFile.isSafari) {
+				//Creating new link node.
+				var link = document.createElement('a');
+				link.href = sUrl;
+
+				if(link.download !== undefined) {
+					//Set HTML5 download attribute. This will prevent file from opening if supported.
+					var fileName = 'hujin';
+					if(isSign)
+						fileName = '互金工厂注册';
+					else
+						fileName = '互金工厂首页';
+					link.download = fileName;
+				}
+
+				//Dispatching click event.
+				if(document.createEvent) {
+					var e = document.createEvent('MouseEvents');
+					e.initEvent('click', true, true);
+					link.dispatchEvent(e);
+					return true;
+				}
+			}
+
+			// Force file download (whether supported by server).
+			if(sUrl.indexOf('?') === -1) {
+				sUrl += '?download';
+			}
+			window.open(sUrl, '_self');
+			return true;
+		};
+
+		window.downloadFile.isChrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+		window.downloadFile.isSafari = navigator.userAgent.toLowerCase().indexOf('safari') > -1;
+
+		$(".QrCode").click(function() {
+			var imgurl = $(this).find("img").attr("src"),
+				qcId = $(this).attr("id"),
+				isSign = 0;
+			if(qcId == 'toSignInCode')
+				isSign = 1;
+
+			downloadFile(imgurl, isSign)
+		});
+
+		$(".ref-ul").on("click", "input", function() {
+			$(this).select()
+		})
+	</script>
+
+</html>

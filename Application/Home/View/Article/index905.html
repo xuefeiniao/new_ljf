@@ -1,0 +1,230 @@
+<include file="Publics:header"/>
+<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			html,
+			body {
+				width: 100%;
+			}
+			
+			.header {
+				width: 100%;
+			}
+			
+			.content {
+				width: 100%;
+				clear: both;
+			}
+			
+			.leftbar {
+				width: 23%;
+				float: left;
+			}
+			
+			.main_content {
+				width: 77%;
+				float: right;
+				padding:0 20px;
+			}
+            html body .main_content{border-left:none;}
+			.right_mcontent {
+				position: relative;
+			}
+			
+			.right-news-con {
+				margin-left: auto;
+				margin-right: auto;
+				padding:20px;
+				font-size: 12px;
+				text-align: left;
+			}
+  .latnewslist h3{font-weight:bold;}
+			
+			.right-news-con h2 {
+				font-size: 24px;
+				text-align: center;
+			}
+			
+			.latnewslist {
+				padding: 9px 0 0;
+			}
+			
+			.latnewslist .entry {
+				line-height: 23px;
+				font-size: 13px;
+				color: #777;
+			}
+			
+			.latnewslist .entry a {
+				height: 32px;
+				overflow: hidden;
+				color: #333;
+				text-decoration: none;
+			}
+			
+			.newstail {
+				margin-top: 5px;
+				color: #999;
+				font-size: 12px;
+				border-bottom: 1px dashed #ddd;
+				padding: 0 0 5px;
+				clear: both;
+			}
+			
+			.newstail span {
+				margin-right: 15px;
+				color: #444;
+			}
+			
+			#paginationtech {
+				line-height: 40px;
+				color: #de5959;
+				font-family: Microsoft YaHei;
+			}
+			
+			.newsplink {
+				margin-top: 10px;
+				clear: both;
+			}
+			
+			.activeee {
+				color: #de5959;
+				background: #fff;
+				padding: 5px 10px;
+				border: 1px solid #de5959;
+				margin: 3px;
+				border-radius: 2px;
+			}
+			
+			.newsplink a {
+				color: #333;
+				background: #f5f5f5;
+				text-decoration: none;
+				padding: 5px 10px;
+				border: 1px solid #d7d7d7;
+				margin: 3px;
+				border-radius: 2px;
+			}
+			
+			.footer {
+				margin: 0 auto;
+				width: 100%;
+				clear: both;
+				margin-bottom: -19px;
+				border-top: 1px solid #ddd;
+				z-index: 2;
+				position: relative;
+			}
+			
+			.latnewslist .entry a:hover {
+				color: #d45858;
+			}
+ html body .leftbar{border:1px solid #eee;border-left:none;border-bottom:none;}
+  #market_controller{width:100%;border-bottom:1px solid #eee;margin:0 auto;}
+.content .notice{ width:21%; float: left; }
+.content .notice p{ margin: 10px 0 0 20px;
+				    font-size: 20px;
+				    font-weight: bold;								    
+				    line-height: 50px;					    
+				    border-bottom: solid #eee 1px;}
+.content .notice,.content .main_content{ height: 1012px; overflow: auto;}
+
+		</style>
+	<body>
+		
+		<div class="content">
+			<div class="notice clearfix">
+				<p>系统公告</p>
+			</div>
+			<div class="main_content" style="border-left:solid #eee 1px">
+				<div class="right_mcontent">
+					<div class="right-news-con">
+						<div class="news_title">
+							<h2>联合交易所公告 </h2>
+						</div>
+						<div class="headlines"> </div>
+
+						<div class="latestnews">
+							<div class="leftlatnews" id="lcontentnews">
+                              
+                              
+                              
+                              <volist name="list" id="vo">
+								<div class="latnewslist">
+									<div class="entry">
+										<a href="{:U('Article/detail',array('id'=>$vo['id']))}" title="联合交易所已分发TCT充值竞赛奖励公告 4620">
+											<h3>{$vo.title} </h3>
+										</a>
+										<span class="news-brief">{$vo['content']|substr=0,150}<if condition="$vo['content'] neq ''">...</if></span>
+									</div>
+									<br>
+									<div class="newstail">发布时间： <span id="updated"> {$vo.addtime|addtime} </span> </div>
+									<div style="clear:both"></div>
+								</div>
+                              </volist>
+                              
+								<div id="paginationtech">
+									<div class="newsplink"> 
+                                    <!--  <span class="activeee">1</span>
+										<a href="javascript:void(0)">2</a>
+										<a href="javascript:void(0)">3</a>
+										<a href="javascript:void(0)" title="下一页">下一页</a>&nbsp;-->
+                                  	{$page}
+                                  </div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<include file="Publics:footer"/>
+      <script>
+     
+      	// 币种类型
+$('.tline_btn').on('click',function(){
+    // alert('haha')
+    if($(this).index() == 0){
+        $('.new-data-bb').hide();
+        $('.new-data-usdt').hide();
+        $('.new-data-btc').hide();
+        $(".zhong-lei-three").hide();
+        $(".zhong-lei-two").hide();
+        $('.new-data-bb').show();
+        $('.zhong-lei-change').html('BB');
+        $('.tline_btn').css('border-bottom','none');
+        $(this).css('border-bottom','1px solid blue');
+        return;
+    }
+    if($(this).index() == 1){
+        $(".zhong-lei-three").hide();
+        $(".zhong-lei-two").hide();
+         $('.new-data-bb').hide();
+        $('.new-data-usdt').hide();
+        $('.new-data-btc').hide();
+        $('.new-data-usdt').show();
+        $('.zhong-lei-change').html('USDT');
+        $('.tline_btn').css('border-bottom','none');
+        $(this).css('border-bottom','1px solid blue');
+        return;
+    }
+    if($(this).index() == 2){
+        $(".zhong-lei-three").hide();
+        $(".zhong-lei-two").hide();
+         $('.new-data-bb').hide();
+        $('.new-data-usdt').hide();
+        $('.new-data-btc').hide();
+        $('.new-data-btc').show();
+        $('.zhong-lei-change').html('BTC');
+        $('.tline_btn').css('border-bottom','none');
+        $(this).css('border-bottom','1px solid blue');
+        return;
+    }
+});
+      </script>
+	</body>
+
+</html>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="比特币交易平台，比特币交易所，数字资产交易所,数字货币交易平台" />
+    <meta name="format-detection" content="telephone=no,email=no,address=no" />
+    <eq name="Think.session.lang" value="1">
+									<notempty name="coninfo['web_name']" value=" ">
+								
+										<title>{$coninfo['web_name']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="2">
+									<notempty name="coninfo['web_name_e']" value=" ">
+										<title>{$coninfo['web_name_e']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="3">
+									<notempty name="coninfo['web_name_en']" value=" ">
+										<title>{$coninfo['web_name_en']}</title>
+									</notempty>
+								</eq>
+    <link data-n-head="true" rel="icon" type="image/x-icon" href="__PUBLIC__/favicon.ico"/>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/base.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/common.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/newcss/addreSet.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/newcss/withdraw.css"/>
+    <script data-n-head="true" src="__PUBLIC__/Home/js/newjs/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/layer/layer.js"></script>
+  
+</head>
+<body>
+<!--<img src="https://mon.58coin.com/mon.gif" id="img-hidden" />-->
+<div id="__nuxt">
+    <div class="nuxt-progress" style="width:0%;height:2px;background-color:#3B8070;opacity:0;"></div>
+    <div id="__layout">
+        <div>
+            <!--头部内容-->
+            <include file="Public:header1"/>
+            <!--头部内容   end-->
+            <div class="wrap">
+
+                <div data-v-314f53c6="" class="withdraw-address-name container">
+                    <div class="user-bread flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                        <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                            <a href="/Finance/myzc/name/usdt" class="">
+                                <div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <span>{$_GET['name']|strtoupper} {$GLOBALS['withdraw']}</span>
+                                    <i></i>
+                                </div></a>
+                        </div>
+                        <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                            <p>{$GLOBALS['address-manage']}</p>
+                        </div>
+                    </div>
+                    <div class="st-content addressManagement" style="margin-top: 30px;">
+                        <h2>{$GLOBALS['address-manage']}</h2>
+                        <div class="line"></div>
+                        <div style="padding-top: 0px; padding-bottom: 0px;">
+                            <div class="list">
+                                <div class="site flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-wrap">
+                                    <notempty name="qianbao" value="">
+                                        <volist name="qianbao" id="vo">
+                                            <div class="address have flex-box flex-direction-column flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                                                <div class="have-bg"></div>
+                                                <div class="have-z flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+												<input type="hidden" id="id" value="{$vo['id']}">
+                                                    <h4 class="">{$vo['name']}</h4>
+                                                    <!---->
+                                                    <!---->
+                                                    <a class="del" onclick="delete_coin({$vo['id']})"></a>
+													<!-- <span onclick="delete_coin()">解绑</span> -->
+                                                </div>
+                                                <div class="site-bottom">
+                                                    <p class="">{$vo['addr']}</p>
+                                                </div>
+                                            </div>
+                                        </volist>
+                                    </notempty>
+									<input type="hidden" id="coin" value="{$_GET['coin']}">
+                                    <a class="addbefor">
+                                        <div class="address addDiv flex-box flex-direction-column flex-justify-center flex-align-item-center flex-wrap-nowrap">
+                                            <img src="/Public/Home/image/common/icon-an.77c9794.png" alt="" />
+                                            <p>{$GLOBALS['addNew-address']}</p>
+                                        </div>
+                                    </a>
+                                    <!--弹出框-->
+                                    <div  class="popup flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap" style="display: none;">
+                                        <div  class="popup-box">
+                                            <div  class="header flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                                <h3 >{$GLOBALS['addNew-address']}</h3>
+                                                <a ></a>
+                                            </div>
+                                            <!--<form  class="st-form form">-->
+                                            <div  class="st-form form">
+                                                <div  class="st-form-item">
+                                                    <p class="label" style="padding-right: 16px;">{$GLOBALS['setMark-address']}</p>
+                                                    <input  type="text" maxlength="18" class="st-input" id="addrMark"/>
+                                                    <p class="tips" style="display: none;"></p>
+                                                    <p class="message" style="display: none">{$GLOBALS['correct-address']}</p>
+                                                </div>
+                                                <div  class="st-form-item">
+                                                    <p class="label" style="padding-right: 16px;">{$GLOBALS['select-addreType']}</p>
+                                                    <div tabindex="0" class="select-something" style="width: 350px;">
+                                                        <div class="select-box">
+                                                            <span>{$GLOBALS['account-address']}</span>
+                                                            <!-- <span class="icon"></span> -->
+                                                        </div>
+                                                        <!-- <ul class="options" style="width: 350px; display: none;"> -->
+                                                            <!-- <li class="item">账户地址</li> -->
+                                                            <!-- <li class="item">外部USDT地址</li> -->
+                                                        <!-- </ul> -->
+                                                    </div>
+                                                    <p class="tips" style="display: none;"></p>
+                                                    <p class="message" style="display: none;"></p>
+                                                </div>
+                                                <div  class="st-form-item">
+                                                    <p class="label changeTitle" style="padding-right: 16px;">{$_GET['coin']|strtoupper}{$GLOBALS['address']}</p>
+                                                    <input  type="text" maxlength="60" class="st-input" id="qianbao_addr"/>
+                                                    <p class="tips" style="display: none;"></p>
+                                                    <p class="message" style="display: none;">{$GLOBALS['correct-address']}</p>
+                                                </div>
+                                                
+                                                <!--<div  class="st-form-item">
+                                                    <p class="label" style="padding-right: 16px;">设置为信任地址</p>
+                                                    <div class="trust flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                                        <a class="st-switch"><span class=""></span></a>
+                                                        <p>向信任账户提现将不再输入资金密码，短信验证码以及 Google 验证码</p>
+                                                    </div>
+                                                    <p class="tips" style="display: none;"></p>
+                                                    <p class="message" style="display: none;"></p>
+                                                </div>-->
+                                                <div class="st-form-item"  style="display: none;">
+                                                    <p  class="label" style="padding-right: 16px;">{$GLOBALS['financePwd']}</p>
+                                                    <input  type="password" maxlength="6" placeholder="{$GLOBALS['place-financePwd']}" class="st-input"  />
+                                                    <p  class="tips" style="display: none;"></p>
+                                                    <p  class="message" style="display: none;">{$GLOBALS['correctOld-financePwd']}</p>
+                                                </div>
+                                                <div   class="short st-form-item"  style="display: none;">
+                                                    <p  class="label" style="padding-right: 16px;">{$GLOBALS['emailCode']}</p>
+                                                    <input  type="number" maxlength="6" placeholder="{$GLOBALS['emailCode']}" class="st-input"  />
+                                                    <div  class="send-SMS code" >
+                                                        <a  class="get-code button">
+                                                            <div >
+                                                                {$GLOBALS['send-emailCode']}
+                                                            </div></a>
+                                                        <!---->
+                                                    </div>
+                                                    <p  class="tips" style="display: none;"></p>
+                                                    <p  class="message" style="display: none;">{$GLOBALS['click-send']}！</p>
+                                                </div>
+                                                <!---->
+                                                <input type="submit" value="{$GLOBALS['sureBtn']}" style="margin-left: 208px;" class="addAdr" onclick="qianbao_up();"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <form class="form">
+                                    <div class="flex-box flex-direction-row flex-justify-center flex-align-item-start flex-wrap-nowrap">
+                                        <div class="st-form-item">
+                                            <p class="label" style="padding-right: 16px;"></p>
+                                            <!-- <a href="/account/withdraw/USDT?address=20568" class=""><button>确定</button></a> -->
+											<button onclick="tijiao()">{$GLOBALS['confirm']}</button>
+                                            <p class="tips" style="display: none;"></p>
+                                            <p class="message" style="display: none;"></p>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--底部内容-->
+                <include file="Public:footer"/>
+                <!--底部内容   end-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="__PUBLIC__/Home/js/newjs/addreSet.js"></script>
+<script>
+    /*当前页*/
+    $(".account-nav>a:nth-child(3)").addClass("active");
+	
+	/*选中地址*/
+	$(".site>div").click(function(){
+	    $(".site>div").removeClass("active");
+		$(this).addClass("active");
+		
+		
+		//console.log(vueNum)
+	});
+	function tijiao(){
+	var vueNum = $(".site>div.active").find("input").attr("value");
+	var coin = $('#coin').val();
+	if(vueNum == '' || vueNum == null){
+		layer.msg("{$GLOBALS['place-address']}",{icon:2});return false;
+	}
+	$.ajax({
+		url:'/Finance/dzac',
+		data:{id:vueNum},
+		type:'post',
+		datatype:'json',
+		success:function(data){
+			if(data.status == 1){
+				layer.msg(data.info,{icon:1});
+				window.location.href="/Finance/myzc/name/"+coin;
+			}else{
+				layer.msg(data.info,{icon:2});
+			}
+		}
+	});
+	}
+	function qianbao_up() {
+		var coinname    = "{$_GET['coin']}";
+        var addrMark = $("#addrMark").val();//地址备注
+        var addrType = $("#addrType").attr("ad");//地址类型0：账户，1：外部
+        var qianbao_addr = $("#qianbao_addr").val();//usdt地址
+        if($(".st-switch").hasClass("active")){
+            var isopen=1;//打开
+        }else{
+            var isopen=0;//关闭
+        }
+		var cnyout_paypassword = $('#cnyout_paypassword').val();//资金密码
+		var cnyout_moble_verify = $('#cnyout_moble_verify').val();//验证码
+
+		
+		/*if (coinname == "" || coinname == null) {
+			layer.tips('请选择币种', '#qianbao_coinname', {tips: 2});
+			return false;
+		}*/
+		if (addrMark == "" || addrMark == null) {
+			layer.tips("{$GLOBALS['qianbao-mark']}", '#addrMark', {tips: 2});
+			return false;
+		}
+		if (qianbao_addr == "" || qianbao_addr == null) {
+			layer.tips("{$GLOBALS['qianbao-address']}", '#qianbao_addr', {tips: 2});
+			return false;
+		}
+		//alert('qq='+cnyout_paypassword);return;
+		if(isopen==1){
+			if(cnyout_paypassword=='' || cnyout_paypassword==null){
+				layer.tips("{$GLOBALS['place-financePwd']}", '#cnyout_paypassword', {tips: 2});
+				return false;
+			}
+			if(cnyout_moble_verify=='' || cnyout_moble_verify==null){
+				layer.tips("{$GLOBALS['6emailCode']}", '#cnyout_moble_verify', {tips: 2});
+				return false;
+			}
+		}
+		
+		$.post("{:U('User/upqianbao')}", {
+			coin: coinname,
+			name: addrMark,
+			addr: qianbao_addr,
+			isopen:isopen,
+			paypassword: cnyout_paypassword,
+			moble_verify:cnyout_moble_verify
+		}, function (data) {
+			if (data.status == 1) {
+				layer.msg(data.info, {icon: 1});
+				setTimeout(function(){
+						location.reload();
+						},3000)
+				
+			} else {
+				layer.msg(data.info, {icon: 2});
+				if (data.url) {
+					window.location = data.url;
+				}
+			}
+		}, "json");
+	}
+	
+	function delete_coin(id){
+		//alert(id);
+		var coin = $('#coin').val();
+		$.ajax({
+		url:'/Finance/delete_coin',
+		data:{id:id},
+		type:'post',
+		datatype:'json',
+		success:function(data){
+			if(data.status == 1){
+				layer.msg(data.info,{icon:1});
+				window.location.href="/Finance/mydz/coin/"+coin;
+			}else{
+				layer.msg(data.info,{icon:2});
+			}
+		}
+	});
+	}
+</script>
+
+</body>
+</html>

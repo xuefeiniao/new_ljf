@@ -1,0 +1,468 @@
+<include file="Publics:header-black"/>
+        <script src="/public/home/001_files/jquery-1.8.2.min.js"></script>
+        <script type="text/javascript" src="/zhisucom/js/layer.js"></script>
+        <!--//确认收款样式表-->
+        <style>
+            .header {
+                width: 100%;
+                height: 45px;
+                background: red;
+            }
+            
+            .footer {
+                margin: 0 auto;
+                width: 100%;
+                clear: both;
+                margin-bottom: -19px;
+                border-top: 1px solid #ddd;
+                z-index: 2;
+                position: relative;
+            }
+            .jilu{
+                overflow:hidden;
+                font-size:16px;
+                padding-bottom:20px;
+                border-bottom:1px solid #eee;
+                margin-bottom:20px;
+            }
+            .jilu1, .jilu2{
+                float:left;
+            }
+            .jilu1{
+                margin-right:300px;
+            }
+			
+            .jilu11 span:nth-child(1){
+                color:#666;
+                display:inline-block;
+                font-size:16px;
+            }
+            .jilu11 span:nth-child(2){
+                color:#333;
+            }
+            .jilu2 span:nth-child(1){
+                display:inline-block;
+                width:85px;
+                color:#666;
+            }
+            .jilu11, .jilu21{
+                margin-bottom:20px;
+            }
+            .jilu-mai-way{
+                font-size:16px;
+                margin-bottom:20px;
+            }
+
+            .jilu-mai-ways{
+                overflow:hidden;
+                color:#666;
+            }
+            .jilu-mai-ways>li{
+                float:left;
+                width:240px;
+                margin-right:60px;
+            }
+            .jilu-mai-ways li:nth-child(1){
+                margin-left:0;
+            }
+            .jilu-mai-ways .yinhang1{
+                color:#333;
+                padding-bottom:10px;
+                border-bottom:1px dashed #eee;
+               
+            }
+            .yinhang2{
+                width:220px;
+                border:1px solid #eee;
+                padding:10px 10px 20px;
+            }
+          .yinhang1{margin-bottom:8px;}
+          .yinhang212{
+          	margin-bottom:6px;
+          }
+            .yinhang1 span{
+                vertical-align:bottom;
+                margin-right:3px;
+            }
+            .yinhang21{
+                color:#666;
+                margin-bottom:6px;
+            }
+            .myacc-con .sectioncont .yinhang21, .myacc-con .sectioncont .yinhang212{
+                margin-bottom:2px;
+            }
+            .myacc-con .sectioncont .jilu-mai-way{
+                margin-bottom:4px;
+            }
+            .myacc-con .sectioncont .yinhang211{
+                margin-bottom:2px;
+                padding-top:0;
+            }
+            .myacc-con .sectioncont .yinhang213{
+                padding-top:0;
+            }
+            .yinhang211{
+                color:#666;
+                margin-bottom:20px;
+            }
+            .jilu-mai-ways{
+                margin-bottom:26px;
+            }
+            .weixin1{
+                width:160px;
+                height:160px;
+               
+            }
+            .weixin1 img{
+                width:100%;
+                height:100%;
+                /*display:block;*/
+                border:none;
+            }
+           .jilu-gonggao{
+                font-size:16px;
+                color:#333;
+                margin-bottom:40px;
+            }
+            .jilu-gonggao span:nth-child(1){
+                /*margin-right:14px;*/
+            }
+            .jilu-mai .jilu11 span:nth-child(1){
+                /*width:80px;*/
+            }
+            .jilu-liuyan{
+                font-size:16px;
+                margin-bottom:20px;
+            }
+            .jilu-liuyan textarea{
+                border: 1px solid #ccc;
+                
+                vertical-align:top;
+                margin-left:4px;
+                width:400px;
+                height: 100px;
+              padding:12px 10px;
+            }
+            .jilu-shang{
+                width:200px;
+                height:200px;
+                margin-bottom:20px;
+                margin-top:10px;
+              font-size:16px;
+            }
+            .jilu-shang{
+                width:100%;
+                height:100%;
+            }
+            .jilu-queren, .jilu-queren1{
+                width:150px;
+                background:#eee;
+                text-align:center;
+                /*line-height:40px;*/
+                margin-bottom:20px;
+                font-size:16px;
+                cursor:pointer;
+                border: 0;
+                outline: 0;
+                color: black;
+                border-radius: 5px;
+            }
+            .jilu-queren1{
+                cursor:pointer;
+            }
+        .main_content{
+            /*height: 900px !important;*/
+        }
+          body .main_content{border:none;}
+          #upimg img{width:100%;height:100%;}
+        </style>
+    </head>
+    
+    <body class="">
+    <!--
+        头部
+    -->
+	
+    <div class="header">
+
+    </div>
+        <div class="content">
+            <link href="/public/home/001_files/usercenter.css" rel="stylesheet" type="text/css">
+            <include file="Publics:leftbar"/>
+            <script type="text/javascript">
+</script>
+            <div class="main_content acc-m-con" stylle="height:900px;">
+                <div class="right_mcontent myacc-con">
+                    <div class="m_title"><h4>订单详情</h4></div>
+                    <div class="sectioncont">
+                        <ul class="jilu">
+                            <li class="jilu1">
+                                <p class="jilu11"><span>订单号：</span><span style="color: red">{$c2c.number}</span></p>
+                                <p class="jilu11"><span>币种：</span><span>{$c2c.market}</span></p>
+                                <p class="jilu11"><span>单价：</span><span>{$c2c.price}</span></p>
+                            </li>
+                            <li class="jilu2">
+                                <p class="jilu21"><span>订单时间：</span><span>{$c2c.paytime|date="Y-m-d H:i",###}</span></p>
+                                <p class="jilu21"><span>订单状态：</span><span>
+                                      <eq name="c2c['is_pay']" value="1">
+                                        <eq name="c2c['is_done']" value="1">
+                                            已完成
+                                            <else/>
+                                            <eq name="c2c['is_get']" value="1"> 已打款 <else/> 未打款 </eq>
+                                        </eq>
+                                    </eq>
+                                </span></p>
+                                <p class="jilu21"><span>打款金额：</span><span>{$c2c.cprice}</span></p>
+                            </li>
+                        </ul>
+
+                <!--卖家界面-->
+                    <if condition="$c2c['sid'] eq $uid">
+                        <div class="jilu-mai">
+                            <p class="jilu11"><span>买家姓名：<?php $res=M("user")->where("id=".$c2c['bid'])->find();echo $res['truename'];?></span></p>
+                            <p class="jilu-mai-way">支付方式：
+								<eq name="c2c['pay']" value="1">银行卡</eq>
+								<eq name="c2c['pay']" value="2">微信</eq>
+								<eq name="c2c['pay']" value="3">支付宝</eq>						
+							</p>
+                            <p class="jilu-gonggao"><span>买家留言：</span><span>{$c2c.message}</span></p>
+                            <if condition="$c2c['is_done'] eq 0">
+                                <if condition="$c2c['is_pay'] eq 1">
+                                    <eq name="c2c['is_get']" value="1">
+                                        <eq name="c2c['is_ts']" value="2">
+                                            <div>
+								 <div class="zhu-que-ren" style="background:#d45858;color:#fff;height:40px;width:200px;line-height:40px;text-align:center;font-size:16px;cursor:pointer;margin-left:100px;">订单投诉处理中</div>			
+											
+																				
+											</div>
+                                        <else/>
+                                            <div class="jilu-shang"> 买家打款凭证：<img style="width: 200px;height: 200px" src="{$c2c.img}" alt=""></div>
+                                            <input type="radio" class="is_ship1" name="is_ship" value="1" checked="checked" style="width:20px; ">已收到打款
+                                            <input type="radio" class="is_ship2" name="is_ship" value="2" style="width:20px; ">未收到款投诉<br/>
+                                     <!--       <input id="buyquery" type="button" class="jilu-queren" value="确认收款" style="width: 100px;height:40px;margin-top: 20px">  -->
+                                         <div id="buyquery" class="zhu-que-ren" style="background:#d45858;color:#fff;height:40px;width:200px;line-height:40px;text-align:center;font-size:16px;cursor:pointer;margin-left:100px;">确认收款</div>
+										</eq>
+                                     <else/>
+
+                                      	<div class="zhu-que-ren" style="background:#d45858;color:#fff;height:40px;width:200px;line-height:40px;text-align:center;font-size:16px;cursor:pointer;margin-left:100px;">等待买家打款</div>
+                                    </eq>
+                                </if>
+                            </if>
+
+                        </div>
+                    </if>
+                 <!--买家界面-->
+                    <if condition="$c2c['bid'] eq $uid">
+                        <div class="jilu-mai">
+                            <p class="jilu11"><span>卖家姓名：</span><span style="color:#333;font-size:16px;"><?php $res=M("user")->where("id=".$c2c['sid'])->find();echo $res['truename'];?></span></p>
+                          <p class="jilu-mai-way"><span style="color:#666;">支付方式：</span>
+						<!--  <span style="font-size:16px;">微信</span>  -->
+						  </p>
+                            <ul class="jilu-mai-ways">
+
+                               <if condition="$c2c['bank'] eq 1">
+									<?php $bank=M("user_bank")->where("userid=".$c2c['sid'])->order("addtime DESC")->find();?>
+                                    <li class="yinhang">
+                                        <p class="yinhang1" style="color:#666;"><input id="bank" <eq name="c2c['is_get']" value="1">disabled <eq name="c2c['pay']" value="1">checked</eq> </eq>  name="aplay" type="radio"  style="margin-right:6px;vertical-align:middle;"/>银行转账</p>
+                                        <div class="yinhang2">
+										
+                                            <p class="yinhang21" >开户姓名:　{$bank.bankuname}</p>
+                                            <p class="yinhang211">开户银行:　{$bank.bank}</p>
+                                            <p class="yinhang212">开户支行:　{$bank.bankaddr}</p>
+                                            <p class="yinhang213">开户卡号:　{$bank.bankcard}</p>
+                                        </div>
+                                    </li>
+                               </if>
+
+                                <if condition="$c2c['wechat'] eq 1">
+                                    <li class="weixin">
+                                        <p class="yinhang1" style="color:#666;">
+										
+											<input id="wechat"  name="aplay" type="radio" <eq name="c2c['is_get']" value="1">disabled <eq name="c2c['pay']" value="2">checked</eq> </eq>  style="margin-right:6px;vertical-align:middle;"/>
+											微信支付-扫描二维码
+									
+										</p>
+                                        <div class="weixin1">
+                                            <img src="__ROOT__/Upload/zhifu/{$res.weixin_img}" alt="">
+                                        </div>
+                                    </li>
+                                </if>
+                                <if condition="$c2c['alipay'] eq 1">
+                                    <li class="zhifubao">
+                                        <p class="yinhang1"><input id="alipay" name="aplay" type="radio" <eq name="c2c['is_get']" value="1">disabled <eq name="c2c['pay']" value="3">checked</eq> </eq>  style="margin-right:6px;vertical-align:middle;"/>支付宝支付-扫描二维码</p>
+                                        <div class="weixin1">
+                                            <img src="__ROOT__/Upload/zhifu/{$res.ali_img}" alt="">
+                                        </div>
+                                    </li>
+                                </if>
+                            </ul>
+                            <p class="jilu-gonggao"><span style="color:#666;">商家公告：</span><span style="color:#333;">付款时留言备注改交易订单号打款方式等信息。</span></p>
+                            <if condition="$c2c['is_done'] eq 0">
+                                <if condition="$c2c['is_pay'] eq 1">
+                                    <eq name="c2c['is_get']" value="1">
+                                        <eq name="c2c['is_ts']" value="2">
+											<div class="zhu-que-ren" style="background:#d45858;color:#fff;height:40px;width:200px;line-height:40px;text-align:center;font-size:16px;cursor:pointer;margin-left:100px;">订单投诉处理中</div>			
+                                        <else/>
+                                            <p class="jilu-gonggao"><span>留言内容：</span><span>{$c2c.message}</span></p>
+                                           <div class="jilu-shang" style="color:#666;margin-bottom:30px;"> 已上传打款凭证：<img style="width: 300px;height: 200px;vertical-align:top;margin-left:8px;" src="{$c2c.img}" alt=""></div>
+                                            <div class="zhu-que-ren" style="background:#d45858;color:#fff;height:40px;width:200px;line-height:40px;text-align:center;font-size:16px;cursor:pointer;margin-left:100px;">等待卖家确认收款</div>
+                                        </eq>
+
+                                    <else/>
+
+                                        
+                                      	<div class="jilu-liuyan" style="overflow:hidden;margin-bottom:30px;">
+                                            <label for="message" style="color:#666;display:block;float:left;margin-right:10px;">上传打款凭证：</label>
+                                          <div class="zhu-ping-zheng" style="width:150px;height:150px;background:#f3f3f3 url(/zhisucom/images/upimage.svg) no-repeat center;float:left;cursor:pointer;position:relative;" onclick="getElementById('inputfile').click()">
+                                          	 <div id="upimg" class="set_upload_img" style="display:none;position:absolute;top:0;left:0;width:150px;height:150px;"></div>
+                                          </div>
+                                           <input type="file" accept="image/gif, image/jpeg, image/jpg, image/png" id="inputfile" style="height:0;width:0;z-index: -1; position: absolute;left: 10px;top: 5px;" value=""/>
+                                        </div>
+                                      <div class="jilu-liuyan" style="margin-bottom:30px;">
+                                            <label for="message" style="color:#666;">留言：</label>
+                                            <textarea name="message" id="message" cols="30" rows="10"></textarea>
+                                        </div>
+                                      	<div id="btns" class="zhu-que-ren" style="background:#d45858;color:#fff;height:40px;width:200px;line-height:40px;text-align:center;font-size:16px;cursor:pointer;margin-left:100px;">确认打款</div>
+                                      	
+                                        <!--<div id="upimg" class="set_upload_img" style="display:none; margin-top: 5%; margin-left:-1%;"></div>
+                                        <img id="up_img" onclick="getElementById('inputfile').click()" style="cursor:pointer;max-width:500px;" title="" alt="" src="/Public/Admin/images/addimg.png"><div class="band_succ move" style="padding-left: 130px; margin-top: -48px;color: red !important;">
+                                        <i class="fa fa-check mr5"></i>请上传打款凭证，待商家审核！
+                                        <input type="file" accept="image/gif, image/jpeg, image/jpg, image/png" id="inputfile" style="height:0;width:0;z-index: -1; position: absolute;left: 10px;top: 5px;" value=""/>
+                                        <input id="btns" type="button" class="jilu-queren" value="确认打款">-->
+                                    </eq>
+                                </if>
+                            </if>
+
+                        </div>
+                    </if>
+                        <if condition="$c2c['is_done'] eq 1">
+                            <div class="jilu-shang" style="color:#666;"> 交易凭证：<img style="width: 300px;height: 200px;margin-top:-10px;vertical-align:top;" src="{$c2c.img}" alt=""></div>
+                            <div class="jilu-queren" style="width: 100%;height:40px;margin-top: 50px; line-height: 40px;background:none;text-align:left;cursor:normal;"><img style="vertical-align:middle;margin-right:10px;" src="/zhisucom/images/haveAll.png"/>交易完成</div>
+                        </if>
+                    </div>
+                </div>
+                <!-- right_mcontent -->
+            </div>
+            <!-- main content -->
+        </div>
+
+
+<script>
+    $(document).ready(function () {
+        $('#btns').click(function () {		
+			var a=0;			
+			if($("#bank").attr("checked")=="checked"){				
+				a=1;
+			}
+			if($("#wechat").attr("checked")=="checked"){				
+				a=2;
+			}			
+			if($("#alipay").attr("checked")=="checked"){				
+				a=3;
+			}			
+			if(a==0){
+				layer.msg('请选择支付方式', {icon: 2});
+				return false;
+			}			
+            //console.log(($("#upimg").children("ismg").eq(0).attr("src")));return;
+            //var numm = $('#numbb').val()
+            var paths = $("#upimg").children("img").eq(0).attr("src");
+            if(paths == "" || paths == null){
+                layer.msg('请上传打款凭证', {icon: 2});
+                return false;
+            }
+			
+		
+            $.post("{:U('c2c/confirm_pay')}", {
+                id:{$c2c.id},
+                message:$('#message').val(),
+                pay:a,
+                img:$("#upimg").children("img").eq(0).attr("src"),
+        }, function (data) {
+                if (data.status == 1) {
+                    layer.msg(data.msg, {icon: 1});
+                    window.location.reload();
+				
+                } else {
+                    layer.msg(data.msg, {icon: 2});
+                }
+            }, 'json');
+        });
+    });
+</script>
+
+<script>
+$(document).ready(function () {
+    //响应文件添加成功事件
+    $("#inputfile").change(function () {
+        //创建FormData对象
+        var data = new FormData();
+        //为FormData对象添加数据
+        $.each($('#inputfile')[0].files, function (i, file) {
+            data.append('upload_file' + i, file);
+        });
+        //发送数据
+        $.ajax({
+            url: '/c2c/upimg',
+            type: 'POST',
+            data: data,
+            cache: false,
+            contentType: false,		//不可缺参数
+            processData: false,		//不可缺参数
+            success: function (data) {
+                if (data.status=="1"){
+                    $('<img />', {
+                        src : '/Upload/idcard/' + data.url
+                    }).appendTo($('.set_upload_img'));
+                    $('.set_upload_img').show();
+                    layer.msg(data.msg,{icon:1});
+                }else{
+                    layer.msg(data.msg,{icon:2});
+                }
+            },
+            error: function () {
+                alert('上传出错');
+                $('.set_upload_img').hide();
+                //$(".loading").hide();	//加载失败移除加载图片
+            }
+        });
+    });
+});
+</script>
+
+<script>
+    $(document).ready(function(){
+        $("#buyquery").click(function(){
+
+        if($(".is_ship1").attr("checked")=="checked"){
+            var ts=$(".is_ship1").val();
+        }
+        if($(".is_ship2").attr("checked")=="checked")
+        {
+            var ts=$(".is_ship2").val();
+        }
+        $.ajax({
+            url:"/c2c/confirm_get",
+            type:'POST',
+            data:{is_ts:ts,id:{$c2c.id}},
+            dataType:"json",
+            success:function (res) {
+                 if(res.status==1){
+                     layer.msg(res.msg,{icon:1});
+                     window.location.reload();
+
+                 } else{
+                     layer.msg(res.msg,{icon:2});
+                     window.location.reload();
+                 }
+             }
+        });
+        });
+    });
+</script>
+
+    <include file="Publics:footer"/>
+        <script src="/public/home/001_files/footer.js"></script>
+    </body>
+
+</html>

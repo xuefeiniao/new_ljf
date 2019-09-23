@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="renderer" content="webkit">
+  		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>星空区块链模拟系统</title>
+		<link rel="stylesheet" type="text/css" href="/moni/admin/layui/css/layui.css"/>
+		<link rel="stylesheet" type="text/css" href="/moni/admin/css/admin.css"/>
+		<script type="text/javascript" src="/zhisucom/js/jquery.min.js"></script>
+
+	</head>
+	<body>
+		<div class="main-layout" id='main-layout'>
+			<!--侧边栏-->
+			<div class="main-layout-side">
+				<div class="m-logo">
+				</div>
+				<ul class="layui-nav layui-nav-tree" lay-filter="leftNav">
+				  <li class="layui-nav-item">
+				  	<a href="javascript:;" data-url="system.html" data-id='6' data-text="系统设置"><i class="iconfont">&#xe60b;</i>系统设置</a>
+				  </li>
+				</ul>
+			</div>
+			<!--右侧内容-->
+			<div class="main-layout-container">
+				<!--头部-->
+				<div class="main-layout-header">
+					<div class="menu-btn" id="hideBtn">
+						<a href="javascript:;">
+							<span class="iconfont">&#xe60e;</span>
+						</a>
+					</div>
+					<!--<ul class="layui-nav" lay-filter="rightNav">
+					  <li class="layui-nav-item"><a href="javascript:;" data-url="email905.html" data-id='4' data-text="邮件系统"><i class="iconfont">&#xe603;</i></a></li>
+					  <li class="layui-nav-item">
+					    <a href="javascript:;" data-url="admin-info.html" data-id='5' data-text="个人信息">超级管理员</a>
+					  </li>
+					  <li class="layui-nav-item"><a href="javascript:;">退出</a></li>
+					</ul>-->
+				</div>
+				<!--主体内容-->
+				<div class="layui-tab page-content-wrap">
+			
+			<div class="layui-tab-content">
+				
+				<div class="layui-tab-item layui-show">
+					<form action="updo" method="post" target="_Blank" class="layui-form" style="width: 90%;padding-top: 20px;">
+						<div class="layui-form-item">
+							<select id="market" name="market" lay-filter="status">
+								<option value="0">交易市场</option>
+								<option value="ib_bb">IB/BB</option>
+								<option value="btc_bb">BTC/BB</option>
+								<option value="eth_bb">ETH/BB</option>
+								<option value="eos_bb">EOS/BB</option>
+								<option value="ltc_bb">LTC/BB</option>
+								<option value="hpa_bb">HPA/BB</option>
+					
+								<option value="ib_usdt">IB/USDT</option>
+								<option value="btc_usdt">BTC/USDT</option>
+								<option value="eth_usdt">ETH/USDT</option>
+								<option value="eos_usdt">EOS/USDT</option>
+								<option value="ltc_usdt">LTC/USDT</option>
+								<option value="hpa_usdt">HPA/USDT</option> 
+								
+								<option value="ib_btc">IB/BTC</option>
+								<option value="eth_btc">ETH/BTC</option>
+								<option value="eos_btc">EOS/BTC</option>
+								<option value="ltc_btc">LTC/BTC</option>
+								<option value="hpa_btc">HPA/BTC</option>
+							</select>
+						</div>
+						
+						<div class="layui-form-item">
+							<label class="layui-form-label">最低价：</label>
+							<div class="layui-input-block">
+								<input id="price" type="text" name="minprice" autocomplete="off" class="layui-input" value="" placeholder="如：1000">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">最高价：</label>
+							<div class="layui-input-block">
+								<input id="price" type="text" name="maxprice" autocomplete="off" class="layui-input" value="" placeholder="如：8000">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">价格位数：</label>
+							<div class="layui-input-block">
+								<input id="price" type="text" name="flsp" autocomplete="off" class="layui-input" value="" placeholder="如：2">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">数量下限：</label>
+							<div class="layui-input-block">
+								<input id="num" type="text" name="minnum" required lay-verify="required" placeholder="如：300" autocomplete="off" class="layui-input" value="">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">数量上限：</label>
+							<div class="layui-input-block">
+								<input id="num" type="text" name="maxnum" required lay-verify="required" placeholder="如：1000" autocomplete="off" class="layui-input" value="">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">数量位数：</label>
+							<div class="layui-input-block">
+								<input id="num" type="text" name="fls" required lay-verify="required" placeholder="如：2" autocomplete="off" class="layui-input" value="">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">买卖选项：</label>
+							<div class="layui-input-block">
+								<input type="radio" name="type" value="1" title="买入" checked="">
+								<input type="radio" name="type" value="2" title="卖出">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<div class="layui-input-block">
+								<button id="s1" class="layui-btn layui-btn-normal" lay-submit lay-filter="siteInfo">立即提交</button>
+							</div>
+						</div>
+					</form>
+				</div>
+	                  
+			</div>
+		</div>
+		<script src="/moni/admin/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+
+		$(function () {
+		
+		
+		layui.use(['form', 'element'], function() {
+				var form = layui.form();
+				var element = layui.element();
+				form.render();
+				//监听信息提交
+				form.on('submit(siteInfo)', function(data) {
+				 
+			
+				});
+			});
+
+			
+			
+		});
+	</script>
+</body>
+</html>

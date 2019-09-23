@@ -1,0 +1,275 @@
+
+<!DOCTYPE html>
+<html dir="ltr" lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <!-- v14451 -->
+  <eq name="Think.session.lang" value="1">
+									<notempty name="coninfo['web_name']" value=" ">
+								
+										<title>{$coninfo['web_name']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="2">
+									<notempty name="coninfo['web_name_e']" value=" ">
+										<title>{$coninfo['web_name_e']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="3">
+									<notempty name="coninfo['web_name_en']" value=" ">
+										<title>{$coninfo['web_name_en']}</title>
+									</notempty>
+								</eq>
+
+  <meta name="csrf-param" content="authenticity_token" />
+  <meta name="csrf-token" content="" />
+  <link rel="canonical" href="" />
+
+<link rel="alternate" hreflang="zh" href="" />
+
+  <!-- Entypo pictograms by Daniel Bruce — www.entypo.com -->
+    <link data-n-head="true" rel="icon" type="image/x-icon" href="__PUBLIC__/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/newcss/style2.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/newcss/officialAd.css"/>
+    <script data-n-head="true" src="__PUBLIC__/Home/js/newjs/jquery-3.3.1.min.js"></script>
+   <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/newcss/accountMsg.css" media="all"/>
+
+
+
+    <!--[if lt IE 9]>
+  <script>
+    //Enable HTML5 elements for <IE9
+    'abbr article aside audio bdi canvas data datalist details dialog \
+    figcaption figure footer header hgroup main mark meter nav output \
+    progress section summary template time video'.replace(/\w+/g,function(n){document.createElement(n)});
+  </script>
+<![endif]-->
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+
+  <script type="text/javascript" src="__PUBLIC__/Home/js/newjs/style.js"></script>
+</head>
+<body class="" style="position:relative">
+ <!--  <header class="header">
+  <div class="logo">
+      <a href="/Index/index">
+      <img src="/Upload/public/{$web_logo}" alt="{$GLOBALS['logo']}">
+      </a>
+  </div>
+</header> -->
+<include file="Public:header1"/>
+
+  <main role="main">
+    <div class="container-divider"></div>
+<div class="container" style="margin-top:100px;">
+  <nav class="sub-nav">
+    <ol class="breadcrumbs">
+  
+    <li title="{$GLOBALS['company-name']}">
+      
+        <a href="/Index/index">{$GLOBALS['company-name']}</a>
+      
+    </li>
+  
+    <li title="官方公告">
+      
+        <a href="/Article/index">{$GLOBALS['office-notice']}</a>
+      
+    </li>
+  
+    <!-- <li title="永续合约交易公告">
+      
+        永续合约交易公告
+      
+    </li> -->
+  
+</ol>
+
+    <!-- <form role="search" class="search" data-search="" action="/hc/zh-cn/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="&#x2713;" /><input type="search" name="query" id="query" placeholder="搜索" aria-label="搜索" /></form> -->
+  </nav>
+
+  <div class="section-container" >
+    <section class="section-content" style="margin-bottom:400px;">
+      <header class="page-header">
+        <h1>
+          {$GLOBALS['office-notice']}
+          
+        </h1>
+       <!--  <div class="section-subscribe dropdown" aria-haspopup="true">
+  <a class="dropdown-toggle" role="button" data-auth-action="signin" aria-selected="false" title="打开登录对话框" href="#">关注</a>
+  <span class="dropdown-menu" role="menu" aria-expanded="false">
+      <a rel="nofollow" role="menuitem" data-method="post" href="">新文章</a>
+      <a rel="nofollow" role="menuitem" data-method="post" href="">新文章和评论</a>
+  </span>
+</div> -->
+
+        
+      </header>
+
+
+      
+        <ul class="article-list">
+            <volist name="news" id='vo'>
+              <eq name="Think.session.lang" value="1">
+				  <notempty name="vo['title']" value=" ">
+				   <li class="article-list-item  article-promoted">
+					<span data-title="{$GLOBALS['recommend-article']}" class="icon-star"></span>
+				  
+				  <a href="/Article/detail/id/{$vo['id']}" class="article-list-link">{$vo['title']}</a>
+				  </li>
+				  </notempty>
+			  </eq>
+			  
+			  <eq name="Think.session.lang" value="2">
+				  <notempty name="vo['title_e']" value=" ">
+				   <li class="article-list-item  article-promoted">
+					<span data-title="{$GLOBALS['recommend-article']}" class="icon-star"></span>
+				  
+				  <a href="/Article/detail/id/{$vo['id']}" class="article-list-link">{$vo['title_e']}</a></li>
+				  </notempty>
+			  </eq>
+			  
+			  <eq name="Think.session.lang" value="3">
+				  <notempty name="vo['title_en']" value=" ">
+				   <li class="article-list-item  article-promoted">
+					<span data-title="{$GLOBALS['recommend-article']}" class="icon-star"></span>
+				  
+				  <a href="/Article/detail/id/{$vo['id']}" class="article-list-link">{$vo['title_en']}</a></li>
+				  </notempty>
+			  </eq>
+            
+            </volist>
+			
+			
+            <!-- <li class="article-list-item  article-promoted">
+              
+                <span data-title="被推荐的文章" class="icon-star"></span>
+              
+              <a href="/Article/detail" class="article-list-link">关于提前恢复永续合约交易手续费的公告  </a>
+            </li>
+          
+            <li class="article-list-item  article-promoted">
+              
+                <span data-title="被推荐的文章" class="icon-star"></span>
+              
+              <a href="/Article/detail" class="article-list-link">关于永续合约交易在持仓状态下支持余额转出的公告</a>
+            </li>
+          
+            <li class="article-list-item  article-promoted">
+              
+                <span data-title="被推荐的文章" class="icon-star"></span>
+              
+              <a href="/Article/detail" class="article-list-link">【易尔国际永续合约业务0手续费震撼开启】</a>
+            </li>
+          
+            <li class="article-list-item  article-promoted">
+              
+                <span data-title="被推荐的文章" class="icon-star"></span>
+              
+              <a href="/Article/detail" class="article-list-link">关于上线ETC永续合约的公告</a>
+            </li>
+          
+            <li class="article-list-item  article-promoted">
+              
+                <span data-title="被推荐的文章" class="icon-star"></span>
+              
+              <a href="/Article/detail" class="article-list-link">关于上线XRP永续合约的公告</a>
+            </li>
+          
+            <li class="article-list-item  article-promoted">
+              
+                <span data-title="被推荐的文章" class="icon-star"></span>
+              
+              <a href="/Article/detail" class="article-list-link">关于永续合约降低交易手续费的公告</a>
+            </li>
+          
+            <li class="article-list-item  article-promoted">
+              
+                <span data-title="被推荐的文章" class="icon-star"></span>
+              
+              <a href="/Article/detail" class="article-list-link">永续合约业务上线可调节杠杆功能</a>
+            </li>
+          
+            <li class="article-list-item  article-promoted">
+              
+                <span data-title="被推荐的文章" class="icon-star"></span>
+              
+              <a href="/Article/detail" class="article-list-link">100倍永续合约业务新增BCH、ETH、LTC品种</a>
+            </li>
+          
+            <li class="article-list-item ">
+              
+              <a href="/Article/detail" class="article-list-link">易尔国际交易所100倍永续合约业务上线Android版APP</a>
+            </li>
+          
+            <li class="article-list-item ">
+              
+              <a href="/Article/detail" class="article-list-link">易尔国际交易所100倍永续合约业务上线iOS版APP</a>
+            </li>
+          
+            <li class="article-list-item ">
+              
+              <a href="/Article/detail" class="article-list-link">易尔国际永续合约业务服务维护公告</a>
+            </li> -->
+          
+        </ul>
+      
+
+      
+    </section>
+  </div>
+</div>
+
+  </main>
+
+  <!-- <footer class="footer">
+  <div class="footer-inner" style="display:none">
+    <a title="主页" href="">{$GLOBALS['company-name']}</a>
+
+    <div class="footer-language-selector">
+      
+        <div class="dropdown language-selector" aria-haspopup="true">
+          <a class="dropdown-toggle">
+            简体中文
+          </a>
+          <span class="dropdown-menu dropdown-menu-end" role="menu">
+            
+              <a href="" dir="ltr" rel="nofollow" role="menuitem">
+                English (US)
+              </a>
+            
+              <a href="" dir="ltr" rel="nofollow" role="menuitem">
+                日本語
+              </a>
+            
+              <a href="" dir="ltr" rel="nofollow" role="menuitem">
+                한국어
+              </a>
+            
+              <a href="" dir="ltr" rel="nofollow" role="menuitem">
+                Русский
+              </a>
+            
+          </span>
+        </div>
+      
+    </div>
+  </div>
+</footer>
+ -->
+
+ <!--底部内容-->
+<include file="Public:footer"/>
+<!--底部内容   end-->
+
+  <script>
+      /*语言选择弹框*/
+      $(".dropdown-toggle").click(function () {
+          if($(".dropdown-menu").hasClass("dropdown-menu-top")){
+              $(".dropdown-menu").removeClass("dropdown-menu-top").attr("aria-expanded","false");
+          }else{
+              $(".dropdown-menu").addClass("dropdown-menu-top").attr("aria-expanded","true");
+          }
+      });
+  </script>
+</body>
+</html>

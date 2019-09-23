@@ -1,0 +1,293 @@
+<include file="Base:header"/>
+<title>币种评论</title>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 交易 <span class="c-gray en">&gt;</span> 币种评论 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">
+	<div class="mt-20">
+		<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="del(this,'idAll')" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> </span> <span class="r">共有数据：<strong>{$count}</strong> 条</span> </div>
+		<table class="table table-border table-bordered table-bg table-hover table-sort table-responsive">
+			<thead>
+			<tr>
+				<th class="row-selected row-selected"><input class="check-all" type="checkbox"/></th>
+				<th class="">ID</th>
+				<th class="">用户名</th>
+				<th class="">币种</th>
+				<th class="">内容</th>
+				<th class="">超级赞</th>
+				<th class="">太中庸</th>
+				<th class="">瞎扯淡</th>
+				<th class="">时间</th>
+			</tr>
+			</thead>
+			<tbody>
+			<notempty name="list">
+				<volist name="list" id="vo">
+					<tr>
+						<td><input class="ids" type="checkbox" name="id[]" value="{$vo.id}"/></td>
+						<td>{$vo.id}</td>
+
+						<td>{$vo['username']}</td>
+						<td>{$vo['coinname']}</td>
+						<td>{$vo['content']}</td>
+						<td>{$vo['cjz']}</td>
+						<td>{$vo['tzy']}</td>
+						<td>{$vo['xcd']}</td>
+						<td>{$vo.addtime|addtime}</td>
+					</tr>
+				</volist>
+				<else/>
+				<td colspan="12" class="text-center">Oh! 暂时还没有内容!</td>
+			</notempty>
+			</tbody>
+		</table>
+	</div>
+</div>
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="__PUBLIC__/rs/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/rs/lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/rs/static/h-ui/js/H-ui.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/rs/static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="__PUBLIC__/rs/lib/My97DatePicker/4.8/WdatePicker.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/rs/lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/rs/lib/laypage/1.2/laypage.js"></script>
+<script type="text/javascript">
+// $('.table-sort').dataTable({
+// 	"aaSorting": [[ 1, "desc" ]],//默认第几个排序
+// 	"bStateSave": true,//状态保存
+// 	"pading":false,
+// 	"aoColumnDefs": [
+// 	  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
+// 	  {"orderable":false,"aTargets":[0,4]}// 不参与排序的列
+// 	]
+// });
+
+
+//刷新页面
+function refresh(){
+window.location.reload();//强制刷新
+}
+
+/*添加*/
+function add(title,url,w,h){
+	var index = layer.open({
+		type: 2,
+		title: title,
+		content: url
+	});
+	layer.full(index);
+}
+
+/*编辑*/
+function edit(title,url){
+	var index = layer.open({
+		type: 2,
+		title: title,
+		content: url
+	});
+	layer.full(index);
+}
+
+/*删除*/
+function del(obj,id){
+
+	var check = document.getElementsByName("id[]");
+	console.log(check);
+
+
+		var len=check.length;
+		var idAll="";
+		for(var i=0;i<len;i++){
+
+
+		if(check[i].checked){
+				idAll+=check[i].value+",";
+
+			}
+
+			console.log(idAll);
+
+	}
+
+
+
+
+	layer.confirm('确认要删除吗？',function(index){
+		$.ajax({
+			type: 'POST',
+			url: '{:U('Article/status',array('type'=>'del'))}',
+			data:{id:idAll},
+			dataType: 'json',
+			success: function(data){
+				console.log(id);
+
+				$(obj).parents("tr").remove();
+				layer.msg('已删除!',{icon:1,time:1000});
+				refresh();
+			},
+			error:function(data) {
+				console.log(data.msg);
+			},
+		});
+ 
+	});
+
+
+
+}
+
+
+/*下架*/
+function stop(obj,id){
+	layer.confirm('确认要禁用吗？',function(index){
+		$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="start(this,id)" href="javascript:;" title="发布"><i class="Hui-iconfont">&#xe603;</i></a>');
+		$(obj).parents("tr").find(".td-status").html('<span class="label label-defaunt radius">已禁用</span>');
+		$(obj).remove();
+	
+		$.ajax({
+			type: 'POST',
+			url: '{:U('Article/status',array('type'=>'forbid'))}',
+			data:{id:id},
+			dataType: 'json',
+			success: function(data){
+				//$(obj).parents("tr").remove();
+				layer.msg('已禁用!',{icon:5,time:1000});
+			},
+			error:function(data) {
+				console.log(data.msg);
+			},
+		});		
+	});
+}
+
+/*发布*/
+function start(obj,id){
+	layer.confirm('确认要发布吗？',function(index){
+		$(obj).parents("tr").find(".td-manage").prepend('<a style="text-decoration:none" onClick="stop(this,id)" href="javascript:;" title="禁用"><i class="Hui-iconfont">&#xe6de;</i></a>');
+		$(obj).parents("tr").find(".td-status").html('<span class="label label-success radius">已发布</span>');
+		$(obj).remove();
+		
+		$.ajax({
+			type: 'POST',
+			url: '{:U('Article/status',array('type'=>'resume'))}',
+			data:{id:id},
+			dataType: 'json',
+			success: function(data){
+				//$(obj).parents("tr").remove();
+				layer.msg('已发布!',{icon:1,time:1000});
+			},
+			error:function(data) {
+				console.log(data.msg);
+			},
+		});		
+	});
+}
+
+
+
+</script> 	
+</body>
+</html>
+<!-- <div id="main-content">
+	<div id="top-alert" class="fixed alert alert-error" style="display: none;">
+		<button class="close fixed" style="margin-top: 4px;">&times;</button>
+		<div class="alert-content">警告内容</div>
+	</div>
+	<div id="main" class="main">
+		<div class="main-title-h">
+			<span class="h1-title">币种评论</span>
+		</div>
+		<div class="cf">
+			<div class="fl">
+				<button class="btn ajax-post confirm btn-danger " url="{:U('Trade/commentStatus',array('type'=>'del'))}" target-form="ids">删 除
+				</button>
+			</div>
+			<div class="search-form fr cf">
+				<div class="sleft">
+					<form name="formSearch" id="formSearch" method="get" name="form1">
+						<select style="width: 160px; float: left; margin-right: 10px;" name="coinname" class="form-control">
+							<option value=""
+							<empty name="Think.get.coinname">selected</empty>
+							>交易币种</option>
+							<volist name="C['coin']" id="vo">
+								<option value="{$vo['name']}"
+								<eq name="vo['name']" value="$Think.get.coinname">selected</eq>
+								>{$vo['title']}</option>
+							</volist>
+						</select>
+						<select style=" width: 160px; float: left; margin-right: 10px;" name="field" class="form-control">
+							<option value="username"
+							<eq name="Think.get.field" value="username">selected</eq>
+							>用户名</option>
+						</select>
+						<input type="text" name="name" class="search-input form-control  " value="{$Think.get.name}" placeholder="请输入查询内容" style="">
+						<a class="sch-btn" href="javascript:;" id="search"> <i class="btn-search"></i> </a>
+					</form>
+					<script>
+						//搜索功能
+						$(function () {
+							$('#search').click(function () {
+								$('#formSearch').submit();
+							});
+						});
+						//回车搜索
+						$(".search-input").keyup(function (e) {
+							if (e.keyCode === 13) {
+								$("#search").click();
+								return false;
+							}
+						});
+					</script>
+				</div>
+			</div>
+		</div>
+		<div class="data-table table-striped">
+			<table class="">
+				<thead>
+				<tr>
+					<th class="row-selected row-selected"><input class="check-all" type="checkbox"/></th>
+					<th class="">ID</th>
+					<th class="">用户名</th>
+					<th class="">币种</th>
+					<th class="">内容</th>
+					<th class="">超级赞</th>
+					<th class="">太中庸</th>
+					<th class="">瞎扯淡</th>
+					<th class="">时间</th>
+				</tr>
+				</thead>
+				<tbody>
+				<notempty name="list">
+					<volist name="list" id="vo">
+						<tr>
+							<td><input class="ids" type="checkbox" name="id[]" value="{$vo.id}"/></td>
+							<td>{$vo.id}</td>
+
+							<td>{$vo['username']}</td>
+							<td>{$vo['coinname']}</td>
+							<td>{$vo['content']}</td>
+							<td>{$vo['cjz']}</td>
+							<td>{$vo['tzy']}</td>
+							<td>{$vo['xcd']}</td>
+							<td>{$vo.addtime|addtime}</td>
+						</tr>
+					</volist>
+					<else/>
+					<td colspan="12" class="text-center">Oh! 暂时还没有内容!</td>
+				</notempty>
+				</tbody>
+			</table>
+			<div class="page">
+				<div>{$page}</div>
+			</div>
+		</div>
+	</div>
+</div>
+<include file="Public:footer"/>
+<block name="script">
+	<script type="text/javascript" charset="utf-8">
+		//导航高亮
+		highlight_subnav("{:U('Trade/comment')}");
+	</script>
+</block> -->

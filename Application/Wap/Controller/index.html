@@ -1,0 +1,211 @@
+﻿<include file="Base:header1"/>
+<include file="Base:header"/>
+<link rel="stylesheet" href="/public/home/ss/css/otc.css">
+
+<div class="page-main">
+    <div class="container">
+
+        <include file="Otc/lst" />
+
+        <script>
+            $(function(){
+
+                $("#m-asset-tabs a").on('click', function(){
+                    var target = $(this).attr('href');
+                    $("#m-asset-tabs a").removeClass('on');
+                    $(this).addClass('on');
+                    $("#M_userDrop2 .tab-content").removeClass('active');
+                    $(target).addClass('active');
+                    // if (target == '#m-userLeverAssets') {
+                    //     //$("#pay-action").hide();
+                    //     window.assetType = 'lever';
+                    //     ASSET.changeUserAssetType('lever');
+                    // } else {
+                    //     window.assetType = 'spot';
+                    //     ASSET.changeUserAssetType('spot');
+                    //     //$("#pay-action").show();
+                    // }
+                    return false;
+                });
+                $('#fund-dropdown').on('mouseenter', function(e){
+                    $(this).addClass('open');
+                });
+                $('#fund-dropdown').on('mouseleave', function(e){
+                    var _this = $(this);
+                    setTimeout(function () {
+                        _this.removeClass('open');
+                    }, 300);
+                });
+
+                $('body').on('click', function (e) {
+                    if (!$('#fund-dropdown').is(e.target)
+                        && $('#fund-dropdown').has(e.target).length === 0
+                    ) {
+                        $('#fund-dropdown').removeClass('open');
+                    }
+                });
+
+                $(".topmenuhover .titlelist a").on('mouseenter',function(){
+                    $(this).addClass("on").siblings("a").removeClass("on");
+                    $(this).parents(".topmenuhover").find("ul").eq($(this).index()).addClass("on").siblings("ul").removeClass("on");
+                })
+
+                $(".down-market-table .d-hd a").on('mouseenter',function(){
+                    $(this).addClass("on").siblings("a").removeClass("on");
+                    $(this).parents(".down-market-table").find("table").eq($(this).index()).addClass("on").siblings("table").removeClass("on");
+                    var coin = $(this).data('coin');
+                    var channel = "top_all_" + coin;
+                    if (webSocket && channel != oldTopallChannel) {
+                        MARKET.closeTopallSocket(oldTopallChannel);
+                        webSocket.sendMessage("{'event':'addChannel','channel':'" + channel + "','isZip':'" + isZipData() + "'}");
+                    }
+                    oldTopallChannel = channel;
+                });
+
+                $(".top-market-show").on('mouseleave', function(){
+                    var moneyType = "";
+                    if (webSocket && moneyType) {
+                        var channel = "top_all_" + moneyType.toLowerCase();
+                        if (channel != oldTopallChannel) {
+                            MARKET.closeTopallSocket(oldTopallChannel);
+                            webSocket.sendMessage("{'event':'addChannel','channel':'" + channel + "','isZip':'" + isZipData() + "'}");
+                        }
+                        oldTopallChannel = channel;
+                    }
+                });
+
+
+                $(".cnyonoff").on("click",function(){
+                    $(this).toggleClass("on");
+                    $(".nocny").toggleClass("on");
+                    $(".iscny").toggleClass("on");
+                })
+
+                //定时检查
+//                var init = window.setInterval("checkNewOrder()",1000);
+
+            })
+        </script>
+
+
+        <div class="page-content" style="padding: 5px;margin-top:-17px;">
+            <div class="sel-coin">
+                <div class="title"><i></i>法币分类</div>
+                <div class="coin-group">
+
+                    <a href="/otc/trade/qc_cny?type=2" class="btn active">CNY</a>
+                </div>
+
+                <a href="/otc/mad/publishSell" class="publishbtn">发布广告</a>
+
+            </div>
+            <div class="tabs order-type">
+                <a href="/otc/trade/qc_cny?type=2" class="active">我要买入{$vo.names}</a>
+                <a href="/otc/trade/qc_cny?type=1" class="">我要卖出{$vo.names}</a>
+            </div>
+            <div class="tab-content">
+                <div class="table-wrap">
+                    <table class="table table-noborder c2c-table">
+                        <thead>
+                        <tr>
+                            <td class="user" width="15%">用户昵称</td>
+                            <td class="" width="5%">广告ID</td>
+                            <!--<td class="tran-num" width="7%">近30天成交</td>
+                            <td class="pay-method" width="10%">付款方式</td>-->
+                            <td class="num" width="10%"><a class="sort " id="numsort">数量<span></span></a></td>
+                            <td class="price" width="10%"><a class="sort up" id="priceSort">价格<span></span></a></td>
+                            <td class="price" width="18%">备注（MEMO）</td>
+                            <td class="action" width="10%">操作</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <volist name="list" id="vo">
+                        <tr>
+                            <td class="user is-auth">
+
+                                <a href="/otc/user/1029327">
+                                    <div class="avatar"></div>
+                                    <div class="username" data-original-title="" title="">
+                                        {$vo.username}
+
+
+                                        <br>
+                                        <span class="auth-band"></span>
+
+                                    </div>
+                                </a>
+                            </td>
+                            <td>{$vo.id}</td>
+                           <!-- <td class="tran-num">172</td>
+                            <td class="pay-method">
+
+                                <i class="pm-icon pm-unionpay"></i>
+
+                                <i class="pm-icon pm-alipay"></i>
+
+                            </td>-->
+                            <td class="num">{$vo.num|round=4} </td>
+                            <td class="price">
+                                {$vo.price|round=4} CNY <br>
+                                <!--<span>1000-1000000</span>-->
+                            </td>
+                            <td style="color: #7E7E7E;text-align: left">
+                                {$vo.remark}
+                                <!--在线接单中.... 发财热线 xxxx2013574-->
+                            </td>
+                            <td class="action">
+
+                                <a class="btn btn-buy" href="{:U('otc/orderlog',array('id'=>$vo['id']))}">买入{$vo.names}</a>
+
+                            </td>
+                        </tr>
+                        </volist>
+
+                        </tbody>
+
+                        <tfoot>
+                        <!--<tr>
+                            <td colspan="8">
+                                <div id="page_navA" class="page_nav">
+                                    <div class="con"> <a class="Pbtn next" href="/otc/trade/qc_cny?type=2&amp;pageNo=2&amp;numSort=0">下一页 <i>&gt;</i></a> </div>
+                                </div>
+                            </td>
+                        </tr>-->
+                        </tfoot>
+
+                    </table>
+                    <style>
+                        .pages a{border: 1px solid #e7251d;color: #e7251d;}
+                        .pages a:hover{color: #f4433680;background:#f4433680 }
+                        .pages .current{background: #f4433680;border: 1px solid #e7251d;}
+                    </style>
+                    <div class="pages">{$page}</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+    <include file="Base:footer"/>
+
+
+  <script>
+$(".toolbar .item-online").click(function(){
+    $("#chatBtn").trigger("click");
+})
+</script>
+
+</div>
+<script type="text/javascript" src="/public/home/ss/js/index.js"></script>
+<script type="text/javascript" src="/public/home/ss/js/baidupush.js"></script>
+
+
+</body>
+</html>

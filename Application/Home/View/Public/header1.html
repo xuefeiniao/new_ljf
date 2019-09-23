@@ -1,0 +1,165 @@
+
+<style>
+.common-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    min-width: 1300px;
+    width: 100%;
+    border-bottom: 1px solid #c5d4ed;
+    -webkit-box-shadow: 0 3px 8px hsla(0, 0%, 80%, .5);
+    box-shadow: 0 3px 8px hsla(0, 0%, 80%, .5);
+    padding: 18.5px 42px 18.5px 50px;
+    background: #fff
+}
+
+.common-header .logo {
+    display: block;
+    width: 168px;
+    height: 46px;
+    /*background: url(/Public/Home/image/common/logo_be.png) no-repeat;*/
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    text-indent: -9999px
+}
+
+/*.common-header .logo.cn {*/
+    /*background-image: url(/Public/Home/image/common/logo_bc.png)*/
+/*}*/
+
+/*.common-header .logo.en {*/
+    /*background-image: url(/Public/Home/image/common/logo_be.png)*/
+/*}*/
+
+.common-header .line {
+    width: 1px;
+    background: #e2eafb
+}
+
+.common-header .line-10 {
+    margin: 0 20px;
+    height: 10px
+}
+
+.common-header .line-24 {
+    margin: 0 40px;
+    height: 24px
+}
+
+.common-header a {
+    font-size: 14px;
+    color: #6c85ae
+}
+
+.common-header a:hover {
+    color: #0976d9;
+}
+.common-header a.active {
+    color: #0976d9;
+}
+
+.common-header .account-nav {
+    margin-right: 60px
+}
+
+.common-header .account-nav a, .common-header .main-nav a {
+    margin-right: 30px
+}
+
+.common-header .account-nav a:last-child, .common-header .main-nav a:last-child {
+    margin-right: 0
+}
+
+.common-header .blank {
+    -webkit-box-flex: 1;
+    -moz-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1
+}
+
+@media screen and (max-width: 1500px) {
+    .common-header {
+        padding: 18.5px 28px
+    }
+
+    .common-header .line-24 {
+        margin: 0 20px
+    }
+
+    .common-header .account-nav a, .common-header .main-nav a {
+        margin-right: 20px
+    }
+}
+</style>
+
+<div class="common-header flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" style="background:#12122a;"> 
+    <a href="/Index/index" class="logo cn" style="background-image: url('/Upload/public/{$web_logo}'); width:115px;height:45px;"></a>
+    <div class="line line-24"></div>
+    <div class="main-nav flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+        <a onclick="cy()">{$GLOBALS['c2c']}</a>
+        <a href="/Trade/index/market/eth_jeff">{$GLOBALS['trade']}</a>
+        <a href="/Lever/borrowMoney/market/usdt_jeff">{$GLOBALS['borrowMoney']}</a>
+		<a href="/Article/officialAdModal" target="_blank">{$GLOBALS['office-notice']}</a>
+        <!---->
+        <!---->
+    </div>
+    <div class="blank"></div>
+    <div class="account-nav flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+        <a href="/Finance/qianbao" class="nuxt-link-exact-active nuxt-link-active">{$GLOBALS['qianbao']}</a>
+        <a href="/Finance/myzr/name/jeff" class="">{$GLOBALS['recharge']}</a>
+        <a href="/Finance/myzc/name/jeff" class="">{$GLOBALS['withdraw']}</a>
+        <a href="/Article/index" target="_blank">{$GLOBALS['article']}</a>
+    </div>
+    <if condition="$_SESSION['userName'] neq ''">
+        <a class="nuxt-link-exact-active nuxt-link-active" href="/User/index">{$GLOBALS['user']}：<span id="userName">{$_SESSION['userName']}</span></a>
+        <div class="line line-10"></div>
+        <a onclick="loginout();">{$GLOBALS['loginout']}</a>
+    <else/>
+        <a style="margin-left: 30px;" href="/Login/register?login">{$GLOBALS['login']}</a>
+        <div class="line line-10"></div>
+        <a href="/Login/register?register">{$GLOBALS['register']}</a>
+    </if>
+
+</div>
+
+<script>
+function loginout(){
+						$.post("/Login/loginout",{},function(data){
+							if(data.status==1){
+								layer.msg(data.info,{icon:1});
+								window.setTimeout("window.location='/Index'",1000);
+							}
+						},"json");
+					}
+    /*隐藏手机号中间4位*/
+    var phone = $('#userName').html();
+    var mphone = phone.substr(0, 3) + '****' + phone.substr(7);
+    $('#userName').html(mphone);
+</script>
+<script>
+					function cy(){
+						var uid = "{$uid}";
+						var zhifubao = "{$c2c_user['zhifubao']}";
+						var weixin = "{$c2c_user['weixin']}";
+						var bank = "{$c2c_user['bank']}";
+						var paypwd = "{$c2c_user['paypassword']}";
+						//alert(zhifubao);
+						if(uid>0){
+							if((zhifubao == '' || zhifubao=='NULL')&&(weixin == '' || weixin=='NULL')&&(bank == '' || bank=='NULL')){
+								layer.msg('请设置收款方式', {icon: 2});
+								location.href="/User/myCenter";
+							}
+							else if(paypwd == "" || paypwd == "NULL"){
+								layer.msg('请设置资金密码', {icon: 2});
+								location.href="/User/resetFiancePwd";
+							}else{
+								location.href="/C2c/index/market/jeff/money/0";
+							}
+							
+						}else{
+							layer.msg('请先登录', {icon: 2});
+							location.href="/C2c/index/market/jeff/money/0";
+						}
+					}
+				</script>

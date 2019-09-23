@@ -1,0 +1,139 @@
+<include file="Base:header"/>
+<style>
+	.panel{
+		display:flex;
+	}
+	.panel-body{
+		width:70%;
+		margin-top:200px; 
+	}
+	.value{
+		font-size:12px;
+		padding-left:60px;
+		/*height:100px;*/
+	}
+</style>
+<body>
+
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <neq name='path.group' value=''><span class="c-gray en">&gt;</span>{$path['group']}</neq><neq name='path.title' value=''><span class="c-gray en">&gt;</span>{$path['title']}</neq><a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+</body>
+<div class="page-container">
+	<div id="top-alert" class="fixed alert alert-error" style="display: none;">
+		<button class="close fixed" style="margin-top: 4px;">&times;</button>
+		<div class="alert-content">警告内容</div>
+	</div>
+	<div class="cl pd-5 bg-1">
+		<span class="h1-title" style="width: 150px;line-height:30px;height:30px;display:block;float:left;">交易市场</span>
+
+		<select id="name-select" name="market" class="navbar-btn  form-control select select-default select-sm" style="width: 200px;display:block;float:left;">
+			<volist name="C['market']" id="vo">
+				<option value="{$vo['name']}"
+				<eq name="vo['name']" value="$market">selected</eq>
+				>{$vo['title']}					</option>
+			</volist>
+		</select>
+		
+	</div>
+	<div class="cl pd-5 bg-1 bk-gray mt-20">
+		<input type='text' id='new_price' class="navbar-btn  form-control select select-default select-sm" style="width: 200px;display:block;float:left;" placeholder='当前价'>
+		<input type='text' id='total_num' class="navbar-btn  form-control select select-default select-sm" style="width: 200px;display:block;float:left;" placeholder='执行次数'>
+		
+		
+	</div>
+	<div class="cl pd-5 bg-1 bk-gray mt-20">
+		<select id="iszhang-select" name="iszhang" class="navbar-btn  form-control select select-default select-sm" style="width: 200px;display:block;float:left;">
+			
+				<option value="1">涨</option>
+				<option value="2">跌</option>
+		</select>
+	</div>
+	<div class="cl pd-5 bg-1 bk-gray mt-20">
+		
+		<input type='text' id='min_price' class="navbar-btn  form-control select select-default select-sm" style="width: 200px;display:block;float:left;" placeholder='浮动最低价'>
+		<span style="float:left;margin-top: 7px;">-</span>
+		<input type='text' id='max_price' class="navbar-btn  form-control select select-default select-sm" style="width: 200px;display:block;float:left;" placeholder='浮动最高价'>
+		
+
+	</div>
+	
+	<div class="cl pd-5 bg-1 bk-gray mt-20">
+		
+		<input type='text' id='min_num' class="navbar-btn  form-control select select-default select-sm" style="width: 200px;display:block;float:left;" placeholder='挂单最低数量'>
+		<span style="float:left;margin-top: 7px;">-</span>
+		<input type='text' id='max_num' class="navbar-btn  form-control select select-default select-sm" style="width: 200px;display:block;float:left;" placeholder='挂单最高数量'>
+		
+	</div>
+	<div class="cl pd-5 bg-1 bk-gray mt-20">
+		
+		
+		<button class="btn btn-primary " onclick="chk_xin('{$market}');" style="     margin-left: 5px;">开始执行</button>
+
+	</div>
+
+</div>
+
+
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="__PUBLIC__/rs/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/rs/lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/rs/static/h-ui/js/H-ui.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/rs/static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="__PUBLIC__/rs/lib/My97DatePicker/4.8/WdatePicker.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/rs/lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/rs/lib/laypage/1.2/laypage.js"></script>
+<link href="__PUBLIC__/Admin/index_js/morris.js-0.4.3/morris.css" rel="stylesheet">
+<script src="__PUBLIC__/Admin/index_js/morris.js-0.4.3/morris.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/Admin/index_js/morris.js-0.4.3/raphael-min.js" type="text/javascript"></script>
+<script>
+	/*$("#name-select").change(function () {
+		var coinname = $("#name-select option:selected").val();
+		var new_price = $("#new_price").val();
+		var total_num = $("#total_num").val();
+		window.location = '/Admin/Tools/automarket/market/' + coinname + '/new_price/'+new_price+'/total_num/'+total_num+'.html';
+	});*/
+
+
+	function chk_xin($market,$new_price='',$total_num='') {
+		var coinname = $("#name-select option:selected").val();
+		var new_price = $("#new_price").val();
+		var total_num = $("#total_num").val();
+		var iszhang = $("#iszhang-select option:selected").val();
+		var min_price = $("#min_price").val();
+		var max_price = $("#max_price").val();
+		var min_num = $("#min_num").val();
+		var max_num = $("#max_num").val();
+		//alert('min_price='+min_price+'&max_price='+max_price);return;
+		if(min_price=='' || max_price=='' || (min_price>max_price)){
+			layer.msg('浮动价格区间不正确', {icon: 2});return;
+		}
+		if(min_num=='' || max_num=='' || (min_num>max_num)){
+			layer.msg('挂单数量区间不正确', {icon: 2});return;
+		}
+		layer.msg("开始执行了", {icon: 1});
+		
+		//alert('coinname='+coinname+'&new_price='+new_price+'&total_num='+total_num);return;
+		$.get("{:U('Home/Test/auto_trade')}", {
+			market: coinname,
+			new_price:new_price,
+			total_num:total_num,
+			iszhang:iszhang,
+			min_price:min_price,
+			max_price:max_price,
+			min_num:min_num,
+			max_num:max_num,
+		}, function (data) {
+			if (data.status == 1) {
+				layer.msg(data.info, {icon: 1});
+				window.location.reload();
+			} else {
+				layer.msg(data.info, {icon: 2});
+				if (data.url) {
+					window.location = data.url;
+				}
+			}
+		}, "json");
+	}
+
+</script>

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="{$web_keywords}" />
+    <meta name="format-detection" content="telephone=no,email=no,address=no" />
+    <eq name="Think.session.lang" value="1">
+									<notempty name="coninfo['web_name']" value=" ">
+								
+										<title>{$coninfo['web_name']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="2">
+									<notempty name="coninfo['web_name_e']" value=" ">
+										<title>{$coninfo['web_name_e']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="3">
+									<notempty name="coninfo['web_name_en']" value=" ">
+										<title>{$coninfo['web_name_en']}</title>
+									</notempty>
+								</eq>
+    <link data-n-head="true" rel="icon" type="image/x-icon" href="__PUBLIC__/favicon.ico"/>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/base.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/common.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/newcss/withdraw.css" media="all"/>
+    <script data-n-head="true" src="__PUBLIC__/Home/js/newjs/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/layer/layer.js"></script>
+
+</head>
+<body>
+<!--<img src="https://mon.58coin.com/mon.gif" id="img-hidden" />-->
+<div id="__nuxt">
+    <div class="nuxt-progress" style="width:0%;height:2px;background-color:#3B8070;opacity:0;"></div>
+    <div id="__layout">
+        <div>
+            <!--头部内容-->
+            <include file="Public:header1"/>
+            <!--头部内容   end-->
+            <div class="wrap">
+
+                <div class="withdraw-name container flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+                    <div class="account-slider">
+                        <h2>{$GLOBALS['withdraw']}</h2>
+                        <volist name="coin_list" id='vo'>
+                        <div 
+                        	<if condition="$xnb eq $vo['name']">
+                        	class="item flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap active"
+                        	<else />
+                        	class="item flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap"
+                        	</if>
+                        	>
+                            <a class="nuxt-link-exact-active nuxt-link-active" href="/Finance/myzc/name/{$vo['name']|strtoupper}">{$vo['name']|strtoupper}</a>
+                        </div>
+                        </volist>
+                        
+                    </div>
+                    <div class="main">
+                        <div class="st-content info" style="margin-top: 0px;">
+                            <h2>{$GLOBALS['withdraw-to']}{$_GET['name']|strtoupper}{$GLOBALS['address']}</h2>
+                            <div class="line"></div>
+                            <div style="padding-top: 30px; padding-bottom: 50px;">
+                                <div  class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <empty name="userQianbaoList" value=''>
+                                    <p>{$GLOBALS['no-address']}</p>
+                                    <else/>
+                                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                                    </empty>
+                                    <div>
+                                        <a>
+                                            <div class="address addDiv flex-box flex-direction-column flex-justify-center flex-align-item-center flex-wrap-nowrap">
+                                                <img src="/Public/Home/image/common/icon-an.77c9794.png" alt="" />
+                                                <p>{$GLOBALS['addNew-address']}</p>
+                                            </div>
+                                            <if condition="$yy['addr'] neq ''">
+                                            <div class="address have flex-box flex-direction-column flex-justify-start flex-align-item-start flex-wrap-nowrap" style="display: '';">
+                                                <h4 >{$_GET['name']|strtoupper}{$GLOBALS['address']}</h4>
+                                                <p class="address-content" >{$yy['addr']}</p>
+                                                <div class="address-nav flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                                                    <a href="/Finance/mydz/coin/{$_GET['name']}" class="">{$GLOBALS['change-address']}</a>
+                                                </div>
+                                                <div class="have-bg" ></div>
+                                            </div>
+                                        </if>
+                                        </a>
+                                        <!---->
+                                        <!--弹出框-->
+                                        <div  class="popup flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap" style="display: none;">
+                                            <div  class="popup-box">
+                                                <div  class="header flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                                    <h3 >{$GLOBALS['addNew-address']}</h3>
+                                                    <a ></a>
+                                                </div>
+                                                <!--<form  class="st-form form">-->
+                                                <div  class="st-form form">
+                                                    <div  class="st-form-item">
+                                                        <p class="label" style="padding-right: 16px;">{$GLOBALS['setMark-address']}</p>
+                                                        <input  type="text" class="st-input" id="addrMark"/>
+                                                        <p class="tips" style="display: none;"></p>
+                                                        <p class="message" style="display: none">{$GLOBALS['correct-address']}</p>
+                                                    </div>
+                                                    <div  class="st-form-item">
+                                                        <!--<p class="label" style="padding-right: 16px;">选择地址类型</p>-->
+                                                        <p class="label" style="padding-right: 16px;">{$GLOBALS['address-type']}</p>
+                                                        <div tabindex="0" class="select-something" style="width: 350px;">
+                                                            <div class="select-box">
+                                                                <span ad="0" id="addrType">{$GLOBALS['account-address']}</span>
+                                                                <!--<span class="icon"></span>-->
+                                                            </div>
+                                                            <!--<ul class="options" style="width: 350px; display: none;">-->
+                                                                <!--<li class="item">账户地址</li>-->
+                                                                <!--<li class="item">外部{$_GET['name']}地址</li>-->
+                                                            <!--</ul>-->
+                                                        </div>
+                                                        <p class="tips" style="display: none;"></p>
+                                                        <p class="message" style="display: none;"></p>
+                                                    </div>
+                                                    <div  class="st-form-item">
+                                                        <p class="label changeTitle" style="padding-right: 16px;">{$_GET['name']|strtoupper}{$GLOBALS['address']}</p>
+                                                        <input  type="text" class="st-input" id="qianbao_addr"/>
+                                                        <p class="tips" style="display: none;"></p>
+                                                        <p class="message" style="display: none;">{$GLOBALS['correct-address']}</p>
+                                                    </div>
+                                                    <!---->
+                                                    <!-- <div  class="st-form-item">
+                                                        <p class="label" style="padding-right: 16px;">设置为信任地址</p>
+                                                        <div class="trust flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                                            <a class="st-switch"><span class=""></span></a>
+                                                            <p>向信任账户提现将不再输入资金密码，短信验证码以及 Google 验证码</p>
+                                                        </div>
+                                                        <p class="tips" style="display: none;"></p>
+                                                        <p class="message" style="display: none;"></p>
+                                                    </div> -->
+                                                    <div class="st-form-item"  style="display: none;">
+                                                        <p  class="label" style="padding-right: 16px;">{$GLOBALS['financePwd']}</p>
+                                                        <input  type="password" name="fundpass" id="cnyout_paypassword" autocomplete="new-password" placeholder="{$GLOBALS['place-financePwd']}" class="st-input"  />
+                                                        <p  class="tips" style="display: none;"></p>
+                                                        <p  class="message" style="display: none;">{$GLOBALS['correctOld-financePwd']}</p>
+                                                    </div>
+                                                    <div   class="short st-form-item"  style="display: none;">
+                                                        <p  class="label" style="padding-right: 16px;">{$GLOBALS['emailCode']}</p>
+                                                        <input  type="number" placeholder="{$GLOBALS['6emailCode']}" class="st-input"  size="10" name="smscode" id="cnyout_moble_verify" autocomplete="off"/>
+                                                        <div  class="send-SMS code" >
+                                                            <input type="button"  class="get-code button" name="smsbtn" id="smsbtn" onclick="settime(this);" value="{$GLOBALS['send-emailCode']}" style="width:140px;"/>
+                                                            <!---->
+                                                        </div>
+                                                        <p  class="tips" style="display: none;"></p>
+                                                        <p  class="message"  style="display: none;;">{$GLOBALS['click-send']}！</p>
+                                                    </div>
+                                                    <!---->
+                                                    <input type="submit" value="{$GLOBALS['addBtn']}" style="margin-left: 208px;" class="addAdr" onclick="qianbao_up();"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--<form class="st-form form">-->
+                                <div class="st-form form">
+                                    <!---->
+                                    <div class="st-form-item error">
+                                        <p class="label" style="padding-right: 16px;">{$GLOBALS['withdraw-number']}</p>
+                                        <div class="max">
+                                            <input type="password" id="password" autocomplete="new-password" style="position: absolute; top: -9999px;" />
+                                            <input type="text" placeholder="{$GLOBALS['place-withdraw-number']}" class="st-input" value="" name="amount" id="cnyout_num" autocomplete="off" size="10" />
+                                            <span class="currency">{$_GET['name']|strtoupper}</span>
+                                            <div  class="create-item-tit flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" style="display: none;">
+                                                <a >{$GLOBALS['can-withdraw']}: 0 <i>{$_GET['name']}</i></a>
+                                                <!---->
+                                            </div>
+                                            <p class="message" style="display: none;">{$GLOBALS['place-CorrectWithdraw-number']}</p>
+                                        </div>
+                                        <p class="tips" style="display: none;"></p>
+                                        <!--<p class="message" style="display: none;">提现金额不能超过账户余额</p>-->
+                                        <p class="message" style="display: none;">{$GLOBALS['place-CorrectWithdraw-number']}</p>
+                                    </div>
+                                    <!---->
+                                    <div class="st-form-item" style="min-height: 20px;">
+                                        <p class="label" style="padding-right: 16px;"></p>
+                                        <div  class="create-item-tit flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                            <span  style="font-size: 12px; color: rgb(153, 153, 153);">{$GLOBALS['usable']}：
+												{$ky_sum}
+											<i>{$_GET['name']|strtoupper}</i></span>&nbsp;&nbsp;
+                                            
+                                        </div>
+                                        <p class="tips" style="display: none;"></p>
+                                        <p class="message" style="display: none;"></p>
+                                    </div>
+                                    <input type="submit" name="submit_btn" id="submit_btn" value="{$GLOBALS['withdraw']}" style="margin-left: 208px;" class="txBtn sub-btn" onclick="coinout_up();"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div  class="st-content deposit-record" style="margin-top: 20px;">
+                            <!---->
+                            <div class="title flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap" >
+                                <h2>{$GLOBALS['recent-withdraw-record']}</h2>
+                                <a href="/Finance/outlog/coin/{$_GET['name']}" class="">{$GLOBALS['more']} &gt;</a>
+                            </div>
+                            <div  class="line"></div>
+                            <div  style="padding-top: 20px; padding-bottom: 50px;">
+                                <div class="st-table" >
+                                    <div style="display: none;">
+                                        <div></div>
+                                        <div></div>
+                                        <div>
+                                            <p class="time"></p>
+                                        </div>
+                                        <div>
+                                        </div>
+                                    </div>
+                                    <table class="table-theme-1">
+                                        <thead>
+                                        <tr>
+                                            <!--<th>提现时间</th>-->
+                                            <!--<th style="text-align: left;">提现账户</th>-->
+                                            <!--<th>提现数量</th>-->
+                                            <!--<th>手续费</th>-->
+                                            <!--<th>实际手续费</th>-->
+                                            <!--<th>处理状态</th>-->
+                                            <!--<th>操作</th>-->
+                                            <!--<th align="right"><b>{$GLOBALS['odd-number']}</b></th>-->
+                                            <th align="center"><b>{$GLOBALS['coin-name']}</b></th>
+                                            <th align="center"><b>{$GLOBALS['withdraw-address']}</b></th>
+                                            <th align="center"><b>{$GLOBALS['money']}</b></th>
+                                            <th align="center"><b>{$GLOBALS['withdraw-time']}</b></th>
+                                            <th align="center"><b>{$GLOBALS['order-status']}/{$GLOBALS['order-operate']}</b></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <if condition="$list neq null">
+                                            <volist name="list" id="vo">
+                                                <tr>
+                                                    
+                                                    <td>{$vo.coinname|strtoupper}</td>
+                                                    
+                                                    <td  style="text-align:center">{$vo['username']}</td>
+                                                    <td>{$vo['num']|NumToStr}</td>
+                                                    <td style="text-align:center">{$vo.addtime|addtime}</td>
+                                                    <td style="text-align:center">
+                                                        <eq name="vo.status" value="1">
+                                                            <font color="#23a800">{$GLOBALS['turn-succeed']} </font>
+                                                        </eq>
+														<eq name="vo.status" value="0">
+															<font color="red">{$GLOBALS['ready-deal']}{$vo.status|abs}{$GLOBALS['number-sure']}</font>
+														</eq>
+														
+														<eq name="vo.status" value="3">
+															<font color="red">已驳回</font>
+														</eq>
+                                                    </td>
+                                                </tr>
+                                            </volist>
+                                            <else/>
+                                            <tr style="border:0;">
+                                                <td colspan="5">
+                                                    <div  class="no-list">
+                                                        <img  src="/Public/Home/image/accountMsg/noDate.jpg" alt="" />
+                                                        <p >{$GLOBALS['noData']}</p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </if>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!---->
+                </div>
+
+                <!--底部内容-->
+                <include file="Public:footer"/>
+                <!--底部内容   end-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="__PUBLIC__/Home/js/newjs/withdraw.js"></script>
+<script>
+    /*当前页*/
+    $(".account-nav>a:nth-child(3)").addClass("active");
+
+    /*短信验证码倒计时*/
+    var countdown=60;
+    function settime(obj) {
+        if (countdown == 0) {
+            $(obj).attr("disabled","");
+            $(obj).val("{$GLOBALS['send-emailCode']}");
+            countdown = 60;
+            return;
+        } else {
+            $(obj).attr("disabled", true);
+            $(obj).val(+ countdown + "s");
+            countdown--;
+        }
+        setTimeout(function() {
+                settime(obj) }
+            ,1000)
+    }
+
+
+    function coinout_up() {
+        var num = $("#cnyout_num").val();
+        // var paypassword  = $("#cnyout_paypassword").val();
+        // var moble_verify = $("#cnyout_moble_verify").val();
+        // var bank         = $('#cnyout_bank').val();
+        // var select		 = $('#select_verify').val();
+        var addr=$(".address-content").html();
+
+
+        if (num == "" || num == null) {
+            $("#cnyout_num").closest(".max").siblings("message").show();
+            return false;
+        }
+
+        if($(".address").is(":hidden")){
+            layer.msg("{$GLOBALS['place-withdraw-address']}", {icon: 2});
+        }
+
+
+        $.post("{:U('Finance/upmyzc')}", {
+            coin:"{$_GET['name']}",
+            num: num,
+            // paypassword: paypassword,
+            // moble_verify: moble_verify,
+            addr: addr
+            // type:select
+        }, function (data) {
+		//console.log(data);
+		
+            if (data.status == 1) {
+                layer.msg(data.info, {
+                    icon: 1
+                });
+                window.location.reload();
+            } else {
+                layer.msg(data.info, {
+                    icon: 2
+                });
+                if (data.url) {
+                    window.location = data.url;
+                }
+            }
+        }, "json");
+
+    }
+    
+    function qianbao_up() {
+		var coinname    = "{$_GET['name']}";
+        var addrMark = $("#addrMark").val();//地址备注
+        var addrType = $("#addrType").attr("ad");//地址类型0：账户，1：外部
+        var qianbao_addr = $("#qianbao_addr").val();//usdt地址
+        if($(".st-switch").hasClass("active")){
+            var isopen=1;//打开
+        }else{
+            var isopen=0;//关闭
+        }
+		var cnyout_paypassword = $('#cnyout_paypassword').val();//资金密码
+		var cnyout_moble_verify = $('#cnyout_moble_verify').val();//验证码
+
+		
+		/*if (coinname == "" || coinname == null) {
+			layer.tips('请选择币种', '#qianbao_coinname', {tips: 2});
+			return false;
+		}*/
+		if (addrMark == "" || addrMark == null) {
+			layer.tips("{$GLOBALS['qianbao-mark']}", '#addrMark', {tips: 2});
+			return false;
+		}
+		if (qianbao_addr == "" || qianbao_addr == null) {
+			layer.tips("{$GLOBALS['qianbao-address']}", '#qianbao_addr', {tips: 2});
+			return false;
+		}
+		//alert('qq='+cnyout_paypassword);return;
+		if(isopen==1){
+			if(cnyout_paypassword=='' || cnyout_paypassword==null){
+				layer.tips("{$GLOBALS['place-financePwd']}", '#cnyout_paypassword', {tips: 2});
+				return false;
+			}
+			if(cnyout_moble_verify=='' || cnyout_moble_verify==null){
+				layer.tips("{$GLOBALS['6emailCode']}", '#cnyout_moble_verify', {tips: 2});
+				return false;
+			}
+		}
+		
+		$.post("{:U('User/upqianbao')}", {
+			coin: coinname,
+			name: addrMark,
+			addr: qianbao_addr,
+			isopen:isopen,
+			paypassword: cnyout_paypassword,
+			moble_verify:cnyout_moble_verify
+		}, function (data) {
+			if (data.status == 1) {
+				layer.msg(data.info, {icon: 1});
+				location.reload();
+			} else {
+				layer.msg(data.info, {icon: 2});
+				if (data.url) {
+					window.location = data.url;
+				}
+			}
+		}, "json");
+	}
+</script>
+
+</body>
+</html>

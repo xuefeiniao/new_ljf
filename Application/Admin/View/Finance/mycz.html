@@ -1,0 +1,157 @@
+ <include file="Base:header"/>
+<title>BB充值</title>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 财务 <span class="c-gray en">&gt;</span>BB充值 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">
+<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a href="javascript:;" onclick="del(this,'idAll')" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a> </span> <span class="r">共有数据：<strong>{$count}</strong> 条</span> </div>
+	<div class="mt-20">
+		<table class="table table-border table-bordered table-bg table-hover table-sort table-responsive">
+			<thead>
+				<tr>
+					<th width="20"><input type="checkbox" name="" value=""></th>
+					<th class="">ID</th>
+					<th class="">用户名</th>
+					<th class="">充值金额</th>
+					<th width="">到账金额</th>
+					<th width="">充值方式</th>
+					<th width="">充值订单</th>
+					<th width="">充值时间</th>
+					<th width="">状态</th>
+					<th width="">操作</th>
+				</tr>
+			</thead>
+			<tbody>
+			<notempty name="list">
+			<volist name="list" id="vo">
+				<tr>
+					<td><input class="ids" type="checkbox" name="id[]" value="{$vo.id}"/></td>
+					<td>{$vo.id}</td>
+					<td>{$vo['username']}</td>
+					<td>{$vo.num}</td>
+					<td>{$vo.mum}</td>
+					<td>{$vo.type}</td>
+					<td>{$vo.tradeno}</td>
+					<td>{$vo.addtime|addtime}</td>
+					<td>
+						<eq name="vo.status" value="0">未付款</eq>
+						<eq name="vo.status" value="1">充值成功</eq>
+						<eq name="vo.status" value="2">人工到账</eq>
+						<eq name="vo.status" value="3">处理中</eq>
+					</td>
+					<td class="f-14 td-manage">
+						<eq name="vo.status" value="0">
+							<a href="{:U('Finance/myczQueren?id='.$vo['id'])}"title="确认到账"><i class="Hui-iconfont">&#xe603;</i></a>
+						</eq>
+						<eq name="vo.status" value="3">
+							<a href="{:U('Finance/myczQueren?id='.$vo['id'])}"title="确认到账" ><i class="Hui-iconfont">&#xe603;</i></a>
+						</eq>
+					
+					</td>
+
+				</tr>
+			</volist>
+				<else/>
+				<td colspan="12" class="text-center">Oh! 暂时还没有内容!</td>
+			</notempty>
+			</tbody>
+		</table>
+	</div>
+
+
+</div>
+	<!--_footer 作为公共模版分离出去-->
+	<script type="text/javascript" src="__PUBLIC__/rs/lib/jquery/1.9.1/jquery.min.js"></script> 
+	<script type="text/javascript" src="__PUBLIC__/rs/lib/layer/2.4/layer.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/rs/static/h-ui/js/H-ui.min.js"></script> 
+	<script type="text/javascript" src="__PUBLIC__/rs/static/h-ui.admin/js/H-ui.admin.js"></script>  <!--/_footer 作为公共模版分离出去-->
+
+	<!--请在下方写此页面业务相关的脚本-->
+	<script type="text/javascript" src="__PUBLIC__/rs/lib/My97DatePicker/4.8/WdatePicker.js"></script> 
+	<script type="text/javascript" src="__PUBLIC__/rs/lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
+	<script type="text/javascript" src="__PUBLIC__/rs/lib/laypage/1.2/laypage.js"></script> 
+	<script type="text/javascript">
+
+	$('.table-sort').dataTable({
+		"aaSorting": [[ 1, "desc" ]],//默认第几个排序
+		"bStateSave": true,//状态保存
+		"pading":false,
+		"aoColumnDefs": [
+		  {"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
+		  {"orderable":false,"aTargets":[0,9]}// 不参与排序的列
+		]
+	});
+	//刷新页面
+	function refresh(){
+	window.location.reload();//强制刷新
+	}
+
+	/*添加*/
+	function add(title,url,w,h){
+		var index = layer.open({
+			type: 2,
+			title: title,
+			content: url
+		});
+		layer.full(index);
+	}
+
+	/*编辑*/
+	function edit(title,url){
+		var index = layer.open({
+			type: 2,
+			title: title,
+			content: url
+		});
+		layer.full(index);
+	}
+
+	/*删除*/
+	function del(obj,id){
+
+		var check = document.getElementsByName("id[]");
+		console.log(check);
+
+
+			var len=check.length;
+			var idAll="";
+			for(var i=0;i<len;i++){
+
+
+			if(check[i].checked){
+					idAll+=check[i].value+",";
+
+				}
+
+				console.log(idAll);
+
+		}
+
+
+
+
+		layer.confirm('确认要删除吗？',function(index){
+			$.ajax({
+				type: 'POST',
+				url: '{:U('Finance/myczStatus',array('type'=>'del'))}',
+				data:{id:idAll},
+				dataType: 'json',
+				success: function(data){
+					console.log(id);
+
+					$(obj).parents("tr").remove();
+					layer.msg('已删除!',{icon:1,time:1000});
+					refresh();
+				},
+				error:function(data) {
+					console.log(data.msg);
+				},
+			});
+	 
+		});
+
+
+
+	}
+</script>	
+</body>
+</HTML>

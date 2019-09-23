@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>网站后台管理模版</title>
+		<link rel="stylesheet" type="text/css" href="./static/admin/layui/css/layui.css" />
+		<link rel="stylesheet" type="text/css" href="./static/admin/css/admin.css" />
+	</head>
+
+	<body>
+		<div class="layui-tab page-content-wrap">
+			<ul class="layui-tab-title">
+
+				<li class="layui-this">BTC/CNY</li>
+				<li>ETC/CNY</li>
+				<li>ETH/CNY</li>
+				<li>LTC/CNY</li>
+				<li>BTC/USDT</li>
+				<li>ETC/USDT</li>
+				<li>BTH/USDT</li>
+				<li>LTC/USDT</li>
+				<li>ETC/BTC</li>
+				<li>ETH/BTC</li>
+				<li>LTC/BTC</li>
+			</ul>
+			<div class="layui-tab-content">
+				
+				<div class="layui-tab-item layui-show">
+					<form class="layui-form" style="width: 90%;padding-top: 20px;">
+						<div class="layui-form-item">
+							<label class="layui-form-label">价钱范围：</label>
+							<div class="layui-input-block">
+								<input type="text" name="price" autocomplete="off" class="layui-input" value="" placeholder="如：1000-8000">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">数量范围：</label>
+							<div class="layui-input-block">
+								<input type="text" name="num" required lay-verify="required" placeholder="如：300-1000" autocomplete="off" class="layui-input" value="">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<div class="layui-input-block">
+								<button class="layui-btn layui-btn-normal" lay-submit lay-filter="siteInfo">立即提交</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				
+				<div class="layui-tab-item">
+                    <form class="layui-form" style="width: 90%;padding-top: 20px;">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">价钱范围：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="price" autocomplete="off" class="layui-input" value="" placeholder="如：1000-8000">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">数量范围：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="num" required lay-verify="required" placeholder="如：300-1000" autocomplete="off" class="layui-input" value="">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn layui-btn-normal" lay-submit lay-filter="siteInfo">立即提交</button>
+                            </div>
+                        </div>
+                    </form>
+				</div>
+				
+				<div class="layui-tab-item">
+                    <form class="layui-form" style="width: 90%;padding-top: 20px;">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">价钱范围：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="price" autocomplete="off" class="layui-input" value="" placeholder="如：1000-8000">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">数量范围：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="num" required lay-verify="required" placeholder="如：300-1000" autocomplete="off" class="layui-input" value="">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn layui-btn-normal" lay-submit lay-filter="siteInfo">立即提交</button>
+                            </div>
+                        </div>
+                    </form>
+				</div>
+				
+				<div class="layui-tab-item">
+                    <form class="layui-form" style="width: 90%;padding-top: 20px;">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">价钱范围：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="price" autocomplete="off" class="layui-input" value="" placeholder="如：1000-8000">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">数量范围：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="num" required lay-verify="required" placeholder="如：300-1000" autocomplete="off" class="layui-input" value="">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn layui-btn-normal" lay-submit lay-filter="siteInfo">立即提交</button>
+                            </div>
+                        </div>
+                    </form>
+				</div>
+
+                <div class="layui-tab-item">
+                    <form class="layui-form" style="width: 90%;padding-top: 20px;">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">价钱范围：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="price" autocomplete="off" class="layui-input" value="" placeholder="如：1000-8000">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">数量范围：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="num" required lay-verify="required" placeholder="如：300-1000" autocomplete="off" class="layui-input" value="">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn layui-btn-normal" lay-submit lay-filter="siteInfo">立即提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="layui-tab-item">
+                    <form class="layui-form" style="width: 90%;padding-top: 20px;">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">价钱范围：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="price" autocomplete="off" class="layui-input" value="" placeholder="如：1000-8000">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">数量范围：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="num" required lay-verify="required" placeholder="如：300-1000" autocomplete="off" class="layui-input" value="">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn layui-btn-normal" lay-submit lay-filter="siteInfo">立即提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="layui-tab-item">
+                    <form class="layui-form" style="width: 90%;padding-top: 20px;">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">价钱范围：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="price" autocomplete="off" class="layui-input" value="" placeholder="如：1000-8000">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">数量范围：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="num" required lay-verify="required" placeholder="如：300-1000" autocomplete="off" class="layui-input" value="">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn layui-btn-normal" lay-submit lay-filter="siteInfo">立即提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="layui-tab-item">
+                    <form class="layui-form" style="width: 90%;padding-top: 20px;">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">价钱范围：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="price" autocomplete="off" class="layui-input" value="" placeholder="如：1000-8000">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">数量范围：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="num" required lay-verify="required" placeholder="如：300-1000" autocomplete="off" class="layui-input" value="">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn layui-btn-normal" lay-submit lay-filter="siteInfo">立即提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="layui-tab-item">
+                    <form class="layui-form" style="width: 90%;padding-top: 20px;">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">价钱范围：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="price" autocomplete="off" class="layui-input" value="" placeholder="如：1000-8000">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">数量范围：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="num" required lay-verify="required" placeholder="如：300-1000" autocomplete="off" class="layui-input" value="">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn layui-btn-normal" lay-submit lay-filter="siteInfo">立即提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="layui-tab-item">
+                    <form class="layui-form" style="width: 90%;padding-top: 20px;">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">价钱范围：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="price" autocomplete="off" class="layui-input" value="" placeholder="如：1000-8000">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">数量范围：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="num" required lay-verify="required" placeholder="如：300-1000" autocomplete="off" class="layui-input" value="">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn layui-btn-normal" lay-submit lay-filter="siteInfo">立即提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="layui-tab-item">
+                    <form class="layui-form" style="width: 90%;padding-top: 20px;">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">价钱范围：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="price" autocomplete="off" class="layui-input" value="" placeholder="如：1000-8000">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">数量范围：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="num" required lay-verify="required" placeholder="如：300-1000" autocomplete="off" class="layui-input" value="">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn layui-btn-normal" lay-submit lay-filter="siteInfo">立即提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="layui-tab-item">
+                    <form class="layui-form" style="width: 90%;padding-top: 20px;">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">价钱范围：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="price" autocomplete="off" class="layui-input" value="" placeholder="如：1000-8000">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">数量范围：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="num" required lay-verify="required" placeholder="如：300-1000" autocomplete="off" class="layui-input" value="">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn layui-btn-normal" lay-submit lay-filter="siteInfo">立即提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="layui-tab-item">
+                    <form class="layui-form" style="width: 90%;padding-top: 20px;">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">价钱范围：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="price" autocomplete="off" class="layui-input" value="" placeholder="如：1000-8000">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">数量范围：</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="num" required lay-verify="required" placeholder="如：300-1000" autocomplete="off" class="layui-input" value="">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn layui-btn-normal" lay-submit lay-filter="siteInfo">立即提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+			</div>
+		</div>
+		<script src="./static/admin/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			//Demo
+			layui.use(['form', 'element'], function() {
+				var form = layui.form();
+				var element = layui.element();
+				form.render();
+				//监听信息提交
+				form.on('submit(siteInfo)', function(data) {
+					layer.msg(JSON.stringify(data.field));
+					return false;
+				});
+			});
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="{$web_keywords}" />
+    <meta name="format-detection" content="telephone=no,email=no,address=no" />
+    <eq name="Think.session.lang" value="1">
+									<notempty name="coninfo['web_name']" value=" ">
+								
+										<title>{$coninfo['web_name']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="2">
+									<notempty name="coninfo['web_name_e']" value=" ">
+										<title>{$coninfo['web_name_e']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="3">
+									<notempty name="coninfo['web_name_en']" value=" ">
+										<title>{$coninfo['web_name_en']}</title>
+									</notempty>
+								</eq>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/base.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/common.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/newcss/change_login_password.css" media="all"/>
+    <script data-n-head="true" src="__PUBLIC__/Home/js/newjs/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/layer/layer.js"></script>
+
+</head>
+<body>
+
+<!--<img src="https://mon.58coin.com/mon.gif" id="img-hidden" />-->
+<div id="__nuxt">
+    <div class="nuxt-progress" style="width: 0%; height: 2px; background-color: rgb(59, 128, 112); opacity: 0;"></div>
+    <div id="__layout">
+        <div>
+            <!--头部内容-->
+            <include file="Public:header1"/>
+            <!--头部内容   end-->
+            <div class="wrap">
+                <div  class="container">
+                    <div  class="user-bread flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                        <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                            <a href="/User/index" class="nuxt-link-active">
+                                <div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <span>{$GLOBALS['account-safe']}</span>
+                                    <i></i>
+                                </div></a>
+                        </div>
+                        <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                            <p>{$GLOBALS['bind-email']}</p>
+                        </div>
+                    </div>
+                    <div  class="st-content" style="margin-top: 30px;">
+                        <h2>{$GLOBALS['bind-email']}</h2>
+                        <div class="line"></div>
+                        <div style="padding-top: 0px; padding-bottom: 0px;" class="bindDiv">
+                            <div class="st-form">
+                                <div class="st-form-item">
+                                    <p class="label" style="padding-right: 16px;">{$GLOBALS['email-address']}</p>
+                                    <input type="text" placeholder="{$GLOBALS['place-emailAddre']}" class="st-input" name="newemail" id="newemail" />
+                                    <input type="hidden" id="mobles" value="{$user_info['moble']}">
+                                    <p class="tips" style="display: none;"></p>
+                                    <p class="message" style="display: none;">{$GLOBALS['place-correct-emailAddre']}</p>
+                                </div>
+                                <div class="st-form-item">
+                                    <p class="label" style="padding-right: 16px;">{$GLOBALS['emailCode']}</p>
+                                    <input name="mes_verifyw" id="mes_verifyw" type="text" placeholder="{$GLOBALS['6emailCode']}" class="st-input" style="width:200px;"/>
+                                    <div class="send-SMS code" onclick="sendMessage()">
+                                        <a class="get-code button">
+                                            <div>{$GLOBALS['send-emailCode']}</div>
+                                        </a><!---->
+                                    </div>
+                                    <p class="tips" style="display: none;"></p>
+                                    <p class="message" style="display: none;">{$GLOBALS['click-send']}</p>
+                                </div>
+                                <if condition="$user_info['email'] eq ''">
+                                    <input type="submit" id="changesure" value="{$GLOBALS['change-bind']}" onclick="binding()"/>
+                                    <else/>
+                                    <input type="submit" id="sure" value="{$GLOBALS['bindBtn']}" onclick="binding()"/>
+                                </if>
+
+                            </div>
+                        </div>
+                        <div style="padding-top:0;padding-bottom:0;display: none;" class="successDiv">
+                            <div class="success-email">
+                                <div class="icon-success"></div>
+                                <p>{$GLOBALS['bingEmail-succeed']}</p>
+                                <div class="txt">
+                                    <p>{$GLOBALS['place-go']} <span >1762842219@qq.com</span>{$GLOBALS['check-email']},</p>
+                                    <p >{$GLOBALS['click-link']}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--底部内容-->
+                <include file="Public:footer"/>
+                <!--底部内容   end-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="__PUBLIC__/Home/js/newjs/bindEmail.js"></script>
+<script>
+    var InterValObj; //timer变量，控制时间
+    var count = 60; //间隔函数，1秒执行
+    var curCount;//当前剩余秒数
+    function sendMessage() {
+        if($(".send-SMS").find("div").attr("disabled")=="disabled"){
+            return false;
+        }else{
+            var mobile = $('#mobles').val();
+            // validatemobile(mobile);//调用上边的方法验证手机号码的正确性
+            $.ajax({
+                type: "POST", //用POST方式传输     　　
+                dataType: "json", //数据格式:JSON
+                data: {mobile:mobile},
+                url: "{:U('Login/real')}", //目标地址.
+                success:function(data){
+                    if(data.status= 1){
+                        layer.msg("{$GLOBALS['send-succeed']}", {icon: 1});
+                    }
+                }
+
+            });
+
+            curCount = count;
+            //设置button效果，开始计时
+            $(".send-SMS").find("div").attr("disabled", "true");
+            $(".send-SMS").find("div").html( + curCount + "s");
+            InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+            //向后台发送处理数据
+        }
+
+    }
+    //timer处理函数
+    function SetRemainTime() {
+        if (curCount == 0) {
+            window.clearInterval(InterValObj);//停止计时器
+            $(".send-SMS").find("div").removeAttr("disabled");//启用按钮
+            $(".send-SMS").find("div").html("{$GLOBALS['send-emailCode']}");
+
+        }
+        else {
+            curCount--;
+            $(".send-SMS").find("div").html( + curCount + "s");
+        }
+    }
+
+
+
+
+    function binding(){
+        var newemail = $('#newemail').val();
+        var mes_verifyw = $('#mes_verifyw').val();
+        var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$");
+
+        if(newemail=="" || newemail==null){
+            $('#newemail').addClass("error").siblings("p.message").addClass("error").show();
+            return false;
+        }
+        if(mes_verifyw=="" || mes_verifyw==null){
+            $('#mes_verifyw').addClass("error").siblings("p.message").addClass("error").show();
+            return false;
+        }
+
+        if(!reg.test(newemail)){
+            layer.msg("{$GLOBALS['email-error']}", {icon: 2});
+            return false;
+        }
+        $.ajax({
+            type: "POST", //用POST方式传输     　　
+            dataType: "json", //数据格式:JSON
+            data: {email:newemail,mes_verifyw:mes_verifyw},
+            url: "{:U('User/email_bind')}", //目标地址.
+            success:function(data){
+                if(data.status == 1){
+                    layer.msg(data.info, {icon: 1});
+                    $(".bindDiv").hide();
+                    $(".successDiv").show();
+                    window.location.href = "{:U('User/index')}";
+                }else{
+                    // layer.msg(data.info, {icon: 2});
+                    layer.msg(data.info, {icon: 2});
+                    return false;
+                }
+            }
+        });
+
+    }
+</script>
+</body>
+</html>

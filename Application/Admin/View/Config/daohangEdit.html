@@ -1,0 +1,83 @@
+<include file="Base:header"/>
+<style type="text/css" media="all">
+    .input-text{
+        width: 800px;
+    }
+    .select-box{
+        width: 800px;
+    }
+</style>
+<body>
+<article class="page-container">
+	<form class="form form-horizontal" id="form-article-add" action="{:U('Config/daohangEdit')}" method="post" enctype="multipart/form-data">
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>链接名称：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$data.name}" placeholder="" id="articletitle" name="name">
+			</div>
+		</div>
+		<input type="hidden" value="{$_GET['id']}" name="id">
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>链接标题：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$data.title}" placeholder="" id="articletitle" name="title">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>链接地址：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$data.url}" placeholder="" id="articletitle" name="url">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>排序：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$data.sort}" placeholder="" id="articletitle" name="sort">
+			</div>
+		</div>
+		
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>状态：</label>
+			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
+				<select name="status" class="select">
+				    <option value="1"<eq name="data.status" value="1">selected</eq>>可用</option>
+					<option value="0"<eq name="data.status" value="0">selected</eq>>禁用</option>
+					</volist>
+				</select>
+				</span> </div>
+		</div>
+		
+		 
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+				<button class="ajax-post btn btn-primary radius" id="submit" type="submit" target-form="form-horizontal"><i class="Hui-iconfont">&#xe632;</i> 确 定
+			</button>
+			</div>
+		</div>
+	</form>
+</article>
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript">
+// alert(window.parent.location);
+// alert(window.location.href);
+	//提交表单
+	/*$('#submit').click(function () {
+		$('#form').submit();
+	});*/
+	$(function() {
+        $("#form-add").ajaxForm(function(data){
+        	if (data.status==1) {
+        	layer.alert(data.info);
+        }else
+            layer.alert(data.info);
+        },'json');
+         
+    });
+</script>
+
+
+<!--/请在上方写此页面业务相关的脚本-->
+ 
+</body>
+</html>

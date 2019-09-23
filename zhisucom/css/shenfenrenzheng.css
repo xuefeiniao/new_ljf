@@ -1,0 +1,144 @@
+* {
+	margin: 0;
+	padding: 0;
+  font:14px/18px Arial,Microsoft YaHei,Tahoma,sans-serif;
+}
+
+.content {
+ 	
+  	width:1257px;
+	height: 723px;
+  margin:0 auto;
+	
+}
+.content>div{
+	width:80%;
+  margin:0 auto;
+}
+.content .content_nav{
+	margin-bottom:20px;
+}
+.content .c_title{
+	margin:10px auto 20px;
+}
+html body .content .identity1{
+	font-weight:bold;
+
+  padding-right:15px;
+}
+
+.r-btn {
+	padding: 3px 8px;
+	background: #d45858;
+	color: #fff;
+}
+
+.content_nav a {
+	text-decoration: none;
+}
+
+.c_title {
+	height: 42px;
+	width: 100%;
+	font-size: 1.5em;
+	color: #111;
+	border-bottom: 1px solid #C8DAE2;
+	margin: 10px 0 20px;
+	line-height: 46px;
+}
+
+.c_title h4 {
+	font-weight: 300;
+	font-size: 20px;
+}
+
+.bind-phone {
+  width:80%;
+  margin:0 auto;
+	margin-bottom: 15px;
+	color: #de5959;
+	font-weight: normal;
+	font-size: 16px;
+}
+
+.c_section {
+	width: 100%;
+}
+
+#bindPhone {
+	margin-top: 40px;
+	/*margin-left: 185px;*/
+	
+}
+
+.sms-setup td input {
+	margin: 5px 5px 5px 0;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	padding: 10px;
+	font-size: 14px;
+	width: 469.38px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	outline: none;
+}
+#country_code{
+	width: 469.38px;
+	
+	margin-top: 10px;
+  margin-bottom:6px;
+  border-color:#ccc;
+  border-radius:3px;
+}
+.push-phone-rectangle {
+    position: relative;
+}
+#code_tip {
+    position: absolute;
+    top: 5px;
+    left: 1px;
+    height: 38px;
+    padding: 0 10px;
+    line-height: 40px;
+    background: #eee;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-right: 1px solid #ccc;
+}
+#phone_number {
+    padding-left: 70px;
+}
+#country_code {
+    height: 40px;
+    padding: 0 10px;
+}
+table{
+	 border-collapse: separate;
+}
+table tr{
+	margin: 20px 0;
+}
+#smsbtn, #voicebtn, .c-btn {
+    height: 38px;
+    border: none;
+    font-family: Microsoft YaHei;
+    padding: 5px 12px 8px;
+    font-size: 14px;
+   background: #CA4141;
+   color: white;
+}
+.sub-btn{
+	background:#CA4141;
+	color: white;
+	margin-top: 30px;
+}
+.sub-btn:hover{
+	background: #ca4141 !important;
+}
+.nor{
+	font-weight: normal;
+	font-size: 16px !important;
+}.nor a{
+	text-decoration: none;
+}

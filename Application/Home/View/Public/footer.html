@@ -1,0 +1,258 @@
+<!--底部样式-->
+<style>
+    .st-footer {
+        position: absolute;
+        width: 100%;
+        min-width: 1300px;
+        height: 338px;
+        background-color: #16243d;
+        font-size: 20px
+    }
+
+    .st-footer .up {
+        width: 100%;
+        height: 260px;
+        padding: 60px 8% 0 10%;
+        border-bottom: 1px solid #04040f
+    }
+
+    .st-footer .up .left, .st-footer .up .right {
+        position: relative;
+        width: 30%
+    }
+
+    .st-footer .up .left ul li, .st-footer .up .right ul li {
+        position: relative
+    }
+
+    .st-footer .up .left ul li img, .st-footer .up .right ul li img {
+        position: absolute;
+        top: 50%;
+        right: -130px;
+        z-index: 2;
+        margin-top: -60px;
+        width: 120px;
+        height: 120px
+    }
+
+    .st-footer .up .left ul li a, .st-footer .up .right ul li a {
+        display: block;
+        margin-bottom: 14px;
+        line-height: 1em;
+        font-size: 12px;
+        color: #fff
+    }
+
+    .st-footer .up .left ul li a:hover, .st-footer .up .right ul li a:hover {
+        color: #0976d9;
+    }
+
+    .st-footer .up .left ul li:last-child a, .st-footer .up .right ul li:last-child a {
+        margin-bottom: 0
+    }
+
+    .st-footer .up .left ul li.first-li, .st-footer .up .right ul li.first-li {
+        margin-bottom: 14px;
+        line-height: 1em;
+        font-size: 12px;
+        color: #72829d
+    }
+
+    .st-footer .up .left .focus, .st-footer .up .right .focus {
+        width: 140px
+    }
+
+    .st-footer .up .left .focus h3, .st-footer .up .right .focus h3 {
+        margin-bottom: 14px;
+        line-height: 1em;
+        font-size: 12px;
+        color: #72829d
+    }
+
+    .st-footer .up .left .focus span, .st-footer .up .right .focus span {
+        display: block;
+        line-height: 1em;
+        margin-bottom: 23px;
+        font-size: 12px;
+        color: #72829d
+    }
+
+    .st-footer .up .left .focus .share a, .st-footer .up .right .focus .share a {
+        display: block;
+        margin-right: 20px;
+        width: 36px;
+        height: 36px;
+        border-radius: 100%;
+        background: #6c85ae;
+        background-repeat: no-repeat;
+        background-position: 50%
+    }
+
+    .st-footer .up .left .focus .share a:hover, .st-footer .up .right .focus .share a:hover {
+        background: #c5caea;
+        background-repeat: no-repeat;
+        background-position: 50%
+    }
+
+    .st-footer .up .left .focus .share a:first-child, .st-footer .up .right .focus .share a:first-child {
+        background-image: url("/Public/Home/image/common/facebook.png")
+    }
+
+    .st-footer .up .left .focus .share a:nth-child(2), .st-footer .up .right .focus .share a:nth-child(2) {
+        background-image: url("/Public/Home/image/common/feige.png")
+    }
+
+    .st-footer .up .left .focus .share a:nth-child(3), .st-footer .up .right .focus .share a:nth-child(3) {
+        background-image: url("/Public/Home/image/common/weibo.png")
+    }
+
+    .st-footer .up .center {
+        width: 185px;
+        height: 160px;
+        background: url(/Public/Home/image/common/footerimg.997816f.png) no-repeat center 10px
+    }
+
+    .st-footer .down {
+        width: 100%;
+        padding: 0 8% 0 10%;
+        border-top: 1px solid #212145
+    }
+
+    .st-footer .down p {
+        height: 77px;
+        line-height: 77px;
+        font-size: 12px;
+        text-align: center;
+        color: #6c85ae
+    }
+</style>
+
+<footer class="st-footer" style="bottom:0;background-color: #12122a;">
+    <div class="up flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+        <div class="left flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+            <ul>
+                <li class="first-li">{$GLOBALS['series-produce']}</li>
+                <li><a href="/C2c/index">{$GLOBALS['c2c']}</a></li>
+                <li><a href="/Trade/index">{$GLOBALS['trade']}</a></li>
+                <li><a href="/Trade/borrowMoney">{$GLOBALS['borrowMoney']}</a></li>
+            </ul>
+            <ul>
+                <li class="first-li">{$GLOBALS['about-us']}</li>
+                <!-- <volist name="xinwen" id="vo"> -->
+                <!-- <li><a href="/Article/detail/id/{$vo['id']}" target="_blank">{$vo['title']}</a></li> -->
+                <!-- </volist> -->
+				<volist name="xinwen" id="vo">
+								<eq name="Think.session.lang" value="1">
+									<notempty name="vo['title']" value=" ">
+										<li ><a href="/Article/detail/id/{$vo['id']}" target="_blank" >{$vo['title']}</a></li>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="2">
+									<notempty name="vo['title_e']" value=" ">
+										<li ><a href="/Article/detail/id/{$vo['id']}" target="_blank" >{$vo['title_e']}</a></li>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="3">
+									<notempty name="vo['title_en']" value=" ">
+										<li ><a href="/Article/detail/id/{$vo['id']}" target="_blank" >{$vo['title_en']}</a></li>
+									</notempty>
+								</eq>
+                            </volist>
+							
+							 <li ><a href="/Article/officialAdModal" target="_blank" >{$GLOBALS['office-notice']}</a></li>
+							<!-- <volist name="about" id="v"> -->
+							<!-- <li ><a href="/Article/detail/id/{$v['id']}" target="_blank" >{$v['title']}</a></li> -->
+							<!-- </volist> -->
+							<volist name="about" id="vo">
+								<eq name="Think.session.lang" value="1">
+									<notempty name="vo['title']" value=" ">
+										<li ><a href="/Article/detail/id/{$vo['id']}" target="_blank" >{$vo['title']}</a></li>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="2">
+									<notempty name="vo['title_e']" value=" ">
+										<li ><a href="/Article/detail/id/{$vo['id']}" target="_blank" >{$vo['title_e']}</a></li>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="3">
+									<notempty name="vo['title_en']" value=" ">
+										<li ><a href="/Article/detail/id/{$vo['id']}" target="_blank" >{$vo['title_en']}</a></li>
+									</notempty>
+								</eq>
+                            </volist>
+                <!-- <li><a href="/Article/detail" target="_blank">联系我们</a></li> -->
+                <li><a href="/Article/officialAdModal" target="_blank">{$GLOBALS['office-notice']}</a></li>
+            </ul>
+            <ul>
+                <li class="first-li">{$GLOBALS['server-support']}</li>
+                <li><a href="/Article/officialAdModal" target="_blank">{$GLOBALS['help-center']}</a></li>
+                <li><a href="/Article/detail/id/188" target="_blank">下线币种说明</a></li>
+                <li><a href="/Article/detail/id/14" target="_blank">{$GLOBALS['currentCoin-apply']}</a></li>
+            </ul>
+        </div>
+        <div class="center"></div>
+        <div class="right flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+            <ul>
+                <li class="first-li">{$GLOBALS['official-community']}</li>
+                <li>
+                    <a>{$GLOBALS['weixinQ']}</a>
+                    <div style="display: none;">
+                        <em></em>
+                        <img src="/Public/Home/image/index/jiaoliu.png" alt="">
+                    </div>
+                </li>
+                <!--<li>
+                    <a href="" target="_blank">Telegram</a>
+                </li>-->
+            </ul>
+            <ul>
+                <li class="first-li">{$GLOBALS['relative-download']}</li>
+                <li>
+                    <a class="download-ios">iOS App</a>
+                    <div style="display: none;">
+                        <em></em>
+                        <img src="/Public/Home/image/index/ios.14c5c18.png " alt="">
+                    </div>
+                </li>
+                <li>
+                    <a class="download-android">Android App</a>
+                    <div style="display: none;">
+                        <em></em>
+                        <img src="/Public/Home/image/index/Android.14c5c18.png " alt="">
+                    </div>
+                </li>
+                <!--<li>
+                    <a class="download-google-play">Google Play</a>
+                    <div style="display: none;">
+                        <em></em>
+                        <img src="/Public/Home/image/common/googlePlay.9e95ba4.png" alt="">
+                    </div>
+                </li>-->
+            </ul>
+            <div class="focus">
+                <h3>{$GLOBALS['attention-us']}</h3>
+                <span>{$GLOBALS['company-name']}</span>
+                <div class="share flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                    <a href="" target="_blank"></a>
+                    <a href="" target="_blank"></a>
+                    <a href="" target="_blank" style="margin-right:0;"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="down">
+        <p>{$GLOBALS['web_down']} {$GLOBALS['beian']}</p>
+    </div>
+</footer>
+
+<script>
+    /*底部二维码效果*/
+    $(".st-footer .right li").hover(
+        function () {
+            $(this).find("div").show();
+        },
+        function(){
+            $(this).find("div").hide();
+        }
+    );
+</script>

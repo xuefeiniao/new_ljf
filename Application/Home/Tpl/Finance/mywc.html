@@ -1,0 +1,255 @@
+<include file="Publics:header-black"/>
+<body class="">
+
+<div class="content">
+
+    <include file="Publics:leftbar"/>
+
+    <script type="text/javascript">
+        $(function() {
+            $(".accordion").children("li").find("a").click(function () {
+                $(this).toggleClass("menu-hide").next("ul").toggle();
+                var lb = $(".leftbar"), mc = $(".main_content"), lh = lb.height(), mh = mc.height();
+                lb.css("height", mh)
+            });
+
+            var icoType='';
+            if(icoType==''){
+                $("#buyIco").parent("li").remove()
+            }
+
+            $("input").focus(function(){
+                $(".failed").html("")
+            });
+
+            $(".files,.cloud,.mail").find("li").click(function () {
+                $.cookie('nav_index', 3,{ path: '/' });
+            });
+            $(".sign").find("li").click(function () {
+                $.cookie('nav_index', 4,{ path: '/' });
+            });
+
+            //左菜单active标识
+            var url=window.location.href,
+                pagename=url.split('nt/')[1];
+            $('a[data-id="'+pagename+'"]').addClass("mactive");
+            if(url.indexOf('?coin_withdraw') > -1 || url.indexOf('aw/') > -1){
+                $('a[data-id=withdraw_coin]').addClass("mactive");
+            } else if(url.indexOf('?coin_deposit') > -1 || url.indexOf('it/') > -1){
+                $('a[data-id=deposit_coin]').addClass("mactive");
+            }
+            if(url.indexOf('totp/') > -1){
+                $('a[data-id=totp]').addClass("mactive");
+            }
+
+            /*$(window).scroll(function () {
+                var scrH=$(window).scrollTop();var accHeight=$(".myacc-con").height();
+                if(accHeight>834) {
+                    if (scrH > 100) {
+                        if(scrH > accHeight-721) {
+                            $("#marketlist_wrapper").css({"position": "absolute", "top": "", "bottom": "10px", "width": "100%"});
+                        } else {
+                            $("#marketlist_wrapper").css({"position": "fixed", "top": "10px", "bottom": "", "width": "22%"});
+                        }
+                    } else {
+                        $("#marketlist_wrapper").attr("style", "");
+                    }
+                }
+            });*/
+        });
+    </script>
+    <div class="main_content acc-m-con">
+        <div class="right_mcontent myacc-con">
+            <link rel="stylesheet" href="/public/home/001_files/datetimepicker.css">
+            <div class="m_title">
+                <h4>成交记录</h4>
+            </div>
+            <style>
+                .excel {background:#3f67af;height:38px; width:38px;float:left; margin-left:12px;cursor:pointer; text-align: center}
+                .excel .icon{display: inline-block;width: 24px;height: 24px; margin-top:8px;fill: #fff;z-index: 1;}
+                .excel:hover {background:#577fc7}
+                .export-disabled,.export-disabled:hover{ background: #aaa; cursor: default}
+                .export-disabled .icon{ fill: #ddd}
+                .date-search-input{ width:43% }
+                #base_curr,#curr_type { width: 120px; height: 38px; padding: 0 10px; line-height: 38px;}
+                #query{ width: 60px; text-align: center; margin-left: 12px}
+            </style>
+
+            
+
+            <!--<span class="excel exportExcel export-disabled" title="下载"><svg viewBox="0 0 24 24" class="icon"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"></path></svg></span>-->
+			<style>
+			.log td{text-align:center;}
+			</style>
+            <div class="sectioncont mytradehistory-con">
+                <table class="sf-grid table-inacc table-inacc-head">
+                    <thead>
+                    <tr class='log'>
+						<th><b>币种</b></th>
+                        <th><b>交易时间</b></th>
+                        <th ><b>买卖状态</b></th>
+                        <th ><b>交易价格</b></th>
+                        <th ><b>交易数量</b></th>
+                        <th ><b>完成数量</b></th>
+                        <th style="width:16%;"><b>全部状态</b></th>
+                    </tr>
+                    </thead>
+                    <tbody role="alert" aria-live="polite" aria-relevant="all">
+					
+                      
+                      
+                      
+                    <volist name="list" id="vo">
+					<tr data-id="zero" role="row" class="odd log">
+                        <td class="no-od" style="width:10%;"><img src="__UPLOAD__/coin/{$vo['coin']['img']}" alt="" style="margin-bottom: -5px; width: 22px;padding-right:9px;" />{$vo['coin']['title']}{$vo['ncoin']|strtoupper}</td>
+                        <td class="no-od">{$vo.addtime|date='m-d H:i:s',###}</td>
+                        <td class="no-od"><eq name="vo.type" value="1">买入<else />卖出</eq></td>
+                        <td class="no-od">{$vo['price']|NumToStr}</td>
+                        <td class="no-od">{$vo['num']|NumToStr}</td>
+						<td class="no-od">{$vo['mum']|NumToStr}</td>
+						<td class="no-od">已完成</td>
+                    </tr>
+					</volist>
+					</tbody>
+                </table>
+                
+            </div>
+			
+            <input type="hidden" id="is_export" value="0">
+
+            <br><br>{$page}
+            <script src="/Public/home/001_files/dpicker.js"></script>
+<!---->
+			<script>
+				$("#type-selectTest,#status-selectTest,#market-selectTest").change(function(){
+					var type=$("#curr_type option:selected").val();
+					var status=$("#status-selectTest option:selected").val();
+					var market=$("#base_curr option:selected").val();
+					window.location='/Finance/mywt/type/'+type+'/status/'+status+'/market/'+market+'.html';
+				});
+
+				$('.cancel').click(function(){
+					$.post("{:U('Trade/chexiao')}",{id : $(this).attr('id'), },function(data){
+						if(data.status==1){
+							layer.msg(data.info,{icon : 1 });
+							window.setTimeout("window.location='{:U('Finance/mywt')}'",1000);
+						}else{
+							layer.msg(data.info,{icon : 2 });
+						}
+					});
+				});
+			</script>
+			
+			
+            <script>
+                var $tableScroll=$(".table-scroll"), tableH=$(".table-inacc").find("tbody").height(), scrollBoxH=document.body.clientHeight-270;
+                $tableScroll.css("height",scrollBoxH);
+                if(tableH>scrollBoxH){
+                    $(".table-inacc-head").css("padding-right","26px");
+                    $tableScroll.css("padding-right","10px");
+                } else {
+                    $(".table-scroll,.table-inacc-head").css("padding-right","");
+                }
+
+                function exportExcel() {
+
+                    var is_export = $('#is_export');
+                    if( parseInt(is_export.val()) >= 10){
+                        myAni={
+                            open: {height: 'toggle'},
+                            close: {height: 'toggle'},
+                            easing: 'swing',
+                            speed: 50 // opening & closing animation speed
+                        };
+                        noty({
+                            text: '每天仅可导出十次交易历史',
+                            type: "warning",
+                            layout: "center",
+                            closeWith: ['button', 'click'],
+                            theme: 'gateioNotyTheme',
+                            animation: myAni,
+                            timeout: 15000
+                        });
+                        return ;
+                    }
+
+                    var startTime = $('#beginDate').val(),
+                        endTime = $('#endDate').val(),
+                        curr_type = $('#curr_type').val(),
+                        base_curr = $('#base_curr').val();
+
+                    var form1 = document.createElement("form");
+                    form1.id = "form1";
+                    form1.name = "form1";
+                    document.body.appendChild(form1);
+
+                    var input = document.createElement("input");
+                    input.type = "text";
+                    input.name = 'startTime';
+                    input.value = startTime;
+                    form1.appendChild(input);
+
+                    var input1 = document.createElement("input");
+                    input1.type = "text";
+                    input1.name = 'endTime';
+                    input1.value = endTime;
+                    form1.appendChild(input1);
+
+                    var input2 = document.createElement("input");
+                    input2.type = "text";
+                    input2.name = 'base_curr';
+                    input2.value = base_curr;
+                    form1.appendChild(input2);
+
+                    var input3 = document.createElement("input");
+                    input3.type = "text";
+                    input3.name = 'curr_type';
+                    input3.value = curr_type;
+                    form1.appendChild(input3);
+
+                    form1.method = "POST";
+                    form1.action = "/myaccount/export_tradehistory";
+                    form1.submit();
+                    document.body.removeChild(form1);
+                    var is_export_val = is_export.val();
+                    var new_export = parseInt(1)+parseInt(is_export_val);
+                    is_export.val(new_export);
+                }
+
+                $("#servTime").animate({opacity:'1'});
+                if($tableScroll.find("tr").size() == 1){
+                    $(".table-empty").show();
+                    $('.exportExcel').unbind('click').addClass('export-disabled')
+                } else {
+                    $('.exportExcel').removeClass('export-disabled').click(function () { exportExcel() })
+                }
+
+                //$.datetimepicker.setLocale('zh');
+                $('.datetimepicker').datetimepicker({
+                    format: 'Y-m-d',
+                    timepicker: false,
+                    yearStart: 2008,
+                    autoclose: true,
+                    lang: 'ch'
+                });
+
+ 
+            </script>
+ 
+
+            <br>
+        </div> <!-- right_mcontent -->
+    </div> <!-- main content -->
+
+<script>
+    //ҳ��߶�
+    setTimeout(function () {
+        var lb=$(".leftbar"), mc=$(".main_content"),lh=lb.height(),mh=mc.height();
+        if (lh < mh){lb.css("height",mh)}
+    },200)
+</script>
+
+<include file="Publics:footer"/>
+<span class="backToTop" style="display: none;">^</span></div>
+ 
+</body></html>

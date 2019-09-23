@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="{$web_keywords}" />
+    <meta name="format-detection" content="telephone=no,email=no,address=no" />
+    <eq name="Think.session.lang" value="1">
+									<notempty name="coninfo['web_name']" value=" ">
+								
+										<title>{$coninfo['web_name']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="2">
+									<notempty name="coninfo['web_name_e']" value=" ">
+										<title>{$coninfo['web_name_e']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="3">
+									<notempty name="coninfo['web_name_en']" value=" ">
+										<title>{$coninfo['web_name_en']}</title>
+									</notempty>
+								</eq>
+    <link data-n-head="true" rel="icon" type="image/x-icon" href="__PUBLIC__/favicon.ico"/>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/base.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/common.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/newcss/accountBill.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/001_files/datetimepicker.css"/>
+    <script data-n-head="true" src="__PUBLIC__/Home/js/newjs/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/layer/layer.js"></script>
+    <style>
+        .filter-detail .st-select .box input{
+            width:99%;
+            background: -webkit-gradient(linear, left top, left bottom, from(#fefeff), to(#f3f5f8));
+            background: linear-gradient(180deg, #fefeff 0, #f3f5f8);
+            vertical-align: middle;
+            margin-top: 3px;
+        }
+        /*查询按钮*/
+        .sub-btn{
+            width: 100%;
+            height: 30px;
+            border: 1px solid #ced0da;
+            border-radius: 4px;
+            padding: 0 10px;
+            background: #0976d9;
+            cursor: pointer;
+            color:#fff;
+        }
+
+    </style>
+</head>
+<body>
+<!--<img src="https://mon.58coin.com/mon.gif" id="img-hidden" />-->
+<div id="__nuxt">
+    <div class="nuxt-progress" style="width:0%;height:2px;background-color:#3B8070;opacity:0;"></div>
+    <div id="__layout">
+        <div>
+            <!--头部内容-->
+            <include file="Public:header1"/>
+            <!--头部内容   end-->
+            <div class="wrap">
+                <div class="st-content detail-index container" style="margin-top: 0px;">
+                    <h2 >{$GLOBALS['billing-details ']}</h2>
+                    <div  class="line"></div>
+                    <div  style="padding-top: 0px; padding-bottom: 30px;">
+                        
+                        <div class="detail-list" >
+                            <table>
+                                <thead>
+                                <!--<tr>-->
+                                    <!--<th width="170" align="left">操作时间</th>-->
+                                    <!--<th width="156" align="right">账户</th>-->
+                                    <!--<th width="126" align="right">币种</th>-->
+                                    <!--<th width="136" align="right">类型</th>-->
+                                    <!--<th width="172" align="right">数额</th>-->
+                                    <!--<th width="172" align="right">手续费</th>-->
+                                    <!--<th width="188" align="right">余额</th>-->
+                                <!--</tr>-->
+                                <tr>
+                                    <!--<th width="136" align="left">账户</th>-->
+                                    <th align="center">{$GLOBALS['coin-name']}</th>
+                                    <th align="center">{$GLOBALS['jl_time']}</th>
+                                    <th align="center">{$GLOBALS['number']}</th>
+                                    <th align="center">{$GLOBALS['remark']}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <if condition="$list neq null">
+                                            <volist name="list" id="vo">
+                                                <tr>
+                                                    <td class="no-od" align="center">{$vo['coinname']}</td>
+                                                    <td class="no-od" align="center">{$vo.addtime|date='Y-m-d H:i:s',###}</td>
+                                                    <td class="no-od" align="center">{$vo['fee']}</td>
+                                                    <td class="no-od" align="center">{$vo['remark']}</td>
+                                                   
+                                                </tr>
+                                            </volist>
+                                        <else/>
+                                        <tr style="border:0;">
+                                            <td colspan="7">
+                                                <div class="no-list" >
+                                                    <img src="/Public/Home/image/accountMsg/noDate.jpg" alt="" />
+                                                    <h6>{$GLOBALS['noData']}</h6>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </if>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!--底部内容-->
+                <include file="Public:footer"/>
+                <!--底部内容   end-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="__PUBLIC__/Home/js/newjs/accountBill.js"></script>
+<script src="__PUBLIC__/Home/001_files/dpicker.js"></script>
+<script>
+    // 日期选择器
+    $('.datetimepicker').datetimepicker({
+        format: 'Y-m-d',
+        timepicker: false,
+        yearStart: 2008,
+        autoclose: true,
+        lang: 'ch'
+    });
+</script>
+
+</body>
+</html>

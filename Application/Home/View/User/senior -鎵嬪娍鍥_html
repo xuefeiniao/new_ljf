@@ -1,0 +1,594 @@
+<include file="Publics:header-black" />
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="/zhisucom/css/gaojirenzheng.css"/>
+	</head>
+
+	<body>
+	<include file="Publics:leftbar"/>
+		<div class="main_content acc-m-con">
+			<div class="right_mcontent myacc-con">
+
+				<style>
+					.formbox {
+						min-height: 20px;
+						margin: 0 auto;
+						border: 1px;
+						min-width: 60px;
+					}
+					
+					.formbox table {
+						width: 70%;
+						margin: 0 auto;
+					}
+					
+					.formbox table th {
+						line-height: 26px;
+						padding: 10px;
+						vertical-align: top;
+						text-align: center;
+						border: none;
+						font-weight: normal;
+						font-size: 16px;
+						color: #333;
+					}
+					
+					.formbox table td {
+						border: none
+					}
+					
+					.formbox table th b {
+						color: #ff5e23;
+						margin: 0 3px;
+					}
+					
+					.formbox .sfz {
+						position: relative;
+						border: 1px solid #f0f0f0;
+						text-align: center;
+						padding: 20px;
+						min-width: 60px;
+						min-height: 155px;
+						max-height: 300px;
+					}
+					
+					@media screen and (min-width:1800px) {
+						.formbox .sfz {
+							min-height: 260px;
+						}
+					}
+					
+					.formbox .sfz:before {
+						content: '>';
+						position: absolute;
+						top: 50%;
+						right: -30%;
+						font-size: 48px;
+						color: #ccc;
+						font-weight: 100;
+					}
+					
+					.formbox .sfz.pho-active:before {
+						color: #44d5bc;
+					}
+					
+					.upfile-form-con form:last-child .sfz:before {
+						display: none;
+					}
+					
+					.formbox .sfz-img {
+						overflow: hidden;
+					}
+					
+					.formbox .sfz-img img {
+						height: auto;
+						width: 100%
+					}
+					
+					.formbox select {
+						border: 1px solid rgb(204, 204, 204);
+						padding: 0 5px;
+						border-radius: 3px;
+						height: 30px;
+					}
+					
+					.formbox option {
+						padding: 4px 7px;
+						border-bottom: 1px dashed #eee;
+					}
+					
+					.formbox .file {
+						position: absolute;
+						top: 0;
+						left: 0;
+						z-index: 3;
+						height: 100%;
+						width: 100%;
+						overflow: hidden;
+						line-height: 120px;
+						filter: alpha(Opacity=1);
+						-moz-opacity: 0.01;
+						opacity: 0.01;
+						cursor: pointer;
+						padding: 0;
+						margin: 0!important;
+					}
+					
+					.id-info-table tr td:first-child {
+						width: 150px
+					}
+					
+					.sfz {
+						position: relative
+					}
+					
+					.sfz i {
+						position: absolute;
+						right: 0;
+						bottom: 0;
+						width: 20px;
+						height: 20px;
+						line-height: 20px;
+						background: #44d5bc;
+						font-style: normal;
+						text-align: center;
+						color: #fff;
+						#display: none;
+					}
+					
+					.red {
+						color: #ff5e23
+					}
+					
+					.sfz b {
+						position: absolute;
+						left: 0;
+						top: 0;
+						width: 100%;
+						height: 100%;
+					}
+					
+					.sfz-cover {
+						width: 100%;
+						height: 100%;
+						position: absolute;
+						top: 0;
+						left: 0;
+						background: rgba(0, 0, 0, 0.6);
+						z-index: -1;
+						opacity: 0
+					}
+					
+					.sfz:hover .sfz-cover {
+						opacity: 1;
+						z-index: 2
+					}
+					
+					.sectioncont .upfile-btn {
+						margin: 50% auto;
+					}
+					
+					.sectioncont .btn-primary {
+						background: #0c9c83;
+					}
+					
+					.sectioncont .btn-warning {
+						background: #ff5e23;
+					}
+					
+					.re-btn {
+						padding: 10px 20px;
+						border: 1px solid #ddd;
+						margin-left: 15px
+					}
+					
+					.upfile-form-con form {
+						width: 25%;
+						float: left;
+						margin: 0
+					}
+					
+					.step-title {
+						text-align: center;
+						margin-top: 10px;
+						font-size: 16px;
+						color: #888;
+					}
+				</style>
+
+				<div class="m_title">
+					<h4>用户信息实名登记</h4></div>
+
+				<div class="sectioncont">
+					<p>根据监管要求，我们为您登记实名认证信息，因此给您造成的不便我们深表歉意。</p>
+					<p>请注意，每张手势照片必须包含完整上半身。</p>
+					<p>如果您未通过审核，请点击重新上传进行重新审核！</p>
+				</div>
+				<div class="formbox sectioncont">
+					<div style="margin:20px 0 10px">以下图片仅作为示例，请提交您本人的身份材料。</div>
+					<table>
+						<tbody>
+							<tr>
+
+								<th>手势示例：</th>
+								<td>
+									<img src="/zhisucom/images/main.jpg">
+								</td>
+
+							</tr>
+						</tbody>
+					</table>
+					<div style="margin:20px 0 10px;font-size: 16px"><label>上传手势照片(账号后四位)：</label><span><span class="red"><b id="myID">1343422</b></span></span>
+					</div>
+					<div class="upfile-form-con clearfix">
+						<form accept-charset="UTF-8" action="https://up.qbox.me" class="kyc form" enctype="multipart/form-data" method="post">
+
+							<table>
+								<tbody>
+									<tr>
+										<th>手势<b class="step1-num">3</b>照片：</th>
+									</tr>
+									<tr>
+
+										<td>
+											<div class="sfz i-z">
+												<input id="key" name="key" value="" type="hidden">
+												<input id="token" name="token" value="" type="hidden">
+												<input name="x:category" value="id-gesture-first" type="hidden">
+
+												<div class="sfz-img img1">
+												 <if condition="$user['senior_img1'] eq ''">
+												<input class="file" name="file" id="inputfile1" type="file">
+													<img src="/zhisucom/images/download2.jpg" onclick="getElementById('inputfile1').click()">
+												<else/>
+													<img src="/Upload/idcard/{$user['senior_img1']}">
+												</if>
+												</div>
+												<if condition="$user['senior_img1'] eq ''">
+												<div class="sfz-cover">
+													<div class="upfile-btn sub-btn btn-primary">上传文件</div>
+												</div>
+												<else/>
+												<div class="sfz-cover" style="display:none;">
+													<div class="upfile-btn sub-btn btn-primary">上传文件</div>
+												</div>
+												</if>
+												<!--<i>√</i>-->
+											</div>
+											<div class="step-title">第一步</div>
+										</td>
+
+									</tr>
+								</tbody>
+							</table>
+						</form>
+
+						<form accept-charset="UTF-8" action="https://up.qbox.me" class="kyc form" enctype="multipart/form-data" method="post">
+							<table>
+								<tbody>
+									<tr>
+										<th>手势<b class="step2-num">4</b>照片：</th>
+									</tr>
+									<tr>
+										<td>
+											<div class="sfz i-z">
+												<input id="key" name="key" value="kyc/idcard/id-gesture-second-47e18ff035-c495abf167-21327d-1d91cf" type="hidden">
+												<input id="token" name="token" value="6q4TQXxXzdbLIlKBaKdLUzwlgtnvAvHUxOH67T6K:u6L5T3F7rAwqY1DMyt5CzfzIDfY=:eyJpbnNlcnRPbmx5IjowLCJlbmRVc2VyIjoiaWRjYXJkLTEzNDM0MjIiLCJmc2l6ZUxpbWl0Ijo0MTk0MzA0LCJtaW1lTGltaXQiOiJpbWFnZVwvanBnO2ltYWdlXC9qcGVnO2ltYWdlXC9wbmciLCJyZXR1cm5VcmwiOiJodHRwczpcL1wvZ2F0ZWlvLmlvXC9teWFjY291bnRcL2lkX3NldHVwMiIsImNhbGxiYWNrVXJsIjoiaHR0cHM6XC9cL2dhdGVpby5pb1wvaWRfc2V0dXBfY2FsbGJhY2siLCJjYWxsYmFja0JvZHkiOiJrZXk9JChrZXkpJmhhc2g9JChldGFnKSZjYXRlZ29yeT0kKHg6Y2F0ZWdvcnkpJnVpZD0xMzQzNDIyIiwic2NvcGUiOiJnYXRlaW8tcGF5bWVudHMiLCJkZWFkbGluZSI6MTUzMDEwNjU3OCwidXBIb3N0cyI6WyJodHRwOlwvXC91cC5xaW5pdS5jb20iLCJodHRwOlwvXC91cGxvYWQucWluaXUuY29tIiwiLUggdXAucWluaXUuY29tIGh0dHA6XC9cLzE4My4xMzEuNy4xOCJdfQ==" type="hidden">
+												<input name="x:category" value="id-gesture-second" type="hidden">
+
+
+												<div class="sfz-img img2">
+												<if condition="$user['senior_img2'] eq ''">
+												<input class="file" name="file" id="inputfile2" type="file">
+													<img src="/zhisucom/images/download.jpg" onclick="getElementById('inputfile2').click()">
+												<else/>
+													<img src="/Upload/idcard/{$user['senior_img2']}">
+												</if>
+												</div>
+												
+												<div class="sfz-cover" <if condition="$user['senior_img2'] neq ''"> style="display:none;" </if>>
+													<div class="upfile-btn sub-btn btn-primary">上传文件</div>
+												</div>
+												
+												<!--<i>√</i>-->
+											</div>
+											<div class="step-title">第二步</div>
+										</td>
+
+									</tr>
+								</tbody>
+							</table>
+						</form>
+
+						<form accept-charset="UTF-8" action="https://up.qbox.me" class="kyc form" enctype="multipart/form-data" method="post">
+							<table>
+								<tbody>
+									<tr>
+										<th>手势<b class="step3-num">2</b>照片：</th>
+									</tr>
+									<tr>
+
+										<td>
+											<div class="sfz i-z">
+												<input id="key" name="key" value="kyc/idcard/id-gesture-third-2a124064a2-add3be6810-fc59b8-de34f2" type="hidden">
+												<input id="token" name="token" value="6q4TQXxXzdbLIlKBaKdLUzwlgtnvAvHUxOH67T6K:u6L5T3F7rAwqY1DMyt5CzfzIDfY=:eyJpbnNlcnRPbmx5IjowLCJlbmRVc2VyIjoiaWRjYXJkLTEzNDM0MjIiLCJmc2l6ZUxpbWl0Ijo0MTk0MzA0LCJtaW1lTGltaXQiOiJpbWFnZVwvanBnO2ltYWdlXC9qcGVnO2ltYWdlXC9wbmciLCJyZXR1cm5VcmwiOiJodHRwczpcL1wvZ2F0ZWlvLmlvXC9teWFjY291bnRcL2lkX3NldHVwMiIsImNhbGxiYWNrVXJsIjoiaHR0cHM6XC9cL2dhdGVpby5pb1wvaWRfc2V0dXBfY2FsbGJhY2siLCJjYWxsYmFja0JvZHkiOiJrZXk9JChrZXkpJmhhc2g9JChldGFnKSZjYXRlZ29yeT0kKHg6Y2F0ZWdvcnkpJnVpZD0xMzQzNDIyIiwic2NvcGUiOiJnYXRlaW8tcGF5bWVudHMiLCJkZWFkbGluZSI6MTUzMDEwNjU3OCwidXBIb3N0cyI6WyJodHRwOlwvXC91cC5xaW5pdS5jb20iLCJodHRwOlwvXC91cGxvYWQucWluaXUuY29tIiwiLUggdXAucWluaXUuY29tIGh0dHA6XC9cLzE4My4xMzEuNy4xOCJdfQ==" type="hidden">
+												<input name="x:category" value="id-gesture-third" type="hidden">
+
+												<div class="sfz-img img3">
+												<if condition="$user['senior_img3'] eq ''">
+												<input class="file" name="file" id="inputfile3" type="file">
+													<img src="/zhisucom/images/download1.jpg" onclick="getElementById('inputfile3').click()">
+												<else/>
+												<img src="/Upload/idcard/{$user['senior_img3']}">
+												</if>
+												</div>
+												<div class="sfz-cover" <if condition="$user['senior_img3'] neq ''"> style="display:none;" </if>>
+													<div class="upfile-btn sub-btn btn-primary" >上传文件</div>
+												</div>
+												<!--<i>√</i>-->
+											</div>
+											<div class="step-title">第三步</div>
+										</td>
+
+									</tr>
+								</tbody>
+							</table>
+						</form>
+
+						<form accept-charset="UTF-8"  class="kyc form" >
+							<table>
+								<tbody>
+									<tr>
+										<th>手势<b class="step4-num">2</b>照片：</th>
+									</tr>
+									<tr>
+										<td>
+											<div class="sfz i-z">
+												<input id="key" name="key" value="kyc/idcard/id-gesture-four-6eedcfeb94-97faff6d50-4c0a74-afa0b9" type="hidden">
+												<input id="token" name="token" value="6q4TQXxXzdbLIlKBaKdLUzwlgtnvAvHUxOH67T6K:u6L5T3F7rAwqY1DMyt5CzfzIDfY=:eyJpbnNlcnRPbmx5IjowLCJlbmRVc2VyIjoiaWRjYXJkLTEzNDM0MjIiLCJmc2l6ZUxpbWl0Ijo0MTk0MzA0LCJtaW1lTGltaXQiOiJpbWFnZVwvanBnO2ltYWdlXC9qcGVnO2ltYWdlXC9wbmciLCJyZXR1cm5VcmwiOiJodHRwczpcL1wvZ2F0ZWlvLmlvXC9teWFjY291bnRcL2lkX3NldHVwMiIsImNhbGxiYWNrVXJsIjoiaHR0cHM6XC9cL2dhdGVpby5pb1wvaWRfc2V0dXBfY2FsbGJhY2siLCJjYWxsYmFja0JvZHkiOiJrZXk9JChrZXkpJmhhc2g9JChldGFnKSZjYXRlZ29yeT0kKHg6Y2F0ZWdvcnkpJnVpZD0xMzQzNDIyIiwic2NvcGUiOiJnYXRlaW8tcGF5bWVudHMiLCJkZWFkbGluZSI6MTUzMDEwNjU3OCwidXBIb3N0cyI6WyJodHRwOlwvXC91cC5xaW5pdS5jb20iLCJodHRwOlwvXC91cGxvYWQucWluaXUuY29tIiwiLUggdXAucWluaXUuY29tIGh0dHA6XC9cLzE4My4xMzEuNy4xOCJdfQ==" type="hidden">
+												<input name="x:category" value="id-gesture-four" type="hidden">
+
+												<div class="sfz-img img4">
+												<if condition="$user['senior_img4'] eq ''">
+												<input class="file" name="file" id="inputfile4" type="file">
+													<img src="/zhisucom/images/download2.jpg" onclick="getElementById('inputfile4').click()">
+												<else/>
+												<img src="/Upload/idcard/{$user['senior_img4']}">
+												</if>
+												</div>
+												<div class="sfz-cover" <if condition="$user['senior_img4'] neq ''"> style="display:none;" </if>>
+													<div class="upfile-btn sub-btn btn-primary">上传文件</div>
+												</div>
+												<!--<i>√</i>-->
+											</div>
+											<div class="step-title">第四步</div>
+										</td>
+
+									</tr>
+								</tbody>
+							</table>
+						</form>
+					</div>
+					<div class="sectioncont">
+						<form enctype="application/x-www-form-urlencoded" method="post" action="" id="reset-form">
+							<div class="sectioncont">
+								<input id="reset_upload" name="reset_upload" value="2" type="hidden">
+
+								<p style="margin-top:20px">照片要求：</p>
+								<p> 1. 照片文件大小不能超过4M！文件格式须为jpg或者png！</p>
+								<p> 2. 请上传账号后四位手势照片，不足的补零</p>
+								<p> 3. 请确保照片无水印，无污渍，手势清晰，上半身完整！
+									<a class="re-btn" onClick="cx();">重新上传</a>
+								</p>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="sectioncont">
+
+					<form >
+						<table class="id-info-table">
+
+							<tbody>
+								<tr>
+									<td>
+										<input type="button" name="submit" id="submit" class="sub-btn" onclick="tijiao();"
+										<if condition="$user['senior_past'] eq ''"> value="  已确认无误，提交 "</if>
+										<if condition="$user['senior_past'] eq 0">value="  等待审核 " disabled</if>
+										<if condition="$user['senior_past'] eq 1">value="  审核通过 " disabled</if>
+										<if condition="$user['senior_past'] eq 2">value="  审核未通过 " disabled</if>
+										>
+									</td>
+								</tr>
+
+							</tbody>
+						</table>
+
+					</form>
+
+					<br>
+				</div>
+
+				<script type="text/javascript">
+//					$(document).ready(function() {
+//
+//						var idStr = $("#myID").text();
+//						var len = idStr.length;
+//
+//						while(len < 4) {
+//							idStr = idStr + "0";
+//							len++;
+//						}
+//						idStr = idStr.substr(idStr.length - 4, 4);
+//
+//						var idArr = idStr.split("");
+//						idArr.map(function(idData, index) {
+//							$(".step" + (index + 1) + "-num").text(idData);
+//							//$(".img"+(index+1)).html("<img src=/images/kyc/id-gesture-"+idData+".jpg>");
+//						});
+//
+//						$(".kyc.form").on("change", ".file", function() {
+//							$(this).parents("form").trigger("submit");
+//						});
+//					});
+//
+//					function OnResetUpload() {
+//
+//						noty({
+//							text: '是否重新上传',
+//							type: 'confirm',
+//							layout: 'bottomLeft',
+//							theme: 'gateioNotyTheme',
+//							modal: true,
+//							animation: {
+//								open: {
+//									height: 'toggle'
+//								},
+//								close: {
+//									height: 'toggle'
+//								},
+//								easing: 'swing',
+//								speed: 100 // opening & closing animation speed
+//							},
+//							buttons: [{
+//									addClass: 'btn btn-primary dp-noty-btn',
+//									text: '确定',
+//									onClick: function($noty) {
+//
+//										document.getElementById('reset-form').submit();
+//										$noty.close();
+//										return true;
+//									}
+//								},
+//								{
+//									addClass: 'btn btn-danger dp-noty-btn',
+//									text: '关闭',
+//									onClick: function($noty) {
+//										$noty.close();
+//										return false;
+//									}
+//								}
+//							]
+//						});
+//					}
+				</script>
+
+				<!---->
+
+				<br>
+			</div>
+			<!-- right_mcontent -->
+		</div>
+		<include file="Publics:footer"/>
+	</body>
+<script>
+    $(document).ready(function () {
+        
+        $("#inputfile1").change(function () {
+			sendAjax("inputfile1")
+        	});
+        $("#inputfile2").change(function () {
+            sendAjax("inputfile2")
+        });
+        $("#inputfile3").change(function () {
+            sendAjax("inputfile3")
+        });
+		$("#inputfile4").change(function () {
+            sendAjax("inputfile4")
+        });
+        function sendAjax(name){
+            var data = new FormData();
+            data.append(name,$("#"+name)[0].files[0]);
+            $.ajax({
+                url: '/user/senior_upimg',
+                type: 'POST',
+                data: data,
+                cache: false,
+                contentType: false,		//不可缺参数
+                processData: false,		//不可缺参数
+                success: function (data) {
+                    console.log(name)
+                    if (data) {
+                        if(data=="error"){
+                            alert("请选择正确的文件类型和大小！");
+                            return false;
+                        }
+						window.location.replace("/User/senior");
+						
+                        /*$('<img />', {
+                            src : '/Upload/idcard/' + data,class:name +'-new'
+                        }).appendTo($('.set_upload_img'));
+
+                        $('.set_upload_img').show();
+                        //
+                        if($('.set_upload_img img').length === 3){
+                            $('.new-button').on('click',function(){
+                                alert('提交成功');
+                               window.reload(true)
+    
+                                
+                            })
+                        }*/
+                      
+                    }
+                },
+                error: function () {
+                    alert('上传出错');
+                    $('.set_upload_img').hide();
+                }
+            });
+		}
+	});
+	
+	
+	function tijiao(){
+		var image1 = "{$user['senior_img1']}";
+		var image2 = "{$user['senior_img2']}";
+		var image3 = "{$user['senior_img3']}";
+		var image4 = "{$user['senior_img4']}";
+		if(image1=='' || image2=='' || image3=='' || image4==''){
+			layer.open({
+				content:'请上传4张完整图片！'
+			});
+			return false;
+		}
+		$.ajax({
+			url:'/user/senior_s',
+			data:1,
+			type:'json',
+			datatype:'post',
+			success:function(data){
+				if(data.status==1){
+					layer.msg(data.info, {icon: 1});
+					window.location = "/user/senior";
+				}else{
+					layer.msg(data.info, {icon: 2});
+					window.location = "/user/senior";
+				}
+			}
+		});
+		
+	}
+	
+	function cx(){
+		$.ajax({
+			url:'/user/senior_cx',
+			data:1,
+			type:'json',
+			datatype:'post',
+			success:function(data){
+				if(data.status==1){
+					layer.msg(data.info, {icon: 1});
+					window.location = "/user/senior";
+				}else{
+					layer.msg(data.info, {icon: 2});
+					window.location = "/user/senior";
+				}
+			}
+		});
+	}
+</script>
+</html>

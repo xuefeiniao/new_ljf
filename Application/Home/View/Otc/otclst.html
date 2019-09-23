@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="{$web_keywords}" />
+    <meta name="format-detection" content="telephone=no,email=no,address=no" />
+    <eq name="Think.session.lang" value="1">
+									<notempty name="coninfo['web_name']" value=" ">
+								
+										<title>{$coninfo['web_name']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="2">
+									<notempty name="coninfo['web_name_e']" value=" ">
+										<title>{$coninfo['web_name_e']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="3">
+									<notempty name="coninfo['web_name_en']" value=" ">
+										<title>{$coninfo['web_name_en']}</title>
+									</notempty>
+								</eq>
+    <link data-n-head="true" rel="icon" type="image/x-icon" href="__PUBLIC__/favicon.ico"/>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/base.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/common.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/newcss/myAd.css" media="all"/>
+    <script data-n-head="true" src="__PUBLIC__/Home/js/newjs/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/layer/layer.js"></script>
+
+</head>
+<body>
+
+<!--<img src="https://mon.58coin.com/mon.gif" id="img-hidden" />-->
+<div id="__nuxt">
+    <div class="nuxt-progress" style="width: 0%; height: 2px; background-color: rgb(59, 128, 112); opacity: 0;"></div>
+    <div id="__layout">
+        <div>
+            <!--头部内容-->
+            <include file="Public:header2"/>
+            <!--头部内容   end-->
+            <div class="wrap">
+                <section class="container">
+                    <div  class="type-nav flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+                        <div  class="nav flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                            <a class="active">{$GLOBALS['noready-pay']}</a>
+                            <a class="">{$GLOBALS['ready-pay']}</a>
+                            <!-- <a class="">待放行</a> -->
+                            <a class="">{$GLOBALS['completed']}</a>
+                            <!-- <a class="">已取消</a>
+                            <a class="">申诉中</a> -->
+                            
+                        </div>
+                        <!---->
+                    </div>  
+                    <!-- 未完成 -->
+                    <div class="index-list no_pay">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>{$GLOBALS['order-number']}</th>
+                                <th>{$GLOBALS['trade-time']}</th>
+                                <th>{$GLOBALS['coin-name']}</th>
+                                <th>{$GLOBALS['trade-number']}</th>
+                                <th>{$GLOBALS['trade-price']}</th>
+                                <th>{$GLOBALS['trade-totalMoney']}</th>
+                                <th>{$GLOBALS['trade-type']}</th>
+                                <th>{$GLOBALS['order-operate']}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <if condition="$no_pay neq null">
+                                <volist name="no_pay" id="vo">
+                                    <tr>
+                                        <td>{$vo.number}</td>
+                                        <td>{$vo['paytime']|date='Y-m-d H:i:s',###}</td>
+                                        <td>{$vo['market']}</td>
+                                        <td>{$vo['num']|round=6}</td>
+                                        <td>￥{$vo['price']|round=4}</td>
+                                        <td>￥{$vo['cprice']|round=4}</td>
+                                        <td>
+                                            
+											<if condition="$vo['bid'] eq $_SESSION['userId']">
+										{$GLOBALS['buy']}
+											<else />
+											{$GLOBALS['sell']}
+										</if>
+                                        </td>
+                                        <td>
+										
+										<if condition="$vo['bid'] eq $_SESSION['userId']">
+										
+                                            <a href="{:U('c2c/deal/id/'.$vo['id'])}" class="cur" style=" color: #E55600!important;">{$GLOBALS['checkBtn']}</a>
+											
+										</if>
+										<if condition="$vo['sid'] eq $_SESSION['userId']">
+                                            <a href="{:U('c2c/deal1/id/'.$vo['id'])}" class="cur" style=" color: #E55600!important;">{$GLOBALS['checkBtn']}</a>
+										</if>
+                                        </td>
+                                        <!-- <td>
+                                            <switch name="vo.status">
+                                                <case value="1">待匹配</case>
+                                                <case value="2">{$vo.s1}</case>
+                                                <case value="3">待打款</case>
+                                                <case value="4">{$vo.s1}</case>
+                                                <case value="5">订单完成</case>
+                                            </switch>
+                                        </td>
+                                        <td>
+                                            <if condition="$vo['status'] eq 1 ">
+                                                <a onclick="out_chexiao(this)" data="{$vo['id']}" href="javascript:void(0)" style="color:#2674FF!important;">撤销</a>&nbsp|</a>
+                                            </if>
+
+                                            <if condition="(($vo['status'] eq 4) or ($vo['status'] eq 5))">
+                                                <a href="{:U('otc/orderlog/id/'.$vo['id'])}" class="cur" style=" color: #E55600!important;">查看</a>
+                                                <elseif condition="($vo['status'] eq 1) or (($vo['status'] eq 2) and ($vo['type'] eq 2)) "/>
+                                                <a href="{:U('otc/mmset/id/'.$vo['id'])}" class="cur" style=" color: #E55600!important;">查看</a>
+                                                <elseif condition="($vo['status'] eq 2) and($vo['type'] eq 1) " />
+                                                <a href="{:U('otc/ordersell/id/'.$vo['id'])}" class="cur" style=" color: #E55600!important;">查看</a>
+                                            </if>
+
+                                        </td> -->
+                                    </tr>
+                                </volist>
+                                <else/>
+                                <tr>
+                                    <td colspan="8">
+                                        <div class="no-list">
+                                            <img src="/Public/Home/image/accountMsg/nolist.71d670a.jpg" alt="" />
+                                            <h6 style="font-weight: normal;">{$GLOBALS['noData']}</h6>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </if>
+                            </tbody>
+                        </table>
+
+                        <!---->
+                    </div>
+                    <!-- 待付款 -->                  
+                    <div class="index-list readyPay"  style="display: none;">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>{$GLOBALS['order-number']}</th>
+                                <th>{$GLOBALS['trade-time']}</th>
+                                <th>{$GLOBALS['coin-name']}</th>
+                                <th>{$GLOBALS['trade-number']}</th>
+                                <th>{$GLOBALS['trade-price']}</th>
+                                <th>{$GLOBALS['trade-totalMoney']}</th>
+                                <th>{$GLOBALS['trade-type']}</th>
+                                <th>{$GLOBALS['order-operate']}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <if condition="$notpay neq null">
+                                <volist name="notpay" id="vo">
+                                    <tr>
+                                        <td>{$vo.number}</td>
+                                        <td>{$vo['paytime']|date='Y-m-d H:i:s',###}</td>
+                                        <td>{$vo['market']}</td>
+                                        <td>{$vo['num']|round=6}</td>
+                                        <td>￥{$vo['price']|round=4}</td>
+                                        <td>￥{$vo['cprice']|round=4}</td>
+                                        <td>
+                                            <switch name="vo.type">
+                                                <case value="1">{$GLOBALS['buy']}</case>
+                                                <case value="2">{$GLOBALS['sell']}</case>
+                                            </switch>
+                                        </td>
+                                        <td>
+										
+										<eq name="vo['type']" value="1">
+                                            <a href="{:U('c2c/deal/id/'.$vo['id'])}" class="cur" style=" color: #E55600!important;">{$GLOBALS['checkBtn']}</a>
+										</eq>
+										<eq name="vo['type']" value="2">
+                                            <a href="{:U('c2c/deal1/id/'.$vo['id'])}" class="cur" style=" color: #E55600!important;">{$GLOBALS['checkBtn']}</a>
+										</eq>
+                                        </td>
+                                        <!-- <td>
+                                            <switch name="vo.status">
+                                                <case value="1">待匹配</case>
+                                                <case value="2">{$vo.s1}</case>
+                                                <case value="3">待打款</case>
+                                                <case value="4">{$vo.s1}</case>
+                                                <case value="5">订单完成</case>
+                                            </switch>
+                                        </td> -->
+                                        <!-- <td>
+                                            <if condition="$vo['status'] eq 1 ">
+                                                <a onclick="out_chexiao(this)" data="{$vo['id']}" href="javascript:void(0)" style="color:#2674FF!important;">撤销</a>&nbsp|</a>
+                                            </if>
+
+                                            <if condition="(($vo['status'] eq 4) or ($vo['status'] eq 5))">
+                                                <a href="{:U('otc/orderlog/id/'.$vo['id'])}" class="cur" style=" color: #E55600!important;">查看</a>
+                                                <elseif condition="($vo['status'] eq 1) or (($vo['status'] eq 2) and ($vo['type'] eq 2)) "/>
+                                                <a href="{:U('otc/mmset/id/'.$vo['id'])}" class="cur" style=" color: #E55600!important;">查看</a>
+                                                <elseif condition="($vo['status'] eq 2) and($vo['type'] eq 1) " />
+                                                <a href="{:U('otc/ordersell/id/'.$vo['id'])}" class="cur" style=" color: #E55600!important;">查看</a>
+                                            </if>
+
+                                        </td> -->
+                                    </tr>
+                                </volist>
+                                <else/>
+                                <tr>
+                                    <td colspan="8">
+                                        <div class="no-list">
+                                            <img src="/Public/Home/image/accountMsg/nolist.71d670a.jpg" alt="" />
+                                            <h6 style="font-weight: normal;">{$GLOBALS['noData']}</h6>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </if>
+                            </tbody>
+                        </table>
+
+                        <!---->
+                    </div>
+                    <!-- 已完成 -->
+                    <div class="index-list compuleted" style="display: none;">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>{$GLOBALS['order-number']}</th>
+                                <th>{$GLOBALS['trade-time']}</th>
+                                <th>{$GLOBALS['coin-name']}</th>
+                                <th>{$GLOBALS['trade-number']}</th>
+                                <th>{$GLOBALS['trade-price']}</th>
+                                <th>{$GLOBALS['trade-totalMoney']}</th>
+                                <th>{$GLOBALS['trade-type']}</th>
+                                <th>{$GLOBALS['order-operate']}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <if condition="$okpay neq null">
+                                <volist name="okpay" id="vo">
+                                    <tr>
+                                        <td>{$vo.number}</td>
+                                        <td>{$vo['paytime']|date='Y-m-d H:i:s',###}</td>
+                                        <td>{$vo['market']}</td>
+                                        <td>{$vo['num']|round=6}</td>
+                                        <td>￥{$vo['price']|round=4}</td>
+                                        <td>￥{$vo['cprice']|round=4}</td>
+                                        <td>
+                                            <switch name="vo.type">
+                                                <case value="1">{$GLOBALS['buy']}</case>
+                                                <case value="2">{$GLOBALS['sell']}</case>
+                                            </switch>
+                                        </td>
+                                        <td>
+                                            <eq name="vo['type']" value="1">
+                                            <a href="{:U('c2c/deal/id/'.$vo['id'])}" class="cur" style=" color: #E55600!important;">{$GLOBALS['checkBtn']}</a>
+										</eq>
+										<eq name="vo['type']" value="2">
+                                            <a href="{:U('c2c/deal1/id/'.$vo['id'])}" class="cur" style=" color: #E55600!important;">{$GLOBALS['checkBtn']}</a>
+										</eq>
+                                        </td>
+                                        <!-- <td>
+                                            <switch name="vo.status">
+                                                <case value="1">待匹配</case>
+                                                <case value="2">{$vo.s1}</case>
+                                                <case value="3">待打款</case>
+                                                <case value="4">{$vo.s1}</case>
+                                                <case value="5">订单完成</case>
+                                            </switch>
+                                        </td>
+                                        <td>
+                                            <if condition="$vo['status'] eq 1 ">
+                                                <a onclick="out_chexiao(this)" data="{$vo['id']}" href="javascript:void(0)" style="color:#2674FF!important;">撤销</a>&nbsp|</a>
+                                            </if>
+
+                                            <if condition="(($vo['status'] eq 4) or ($vo['status'] eq 5))">
+                                                <a href="{:U('otc/orderlog/id/'.$vo['id'])}" class="cur" style=" color: #E55600!important;">查看</a>
+                                                <elseif condition="($vo['status'] eq 1) or (($vo['status'] eq 2) and ($vo['type'] eq 2)) "/>
+                                                <a href="{:U('otc/mmset/id/'.$vo['id'])}" class="cur" style=" color: #E55600!important;">查看</a>
+                                                <elseif condition="($vo['status'] eq 2) and($vo['type'] eq 1) " />
+                                                <a href="{:U('otc/ordersell/id/'.$vo['id'])}" class="cur" style=" color: #E55600!important;">查看</a>
+                                            </if>
+
+                                        </td> -->
+                                    </tr>
+                                </volist>
+                                <else/>
+                                <tr>
+                                    <td colspan="8">
+                                        <div class="no-list">
+                                            <img src="/Public/Home/image/accountMsg/nolist.71d670a.jpg" alt="" />
+                                            <h6 style="font-weight: normal;">{$GLOBALS['noData']}</h6>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </if>
+                            </tbody>
+                        </table>
+
+                        <!---->
+                    </div>
+                </section>
+                <!--底部内容-->
+                <include file="Public:footer"/>
+                <!--底部内容   end-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!--<script src="../js/bindEmail.js"></script>-->
+<script>
+    /*菜单切换*/
+    $(".type-nav a").click(function(){
+        $(".type-nav a").removeClass("active");
+        $(this).addClass("active");
+        // console.log($(this).index());
+        if($(this).index()==1){
+            $(".readyPay").show();
+            $(".compuleted").hide();
+            $(".no_pay").hide();
+        }else if($(this).index()==2){
+            $(".readyPay").hide();
+            $(".compuleted").show();
+            $(".no_pay").hide();
+        }else if($(this).index()==0){
+            $(".readyPay").hide();
+            $(".compuleted").hide();
+            $(".no_pay").show();
+        }
+    });
+
+
+    /*撤销订单*/
+    function out_chexiao(_this) {
+        var id = $(_this).attr('data');
+        $.post("{:U('otc/chexiao')}", {id: id}, function (data) {
+            if (data.status == 1) {
+                layer.msg(data.info, {icon: 1});
+                window.location.reload();
+            } else {
+                layer.msg(data.info, {icon: 2});
+            }
+        }, "json");
+    }
+</script>
+</body>
+</html>

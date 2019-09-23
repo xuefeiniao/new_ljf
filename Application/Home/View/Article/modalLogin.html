@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" class="u-bg-transparent turbolinks-progress-bar"><!--<![endif]--><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <eq name="Think.session.lang" value="1">
+									<notempty name="coninfo['web_name']" value=" ">
+								
+										<title>{$coninfo['web_name']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="2">
+									<notempty name="coninfo['web_name_e']" value=" ">
+										<title>{$coninfo['web_name_e']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="3">
+									<notempty name="coninfo['web_name_en']" value=" ">
+										<title>{$coninfo['web_name_en']}</title>
+									</notempty>
+								</eq>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/hcModal.css">
+    <script data-n-head="true" src="__PUBLIC__/Home/js/newjs/jquery-3.3.1.min.js"></script>
+    <style>
+        html.turbolinks-progress-bar::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2000;
+    background-color: #0076ff;
+    height: 3px;
+    opacity: 1;
+    width: 0%;
+    transition: width 300ms ease-out, opacity 150ms ease-in;
+    transform: translate3d(0,0,0);
+}</style>
+</head>
+<body dir="">
+<div class="modal signin" role="dialog" aria-labelledby="signin_title">
+    <div class="login help_center">
+        <div class="interface outer">
+            <div id="cancel-link" role="button">
+                <a href="" class="cancel-link" data-close="true" data-close-type="guide" data-no-turbolink="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M3 13L13 3m0 10L3 3"></path>
+                    </svg>
+                </a>
+            </div>
+            <div class="clear"></div>
+            <h2 class="title" id="signin_title">
+                登录至 58Coin
+            </h2>
+            <div class="interface inner">
+                <div class="services internal">
+                    <form autocomplete="off" id="login-form" class="" action="" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="jDmxeop9OjHhmdxa84PgNUxW8Dda2kzQwLY6mvp07ggAIwei/HGtwp8dFM0BnCCH">
+                        <input type="hidden" name="return_to_on_failure" id="return_to_on_failure" value="/auth/v2/login/signin?return_to=https%3A%2F%2F58coin-support.zendesk.com%2Fhc%2Fzh-cn%2Farticles%2F360008311273-%25E5%2585%25B3%25E4%25BA%258E%25E5%25A4%2596%25E9%2583%25A8%25E6%2594%25BB%25E5%2587%25BB%25E8%25A8%2580%25E8%25AE%25BA%25E7%259A%2584%25E7%25B4%25A7%25E6%2580%25A5%25E5%25A3%25B0%25E6%2598%258E&amp;theme=hc&amp;locale=10&amp;brand_id=360000036933&amp;auth_origin=360000036933%2Cfalse%2Ctrue">
+                        <input type="hidden" name="return_to" id="return_to" value="https://58coin-support.zendesk.com/auth/v2/login/signed_in?auth_origin=360000036933%2Cfalse%2Ctrue&amp;brand_id=360000036933&amp;theme=hc">
+                        <input type="hidden" name="brand_id" id="brand_id" value="360000036933">
+                        <input type="hidden" name="theme" id="theme" value="hc">
+                        <input type="hidden" name="auth_origin" id="auth_origin" value="360000036933,false,true">
+                        <input type="hidden" name="form_origin" id="form_origin" value="hc">
+
+                        <div class="credentials">
+                            <label for="user_email">电邮</label>
+                            <input autofocus="autofocus" autocomplete="on" type="email" name="user[email]" id="user_email">
+                            <label for="user_password">密码</label>
+                            <input autocomplete="off" type="password" name="user[password]" id="user_password">
+                        </div>
+
+                        <div class="remember">
+                            <input type="checkbox" name="remember_me" id="remember_me" value="1">
+                            <label for="remember_me">保持登录状态</label>
+                        </div>
+
+                        <div class="clear"></div>
+
+                        <input type="submit" name="commit" value="登录" class="button primary">
+                    </form>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="clear"></div>
+
+                <div class="assistance">
+
+                    <div class="forgot_password" id="zendesk-js-forgot-password">
+                        <a>忘记密码</a>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+
+        <div class="footnotes">
+            <div class="sign_up question">
+                <span class="question-text">第一次登录 58Coin?</span>
+                <a>注册</a>
+            </div>
+
+            <p class="get_password question">
+                <span class="question-text">您给我们发过电邮吗？</span>
+                <a>获取一个密码</a>
+            </p>
+
+            <p>如果您曾通过电邮联系我们的支持员工，注册已自动完成。<br> 不过，您可能暂时还没有密码。</p>
+        </div>
+
+    </div>
+</div>
+<div class="modal password" style="display:none;">
+    <h2 class="title">请给我设置一个新密码</h2>
+    <form id="password-reset-form" class="box box_form" action="https://58coin-support.zendesk.com/access/help" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="jDmxeop9OjHhmdxa84PgNUxW8Dda2kzQwLY6mvp07ggAIwei/HGtwp8dFM0BnCCH">
+        <input type="hidden" name="return_to_on_failure" value="/auth/v2/login/password_reset?auth_origin=360000036933%2Cfalse%2Ctrue&amp;brand_id=360000036933&amp;return_to=https%3A%2F%2F58coin-support.zendesk.com%2Fhc%2Fzh-cn%2Fsections%2F360000879053-%25E6%25B0%25B8%25E7%25BB%25AD%25E5%2590%2588%25E7%25BA%25A6%25E4%25BA%25A4%25E6%2598%2593%25E5%2585%25AC%25E5%2591%258A&amp;theme=hc">
+        <input type="hidden" name="return_to" value="https://58coin-support.zendesk.com/auth/v2/login/password_reset?auth_origin=360000036933%2Cfalse%2Ctrue&amp;brand_id=360000036933&amp;theme=hc">
+        <p>要重置您的 <strong>https://58coin-support.zendesk.com</strong> 密码，输入您的电邮地址，我们会给您发送一封带有说明的电邮。</p>
+
+        <fieldset>
+            <label for="email">电邮</label>
+            <input type="text" name="email" id="email">
+            <input type="hidden" name="brand_id" value="360000036933">
+            <input type="hidden" name="auth_origin" value="360000036933,false,true">
+            <input type="hidden" name="theme" value="hc">
+            <input type="hidden" name="role" id="role">
+        </fieldset>
+
+        <div class="controls">
+            <input type="submit" name="commit" value="提交" class="button primary">
+            <a>取消</a>
+        </div>
+    </form>
+</div>
+<div class="modal register" style="display: none;">
+    <h2 class="title">注册 58Coin</h2>
+    <form id="registration-form" class="box box_form" action="https://58coin-support.zendesk.com/registration/register" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="authenticity_token" value="jDmxeop9OjHhmdxa84PgNUxW8Dda2kzQwLY6mvp07ggAIwei/HGtwp8dFM0BnCCH">
+        <p>请填写此表格，我们将向您发送一封欢迎电邮，使您可验证电邮地址并登录。</p>
+
+        <fieldset>
+            <input type="hidden" name="return_to_on_failure"  value="/auth/v2/login/registration?auth_origin=360000036933%2Cfalse%2Ctrue&amp;brand_id=360000036933&amp;return_to=https%3A%2F%2F58coin-support.zendesk.com%2Fhc%2Fzh-cn%2Farticles%2F360008311273-%25E5%2585%25B3%25E4%25BA%258E%25E5%25A4%2596%25E9%2583%25A8%25E6%2594%25BB%25E5%2587%25BB%25E8%25A8%2580%25E8%25AE%25BA%25E7%259A%2584%25E7%25B4%25A7%25E6%2580%25A5%25E5%25A3%25B0%25E6%2598%258E&amp;theme=hc">
+            <input type="hidden" name="return_to"  value="https://58coin-support.zendesk.com/auth/v2/login/successful_registration?auth_origin=360000036933%2Cfalse%2Ctrue&amp;brand_id=360000036933&amp;theme=hc">
+
+            <label for="user_name">全名 <super>*</super></label>
+            <input type="text" name="user[name]" id="user_name">
+
+            <label for="user_email">电邮地址 <super>*</super></label>
+            <input type="text" name="user[email]" >
+
+            <input type="hidden" name="brand_id"  value="360000036933">
+            <input type="hidden" name="auth_origin" value="360000036933,false,true">
+            <input type="hidden" name="timezone_name"  value="Asia/Shanghai">
+
+
+            <div id="recaptcha_widget">
+                <script src="https://www.google.com/recaptcha/api.js?hl=zh-cn" async="" defer=""></script>
+                <div class="g-recaptcha" data-theme="light" data-sitekey="6LdPNyITAAAAAG9bN96aLeu11VRFZ7m6HaFBRGf1"></div>
+
+
+            </div>
+
+        </fieldset>
+
+        <div class="controls">
+            <input type="submit" name="commit" value="注册" disable_with_ignored="正在注册…" class="button primary">
+            <a>取消</a>
+        </div>
+    </form>
+    <!--<script>-->
+        <!--//<![CDATA[-->
+
+        <!--var tz = jstz.determine();-->
+        <!--document.getElementById("timezone_name").value = tz.name();-->
+
+        <!--//]]>-->
+    <!--</script>-->
+</div>
+
+
+<script>
+   $(document).ready(function () {
+       /*取消弹框*/
+       $("#cancel-link").click(function () {
+           $(".iframeDiv", window.parent.document).hide();
+           $(".article-subscribe", window.parent.document).addClass("active");
+       });
+
+
+       /*点击忘记 密码/登录 */
+       $(".sign_up a").click(function () {
+           $(".signin").hide();
+           $(".password").hide();
+           $(".register").show();
+       });
+       $(".get_password a,.forgot_password a").click(function () {
+           $(".signin").hide();
+           $(".password").show();
+           $(".register").hide();
+       });
+       $(".controls a").click(function () {
+           $(".signin").show();
+           $(".password").hide();
+           $(".register").hide();
+       });
+
+
+   });
+</script>
+
+</body>
+</html>

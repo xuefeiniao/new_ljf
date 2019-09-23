@@ -1,0 +1,2494 @@
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta data-n-head="true" charset="utf-8"/>
+    <meta data-n-head="true" name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta data-n-head="true" data-hid="description" name="description" content="Nuxt.js project"/>
+    <meta data-n-head="true" name="format-detection" content="telephone=no,email=no,address=no"/>
+    <meta name="keywords" content="<?php echo ($web_keywords); ?>" />
+    <?php if(($_SESSION['lang']) == "1"): if(!empty($coninfo['web_name'])): ?><title><?php echo ($coninfo['web_name']); ?></title><?php endif; endif; ?>
+								<?php if(($_SESSION['lang']) == "2"): if(!empty($coninfo['web_name_e'])): ?><title><?php echo ($coninfo['web_name_e']); ?></title><?php endif; endif; ?>
+								<?php if(($_SESSION['lang']) == "3"): if(!empty($coninfo['web_name_en'])): ?><title><?php echo ($coninfo['web_name_en']); ?></title><?php endif; endif; ?>
+    <link data-n-head="true" rel="icon" type="image/x-icon" href="/Public/favicon.ico"/>
+    <link rel="stylesheet" href="/Public/Home/css/newcss/base.css"/>
+    <link rel="stylesheet" href="/Public/Home/css/newcss/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/Public/Home/css/newcss/borrowMoney.css" media="all"/>
+    <script data-n-head="true" src="/Public/Home/js/newjs/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="/zhisucom/js/layer.js"></script>
+    <style type="text/css">
+        .product-info .product-info-top .item span{
+            color:#fff;
+        }
+        .labs-trade .cny {
+            margin-top: 4px;
+            color: #666b93;
+            font-size: 12px;
+        }
+
+        .item input::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+            color: rgb(102, 107, 147)!important;
+            font-size: 12px!important;
+        }
+        .item input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            color: rgb(102, 107, 147)!important;
+            font-size: 12px!important;
+        }
+        .item input::-moz-placeholder { /* Mozilla Firefox 19+ */
+            color: rgb(102, 107, 147)!important;
+            font-size: 12px!important;
+        }
+        .item input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+            color: rgb(102, 107, 147)!important;
+            font-size: 12px!important;
+        }
+
+        span.tip, .contract-trade span.tip {
+            position: relative;
+            display: inline-block;
+            vertical-align: text-top;
+            margin-left: 5px;
+            width: 12px;
+            height: 12px;
+            background: url(/Public/Home/image/common/tips.png) no-repeat;
+            cursor: pointer;
+        }
+        .labs-trade .form .total p .tip span {
+            display: none;
+            width: 104px;
+            padding: 3px 0;
+            border-radius: 2px;
+            position: absolute;
+            left: -85px;
+            bottom: 20px;
+            background-color: #666b93;
+            color: #cbd7f0;
+            text-align: center;
+        }
+        /*委托交易列表*/
+        .my-current-entrust table {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        .my-current-entrust table thead {
+            width: 500px;
+        }
+        .my-current-entrust table tr {
+            height: 30px;
+            border-bottom: 1px solid #212340;
+        }
+        .my-current-entrust table thead tr th {
+            font-size: 12px;
+            font-weight: 400;
+            color: #666b93;
+            text-align: right;
+            min-width: 90px;
+            width:12.5%;
+        }
+        .my-current-entrust table thead tr th:first-child {
+            padding-left: 16px;
+            text-align: left;
+        }
+        .my-current-entrust table thead tr th .type1, .my-current-entrust table thead tr th .type2 {
+            color: #666b93;
+        }
+
+        .my-current-entrust table tbody tr td {
+            padding: 0;
+            color: #cbd7f0;
+            font-size: 12px;
+            text-align: right;
+            min-width: 90px;
+            width:12.5%;
+        }
+        .my-current-entrust table tbody tr td:first-child {
+            padding-left: 16px;
+            text-align: left;
+        }
+        .my-current-entrust table tbody tr td:first-child {
+            padding-left: 16px;
+            text-align: left;
+        }
+        .my-current-entrust table tbody tr td span {
+            color: #cbd7f0;
+        }
+        .my-current-entrust table tbody tr td:first-child span:last-child {
+            color: #666b93;
+        }
+        .my-current-entrust table tbody tr td span.buy {
+            color: #3ac79f;
+        }
+        .my-current-entrust .wrapper .cancel-single {
+            color: #0976d9;
+            cursor: pointer;
+        }
+        .create-item{
+            position: relative;
+            padding-top: 50px;
+            padding-bottom: 50px;
+            border-bottom-left-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+        .create-item h3 {
+            font-size: 16px;
+            color: #cbd7f0;
+        }
+        .create-item div{
+            margin-top: 45px;
+            width: 270px;
+        }
+        .create-item div input[type=submit]{
+            width: 120px;
+            height: 40px;
+            font-size: 16px;
+            color: #cbd7f0;
+            background: none;
+            border: 1px solid #0976d9;
+            border-radius: 3px;
+        }
+        .create-item div input[type=submit]:hover {
+            color: #cbd7f0;
+            background: #0976d9;
+            cursor: pointer;
+        }
+        .red,.red span{
+            color:#d64172!important;
+        }
+        .green,.green span{
+            color:#3ac79f!important;
+        }
+        /*滚动条*/
+        .zUIpanelScrollBox,.zUIpanelScrollBar{
+            width:6px;
+            top:4px;
+            right:2px;
+            border-radius:5px;
+
+        }
+        .zUIpanelScrollBox{
+            background:rgb(29, 31, 53);
+            opacity:0.9;
+            filter:alpha(opacity=10);
+            display: block!important;
+        }
+        .zUIpanelScrollBar{
+            background:rgb(59, 59, 99);opacity:0.8;
+            filter:alpha(opacity=80);
+            display: block!important;
+        }
+        /*爆仓所占百分比*/
+        .account-details .grade {
+            margin: 0 4px;
+            width: 170px;
+            height: 30px;
+            border: 1px solid #212340;
+            background-color: #1b1d2f!important;
+        }
+        .account-details .grade div {
+            height: 100%;
+            background-color: #313151;
+        }
+        .account-details span.level1 {
+            color: #32b28f;
+        }
+
+    </style>
+</head>
+
+<body>
+<?php $str=$_GET['market'];$data['s1']=explode('_',$str)[0];$data['s2']=explode('_',$str)[1];?>
+<div id="__nuxt">
+    <div class="nuxt-progress" style="width: 0%; height: 2px; background-color: rgb(59, 128, 112); opacity: 0;"></div>
+    <div id="__layout">
+        <div class="layout-blank">
+            <!--头部内容-->
+            <style>
+    .spot-header {
+        padding-left: 30px;
+        padding-right: 30px;
+        height: 70px;
+        background: rgb(25, 27, 44) none repeat scroll 0% 0%;
+        z-index: 200;
+    }
+
+    .spot-header .logo {
+        display: block;
+        flex-shrink: 0;
+        margin-right: 30px;
+        width: 134px;
+        height: 36px;
+        background: transparent url('undefined') no-repeat scroll 0% 0% / 100% 100%;
+    }
+
+    .spot-header .logo.cn {
+        /*background-image: url('/Public/Home/image/common/logo_wc.png');*/
+    }
+
+    .spot-header .line {
+        width: 1px;
+        background: rgb(74, 76, 124) none repeat scroll 0% 0%;
+    }
+
+    .spot-header .line-30 {
+        height: 30px;
+    }
+
+    .spot-header .line-10 {
+        height: 10px;
+    }
+
+    .spot-header .down-select ul, .spot-header .down-select ul::before {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%);
+    }
+
+    .spot-header .down-select ul::before {
+        display: block;
+        content: "";
+        top: -5px;
+        border-bottom: 5px solid rgb(27, 29, 47);
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+    }
+
+    .spot-header .nav {
+        margin-left: 30px;
+        height: 100%;
+    }
+
+    .spot-header .nav .item {
+        position: relative;
+        margin-right: 24px;
+        height: 100%;
+    }
+
+    .spot-header .nav .item:last-child {
+        margin-right: 0px;
+    }
+
+    .spot-header .nav .item a {
+        font-size: 14px;
+        color: rgb(203, 215, 240);
+    }
+
+    .spot-header .nav .item a:hover {
+        color: #0976d9;
+    }
+
+    .spot-header .nav .item a.active {
+        color: #0976d9;
+    }
+
+    .spot-header .nav-right {
+        margin-left: 30px;
+        height: 100%;
+    }
+
+    .spot-header .nav-right .item {
+        position: relative;
+        margin-left: 24px;
+        height: 100%;
+    }
+
+    .spot-header .nav-right .item:last-child {
+        margin-right: 0px;
+    }
+
+    .spot-header .nav-right .item a {
+        font-size: 14px;
+        color: rgb(203, 215, 240);
+    }
+
+    .spot-header .nav-right .item a:hover {
+        color: rgb(126, 158, 253);
+    }
+
+    .spot-header .blank {
+        flex-grow: 1;
+    }
+
+    .spot-header .user .line {
+        margin: 0px 20px;
+    }
+
+    .spot-header .user a {
+        font-size: 14px;
+        color: rgb(126, 158, 253);
+    }
+
+    .spot-header .user a:hover {
+        color: rgb(126, 158, 253);
+    }
+
+    /*语言切换*/
+    .st-language {
+        position: relative;
+        height: 30px;
+        padding-bottom: 10px;
+    }
+
+    .st-language .current {
+        width: 110px;
+        height: 20px;
+        border: 1px solid rgb(255, 255, 255);
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    .st-language .current > span{
+        margin: 0px 2px;
+        color: rgb(203, 215, 240);
+        font-size: 12px;
+        display: block;
+    }
+    .st-language .current > span a{
+        color: rgb(203, 215, 240);
+    }
+
+     .st-language .current > span:last-of-type {
+        border-top: 5px solid rgb(255, 255, 255);
+        border-right: 3.5px solid transparent;
+        border-left: 3.5px solid transparent;
+        transition: all 0.5s ease 0s;
+    }
+
+    .st-language .options {
+        display: none;
+        top: 30px;
+        padding: 14px 0px 10px;
+        z-index: 1000;
+        background-color: rgb(26, 42, 72);
+        box-shadow: 0px 3px 7px 0px rgba(20, 33, 57, 0.5);
+        border-radius: 5px;
+        cursor: auto;
+    }
+
+    .st-language .options > span, .st-language .options {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%);
+    }
+
+    .st-language .options > span{
+        top: -5px;
+        border-right: 5px solid transparent;
+        border-bottom: 6px solid rgb(26, 42, 72);
+        border-left: 5px solid transparent;
+    }
+
+    .st-language .options .option {
+        height: 34px;
+        line-height: 34px;
+        padding: 0px 30px;
+        cursor: pointer;
+        white-space: nowrap;
+    }
+    .st-language .options .option a{
+        color:#fff;
+    }
+    .st-language .options .option:hover {
+        background-color: rgb(18, 32, 58);
+    }
+
+    .st-language .options .option:hover span {
+        color: rgb(108, 133, 174);
+    }
+
+    .st-language .options .option:last-of-type {
+        border: medium none;
+    }
+
+    .st-language .options .option span {
+        color: rgb(203, 215, 240);
+        font-size: 12px;
+        margin: 0px 2px;
+    }
+
+    .st-language:hover .current {
+        border-color: rgb(108, 133, 174);
+    }
+
+    .st-language:hover .current > span {
+        color: rgb(108, 133, 174);
+    }
+
+    .st-language:hover .current > span:last-of-type {
+        transform: rotate(180deg);
+        border-top-color: rgb(108, 133, 174);
+    }
+
+    .st-language:hover .options {
+        display: block;
+    }
+
+    .st-language .flag {
+        width: 13px;
+        height: 9px;
+        background-size: 13px 9px;
+    }
+
+    .st-language .flag.cn {
+        background-image: url('/Public/Home/image/common/cn.png');
+    }
+
+    .st-language .flag.en {
+        background-image: url('/Public/Home/image/common/en.png');
+    }
+
+    .st-language .flag.ko {
+        background-image:url('/Public/Home/image/common/ko.png');
+    }
+
+    .st-language .flag.ru {
+        background-image: url('/Public/Home/image/common/ru.png');
+    }
+
+    .st-language .flag.ja {
+        background-image: url('/Public/Home/image/common/ja.png');
+    }
+
+
+    .st-input:-moz-placeholder, .st-input::-moz-placeholder {
+        color: rgb(204, 204, 204);
+    }
+    .labs-header .user .line {
+        margin: 0 20px;
+        height: 10px;
+        width: 1px;
+        background: #4a4c7c;
+    }
+
+
+</style>
+
+<div class="spot-header flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+    <a class="logo cn" href="/Index/index" style="background-image: url('/Upload/public/<?php echo ($web_logo); ?>'); width:115px;height:45px;"></a>
+    <div class="line line-30"></div>
+    <div class="nav flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+        <div class="item product2 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+            <a class="" href="/Lever/borrowMoney/market/usdt_jeff"><?php echo ($GLOBALS['borrowMoney']); ?></a></div>
+        <div class="item product2 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+            <a class="" href="/Lever/borrowMoney3/market/usdt"><?php echo ($GLOBALS['borrowMoney3']); ?></a></div>
+        <div class="item product2 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+            <a class="" href="/Lever/newGuidance" target="_blank"><?php echo ($GLOBALS['new-guide']); ?></a></div>
+		<div class="item product2 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+            <a class="" href="/Article/officialAdModal" target="_blank"><?php echo ($GLOBALS['office-notice']); ?></a></div>
+        <div class="item product2 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap"></div>
+        <div class="item product2 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap"></div>
+    </div>
+    <div class="blank"></div>
+    <div class="nav-right flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+        <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+            <a onclick="logins(1)"><?php echo ($GLOBALS['qianbao']); ?></a></div>
+        <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+            <a onclick="logins(2)"><?php echo ($GLOBALS['recharge']); ?></a></div>
+        <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+            <a onclick="logins(3)"><?php echo ($GLOBALS['withdraw']); ?></a></div>
+    </div>
+    <div class="user flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+        <?php if($_SESSION['userName'] == ''): ?><a style="margin-left: 30px;" href="/Login/register?login"><?php echo ($GLOBALS['login']); ?></a>
+            <div class="line line-10"></div>
+            <a href="/Login/register?register"><?php echo ($GLOBALS['register']); ?></a>
+        <?php else: ?>
+            <a href="/User/index" style="margin-left:30px"><?php echo ($GLOBALS['user']); ?>：<span id="userName"><?php echo ($_SESSION['userName']); ?></span></a>
+            <div class="line line-10"></div>
+            <a onclick="loginout();"><?php echo ($GLOBALS['loginout']); ?></a><?php endif; ?>
+    </div>
+    <div style="margin: 10px 0px 0px 30px;" class="st-language flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+        <div class="current flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap">
+            <!-- <span class="flag cn"></span> -->
+            <!-- <span>中文简体</span> -->
+			<?php if(($yuyan) == ""): ?><span class="flag cn"  ></span><?php endif; ?>
+            <?php if(($yuyan) == "1"): ?><span class="flag cn"  ></span><?php endif; ?>
+            <?php if(($yuyan) == "2"): ?><span class="flag ru"  ></span><?php endif; ?>
+            <?php if(($yuyan) == "3"): ?><span class="flag en"  ></span><?php endif; ?>
+			<span>
+                <?php if(($yuyan) == ""): ?>中文简体<?php endif; ?>
+    			<?php if(($yuyan) == "1"): ?>中文简体<?php endif; ?>
+    			<?php if(($yuyan) == "2"): ?>Русский<?php endif; ?>
+    			<?php if(($yuyan) == "3"): ?>English<?php endif; ?>
+			</span>
+            <span></span>
+        </div>
+        <div class="options">
+            <span></span>
+            <div class="option flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                <span class="flag cn"></span>
+                <span><a href="/User/Lang/lang/1">中文简体</a></span>
+            </div>
+            <div class="option flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                <span class="flag en"></span>
+                <span><a href="/User/Lang/lang/3">English</a></span>
+            </div>
+            <!-- <div class="option flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                <span class="flag ko"></span>
+                <span>한국어</span></div>
+            <div class="option flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                <span class="flag ja"></span>
+                <span>日本語</span></div> -->
+            <div class="option flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                <span class="flag ru"></span>
+                <span><a href="/User/Lang/lang/2">Русский</a></span>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        // 选择语言栏
+        $(".option").click(function () {
+            var oneSpan=$(this).find("span:first-child").attr("class");
+            var twoSpan=$(this).find("span:nth-child(2)").html();
+            $(".st-language .current").find("span:first-child").attr("class",oneSpan);
+            $(".st-language .current").find("span:nth-child(2)").html(twoSpan);
+        });
+    });
+	function loginout(){
+						$.post("/Login/loginout",{},function(data){
+							if(data.status==1){
+								layer.msg(data.info,{icon:1});
+								window.setTimeout("window.location='/Index'",1000);
+							}
+						},"json");
+					}
+
+
+    /*隐藏手机号中间4位*/
+    var phone = $('#userName').html();
+    var mphone = phone.substr(0, 3) + '****' + phone.substr(7);
+    $('#userName').html(mphone);
+    
+    
+    function logins(id){
+	    var uid = "<?php echo ($uid); ?>";
+		if(uid>0){
+		    if(id == 1){
+		        location.href="/Finance/qianbao";
+		    }else if(id == 2){
+		        location.href="/Finance/myzr/name/jeff";
+		    }else if(id==3){
+		        location.href="/Finance/myzc/name/jeff";
+		    }
+		}else{
+			layer.msg("<?php echo ($GLOBALS['first-login']); ?>", {icon: 2});
+	    }
+	}
+</script>
+
+            <!--头部内容   end-->
+            <div class="trade flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                <div class="left">
+                    <div class="product-list">
+                        <div class="title flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                            <h3><?php echo ($GLOBALS['market']); ?></h3>
+                            <div>
+                                <!-- <input placeholder="请输入币种" value="" type="text"/> -->
+                                <!---->
+                            </div>
+                        </div>
+                        <div class="flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+                            <div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap nav cn">
+                                <a class="active">JEFF</a>
+                            </div>
+                            <div class="flex-box flex-direction-row flex-justify-end flex-align-item-center flex-wrap-nowrap nav optional cn">
+                                <!-- <a class=""><span></span>自选</a> -->
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="list-title item-border flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap"
+                                 style="padding-left: 16px;">
+                                <h4 class="col-1"><?php echo ($GLOBALS['coin-name']); ?></h4>
+                                <h4 class="col-2"><?php echo ($GLOBALS['new-price']); ?></h4>
+                                <h4 class="col-3"><?php echo ($GLOBALS['change-price']); ?></h4>
+                                <h4 style="width: 6px;"></h4>
+                            </div>
+                            <div class="easy-scrollbar chromeScrollShow" style="max-height: 300px;">
+                                <div style="margin-right: -17px;" class="easy-scrollbar__wrap">
+                                    <div style="position: relative;" class="el-scrollbar__view">
+                                        <div class="wrapper" style="max-height: 300px;">
+                                            <div class="area">
+                                                <span></span><?php echo ($GLOBALS['main-area']); ?>
+                                            </div>
+                                            <?php if(is_array($jtc)): $i = 0; $__LIST__ = $jtc;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap item-border" style="padding: 0px 16px;" onclick="window.top.location.href='/Lever/borrowMoney/market/<?php echo ($vo['name']); ?>'">
+                                                    <p class="col-1"><?php echo (strtoupper($vo['xnb'])); ?></p>
+                                                    <p class="col-2"><?php echo ($vo['new_price']); ?></p>
+                                                    <p class="col-3 buy"><?php echo ($vo['change']); ?>%</p>
+                                                    <p><a class="col-4"></a></p>
+                                                </div><?php endforeach; endif; else: echo "" ;endif; ?>
+                                          
+                                            <!---->
+                                            <!---->
+                                        </div>
+                                        <div class="resize-triggers">
+                                            <div class="expand-trigger">
+                                                <div style="width: 361px; height: 186px;"></div>
+                                            </div>
+                                            <div class="contract-trigger"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="esay-scrollbar__bar is-vertical"
+                                     style="background-color: rgb(29, 31, 53); z-index: 200; width: 6px; right: 0px; display: none;">
+                                    <div class="easy-scrollbar__thumb"
+                                         style="transform: translateY(0%); background-color: rgb(59, 59, 99); width: 6px; opacity: 0.3;"></div>
+                                </div>
+                            </div>
+                            <!---->
+                        </div>
+                    </div>
+                    <div class="labs-trade margin">
+                        <div class="header flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                            <div class="active1">
+                                <?php echo ($GLOBALS['buy']); ?>
+                            </div>
+                            <div>
+                                <?php echo ($GLOBALS['sell']); ?>
+                            </div>
+                        </div>
+                        <div style="margin:0 16px;" class="title priceType flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap" >
+                            <div class="limit-price active">
+                                <?php echo ($GLOBALS['limit-price']); ?>
+                            </div>
+                            <div class="market-price">
+                                <?php echo ($GLOBALS['market-price']); ?>
+                            </div>
+                        </div>
+                        <!--买入-->
+                        <div class="form buyDiv">
+                            <div class="able flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                <p><?php echo ($GLOBALS['canUser-money']); ?>：<span id="my_rmbs"><?php echo ($bow['p_yue']); ?></span> <?php echo (strtoupper($data["s2"])); ?></p>
+                                <div>
+                                    <!-- <a class="zhuan">转入</a> -->
+                                    <a class="" href="/Lever/borrowMoney3/market/usdt" style="margin-left: 10px;"><?php echo ($GLOBALS['borrowMoney3']); ?></a>
+                                </div>
+                            </div>
+                            <!--买入-限价-->
+                            <div class="limitPrice">
+                                <div class="trade-label flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                                    <span><?php echo ($GLOBALS['buy-price']); ?></span>
+                                </div>
+                                <div class="input flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <div class="flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap item">
+                                        <span><?php echo (strtoupper($data["s2"])); ?></span>
+                                        <input type="number" maxlength="16" placeholder="<?php echo ($GLOBALS['best-price']); ?>" value="" class="price" id="buy_price" onkeyup="keyPrice($(this),$('#my_rmbs'),$('#buy_maxs'))"/>
+                                        <div class="error" style="display: none;"></div>
+                                    </div>
+                                </div>
+                                <!-- <p class="cny">≈ 1,540.73 CNY</p> -->
+                                <!---->
+                                <div class="trade-label flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                                    <span><?php echo ($GLOBALS['buy-number']); ?></span>
+                                </div>
+                                <div class="input flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <div class="flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap item">
+                                        <span><?php echo (strtoupper($data["s1"])); ?></span>
+                                        <input type="number" id="buy_num" maxlength="16" value="" onkeyup="keyNumber($(this),$('#buy_price'),$('#buy_maxs'),$('.area1'))"/>
+                                        <div class="error" style="display: none;"></div>
+                                    </div>
+                                </div>
+                                <div class="total flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+                                    <p><?php echo ($GLOBALS['buy-maximum']); ?>：</p>
+                                    <p><span id="buy_maxs"></span> <?php echo (strtoupper($data["s1"])); ?>
+                                        <!----></p>
+                                </div>
+                                <div class="ratio">
+                                    <div class="st-slider slider">
+                                        <div class="area area1">
+                                            <div class="percent0"></div>
+                                            <div class="percent25"></div>
+                                            <div class="percent50"></div>
+                                            <div class="percent75"></div>
+                                            <div class="end"></div>
+                                            <div class="progress" style="width: 0px;"></div>
+                                            <div width="328" class="st-slider-button" style="left: 0px;"></div>
+                                        </div>
+                                        <div class="flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                            <p style="margin-left: -4px;">0</p>
+                                            <p id="showNum1">0%</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="trade-price flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <p><?php echo ($GLOBALS['trade-money']); ?>：</p>
+                                    <p id="buy_money">0</p>
+                                    <p style="margin-left:5px;"><?php echo (strtoupper($data["s2"])); ?></p>
+                                </div>
+                                <input value="<?php echo ($GLOBALS['buy']); ?>" class="buy" type="submit" onclick="tradeadd_buy();"/>
+                            </div>
+                            <!--买入-市价-->
+                            <div class="commonPrice" style="display: none;">
+                                <div class="trade-label flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                                    <span><?php echo ($GLOBALS['buy-price']); ?></span>
+                                </div>
+                                <div class="input flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <div class="flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap item">
+                                        <span><?php echo (strtoupper($data["s2"])); ?></span>
+                                        <input id="buy_price1" maxlength="16" placeholder="<?php echo ($GLOBALS['best-price']); ?>" value="" class="price" disabled/>
+                                    </div>
+                                </div>
+                                <!---->
+                                <div class="trade-label flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                                    <span><?php echo ($GLOBALS['buy-number']); ?></span>
+                                </div>
+                                <div class="input flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <div class="flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap item">
+                                        <span><?php echo (strtoupper($data["s1"])); ?></span>
+                                        <input id="buy_num1" maxlength="16" value="" onkeyup="keyNumber($(this),$('#buy_price1'),$('#buy_max'),$('.area2'))"/>
+                                        <div class="error" style="display: none;"></div>
+                                    </div>
+                                </div>
+                                <div class="total flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+                                    <p><?php echo ($GLOBALS['sell-maximum']); ?>：</p>
+                                    <p> <span id="buy_max1">0</span> <?php echo (strtoupper($data["s1"])); ?>
+                                        <span class="tip" title="<?php echo ($GLOBALS['premium']); ?>"></span>
+                                        <!---->
+                                    </p>
+                                </div>
+                                <div class="ratio">
+                                    <div class="st-slider slider">
+                                        <div class="area">
+                                            <div class="percent0"></div>
+                                            <div class="percent25"></div>
+                                            <div class="percent50"></div>
+                                            <div class="percent75"></div>
+                                            <div class="end"></div>
+                                            <div class="progress" style="width: 0px;"></div>
+                                            <div width="328" class="st-slider-button" style="left: 0px;"></div>
+                                        </div>
+                                        <div class="flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                            <p style="margin-left: -4px;">0</p>
+                                            <p id="showNum2">0%</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <input value="<?php echo ($GLOBALS['buy']); ?>" class="buy" type="submit" onclick="tradeadd_buy();"/>
+                            </div>
+                        </div>
+                        <!--卖出-->
+                        <div class="form sellDiv" style="display: none;">
+                            <div class="able flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                <p><?php echo ($GLOBALS['canUser-money']); ?>：<span id="my_xnbs"><?php echo ($bow['yue']); ?></span> <?php echo (strtoupper($data["s1"])); ?></p>
+                                <div>
+                                    <!--<a class="zhuan"><?php echo ($GLOBALS['turnIn']); ?></a>-->
+                                    <a class="" href="/Lever/borrowMoney3/market/usdt" style="margin-left: 10px;"><?php echo ($GLOBALS['borrowMoney3']); ?></a>
+                                </div>
+                            </div>
+                            <!--卖出-限价-->
+                            <div class="limitPrice" style="display: none;">
+                                <div class="trade-label flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                                    <span><?php echo ($GLOBALS['sell-price']); ?></span>
+                                </div>
+                                <div class="input flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <div class="flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap item">
+                                        <span><?php echo (strtoupper($data["s2"])); ?></span>
+                                        <input type="number" id="sell_price" maxlength="16" placeholder="" value="" class="price" onkeyup="keyPrice($(this),$('#my_xnbs'),$('#sell_max'))"/>
+                                        <div class="error" style="display: none;"></div>
+                                    </div>
+                                </div>
+                                <!-- <p class="cny">≈ 1,496.12 CNY</p> -->
+                                <!---->
+                                <div class="trade-label flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                                    <span><?php echo ($GLOBALS['sell-number']); ?></span>
+                                </div>
+                                <div class="input flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <div class="flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap item">
+                                        <span><?php echo (strtoupper($data["s1"])); ?></span>
+                                        <input type="number" id="sell_num" class="" maxlength="16" value="" onkeyup="keyNumber($(this),$('#sell_price'),$('#sell_max'),$('.area3'))"/>
+                                        <div class="error" style="display: none;"></div>
+                                    </div>
+                                </div>
+                                <div class="total flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+                                    <p><?php echo ($GLOBALS['sell-maximum']); ?>：</p>
+                                    <p><span id="sell_max">0</span> <?php echo (strtoupper($data["s2"])); ?>
+                                        <!----></p>
+                                </div>
+                                <div class="ratio">
+                                    <div class="st-slider slider">
+                                        <div class="area area3">
+                                            <div class="percent0"></div>
+                                            <div class="percent25"></div>
+                                            <div class="percent50"></div>
+                                            <div class="percent75"></div>
+                                            <div class="end"></div>
+                                            <div class="progress" style="width: 0px;"></div>
+                                            <div width="328" class="st-slider-button" style="left: 0px;"></div>
+                                        </div>
+                                        <div class="flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                            <p style="margin-left: -4px;">0</p>
+                                            <p id="showNum3">0%</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="trade-price flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <p><?php echo ($GLOBALS['trade-money']); ?>：</p>
+                                    <p id="sell_money">0</p>
+                                    <p style="margin-left:5px;"><?php echo (strtoupper($data["s2"])); ?></p>
+                                </div>
+                                <input value="<?php echo ($GLOBALS['sell']); ?>" class="buy" type="submit" style="background:#b92e5d;" onclick="tradeadd_sell()"/>
+                            </div>
+                            <!--卖出-市价-->
+                            <div class="commonPrice" style="display: none;">
+                                <div class="trade-label flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                                    <span><?php echo ($GLOBALS['sell-price']); ?></span>
+                                </div>
+                                <div class="input flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <div class="flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap item">
+                                        <span><?php echo (strtoupper($data["s2"])); ?></span>
+                                        <input type="number" id="sell_price1" maxlength="16" placeholder="<?php echo ($GLOBALS['best-price']); ?>" value="" class="price" disabled/>
+                                        <div class="error" style="display: none;"></div>
+                                    </div>
+                                </div>
+                                <!---->
+                                <div class="trade-label flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                                    <span><?php echo ($GLOBALS['sell-number']); ?></span>
+                                </div>
+                                <div class="input flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <div class="flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap item">
+                                        <span><?php echo (strtoupper($data["s1"])); ?></span>
+                                        <input type="number" id="sell_num1" class="" maxlength="16" value="" onkeyup="keyNumber($(this),$('#sell_price'),$('#sell_max'),$('.area4'))"/>
+                                        <div class="error" style="display: none;"></div>
+                                    </div>
+                                </div>
+                                <div class="total flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+                                    <p><?php echo ($GLOBALS['sell-maximum']); ?>：</p>
+                                    <p><span id="sell_max1">0</span> <?php echo (strtoupper($data["s2"])); ?>
+                                        <!----></p>
+                                </div>
+                                <div class="ratio">
+                                    <div class="st-slider slider">
+                                        <div class="area area4">
+                                            <div class="percent0"></div>
+                                            <div class="percent25"></div>
+                                            <div class="percent50"></div>
+                                            <div class="percent75"></div>
+                                            <div class="end"></div>
+                                            <div class="progress" style="width: 0px;"></div>
+                                            <div width="328" class="st-slider-button" style="left: 0px;"></div>
+                                        </div>
+                                        <div class="flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                            <p style="margin-left: -4px;">0</p>
+                                            <p id="showNum4">0%</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input value="<?php echo ($GLOBALS['sell']); ?>" class="buy" type="submit" style="background:#b92e5d;" onclick="tradeadd_sell()"/>
+                            </div>
+                        </div>
+                        <!---->
+                        <!--转入弹出框-->
+                        <div   class="popup popup1 flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap" style="display: none;">
+                            <div   class="popup-box">
+                                <div   class="header flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                    <h3  >ETH <?php echo ($GLOBALS['turnIn']); ?></h3>
+                                    <a  ></a>
+                                </div>
+                                <form  class="transfer-accounts" >
+                                    <div  class="item flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                        <p  class="label"><?php echo ($GLOBALS['from']); ?></p>
+                                        <div   tabindex="0" class="loan-select"  style="width: 360px;">
+                                            <div   class="box flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap" style="cursor: pointer;">
+                                                <p  class="inAccount"><?php echo ($GLOBALS['bb-account']); ?></p>
+                                                <span   class=""></span>
+                                            </div>
+                                            <div  class="options easy-scrollbar chromeScrollShow" style="max-height: 180px;">
+                                                <div class="easy-scrollbar__wrap" style="margin-right: -17px;">
+                                                    <div class="el-scrollbar__view" style="position: relative;">
+                                                        <div  class="wrapper" style="max-height: 180px;">
+                                                            <ul  style="display: none;">
+                                                                <li  class="transfer-option"><?php echo ($GLOBALS['bb-account']); ?></li>
+                                                                <li  class="transfer-option"><?php echo ($GLOBALS['gg-account']); ?></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="resize-triggers">
+                                                            <div class="expand-trigger">
+                                                                <div style="width: 361px; height: 1px;"></div>
+                                                            </div>
+                                                            <div class="contract-trigger"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="esay-scrollbar__bar is-vertical" style="background-color: rgb(29, 31, 53); z-index: 200; width: 6px; right: 0px; display: none;">
+                                                    <div class="easy-scrollbar__thumb" style="transform: translateY(0%); background-color: rgb(59, 59, 99); width: 6px; opacity: 0.3;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!---->
+                                        <div  tabindex="0" class="loan-select loan-select2" style="width: 360px; margin-left: 12px;display: none;">
+                                            <div  class="box flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap" style="cursor: pointer;">
+                                                <p >ETH/UCC</p>
+                                                <span  class=""></span>
+                                            </div>
+                                            <div  class="options easy-scrollbar chromeScrollShow" style="max-height: 180px;">
+                                                <div class="easy-scrollbar__wrap" style="margin-right: -17px;">
+                                                    <div class="el-scrollbar__view" style="position: relative;">
+                                                        <div  class="wrapper" style="max-height: 180px;">
+                                                            <ul  style="display: none;">
+                                                                <li class="transfer-option">BTC/UCC</li>
+                                                                <li class="transfer-option">LTC/UCC</li>
+                                                                <li class="transfer-option">ETH/UCC</li>
+                                                                <li class="transfer-option">BCH/UCC</li>
+                                                                <li class="transfer-option">EOS/UCC</li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="resize-triggers">
+                                                            <div class="expand-trigger">
+                                                                <div style="width: 175px; height: 1px;"></div>
+                                                            </div>
+                                                            <div class="contract-trigger"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="esay-scrollbar__bar is-vertical" style="background-color: rgb(29, 31, 53); z-index: 200; width: 6px; right: 0px; display: none;">
+                                                    <div class="easy-scrollbar__thumb" style="transform: translateY(0%); background-color: rgb(59, 59, 99); width: 6px; opacity: 0.3;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!---->
+                                    <p  class="error error11" style="display: none;"><?php echo ($GLOBALS['no-same']); ?></p>
+                                    <div  class="item flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                        <p  class="label"><?php echo ($GLOBALS['to']); ?></p>
+                                        <div   tabindex="0" class="loan-select"  style="width: 360px;">
+                                            <div   class="box flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap" style="cursor: initial;">
+                                                <p  class="outAccount"><?php echo ($GLOBALS['gg-account']); ?></p>
+                                                <!---->
+                                            </div>
+                                            <div  class="options easy-scrollbar chromeScrollShow" style="max-height: 180px;display: none;">
+                                                <div class="easy-scrollbar__wrap" style="margin-right: -17px;">
+                                                    <div class="el-scrollbar__view" style="position: relative;">
+                                                        <div  class="wrapper" style="max-height: 180px;">
+                                                            <ul  style="display: none;">
+                                                                <li  class="transfer-option"><?php echo ($GLOBALS['bb-account']); ?></li>
+                                                                <li  class="transfer-option"><?php echo ($GLOBALS['gg-account']); ?></li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="resize-triggers">
+                                                            <div class="expand-trigger">
+                                                                <div style="width: 175px; height: 1px;"></div>
+                                                            </div>
+                                                            <div class="contract-trigger"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="esay-scrollbar__bar is-vertical" style="background-color: rgb(29, 31, 53); z-index: 200; width: 6px; right: 0px; display: none;">
+                                                    <div class="easy-scrollbar__thumb" style="transform: translateY(0%); background-color: rgb(59, 59, 99); width: 6px; opacity: 0.3;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div   tabindex="0" class="loan-select"  style="width: 360px; margin-left: 12px;">
+                                            <div   class="box flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap" style="cursor: initial;">
+                                                <p  >ETH/UCC</p>
+                                                <!---->
+                                            </div>
+                                            <div  class="options easy-scrollbar chromeScrollShow" style="max-height: 180px;">
+                                                <div class="easy-scrollbar__wrap" style="margin-right: -17px;">
+                                                    <div class="el-scrollbar__view" style="position: relative;">
+                                                        <div  class="wrapper" style="max-height: 180px;">
+                                                            <ul  style="display: none;">
+                                                                <li  class="transfer-option">ETH/UCC</li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="resize-triggers">
+                                                            <div class="expand-trigger">
+                                                                <div style="width: 175px; height: 1px;"></div>
+                                                            </div>
+                                                            <div class="contract-trigger"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="esay-scrollbar__bar is-vertical" style="background-color: rgb(29, 31, 53); z-index: 200; width: 6px; right: 0px; display: none;">
+                                                    <div class="easy-scrollbar__thumb" style="transform: translateY(0%); background-color: rgb(59, 59, 99); width: 6px; opacity: 0.3;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!---->
+                                    <div  class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                        <p  class="label"><?php echo ($GLOBALS['turn-money']); ?></p>
+                                        <input  type="number" placeholder="<?php echo ($GLOBALS['place-turnMoney']); ?>" />
+                                        <p  class="transfer-all"><?php echo ($GLOBALS['turn-all']); ?></p>
+                                    </div>
+                                    <p  class="tip1"><?php echo ($GLOBALS['turn-maximum']); ?> 0 ETH</p>
+                                    <input  type="submit" value="<?php echo ($GLOBALS['transfer-accounts']); ?>" />
+                                    <p  class="tip2"><?php echo ($GLOBALS['turn-service']); ?></p>
+                                    <!---->
+                                </form>
+                            </div>
+                        </div>
+                        <!---->
+                        <!--还款弹出框-->
+                        <div  class="popup popup2 flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap" style="display: none;">
+                            <div class="popup-box">
+                                <div class="header flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                    <h3>UCC <?php echo ($GLOBALS['repayment']); ?></h3>
+                                    <a></a>
+                                </div>
+                                <div class="repayment">
+                                    <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                        <p class="label"><?php echo ($GLOBALS['gg-account']); ?></p>
+                                        <p>ETH/UCC</p>
+                                    </div>
+                                    <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                        <p class="label"><?php echo ($GLOBALS['should-repayment']); ?></p>
+                                        <p>8.04000000 UCC</p>
+                                    </div>
+                                    <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                        <div class="inner flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                            <p class="label"><?php echo ($GLOBALS['lend-money']); ?></p>
+                                            <p>8.000 UCC</p>
+                                        </div>
+                                        <div class="inner flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                            <p class="label"><?php echo ($GLOBALS['interest']); ?></p>
+                                            <p>0.04000000 UCC</p>
+                                        </div>
+                                    </div>
+                                    <div class="item flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap" style="margin-right: 84px;">
+                                        <input type="submit" value="<?php echo ($GLOBALS['cancelBtn']); ?>" />
+                                        <input type="submit" value="<?php echo ($GLOBALS['sureBtn']); ?>" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="notice-list margin">
+                        <h3><?php echo ($GLOBALS['article']); ?></h3>
+                        <div class="list">
+                        <?php if(is_array($notice)): $i = 0; $__LIST__ = $notice;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; if(($_SESSION['lang']) == "1"): if(!empty($vo['title'])): ?><a class="item" target="_top" href="/Article/detail/id/<?php echo ($vo['id']); ?>">
+										<h4><?php echo ($vo['title']); ?></h4>
+										<p><?php echo (addtime($vo['addtime'])); ?></p>
+									</a><?php endif; endif; ?>
+							<?php if(($_SESSION['lang']) == "2"): if(!empty($vo['title_e'])): ?><a class="item" target="_top" href="/Article/detail/id/<?php echo ($vo['id']); ?>">
+										<h4><?php echo ($vo['title_e']); ?></h4>
+										<p><?php echo (addtime($vo['addtime'])); ?></p>
+									</a><?php endif; endif; ?>
+							<?php if(($_SESSION['lang']) == "3"): if(!empty($vo['title_en'])): ?><a class="item" target="_top" href="/Article/detail/id/<?php echo ($vo['id']); ?>">
+										<h4><?php echo ($vo['title_en']); ?></h4>
+										<p><?php echo (addtime($vo['addtime'])); ?></p>
+									</a><?php endif; endif; endforeach; endif; else: echo "" ;endif; ?>
+                            <!-- <a class="item" target="_top" href="/Article/type"><h4>第九周回购信息披露</h4>
+                                <p>2018-08-20 18:32:51</p></a>
+                            <a class="item" target="_top" href="/Article/type"><h4>关于法币OTC维护升级的公告</h4>
+                                <p>2018-08-17 15:25:28</p></a>
+                            <a class="item" target="_top" href="/Article/type"><h4>关于提前恢复永续合约交易手续费的公告 &nbsp;</h4>
+                                <p>2018-08-15 14:11:02</p></a> -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="right">
+                    <div class="flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                        <div class="product-info show">
+                            <div class="product-info-top flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                <div class="arrow flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap">
+                                    <a class=""></a>
+                                </div>
+
+                                <h3><?php echo (strtoupper($data["s1"])); ?>/<?php echo (strtoupper($data["s2"])); ?></h3>
+                                <div class="item first-item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <p><?php echo ($GLOBALS['newTrade-price']); ?></p>
+                                    <div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                        <span id="market_new_price"></span> <span style="margin-left:5px;"><?php echo (strtoupper($data["s2"])); ?></span>
+                                    </div>
+                                    <p class="cny">≈ <span id="cny_prices" style="display:inline-block"></span> CNY</p>
+                                </div>
+                                <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <p><?php echo ($GLOBALS['change-price']); ?></p>
+                                    <span class="" id="market_change"></span>
+                                </div>
+                                <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <p><?php echo ($GLOBALS['dayTrade']); ?></p>
+                                    <span class="volume" id="market_volume"></span>
+                                </div>
+                            </div>
+                            <div id="tv_chart_container">
+                                <iframe id="tradingview_847cc" name="tradingview_847cc" src="/Trade/specialty/type/1/market/<?php echo ($market); ?>"
+                                    allowtransparency="true" scrolling="no" allowfullscreen="" style="display: block;"
+                                    frameborder="0" height="410" width="100%">
+                            </iframe>
+                            </div>
+                        </div>
+                        <div class="entrust show">
+                            <div class="title flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                <div class="arrow flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap">
+                                    <a class=""></a>
+                                </div>
+                                <h3><?php echo ($GLOBALS['new-price']); ?> <span id="orderbook_last_rate"></span> <?php echo (strtoupper($data["s2"])); ?></h3>
+                            </div>
+                            <div class="list">
+                                <div class="table">
+                                    <div class="thead">
+                                        <div class="tr flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap"
+                                             style="height: 40px;">
+                                            <div class="th">
+                                                <?php echo ($GLOBALS['price']); ?> (<?php echo (strtoupper($data["s2"])); ?>)
+                                            </div>
+                                            <div class="th">
+                                                <?php echo ($GLOBALS['number']); ?> (<?php echo (strtoupper($data["s1"])); ?>)
+                                            </div>
+                                            <div class="th">
+                                                <?php echo ($GLOBALS['total-number']); ?> (<?php echo (strtoupper($data["s1"])); ?>)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tbody" id="ul-ask-list1">
+                                        <!--删除的数据-->
+                                        <!--<div class="tr trs tr-sell flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap"-->
+                                             <!--style="background: transparent linear-gradient(to left, rgb(45, 30, 51) 26.5179%, transparent 0px) repeat scroll 0% 0%;">-->
+                                            <!--<div class="td sell">-->
+                                                <!--46250.63-->
+                                            <!--</div>-->
+                                            <!--<div class="td">-->
+                                                <!--35.640-->
+                                            <!--</div>-->
+                                            <!--<div class="td">-->
+                                                <!--87.849-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                        <!--删除的数据    end-->
+                                    </div>
+                                    <div class="tbody"  id="ul-bid-list1" style="border-top:1px solid #212340;">
+
+
+                                    </div>
+                                </div>
+                                <div class="deep flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap" style="display: none;">
+                                    <p><?php echo ($GLOBALS['consolidation-depth']); ?>：</p>
+                                    <div class="deep-button flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                                        <a class="active"><?php echo ($GLOBALS['2wei']); ?></a>
+                                        <a class=""><?php echo ($GLOBALS['1wei']); ?></a>
+                                        <a class=""><?php echo ($GLOBALS['0wei']); ?></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="account margin show">
+                        <div class="title flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                            <div class="arrow flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap">
+                                <a></a>
+                            </div>
+                            <h3><?php echo (strtoupper($data["s1"])); ?>/<?php echo (strtoupper($data["s2"])); ?> <?php echo ($GLOBALS['borrow3-account']); ?></h3>
+                            <div class="blank"></div>
+                            <a class="" href="/Lever/borrowMoney3/market/usdt"><?php echo ($GLOBALS['borrowMoney3']); ?></a>
+                        </div>
+                        <div class="account-details flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                            <div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-wrap">
+                                <p><?php echo ($GLOBALS['already-lend']); ?> <?php echo (strtoupper($data["s1"])); ?></p>
+                                <div class="flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap">
+                                    <div>
+                                        <?php if($bow['borrow'] != ''): echo ($bow['borrow']); ?>
+                                        <?php else: ?>
+                                            --<?php endif; ?>
+                                    </div>
+                                    <!--<a class="huan"><?php echo ($GLOBALS['repayment']); ?></a>-->
+                                </div>
+                            </div>
+                            <div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-wrap">
+                                <p><?php echo ($GLOBALS['already-lend']); ?> <?php echo (strtoupper($data["s2"])); ?></p>
+                                <div class="flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap">
+                                    <div>
+                                        <?php if($bow['p_borrow'] != ''): echo ($bow['p_borrow']); ?>
+                                        <?php else: ?>
+                                            --<?php endif; ?>
+                                    </div>
+                                   <!-- <a class="huan"><?php echo ($GLOBALS['repayment']); ?></a>-->
+                                </div>
+                            </div>
+                            <div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-wrap">
+                                <p style="white-space: nowrap;"><?php echo ($GLOBALS['Blowing-up-price']); ?> (JTC)</p>
+                                <div>
+                                    --
+                                </div>
+                            </div>
+                            <div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-wrap">
+                                <div class="risk flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <p><?php echo ($GLOBALS['hazard-rate']); ?></p>
+                                    <div class="st-tip">
+                                        <div style="width: 220px; transform: translate(-80%);">
+                                            <?php echo ($GLOBALS['hazard-rate']); ?> = （<?php echo ($GLOBALS['total-finance']); ?>-<?php echo ($GLOBALS['total-interest']); ?>）／<?php echo ($GLOBALS['total-lend']); ?>
+                                            <span style="left: 80%;"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap">
+                                    <span class="level0">--</span>
+                                    <div class="limit"></div>
+                                    <div class="grade">
+                                        <div style=""></div>
+                                    </div>
+                                    <div class="currentNum"></div>
+                                </div>
+                            </div>
+                            <!---->
+                            <!---->
+                        </div>
+                    </div>
+                    <div class="my-current-entrust margin">
+                        <div class="title flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                            <div class="arrow flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap">
+                                <a class=""></a>
+                            </div>
+                            <div class="orderChange flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                                <h3 style="margin-right: 40px;" class="active"><?php echo ($GLOBALS['current-entrust']); ?></h3>
+                                <h3 class="ws-tab"><?php echo ($GLOBALS['history-entrust']); ?></h3>
+                            </div>
+                            <div class="blank"></div>
+                            <!-- <a class="cancel-all" style="display:none;">撤销全部委托单</a> -->
+                            <!--<a class="check-all" href="/Trade/historyRecord" style="font-size: 12px;display:none;"><?php echo ($GLOBALS['check-history-entrust']); ?></a>-->
+                        </div>
+                        
+                        <div>
+                            <div class="wrapper flex-box flex-direction-column flex-justify-start flex-align-item-start flex-wrap-nowrap" style="margin-bottom:8px;">
+                                <!--当前委托-->
+                                <div style="width: 100%;" class="current-list">
+                                    <table class="thead">
+                                        <thead>
+                                        <tr>
+                                            <th><span class="type1"><?php echo ($GLOBALS['entrust-time']); ?></span></th>
+                                            <th><span class="type1"><?php echo ($GLOBALS['trade-coin']); ?></span></th>
+                                            <th><span class="type1"><?php echo ($GLOBALS['order-type']); ?></span></th>
+                                            <th><span class="type1"><?php echo ($GLOBALS['entrust-price']); ?>(<?php echo (strtoupper($data["s2"])); ?>)</span></th>
+                                            <th><span class="type2"><?php echo ($GLOBALS['entrust-number']); ?>(<?php echo (strtoupper($data["s1"])); ?>)</span></th>
+                                            <th><span class="type2"><?php echo ($GLOBALS['surplus-number']); ?>(<?php echo (strtoupper($data["s1"])); ?>) </span></th>
+                                            <th><span class="type2"><?php echo ($GLOBALS['order-status']); ?></span></th>
+                                            <th style="padding-right: 20px;"><span class="type2"><?php echo ($GLOBALS['order-operate']); ?></span></th>
+                                        </tr>
+                                        </thead>
+                                    </table>
+                                    <div class="scroll" style="overflow: hidden;height:120px;">
+                                        <table>
+                                            <tbody class="zhu-content0">
+                                                <!--&lt;!&ndash;删除的数据&ndash;&gt;-->
+                                                <!--<tr>-->
+                                                    <!--&lt;!&ndash;&ndash;&gt;-->
+                                                    <!--<td class="buy"><span>09-14</span> <span>11:34:21</span></td>-->
+                                                    <!--<td><span>LTC/USDT</span></td>-->
+                                                    <!--<td><span class="buy">买入</span></td>-->
+                                                    <!--<td><span>1.00</span></td>-->
+                                                    <!--<td><span>1.000</span></td>-->
+                                                    <!--<td><span>0</span></td>-->
+                                                    <!--<td><span>1.000</span></td>-->
+                                                    <!--<td><span>未成交</span></td>-->
+                                                    <!--<td class=""><span><span class="cancel-single">撤单</span></span></td>-->
+                                                <!--</tr>-->
+                                                <!--&lt;!&ndash;删除的数据  end&ndash;&gt;-->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="no-list" style="display:none">
+                                        <p class="ws-tabp"><?php echo ($GLOBALS['noData']); ?></p>
+                                    </div>
+                                </div>
+                                <!--历史委托-->
+                                <div style="width: 100%;display: none;" class="history-list" >
+                                    <table class="thead">
+                                        <thead>
+                                            <tr>
+                                                <th><span class="type1"><?php echo ($GLOBALS['entrust-time']); ?></span></th>
+                                                <th><span class="type1"><?php echo ($GLOBALS['trade-coin']); ?></span></th>
+                                                <th><span class="type1"><?php echo ($GLOBALS['order-type']); ?></span></th>
+                                                <th><span class="type1"><?php echo ($GLOBALS['entrust-price']); ?>(<?php echo (strtoupper($data["s2"])); ?>)</span></th>
+                                                <th><span class="type2"><?php echo ($GLOBALS['entrust-number']); ?></span></th>
+                                                <th><span class="type2"><?php echo ($GLOBALS['turnover']); ?>(<?php echo (strtoupper($data["s1"])); ?>) </span></th>
+                                                <th style="padding-right: 20px;"><span class="type2"><?php echo ($GLOBALS['order-status']); ?></span></th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                    <div class="scroll" style="overflow: hidden;height:120px;">
+                                        <table>
+                                            <tbody class="zhu-content1">
+                                            <!--<tr>-->
+                                                <!--&lt;!&ndash;&ndash;&gt;-->
+                                                <!--<td class="buy"><span>09-14</span> <span>11:36:42</span></td>-->
+                                                <!--<td><span>LTC/USDT</span></td>-->
+                                                <!--<td><span class="buy">买入</span></td>-->
+                                                <!--<td><span>56.00</span></td>-->
+                                                <!--<td><span>0.01</span></td>-->
+                                                <!--<td><span>55.91</span></td>-->
+                                                <!--<td><span>0.010</span></td>-->
+                                                <!--<td><span>完全成交</span></td>-->
+                                            <!--</tr>-->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="no-list" style="display:none">
+                                        <p class="ws-tabp"><?php echo ($GLOBALS['noData']); ?></p>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!---->
+                        </div>
+                        <!---->
+                    </div>
+
+                    <!--确定撤销弹框-->
+                    <div class="popup cancelPopup flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap" style="display:none;">
+                        <div class="popup-box">
+                            <div class="header flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                <h3><?php echo ($GLOBALS['cancel-order']); ?></h3>
+                                <a></a>
+                            </div>
+                            <div class="create-item flex-box flex-direction-column flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                <h3><?php echo ($GLOBALS['cancel-sure']); ?></h3>
+                                <div class="flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+                                    <input type="submit" class="create-submit" value="<?php echo ($GLOBALS['cancelBtn']); ?>" />
+                                    <input type="submit" class="create-submit" value="<?php echo ($GLOBALS['sureBtn']); ?>" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" style="display: none;">
+                        <div class="deep show">
+                            <div class="title flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                <div class="arrow flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap">
+                                    <a></a>
+                                </div>
+                                <h3><?php echo ($GLOBALS['depth-chart']); ?></h3>
+                            </div>
+                            <div class="deep-canvas">
+                                <canvas height="442" width="959"></canvas>
+                                <canvas height="442" width="959" class="tool-tips"></canvas>
+                            </div>
+                        </div>
+                        <div class="history show">
+                            <div class="title flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                <div class="arrow flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap">
+                                    <a class=""></a>
+                                </div>
+                                <h3><?php echo ($GLOBALS['real-trade']); ?></h3>
+                            </div>
+                            <div class="list">
+                                <table style="margin-right: 20px;">
+                                    <thead>
+                                    <tr>
+                                        <th style="min-width: 40px; padding-left: 16px;"><span><?php echo ($GLOBALS['time']); ?></span></th>
+                                        <th><span class="type1"><?php echo ($GLOBALS['price']); ?> </span></th>
+                                        <th style="padding-right: 20px;"><span class="type2"><?php echo ($GLOBALS['number']); ?> </span></th>
+                                    </tr>
+                                    </thead>
+                                </table>
+                                <div class="bg"></div>
+                                <div class="easy-scrollbar chromeScrollShow" style="height: 370px;">
+                                    <div style="margin-right: -17px;" class="easy-scrollbar__wrap">
+                                        <div style="position: relative;" class="el-scrollbar__view">
+                                            <div class="wrapper" style="height: 350px; padding-right: 20px;">
+                                                
+                                            </div>
+                                            <div class="resize-triggers">
+                                                <div class="expand-trigger">
+                                                    <div style="width: 329px; height: 351px;"></div>
+                                                </div>
+                                                <div class="contract-trigger"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="esay-scrollbar__bar is-vertical"
+                                         style="background-color: rgb(29, 31, 53); z-index: 200; width: 6px; right: 0px; display: block;">
+                                        <div class="easy-scrollbar__thumb"
+                                             style="height: 26.5152%; transform: translateY(0%); background-color: rgb(59, 59, 99); width: 6px; opacity: 0.3;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			<input type="hidden" id="market_bz" value="<?php echo explode('_', $_GET['market'])[1];?>">
+            <!--底部内容-->
+            <!--底部样式-->
+<style>
+    .st-footer {
+        position: absolute;
+        width: 100%;
+        min-width: 1300px;
+        height: 338px;
+        background-color: #16243d;
+        font-size: 20px
+    }
+
+    .st-footer .up {
+        width: 100%;
+        height: 260px;
+        padding: 60px 8% 0 10%;
+        border-bottom: 1px solid #04040f
+    }
+
+    .st-footer .up .left, .st-footer .up .right {
+        position: relative;
+        width: 30%
+    }
+
+    .st-footer .up .left ul li, .st-footer .up .right ul li {
+        position: relative
+    }
+
+    .st-footer .up .left ul li img, .st-footer .up .right ul li img {
+        position: absolute;
+        top: 50%;
+        right: -130px;
+        z-index: 2;
+        margin-top: -60px;
+        width: 120px;
+        height: 120px
+    }
+
+    .st-footer .up .left ul li a, .st-footer .up .right ul li a {
+        display: block;
+        margin-bottom: 14px;
+        line-height: 1em;
+        font-size: 12px;
+        color: #fff
+    }
+
+    .st-footer .up .left ul li a:hover, .st-footer .up .right ul li a:hover {
+        color: #0976d9;
+    }
+
+    .st-footer .up .left ul li:last-child a, .st-footer .up .right ul li:last-child a {
+        margin-bottom: 0
+    }
+
+    .st-footer .up .left ul li.first-li, .st-footer .up .right ul li.first-li {
+        margin-bottom: 14px;
+        line-height: 1em;
+        font-size: 12px;
+        color: #72829d
+    }
+
+    .st-footer .up .left .focus, .st-footer .up .right .focus {
+        width: 140px
+    }
+
+    .st-footer .up .left .focus h3, .st-footer .up .right .focus h3 {
+        margin-bottom: 14px;
+        line-height: 1em;
+        font-size: 12px;
+        color: #72829d
+    }
+
+    .st-footer .up .left .focus span, .st-footer .up .right .focus span {
+        display: block;
+        line-height: 1em;
+        margin-bottom: 23px;
+        font-size: 12px;
+        color: #72829d
+    }
+
+    .st-footer .up .left .focus .share a, .st-footer .up .right .focus .share a {
+        display: block;
+        margin-right: 20px;
+        width: 36px;
+        height: 36px;
+        border-radius: 100%;
+        background: #6c85ae;
+        background-repeat: no-repeat;
+        background-position: 50%
+    }
+
+    .st-footer .up .left .focus .share a:hover, .st-footer .up .right .focus .share a:hover {
+        background: #c5caea;
+        background-repeat: no-repeat;
+        background-position: 50%
+    }
+
+    .st-footer .up .left .focus .share a:first-child, .st-footer .up .right .focus .share a:first-child {
+        background-image: url("/Public/Home/image/common/facebook.png")
+    }
+
+    .st-footer .up .left .focus .share a:nth-child(2), .st-footer .up .right .focus .share a:nth-child(2) {
+        background-image: url("/Public/Home/image/common/feige.png")
+    }
+
+    .st-footer .up .left .focus .share a:nth-child(3), .st-footer .up .right .focus .share a:nth-child(3) {
+        background-image: url("/Public/Home/image/common/weibo.png")
+    }
+
+    .st-footer .up .center {
+        width: 185px;
+        height: 160px;
+        background: url(/Public/Home/image/common/footerimg.997816f.png) no-repeat center 10px
+    }
+
+    .st-footer .down {
+        width: 100%;
+        padding: 0 8% 0 10%;
+        border-top: 1px solid #212145
+    }
+
+    .st-footer .down p {
+        height: 77px;
+        line-height: 77px;
+        font-size: 12px;
+        text-align: center;
+        color: #6c85ae
+    }
+</style>
+
+<footer class="st-footer" style="bottom:0;background-color: #12122a;">
+    <div class="up flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+        <div class="left flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+            <ul>
+                <li class="first-li"><?php echo ($GLOBALS['series-produce']); ?></li>
+                <li><a href="/C2c/index"><?php echo ($GLOBALS['c2c']); ?></a></li>
+                <li><a href="/Trade/index"><?php echo ($GLOBALS['trade']); ?></a></li>
+                <li><a href="/Trade/borrowMoney"><?php echo ($GLOBALS['borrowMoney']); ?></a></li>
+            </ul>
+            <ul>
+                <li class="first-li"><?php echo ($GLOBALS['about-us']); ?></li>
+                <!-- <?php if(is_array($xinwen)): $i = 0; $__LIST__ = $xinwen;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>-->
+                <!-- <li><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank"><?php echo ($vo['title']); ?></a></li> -->
+                <!--<?php endforeach; endif; else: echo "" ;endif; ?> -->
+				<?php if(is_array($xinwen)): $i = 0; $__LIST__ = $xinwen;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; if(($_SESSION['lang']) == "1"): if(!empty($vo['title'])): ?><li ><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank" ><?php echo ($vo['title']); ?></a></li><?php endif; endif; ?>
+								<?php if(($_SESSION['lang']) == "2"): if(!empty($vo['title_e'])): ?><li ><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank" ><?php echo ($vo['title_e']); ?></a></li><?php endif; endif; ?>
+								<?php if(($_SESSION['lang']) == "3"): if(!empty($vo['title_en'])): ?><li ><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank" ><?php echo ($vo['title_en']); ?></a></li><?php endif; endif; endforeach; endif; else: echo "" ;endif; ?>
+							
+							 <li ><a href="/Article/officialAdModal" target="_blank" ><?php echo ($GLOBALS['office-notice']); ?></a></li>
+							<!-- <?php if(is_array($about)): $i = 0; $__LIST__ = $about;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?>-->
+							<!-- <li ><a href="/Article/detail/id/<?php echo ($v['id']); ?>" target="_blank" ><?php echo ($v['title']); ?></a></li> -->
+							<!--<?php endforeach; endif; else: echo "" ;endif; ?> -->
+							<?php if(is_array($about)): $i = 0; $__LIST__ = $about;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; if(($_SESSION['lang']) == "1"): if(!empty($vo['title'])): ?><li ><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank" ><?php echo ($vo['title']); ?></a></li><?php endif; endif; ?>
+								<?php if(($_SESSION['lang']) == "2"): if(!empty($vo['title_e'])): ?><li ><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank" ><?php echo ($vo['title_e']); ?></a></li><?php endif; endif; ?>
+								<?php if(($_SESSION['lang']) == "3"): if(!empty($vo['title_en'])): ?><li ><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank" ><?php echo ($vo['title_en']); ?></a></li><?php endif; endif; endforeach; endif; else: echo "" ;endif; ?>
+                <!-- <li><a href="/Article/detail" target="_blank">联系我们</a></li> -->
+                <li><a href="/Article/officialAdModal" target="_blank"><?php echo ($GLOBALS['office-notice']); ?></a></li>
+            </ul>
+            <ul>
+                <li class="first-li"><?php echo ($GLOBALS['server-support']); ?></li>
+                <li><a href="/Article/officialAdModal" target="_blank"><?php echo ($GLOBALS['help-center']); ?></a></li>
+                <li><a href="/Article/detail/id/188" target="_blank">下线币种说明</a></li>
+                <li><a href="/Article/detail/id/14" target="_blank"><?php echo ($GLOBALS['currentCoin-apply']); ?></a></li>
+            </ul>
+        </div>
+        <div class="center"></div>
+        <div class="right flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+            <ul>
+                <li class="first-li"><?php echo ($GLOBALS['official-community']); ?></li>
+                <li>
+                    <a><?php echo ($GLOBALS['weixinQ']); ?></a>
+                    <div style="display: none;">
+                        <em></em>
+                        <img src="/Public/Home/image/index/jiaoliu.png" alt="">
+                    </div>
+                </li>
+                <!--<li>
+                    <a href="" target="_blank">Telegram</a>
+                </li>-->
+            </ul>
+            <ul>
+                <li class="first-li"><?php echo ($GLOBALS['relative-download']); ?></li>
+                <li>
+                    <a class="download-ios">iOS App</a>
+                    <div style="display: none;">
+                        <em></em>
+                        <img src="/Public/Home/image/index/ios.14c5c18.png " alt="">
+                    </div>
+                </li>
+                <li>
+                    <a class="download-android">Android App</a>
+                    <div style="display: none;">
+                        <em></em>
+                        <img src="/Public/Home/image/index/Android.14c5c18.png " alt="">
+                    </div>
+                </li>
+                <!--<li>
+                    <a class="download-google-play">Google Play</a>
+                    <div style="display: none;">
+                        <em></em>
+                        <img src="/Public/Home/image/common/googlePlay.9e95ba4.png" alt="">
+                    </div>
+                </li>-->
+            </ul>
+            <div class="focus">
+                <h3><?php echo ($GLOBALS['attention-us']); ?></h3>
+                <span><?php echo ($GLOBALS['company-name']); ?></span>
+                <div class="share flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                    <a href="" target="_blank"></a>
+                    <a href="" target="_blank"></a>
+                    <a href="" target="_blank" style="margin-right:0;"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="down">
+        <p><?php echo ($GLOBALS['web_down']); ?> <?php echo ($GLOBALS['beian']); ?></p>
+    </div>
+</footer>
+
+<script>
+    /*底部二维码效果*/
+    $(".st-footer .right li").hover(
+        function () {
+            $(this).find("div").show();
+        },
+        function(){
+            $(this).find("div").hide();
+        }
+    );
+</script>
+
+            <!--底部内容   end-->
+        </div>
+    </div>
+</div>
+
+<div style="display: none;" class="toast">
+    <span class="text"></span>
+</div>
+<script data-n-head="true" src="/Public/Home/js/newjs/zlib.pretty.js"></script>
+<script src="/Public/Home/js/newjs/zUI.js"></script>
+<script type="text/javascript" src="/Public/Home/js/newjs/borrowMoney.js"></script>
+<script>
+    var market = "<?php echo ($_GET['market']); ?>";
+    $(document).ready(function () {
+        /*当前页*/
+
+        $(".nav .item:nth-child(1)").find("a").addClass("active");
+        getMaxPrice();
+        getDepth();
+        getTradelogNew();
+
+        /*点击“撤销”出现弹出框*/
+        $(".cancel-single").click(function () {
+            $(".cancelPopup").show();
+        });
+        $(".create-submit").click(function () {
+            $(".cancelPopup").hide();
+        });
+
+    });
+
+        /*当前委托、历史委托切换*/
+    $(".orderChange h3").click(function () {
+        $(".orderChange h3").removeClass("active");
+        $(this).addClass("active");
+        if($(this).index()==0){
+            $(".current-list").show();
+            $(".history-list").hide();
+            $(".cancel-all").show();
+            $(".check-all").hide();
+            getTradelogNew();
+        }else{
+            $(".current-list").hide();
+            $(".history-list").show();
+            $(".cancel-all").hide();
+            $(".check-all").show();
+            getTradelogNewH();
+        }
+    });
+    /*买入价输入设置*/
+    function keyPrice(cv,tv,mv){
+        clearNoNum(cv);
+        // 判断整数或小数
+        var vue=parseFloat(tv.html());
+        if((/^(\+|-)?\d+$/.test(vue))&&vue>0){
+            var l=vue.toString().length;
+        }else{
+            if(vue.toString().split(".")[1]){
+                var l=vue.toString().split(".")[1].length;
+            }
+        }
+        // 限制输入值的位数
+        cv.next(".error").hide();
+        var current=parseFloat(cv.val());
+        if(current.toString().indexOf(".")>0) {
+            var vue1=current.toString().split(".")[1];
+            var vue0=current.toString().split(".")[0];
+            current=vue1.substring(0,l);
+            cv.val(vue0+"."+current);
+        }
+        //最大可买/卖数量
+        if(cv.attr("id")=="sell_price"||cv.attr("id")=="sell_price1"){
+            var maxNumber=(tv.html()*cv.val()).toFixed(l+1);
+        }else{
+            var maxNumber=(tv.html()/cv.val()).toFixed(l+1);
+        }
+        if(parseInt(maxNumber)==0||maxNumber==Infinity||isNaN(maxNumber)){
+            mv.html("0");
+        }else{
+            mv.html(maxNumber);
+        }
+    };
+    // 输入买入数量
+    function keyNumber(num,pri,max,area){
+        clearNoNum(num);
+        // 判断极限值是整数或小数取位数
+        var vue=parseFloat(max.html());
+        if((/^(\+|-)?\d+$/.test(vue))&&vue>0){
+            var l=vue.toString().length;
+        }else{
+            var l=vue.toString().split(".")[1].length;
+        }
+        // 限制输入值的位数
+        num.next(".error").hide();
+        var current=parseFloat(num.val());
+        if(current.toString().indexOf(".")>0) {
+            var vue1=current.toString().split(".")[1];
+            var vue0=current.toString().split(".")[0];
+            current=vue1.substring(0,l);
+            num.val(vue0+"."+current);
+        }
+
+        // 进度条显示所占比例
+        var current=parseFloat(num.val());
+        var price=parseFloat(pri.val());
+        var total=parseFloat(max.html());
+        var chartWidth=parseFloat(area.css("width"));//总进度条宽
+        var curChart=parseFloat(current/total*chartWidth);
+        var showChar=(curChart/chartWidth*100).toFixed(2);
+
+        if(current>=total){
+            area.find(".progress").css("width","328px");//线条占款
+            area.find(".st-slider-button").css("left","328px");//原点位置
+            area.next("div").find("p:last-child").html("100%");//线条显示百分比
+            area.find(".percent0,.percent25,.percent50,.percent75,.end").css("background","#0976d9");//原点颜色
+        }else if(current<total){
+            area.find(".progress").css("width",curChart+"px");
+            area.find(".st-slider-button").css("left",curChart+"px");
+            area.next("div").find("p:last-child").html(showChar+"%");
+            if(curChart>=chartWidth){
+                area.find(".percent0,.percent25,.percent50,.percent75,.end").css("background","#0976d9");
+            }else if(curChart>=246){
+                area.find(".percent0,.percent25,.percent50,.percent75").css("background","#0976d9");
+                area.find(".end").css("background-color","rgb(102, 107, 147)");
+            }else if(curChart>=164){
+                area.find(".percent0,.percent25,.percent50").css("background","#0976d9");
+                area.find(".end,.percent75").css("background-color","rgb(102, 107, 147)");
+            }else if(curChart>=82){
+                area.find(".percent0,.percent25").css("background","#0976d9");
+                area.find(".end,.percent75,.percent50").css("background-color","rgb(102, 107, 147)");
+            }else{
+                area.find(".percent0").css("background","#0976d9");
+                area.find(".end,.percent75,.percent50,.percent25").css("background-color","rgb(102, 107, 147)");
+            }
+        }else {
+            area.find(".progress").css("width",0);
+            area.find(".st-slider-button").css("left",0);
+            area.next("div").find("p:last-child").html("0%");
+            area.find(".percent0,.percent25,.percent50,.percent75,.end").css("background-color","rgb(102, 107, 147)");
+        }
+        // 计算总价
+        var money=parseFloat((current*price)).toFixed(l);
+        console.log(parseFloat(money));
+        if($(".buyDiv .limitPrice").is(":visible")){
+            if(isNaN(money)){
+                $("#buy_money").html("0");
+            }else{
+                // 乘积精度问题需要解决
+                $("#buy_money").html(money);
+                // $("#buy_money").html(multiplication($('#buy_num').val(),$("#buy_price").val()));
+            }
+            return false
+        }else if($(".sellDiv .limitPrice").is(":visible")){
+            if(isNaN(money)){
+                $("#sell_money").html("0");
+            }else{
+                $("#sell_money").html(money);
+            }
+            return false
+        }
+    }
+
+    //
+    // function multiplication(arg1,arg2){
+    //     var m=0,s1=arg1.toString(),s2=arg2.toString();
+    //     try{m += s1.split(".")[1].length}catch(e){}
+    //     try { m += s2.split(".")[1].length}catch(e){}
+    //     return Number(s1.replace(".",""))*Number(s2.replace(".",""))/Math.pow(10,m);
+    // }
+
+
+
+
+
+    // 当前委托
+    function getTradelogNew(){
+       
+        $.getJSON("/Ajaxgg/getEntrustAndUsercoin?market=" + market + "&t=" + Math.random(), function (data) {
+            //console.log(data['entrust'])
+        if (data) {
+            // console.log(data)
+            // console.log(data);
+            if (data['usercoin']) {
+                if (data['usercoin']['cny']) {
+                    $("#my_rmb").html(data['usercoin']['cny']);
+                    $("#my_xnb").html(data['usercoin']['xnb']);
+                    keyPrice($("#buy_price"),$('#my_rmb'),$('#buy_max'));
+                    keyPrice($("#buy_price1"),$('#my_rmb'),$('#buy_max1'));
+                    keyPrice($("#sell_price"),$('#my_xnb'),$('#sell_max'));
+                    keyPrice($("#sell_price1"),$('#my_xnb'),$('#sell_max1'));
+
+                    // if($("#buy_price").val() == '' || $("#buy_price").val() == 0){
+                    //     $('#buy_max').html(0);
+                    // }else{
+                    //     $('#buy_max').html((Number($('#my_rmb').html()) / Number($("#buy_price").val()) + Number($("#ask_fee").html())).toFixed(8));
+                    // }
+                }
+                // else {
+                //     $("#my_rmb").html('0.00');
+                //     $('#buy_max').html('0');
+                // }
+
+                // if (data['usercoin']['cnyd']) {
+                //     $("#my_rmbd").html(data['usercoin']['cnyd']);
+                // } else {
+                //     $("#my_rmbd").html('0.00');
+                // }
+
+                // if (data['usercoin']['xnb']) {
+                //     $("#my_xnb").html(data['usercoin']['xnb']);
+                //     if($('#sell_price').val() == '' || $('#sell_price').val() == 0){
+                //         $('#sell_max').html(0);
+                //  }else{
+                //         $('#sell_max').html((Number($("#my_xnb").html()) * Number($('#sell_price').val()) - Number($('#bid_fee').html())).toFixed(8));
+                //  }
+                //
+                //     //console.log(Number($("#my_xnb").html()),Number($('#sell_price').val()),Number($('#bid_fee').html()))
+                // } else {
+                //     $("#my_xnb").html('0.00');
+                //     $('#sell_max').html('0');
+                // }
+                //
+                // if (data['usercoin']['xnbd']) {
+                //     $("#my_xnbd").html(data['usercoin']['xnbd']);
+                // } else {
+                //     $("#my_xnbd").html('0.00');
+                // }
+            }
+            
+
+            if (data['entrust']) {
+                //console.log('habcesf');
+                var list = '';
+                var type = '';
+                var totalprice = '';
+                var dataL = data['entrust'].length;
+                //console.log('dataL='+dataL);
+                if(dataL>=1){
+                    for (var i = 0; i < dataL; i++) {
+                        if(data['entrust'][i]['type'] == '2'){
+                            //type = "<?php echo ($GLOBALS['Sell']); ?>";
+                            type = "<?php echo ($GLOBALS['sell']); ?>";
+                            classColor = "green";
+                        }else{
+                            //type = "<?php echo ($GLOBALS['buy']); ?>";
+                            type = "<?php echo ($GLOBALS['buy']); ?>";
+                            classColor = "red";
+                        }
+                      
+                        totalprice = Number(data['entrust'][i]['price'])+Number(data['entrust'][i]['num']);
+                        // console.log(data['entrust'][i]['addtime'])
+                        var ss=data['entrust'][i]['num']-data['entrust'][i]['deal'];
+                        //ssbb
+                        
+                        list += '<tr>&lt;!&ndash;&ndash;&gt;<td class="buy"><span>'+data['entrust'][i]['addtime']+
+                        '</span></td><td><span>'+"<?php echo ($_GET['market']); ?>"+
+                        '</span></td><td><span class="'+classColor+'">'+type+
+                        '</span></td><td><span>'+ data['entrust'][i]['price']+
+                        '</span></td><td><span>'+ data['entrust'][i]['num']+
+                        '</span></td><td><span>'+ss+
+                        '</span></td><td><span>'+"<?php echo ($GLOBALS['unsettled']); ?>"+'</span></td><td style="padding-right:20px"><span class="cancel-single" data-id='+data['entrust'][i]['id']+'>'+
+                        "<?php echo ($GLOBALS['repeal']); ?>"+'</span></td></tr>'
+                    }
+                 
+                    $(".zhu-content0").html(list);
+                        if($('.cancel-single')){
+                            $('.cancel-single').on('click', function(){
+                                // $(".cancelPopup").show();
+                                var dataId = $(this).attr('data-id');
+                                cancelaa(dataId);
+                                // var index = $(this).index();
+                               
+                            })
+                        }
+                    }
+                }else{
+                    $(".current-list").find(".scroll").hide().next(".no-list").show();
+                }
+            }
+        });
+        setTimeout(function(){
+            getTradelogNew();
+        },3000);
+    }
+    //当前委托
+
+    //历史委托
+    function getTradelogNewH(){
+        $.getJSON("/Lever/getTradels/market/" + market + "&t=" + Math.random(), function (data) {
+            console.log(111)
+            if (data) {
+
+            var list = '';
+            var type = '';
+            var totalprice = '';
+            var dataL = data.length;
+            var dataStatus = '';
+            //console.log('dataL='+dataL);
+            for (var i = 0; i < dataL; i++) {
+                var dataNum = data[i]['num'];
+                var dataTime = timeChage(data[i]['addtime']);
+                var dataPrice = data[i]['price'];
+                var dealNum = data[i]['deal'];
+                if(data[i]['type'] == '2'){
+                  type = "<?php echo ($GLOBALS['sell']); ?>";
+                  classColor = "green";
+                }else{
+                  type = "<?php echo ($GLOBALS['buy']); ?>"
+                  classColor = "red";
+                }
+                //console.log(data[i]['status']);
+                if(data[i]['status'] == 1){
+                    dataStatus = "<?php echo ($GLOBALS['completed']); ?>"
+                    var dataNum = data[i]['num'];
+                }
+                if(data[i]['status'] == 0){
+                    dataStatus = "<?php echo ($GLOBALS['trading']); ?>";
+                    var dataNum = (data[i]['num']-data[i]['deal']).toFixed(8);
+
+                }
+                if(data[i]['status'] == 2){
+                    dataStatus = "<?php echo ($GLOBALS['canceled']); ?>";
+                    var dataNum = (data[i]['num']-data[i]['deal']).toFixed(8);
+                    dataStatus = "<?php echo ($GLOBALS['completed']); ?>";
+                    var dealNum = data[i]['deal'];
+                }
+
+              
+
+              
+                // if(data[i]['status'] != 2 || data[i]['deal']==0){
+                //   list += '<tr class="zhu-header"><td>'+dataTime+'</td><td>'+ type +'</td><td class="'+classColor+'">'+ dataPrice+'</td><td>'+ dataNum+'</td><td class="cancle-click" data-id='+data[i]['id']+'>'+ dataStatus +'</td></tr>';
+                // }
+                // if(data[i]['status'] == 2 && data[i]['deal']>0){
+                  list += '<tr><td><span>'+dataTime+'</span></td><td><span>'+data[i]['market']+'</span></td><td><span class="'+classColor+'">'+ type +'</span></td><td><span>'+ dataPrice+'</span></td><td><span>'+ dataNum+'</span></td><td><span>'+ dealNum+'</span></td><td style="padding-right:20px"><span>'+ dataStatus+'</span></td>';
+                // }
+                
+            }
+            $(".zhu-content1").html(list);
+            if($('.cancle-click')){
+
+            // $('.cancle-click').on('click', function(){
+            //   var index = $(this).index();
+            //   var dataId = $(this).attr('data-id');
+            //   cancelaa(dataId);
+            // })
+        }
+            
+        } else{
+                $(".history-list").find(".scroll").hide().next(".no-list").show();
+            }
+ 
+        });
+        setTimeout('getTradelogNewH()', 3000);
+    };
+    
+    //撤销
+    function cancelaa(id) {
+        layer.confirm('确认撤销?', {title:'确认撤销'}, function(index){
+        $.post("<?php echo U('Lever/chexiao');?>", {id: id}, function (data) {
+		
+		//console.log(data);
+		//console.log(data.status);
+            if (data.status == 1) {
+                // alert(111);
+                // getEntrustAndUsercoin();
+                layer.msg(data.info, {icon: 1});
+                window.location.reload();
+            } else {
+                layer.msg(data.info, {icon: 2});
+                window.location.reload();
+            }
+        });
+        });
+    }
+
+    // 最高价
+    var newBiLei;
+    var newPriceZhu;
+    function getMaxPrice(){
+	var market_bz = $('#market_bz').val();
+	var bz_coin = market_bz + '_cny';
+	
+        $.getJSON("/Ajaxgg/getJsonTop?market="+market+"&t=" + Math.random(), function (data) {
+            // console.log(data['info']);
+            if(data['info']){
+                // console.log(data)
+                $('#market_new_price').removeClass('red');
+                $('#market_new_price').removeClass('green');
+
+                $('#orderbook_last_rate').html(data['info']['new_price']);
+                if(data['info']['new_price']){
+                    $('#market_new_price').html(data['info']['new_price']);
+					
+					$('#cny_prices').html(data['info'][bz_coin]['cny_prices'] * data['info']['new_price']);
+                    newPriceZhu = data['info']['new_price'];
+                }else{
+                    $('#market_new_price').html(0);
+                }
+
+                if (data['info']['volume'] > 10000) {
+                    data['info']['volume'] = (data['info']['volume'] / 10000).toFixed(2) + "万"
+                }
+                if (data['info']['volume'] > 100000000) {
+                    data['info']['volume'] = (data['info']['volume'] / 100000000).toFixed(2) + "亿"
+                }
+                if(data['info']['volume']){
+                    $("#market_volume").html(data['info']['volume']);
+                }else{
+                    $("#market_volume").html(0);
+                }
+
+                $('#market_change').removeClass('red');
+                $('#market_change').removeClass('green');
+                if (data['info']['change'] > 0) {
+                    $('#market_change').addClass('green');
+                    $("#market_new_price").closest("div").find("span").addClass('green');
+                } else if(data['info']['change'] < 0)  {
+                    $('#market_change').addClass('red');
+                    $("#market_new_price").closest("div").addClass('red');
+                }
+                if(data['info']['change']){
+                    $("#market_change").html(data['info']['change'] + "%");
+                }else{
+                    $("#market_change").html(0).css("color","#fff");
+                }
+
+                //}
+            }
+            if(data['list']){
+                //console.log(data['list'])
+                // newBiLei = data['list'];
+                // console.log(newBiLei)
+            }
+
+        });
+        setTimeout('getMaxPrice()',1000);
+    }
+
+    /*右侧档位数据列表*/
+    function getDepth() {
+        $.getJSON("/Ajaxgg/getDepth?market=" + market + "&t=" + Math.random(), function (data) {
+            if (data) {
+                // console.log(data)
+                if (data['depth']) {
+                    var list = '';
+                    var sellk = data['depth']['sell'].length;
+                    var inputData = [];
+                    if (data['depth']['sell']) {
+                        for (i = 0; i < data['depth']['sell'].length; i++) {
+                            list += '<div class="tr trs tr-sell flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap"><div class="td sell">'+ data['depth']['sell'][i][0] +'</div><div class="td">'+ data['depth']['sell'][i][1] +'</div><div class="td">'+ (Number(data['depth']['sell'][i][0]) * Number(data['depth']['sell'][i][1])).toFixed(6) +'</div></div>';
+                            // var inputDataSmall = [];
+                            // inputDataSmall.push(data['depth']['sell'][i][0]);
+                            // inputDataSmall.push(data['depth']['sell'][i][1]);
+                            // inputData.push(inputDataSmall);
+                        }
+                    }
+
+                    $("#ul-ask-list1").html(list);
+
+                    // 点击自动填充价格
+                    $('#ul-ask-list1 tr').on('click', function(){
+                        var curPrice =$('#ul-ask-list1 tr td:first-child').html();
+                        if($(".buyDiv .limitPrice").is(":visible")){
+                            $("#buy_price").val(curPrice);
+                            keyPrice($("#buy_price"),$('#my_rmb'),$('#buy_max'))
+
+                        }else  if($(".sellDiv .limitPrice").is(":visible")){
+                            $("#sell_price").val(curPrice);
+                            keyPrice($("#sell_price"),$('#my_xnb'),$('#sell_max'))
+                        }
+                    });
+
+
+                    var transform =
+                        list = '';
+                    var buyL = data['depth']['buy'].length;
+                    var inputDataBuy = [];
+                    if (data['depth']['buy']) {
+                        for (i = 0; i < buyL; i++) {
+
+                            list += '<div class="bottom-content tr trs tr-buy flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap"><div class="td buy">'+ data['depth']['buy'][i][0] +'</div><div class="td">'+ data['depth']['buy'][i][1] +'</div><div class="td">'+ (Number(data['depth']['buy'][i][0]) * Number(data['depth']['buy'][i][1])).toFixed(6) +'</div></div>';
+                            // var inputDataBuy1 = [];
+                            // inputDataBuy1.push(data['depth']['buy'][i][0]);
+                            // inputDataBuy1.push(data['depth']['buy'][i][1]);
+                            // inputDataBuy.push(inputDataBuy1);
+                        }
+
+                    }
+                    $("#ul-bid-list1").html(list);
+                }
+
+            }
+        });
+        clearInterval(getDepth_tlme);
+
+        var wait = second = 3;
+        var getDepth_tlme = setInterval(function () {
+            wait--;
+            if (wait < 0) {
+                clearInterval(getDepth_tlme);
+                getDepth();
+                wait = second;
+            }
+        }, 1000);
+
+    }
+
+
+    //时间戳转日期函数
+    function timeChage(time){
+        var date = new Date(time*1000);
+        var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+        var D = date.getDate();
+        var h = date.getHours();
+        var m = date.getMinutes();
+        var s = date.getSeconds();
+        var dayL = String(date.getDate()).length;
+        var dayH = String(date.getHours()).length;
+        var dayM = String(date.getMinutes()).length;
+        var dayS = String(date.getSeconds()).length;
+        if(dayL == 1){
+            D = "0"+D;
+        }
+        if(dayH == 1){
+            h = "0"+h;
+        }
+        if(dayM == 1){
+            m = '0' + m;
+        }
+        if(dayS == 1){
+            s = '0' + s;
+        }
+        return (M+D+" "+h+":"+m+":"+s+"")
+    }
+    //时间戳转日期函数
+
+
+
+    /*滚动条*/
+    $(function(){
+        $(".scroll").panel({iWheelStep:32});
+    });
+
+
+    /*禁止鼠标滚动*/
+    $("input").bind('mousewheel', function(event, delta) { return false; });
+
+
+    // 限制input输入框输入
+    function clearNoNum(obj)
+    {
+    //先把非数字的都替换掉，除了数字和.
+    $(obj)[0].value = $(obj)[0].value.replace(/[^\d.]/g,"");
+    //必须保证第一个为数字而不是.
+    $(obj)[0].value = $(obj)[0].value.replace(/^\./g,"");
+    //保证只有出现一个.而没有多个.
+    $(obj)[0].value = $(obj)[0].value.replace(/\.{2,}/g,".");
+    //保证.只出现一次，而不能出现两次以上
+    $(obj)[0].value = $(obj)[0].value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");
+    }
+
+//买入
+    function tradeadd_buy() {
+
+        // if (trans_lock) {
+        //     layer.msg('不要重复提交', {icon: 2});
+        //     return;
+        // }
+        trans_lock = 1;
+        var tradeType = $(".priceType>div.active").index()+1;
+        //alert(tradeType);
+        var tradeSendData;
+        if(tradeType == 1){
+            //alert($('#buy_price').val(),$('#buy_num').val());
+            if ($('#buy_price').val() == "" || $('#buy_price').val() == 0) {
+                layer.tips("<?php echo ($GLOBALS['place-price']); ?>", '#buy_price', {tips: 3});
+                return false;
+            }
+            if ($('#buy_num').val() == "" || $('#buy_num').val() == '0') {
+                layer.tips("<?php echo ($GLOBALS['place-number']); ?>", '#buy_num', {tips: 3});
+                return false;
+            }
+            tradeSendData = {
+                price: $('#buy_price').val(),
+                num: $('#buy_num').val(),
+                paypassword: $('#buy_paypassword').val(),
+                market: market,
+                type: 1,
+                tradetype:1,
+				trade_pt:2
+            };
+        }else{
+            //console.log(2)
+            if ($('#buy_num1').val() == "" || $('#buy_num1').val() == 0) {
+                layer.tips("<?php echo ($GLOBALS['place-number']); ?>", '#buy_num1', {tips: 3});
+                return false;
+            }
+            tradeSendData = {
+                num: $('#buy_num1').val(),
+                paypassword: $('#buy_paypassword').val(),
+                market: market,
+                type: 1,
+                tradetype: 2,
+				trade_pt:2
+            }
+        }
+        //console.log(tradeSendData)
+        //var price = parseFloat($('#buy_price').val());
+        //var num = parseFloat($('#buy-num').val());
+        //var paypassword = $('#buy_paypassword').val();
+        if($('#buy_paypassword').val() == ''){
+            layer.tips("<?php echo ($GLOBALS['place-financePwd']); ?>", '#buy_paypassword', {tips: 3});
+            return false;
+        }
+
+        //加载层-风格3
+       
+        //alert(tradeSendData);
+
+        //此处演示关闭
+        // setTimeout(function () {
+        //     layer.closeAll('loading');
+        //     trans_lock = 0;
+        // }, 10000);
+        layer.confirm('确认买入?', {title:'确认买入'}, function(index){
+             layer.load(2);
+        $.post("<?php echo U('Lever/upTrade');?>", tradeSendData, function (data) {
+            //console.log(data)
+            layer.closeAll('loading');
+            trans_lock = 0;
+            // console.log(data)
+            if (data.status == 1) {
+                // $("#buy_price").val('');
+                $("#buy_num").val('0');
+                $("#buy_mum").val('0');
+                // $("#sell_price").val('');
+                // $("#sell_num").val('');
+                layer.msg(data.info, {icon: 1});
+            } else {
+                layer.msg(data.info, {icon: 2});
+            }
+        }, 'json');
+        });
+    }
+	
+	// 卖出
+    function tradeadd_sell() {
+        // if (trans_lock) {
+        //     layer.msg('不要重复提交', {icon: 2});
+        //     return;
+        // }
+        trans_lock = 1;
+        var tradeType = $(".priceType>div.active").index()+1;
+        
+        var tradeSendData;
+        if(tradeType == 1){
+            if ($('#sell_price').val() == "" || $('#sell_price').val() == 0) {
+                layer.tips("<?php echo ($GLOBALS['place-price']); ?>", '#sell_price', {tips: 3});
+                return false;
+            }
+            if ($('#sell_num').val() == "" || $('#sell_num').val() == 0) {
+                layer.tips("<?php echo ($GLOBALS['place-number']); ?>", '#sell_num', {tips: 3});
+                return false;
+            }
+            tradeSendData = {
+                price: $('#sell_price').val(),
+                num: $('#sell_num').val(),
+                paypassword: $('#sell_paypassword').val(),
+                market: market,
+                type: 2,
+                tradetype: 1,
+                trade_pt:2
+            };
+        }else{
+            if ($('#sell_num1').val() == "" || $('#sell_num1').val() == 0) {
+                layer.tips("<?php echo ($GLOBALS['place-number']); ?>", '#sell_num', {tips: 3});
+                return false;
+            }
+            tradeSendData = {
+                num: $('#sell_num1').val(),
+                paypassword: $('#sell_paypassword').val(),
+                market: market,
+                type: 2,
+                tradetype: 2,
+                trade_pt:2
+            };
+        }
+        ///var price = parseFloat($('#sell_price').val());
+        //var num = parseFloat($('#sell_num').val());
+        //var paypassword = $('#sell_paypassword').val();
+        if ($('#sell_paypassword').val() == "") {
+            layer.tips("<?php echo ($GLOBALS['place-financePwd']); ?>", '#sell_paypassword', {tips: 3});
+            return false;
+        }
+        // layer.load(2);
+        //此处演示关闭
+        // setTimeout(function () {
+        //     layer.closeAll('loading');
+        //     trans_lock = 0;
+        // }, 10000);
+
+layer.confirm('确认卖出?', {title:'确认卖出'}, function(index){
+             layer.load(2);
+        $.post("<?php echo U('Lever/upTrade');?>", tradeSendData, function (data) {
+            layer.closeAll('loading');
+            trans_lock = 0;
+            if (data.status == 1) {
+                // $("#buy_price").val('');
+                // $("#buy_num").val('0');
+                // $("#sell_price").val('');
+                $("#sell_num").val('0');
+                $("#sell_mum").val('0');
+                layer.msg(data.info, {icon: 1});
+            } else {
+                layer.msg(data.info, {icon: 2});
+            }
+        }, 'json');
+});
+    }
+
+    // 卖出
+    function tradeadd_sellx() {
+        // if (trans_lock) {
+        //     layer.msg('不要重复提交', {icon: 2});
+        //     return;
+        // }
+        trans_lock = 1;
+        var tradeType = $(".header>div.active1").index()+1;
+        
+        var tradeSendData;
+        if(tradeType == 1){
+            if ($('#sell_price').val() == "" || $('#sell_price').val() == 0) {
+                layer.tips("<?php echo ($GLOBALS['place-price']); ?>", '#sell_price', {tips: 3});
+                return false;
+            }
+            if ($('#sell_num').val() == "" || $('#sell_num').val() == 0) {
+                layer.tips("<?php echo ($GLOBALS['place-number']); ?>", '#sell_num', {tips: 3});
+                return false;
+            }
+            tradeSendData = {
+                price: $('#sell_price').val(),
+                num: $('#sell_num').val(),
+                paypassword: $('#sell_paypassword').val(),
+                market: market,
+                type: 2,
+                tradetype: 1,
+				trade_pt:2
+            };
+        }else{
+            if ($('#sell_num1').val() == "" || $('#sell_num1').val() == 0) {
+                layer.tips("<?php echo ($GLOBALS['place-number']); ?>", '#sell_num', {tips: 3});
+                return false;
+            }
+            tradeSendData = {
+                num: $('#sell_num1').val(),
+                paypassword: $('#sell_paypassword').val(),
+                market: market,
+                type: 2,
+                tradetype: 2,
+				trade_pt:2
+            };
+        }
+        ///var price = parseFloat($('#sell_price').val());
+        //var num = parseFloat($('#sell_num').val());
+        //var paypassword = $('#sell_paypassword').val();
+        if ($('#sell_paypassword').val() == "") {
+            layer.tips("<?php echo ($GLOBALS['place-financePwd']); ?>", '#sell_paypassword', {tips: 3});
+            return false;
+        }
+        layer.load(2);
+        //此处演示关闭
+        // setTimeout(function () {
+        //     layer.closeAll('loading');
+        //     trans_lock = 0;
+        // }, 10000);
+
+
+        $.post("<?php echo U('Lever/upTrade');?>", tradeSendData, function (data) {
+            layer.closeAll('loading');
+            trans_lock = 0;
+            if (data.status == 1) {
+                // $("#buy_price").val('');
+                // $("#buy_num").val('0');
+                // $("#sell_price").val('');
+                $("#sell_num").val('0');
+                $("#sell_mum").val('0');
+                layer.msg(data.info, {icon: 1});
+            } else {
+                layer.msg(data.info, {icon: 2});
+            }
+        }, 'json');
+    }
+
+
+    /*爆仓价*/
+    function  showWidth() {
+        var htmlHref = window.location.href;
+        htmlHref = htmlHref.replace(/^http:\/\/[^/]+/, "");
+        var addr = htmlHref.substr(htmlHref.lastIndexOf('/', htmlHref.lastIndexOf('/') - 1) + 1);
+        var index = addr.lastIndexOf("\/");
+        //js 获取字符串中最后一个斜杠后面的内容==当前币种
+        var coinType = decodeURI(addr.substring(index + 1, addr.length));
+        var coinType=coinType.split("_")[0];
+
+        $.ajax({
+            url: "/Lever/ajax_fx",
+            data: {market: coinType},
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+			//console.log(data);
+                if (data.code == 200) {
+                    $(".limit").html(data['result']['lever_fx']+"%");
+                    $(".currentNum").html(data['result']['fxl']*100+"%");
+                    var downNumber=200-parseFloat($(".limit").html());//200-110
+                    var current=parseFloat($(".currentNum").html())-parseFloat($(".limit").html());//当前-100
+                    var tWidth=parseFloat($(".grade").css("width"));//总宽度条
+                    var showWidth=current/downNumber*tWidth;
+                    if(showWidth>=170){
+                        $(".grade div").css("width","170px")
+                    }else if(0<showWidth<170){
+                        $(".grade div").css("width",showWidth+"px");
+                    }if(showWidth<=0){
+                        $(".grade div").css("width","0px");
+                    }
+                    if(parseFloat($(".currentNum").html())>120){
+                        $(".level0").css("color","#32b28f").html("<?php echo ($GLOBALS['safe']); ?>");
+                    }else{
+                        $(".level0").css("color","red").html("<?php echo ($GLOBALS['alert']); ?>");
+                    }
+                } else {
+                    // layer.msg(data.info, {icon: 2});
+                }
+            },
+            // error: function (data) {
+            //     console.log("000")
+            // }
+        });
+        setTimeout(function(){
+            showWidth();
+        }, 1000)
+    }
+    showWidth();
+
+    /*显示输入数字的格式*/
+    var vue=parseFloat($(".canBorrow").html());
+    if((/^(\+|-)?\d+$/.test(vue))&&vue>0){
+        var l=vue.toString().length;
+    }else{
+        if(vue.toString().split(".")[1]){
+            var l=vue.toString().split(".")[1].length;
+        }
+    }
+</script>
+
+</body>
+</html>

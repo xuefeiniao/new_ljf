@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="比特币交易平台，比特币交易所，数字资产交易所,数字货币交易平台" />
+    <meta name="format-detection" content="telephone=no,email=no,address=no" />
+    <eq name="Think.session.lang" value="1">
+									<notempty name="coninfo['web_name']" value=" ">
+								
+										<title>{$coninfo['web_name']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="2">
+									<notempty name="coninfo['web_name_e']" value=" ">
+										<title>{$coninfo['web_name_e']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="3">
+									<notempty name="coninfo['web_name_en']" value=" ">
+										<title>{$coninfo['web_name_en']}</title>
+									</notempty>
+								</eq>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/newcss/base.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/newcss/common.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/newcss/historyRecord.css" media="all">
+    <script src="__PUBLIC__/Home/js/newjs/jquery-3.3.1.min.js"></script>
+
+</head>
+<body>
+<div id="app">
+    <!--头部-->
+    <include file="Public:header2"/>
+    <!--头部   end-->
+    <div class="record">
+        <div class="header flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+            <h3>历史委托</h3>
+        </div>
+        <div class="filter-detail flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+            <div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                <p class="select-title">选择交易</p>
+                <div tabindex="0" class="st-select item" value="全部" style="width: 120px;">
+                    <div class="box flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                        <p>LTC/USDT</p>
+                        <span class=""></span>
+                    </div>
+
+                    <ul data-v-e7e31bac="" style="width: 120px; display: none;">
+                        <li class="st-option" data-v-e7e31bac="">BTC/USDT</li>
+                        <li class="st-option" data-v-e7e31bac="">BTC/UCC</li>
+                        <li class="st-option" data-v-e7e31bac="">LTC/BTC</li>
+                        <li class="st-option" data-v-e7e31bac="">LTC/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">LTC/USDT</li>
+                        <li class="st-option" data-v-e7e31bac="">LTC/UCC</li>
+                        <li class="st-option" data-v-e7e31bac="">ETH/BTC</li>
+                        <li class="st-option" data-v-e7e31bac="">ETH/USDT</li>
+                        <li class="st-option" data-v-e7e31bac="">ETH/UCC</li>
+                        <li class="st-option" data-v-e7e31bac="">BCH/BTC</li>
+                        <li class="st-option" data-v-e7e31bac="">BCH/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">BCH/USDT</li>
+                        <li class="st-option" data-v-e7e31bac="">BCH/UCC</li>
+                        <li class="st-option" data-v-e7e31bac="">DASH/BTC</li>
+                        <li class="st-option" data-v-e7e31bac="">DASH/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">DASH/USDT</li>
+                        <li class="st-option" data-v-e7e31bac="">ETC/USDT</li>
+                        <li class="st-option" data-v-e7e31bac="">ETC/UCC</li>
+                        <li class="st-option" data-v-e7e31bac="">OMG/BTC</li>
+                        <li class="st-option" data-v-e7e31bac="">OMG/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">OMG/USDT</li>
+                        <li class="st-option" data-v-e7e31bac="">EOS/BTC</li>
+                        <li class="st-option" data-v-e7e31bac="">EOS/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">EOS/USDT</li>
+                        <li class="st-option" data-v-e7e31bac="">EOS/UCC</li>
+                        <li class="st-option" data-v-e7e31bac="">XRP/USDT</li>
+                        <li class="st-option" data-v-e7e31bac="">XRP/UCC</li>
+                        <li class="st-option" data-v-e7e31bac="">58B/USDT</li>
+                        <li class="st-option" data-v-e7e31bac="">58B/UCC</li>
+                        <li class="st-option" data-v-e7e31bac="">SCTK/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">XMC/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">TRX/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">ZRX/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">WICC/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">STB/USDT</li>
+                        <li class="st-option" data-v-e7e31bac="">NRC/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">VNS/USDT</li>
+                        <li class="st-option" data-v-e7e31bac="">NEXO/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">TRX/BTC</li>
+                        <li class="st-option" data-v-e7e31bac="">TRX/USDT</li>
+                        <li class="st-option" data-v-e7e31bac="">ZRX/BTC</li>
+                        <li class="st-option" data-v-e7e31bac="">ZRX/USDT</li>
+                        <li class="st-option" data-v-e7e31bac="">ELF/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">VNS/BTC</li>
+                        <li class="st-option" data-v-e7e31bac="">VNS/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">AIDOC/BTC</li>
+                        <li class="st-option" data-v-e7e31bac="">AIDOC/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">CVC/BTC</li>
+                        <li class="st-option" data-v-e7e31bac="">CVC/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">CVC/USDT</li>
+                        <li class="st-option" data-v-e7e31bac="">IOST/BTC</li>
+                        <li class="st-option" data-v-e7e31bac="">IOST/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">IOST/USDT</li>
+                        <li class="st-option" data-v-e7e31bac="">ITC/BTC</li>
+                        <li class="st-option" data-v-e7e31bac="">ITC/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">ITC/USDT</li>
+                        <li class="st-option" data-v-e7e31bac="">SNT/BTC</li>
+                        <li class="st-option" data-v-e7e31bac="">SNT/USDT</li>
+                        <li class="st-option" data-v-e7e31bac="">SOC/BTC</li>
+                        <li class="st-option" data-v-e7e31bac="">SOC/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">SOC/USDT</li>
+                        <li class="st-option" data-v-e7e31bac="">THETA/BTC</li>
+                        <li class="st-option" data-v-e7e31bac="">THETA/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">THETA/USDT</li>
+                        <li class="st-option" data-v-e7e31bac="">ZIL/BTC</li>
+                        <li class="st-option" data-v-e7e31bac="">ZIL/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">ZIL/USDT</li>
+                        <li class="st-option" data-v-e7e31bac="">SMT/BTC</li>
+                        <li class="st-option" data-v-e7e31bac="">SMT/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">SMT/USDT</li>
+                        <li class="st-option" data-v-e7e31bac="">RUFF/BTC</li>
+                        <li class="st-option" data-v-e7e31bac="">RUFF/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">RUFF/USDT</li>
+                        <li class="st-option" data-v-e7e31bac="">BTM/BTC</li>
+                        <li class="st-option" data-v-e7e31bac="">BTM/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">CHAT/BTC</li>
+                        <li class="st-option" data-v-e7e31bac="">CHAT/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">CMT/BTC</li>
+                        <li class="st-option" data-v-e7e31bac="">CMT/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">DAT/BTC</li>
+                        <li class="st-option" data-v-e7e31bac="">DAT/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">TOPC/BTC</li>
+                        <li class="st-option" data-v-e7e31bac="">TOPC/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">YEE/BTC</li>
+                        <li class="st-option" data-v-e7e31bac="">YEE/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">SWFTC/BTC</li>
+                        <li class="st-option" data-v-e7e31bac="">SWFTC/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">DBC/BTC</li>
+                        <li class="st-option" data-v-e7e31bac="">DBC/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">MEET/BTC</li>
+                        <li class="st-option" data-v-e7e31bac="">MEET/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">MTX/BTC</li>
+                        <li class="st-option" data-v-e7e31bac="">MTX/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">WAN/BTC</li>
+                        <li class="st-option" data-v-e7e31bac="">WAN/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">YCC/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">DADI/BTC</li>
+                        <li class="st-option" data-v-e7e31bac="">DADI/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">DENT/BTC</li>
+                        <li class="st-option" data-v-e7e31bac="">DENT/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">INSUR/BTC</li>
+                        <li class="st-option" data-v-e7e31bac="">INSUR/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">MOF/BTC</li>
+                        <li class="st-option" data-v-e7e31bac="">MOF/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">R/BTC</li>
+                        <li class="st-option" data-v-e7e31bac="">R/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">TCT/BTC</li>
+                        <li class="st-option" data-v-e7e31bac="">TCT/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">TRUE/BTC</li>
+                        <li class="st-option" data-v-e7e31bac="">TRUE/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">AE/BTC</li>
+                        <li class="st-option" data-v-e7e31bac="">AE/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">LOOM/BTC</li>
+                        <li class="st-option" data-v-e7e31bac="">LOOM/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">STB/ETH</li>
+                        <li class="st-option" data-v-e7e31bac="">NXCT/ETH</li>
+                    </ul>
+                </div>
+                <p class="select-title" style="margin-left: 50px;">成交状态</p>
+                <div tabindex="0" class="st-select item" value="1" style="width: 120px;">
+                    <div class="box flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                        <p>完全成交</p>
+                        <span class=""></span>
+                    </div>
+                    <ul style="width: 120px; display: none;">
+                        <li class="st-option">下单失败</li>
+                        <li class="st-option">完全成交</li>
+                        <li class="st-option">已撤销</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="index-list">
+            <!--记录数据-->
+            <div  class="list">
+                <table >
+                    <thead >
+                    <tr >
+                        <th >委托时间</th>
+                        <th >方向</th>
+                        <th >委托价格 (USDT)</th>
+                        <th >成交均价 (USDT)</th>
+                        <th >委托数量</th>
+                        <th >成交数量 (LTC)</th>
+                        <th >委托来源</th>
+                        <th >状态</th>
+                    </tr>
+                    </thead>
+                    <tbody >
+                    <tr >
+                        <td > 2018-09-14 11:36:42 </td>
+                        <td  style="color: rgb(0, 168, 84);"> LTC 买入 </td>
+                        <td > 56.00 </td>
+                        <td > 55.91 </td>
+                        <td > 0.01 </td>
+                        <td > 0.01 </td>
+                        <td > 网页 </td>
+                        <td > 完全成交 </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div   class="page flex-box flex-direction-row flex-justify-end flex-align-item-start flex-wrap-nowrap" style="margin-top: 40px;">
+                    <a  class="page-up page-no-btn">上一页</a>
+                    <a  aria-disabled="false" class="page-down page-no-btn">下一页</a>
+                </div>
+                <!---->
+            </div>
+            <!---->
+            <div class="no-list">
+                <img src="/Public/Home/image/common/nolist.150cc53.png" alt="" />
+                <h6 style="font-weight: normal;">暂无数据</h6>
+            </div>
+            <!---->
+            <!---->
+            <!---->
+        </div>
+    </div>
+    <!--底部信息-->
+    <include file="Public:footer"/>
+    <!--底部信息 end-->
+</div>
+
+<div class="toast" style="display: none;">
+    <span class="text"></span>
+</div>
+
+<script src="__PUBLIC__/Home/js/newjs/historyRecord.js"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<include file="Base:header"/>
+<style type="text/css">
+	.input-text,.select-box{width: 800px}
+</style>
+<body>
+<article class="page-container">
+	<form class="form form-horizontal" id="form-add" action="{:U('User/adminEdit')}" method="post" enctype="multipart/form-data">
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>用户名：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$data.username}" placeholder="" id="articletitle" name="username">
+			</div>
+		</div>
+		
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>昵称：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$data.nickname}" placeholder="" id="articletitle" name="nickname">
+			</div>
+		</div>
+		
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>登录密码：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="" id="articletitle" name="password">
+				<span style="width:100px;padding-left:200px;color: red;font-weight: bold;">留空不更新</span>
+			</div>
+		</div>
+		
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>手机：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$data.moble}" placeholder="" id="articletitle" name="moble">
+			</div>
+		</div>
+		
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>邮箱：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$data.email}" placeholder="" id="articletitle" name="email">
+			</div>
+		</div>
+		 
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>状态：</label>
+			<div class="formControls col-xs-8 col-sm-9 skin-minimal">
+				<div class="radio-box">
+					<input name="status" type="radio" value="1" <eq name="data.status" value="1">checked</eq>>
+					<label>启用</label>
+				</div>
+				<div class="radio-box">
+					<input name="status" type="radio" value="0"<eq name="data.status" value="0">checked</eq>>
+					<label>禁用</label>
+				</div>
+			</div>
+		</div> 
+		 
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+				<!-- <button onClick="article_save_submit();" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交审核</button> -->
+				<!-- <button onClick="article_save();" class="btn btn-secondary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存草稿</button> -->
+				<!-- <button onClick="removeIframe();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button> -->
+				<button class="ajax-post btn btn-primary radius" id="submit" type="submit" target-form="form-horizontal"><i class="Hui-iconfont">&#xe632;</i> 确 定
+			</button>
+			<!-- <a class="btn btn-default radius" href="{$Think.server.HTTP_REFERER}">返 回</a> -->
+			<notempty name="data.id"><input type="hidden" name="id" value="{$data.id}"/>
+			</notempty>
+			</div>
+		</div>
+	</form>
+</article>
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript">
+// alert(window.parent.location);
+// alert(window.location.href);
+	//提交表单
+	$(function() {
+        $("#form-add").ajaxForm(function(data){
+        	if (data.status==1) {
+        	layer.alert(data.info);
+        }else
+            layer.alert(data.info);
+        },'json');
+         
+    });
+</script>
+
+<!--/请在上方写此页面业务相关的脚本-->
+ 
+</body>
+</html>

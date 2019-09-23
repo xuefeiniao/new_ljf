@@ -1,0 +1,327 @@
+<include file="Publics:header-black" />
+<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			ul,ol,li{ list-style: none;}
+			input,button{ border: none; outline: none;}
+			.clear{zoom:1}
+			.clear:after{ clear: both; content: ""; display: block;}
+			html,
+			body {
+				width: 100%;
+			}
+			
+			.header {
+				width: 100%;
+			}
+			
+			.content {
+				width: 100%;
+				clear: both;
+			}
+			
+			.leftbar {
+				width: 23%;
+				float: left;
+			}
+			
+			.main_content {
+				width: 75%;
+				float: right;
+				margin: 10px auto;
+			}
+			
+			.right_mcontent {
+				position: relative;
+			}
+			
+			.m_title {
+				height: 42px;
+				width: 100%;
+				font-size: 1.5em;
+				color: #111;
+				border-bottom: 1px solid #C8DAE2;
+				margin: 10px 0 20px;
+				line-height: 46px
+			}
+			
+			.m_title a {
+				color: #666;
+				text-decoration: none;
+			}
+			
+			.myacc-con .m_title h4 {
+				font-weight: normal;
+			}
+			
+			.sectioncont {
+				width: 100%;
+			}
+			
+			.sectioncont a {
+				color: #666;
+				text-decoration: none;
+			}
+			
+			.sectioncont a:hover {
+				color: #d45858;
+			}
+			
+			.sectioncont .coin_add {
+				border: 0;
+				box-shadow: none;
+				background: #f1f1f1;
+				width: 100%;
+				padding: 10px;
+				font-size: 26px;
+				color: #de5959;
+			}
+			
+			.sectioncont,
+			.sectioncont table {
+				width: 100%;
+			}
+			
+			thead,
+			thead tr {
+				height: 40px
+			}
+			
+			.sf-grid tr td:first-child,
+			.sf-grid tr th:first-child {
+				text-align: left;
+			}
+			
+			.myacc-con thead td {
+				border-bottom: 1px solid #e4ebf0;
+			}
+			
+			.sf-grid td {
+				padding: 8px 0;
+				border-bottom: 1px solid #f3f3f3;
+			}
+			
+			.footer {
+				margin: 0 auto;
+				width: 100%;
+				clear: both;
+				margin-bottom: -19px;
+				border-top: 1px solid #ddd;
+				z-index: 2;
+				position: relative;
+			}
+			.sectioncont{ font-size: 14px;}
+			.sectioncont .s-title p{ font-size: 16px; 
+									font-weight: 600;
+									margin: 10px 0;
+									}
+			.sectioncont .s-title em{ font-size: 14px; font-style: normal;display: block;}
+			.sectioncont .s-title em strong{ color: #DD595A;}
+			
+		   .sectioncont-con form { margin: 50px 0 ;}
+		   .sectioncont-con form em{font-style: normal;color: #666; margin-left: 5px;}
+		    .sectioncont-con form div{ margin-bottom: 15px;}
+		    .sectioncont-con form  span,.s-title form  input{ display: inline-block;}
+		    .sectioncont-con form  span{ width: 200px; text-align: right; margin-right: 20px;}
+		    .sectioncont-con form  input{ width: 500px; 
+		    					 height: 42px; 
+		    					 padding-left: 10px;
+		    					 border-radius: 5px;
+		    					 border: solid #ccc 1px;}
+		    .sectioncont-con form .form-btn{width: 516px; 
+		    						background: #d45858; 
+		    						 border: none; 
+		    						 color: #fff; 
+		    						 font-size: 16px;}
+		    .sectioncont-con form .form-btn:hover{ background: #C94343;}
+		    .sectioncont-con form.dx-yz,.sectioncont-con form .dx-message,.sectioncont-con form .tel-message{ display: inline-block;}
+		    .sectioncont-con form .dx-yz{ width: 216px;}
+		    .sectioncont-con form .dx-message,.sectioncont-con form .tel-message{width: auto; padding: 10px; background: #718FAB;margin: 0 0 0 5px;}
+		    .sectioncont-con form .dx-message:hover,.sectioncont-con form .tel-message:hover{background: #456789;}
+		</style>
+	<body>
+		<!--
+			头部
+		-->
+		<div class="header">
+
+		</div>
+		<!--
+			右侧内容部分
+		-->
+		<div class="content">
+			<include file="Publics:leftbar" />
+			<div class="main_content acc-m-con" style='border:none;'>
+				<div class="right_mcontent myacc-con">
+
+					<div class="m_title">
+						
+							<h4>取消谷歌验证</h4>
+					</div>
+					<div class="sectioncont">
+						<div class="sectioncont-con">
+							<p>您的帐号已经成功开启谷歌验证功能！如果您要取消此功能，请输入您的谷歌验证码 ：</p>
+							<form >
+								<div>
+									<span>谷歌验证码：</span>
+									<input type="text" value="" name="verify" id="verify""/>
+									<em>请输入您的谷歌验证码</em>
+								</div>
+								<div>
+									<span></span>
+									<input type="button"  id="button1" value="取消谷歌验证"  class="form-btn"/>
+									
+								</div>
+								
+							</form>
+						</div>						
+					</div>
+					<!---->
+					<div class="m_title">
+						
+							<h4>重置谷歌验证</h4>
+					</div>
+					<div class="sectioncont">
+						<div class="sectioncont-con">
+						<!--	<p>如果您绑定过手机，可以通过资金密码和您绑定手机的短信验证码进行重置</p>  -->
+						<p>如果您绑定过手机，可以通过资金密码进行重置</p>
+							<div class="s-title" >
+								<p>第一步：请先扫描二维码</p>
+								<img src="__ROOT__/{$orc}"/>
+								<em>或手工输入秘钥：<strong id="ckey">{$goolekey}</strong></em>
+							</div>
+							<div class="s-title">
+								<p>第二步：请将手机上新的谷歌验证码填写到输入框</p></div>
+						<!--	<div class="s-title">
+								<p>第三步：输入资金密码和短信验证码后提交</p>
+							</div>
+						-->	
+							<div class="s-title">
+								<p>第三步：输入资金密码后提交</p>
+							</div>
+							
+								<form >
+									<div>
+										<span>新的谷歌验证码：</span>
+										<input type="text" id="cverify"  value="" placeholder="请输入程序上显示的6位谷歌验证码"/>
+										
+									</div>
+									<div>
+										<span>资金密码：</span>
+										<input type="password" id="password" value="" />
+									</div>
+								<!--	<div>
+										<span>短信验证码：</span>
+										<input type="text"  value="" class="dx-yz"/>
+										<span class="dx-message">获取短信验证码</span>
+										<span class="tel-message">获取电话语音验证码</span>
+									</div>
+								-->	
+									<div>
+										<span></span>
+										<input type="button" id="button2" value="重置谷歌验证"  class="form-btn"/>
+										
+									</div>
+								</form>
+						</div>
+						
+						<h4 style="margin-bottom: 5px; font-size: 16px;">注意:</h4>
+						<ul>
+							<li>1. <strong>切勿删除谷歌验证器应用程序内的谷歌验证码账户，否则会导致您无法进行账户操作。</strong>如果遇到手机丢失，
+								软件卸载等无法输入谷歌验证码的情况，请联系管理员 Email: *****@mail.com 。</li>
+							<li>2. 如果一直提示谷歌验证码不对，请检查和校准手机时间，当前服务器时间: <b></b></li>
+							<li>3. 谷歌验证为您的交易密码带来第二重保护。启用这一功能后，在您每次登录，或者提取现金操作前都必须输入手机应
+								用程序上显示的谷歌验证码。本功能目前支持 iOS 和 Android 设备。</li>
+							<li>4. 谷歌验证详细信息请阅读：Google Authenticator安装及使用说明</li>
+						</ul>
+						
+						
+					</div>
+
+					<br>
+					
+				</div>
+			</div>
+		</div>
+		<!--
+			尾部
+		-->
+		<include file="Publics:footer"/>
+		
+	</body>
+
+</html>
+<script src="js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var dd=new Date().toLocaleString();
+	$('.sectioncont li b').html(dd);
+	
+</script>
+
+<script>
+	$(document).ready(function(){
+		$("#button1").click(function(){	
+			var verify=$("#verify").val();
+			if(verify==""||verify==null){			
+				 layer.msg("谷歌验证码不能为空！", {icon: 2});
+				 exit;
+			}
+			if(isNaN(verify)||(verify.length!=6)){			
+				 layer.msg("谷歌验证码输入错误！", {icon: 2});
+				 exit;
+			}
+			$.ajax({
+				type:"POST",
+				dataType:'json',
+				url:"{:U('User/googlecancel')}",
+				data:{verify:verify},
+				success:function(data){						
+					if(data.status==1){
+						layer.msg(data.msg,{icon:1});
+						 window.location.replace("/user/googleauth");
+					}else{
+						layer.msg(data.msg,{icon:2});
+					}
+					
+				}
+			});				
+		});
+		
+		$("#button2").click(function(){	
+			var key=$('#ckey').html();
+			var verify=$("#cverify").val();
+			var password=$("#password").val();
+			if(key==""||key==null){			
+				 layer.msg("请刷新页面重新生成验证码", {icon: 2});
+				 exit;
+			}
+			if(verify==""||verify==null){			
+				 layer.msg("谷歌验证码不能为空！", {icon: 2});
+				 exit;
+			}
+			if(isNaN(verify)||(verify.length!=6)){			
+				 layer.msg("请输入正确的谷歌验证码！", {icon: 2});
+				 exit;
+			}
+			$.ajax({
+				type:"POST",
+				dataType:'json',
+				url:"{:U('User/googlereset')}",
+				data:{verify:verify,password:password,key:key},
+				success:function(data){						
+					if(data.status==1){
+						layer.msg(data.msg,{icon:1});
+						window.location.replace("/user/googleauth");
+					}else{
+						layer.msg(data.msg,{icon:2});
+					}
+					
+				}
+			});				
+		});
+		
+	})	
+</script>
+

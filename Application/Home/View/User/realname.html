@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<eq name="Think.session.lang" value="1">
+									<notempty name="coninfo['web_name']" value=" ">
+								
+										<title>{$coninfo['web_name']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="2">
+									<notempty name="coninfo['web_name_e']" value=" ">
+										<title>{$coninfo['web_name_e']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="3">
+									<notempty name="coninfo['web_name_en']" value=" ">
+										<title>{$coninfo['web_name_en']}</title>
+									</notempty>
+								</eq>
+		<!--<link rel="stylesheet" type="text/css" href="/zhisucom/css/realname.css" />-->
+	<script src="/zhisucom/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="/zhisucom/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/zhisucom/js/jquery.cookies.2.2.0.js"></script>
+    <script type="text/javascript" src="/zhisucom/js/layer.js"></script>
+    <script type="text/javascript" src="/zhisucom/js/posfixed.js"></script>
+    <script type="text/javascript" src="/zhisucom/js/dot.min.js"></script>
+    <!-- <link rel="stylesheet" href="/zhisucom/css/slider.css">   -->
+       <link href="/zhisucom/css/shimingrenzheng.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/zhisucom/js/slider.js"></script>
+      <style>
+        html body .kyc table{width:80%;height:auto;}
+        
+        @media only screen and (min-width:1600px){
+        	html body .kyc table{width:66%;}
+        }
+        
+        @media only screen and (max-width:1400px){
+        	html body .formbox form{width:30%;}
+          #media-change{margin:20px 5%;}
+          html body .kyc table{width:100%;}
+        }
+        html body .sectioncont form{
+        	margin-top:20px;
+        }
+        html body .main_content{border:none;}
+        
+      </style>
+   
+	</head>
+<include file="Publics:header-black"/>
+
+	<body>
+		<div class="content" style="overflow:hidden;">
+          <include file="Publics:leftbar"/>
+          <if condition="$user['idcardimg1'] eq ''">
+			<div style="height: 38px; line-height: 52px; color: #d45858; font-size: 15px;text-align: center">
+				您尚未实名认证！为保障您的资金安全，在完成实名认证之前，您将不能进行c2c交易、提币等操作。
+			</div>
+			</if>
+			<div class="main_content acc-m-con contnet_r" style="border-top:none;border-bottom:none;">
+				<div class="m_title">
+					<h4>用户信息实名登记</h4></div>
+				<h3 style="text-align: center">您的账号ID：<span class="red" style="font-size: 18px">{$user['id']} <eq name="user.idcardauth" value="1"> <span class="red" style="margin: 0 0 10px 15px">实名认证已经通过！</span></eq>　</span></h3>
+				<p>为了您的账户资金安全，请您登记实名认证信息。</p>
+				<p>请注意，信息一经登记，无法修改，之后办理提现，账号验证等业务信息必须与登记信息相符，请务必如实填写。</p>
+				<h3 class="s-title"><i>1</i>上传身份材料照片</h3>
+				<div class="formbox sectioncont clearfix" style="width:80%;">
+					<div class="nor">
+						<b style="margin-top:20px; display: inline-block">照片要求：</b>
+						<p> 1. 照片文件大小不能超过4M！文件格式须为jpg或者png！</p>
+						<p> 2. 请确保照片无水印，无污渍，身份信息清晰，头像完整，非文字反向照片！照片请勿进行PS处理！</p>
+						<p style="margin-bottom: 20px"> 3. 手持身份证照片：需要您本人一只手持<b class="red">您的身份证</b>，另一只手持一张有您<b class="red">手写的gate.io账号ID的白纸</b>。确保身份证和白纸在您的胸前，不遮挡您的脸部，并且身份证和白纸上的信息清晰可见！</p>
+						<b>手持白纸请手写以下内容，内容不符者不予通过：<span class="red">“本人知晓虚拟币投资风险巨大，自愿参与，自担风险，保证身份信息不提供给他人，不使用gate账号进行非法行为，如有违反，本人愿意承担法律风险。”</span></b>
+					</div>
+					<div class="red" style="margin:20px 0 10px">以下图片仅作为示例，请提交您本人的身份材料照片。照片勿进行PS处理！</div>
+					<!-- <div class="set_upload_img" style="display:none;"></div> -->
+					<form accept-charset="UTF-8" action="" class="kyc form">
+
+						<table>
+
+							<tbody>
+								<tr>
+									<th>上传身份证件正面：</th>
+								</tr>
+								<tr>
+									<td>
+										<div class="sfz i-z" style="min-height:auto;">
+											<input id="key" name="key" value="" type="hidden">
+											<input id="token" name="token" value="" type="hidden">
+											<input name="x:category" type="hidden" value="id-card-front-side">
+											<if condition="$user['idcardimg1'] eq ''">
+											<div class="sfz-img">
+											<!--<input class="file" name="file" id="file" type="file"> -->
+												<!-- <img src="/zhisucom/images/zhengmian.jpg"> -->
+												
+												<img class="new-img" id="up_img1" style="cursor:pointer;max-width:500px;border: 1px solid;" title="" alt="" src="/zhisucom/images/zhengmian.jpg">
+												
+												<input  type="file" accept="image/gif, image/jpeg, image/jpg, image/png" id="inputfile1" style="height:0;width:0;position: absolute;left: 10px;top: 5px;background:url('/public/home/ss/images/c.jpg');opacity:0;" value=""/>
+												 <div class="sfz-cover" style="width:auto;height:auto;left:0;right:0;bottom:0;top:0;margin:auto;">
+													<div onclick="getElementById('inputfile1').click()" class="upfile-btn sub-btn">上传文件</div>
+												</div>
+											</div>
+											<else/>
+											<img src="/Upload/idcard/{$user['idcardimg1']}" width="200px">
+											</if>
+                                         
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+
+					<form accept-charset="UTF-8" action="" class="kyc form" id="media-change">
+						<table>
+							<tbody>
+								<tr>
+									<th>上传身份证件反面：</th>
+								</tr>
+								<tr>
+									<td>
+										<div class="sfz i-z" style="min-height:auto;">
+											<input id="key" name="key" value="" type="hidden">
+											<input id="token" name="token" value="" type="hidden">
+											<input name="x:category" type="hidden" value="id-card-back-side">
+												
+										<if condition="$user['idcardimg2'] eq ''">
+											<div class="sfz-img">
+											
+												<!-- <input class="file" name="file" id="file" type="file"><img src="/zhisucom/images/fanmian.jpg"> -->
+												<img class="new-img" id="up_img2"  style="cursor:pointer;max-width:500px;border: 1px solid;" title="" alt="" src="/zhisucom/images/fanmian.jpg">
+												
+												<input type="file" accept="image/gif, image/jpeg, image/jpg, image/png" id="inputfile2" style="height:0;width:0;position: absolute;left: 10px;top: 5px;background:url('/public/home/ss/images/c.jpg');opacity:0;" value=""/>
+												 <div class="sfz-cover" style="width:auto;height:auto;left:0;right:0;bottom:0;top:0;margin:auto;">
+													<div onclick="getElementById('inputfile2').click()" class="upfile-btn sub-btn">上传文件</div>
+												</div>
+											</div>
+											<else/>
+											<img src="/Upload/idcard/{$user['idcardimg2']}" width="200px">
+											</if>
+                                          
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+
+					<form accept-charset="UTF-8" action="" class="kyc form" >
+						<table>
+							<tbody>
+								<tr>
+									<th>手持身份证件照片：</th>
+								</tr>
+								<tr>
+									<td>
+										<div class="sfz i-z" style="min-height:auto;">
+											<input id="key" name="key" value="" type="hidden">
+											<input id="token" name="token" value="" type="hidden">
+											<input name="x:category" type="hidden" value="id-card-inhand">
+											<if condition="$user['idcardimg3'] eq ''">
+											<div class="sfz-img">
+											
+												<!-- <input class="file" name="file" id="file" type="file"><img src="/zhisucom/images/shoushi.jpg"> -->
+												<img class="new-img" id="up_img3"  style="cursor:pointer;max-width:500px;border: 1px solid;" title="" alt="" src="/zhisucom/images/shoushi.jpg">
+												
+												<input type="file" accept="image/gif, image/jpeg, image/jpg, image/png" id="inputfile3" style="height:0;width:0;position: absolute;left: 10px;top: 5px;background:url('/public/home/ss/images/c.jpg');opacity:0;" value=""/>
+												<div class="sfz-cover" style="width:auto;height:auto;left:0;right:0;bottom:0;top:0;margin:auto;">
+													<div onclick="getElementById('inputfile3').click()" class="upfile-btn sub-btn">上传文件</div>
+												</div>
+											</div>
+											<else/>
+											<img src="/Upload/idcard/{$user['idcardimg3']}" width="200px">
+											</if>
+                                           
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</form>
+					
+					<div class="red" style="margin: 0 0 10px 5px">请严格按照要求上传材料照片，否则会造成您的认证通不过审核，耽误您的宝贵时间！</div>
+					
+					
+				<if condition="$user['idcardauth'] neq 1">
+		
+					<div class="sectioncont" style="clear: both">				
+						<form enctype="application/x-www-form-urlencoded" method="post" action="" id="reset-form">
+							<div class="sectioncont" style="margin-top: 0;" >
+								<input id="reset_upload" name="reset_upload" value="1" type="hidden">
+								<a class="re-btn" onClick="cx();">重新上传</a>
+							</div>
+							<div class="sectioncont" style="margin-top: 0;">
+								<input id="reset_upload" name="reset_upload" value="1" type="hidden">
+								<eq name="user.is_bindbank" value='1'>
+								<a class="re-btn" href="{:U('Finance/index')}" style="position:relative;left:150px;bottom:44px;">确认提交</a>
+								<else />
+								<button type='button' class="re-btn" onclick="is_bindbank()"  style="position:relative;left:150px;bottom:44px;">确认提交</button>
+								</eq>
+							</div>
+						</form>
+					</div>
+				</if>	
+				
+				</div>
+			</div>
+		</div>
+      <include file="Publics:footer"/>
+	</body>
+<script>
+    $(document).ready(function () {
+      
+    
+        /*if($('.img-all').attr('src') && $('.img-all1').attr('src') && $('.img-all2').attr('src')){
+            console.log($('.img-all1'))
+            $('#shang_zhisucom_chuandiv').hide();
+            $('.assets_content').css('min-height','595px')
+            return;
+        }
+        $('.assets_content').css('min-height','895px')*/
+        
+        $("#inputfile1").change(function () {
+			sendAjax("inputfile1")
+        	});
+        $("#inputfile2").change(function () {
+            sendAjax("inputfile2")
+        });
+        $("#inputfile3").change(function () {
+            sendAjax("inputfile3")
+        });
+        function sendAjax(name){
+            var data = new FormData();
+            data.append(name,$("#"+name)[0].files[0]);
+            $.ajax({
+                url: '/ajax/imgUser',
+                type: 'POST',
+                data: data,
+                cache: false,
+                contentType: false,		//不可缺参数
+                processData: false,		//不可缺参数
+                success: function (data) {
+                    console.log(name)
+                    if (data) {
+                        if(data=="error"){
+                            alert("请选择正确的文件类型和大小！");
+                            return false;
+                        }else{
+                        	//alert("上传成功！");
+                        	var img_id = name.substring(name.length-1,name.length);
+                        	//alert(img_id);
+                        	$("#up_img"+img_id).attr('src','/Upload/idcard/'+data).css({'cursor':'normal','max-width':'auto','border':'none','width':'200px'});
+                        }
+						//window.location.replace("/User/realname");
+						
+                        /*$('<img />', {
+                            src : '/Upload/idcard/' + data,class:name +'-new'
+                        }).appendTo($('.set_upload_img'));
+
+                        $('.set_upload_img').show();
+                        //
+                        if($('.set_upload_img img').length === 3){
+                            $('.new-button').on('click',function(){
+                                alert('提交成功');
+                               window.reload(true)
+    
+                                
+                            })
+                        }*/
+                      
+                    }
+                },
+                error: function () {
+                    alert('上传出错');
+                    $('.set_upload_img').hide();
+                }
+            });
+		}
+        
+	});
+	
+	function cx(){
+		$.ajax({
+			url:'/user/realname_cx',
+			data:1,
+			type:'json',
+			datatype:'post',
+			success:function(data){
+				if(data.status==1){
+					layer.msg(data.info, {icon: 1});
+					window.location = "/user/realname";
+				}else{
+					layer.msg(data.info, {icon: 2});
+					window.location = "/user/realname";
+				}
+			}
+		});
+	}
+	
+
+    
+    
+    function is_bindbank(){
+		/* layer.confirm('是否去设置支付方式', {
+		    skin: 'layui-layer-molv' //样式类名  自定义样式
+		    ,closeBtn: 1    // 是否显示关闭按钮
+		    ,anim: 1 //动画类型
+		    ,btn: ['去设置','先看看'] //按钮
+		    ,icon: 6    // icon
+		    ,time: 6000 //2s后自动关闭
+		    ,yes:function(){
+		        layer.msg('按钮1');
+		        return false;
+		    }
+		    ,btn2:function(){
+		        layer.msg('按钮2');
+		        return false;
+		    }}); */
+		    
+    	layer.confirm('绑定成功,是否去设置支付方式？', { 
+    		  btn: ['去设置','先看看'] //按钮  
+    		}, function(){  
+    			//layer.msg('绑定成功', {icon: 1});
+    			window.location.href="/User/zhifushezhi";
+    		}, function(){  
+    			//layer.msg('绑定成功', {icon: 1});
+    			window.location.href="/Finance/index";
+    		});  
+	}
+</script>
+</html>

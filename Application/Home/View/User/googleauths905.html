@@ -1,0 +1,330 @@
+<include file="Publics:header-black" />
+<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			ul,ol,li{ list-style: none;}
+			input,button{ border: none; outline: none;}
+			.clear{zoom:1}
+			.clear:after{ clear: both; content: ""; display: block;}
+			html,
+			body {
+				width: 100%;
+			}
+			
+			.header {
+				width: 100%;
+			}
+			
+			.content {
+				width: 100%;
+				clear: both;
+			}
+			
+			.leftbar {
+				width: 23%;
+				float: left;
+			}
+			
+			.main_content {
+				width: 75%;
+				float: right;
+				margin: 10px auto;
+			}
+			
+			.right_mcontent {
+				position: relative;
+			}
+			
+			.m_title {
+				height: 42px;
+				width: 100%;
+				font-size: 1.5em;
+				color: #111;
+				border-bottom: 1px solid #C8DAE2;
+				margin: 10px 0 20px;
+				line-height: 46px
+			}
+			
+			.m_title a {
+				color: #666;
+				text-decoration: none;
+			}
+			
+			.myacc-con .m_title h4 {
+				font-weight: normal;
+			}
+			
+			.sectioncont {
+				width: 100%;
+			}
+			
+			.sectioncont a {
+				color: #666;
+				text-decoration: none;
+			}
+			
+			.sectioncont a:hover {
+				color: #d45858;
+			}
+			
+			.sectioncont .coin_add {
+				border: 0;
+				box-shadow: none;
+				background: #f1f1f1;
+				width: 100%;
+				padding: 10px;
+				font-size: 26px;
+				color: #de5959;
+			}
+			
+			.sectioncont,
+			.sectioncont table {
+				width: 100%;
+			}
+			
+			thead,
+			thead tr {
+				height: 40px
+			}
+			
+			.sf-grid tr td:first-child,
+			.sf-grid tr th:first-child {
+				text-align: left;
+			}
+			
+			.myacc-con thead td {
+				border-bottom: 1px solid #e4ebf0;
+			}
+			
+			.sf-grid td {
+				padding: 8px 0;
+				border-bottom: 1px solid #f3f3f3;
+			}
+			
+			.footer {
+				margin: 0 auto;
+				width: 100%;
+				clear: both;
+				margin-bottom: -19px;
+				border-top: 1px solid #ddd;
+				z-index: 2;
+				position: relative;
+			}
+			.sectioncont{ font-size: 14px;}
+			.sectioncont .s-title{ font-size: 16px; 
+									font-weight: 600;
+									margin: 10px 0;
+									display: inline-block;}
+			.sectioncont  li{ margin-bottom: 20px;
+			 line-height: 20px; }	
+			 .sectioncont .span-border{
+			 	border: solid #000 1px;
+			 	padding: 8px;
+			 	
+			 }	
+			 .sectioncont .span-border:hover{ color: palevioletred;  border: solid palevioletred 1px;}
+			 .sectioncont .span-border img{ 
+			                                width: 24px;
+			                                height: 24px;
+			                                line-height: 24px;
+			                                vertical-align: middle;
+			                                margin-right: 5px;}	
+			 .sectioncont .s-title em:hover{
+			 	  }                             
+			.my-left,.my-right{float: left; 
+							   margin:  30px 0;}	
+			.my-left img{ width: 170px; 
+						  border-right: solid #ccc 1px; 
+						  padding-right: 10px;}
+			.my-right{ margin: 80px 0 0 20px; }
+			.s-title p,.s-title form{ font-size: 14px; font-weight: normal;line-height: 26px; margin-top: 5px;}
+			.s-title .load-btn{padding: 10px;
+							   font-size: 14px;
+				               margin-right: 40px;}
+		    .s-title .xiazai-btn{ margin-top: 20px;}
+			.s-title .load-btn em { margin-left: 10px;position: relative;}	
+			.s-title .load-btn em span{ position: absolute;
+				                      top: 25px;
+				                      left: -50px;
+				                      width: 120px;
+				                      height: 138px;
+				                      text-align: center;
+				                      display: block;
+				                      font-style: normal;
+				                      line-height: 30px;
+				                      background: #CCCCCC;} 
+			.s-title .load-btn  .andriod-code,.s-title .load-btn  .ios-code{ display: none;}
+			.s-title .load-btn em span i img{ width: 100px; }	                                   
+		    .s-title .load-btn em img{ vertical-align: middle; width: 32px;}
+		    .s-title .load-btn em:hover .andriod-code,.s-title .load-btn em:hover  .ios-code{ display: block;}
+		    
+			.my-right .miyao{ font-size: 16px; font-weight: normal;}
+			.my-right .miyaochuan{ font-weight: normal; 
+								   color: palevioletred; 
+								   letter-spacing: 2px;
+								   margin-right: 20px;}
+		    .my-right  em{ color: #666; font-weight: normal;font-style: normal;}
+		    .s-title form { margin: 20px 0 ;}
+		    .s-title form div{ margin-bottom: 15px;}
+		    .s-title form  span,.s-title form  input{ display: inline-block;}
+		    .s-title form  span{ width: 200px; text-align: right; margin-right: 20px;}
+		    .s-title form  input{ width: 500px; 
+		    					 height: 42px; 
+		    					 padding-left: 10px;
+		    					 border-radius: 5px;
+		    					 border: solid #ccc 1px;}
+		    .s-title form .form-btn{width: 516px; 
+		    						background: #d45858; 
+		    						 border: none; 
+		    						 color: #fff; 
+		    						 font-size: 16px;}
+		    .s-title form .form-btn:hover{ background: red;}
+		</style>
+	<body>
+		<!--
+			头部
+		-->
+		<div class="header">
+
+		</div>
+		<!--
+			右侧内容部分
+		-->
+		<div class="content">
+			<include file="Publics:leftbar" />
+			<div class="main_content acc-m-con" style='border:none;'>
+				<div class="right_mcontent myacc-con">
+
+					<div class="m_title">
+						
+							<h4>启用谷歌验证</h4>
+					</div>
+					<div class="sectioncont">
+						<div class="s-title" >第一步：下载并安装“Google Authenticator (谷歌身份验证器)” App：
+							<div class="xiazai-btn clear">
+								<!--下载Android版-->
+								<span class="load-btn">
+									<a href="http://shouji.baidu.com/software/3832652.html" class="span-border">
+										<img src="__PUBLIC__/Home/images/googleauthenticator.png"/>下载 Android 版
+									</a>
+									<em><img src="__PUBLIC__/Home/images/ee.jpg"/>
+									  <span class="andriod-code">扫码下载
+									  	<br />
+									  	<i><img src="__PUBLIC__/Home/images/adn.jpg"></i>
+									  </span>
+									</em>
+									
+								</span >
+								<!--下载ios版-->
+								<span class="load-btn">
+									<a href="https://itunes.apple.com/cn/app/google-authenticator/id388497605?mt=8" class="span-border">
+										<img src="__PUBLIC__/Home/images/gg_ios.png"/>下载 iOS 版
+									</a>
+									<em><img src="__PUBLIC__/Home/images/ee.jpg"/>
+									<span class="ios-code">扫码下载
+									  	<br />
+									  	<i><img src="__PUBLIC__/Home/images/ios.jpg"></i>
+									  </span></em>
+								</span>
+								
+							</div>
+						</div>
+						<div class="s-title">第二步：在谷歌身份验证器中，添加您的gate.io账号密钥：
+							<p>操作方法： 在“Google Authenticator (谷歌身份验证器)” App中，点击“添加新账户 (iOS 下是 + 号)”->“扫描条形码”，
+								扫描以下二维码 或 点击“输入提供的密钥”，手动输入以下密钥。</p>
+							<div class="my-left"><img src="__ROOT__/{$orc}"/>	</div>
+							<div class="my-right">
+								<span class="miyao">密钥：</span>
+								<br />
+								<span id="gkey" class="miyaochuan">{$goolekey}</span>
+								<!--<em>复制</em> -->
+							</div>
+						</div>
+						<div class="s-title">第三步：填写谷歌验证码，完成谷歌验证绑定。
+							<p>谷歌身份验证器配置完成后，会显示一个 6 位数字，每隔 30 秒变化一次。这个数字即为您的谷歌验证码。</p>
+							<form >
+								<div>
+									<span> 谷歌验证码:</span>
+									<input type="text" name="verify" id="verify" value="" placeholder="请输入程序上显示的6位数谷歌验证码"/>	
+								</div>
+								<div>
+									<span>资金密码：</span>
+									<input type="password" name="password" id="password" value="" />
+								</div>
+								 <div><span></span><input type="button" name="button1" id="button1" value="启用谷歌验证"  class="form-btn"/></div>
+							</form>
+						</div>
+						<h4 style="margin-bottom: 5px; font-size: 16px;">注意:</h4>
+						<ul>
+							<li>1. <strong>切勿删除谷歌验证器应用程序内的谷歌验证码账户，否则会导致您无法进行账户操作。</strong>如果遇到手机丢失，
+								软件卸载等无法输入谷歌验证码的情况，请联系管理员 Email: *****@mail.com 。</li>
+							<li>2. 如果一直提示谷歌验证码不对，请检查和校准手机时间，当前服务器时间: <b></b></li>
+							<li>3. 谷歌验证为您的交易密码带来第二重保护。启用这一功能后，在您每次登录，或者提取现金操作前都必须输入手机应
+								用程序上显示的谷歌验证码。本功能目前支持 iOS 和 Android 设备。</li>
+							<li>4. 谷歌验证详细信息请阅读：Google Authenticator安装及使用说明</li>
+						</ul>
+						
+						
+					</div>
+
+					<br>
+					
+				</div>
+			</div>
+		</div>
+		<!--
+			尾部
+		-->
+		<include file="Publics:footer"/>
+		
+	</body>
+
+</html>
+<script src="js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	var dd=new Date().toLocaleString();
+	$('.sectioncont li b').html(dd);
+	
+</script>
+<script>
+	$(document).ready(function(){
+		$("#button1").click(function(){	
+			var key=$('#gkey').html();
+			var verify=$("#verify").val();
+			var password=$("#password").val();
+			if(key==""||key==null){			
+				 layer.msg("请刷新页面重新生成验证码", {icon: 2});
+				 exit;
+			}
+			if(verify==""||verify==null){			
+				 layer.msg("谷歌验证码不能为空！", {icon: 2});
+				 exit;
+			}
+			if(isNaN(verify)||(verify.length!=6)){			
+				 layer.msg("请输入正确的谷歌验证码！", {icon: 2});
+				 exit;
+			}
+			$.ajax({
+				type:"POST",
+				dataType:'json',
+				url:"{:U('User/goolesave')}",
+				data:{verify:verify,password:password,key:key},
+				success:function(data){				
+					
+					if(data.status==1){
+						layer.msg(data.msg,{icon:1});
+						window.location.replace("/user/googleauth");
+					}else{
+						layer.msg(data.msg,{icon:2});
+					}
+					
+				}
+			});				
+		});
+	
+	})
+	
+</script>
+

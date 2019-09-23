@@ -1,0 +1,145 @@
+<include file="Public:header" />
+<script src="__PUBLIC__/Home/js/datepicker.min.js"></script>
+<div class="autobox">
+ <div class="now">
+  <a href="/" class="orange">首页</a> &gt; <a href="/finance/" class="orange">财务中心</a> &gt; 商家C2C管理
+ </div>
+ <div class="assets_center clear po_re zin70">
+  <!--左侧菜单-->
+  <include file="Finance:left" />
+  <!--右侧内容-->
+  <div class="assets_content w900 right bg_w">
+
+       <div class="safe_center clear" style="padding-left: 0px; border-bottom: 2px solid #e55600;">
+    <h1 style="margin-top: 0px; margin-bottom: 15px; line-height: 15px;">商家C2C交易管理</h1>
+   </div>
+   <div class="sj" style="top: 40px; left: 60px;"></div>
+       <notempty name="prompt_text">
+                    <div class="mytips">
+                        <h6 style="color: #ff8000;">温馨提示</h6>
+                        {$prompt_text}
+                    </div>
+                </notempty>
+   <br>
+
+   
+   <div class="cnyin_record"  style="width: 918px;">
+    <div class="f_body">
+     <div class="f_body_main">
+      <div class="f_tab_body">
+       <div>
+        <table class="f_table" id="investLog_content" style="line-height:1!important">
+         <thead>
+          <tr>
+		  <th>ID</th>
+		   <th>用户</th>
+		  <th>时间</th>
+           <th>市场</th>
+          
+           <th><select name="type-selectTest" id="type-selectTest">
+             <option value="0"<eq name="type" value="0">selected</eq>>-全部-
+             </option>
+             <option value="1"<eq name="type" value="1">selected</eq>>会员买入
+             </option>
+             <option value="2"<eq name="type" value="2">selected</eq>>会员卖出
+             </option>
+           </select></th>
+           <th>价格</th>
+           <th>数量</th>
+           <th><select name="status-selectTest" id="status-selectTest">
+             <option value="0"<eq name="status" value="0">selected</eq>>---全部---
+             </option>
+             <option value="1"<eq name="status" value="1">selected</eq>>待打款
+             </option>
+			 <option value="2"<eq name="status" value="2">selected</eq>>待发货
+             </option>
+             <option value="3"<eq name="status" value="3">selected</eq>>已发货
+             </option>
+             <option value="4"<eq name="status" value="4">selected</eq>>已完成
+             </option>
+			 
+           </select></th>
+		   <th>操作</th>
+          </tr>
+         </thead>
+         <tbody>
+          <volist name="c2c_log" id="v">
+          <tr>
+		  <?php $u=M('User')->find($v['userid']);?>
+		  <td>IBIN0000{$v.id}</td>
+		  <td>{$u.username}</td>
+		  <td>{$v.addtime|date='m-d H:i:s',###}</td>
+		   
+           <td>{$v.market|strtoupper}</td>
+        
+           <td><eq name="v.type" value="1"> <font class="buy">会员买入</font> <else /> <font class="sell">会员卖出</font></eq></td>
+           <td>{$v['price']|NumToStr}</td>
+           <td>{$v['num']|NumToStr}</td>
+           <td>
+				<if condition="$v['cstatus'] eq 1"><font color="red">待打款</font></if>
+				<if condition="$v['cstatus'] eq 2"><font color="green">待发货</font></if>
+				<if condition="$v['cstatus'] eq 3"><font color="blue">已发货</font></if>
+				<if condition="$v['cstatus'] eq 4"><font color="orange">已完成</font></if>
+			</td>
+			<td>
+			<!-- <eq name="v.status" value="1"> -->
+					<!-- <a class="cancel" id="{$v.id}" href="javascript:void(0);">撤销 | </a> -->
+				<!-- </eq> -->
+				  <a onclick="cnyin_chakan({$v['id']})" href="javascript:void(0)" class="cur" style="    color: #E55600!important;">查看</a>
+			</td>
+          </tr>
+          </volist>
+         </tbody>
+        </table>
+        <div class="pages">{$page}</div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>
+<br>
+<br>
+<style>
+    #trade_list{visibility:hidden}
+</style>
+
+<script>
+	$("#type-selectTest,#status-selectTest,#market-selectTest").change(function(){
+		var type=$("#type-selectTest option:selected").val();
+		var status=$("#status-selectTest option:selected").val();
+		var market=$("#market-selectTest option:selected").val();
+		window.location='/C2c/c2cshop/type/'+type+'/status/'+status+'.html';
+	});
+
+	$('.cancel').click(function(){
+		$.post("{:U('C2c/chexiao')}",{id : $(this).attr('id'), },function(data){
+			if(data.status==1){
+				layer.msg(data.info,{icon : 1 });
+				window.setTimeout("window.location='{:U('C2c/c2cshop')}'",1000);
+			}else{
+				layer.msg(data.info,{icon : 2 });
+			}
+		});
+	});
+	function cnyin_chakan(id) {
+        layer.open({
+            title: '',
+            type: 2,
+            area: ['650px', '500px'],
+			offset: '100px',
+            content: ["{:U('C2c/mmsetshop')}?id=" + id, 'no']
+        });
+		}
+</script>
+<script>
+	var hints = "0";
+	if(hints == 1){
+		$('#hints').show();
+	}
+	$('#finance_box').addClass('active');
+	$('.c2c_otclst').addClass('active');
+</script>
+<include file="Public:footer" />

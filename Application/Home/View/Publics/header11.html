@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <eq name="Think.session.lang" value="1">
+									<notempty name="coninfo['web_name']" value=" ">
+								
+										<title>{$coninfo['web_name']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="2">
+									<notempty name="coninfo['web_name_e']" value=" ">
+										<title>{$coninfo['web_name_e']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="3">
+									<notempty name="coninfo['web_name_en']" value=" ">
+										<title>{$coninfo['web_name_en']}</title>
+									</notempty>
+								</eq>
+    <meta name="description" content="{:C('web_description')}">
+    <meta name="keywords" content="{:C('web_keywords')}">
+    <meta name="format-detection" content="telephone=no">
+	    <!--[if lte IE 9]><script type="text/javascript">location.href = '/update.html';</script><![endif]-->
+    <link href="/Public/home/001_files/style.css" rel="stylesheet" type="text/css">
+    <style>.icon-48,.icon-32,.icon-16{background-image:url("./images/coins48.png?v=1529488915")}</style>
+    <link href="/Public/home/001_files/marketlist.css" rel="stylesheet" type="text/css">
+	<link href="/Public/Home/trade/css/common.css" rel="stylesheet" type="text/css">
+	
+        
+    <link href="/favicon.ico" rel="shortcut icon">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://gateio.io/images/apple-touch-icon-120x120.png">
+    <link rel="stylesheet" href="/Public/home/001_files/header.css">
+  <link rel="stylesheet" href="/Public/Home/trade/css/trade.css">
+    <link rel="stylesheet" href="/Public/home/001_files/swiper-4.3.3.min.css">
+    <script src="/Public/home/001_files/jquery-1.8.2.min.js"></script>
+    <script src="/Public/home/001_files/jquery.common.tools.js"></script>
+</head>
+<body class="">
+<!--头部信息-->
+<div class="header">
+    <div class="header-content">
+        <ul class="header-content-right">
+           
+          <gt name="Think.session.userId" value="0">
+                <li class="toplogin user-info-con">
+                    <div id="topLoginBar" style="color: rgb(255, 255, 255);">
+					<!-- <span class="lv-con">
+					<eq name="vip" value='0'>
+					<a class="tier-level tier-icon0" href="javascript:;" title="等级"></a>
+					</eq>
+					<eq name="vip" value='1'>
+					<a class="tier-level tier-icon1" href="javascript:;" title="等级"></a>
+					</eq>
+					<eq name="vip" value='2'>
+					<a class="tier-level tier-icon2" href="javascript:;" title="等级"></a>
+					</eq>
+					</span> -->
+					<span class="lv-con">
+					
+					<a class="tier-level tier-icon{$vip}" href="javascript:;" title="等级"></a>
+					
+					</span>
+						
+                        <a id="nickName" href="/Finance/index"><span style="color:#dbe2e4;">{$Think.session.userName}</span></a>
+                        <!--<i class="caret"></i></a>-->
+                    </div>
+                </li>
+                <li class="toplogin user-log-out"><a href="{:U('Login/loginout')}" style="color:#dbe2e4;">退出</a></li>
+                <else/>
+                <li class="toplogin"><a href="{:U('Login/register')}" style="color:#ddd;">注册&nbsp;</a>|&nbsp; </li>
+                <li class="toplogin" id="toplogin"><a style="color:#ddd;" href="{:U('Login/register')}">登录</a></li>
+                </gt>
+          
+          
+          
+          
+        </ul>
+    </div>
+</div>
+<!--头部导航菜单-->
+<div class="header header-menu" style="background:#fff;">
+    <div class="header-content">
+        <ul class="header-content-left">
+            <li><img src="__UPLOAD__/public/{$C['web_logo']}" alt="" style="height: 59px;"></li>
+            <li><a href="/">首页</a></li>
+            <li class="header-trade"><a href="">交易中心 <i class="arrow"></i></a>
+                <ul class="header-content-menu header-content-menu2">
+				<foreach name="coinlist" item="v" key="k" >
+                    <li  class="two-menue10"><a href="">{$k}交易区<i class="arrow1"></i></a>
+                        <ul class="three-menue" id="three-menue{$k}">
+						<foreach name="v" item="vs" >
+						    
+                            <li><a href="/Trade/index/market/{$vs['name']}"><img src="__UPLOAD__/coin/{$vs['xnbimg']}" alt="">{$vs['navtitle']}</a></li>
+							</foreach>
+                        </ul>
+                    </li>
+					</foreach>
+                    
+                    
+                   <!--
+                    <li  class="two-menue10"><a href="">限时交易区 <i class="arrow1"></i></a>
+                        <ul class="three-menue three-menue4">
+                            <li><a href=""><img src="http://ibinpc.finsys.net/Upload/coin/5b0dffc965738.png" alt="">爱币(IB)</a></li>
+                            <li><a href=""><img src="http://ibinpc.finsys.net/Upload/coin/5b0dffc965738.png" alt="">爱币(IB)</a></li>
+                            <li><a href=""><img src="http://ibinpc.finsys.net/Upload/coin/5b0dffc965738.png" alt="">爱币(IB)</a></li>
+                            <li><a href=""><img src="http://ibinpc.finsys.net/Upload/coin/5b0dffc965738.png" alt="">爱币(IB)</a></li>
+                            <li><a href=""><img src="http://ibinpc.finsys.net/Upload/coin/5b0dffc965738.png" alt="">爱币(IB)</a></li>
+                            <li><a href=""><img src="http://ibinpc.finsys.net/Upload/coin/5b0dffc965738.png" alt="">爱币(IB)</a></li>
+                        </ul></li>-->
+                </ul>
+            </li>
+			<volist name="daohang" id="vo">
+            <li><a href="/{$vo['url']}">{$vo['title']}</a></li>
+			</volist>
+        </ul>
+        <ul class="header-content-right">
+            <li><a href="/user/worklist/">提交工单</a></li>
+        </ul>
+    </div>
+</div>

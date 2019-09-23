@@ -1,0 +1,105 @@
+<footer class="bk-footer sm-text-left">
+    <div class="bk-footer-hd">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-3">
+                    <div class="bk-footer-contact">
+                        <h5><a href="#" target="_self"><img src="__UPLOAD__/public/{$C['web_logo']}" alt="" style="height:36px;width:auto;margin-bottom:20px;"/></a></h5>
+                        <!--<p class="sns">
+                            <a href="#" target="_blank" role="button" data-toggle="popover" data-placement="top" data-html="true" data-trigger="hover" data-content="Facebook" ><i class="fa fa-facebook"></i></a>
+                            <a href="#" target="_blank" role="button" data-toggle="popover" data-placement="top" data-html="true" data-trigger="hover" data-content="Twitter"><i class="fa fa-twitter"></i></a>
+                            <a href="#" target="_blank" role="button" data-toggle="popover" data-placement="top" data-html="true" data-trigger="hover" data-content="BeeCHAT"><i class="fa icon-f-BeeCHAT"></i></a>
+                            <a href="#" target="_blank" role="button" data-toggle="popover" data-placement="top" data-html="true" data-trigger="hover" data-content="Telegram"><i class="fa icon-f-Telegram"></i></a>
+                        </p>-->
+                    </div>
+                </div>
+
+
+                <!--   </div>
+                </div> -->
+
+                <volist name="footerArticleType" id="vo">
+                    <div class="col-xs-2">
+                        <div class="bk-footer-contact">
+                            <h5>{$vo['title']}</h5>
+                            <volist name="footerArticle[$vo['name']]" id="vvo">
+                            <p class="link"><a href="{:U('Article/type',array('id'=>$vvo['id']))}" target="_blank">{$vvo['title']}</a></p>
+                            </volist>
+                            <p class="link"><a href="{:U('Article/type',array('id'=>$vo['id']))}" target="_blank">更多</a></p>
+                        </div>
+                    </div>
+                </volist>
+               <!-- <div class="col-xs-2">
+                    <div class="bk-footer-contact">
+                        <h5>客户服务</h5>
+                        <p class="link"><a href="#" target="_blank">使用教程</a></p>
+                        <p class="link"><a href="#" target="_blank">常见问题</a></p>
+                        <p class="link"><a href="#" target="_blank">服务协议</a></p>
+                        <p class="link"><a href="#" target="_blank">交易费率</a></p>
+                    </div>
+                </div>
+                <div class="col-xs-2">
+                    <div class="bk-footer-contact">
+                        <h5>其它</h5>
+                        <p class="link"><a href="#" target="_blank">官方公告</a></p>
+                        <p class="link"><a href="#" target="_blank">上币申请</a></p>
+                    </div>
+                </div>-->
+                <div class="col-xs-3">
+                    <div class="bk-footer-contact">
+                        <h5>联系我们</h5>
+                        <p class="contlink">24小时免费咨询邮箱</p>
+                        <p class="contlink">服务邮箱：<a href="#" target="_self">{:C('contact_moble')}</a></p>
+                        <volist name=":C('contact_qqun')" id="v">
+                        <p class="contlink">会员群号：<a href="#" target="_self">{$i}群：{$v}</a></p>
+                        </volist>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row footlinks">
+                <!--<div class="col-xs-12">
+                    <b>友情链接</b>
+
+                    <a href="#" target="_blank"><img src="/public/home/ss/images/btc123.png"></a>
+                    <a href="#" target="_blank"><img src="/public/home/ss/images/bitkan.png"></a>
+                    <a href="#" target="_blank"><img src="/public/home/ss/images/8btc.png"></a>
+                    <a href="#" target="_blank"><img src="/public/home/ss/images/etc.png"></a>
+                    <a href="#" target="_blank"><img src="/public/home/ss/images/ethfans.png"></a>
+                    <a href="#" target="_blank"><img src="/public/home/ss/images/aicoin.png"></a>
+                    <a href="#" target="_blank"><img src="/public/home/ss/images/botvs.png"></a>
+                    <a href="#" target="_blank"><img src="/public/home/ss/images/jinse.png"></a>
+                    <a href="#" target="_blank"><img src="/public/home/ss/images/coldlar.png"  style="height:25px;"></a>
+                    <a href="#" target="_blank"><img src="/public/home/ss/images/chainfor.png"></a>
+                    <a href="#" target="_blank"><img src="/public/home/ss/images/feixiaohao.png"></a>
+                    <a href="#" target="_blank"><img src='/public/home/ss/images/qianke.png'></a>
+                </div>-->
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12" style="padding-bottom:20px;">
+                    <div class="bk-footer-menu text-left">
+                       <!-- <p class="footlang pull-right" style="margin-top:-10px; position:absolute; right:0; top:10px;">
+                            <a class="btncn" href="#" title="中文"></a>
+                            <a class="btnen" href="#" title="English"></a>
+                            <a class="btnar" href="#" title="العربية"></a>
+                            <a class="btnja" href="#" title="日本語"></a>
+                            <a class="btnko" href="#" title="한국어"></a>
+                            <a class="btnth" href="#" title="ภาษาไทย"></a>
+                        </p>-->
+
+
+                        <div class="copytitle">
+                            <span style="margin-bottom: 10px;">{:C('web_title')}</span>
+                        </div>
+
+                        <div class="copyright"> 风险提示：比特币等数字资产交易具有极高的风险（预挖、暴涨暴跌、庄家操控、团队解散、技术缺陷等），据国家五部委《关于防范比特币风险的通知》，{$C['web_name']}网仅为数字资产的爱好者提供一个自由的网上交换平台，对币的投资价值不承担任何审查、担保、赔偿的责任，您需要完全对自己的投资损失承担责任，如果您不能接受，请不要进行交易！谢谢！
+                            <br/> Copyright ©
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

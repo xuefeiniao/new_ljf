@@ -1,0 +1,726 @@
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
+<html data-n-head="">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="比特币交易平台，比特币交易所，数字资产交易所,数字货币交易平台" />
+    <meta name="format-detection" content="telephone=no,email=no,address=no" />
+    <?php if(($_SESSION['lang']) == "1"): if(!empty($coninfo['web_name'])): ?><title><?php echo ($coninfo['web_name']); ?></title><?php endif; endif; ?>
+								<?php if(($_SESSION['lang']) == "2"): if(!empty($coninfo['web_name_e'])): ?><title><?php echo ($coninfo['web_name_e']); ?></title><?php endif; endif; ?>
+								<?php if(($_SESSION['lang']) == "3"): if(!empty($coninfo['web_name_en'])): ?><title><?php echo ($coninfo['web_name_en']); ?></title><?php endif; endif; ?>
+    <link rel="icon" type="image/x-icon" href="/Public/favicon.ico">
+    <link rel="stylesheet" href="/Public/Home/css/newcss/base.css" />
+    <link rel="stylesheet" href="/Public/Home/css/newcss/common.css" />
+    <link rel="stylesheet" href="/Public/Home/css/newcss/login.css" />
+
+   <!--  <style>
+        .st-footer{
+            position: fixed!important;
+        }
+    </style> -->
+</head>
+<body>
+<!--<img src="https://mon.58coin.com/mon.gif" id="img-hidden" />-->
+<div id="__nuxt">
+    <div class="nuxt-progress" style="width: 0%; height: 2px; background-color: rgb(59, 128, 112); "></div>
+    <div id="__layout">
+        
+<style>
+.common-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    min-width: 1300px;
+    width: 100%;
+    border-bottom: 1px solid #c5d4ed;
+    -webkit-box-shadow: 0 3px 8px hsla(0, 0%, 80%, .5);
+    box-shadow: 0 3px 8px hsla(0, 0%, 80%, .5);
+    padding: 18.5px 42px 18.5px 50px;
+    background: #fff
+}
+
+.common-header .logo {
+    display: block;
+    width: 168px;
+    height: 46px;
+    /*background: url(/Public/Home/image/common/logo_be.png) no-repeat;*/
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    text-indent: -9999px
+}
+
+/*.common-header .logo.cn {*/
+    /*background-image: url(/Public/Home/image/common/logo_bc.png)*/
+/*}*/
+
+/*.common-header .logo.en {*/
+    /*background-image: url(/Public/Home/image/common/logo_be.png)*/
+/*}*/
+
+.common-header .line {
+    width: 1px;
+    background: #e2eafb
+}
+
+.common-header .line-10 {
+    margin: 0 20px;
+    height: 10px
+}
+
+.common-header .line-24 {
+    margin: 0 40px;
+    height: 24px
+}
+
+.common-header a {
+    font-size: 14px;
+    color: #6c85ae
+}
+
+.common-header a:hover {
+    color: #0976d9;
+}
+.common-header a.active {
+    color: #0976d9;
+}
+
+.common-header .account-nav {
+    margin-right: 60px
+}
+
+.common-header .account-nav a, .common-header .main-nav a {
+    margin-right: 30px
+}
+
+.common-header .account-nav a:last-child, .common-header .main-nav a:last-child {
+    margin-right: 0
+}
+
+.common-header .blank {
+    -webkit-box-flex: 1;
+    -moz-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1
+}
+
+@media screen and (max-width: 1500px) {
+    .common-header {
+        padding: 18.5px 28px
+    }
+
+    .common-header .line-24 {
+        margin: 0 20px
+    }
+
+    .common-header .account-nav a, .common-header .main-nav a {
+        margin-right: 20px
+    }
+}
+</style>
+
+<div class="common-header flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" style="background:#12122a;"> 
+    <a href="/Index/index" class="logo cn" style="background-image: url('/Upload/public/<?php echo ($web_logo); ?>'); width:115px;height:45px;"></a>
+    <div class="line line-24"></div>
+    <div class="main-nav flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+        <a onclick="cy()"><?php echo ($GLOBALS['c2c']); ?></a>
+        <a href="/Trade/index/market/eth_jeff"><?php echo ($GLOBALS['trade']); ?></a>
+        <a href="/Lever/borrowMoney/market/usdt_jeff"><?php echo ($GLOBALS['borrowMoney']); ?></a>
+		<a href="/Article/officialAdModal" target="_blank"><?php echo ($GLOBALS['office-notice']); ?></a>
+        <!---->
+        <!---->
+    </div>
+    <div class="blank"></div>
+    <div class="account-nav flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+        <a href="/Finance/qianbao" class="nuxt-link-exact-active nuxt-link-active"><?php echo ($GLOBALS['qianbao']); ?></a>
+        <a href="/Finance/myzr/name/jeff" class=""><?php echo ($GLOBALS['recharge']); ?></a>
+        <a href="/Finance/myzc/name/jeff" class=""><?php echo ($GLOBALS['withdraw']); ?></a>
+        <a href="/Article/index" target="_blank"><?php echo ($GLOBALS['article']); ?></a>
+    </div>
+    <?php if($_SESSION['userName'] != ''): ?><a class="nuxt-link-exact-active nuxt-link-active" href="/User/index"><?php echo ($GLOBALS['user']); ?>：<span id="userName"><?php echo ($_SESSION['userName']); ?></span></a>
+        <div class="line line-10"></div>
+        <a onclick="loginout();"><?php echo ($GLOBALS['loginout']); ?></a>
+    <?php else: ?>
+        <a style="margin-left: 30px;" href="/Login/register?login"><?php echo ($GLOBALS['login']); ?></a>
+        <div class="line line-10"></div>
+        <a href="/Login/register?register"><?php echo ($GLOBALS['register']); ?></a><?php endif; ?>
+
+</div>
+
+<script>
+function loginout(){
+						$.post("/Login/loginout",{},function(data){
+							if(data.status==1){
+								layer.msg(data.info,{icon:1});
+								window.setTimeout("window.location='/Index'",1000);
+							}
+						},"json");
+					}
+    /*隐藏手机号中间4位*/
+    var phone = $('#userName').html();
+    var mphone = phone.substr(0, 3) + '****' + phone.substr(7);
+    $('#userName').html(mphone);
+</script>
+<script>
+					function cy(){
+						var uid = "<?php echo ($uid); ?>";
+						var zhifubao = "<?php echo ($c2c_user['zhifubao']); ?>";
+						var weixin = "<?php echo ($c2c_user['weixin']); ?>";
+						var bank = "<?php echo ($c2c_user['bank']); ?>";
+						var paypwd = "<?php echo ($c2c_user['paypassword']); ?>";
+						//alert(zhifubao);
+						if(uid>0){
+							if((zhifubao == '' || zhifubao=='NULL')&&(weixin == '' || weixin=='NULL')&&(bank == '' || bank=='NULL')){
+								layer.msg('请设置收款方式', {icon: 2});
+								location.href="/User/myCenter";
+							}
+							else if(paypwd == "" || paypwd == "NULL"){
+								layer.msg('请设置资金密码', {icon: 2});
+								location.href="/User/resetFiancePwd";
+							}else{
+								location.href="/C2c/index/market/jeff/money/0";
+							}
+							
+						}else{
+							layer.msg('请先登录', {icon: 2});
+							location.href="/C2c/index/market/jeff/money/0";
+						}
+					}
+				</script>
+
+        <div class="wrap" style="padding-top:0;">
+            <div class="container">
+			<?php $web = M('config')->where(array('id=1'))->find();?>
+                <!--<a href="/Index/index" class="nuxt-link-active logo cn"></a>-->
+				<a href="/Index/index" class="logo cn nuxt-link-active" style="background-image: url(/Upload/public/<?php echo ($web['web_logo']); ?>);width:270px;"></a>
+                <div class="login-and-register">
+                    <div class="title flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap">
+                        <h2><?php echo ($GLOBALS['welcome']); ?></h2>
+                    </div>
+                    <div class="nav flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                        <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                            <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                <a href="/Login/register.html?login" class="active"><?php echo ($GLOBALS['login']); ?></a>
+                                <span></span>
+                            </div>
+                        </div>
+                        <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                            <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                <a href="/Login/register.html?register" class=""><?php echo ($GLOBALS['register']); ?></a>
+                                <span style="display: none;"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <!--登录部分-->
+                        <div class="loginDiv" >
+                            <div class="st-form" autocomplete="off">
+                                <div class="st-form-item">
+                                    <p class="label" style="padding-right: 16px;"></p>
+                                    <input type="text" placeholder="<?php echo ($GLOBALS['place-account']); ?>" class="st-input" id="login_moble" />
+                                    <span class="icon"></span>
+                                    <p class="tips" style="display: none;"></p>
+                                    <p class="message" style="display: none;"><?php echo ($GLOBALS['place-login-account']); ?></p>
+                                </div>
+                                <div class="st-form-item">
+                                    <p class="label" style="padding-right: 16px;"></p>
+                                    <input type="password" placeholder="<?php echo ($GLOBALS['place-pwd']); ?>" class="st-input" id="login_password" />
+                                    <span class="icon"></span>
+                                    <p class="tips" style="display: none;"></p>
+                                    <p class="message" style="display: none;"><?php echo ($GLOBALS['place-pwd']); ?>！</p>
+                                </div>
+                                <input type="submit" id="sub" value="<?php echo ($GLOBALS['login']); ?>"  onclick="login();" />
+                                <a href="/Login/forget_pwd" class="" style="display: block; margin-top: 20px; font-size: 14px; text-align: center; color: rgb(136, 136, 136);"><?php echo ($GLOBALS['forgetPwd']); ?>？</a>
+                            </div>
+                        </div>
+						
+                        <!--登录部分 end-->
+
+                        <!--注册部分-->
+                        <div class="st-form register" style="display: none;">
+                            <div class="st-form-item">
+                                <p class="label" style="padding-right: 16px;"></p>
+                                <div class="entrust-filter-item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <div class="select flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" style="height: 100%;">
+                                        <p class="">+86</p>
+                                        <div class="arrow"></div>
+                                        <input autocomplete="off" readonly="readonly" />
+                                        <ul style="display: none;">
+                                            <li class="select-option"><p><?php echo ($GLOBALS['china']); ?> +86</p></li>
+                                            <li class="select-option"><p><?php echo ($GLOBALS['macao']); ?> +853</p></li>
+                                            <li class="select-option"><p><?php echo ($GLOBALS['Hong-Kong']); ?> +852</p></li>
+                                            <li class="select-option"><p><?php echo ($GLOBALS['England']); ?> +44</p></li>
+                                            <li class="select-option"><p><?php echo ($GLOBALS['Russia']); ?> +7</p></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <input type="text" placeholder="<?php echo ($GLOBALS['place-mobile']); ?>" class="st-input" id="register_mobile" />
+                                <p class="tips" style="display: none;"></p>
+                                <p class="message" style="display: none;"><?php echo ($GLOBALS['place-mobile']); ?>！</p>
+                            </div>
+                            <div class="st-form-item">
+                                <p class="label" style="padding-right: 16px;"></p>
+                                <span><?php echo ($GLOBALS['yzm']); ?></span>
+                                <input type="text" maxlength="6" placeholder="<?php echo ($GLOBALS['6emailCode']); ?>" class="down-input st-input" id="yzm" />
+                                <div class="send-SMS code" id="smsbtn">
+                                    <a class="get-code button" onclick="mobile_send();">
+                                        <div>
+                                            <?php echo ($GLOBALS['send-emailCode']); ?>
+                                        </div>
+                                    </a>
+                                    <!---->
+                                </div>
+                                <p class="tips" style="display: none;"></p>
+                                <p class="message" style="display: none;"><?php echo ($GLOBALS['click-send']); ?>！</p>
+                            </div>
+							
+							<div class="st-form-item">
+                                <p class="label" style="padding-right: 16px;"></p>
+                                <input type="password" placeholder="<?php echo ($GLOBALS['new-financePwd']); ?>" class="st-input" id="password" />
+                                <p class="tips" style="display: none;"></p>
+                                <p class="message" style="display: none;"><?php echo ($GLOBALS['place-pwd']); ?>！</p>
+                            </div>
+							
+                            <div class="st-form-item invit-input">
+                                <p class="label" style="padding-right: 16px;"></p>
+                                <span><?php echo ($GLOBALS['invit_s']); ?></span>
+                                <input type="text" maxlength="6" placeholder="<?php echo ($GLOBALS['invits']); ?>" class="down-input st-input" id="invit" style="padding-left: 80px; value=""/>
+                            </div>
+                            <div class="st-form-item" id="checkbox-one">
+                                <p class="label" style="padding-right: 16px;"></p>
+                                <label for="user-agree-one">
+                                    <input type="checkbox" id="user-agree-one" />
+                                    <span class="checkboxSpan active"></span>
+                                    <p ><?php echo ($GLOBALS['no-support']); ?></p>
+                                </label>
+                                <p class="tips" style="display: none;"></p>
+                                <p class="message" style="display: none;margin-left:0;"><?php echo ($GLOBALS['place-select']); ?></p>
+                            </div>
+                            <div class="st-form-item">
+                                <p class="label" style="padding-right: 16px;"></p>
+                                <label for="user-agree">
+                                    <input type="checkbox" id="user-agree" />
+                                    <span class="checkboxSpan active"></span>
+                                    <p><?php echo ($GLOBALS['agreement']); ?><a href="/Article/detail/id/189" target="_blank"><?php echo ($GLOBALS['user-agreement']); ?></a></p>
+                                </label>
+                                <p class="tips" style="display: none;"></p>
+                                <p class="message" style="display: none;margin-left:0;"><?php echo ($GLOBALS['read-agree']); ?></p>
+                            </div>
+                            <input type="submit" class="active" id="reg" value="<?php echo ($GLOBALS['register']); ?>" onclick="reg();"/>
+                            <p class="tip"><?php echo ($GLOBALS['warning']); ?></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!--底部样式-->
+<style>
+    .st-footer {
+        position: absolute;
+        width: 100%;
+        min-width: 1300px;
+        height: 338px;
+        background-color: #16243d;
+        font-size: 20px
+    }
+
+    .st-footer .up {
+        width: 100%;
+        height: 260px;
+        padding: 60px 8% 0 10%;
+        border-bottom: 1px solid #04040f
+    }
+
+    .st-footer .up .left, .st-footer .up .right {
+        position: relative;
+        width: 30%
+    }
+
+    .st-footer .up .left ul li, .st-footer .up .right ul li {
+        position: relative
+    }
+
+    .st-footer .up .left ul li img, .st-footer .up .right ul li img {
+        position: absolute;
+        top: 50%;
+        right: -130px;
+        z-index: 2;
+        margin-top: -60px;
+        width: 120px;
+        height: 120px
+    }
+
+    .st-footer .up .left ul li a, .st-footer .up .right ul li a {
+        display: block;
+        margin-bottom: 14px;
+        line-height: 1em;
+        font-size: 12px;
+        color: #fff
+    }
+
+    .st-footer .up .left ul li a:hover, .st-footer .up .right ul li a:hover {
+        color: #0976d9;
+    }
+
+    .st-footer .up .left ul li:last-child a, .st-footer .up .right ul li:last-child a {
+        margin-bottom: 0
+    }
+
+    .st-footer .up .left ul li.first-li, .st-footer .up .right ul li.first-li {
+        margin-bottom: 14px;
+        line-height: 1em;
+        font-size: 12px;
+        color: #72829d
+    }
+
+    .st-footer .up .left .focus, .st-footer .up .right .focus {
+        width: 140px
+    }
+
+    .st-footer .up .left .focus h3, .st-footer .up .right .focus h3 {
+        margin-bottom: 14px;
+        line-height: 1em;
+        font-size: 12px;
+        color: #72829d
+    }
+
+    .st-footer .up .left .focus span, .st-footer .up .right .focus span {
+        display: block;
+        line-height: 1em;
+        margin-bottom: 23px;
+        font-size: 12px;
+        color: #72829d
+    }
+
+    .st-footer .up .left .focus .share a, .st-footer .up .right .focus .share a {
+        display: block;
+        margin-right: 20px;
+        width: 36px;
+        height: 36px;
+        border-radius: 100%;
+        background: #6c85ae;
+        background-repeat: no-repeat;
+        background-position: 50%
+    }
+
+    .st-footer .up .left .focus .share a:hover, .st-footer .up .right .focus .share a:hover {
+        background: #c5caea;
+        background-repeat: no-repeat;
+        background-position: 50%
+    }
+
+    .st-footer .up .left .focus .share a:first-child, .st-footer .up .right .focus .share a:first-child {
+        background-image: url("/Public/Home/image/common/facebook.png")
+    }
+
+    .st-footer .up .left .focus .share a:nth-child(2), .st-footer .up .right .focus .share a:nth-child(2) {
+        background-image: url("/Public/Home/image/common/feige.png")
+    }
+
+    .st-footer .up .left .focus .share a:nth-child(3), .st-footer .up .right .focus .share a:nth-child(3) {
+        background-image: url("/Public/Home/image/common/weibo.png")
+    }
+
+    .st-footer .up .center {
+        width: 185px;
+        height: 160px;
+        background: url(/Public/Home/image/common/footerimg.997816f.png) no-repeat center 10px
+    }
+
+    .st-footer .down {
+        width: 100%;
+        padding: 0 8% 0 10%;
+        border-top: 1px solid #212145
+    }
+
+    .st-footer .down p {
+        height: 77px;
+        line-height: 77px;
+        font-size: 12px;
+        text-align: center;
+        color: #6c85ae
+    }
+</style>
+
+<footer class="st-footer" style="bottom:0;background-color: #12122a;">
+    <div class="up flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+        <div class="left flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+            <ul>
+                <li class="first-li"><?php echo ($GLOBALS['series-produce']); ?></li>
+                <li><a href="/C2c/index"><?php echo ($GLOBALS['c2c']); ?></a></li>
+                <li><a href="/Trade/index"><?php echo ($GLOBALS['trade']); ?></a></li>
+                <li><a href="/Trade/borrowMoney"><?php echo ($GLOBALS['borrowMoney']); ?></a></li>
+            </ul>
+            <ul>
+                <li class="first-li"><?php echo ($GLOBALS['about-us']); ?></li>
+                <!-- <?php if(is_array($xinwen)): $i = 0; $__LIST__ = $xinwen;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>-->
+                <!-- <li><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank"><?php echo ($vo['title']); ?></a></li> -->
+                <!--<?php endforeach; endif; else: echo "" ;endif; ?> -->
+				<?php if(is_array($xinwen)): $i = 0; $__LIST__ = $xinwen;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; if(($_SESSION['lang']) == "1"): if(!empty($vo['title'])): ?><li ><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank" ><?php echo ($vo['title']); ?></a></li><?php endif; endif; ?>
+								<?php if(($_SESSION['lang']) == "2"): if(!empty($vo['title_e'])): ?><li ><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank" ><?php echo ($vo['title_e']); ?></a></li><?php endif; endif; ?>
+								<?php if(($_SESSION['lang']) == "3"): if(!empty($vo['title_en'])): ?><li ><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank" ><?php echo ($vo['title_en']); ?></a></li><?php endif; endif; endforeach; endif; else: echo "" ;endif; ?>
+							
+							 <li ><a href="/Article/officialAdModal" target="_blank" ><?php echo ($GLOBALS['office-notice']); ?></a></li>
+							<!-- <?php if(is_array($about)): $i = 0; $__LIST__ = $about;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?>-->
+							<!-- <li ><a href="/Article/detail/id/<?php echo ($v['id']); ?>" target="_blank" ><?php echo ($v['title']); ?></a></li> -->
+							<!--<?php endforeach; endif; else: echo "" ;endif; ?> -->
+							<?php if(is_array($about)): $i = 0; $__LIST__ = $about;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; if(($_SESSION['lang']) == "1"): if(!empty($vo['title'])): ?><li ><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank" ><?php echo ($vo['title']); ?></a></li><?php endif; endif; ?>
+								<?php if(($_SESSION['lang']) == "2"): if(!empty($vo['title_e'])): ?><li ><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank" ><?php echo ($vo['title_e']); ?></a></li><?php endif; endif; ?>
+								<?php if(($_SESSION['lang']) == "3"): if(!empty($vo['title_en'])): ?><li ><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank" ><?php echo ($vo['title_en']); ?></a></li><?php endif; endif; endforeach; endif; else: echo "" ;endif; ?>
+                <!-- <li><a href="/Article/detail" target="_blank">联系我们</a></li> -->
+                <li><a href="/Article/officialAdModal" target="_blank"><?php echo ($GLOBALS['office-notice']); ?></a></li>
+            </ul>
+            <ul>
+                <li class="first-li"><?php echo ($GLOBALS['server-support']); ?></li>
+                <li><a href="/Article/officialAdModal" target="_blank"><?php echo ($GLOBALS['help-center']); ?></a></li>
+                <li><a href="/Article/detail/id/188" target="_blank">下线币种说明</a></li>
+                <li><a href="/Article/detail/id/14" target="_blank"><?php echo ($GLOBALS['currentCoin-apply']); ?></a></li>
+            </ul>
+        </div>
+        <div class="center"></div>
+        <div class="right flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+            <ul>
+                <li class="first-li"><?php echo ($GLOBALS['official-community']); ?></li>
+                <li>
+                    <a><?php echo ($GLOBALS['weixinQ']); ?></a>
+                    <div style="display: none;">
+                        <em></em>
+                        <img src="/Public/Home/image/index/jiaoliu.png" alt="">
+                    </div>
+                </li>
+                <!--<li>
+                    <a href="" target="_blank">Telegram</a>
+                </li>-->
+            </ul>
+            <ul>
+                <li class="first-li"><?php echo ($GLOBALS['relative-download']); ?></li>
+                <li>
+                    <a class="download-ios">iOS App</a>
+                    <div style="display: none;">
+                        <em></em>
+                        <img src="/Public/Home/image/index/ios.14c5c18.png " alt="">
+                    </div>
+                </li>
+                <li>
+                    <a class="download-android">Android App</a>
+                    <div style="display: none;">
+                        <em></em>
+                        <img src="/Public/Home/image/index/Android.14c5c18.png " alt="">
+                    </div>
+                </li>
+                <!--<li>
+                    <a class="download-google-play">Google Play</a>
+                    <div style="display: none;">
+                        <em></em>
+                        <img src="/Public/Home/image/common/googlePlay.9e95ba4.png" alt="">
+                    </div>
+                </li>-->
+            </ul>
+            <div class="focus">
+                <h3><?php echo ($GLOBALS['attention-us']); ?></h3>
+                <span><?php echo ($GLOBALS['company-name']); ?></span>
+                <div class="share flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                    <a href="" target="_blank"></a>
+                    <a href="" target="_blank"></a>
+                    <a href="" target="_blank" style="margin-right:0;"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="down">
+        <p><?php echo ($GLOBALS['web_down']); ?> <?php echo ($GLOBALS['beian']); ?></p>
+    </div>
+</footer>
+
+<script>
+    /*底部二维码效果*/
+    $(".st-footer .right li").hover(
+        function () {
+            $(this).find("div").show();
+        },
+        function(){
+            $(this).find("div").hide();
+        }
+    );
+</script>
+
+                
+        </div>
+     
+    </div>
+
+</div>
+
+<div class="toast" style="display: none;">
+    <span class="text"></span>
+</div>
+
+
+
+
+<script src="/Public/Home/js/newjs/jquery-3.3.1.min.js"></script>
+<script src="/Public/Home/js/newjs/login.js"></script>
+<script type="text/javascript" src="/zhisucom/js/layer.js"></script>
+<script type="text/javascript">
+
+var inviteTxt = location.href.split('?')[1];
+var invite = inviteTxt.split('/')[2];
+if(invite == undefined){
+	$('.invit-input').hide();
+}else{
+	$('.invit-input').show();
+	$('#invit').val(invite);
+}
+
+
+
+    var InterValObj; //timer变量，控制时间
+    var count = 60; //间隔函数，1秒执行
+    var curCount;//当前剩余秒数
+    function sendMessage() {
+            curCount = count;
+            //设置button效果，开始计时
+            $("#smsbtn").find("div").attr("disabled", "true");
+            $("#smsbtn").find("div").html( + curCount + "s");
+            InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+            //向后台发送处理数据
+    }
+
+    //timer处理函数
+    function SetRemainTime() {
+        if (curCount == 0) {
+            window.clearInterval(InterValObj);//停止计时器
+            $("#smsbtn").find("div").removeAttr("disabled");//启用按钮
+            $("#smsbtn").find("div").html("<?php echo ($GLOBALS['send-emailCode']); ?>");
+
+        }
+        else {
+            curCount--;
+            $("#smsbtn").find("div").html( + curCount + "s");
+        }
+    }
+
+    function mobile_send(){
+        var mobile = $('#register_mobile').val();
+        if (mobile == "" || mobile == null) {
+            // layer.tips("请输入手机号码", '#register_mobile', {tips: 2});
+            $('#register_mobile').addClass("error").siblings("p.message").addClass("error").show();
+            return false;
+        }
+        if($("#smsbtn").find("div").attr("disabled")=="disabled"){
+            return false;
+        }else{
+            $.ajax({
+                url:"<?php echo U('login/real');?>",
+                data:{mobile:mobile,bj:1},
+                dataType:'json',
+                type:'post',
+                success:function(data){
+                    if(data.status==1){
+                        layer.msg(data.info, {icon: 1});
+                        sendMessage();
+                    }else{
+                        layer.msg(data.info, {icon: 2});
+                    }
+                }
+            });
+        }
+    }
+
+    function reg(){
+        var mobile = $('#register_mobile').val();
+        var yzm = $('#yzm').val();
+        var password = $('#password').val();
+		var invit = $('#invit').val();
+        if (mobile == "" || mobile == null) {
+            // layer.tips("请输入手机号码", '#register_mobile', {tips: 2});
+            $('#register_mobile').addClass("error").siblings("p.message").addClass("error").show();
+            return false;
+        }
+        if (yzm == "" || yzm == null) {
+            // layer.tips("请输入验证码", '#yzm', {tips: 2});
+            $('#yzm').addClass("error").siblings("p.message").addClass("error").show();
+            return false;
+        }
+        if (password == "" || password == null) {
+            // layer.tips("请输入密码", '#password', {tips: 2});
+            $('#password').addClass("error").siblings("p.message").addClass("error").show();
+            return false;
+        }
+        $.ajax({
+            url:"<?php echo U('login/new_reg');?>",
+            data:{mobile:mobile,yzm:yzm,password:password,invit:invit},
+            dataType:'json',
+            type:'post',
+            success:function(data){
+                if(data.status==1){
+                    layer.msg(data.info, {icon: 1});
+                   // window.location.href="<?php echo U('Login/register');?>"+"?login";
+				   window.location.href="/Login/register"+"?login";
+                }else{
+                    layer.msg(data.info, {icon: 2});
+                }
+            }
+        });
+    }
+
+    function login(){
+        var moble = $('#login_moble').val();
+        var login_password = $('#login_password').val();
+
+        if (moble == "" || moble == null) {
+            $('#login_moble').addClass("error").siblings("p.message").addClass("error").show();
+            return false;
+        }
+        if (login_password == "" || login_password == null) {
+            $('#login_password').addClass("error").siblings("p.message").addClass("error").show();
+            return false;
+        }
+
+        $.ajax({
+            url:"<?php echo U('Login/submit');?>",
+            data:{moble:moble,login_password:login_password},
+            dataType:'json',
+            type:'post',
+            success:function(data){
+                if (data.status == 1) {
+                    layer.msg(data.info, {icon: 1});
+                    window.location.href = "<?php echo U('Index/index');?>";
+					//window.location.href = document.referrer;
+                } else {
+                    layer.msg(data.info, {icon: 2});
+                }
+            }
+        });
+    }
+	
+	//enter键登录 
+ document.onkeydown = function(e){  
+ var ev = document.all ? window.event : e; 
+ if(ev.keyCode==13) { 
+login();
+ } 
+ } 
+
+
+    /*根据地址栏参数显示登录或注册页面*/
+    var urlCode=window.location.href.split("?")[1];
+    // 登录
+    if(urlCode=='register'){
+        // 注册
+        $(".nav>.item").find("a").removeClass("active").next("span").hide();
+        $(".nav>.item:last-child").find("a").addClass("active").next("span").show();
+        $(".loginDiv").hide();
+        $(".register").show();
+    }else{
+        $(".nav>.item").find("a").removeClass("active").next("span").hide();
+        $(".nav>.item:first-child").find("a").addClass("active").next("span").show();
+        $(".loginDiv").show();
+        $(".register").hide();
+    }
+
+</script>
+</body>
+</html>

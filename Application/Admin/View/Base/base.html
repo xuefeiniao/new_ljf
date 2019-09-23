@@ -1,0 +1,290 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="Bookmark" href="/favicon.ico" >
+<link rel="Shortcut Icon" href="/favicon.ico" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="__PUBLIC__/rs/lib/html5shiv.js"></script>
+<script type="text/javascript" src="__PUBLIC__/rs/lib/respond.min.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/rs/static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/rs/static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/rs/lib/Hui-iconfont/1.0.8/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/rs/static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/rs/static/h-ui.admin/css/style.css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="__PUBLIC__/rs/lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>数字资产管理系统</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+</head>
+<body>
+<header class="navbar-wrapper">
+	<div class="navbar navbar-fixed-top">
+		<div class="container-fluid cl"> <a class="logo navbar-logo f-l mr-10 hidden-xs" href="/aboutHui.shtml">吉富交易管理系统</a> <a class="logo navbar-logo-m f-l mr-10 visible-xs" href="/aboutHui.shtml">H-ui</a> 
+			<span class="logo navbar-slogan f-l mr-10 hidden-xs">v4.1</span> 
+			<a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
+		<nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
+			<ul class="cl">
+				<!-- <li>超级管理员</li> -->
+				<li class="dropDown dropDown_hover">
+					<a href="#" class="dropDown_A">{:session('admin_username')} <i class="Hui-iconfont">&#xe6d5;</i></a>
+					<ul class="dropDown-menu menu radius box-shadow">
+						<li><a href="__ROOT__/">前台首页</a></li>
+						<li><a href="javascript:void(0);" onClick="lockscreen()">锁屏休息</a></li>
+						<li><a href="{:U('Tools/index')}">清除缓存</a></li>
+						<li><a href="{:U('User/setpwd')}">修改密码</a></li>
+						<li><a href="{:U('Login/loginout')}">退出后台</a></li>
+				</ul>
+			</li>
+				<!-- <li id="Hui-msg"> <a href="#" title="消息"><span class="badge badge-danger">1</span><i class="Hui-iconfont" style="font-size:18px">&#xe68a;</i></a> </li> -->
+				
+				<li id="Hui-skin" class="dropDown right dropDown_hover"> <a href="javascript:;" class="dropDown_A" title="换肤"><i class="Hui-iconfont" style="font-size:18px">&#xe62a;</i></a>
+					<ul class="dropDown-menu menu radius box-shadow">
+						<li><a href="javascript:;" data-val="default" title="默认（黑色）">默认（黑色）</a></li>
+						<li><a href="javascript:;" data-val="blue" title="蓝色">蓝色</a></li>
+						<li><a href="javascript:;" data-val="green" title="绿色">绿色</a></li>
+						<li><a href="javascript:;" data-val="red" title="红色">红色</a></li>
+						<li><a href="javascript:;" data-val="yellow" title="黄色">黄色</a></li>
+						<li><a href="javascript:;" data-val="orange" title="橙色">橙色</a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+	</div>
+</div>
+</header>
+<aside class="Hui-aside">
+	<div class="menu_dropdown bk_2">
+	
+		<volist name="cate" id="v">
+		<dl id="menu-article">
+			<dt><i class="Hui-iconfont">&#xe616;</i> {$v.title}<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+		<dd>
+			<ul>
+				<volist name="v.subcate" id="sc">
+				<li><a data-href="__MODULE__/{$sc.url}" data-title="{$sc.title}" href="javascript:void(0)">{$sc.title}</a></li>
+				</volist>
+			</ul>
+		</dd>
+		</dl>
+		</volist>
+	</div>
+</aside>
+<div class="dislpayArrow hidden-xs"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a></div>
+<section class="Hui-article-box">
+	<div id="Hui-tabNav" class="Hui-tabNav hidden-xs">
+		<div class="Hui-tabNav-wp">
+			<ul id="min_title_list" class="acrossTab cl">
+				<li class="active">
+					<span title="我的桌面" data-href="welcome.html">我的桌面</span>
+					<em></em></li>
+		</ul>
+	</div>
+		<div class="Hui-tabNav-more btn-group"><a id="js-tabNav-prev" class="btn radius btn-default size-S" href="javascript:;"><i class="Hui-iconfont">&#xe6d4;</i></a><a id="js-tabNav-next" class="btn radius btn-default size-S" href="javascript:;"><i class="Hui-iconfont">&#xe6d7;</i></a></div>
+</div>
+	<div id="iframe_box" class="Hui-article">
+		<div class="show_iframe">
+			<div style="display:none" class="loading"></div>
+			<!-- <iframe scrolling="yes" frameborder="0" src="welcome.html"></iframe>  -->
+			<div class="page-container">
+	<p class="f-20 text-success">欢迎使用吉富交易管理系统 <span class="f-14">v4.1    </span></p>
+	
+	<p>上次登录IP：<?php echo get_client_ip(); ?> 当前时间：<?php echo date("Y/m/d",time());?></p>
+	<table class="table table-border table-bordered table-bg">
+		<thead>
+			<tr>
+				<th colspan="7" scope="col">信息统计</th>
+			</tr>
+			<tr class="text-c">
+				<th>统计</th>
+				<th>注册人数</th>
+				<th>人民币总计</th>
+				<th>总交易额</th>
+				<th>文章总数</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="text-c">
+				<td>总数</td>
+				<td>{$arr['reg_sum']}</td>
+				<td>{$arr['cny_num']}</td>
+				<td>{$arr['trance_mum']}</td>
+				<td>{$arr['art_sum']}</td>
+			</tr>
+		</tbody>
+	</table>
+	<table class="table table-border table-bordered table-bg mt-20">
+		<thead>
+			<tr>
+				<th colspan="2" scope="col">服务器信息</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>系统版本</td>
+				<td><span style="color:red;">V4.1.0 </span> 正版授权</td>
+			</tr>
+			<tr>
+				<td>服务器操作系统</td>
+				<td>WINNT</td>
+			</tr>
+			<tr>
+				<td>授权域名</td>
+				<td>{$Think.PC_URL}</td>
+			</tr>
+			<tr>
+				<td>授权周期</td>
+				<td>终身</td>
+			</tr>
+			<tr>
+				<td>网站域名:</td>
+				<td>{$Think.PC_URL}</td>
+			</tr>
+			<tr>
+				<td>服务器端口 </td>
+				<td>80</td>
+			</tr>
+			<tr>
+				<td>服务器IIS版本 </td>
+				<td>Microsoft-IIS/6.0</td>
+			</tr>
+			<tr>
+				<td>系统所在文件夹 </td>
+				<td>C:\WINDOWS\system32</td>
+			</tr>
+			<tr>
+				<td>服务器脚本超时时间 </td>
+				<td>30000秒</td>
+			</tr>
+			<tr>
+				<td>服务器的语言种类 </td>
+				<td>PHP</td>
+			</tr>
+			<tr>
+				<td>.NET Framework 版本 </td>
+				<td>2.050727.3655</td>
+			</tr>
+			<tr>
+				<td>服务器当前时间 </td>
+				<td><?php echo date("Y/m/d",time());?></td>
+			</tr>
+			
+			<tr>
+				<td>风险警告 </td>
+				<td>为保障程序正常运行,请勿随意篡改代码!</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+	</div>
+</div>
+</section>
+
+<div class="contextMenu" id="Huiadminmenu">
+<ul>
+	<li id="closethis">关闭当前 </li>
+	<li id="closeall">关闭全部 </li>
+</ul>
+</div>
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="__PUBLIC__/rs/lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/rs/lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/rs/static/h-ui/js/H-ui.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/rs/static/h-ui.admin/js/H-ui.admin.js"></script> 
+<!--/_footer 作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="__PUBLIC__/rs/lib/jquery.contextmenu/jquery.contextmenu.r2.js"></script>
+<script type="text/javascript">
+function lockscreen(){
+	layer.prompt({
+		title: '输入一个锁屏密码',
+		formType: 1,
+		btn: ['锁屏','取消'] //按钮
+	}, function(pass){
+		if(!pass){
+			layer.msg('需要输入一个密码!');
+		}else{
+			$.post("{:U('Login/lockScreen')}",{pass:pass},function(data){
+				layer.msg(data.info);
+				layer.close();
+				if(data.status){
+					window.location.href = "{:U('Login/lockScreen')}";
+				}
+			},'json');
+		}
+	});
+}
+$(function(){
+	/*$("#min_title_list li").contextMenu('Huiadminmenu', {
+		bindings: {
+			'closethis': function(t) {
+				console.log(t);
+				if(t.find("i")){
+					t.find("i").trigger("click");
+				}		
+			},
+			'closeall': function(t) {
+				alert('Trigger was '+t.id+'\nAction was Email');
+			},
+		}
+	});*/
+});
+/*个人信息*/
+function myselfinfo(){
+	layer.open({
+		type: 1,
+		area: ['300px','200px'],
+		fix: false, //不固定
+		maxmin: true,
+		shade:0.4,
+		title: '查看信息',
+		content: '<div>管理员信息</div>'
+	});
+}
+
+/*资讯-添加*/
+function article_add(title,url){
+	var index = layer.open({
+		type: 2,
+		title: title,
+		content: url
+	});
+	layer.full(index);
+}
+/*图片-添加*/
+function picture_add(title,url){
+	var index = layer.open({
+		type: 2,
+		title: title,
+		content: url
+	});
+	layer.full(index);
+}
+/*产品-添加*/
+function product_add(title,url){
+	var index = layer.open({
+		type: 2,
+		title: title,
+		content: url
+	});
+	layer.full(index);
+}
+/*用户-添加*/
+function member_add(title,url,w,h){
+	layer_show(title,url,w,h);
+}
+
+
+</script> 
+
+</body>
+</html>

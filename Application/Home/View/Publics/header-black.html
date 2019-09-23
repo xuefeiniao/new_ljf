@@ -1,0 +1,149 @@
+ <!DOCTYPE html>
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <eq name="Think.session.lang" value="1">
+									<notempty name="coninfo['web_name']" value=" ">
+								
+										<title>{$coninfo['web_name']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="2">
+									<notempty name="coninfo['web_name_e']" value=" ">
+										<title>{$coninfo['web_name_e']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="3">
+									<notempty name="coninfo['web_name_en']" value=" ">
+										<title>{$coninfo['web_name_en']}</title>
+									</notempty>
+								</eq>
+    <meta name="description" content="{:C('web_description')}">
+    <meta name="keywords" content="{:C('web_keywords')}">
+    <meta name="format-detection" content="telephone=no">
+
+    <link href="__PUBLIC__/Home/trade/css/common.css" rel="stylesheet" type="text/css">
+    <!--<link href="./001_files/coins_16.css" rel="stylesheet" type="text/css">-->
+    <!--<link href="./001_files/coins_32.css" rel="stylesheet" type="text/css">-->
+    <!--<link href="./001_files/coins_48.css" rel="stylesheet" type="text/css">-->
+    <link href="__PUBLIC__/Home/trade/css/trade.css" rel="stylesheet" type="text/css">
+    <!--<link href="./001_files/theme_dark.css" rel="stylesheet" type="text/css" id="darkStyle" disabled="disabled">-->
+
+    <link href="/favicon.ico" rel="shortcut icon">
+
+    <!--<script src="__PUBLIC__/Home/trade/js/jquery-1.8.2.min.js"></script>-->
+    <!--<script src="./001_files/jquery.common.tools.js"></script>-->
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/font-awesome.min.css"/>
+    <script type="text/javascript" src="__PUBLIC__/Home/js/script.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Home/js/jquery.flot.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Home/js/jquery.cookies.2.2.0.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/layer/layer.js"></script>
+  
+    
+</head>
+<body class="">
+
+<div class="header clearfix">
+    <div class="top-up">
+        <div class="top-con">
+            <!--
+            <ul class="topprice">
+				<li> BTC/CNY : ￥ <span class="topnum">42417.90</span><i class="icon-arrow-down">↓</i> </li>
+                <li> ETH/CNY : ￥ <span class="topnum">3244.50</span><i class="icon-arrow-down">↓</i> </li>
+                <li> LTC/CNY : ￥ <span class="topnum">627.99</span><i class="icon-arrow-down">↓</i> </li>
+                <li> QTUM/CNY : ￥ <span class="topnum">68.89</span><i class="icon-arrow-down">↓</i> </li>
+            </ul>
+            -->
+            <ul class="login_lan">
+                <!--<li class="top-links">
+                    <a href="https://ss.ss/mobileapp" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="244 244 24 24"><path fill="#010101" d="M262 244h-12c-.83 0-1.5.672-1.5 1.5v21c0 .83.67 1.5 1.5 1.5h12c.83 0 1.5-.67 1.5-1.5v-21c0-.828-.67-1.5-1.5-1.5zm-8.625 1.5h5.25c.208 0 .375.168.375.375s-.167.375-.375.375h-5.25c-.208 0-.375-.168-.375-.375s.167-.375.375-.375zM256 267.25c-.62 0-1.125-.504-1.125-1.125S255.38 265 256 265s1.125.504 1.125 1.125-.504 1.125-1.125 1.125zm6-3h-12v-16.5h12v16.5z"></path></svg>
+                        <span>手机APP</span>
+                        <div class="add-dn-qr">
+                            <h3>扫码下载ss.ss APP</h3>
+                            <img src="./001_files/app-code.png" alt="ss.ss APP">
+                        </div>
+                    </a>
+                </li>-->
+                
+                <gt name="Think.session.userId" value="0">
+                <li class="toplogin user-info-con">
+                    <div id="topLoginBar" style="color: rgb(255, 255, 255);">
+                    
+					<span class="lv-con">
+					
+					<a class="tier-level tier-icon{$vip}" href="javascript:;" title="等级"></a>
+					
+					</span>
+						
+                        <a id="nickName" href="/Finance/index"><span>{$Think.session.userName}</span></a>
+                        <!--<i class="caret"></i></a>-->
+                    </div>
+                </li>
+                <li class="toplogin user-log-out"><a href="{:U('Login/loginout')}">退出</a></li>
+                <else/>
+                <li class="toplogin"><a href="{:U('Login/register')}">注册&nbsp;</a>|&nbsp; </li>
+                <li class="toplogin" id="toplogin"><a href="{:U('/index#login')}">登录</a></li>
+                </gt>
+
+                <!--<li class="lang-option">
+                    <span>中文版</span><i class="caret"></i>
+                    <div class="more-lan">
+                        <a href="https://ss.ss/lang/en">English</a>
+                        <a href="https://ss.ss/lang/kr">한국어</a>
+                    </div>
+                </li>-->
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="top-dn">
+        <div class="logo">
+            <a href="/" target="_top">
+                <!--[if !IE]--><img src="__UPLOAD__/public/{$C['web_llogo_small']}" alt="LOGO" style="width: 100px;margin-top: 8px;height: 30px;"><!--[endif]-->
+                <!--[if IE]><img src="/images/logo.png" alt="LOGO"/><![endif]-->
+            </a>
+        </div>
+
+        <ul class="gateio-nav">
+            <li class="">
+                <a href="/">首页</a>
+            </li>
+			
+
+            <li class="nav-trade-item nav-active">
+                <a href="javascript:;">交易中心<i class="caret"></i></a>
+                <ul class="second-nav clearfix">
+                      
+                    <foreach name="coinlist" item="v" key="k" >
+                    
+                    <li>
+                        <a href="javascript:;">{$k}交易区<i class="caret"></i></a>
+                         
+                        <ul class="third-nav clearfix">
+                            <foreach name="v" item="vs" >
+                            <li><a href="/Trade/index/market/{$vs['name']}"><span class="icon-16-ad"></span><strong style="overflow: visible;"><img src="__UPLOAD__/coin/{$vs['xnbimg']}" alt="" width="10px">{$vs['navtitle']}</strong></a></li>
+                         </foreach>
+                        </ul>
+                       
+                    </li> 
+                    
+                    </foreach>
+                </ul>
+            </li>
+            
+            
+            <volist name="daohang" id="vo">
+            
+            <li class="">
+                <a href="/{$vo['url']}" class="tooltip" title="{$vo['title']}" id="{$vo['name']}_box">{$vo['title']}</a>
+            </li>
+            
+            </volist>
+             
+        </ul>
+
+    </div>
+</div>

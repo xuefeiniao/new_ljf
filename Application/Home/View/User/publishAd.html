@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="比特币交易平台，比特币交易所，数字资产交易所,数字货币交易平台" />
+    <meta name="format-detection" content="telephone=no,email=no,address=no" />
+    <eq name="Think.session.lang" value="1">
+									<notempty name="coninfo['web_name']" value=" ">
+								
+										<title>{$coninfo['web_name']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="2">
+									<notempty name="coninfo['web_name_e']" value=" ">
+										<title>{$coninfo['web_name_e']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="3">
+									<notempty name="coninfo['web_name_en']" value=" ">
+										<title>{$coninfo['web_name_en']}</title>
+									</notempty>
+								</eq>
+    <link data-n-head="true" rel="icon" type="image/x-icon" href="__PUBLIC__/favicon.ico"/>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/base1.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/common.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/newcss/publishAd.css" />
+    <script data-n-head="true" src="__PUBLIC__/Home/js/newjs/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="/zhisucom/js/layer.js"></script>
+    <style type="text/css">
+        .unit label{
+            margin-right:30px;
+            margin-left:7px;
+        }
+    </style>
+
+</head>
+<body>
+
+<!--<img src="https://mon.58coin.com/mon.gif" id="img-hidden" />-->
+<div id="__nuxt">
+    <div class="nuxt-progress" style="width: 0%; height: 2px; background-color: rgb(59, 128, 112); opacity: 0;"></div>
+    <div id="__layout">
+        <div>
+            <!--头部内容-->
+            <include file="Public:header2"/>
+            <!--头部内容   end-->
+            <div class="wrap">
+                <section class="container adv-name">
+                    <h2>{$GLOBALS['publish-ad']}</h2>
+                    <div class="info">
+                        <div class="nav flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                            <a class="buy-tab active" data-type="0">{$GLOBALS['purchase']}</a>
+                            <a class="sell-tab" data-type="1">{$GLOBALS['sellChange']}</a>
+                        </div>
+                        <!--<form class="st-form form">-->
+                        <div class="st-form form">
+                            <div class="st-form-item">
+                                <p class="label" style="padding-right: 16px;">{$GLOBALS['trade-coin']}</p>
+                                <div tabindex="0" class="st-select item" value="24" style="width: 360px;">
+                                    <div class="box flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                        <p>
+                                            <if condition="$Think.get.coin neq ''">
+                                                {$Think.get.coin|strtoupper}
+                                            <else />
+                                                {$GLOBALS['place-selectCoin']}
+                                            </if>
+                                        </p>
+                                        <span class=""></span>
+                                    </div>
+                                    <ul style="width: 360px; display: none;">
+                                        <volist name="bz_coin" id="vo">
+                                            <a href="/user/publishAd/coin/{$vo['name']}">
+                                        <li class="st-option">{$vo['name']|strtoupper}</li>
+                                        </a>
+                                        </volist>
+                                    </ul>
+                                    <input type="hidden" value="{$Think.get.coin}" id="bz_coin">
+                                </div>
+                                <p class="tips" style="display: none;"></p>
+                                <p class="message" style="display: none;"></p>
+                            </div>
+                            <div class="st-form-item">
+                                <p class="label" style="padding-right: 16px;">{$GLOBALS['bid-price']}</p>
+                                <div class="unit">
+                                    <input type="text" maxlength="16" class="st-input" style="width: 360px;" id="buyUnitPrice" name="buyUnitPrice"  value="{$buy|number_format=3}"/>
+                                    <p class="unit-p"><span>CNY</span></p>
+                                </div>
+                                <p class="tips" style="display: none;"></p>
+                                <!-- <p class="message" style="display: none;">UCC价格区间为[0.98,1.02]</p> -->
+                            </div>
+                            <!---->
+                            <div class="st-form-item">
+                                <p class="label" id="buySellTxt" style="padding-right: 16px;">{$GLOBALS['buy-totalNum']}</p>
+                                <div class="unit">
+                                    <input type="text" maxlength="16" class="st-input" style="width: 360px;" id="buyNumber" name="buyNumber"/>
+                                    <div class="unit-message">
+                                        <a><span></span> {$Think.get.coin|strtoupper}{$GLOBALS['balance']}:{$coin_num|number_format=6}</a>
+                                    </div>
+                                    <p class="unit-p"><span>{$Think.get.coin|strtoupper}</span></p>
+                                </div>
+                                <p class="tips" style="display: none;"></p>
+                                <p class="message" style="display: none;">{$GLOBALS['correct-number']}</p>
+                            </div>
+                            <div class="st-form-item">
+                                <p class="label" style="padding-right: 16px;">{$GLOBALS['min-transaction']}</p>
+                                <div class="unit">
+                                    <input type="text" maxlength="16" class="st-input" style="width: 360px;" id="buyminNumber" name="buyminNumber"  value="0"/>
+									<!-- <if condition="$stat neq 2"> disabled</if> -->
+                                    <p class="unit-p"><span>CNY</span></p>
+                                </div>
+                                <p class="tips" style="display: none;"></p>
+                                <!-- <p class="message" style="display: none;">最小交易金额必须大于等于500，且小于等于单笔最大金额！</p> -->
+                            </div>
+                            <!-- <div class="st-form-item">
+                                <p class="label" style="padding-right: 16px;">单笔最大交易额</p>
+                                <div class="unit">
+                                    <input type="text" maxlength="16" class="st-input" style="width: 360px;" />
+                                    <p class="unit-p"><span>CNY</span></p>
+                                </div>
+                                <p class="tips" style="display: none;"></p>
+                                <p class="message" style="display: none;">请输入正确的价格！</p>
+                            </div> -->
+                             <div class="st-form-item">
+                                <p class="label" style="padding-right: 16px;">{$GLOBALS['pay-type']}</p>
+                               <div class="unit" style="padding:10px 0;">
+                                 <neq name="user.weixin" value="">
+                                <input type="checkbox" id="weixin" name="weixin" value="1"><label for="weixin">{$GLOBALS['weixin']}</label>
+                                 </neq>
+                                 <neq name="user.ddpay" value="">
+                                <input type="checkbox" id="zhifubao" name="zhifubao" value="1"><label for="zhifubao">{$GLOBALS['pay']}</label>
+                                    </neq>
+                                 <neq name="userbank" value="">
+                                <input type="checkbox" id="yinhangka" name="yinhangka" value="1"><label for="yinhangka">银行卡</labe>
+                                    </neq>
+                               </div>
+                            </div>
+                            
+                            <div class="st-form-item">
+                                <p class="label" style="padding-right: 16px;">{$GLOBALS['financePwd']}</p>
+                                <div class="unit">
+                                    <input type="text" maxlength="15" placeholder="{$GLOBALS['place-financePwd']}" class="st-input" onfocus="this.type='password'" style="width: 360px;" id="password" />
+                                </div>
+                                <p class="tips" style="display: none;"></p>
+                                <!-- <p class="message" style="display: none;">请输入正确的密码！</p> -->
+                            </div>
+                            <!-- <div class="st-form-item" style="height: 130px;">
+                                <p class="label" style="padding-right: 16px;">交易说明</p>
+                                <textarea type="text" maxlength="200" class="st-input" elementtype="textarea" style="width: 360px; height: 100px;"></textarea>
+                                <p class="tips" style="display: none;"></p>
+                                <p class="message" style="display: none;"></p>
+                            </div>
+                            <div class="st-form-item" style="height: 150px;">
+                                <p class="label" style="padding-right: 16px;">开启自动回复</p>
+                                <div class="unit">
+                                    <a class="checkbox active" style="top: 20%; left: -118px; margin-top: -16px;"></a>
+                                    <textarea type="text" maxlength="200" class="st-input" elementtype="textarea" style="width: 360px; height: 150px;"></textarea>
+                                </div>
+                                <p class="tips" style="display: none;"></p>
+                                <p class="message" style="display: none;"></p>
+                            </div> 
+                            <div class="limit">
+                                <div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <a id="kyc2" class="checkbox"></a>
+                                    <label for="kyc2">仅与通过高级实名认证后的用户进行交易</label>
+                                </div>
+                            </div>-->
+                            <div class="btn flex-box flex-direction-column flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                                <input type="submit" value="{$GLOBALS['publish-ad']}" i="0" id="buyBtn"/>
+                                <div class="flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap" style="width: 360px;">
+                                    <p>{$GLOBALS['handing']}<span>0.00%</span></p>
+                                    <!-- <p class="marginLimit">质押资金：<span>100 UCC</span><a href="" target="_blank"><i>?</i></a></p> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!---->
+                </section>
+                <!--底部内容-->
+                <include file="Public:footer"/>
+                <!--底部内容   end-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" name="" id="tag" value="0">
+
+<script src="__PUBLIC__/Home/js/newjs/publishAd.js"></script>
+<script>
+    $(function () {
+        /*菜单切换*/
+    $(".nav a").click(function(){
+        $(".nav a").removeClass("active");
+        $(this).addClass("active");
+        var type = $(this).data('type');
+       localStorage.setItem('index',type);
+        if(type=='0'){
+            $("#tag").val('0');
+            $('#buySellTxt').text("{$GLOBALS['buy-totalNum']}");
+        }else{
+           $("#tag").val('1');
+            $('#buySellTxt').text("{$GLOBALS['sell-totalNum']}");
+        }
+    });
+    if(localStorage.index == '0'){
+        $("#tag").val('0');
+        $('.buy-tab').addClass('active');
+        $('.sell-tab').removeClass('active');
+        $('#buySellTxt').text("{$GLOBALS['buy-totalNum']}");
+    }
+    if(localStorage.index == '1'){
+         $("#tag").val('1');
+        $('.buy-tab').removeClass('active');
+        $('.sell-tab').addClass('active');
+        $('#buySellTxt').text("{$GLOBALS['sell-totalNum']}");
+    }
+
+
+        $('#buyBtn').on('click',function(){
+            var type = $("#tag").val();
+            if(type == "0"){
+                sendData('1');
+            }else{
+                sendData('2');
+            }
+            
+            
+
+        });
+        // $('#sellBtn').on('click',function(){
+        //     var bz_coin = $('#bz_coin').val();
+        //     $.post("/C2c/add1", {
+        //         type:2,
+        //         wechat:$("#weixin:checked").val(),
+        //         alipay:$("#zhifubao:checked").val(),
+        //         bank:$("#yinhangka:checked").val(),
+        //         price:$('#buyUnitPrice').val(),
+        //         num: $('#buyNumber').val(),
+        //         minnum: $('#buyminNumber').val(),
+        //         password:$('#password').val(),
+        //         bz_coin:bz_coin,
+        //     }, function (data) {
+        //         if (data.status == 1) {
+        //             layer.msg(data.msg, {icon: 1});                 
+        //             if(data.url){
+        //             window.location.replace(data.url);return;   
+        //             }
+        //             window.location.reload();
+        //         } else {
+        //             layer.msg(data.msg, {icon: 2});
+        //             if (data.url) {
+                    
+        //                 window.location.replace(data.url);
+        //             }
+        //         }
+        //     }, "json");
+
+        // });
+    });
+
+function sendData(type){
+    $.post("/C2c/add1", {
+        type:type,
+        wechat:$("#weixin:checked").val(),
+        alipay:$("#zhifubao:checked").val(),
+        bank:$("#yinhangka:checked").val(),
+        price:$('#buyUnitPrice').val(),
+        num: $('#buyNumber').val(),
+        minnum: $('#buyminNumber').val(),
+        password:$('#password').val(),
+        bz_coin:$('#bz_coin').val()
+    }, function (data) {
+        if (data.status == 1) {
+            layer.msg(data.msg, {icon: 1});                 
+            if(data.url){
+            window.location.replace(data.url);return;   
+            }
+            window.location.reload();
+        } else {
+            layer.msg(data.msg, {icon: 2});
+            if (data.url) {
+            
+                window.location.replace(data.url);
+            }
+        }
+    }, "json");
+}
+
+
+</script>
+
+</body>
+</html>

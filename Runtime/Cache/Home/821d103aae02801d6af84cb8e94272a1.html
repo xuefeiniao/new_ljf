@@ -1,0 +1,513 @@
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="<?php echo ($web_keywords); ?>" />
+    <meta name="format-detection" content="telephone=no,email=no,address=no" />
+    <?php if(($_SESSION['lang']) == "1"): if(!empty($coninfo['web_name'])): ?><title><?php echo ($coninfo['web_name']); ?></title><?php endif; endif; ?>
+								<?php if(($_SESSION['lang']) == "2"): if(!empty($coninfo['web_name_e'])): ?><title><?php echo ($coninfo['web_name_e']); ?></title><?php endif; endif; ?>
+								<?php if(($_SESSION['lang']) == "3"): if(!empty($coninfo['web_name_en'])): ?><title><?php echo ($coninfo['web_name_en']); ?></title><?php endif; endif; ?>
+    <link data-n-head="true" rel="icon" type="image/x-icon" href="/Public/favicon.ico"/>
+    <link rel="stylesheet" href="/Public/Home/css/newcss/base.css"/>
+    <link rel="stylesheet" href="/Public/Home/css/newcss/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/Public/Home/css/newcss/accountBill.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="/Public/Home/001_files/datetimepicker.css"/>
+    <script data-n-head="true" src="/Public/Home/js/newjs/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="/Public/layer/layer.js"></script>
+    <style>
+        .filter-detail .st-select .box input{
+            width:99%;
+            background: -webkit-gradient(linear, left top, left bottom, from(#fefeff), to(#f3f5f8));
+            background: linear-gradient(180deg, #fefeff 0, #f3f5f8);
+            vertical-align: middle;
+            margin-top: 3px;
+        }
+        /*查询按钮*/
+        .sub-btn{
+            width: 100%;
+            height: 30px;
+            border: 1px solid #ced0da;
+            border-radius: 4px;
+            padding: 0 10px;
+            background: #0976d9;
+            cursor: pointer;
+            color:#fff;
+        }
+
+    </style>
+</head>
+<body>
+<!--<img src="https://mon.58coin.com/mon.gif" id="img-hidden" />-->
+<div id="__nuxt">
+    <div class="nuxt-progress" style="width:0%;height:2px;background-color:#3B8070;opacity:0;"></div>
+    <div id="__layout">
+        <div>
+            <!--头部内容-->
+            
+<style>
+.common-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    min-width: 1300px;
+    width: 100%;
+    border-bottom: 1px solid #c5d4ed;
+    -webkit-box-shadow: 0 3px 8px hsla(0, 0%, 80%, .5);
+    box-shadow: 0 3px 8px hsla(0, 0%, 80%, .5);
+    padding: 18.5px 42px 18.5px 50px;
+    background: #fff
+}
+
+.common-header .logo {
+    display: block;
+    width: 168px;
+    height: 46px;
+    /*background: url(/Public/Home/image/common/logo_be.png) no-repeat;*/
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    text-indent: -9999px
+}
+
+/*.common-header .logo.cn {*/
+    /*background-image: url(/Public/Home/image/common/logo_bc.png)*/
+/*}*/
+
+/*.common-header .logo.en {*/
+    /*background-image: url(/Public/Home/image/common/logo_be.png)*/
+/*}*/
+
+.common-header .line {
+    width: 1px;
+    background: #e2eafb
+}
+
+.common-header .line-10 {
+    margin: 0 20px;
+    height: 10px
+}
+
+.common-header .line-24 {
+    margin: 0 40px;
+    height: 24px
+}
+
+.common-header a {
+    font-size: 14px;
+    color: #6c85ae
+}
+
+.common-header a:hover {
+    color: #0976d9;
+}
+.common-header a.active {
+    color: #0976d9;
+}
+
+.common-header .account-nav {
+    margin-right: 60px
+}
+
+.common-header .account-nav a, .common-header .main-nav a {
+    margin-right: 30px
+}
+
+.common-header .account-nav a:last-child, .common-header .main-nav a:last-child {
+    margin-right: 0
+}
+
+.common-header .blank {
+    -webkit-box-flex: 1;
+    -moz-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1
+}
+
+@media screen and (max-width: 1500px) {
+    .common-header {
+        padding: 18.5px 28px
+    }
+
+    .common-header .line-24 {
+        margin: 0 20px
+    }
+
+    .common-header .account-nav a, .common-header .main-nav a {
+        margin-right: 20px
+    }
+}
+</style>
+
+<div class="common-header flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" style="background:#12122a;"> 
+    <a href="/Index/index" class="logo cn" style="background-image: url('/Upload/public/<?php echo ($web_logo); ?>'); width:115px;height:45px;"></a>
+    <div class="line line-24"></div>
+    <div class="main-nav flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+        <a onclick="cy()"><?php echo ($GLOBALS['c2c']); ?></a>
+        <a href="/Trade/index/market/eth_jeff"><?php echo ($GLOBALS['trade']); ?></a>
+        <a href="/Lever/borrowMoney/market/usdt_jeff"><?php echo ($GLOBALS['borrowMoney']); ?></a>
+		<a href="/Article/officialAdModal" target="_blank"><?php echo ($GLOBALS['office-notice']); ?></a>
+        <!---->
+        <!---->
+    </div>
+    <div class="blank"></div>
+    <div class="account-nav flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+        <a href="/Finance/qianbao" class="nuxt-link-exact-active nuxt-link-active"><?php echo ($GLOBALS['qianbao']); ?></a>
+        <a href="/Finance/myzr/name/jeff" class=""><?php echo ($GLOBALS['recharge']); ?></a>
+        <a href="/Finance/myzc/name/jeff" class=""><?php echo ($GLOBALS['withdraw']); ?></a>
+        <a href="/Article/index" target="_blank"><?php echo ($GLOBALS['article']); ?></a>
+    </div>
+    <?php if($_SESSION['userName'] != ''): ?><a class="nuxt-link-exact-active nuxt-link-active" href="/User/index"><?php echo ($GLOBALS['user']); ?>：<span id="userName"><?php echo ($_SESSION['userName']); ?></span></a>
+        <div class="line line-10"></div>
+        <a onclick="loginout();"><?php echo ($GLOBALS['loginout']); ?></a>
+    <?php else: ?>
+        <a style="margin-left: 30px;" href="/Login/register?login"><?php echo ($GLOBALS['login']); ?></a>
+        <div class="line line-10"></div>
+        <a href="/Login/register?register"><?php echo ($GLOBALS['register']); ?></a><?php endif; ?>
+
+</div>
+
+<script>
+function loginout(){
+						$.post("/Login/loginout",{},function(data){
+							if(data.status==1){
+								layer.msg(data.info,{icon:1});
+								window.setTimeout("window.location='/Index'",1000);
+							}
+						},"json");
+					}
+    /*隐藏手机号中间4位*/
+    var phone = $('#userName').html();
+    var mphone = phone.substr(0, 3) + '****' + phone.substr(7);
+    $('#userName').html(mphone);
+</script>
+<script>
+					function cy(){
+						var uid = "<?php echo ($uid); ?>";
+						var zhifubao = "<?php echo ($c2c_user['zhifubao']); ?>";
+						var weixin = "<?php echo ($c2c_user['weixin']); ?>";
+						var bank = "<?php echo ($c2c_user['bank']); ?>";
+						var paypwd = "<?php echo ($c2c_user['paypassword']); ?>";
+						//alert(zhifubao);
+						if(uid>0){
+							if((zhifubao == '' || zhifubao=='NULL')&&(weixin == '' || weixin=='NULL')&&(bank == '' || bank=='NULL')){
+								layer.msg('请设置收款方式', {icon: 2});
+								location.href="/User/myCenter";
+							}
+							else if(paypwd == "" || paypwd == "NULL"){
+								layer.msg('请设置资金密码', {icon: 2});
+								location.href="/User/resetFiancePwd";
+							}else{
+								location.href="/C2c/index/market/jeff/money/0";
+							}
+							
+						}else{
+							layer.msg('请先登录', {icon: 2});
+							location.href="/C2c/index/market/jeff/money/0";
+						}
+					}
+				</script>
+
+            <!--头部内容   end-->
+            <div class="wrap">
+                <div class="st-content detail-index container" style="margin-top: 0px;">
+                    <h2 ><?php echo ($GLOBALS['billing-details ']); ?></h2>
+                    <div  class="line"></div>
+                    <div  style="padding-top: 0px; padding-bottom: 30px;">
+                        
+                        <div class="detail-list" >
+                            <table>
+                                <thead>
+                                <!--<tr>-->
+                                    <!--<th width="170" align="left">操作时间</th>-->
+                                    <!--<th width="156" align="right">账户</th>-->
+                                    <!--<th width="126" align="right">币种</th>-->
+                                    <!--<th width="136" align="right">类型</th>-->
+                                    <!--<th width="172" align="right">数额</th>-->
+                                    <!--<th width="172" align="right">手续费</th>-->
+                                    <!--<th width="188" align="right">余额</th>-->
+                                <!--</tr>-->
+                                <tr>
+                                    <!--<th width="136" align="left">账户</th>-->
+                                    <th align="center"><?php echo ($GLOBALS['coin-name']); ?></th>
+                                    <th align="center"><?php echo ($GLOBALS['jl_time']); ?></th>
+                                    <th align="center"><?php echo ($GLOBALS['number']); ?></th>
+                                    <th align="center"><?php echo ($GLOBALS['remark']); ?></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <?php if($list != null): if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
+                                                    <td class="no-od" align="center"><?php echo ($vo['coinname']); ?></td>
+                                                    <td class="no-od" align="center"><?php echo (date('Y-m-d H:i:s',$vo["addtime"])); ?></td>
+                                                    <td class="no-od" align="center"><?php echo ($vo['fee']); ?></td>
+                                                    <td class="no-od" align="center"><?php echo ($vo['remark']); ?></td>
+                                                   
+                                                </tr><?php endforeach; endif; else: echo "" ;endif; ?>
+                                        <?php else: ?>
+                                        <tr style="border:0;">
+                                            <td colspan="7">
+                                                <div class="no-list" >
+                                                    <img src="/Public/Home/image/accountMsg/noDate.jpg" alt="" />
+                                                    <h6><?php echo ($GLOBALS['noData']); ?></h6>
+                                                </div>
+                                            </td>
+                                        </tr><?php endif; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!--底部内容-->
+                <!--底部样式-->
+<style>
+    .st-footer {
+        position: absolute;
+        width: 100%;
+        min-width: 1300px;
+        height: 338px;
+        background-color: #16243d;
+        font-size: 20px
+    }
+
+    .st-footer .up {
+        width: 100%;
+        height: 260px;
+        padding: 60px 8% 0 10%;
+        border-bottom: 1px solid #04040f
+    }
+
+    .st-footer .up .left, .st-footer .up .right {
+        position: relative;
+        width: 30%
+    }
+
+    .st-footer .up .left ul li, .st-footer .up .right ul li {
+        position: relative
+    }
+
+    .st-footer .up .left ul li img, .st-footer .up .right ul li img {
+        position: absolute;
+        top: 50%;
+        right: -130px;
+        z-index: 2;
+        margin-top: -60px;
+        width: 120px;
+        height: 120px
+    }
+
+    .st-footer .up .left ul li a, .st-footer .up .right ul li a {
+        display: block;
+        margin-bottom: 14px;
+        line-height: 1em;
+        font-size: 12px;
+        color: #fff
+    }
+
+    .st-footer .up .left ul li a:hover, .st-footer .up .right ul li a:hover {
+        color: #0976d9;
+    }
+
+    .st-footer .up .left ul li:last-child a, .st-footer .up .right ul li:last-child a {
+        margin-bottom: 0
+    }
+
+    .st-footer .up .left ul li.first-li, .st-footer .up .right ul li.first-li {
+        margin-bottom: 14px;
+        line-height: 1em;
+        font-size: 12px;
+        color: #72829d
+    }
+
+    .st-footer .up .left .focus, .st-footer .up .right .focus {
+        width: 140px
+    }
+
+    .st-footer .up .left .focus h3, .st-footer .up .right .focus h3 {
+        margin-bottom: 14px;
+        line-height: 1em;
+        font-size: 12px;
+        color: #72829d
+    }
+
+    .st-footer .up .left .focus span, .st-footer .up .right .focus span {
+        display: block;
+        line-height: 1em;
+        margin-bottom: 23px;
+        font-size: 12px;
+        color: #72829d
+    }
+
+    .st-footer .up .left .focus .share a, .st-footer .up .right .focus .share a {
+        display: block;
+        margin-right: 20px;
+        width: 36px;
+        height: 36px;
+        border-radius: 100%;
+        background: #6c85ae;
+        background-repeat: no-repeat;
+        background-position: 50%
+    }
+
+    .st-footer .up .left .focus .share a:hover, .st-footer .up .right .focus .share a:hover {
+        background: #c5caea;
+        background-repeat: no-repeat;
+        background-position: 50%
+    }
+
+    .st-footer .up .left .focus .share a:first-child, .st-footer .up .right .focus .share a:first-child {
+        background-image: url("/Public/Home/image/common/facebook.png")
+    }
+
+    .st-footer .up .left .focus .share a:nth-child(2), .st-footer .up .right .focus .share a:nth-child(2) {
+        background-image: url("/Public/Home/image/common/feige.png")
+    }
+
+    .st-footer .up .left .focus .share a:nth-child(3), .st-footer .up .right .focus .share a:nth-child(3) {
+        background-image: url("/Public/Home/image/common/weibo.png")
+    }
+
+    .st-footer .up .center {
+        width: 185px;
+        height: 160px;
+        background: url(/Public/Home/image/common/footerimg.997816f.png) no-repeat center 10px
+    }
+
+    .st-footer .down {
+        width: 100%;
+        padding: 0 8% 0 10%;
+        border-top: 1px solid #212145
+    }
+
+    .st-footer .down p {
+        height: 77px;
+        line-height: 77px;
+        font-size: 12px;
+        text-align: center;
+        color: #6c85ae
+    }
+</style>
+
+<footer class="st-footer" style="bottom:0;background-color: #12122a;">
+    <div class="up flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+        <div class="left flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+            <ul>
+                <li class="first-li"><?php echo ($GLOBALS['series-produce']); ?></li>
+                <li><a href="/C2c/index"><?php echo ($GLOBALS['c2c']); ?></a></li>
+                <li><a href="/Trade/index"><?php echo ($GLOBALS['trade']); ?></a></li>
+                <li><a href="/Trade/borrowMoney"><?php echo ($GLOBALS['borrowMoney']); ?></a></li>
+            </ul>
+            <ul>
+                <li class="first-li"><?php echo ($GLOBALS['about-us']); ?></li>
+                <!-- <?php if(is_array($xinwen)): $i = 0; $__LIST__ = $xinwen;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>-->
+                <!-- <li><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank"><?php echo ($vo['title']); ?></a></li> -->
+                <!--<?php endforeach; endif; else: echo "" ;endif; ?> -->
+				<?php if(is_array($xinwen)): $i = 0; $__LIST__ = $xinwen;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; if(($_SESSION['lang']) == "1"): if(!empty($vo['title'])): ?><li ><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank" ><?php echo ($vo['title']); ?></a></li><?php endif; endif; ?>
+								<?php if(($_SESSION['lang']) == "2"): if(!empty($vo['title_e'])): ?><li ><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank" ><?php echo ($vo['title_e']); ?></a></li><?php endif; endif; ?>
+								<?php if(($_SESSION['lang']) == "3"): if(!empty($vo['title_en'])): ?><li ><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank" ><?php echo ($vo['title_en']); ?></a></li><?php endif; endif; endforeach; endif; else: echo "" ;endif; ?>
+							
+							 <li ><a href="/Article/officialAdModal" target="_blank" ><?php echo ($GLOBALS['office-notice']); ?></a></li>
+							<!-- <?php if(is_array($about)): $i = 0; $__LIST__ = $about;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?>-->
+							<!-- <li ><a href="/Article/detail/id/<?php echo ($v['id']); ?>" target="_blank" ><?php echo ($v['title']); ?></a></li> -->
+							<!--<?php endforeach; endif; else: echo "" ;endif; ?> -->
+							<?php if(is_array($about)): $i = 0; $__LIST__ = $about;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; if(($_SESSION['lang']) == "1"): if(!empty($vo['title'])): ?><li ><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank" ><?php echo ($vo['title']); ?></a></li><?php endif; endif; ?>
+								<?php if(($_SESSION['lang']) == "2"): if(!empty($vo['title_e'])): ?><li ><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank" ><?php echo ($vo['title_e']); ?></a></li><?php endif; endif; ?>
+								<?php if(($_SESSION['lang']) == "3"): if(!empty($vo['title_en'])): ?><li ><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank" ><?php echo ($vo['title_en']); ?></a></li><?php endif; endif; endforeach; endif; else: echo "" ;endif; ?>
+                <!-- <li><a href="/Article/detail" target="_blank">联系我们</a></li> -->
+                <li><a href="/Article/officialAdModal" target="_blank"><?php echo ($GLOBALS['office-notice']); ?></a></li>
+            </ul>
+            <ul>
+                <li class="first-li"><?php echo ($GLOBALS['server-support']); ?></li>
+                <li><a href="/Article/officialAdModal" target="_blank"><?php echo ($GLOBALS['help-center']); ?></a></li>
+                <li><a href="/Article/detail/id/188" target="_blank">下线币种说明</a></li>
+                <li><a href="/Article/detail/id/14" target="_blank"><?php echo ($GLOBALS['currentCoin-apply']); ?></a></li>
+            </ul>
+        </div>
+        <div class="center"></div>
+        <div class="right flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+            <ul>
+                <li class="first-li"><?php echo ($GLOBALS['official-community']); ?></li>
+                <li>
+                    <a><?php echo ($GLOBALS['weixinQ']); ?></a>
+                    <div style="display: none;">
+                        <em></em>
+                        <img src="/Public/Home/image/index/jiaoliu.png" alt="">
+                    </div>
+                </li>
+                <!--<li>
+                    <a href="" target="_blank">Telegram</a>
+                </li>-->
+            </ul>
+            <ul>
+                <li class="first-li"><?php echo ($GLOBALS['relative-download']); ?></li>
+                <li>
+                    <a class="download-ios">iOS App</a>
+                    <div style="display: none;">
+                        <em></em>
+                        <img src="/Public/Home/image/index/ios.14c5c18.png " alt="">
+                    </div>
+                </li>
+                <li>
+                    <a class="download-android">Android App</a>
+                    <div style="display: none;">
+                        <em></em>
+                        <img src="/Public/Home/image/index/Android.14c5c18.png " alt="">
+                    </div>
+                </li>
+                <!--<li>
+                    <a class="download-google-play">Google Play</a>
+                    <div style="display: none;">
+                        <em></em>
+                        <img src="/Public/Home/image/common/googlePlay.9e95ba4.png" alt="">
+                    </div>
+                </li>-->
+            </ul>
+            <div class="focus">
+                <h3><?php echo ($GLOBALS['attention-us']); ?></h3>
+                <span><?php echo ($GLOBALS['company-name']); ?></span>
+                <div class="share flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                    <a href="" target="_blank"></a>
+                    <a href="" target="_blank"></a>
+                    <a href="" target="_blank" style="margin-right:0;"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="down">
+        <p><?php echo ($GLOBALS['web_down']); ?> <?php echo ($GLOBALS['beian']); ?></p>
+    </div>
+</footer>
+
+<script>
+    /*底部二维码效果*/
+    $(".st-footer .right li").hover(
+        function () {
+            $(this).find("div").show();
+        },
+        function(){
+            $(this).find("div").hide();
+        }
+    );
+</script>
+
+                <!--底部内容   end-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/Public/Home/js/newjs/accountBill.js"></script>
+<script src="/Public/Home/001_files/dpicker.js"></script>
+<script>
+    // 日期选择器
+    $('.datetimepicker').datetimepicker({
+        format: 'Y-m-d',
+        timepicker: false,
+        yearStart: 2008,
+        autoclose: true,
+        lang: 'ch'
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,302 @@
+<include file="Base:header"/>
+
+<body>
+<article class="page-container">
+	<form class="form form-horizontal" id="form-article-add" action="{:U('Config/edit')}" method="post" enctype="multipart/form-data">
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>网站名称（中文）:</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$data.web_name}" placeholder="" id="articletitle" name="web_name">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>网站名称（英文）:</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$data.web_name_en}" placeholder="" id="articletitle" name="web_name_en">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>网站名称（俄文）:</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$data.web_name_e}" placeholder="" id="articletitle" name="web_name_e">
+			</div>
+		</div>
+		 <div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>网站标题（中文）:</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$data.web_title}" placeholder="" id="articletitle" name="web_title">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>网站标题（英文）:</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$data.web_title_en}" placeholder="" id="articletitle" name="web_title_en">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>网站标题（俄文）:</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$data.web_title_e}" placeholder="" id="articletitle" name="web_title_e">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>网站logo :</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<div id="addpicContainer">
+					<notempty name="data.web_logo">
+												<!--没有图片显示默认图片-->
+						<img id="up_img" onclick="getElementById('inputfile').click()" style="cursor:pointer;max-height:50px;" title="点击添加图片" alt="点击添加图片" src="/Upload/coin/{$data.web_logo}">
+					<else/>
+												<!--没有图片显示默认图片-->
+						<img id="up_img" onclick="getElementById('inputfile').click()" style="cursor:pointer;max-height:50px;" title="点击添加图片" alt="点击添加图片" src="__PUBLIC__/Admin/images/addimg.png">
+					</notempty>
+					<input type="hidden" id="img" name="web_logo" value="{$data.web_logo}">
+					<input type="file" id="inputfile" style="height:50px;width:0;z-index: -1; position: absolute;left: 10px;top: 5px;opacity:0;" value=""/>
+					<span style="width:100px;padding-left:200px;color: red;font-weight: bold;">250px*34px</span>
+				</div>
+			</div>
+		</div>
+		 <div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>网站关键字 :</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<textarea name="web_keywords" cols="" rows="" class="textarea" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="$.Huitextarealength(this,200)">{$data['web_keywords']}</textarea>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>网站小logo :</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<div id="addpicContainer">
+											<!-- 利用multiple="multiple"属性实现添加多图功能 -->
+											<!-- position: absolute;left: 10px;top: 5px;只针对本用例将input隐至图片底下。-->
+											<!-- height:0;width:0;z-index: -1;是为了隐藏input，因为Chrome下不能使用display:none，否则无法添加文件 -->
+											<!-- onclick="getElementById('inputfile').click()" 点击图片时则点击添加文件按钮 -->
+					<notempty name="data.web_llogo_small">
+					<!--没有图片显示默认图片-->
+						<img id="up_imga" onclick="getElementById('inputfilea').click()" style="cursor:pointer;max-height:50px;" title="点击添加图片" alt="点击添加图片" src="/Upload/coin/{$data.web_llogo_small}">
+					<else/>
+					<!--没有图片显示默认图片-->
+						<img id="up_imga" onclick="getElementById('inputfilea').click()" style="cursor:pointer;max-height:50px;" title="点击添加图片" alt="点击添加图片" src="__PUBLIC__/Admin/images/addimg.png">
+					</notempty>
+						<input type="hidden" id="imga" name="web_llogo_small" value="{$data.web_llogo_small}">
+						<input type="file" id="inputfilea" style="height:0;width:0;z-index: -1; position: absolute;left: 10px;top: 5px;opacity:0;" value=""/>
+						<span style="width:100px;padding-left:200px;color: red;font-weight: bold;"> 交易界面显示 168px*22px</span>
+				</div>
+				
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>网站底部logo :</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<div id="addpicContainer">
+					<notempty name="data.footer_logo">
+						<!--没有图片显示默认图片-->
+						<img id="up_imgb" onclick="getElementById('inputfileb').click()" style="cursor:pointer;max-height:50px;" title="点击添加图片" alt="点击添加图片" src="/Upload/public/{$data.footer_logo}">
+					<else/>
+						<!--没有图片显示默认图片-->
+						<img id="up_imgb" onclick="getElementById('inputfileb').click()" style="cursor:pointer;max-height:50px;" title="点击添加图片" alt="点击添加图片" src="__PUBLIC__/Admin/images/addimg.png">
+					</notempty>
+					<input type="hidden" id="imgb" name="footer_logo" value="{$data.footer_logo}">
+					<input type="file" id="inputfileb" style="height:0;width:0;z-index: -1; position: absolute;left: 10px;top: 5px;opacity:0;" value=""/>
+					<span style="width:100px;padding-left:200px;color: red;font-weight: bold;">交易界面显示 168px*22px</span>
+				</div>
+
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>网站描叙 :</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<textarea name="web_description" cols="" rows="" class="textarea" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="$.Huitextarealength(this,200)">{$data['web_description']}</textarea>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>网站状态 :</label>
+			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
+					<select name="web_close" class="select">
+						<option value="1"<eq name="data['web_close']" value="1">selected</eq>>正常</option>
+						<option value="0"<eq name="data['web_close']" value="0">selected</eq>>禁止访问</option>
+					</select>
+				</span> </div>
+		</div>
+		
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>禁止访问原因 :</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<textarea name="web_close_cause" cols="" rows="" class="textarea" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="$.Huitextarealength(this,200)">{$data['web_close_cause']}</textarea>
+			</div>
+		</div>
+		 <div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>统计代码 :</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<textarea name="web_cnzz" cols="" rows="" class="textarea" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="$.Huitextarealength(this,200)">{$data['web_cnzz']}</textarea>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">用户注册协议：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<textarea name="web_reg" cols="" rows="" class="textarea"  placeholder="说点什么...最少输入10个字符" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="$.Huitextarealength(this,200)">{$data.web_reg}</textarea>
+				<p class="textarea-numberbar"><em class="textarea-length"></em></p>
+			</div>
+		</div>
+		 
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+				<button class="ajax-post btn btn-primary radius" id="submit" type="submit" target-form="form-horizontal"><i class="Hui-iconfont">&#xe632;</i> 确 定
+			</button>
+			<a class="btn btn-default radius" href="{$Think.server.HTTP_REFERER}">返 回</a>
+			<notempty name="data.id"><input type="hidden" name="id" value="{$data.id}"/>
+			</notempty>
+			</div>
+		</div>
+	</form>
+</article>
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript">
+// alert(window.parent.location);
+// alert(window.location.href);
+	//提交表单
+	/*$('#submit').click(function () {
+		$('#form').submit();
+	});*/
+	$(function() {
+        $("#form-add").ajaxForm(function(data){
+        	if (data.status==1) {
+        	layer.alert(data.info);
+        }else
+            layer.alert(data.info);
+        },'json');
+         
+    });
+</script>
+<script type="text/javascript" src="__PUBLIC__/kindeditor/kindeditor-min.js"></script>
+<script type="text/javascript">
+	var editor;
+	KindEditor.ready(function (K) {
+		editor = K.create('textarea[name="web_reg"]', {
+			width: '1250px',
+			height: '250px',
+			allowPreviewEmoticons: false,
+			allowImageUpload: true,
+			uploadJson: "{:U('Article/edit','type=images')}",//图片上传后的处理地址
+			items: [
+				'source', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+				'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+				'insertunorderedlist', '|', 'emoticons', 'image', 'link', 'fullscreen'],
+			afterBlur: function () {
+				this.sync();
+			}
+		});
+	});
+	
+	
+	$(document).ready(function () {
+		//响应文件添加成功事件
+		$("#inputfile").change(function () {
+			//创建FormData对象
+			var data = new FormData();
+			//为FormData对象添加数据
+			$.each($('#inputfile')[0].files, function (i, file) {
+				data.append('upload_file' + i, file);
+			});
+
+
+			//发送数据
+			$.ajax({
+				url: '/Admin/Config/log_image',
+				type: 'POST',
+				data: data,
+				cache: false,
+				contentType: false,		//不可缺参数
+				processData: false,		//不可缺参数
+				success: function (data) {
+					console.log(data);
+					if (data) {
+						$('#up_img').attr("src", '/Upload/public/' + data);
+						$('#img').val(data);
+						$('#up_img').show();
+					}
+				},
+				error: function () {
+					alert('上传出错');
+					$(".loading").hide();	//加载失败移除加载图片
+				}
+			});
+
+		});
+	});
+
+		$(document).ready(function () {
+		//响应文件添加成功事件
+		$("#inputfileb").change(function () {
+			//创建FormData对象
+			var data = new FormData();
+			//为FormData对象添加数据
+			$.each($('#inputfileb')[0].files, function (i, file) {
+				data.append('upload_file' + i, file);
+			});
+
+
+			//发送数据
+			$.ajax({
+				url: '/Admin/Config/log_image',
+				type: 'POST',
+				data: data,
+				cache: false,
+				contentType: false,		//不可缺参数
+				processData: false,		//不可缺参数
+				success: function (data) {
+					if (data) {
+						$('#up_imgb').attr("src", '/Upload/public/' + data);
+						$('#imgb').val(data);
+						$('#up_imgb').show();
+					}
+				},
+				error: function () {
+					alert('上传出错');
+					$(".loading").hide();	//加载失败移除加载图片
+				}
+			});
+
+		});
+	});
+
+	$(document).ready(function () {
+		//响应文件添加成功事件
+		$("#inputfilea").change(function () {
+			//创建FormData对象
+			var data = new FormData();
+			//为FormData对象添加数据
+			$.each($('#inputfilea')[0].files, function (i, file) {
+				data.append('upload_file' + i, file);
+			});
+
+
+			//发送数据
+			$.ajax({
+				url: '/Admin/Config/log_image',
+				type: 'POST',
+				data: data,
+				cache: false,
+				contentType: false,		//不可缺参数
+				processData: false,		//不可缺参数
+				success: function (data) {
+					if (data) {
+						$('#up_imga').attr("src", '/Upload/public/' + data);
+						$('#imga').val(data);
+						$('#up_imga').show();
+					}
+				},
+				error: function () {
+					alert('上传出错');
+					$(".loading").hide();	//加载失败移除加载图片
+				}
+			});
+
+		});
+	});
+</script>
+
+<!--/请在上方写此页面业务相关的脚本-->
+ 
+</body>
+</html>

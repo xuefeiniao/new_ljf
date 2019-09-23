@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="{$web_keywords}" />
+    <meta name="format-detection" content="telephone=no,email=no,address=no" />
+    <eq name="Think.session.lang" value="1">
+									<notempty name="coninfo['web_name']" value=" ">
+								
+										<title>{$coninfo['web_name']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="2">
+									<notempty name="coninfo['web_name_e']" value=" ">
+										<title>{$coninfo['web_name_e']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="3">
+									<notempty name="coninfo['web_name_en']" value=" ">
+										<title>{$coninfo['web_name_en']}</title>
+									</notempty>
+								</eq>
+    <link data-n-head="true" rel="icon" type="image/x-icon" href="__PUBLIC__/favicon.ico"/>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/base.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/common.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/newcss/recharge.css" media="all"/>
+    <script data-n-head="true" src="__PUBLIC__/Home/js/newjs/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/layer/layer.js"></script>
+
+
+</head>
+<body>
+
+<!--<img src="https://mon.58coin.com/mon.gif" id="img-hidden" />-->
+<div id="__nuxt">
+    <div class="nuxt-progress" style="width:0%;height:2px;background-color:#3B8070;opacity:0;"></div>
+    <div id="__layout">
+        <div>
+            <!--头部内容-->
+            <include file="Public:header1"/>
+            <?php
+			$name = strtolower($_GET['name']).'b';
+			$where['userid'] = $_SESSION['userId'];
+			$info1 = M('user_coin')->where($where)->field($name)->find();
+            //var_dump($info1);die;
+            ?>
+            <!--头部内容   end-->
+            <div class="wrap">
+
+                <div class="deposit-name container flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+                    <div class="account-slider">
+                        <h2>{$GLOBALS['recharge']}</h2>
+                        <volist name="coin_list" id='vo'>
+                        <div 
+                        	<if condition="$xnb eq $vo['name']">
+                        	class="item flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap active"
+                        	<else />
+                        	class="item flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap"
+                        	</if>
+                        >
+                            <a class="nuxt-link-exact-active nuxt-link-active" href="/Finance/myzr/name/{$vo['name']|strtoupper}">{$vo['name']|strtoupper}</a>
+                        </div>
+                        </volist>
+                        
+                    </div>
+                    <div class="main">
+                        <div  class="st-content deposit-address" style="margin-top: 0px;">
+                            <h2 >{$GLOBALS['recharge']}</h2>
+                            <div  class="line"></div>
+                            <div  style="padding-top: 0px; padding-bottom: 0px;">
+                                <div  class="address">
+                                    <div class="flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap" >
+                                        <div class="content flex-box flex-direction-column flex-justify-start flex-align-item-start flex-wrap-nowrap" style="margin-top: 21px;">
+                                            <p style="font-size: 14px; color: rgb(89, 122, 185);">{$GLOBALS['recharge-address']}<span style="display: inline; width: 100%; font-size: 14px; color: rgb(153, 153, 153);">{$GLOBALS['recharge-result']}</span></p>
+                                            <div style="position: relative; margin-top: 5px; width: 790px;">
+                                                <input class="cz-address coin_add" id="content" value="{$qianbao}" style="width:45%"/>
+                                                <div style="position: absolute; display: inline;">
+                                                    <a onclick="copy();">{$GLOBALS['copyBtn']}</a>
+                                                    <div style="position: relative; display: inline;" class="ewm">
+                                                        <a>{$GLOBALS['QR-code']}</a>
+                                                        <div id="codeaa" class="er-code flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap" style="display: none;">
+                                                        </div>
+                                                    </div>
+                                                    <!---->
+                                                </div>
+                                            </div>
+                                            <!---->
+                                        </div>
+                                    </div>
+                                    <!---->
+                                </div>
+                                <?php $coin = $_GET['name']; $coninfo = M('Coin')->where(array('name'=>$coin))->getField('zr_min');?>
+                                <div  class="agree">
+                                    <h3 >{$GLOBALS['recharge-know']}</h3>
+                                    <p >1、{$GLOBALS['min-recharge']}：{$coninfo} <span>{$xnb|strtoupper}</span>，{$GLOBALS['min-noSucceed']}。</p>
+                                    <p >2、{$GLOBALS['no-recharge']}<span>{$xnb|strtoupper}</span>{$GLOBALS['finance-lose']}。</p>
+                                    <p >3、{$GLOBALS['user1']}<span>{$_GET['name']}</span>{$GLOBALS['recharge-success-time']}。</p>
+                                    <p >4、{$GLOBALS['because']}<span>{$_GET['name']}</span>{$GLOBALS['add-handling']}。</p>
+                                    <!---->
+                                </div>
+                                <input  type="text" id="copy-key-1" />
+                                <input  type="text" id="copy-key-2" />
+                                <input  type="text" id="copy-key-3" />
+                            </div>
+                        </div>
+                        <div  class="st-content deposit-record" style="margin-top: 20px;">
+                            <!---->
+                            <div class="title flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap" >
+                                <h2>{$GLOBALS['recent-recharge-record']}</h2>
+                                <a href="/Finance/rechargeRecord/coin/{$xnb}" class="">{$GLOBALS['more']} &gt;</a>
+                            </div>
+                            <div  class="line"></div>
+                            <div  style="padding-top: 20px; padding-bottom: 50px;">
+                                <div class="st-table" >
+                                    <div style="display: none;">
+                                        <div></div>
+                                        <div></div>
+                                        <div>
+                                            <p class="time"></p>
+                                        </div>
+                                        <div>
+                                        </div>
+                                    </div>
+                                    <table class="table-theme-1">
+                                        <thead>
+                                        <tr>
+                                            <!--<th width="330" align="left" style="padding: 0px 4px 0px 20px;">充值地址或Txid</th>-->
+                                            <!--<th width="110" align="left">充值数量</th>-->
+                                            <!--<th width="140" align="right">最后更新</th>-->
+                                            <!--<th width="135" align="right" style="padding-right: 20px;">处理状态</th>-->
+                                            <th align=""><b>{$GLOBALS['recharge-time']}</b></th>
+                                            <th align=""><b>{$GLOBALS['recharge-coin']}</b></th>
+                                            <th align=""><b>{$GLOBALS['recharge-number']}</b></th>
+                                            <th align=""><b>{$GLOBALS['intoAccount-number']}</b></th>
+                                            <th align=""><b>{$GLOBALS['order-status']}</b></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <if condition="$list neq null">
+                                            <volist name="list" id="vo">
+                                                <tr>
+                                                    <td align="center">{$vo.addtime|addtime}</td>
+                                                    <td align="center">{$vo.coinname}</td>
+                                                    <td align="center">{$vo['num']|NumToStr}</td>
+                                                    <td align="center">{$vo['fee']|NumToStr}</td>
+                                                    <td align="center">
+                                                        <eq name="vo.status" value="1">
+                                                            <font color="#23a800">{$GLOBALS['turn-succeed']} </font>
+                                                            <else/>
+                                                            <font color="red">{$GLOBALS['ready-deal']}{$vo.status|abs}{$GLOBALS['number-sure']}</font>
+                                                        </eq>
+                                                    </td>
+                                                </tr>
+                                            </volist>
+                                        <else/>
+                                            <tr style="border:0;">
+                                                <td colspan="5">
+                                                    <div  class="no-list">
+                                                        <img  src="/Public/Home/image/accountMsg/noDate.jpg" alt="" />
+                                                        <p >{$GLOBALS['noData']}</p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </if>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!---->
+                    <!--警告弹框-->
+                    <!--<div class="popup flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap" style="display: none;">
+                        <div class="popup-box" style="width: 500px; min-height: 270px;">
+                            <div class="header flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                <h3>风险提示</h3><a></a></div>
+                            <div class="create-item flex-box flex-direction-column flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                <h3>UCC 全称为 UniChange Coin，充值前请仔细核对，向该地址充值任何非 UniChange Coin
+                                    资产，资产将不可找回。</h3>
+                                <div class="flex-box flex-direction-row flex-justify-center flex-align-item-start flex-wrap-nowrap">
+                                    <a class="create-submit">我已知晓</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+                </div>
+
+                <!--底部内容-->
+                <include file="Public:footer"/>
+                <!--底部内容   end-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="__PUBLIC__/Home/js/newjs/recharge.js"></script>
+<script src="/zhisucom/js/jquery.qrcode.min.js"></script>
+<script>
+    /*当前页*/
+    $(".account-nav>a:nth-child(2)").addClass("active");
+
+    /*生成二维码*/
+        $('#codeaa').qrcode({
+            render: "table", //table方式
+            width: 100, //宽度
+            height: 100, //高度
+            text: $('#content').val(), //任意内容
+        });
+      
+        /*复制功能*/
+    function copy(){
+        var content = document.getElementById('content');
+        content.select();
+        document.execCommand("Copy");
+        layer.msg("{$GLOBALS['succeed-copy']}", {
+            icon: 1
+        });
+        return false;
+    }
+
+    /*鼠标滑过显示二维码*/
+    $(".ewm").hover(
+        function () {
+            $("#codeaa").show();
+        },
+        function () {
+            $("#codeaa").hide();
+        }
+    );
+</script>
+
+
+</body>
+</html>

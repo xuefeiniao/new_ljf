@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="比特币交易平台，比特币交易所，数字资产交易所,数字货币交易平台" />
+    <meta name="format-detection" content="telephone=no,email=no,address=no" />
+    <eq name="Think.session.lang" value="1">
+									<notempty name="coninfo['web_name']" value=" ">
+								
+										<title>{$coninfo['web_name']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="2">
+									<notempty name="coninfo['web_name_e']" value=" ">
+										<title>{$coninfo['web_name_e']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="3">
+									<notempty name="coninfo['web_name_en']" value=" ">
+										<title>{$coninfo['web_name_en']}</title>
+									</notempty>
+								</eq>
+    <link data-n-head="true" rel="icon" type="image/x-icon" href="__PUBLIC__/favicon.ico"/>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/base.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/common.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/newcss/setBank.css" />
+    <script data-n-head="true" src="__PUBLIC__/Home/js/newjs/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/layer/layer.js"></script>
+
+    
+</head>
+<body>
+<!--<img src="https://mon.58coin.com/mon.gif" id="img-hidden" />-->
+<div id="__nuxt">
+    <div class="nuxt-progress" style="width: 0%; height: 2px; background-color: rgb(59, 128, 112); opacity: 0;"></div>
+    <div id="__layout">
+        <div>
+            <!--头部内容-->
+            <include file="Public:header2"/>
+            <!--头部内容   end-->
+
+            <div class="wrap">
+                <section class="container account-name">
+                    <div class="bread flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                        <div>
+                            <a href="/User/myCenter" class="nuxt-link-active">{$GLOBALS['my']}</a>
+                            <span> &gt; </span>
+                        </div>
+                        <p>{$GLOBALS ['setAccount-gather']}</p>
+                    </div>
+                    <div class="info">
+                        <div class="title flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+                            <div class="flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                                <span class="pay"></span>{$GLOBALS['add-pay']}
+                            </div>
+                        </div>
+                        <div class="st-form form" >
+                            <div class="st-form-item" >
+                                <p class="label" style="padding-right:16px;">{$GLOBALS['name']}</p>
+                                <input type="text" id="pay_name" maxlength="30" value="{$userinfo['ddpayname']}" class="st-input" style="width:360px;"/>
+                                <p class="tips" style="display:none;" ></p>
+                                <!-- <p class="message" style="display:none;" >{$GLOBALS['correct-name']}</p> -->
+                            </div>
+                            <!---->
+                            <div class="st-form-item"  >
+                                <p class="label" style="padding-right:16px;">{$GLOBALS['account-num']}</p>
+                                <input type="text" name="ali_name" id="ali_name" value="{$userinfo.ddpay}"  maxlength="50" placeholder="{$GLOBALS['Alipay-account']}" value="" class="st-input" style="width:360px;" />
+                                <p class="tips" style="display:none;"></p>
+                                <!-- <p class="message" style="display:none;">{$GLOBALS['place-correctNum']}</p> -->
+                            </div>
+                            <!---->
+                            <div class="upload-img flex-box flex-direction-column flex-justify-center flex-align-item-center flex-wrap-nowrap" >
+                                <img
+                                <if condition="$userinfo['ali_img'] neq ''">src="/Upload/zhifu/{$userinfo['ali_img']}"</if> id="up-img-zfb_ali"  onclick="getElementById('up-img-zfb').click()"/>
+                                <div class="zzc flex-box flex-direction-column flex-justify-center flex-align-item-center flex-wrap-nowrap" style="display:none">
+                                    <div></div>
+                                    <p>{$GLOBALS['changBtn']}</p>
+                                </div>
+
+                                <div class="upload-img-btn">
+                                    <a>
+                                        <div class="upload">
+                                            <input class="file" name="file" id="up-img-zfb" type="file" accept="image/jpeg,image/jpg,image/png" >
+                                        </div>
+                                        <div class="range" ></div>
+                                    </a>
+                                </div>
+                                <p>{$GLOBALS['upload-receiveCode']}（*.jpg*.png*.jpeg）</p>
+                            </div>
+                            <input type="submit" value="{$GLOBALS['sureBtn']}" style="width:360px;" id="bindAliBtn" class="sub-btn bind-acc-btn" onclick="OnBindAli()"/>
+                        </div>
+                    </div>
+                </section>
+                <!--底部内容-->
+                <include file="Public:footer"/>
+                <!--底部内容   end-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="__PUBLIC__/Home/js/newjs/setPay.js"></script>
+<script>
+    //上传支付宝照片
+    $(document).ready(function () {
+        $("#up-img-zfb").change(function () {
+            sendAjax("up-img-zfb")
+        });
+        function sendAjax(name){
+            var data = new FormData();
+            data.append(name,$("#"+name)[0].files[0]);
+            $.ajax({
+                url: '/user/ali_img',
+                type: 'POST',
+                data: data,
+                cache: false,
+                contentType: false,		//不可缺参数
+                processData: false,		//不可缺参数
+                success: function (data) {
+                    console.log(name)
+                    if (data) {
+                        if(data=="error"){
+                            alert("{$GLOBALS['correct-type-size']}");
+                            return false;
+                        }else{
+                            $("#up-img-zfb_ali").attr('src','/Upload/zhifu/'+data);
+                            $(".zzc").show();
+                            $(".upload-img-btn").find("a").css("width","0");
+                            $(".upload-img-btn").next("p").hide();
+                        }
+
+                    }
+                },
+                error: function () {
+                    alert("{$GLOBALS['error-upload']}");
+                    $('.set_upload_img').hide();
+                }
+            });
+        }
+    });
+
+    function OnBindAli(){
+        var pay_name = $('#pay_name').val();
+        var ali_name = $('#ali_name').val();
+
+        if (pay_name == "" || pay_name == null) {
+			layer.tips("请输入姓名", '#pay_name', {tips: 3});
+            //$('#pay_name').addClass("error").siblings("p.message").addClass("error").show();
+            return false;
+        }
+        if (ali_name == "" || ali_name == null) {
+			layer.tips("请输入支付宝帐号", '#ali_name', {tips: 3});
+            //$('#ali_name').addClass("error").siblings("p.message").addClass("error").show();
+            return false;
+        }
+        $.ajax({
+            url:"/user/bind_ali",
+            data:{pay_name:pay_name,ali_name:ali_name},
+            type:"post",
+            dataType:"json",
+            success:function(data){
+                if(data.status == 1){
+                    layer.msg(data.info,{icon: 1});
+                    window.location="/User/myCenter";
+                }else{
+                    // layer.msg(data.info,{icon: 2});
+                    layer.msg(data.info,{icon: 2});
+                    return false;
+                }
+            },
+
+        });
+    }
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,443 @@
+<include file="Publics:header-black"/>
+<style type="text/css">
+			.winput {
+				box-shadow: inset 1px 1px 2px rgba(0, 0, 0, .1);
+				border-radius: 3px;
+				padding: 8px 5px;
+				font-size: 13px;
+				font-family: 'microsoft yahei', sans serif;
+				border: 1px solid #ddd;
+			}
+			
+			#tips {
+				display: block
+			}
+			
+			#withdraw_form {
+				margin: 10px 0 0;
+				overflow: hidden;
+			}
+			
+			.myacc-con .m_title {
+				margin-bottom: 0;
+				border: none
+			}
+			
+			#wdTabs {
+				border-bottom: 1px solid #a3acb5;
+			}
+			
+			#wdTabs li {
+				display: inline-block;
+				font-size: 16px;
+				padding: 10px 15px;
+				border: 1px solid transparent;
+				margin-bottom: -1px;
+				cursor: pointer
+			}
+			
+			#wdTabs .wd-active {
+				border: 1px solid #a3acb5;
+				margin-bottom: -1px;
+				border-bottom-color: #fff;
+				cursor: default
+			}
+			
+			#wdTabs li:hover {
+				color: #d45858;
+			}
+			
+			.gate-code-tip {
+				height: 28px;
+				line-height: 60px;
+				margin-left: 25%;
+			}
+			
+			#gateCodeTip,
+			#gcodeFee {
+				display: none
+			}
+			
+			#amount {
+				width: 32%
+			}
+			
+			#voicebtn {
+				margin-left: 10px
+			}
+			
+			#submit_btn {
+				margin-top: 15px
+			}
+			
+			#wd_amount_tip {
+				color: #d45858;
+			}
+			
+			#withdrawtable td input {
+				padding-right: 30px
+			}
+			
+			#addNew .green em {
+				font-size: 12px;
+				color: #888
+			}
+			
+			#addrUl #addNew i {
+				font-size: 20px;
+				line-height: 18px;
+				background: #008069;
+				position: absolute;
+				top: -3px;
+				right: 0;
+			}
+			
+			#addrUl #addNew i:hover {
+				background: #00a587;
+			}
+			
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			html,
+			body {
+				width: 100%;
+			}
+			
+			.header {
+				width: 100%;
+				height: 45px;
+				background: red;
+			}
+			
+			.content {
+				width: 100%;
+				clear: both;
+			}
+			
+			.leftbar {
+				width: 23%;
+				height: 1200px;
+				background: blue;
+				float: left;
+			}
+			
+			.main_content {
+				width: 75%;
+				float: right;
+				margin: 10px auto;
+				margin-left: 2%;
+			}
+			
+			.myacc-con {
+				margin: 10px auto;
+			}
+			
+			.right_mcontent {
+				position: relative;
+			}
+			
+			.myacc-con .m_title {
+				margin-bottom: 0;
+				border: none;
+				height: 42px;
+				width: 100%;
+				font-size: 1.5em;
+				color: #111;
+				border-bottom: 1px solid #C8DAE2;
+				margin: 10px 0 20px;
+				line-height: 46px;
+			}
+			
+			.myacc-con .m_title h4 {
+				font-weight: normal;
+			}
+			
+			.sectioncont {
+				width: 100%;
+			}
+			
+			.sectioncont table {
+				width: 100%;
+			}
+			
+			#withdrawtable tr td:first-child {
+				font-weight: bold;
+				vertical-align: top;
+				padding-top: 17px;
+			}
+			
+			#withdrawtable td {
+				padding: 0 0 3px;
+				position: relative;
+			}
+			
+			.wd-addr-tip {
+				clear: both;
+				margin-bottom: 5px;
+				color: #888;
+			}
+			
+			#addr {
+				width: 60%;
+				margin-right: 0;
+				margin-top: 5px;
+				float: left;
+			}
+			
+			#withdrawtable td input {
+				padding-right: 30px;
+			}
+			
+			.sectioncont input,
+			.sectioncont select,
+			.txt-memo {
+				margin: 5px 5px 5px 0;
+				width: 50%;
+				border: 1px solid #ccc;
+				border-radius: 3px;
+				padding: 10px;
+				font-size: 14px;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;
+				outline: none;
+			}
+			
+			.red {
+				color: rgb(202, 65, 65);
+			}
+			
+			#smsbtn {
+				height: 38px;
+				border: none;
+				background: rgb(202, 65, 65);
+				margin-left: 5px;
+				color: #fff;
+				font-family: Microsoft YaHei;
+				padding: 5px 12px 8px;
+				font-size: 14px;
+				cursor: pointer;
+			}
+			
+			.sectioncont .sms-setup #submit,
+			.sectioncont #submit.sub-btn,
+			.sectioncont .sub-btn,
+			.sub-btn {
+				background: #d45858;
+				box-shadow: none;
+				border: none;
+				color: #fff;
+				font-family: 'Microsoft YaHei';
+				font-size: 16px;
+				text-indent: 0;
+				padding: 10px;
+				height: auto;
+				cursor: pointer;
+			}
+			
+			.sectioncont,
+			.sectioncont table {
+				width: 100%;
+			}
+			
+			.withdraw_form {
+				position: relative;
+				left: 200px;
+			}
+			
+			.myacc-con .m_title {
+				margin-bottom: 0;
+				border: none;
+			}
+			
+			.myacc-con .sectioncont p {
+				margin-bottom: 10px;
+			}
+			
+			.sectioncont p {
+				padding-top: 10px;
+			}
+			
+			.m_title h4 {
+				font-weight: normal;
+				font-size: 20px;
+			}
+			
+			.sectioncont {
+				width: 100%;
+			}
+			
+			.sectioncont,
+			.sectioncont table {
+				width: 100%;
+			}
+			
+			thead,
+			thead tr {
+				height: 40px;
+			}
+			
+			.sf-grid tr td:first-child,
+			.sf-grid tr th:first-child {
+				text-align: left;
+			}
+			
+			.myacc-con thead td {
+				border-bottom: 1px solid #e4ebf0;
+			}
+			
+			.footer {
+				margin: 0 auto;
+				width: 100%;
+				background: aquamarine;
+				clear: both;
+				margin-bottom: -19px;
+				border-top: 1px solid #ddd;
+				z-index: 2;
+				position: relative;
+			}
+		</style>
+	<body>
+		<!--
+			头部
+		-->
+		<div class="header">
+
+		</div>
+		<!--
+			内容部分
+		-->
+		<div class="contnet">
+			<!--
+				左侧部分
+			-->
+			<include file="Publics:leftbar"/>
+			<!--
+				右侧内容部分
+			-->
+			<div class="main_content acc-m-con">
+				<div class="right_mcontent myacc-con">
+					<div class="m_title">
+						<h4>USDT 提现</h4></div>
+					<div class="sectioncont">
+						<ul id="wdTabs">
+							<li class="wd-active">提现到钱包地址</li>
+						</ul>
+						<div class="gate-code-tip">
+							<span id="gateCodeTip">
+            注：<b>充值码</b>(GateCode)只能用于<b>站内账户</b>之间转账。
+            <a href="https://gateio.io/article/16402" target="_blank"><span class="red">如何使用？</span></a>
+							</span>
+						</div>
+						<form name="withdraw_form" id="withdraw_form" enctype="application/x-www-form-urlencoded" method="post" action="">
+							<input type="hidden" name="withdraw_address_id" id="withdraw_address_id" value="0">
+							<table id="withdrawtable">
+
+								<tbody>
+									<tr>
+										<td align="right" width="160" style="font-size: 16px;">可用余额：</td>
+										<td style="padding-top: 17px;"><span id="canUse" class="red">0</span> USDT</td>
+									</tr>
+
+									<tr>
+										<td align="right">当日提现上限：</td>
+										<td style="padding: 17px 0 10px;">
+											<span class="red"><span id="dayLimit">100000</span> / 100000</span> USDT <input type="checkbox" name="makegatecode" id="makegatecode" value="1" hidden="">
+										</td>
+									</tr>
+									<tr id="addr_tr" class="wd-sh">
+										<td align="right">USDT提现地址：</td>
+										<td style="position:relative;">
+											<input type="text" name="addr" id="addr" value="" autocomplete="off" size="50" maxlength="255" placeholder="请输入您的钱包地址">
+
+											<div class="wd-addr-tip">USDT提现地址支持比特币BTC格式和以太坊ETH ERC20格式。</div>
+											<i class="addr-ico hide"></i>
+
+										</td>
+									</tr>
+
+									<tr id="addr_memo_tr" class="wd-sh">
+										<td align="right">
+											<b>地址名称：</b>
+										</td>
+										<td>
+											<input type="text" name="receiver_name" id="receiver_name" value="" autocomplete="off" placeholder="例如 My Address#1，选填" maxlength="255">
+											<div class="wd-addr-tip">提现成功后，系统会记住您的提现地址，以便下次使用。填写“地址名称”可便于您分辨钱包地址。</div>
+										</td>
+									</tr>
+									<tr class="half-w">
+										<td align="right">提现数额 (币数)：</td>
+										<td>
+											<input type="text" value="" size="10" name="amount" id="amount" autocomplete="off"> 最少 <span id="perMin" class="red">65</span> USDT，一次最多
+											<span class="red">1000000</span> USDT
+											<div id="wd_amount_tip"></div>
+										</td>
+									</tr>
+									<tr>
+										<td align="right" style="padding: 10px 0">手续费 ：</td>
+										<td style="padding-top: 5px;"> <span id="wdFee">0% + 15 USDT					
+                    （BTC格式地址），10                        USDT（ETH格式地址）
+                                        					</span>
+											<span id="gcodeFee">免费</span>
+										</td>
+									</tr>
+									<tr>
+										<td align="right">资金密码：</td>
+										<td><input type="password" name="fundpass" id="fundpass" size="20" autocomplete="new-password"></td>
+									</tr>
+									<tr class="half-w">
+										<td class="algin-top" align="right">短信验证码：</td>
+										<td>
+											<input type="text" value="" size="10" name="smscode" id="smscode" autocomplete="off">
+											<button name="smsbtn" id="smsbtn" type="button">获取短信验证码</button>
+											<input type="hidden" name="smsid" value="3" id="smsid">
+										</td>
+									</tr>
+									<tr>
+										<td>&nbsp;</td>
+										<td><input type="button" name="submit_btn" id="submit_btn" value="  提交提现申请 " class="sub-btn"></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+
+						</form>
+
+						<p class="wd-sh" style="color: #888"><b>提示：</b>在上面的输入框中，输入您要提现的USDT钱包地址和USDT提现数额，并填写您的资金密码，点击获取短信验证码或电话语音验证码之后，把收到的验证码填入。在确认填写无误后，点击“提交提现申请”按钮提交。您的申请将立即或者几小时内被处理。</p>
+					</div>
+					<div class="m_title">
+						<h4>最近 10 次提现记录</h4></div>
+					<div class="sectioncont">
+						<table class="sf-grid">
+							<thead>
+								<tr>
+									<td align="right" width="10%"><b>单号</b></td>
+									<td align="right"><b>提现地址(转账号码)</b></td>
+									<td align="right" width="15%"><b>金额</b></td>
+									<td align="right" width="20%"><b>提现时间</b></td>
+									<td align="right" width="15%"><b>状态/操作</b></td>
+								</tr>
+							</thead>
+						</table>
+					</div>
+					<br>
+
+					<br>
+					<br>
+				</div>
+			</div>
+		</div>
+		<!--
+			尾部
+		-->
+		<include file="Publics:footer"/>
+	</body>
+
+</html>

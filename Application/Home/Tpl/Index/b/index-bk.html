@@ -1,0 +1,638 @@
+﻿<include file="Base:header1"/>
+<include file="Base:header"/>
+
+<!--<script type="text/javascript" src="/public/home/ss/js/note.js" charset="UTF-8"></script>-->
+<script type="text/javascript" src="/public/home/ss/js/sxb.js" charset="UTF-8"></script>
+<div id="h_import" class="ctips" style="display:none;"></div>
+<input id="languageInput" value="cn" type="hidden"/>
+<div class="bk-app" style="display:none;">
+    <div class="clearfix">
+        <div class="app-info pull-left">
+            <img src="/public/home/ss/images/app_zb57_red.png" alt="ZB APP">
+            <p> <br> </p>
+        </div>
+        <div class="app-btn pull-right">
+            <a href="#" class="btn btn-primary" target="_blank">立即下载</a>
+        </div>
+        <div class="app-close" onclick="$('.bk-app').slideUp()"><i class="iconfont">&#xe656;</i></div>
+    </div>
+</div>
+
+
+    <!-- Common TopMenu End -->
+    <!-- Body From mainPage Begin -->
+    <script type="text/javascript">
+        $(".bk-nav").removeClass("navbar-black");
+        $(".bk-toolBar").css("visibility","hidden");
+    </script>
+    <input type="hidden" name="pubTag" value=""/>
+
+    <div id="zbCarousel" class="carousel slide carousel-fade" data-ride="carousel" style="min-width: 1440px;height: auto;
+min-height: 490px;">
+
+        <div class="redbagicon hide" style="z-index: 1;">
+            <a href="#"><i></i><span>2月15-17日</span></a>
+        </div>
+
+        <link rel="stylesheet" href="/public/home/ss/swiper/swiper.min.css">
+        <script src="/public/home/ss/swiper/swiper.min.js"></script>
+        <div class="carousel-inner">
+            <style>
+                .swiper-container { width: 100%; height: 100%; }
+                .swiper-slide { text-align: center; font-size: 18px; background: #fff; /* Center slide text vertically */ display: -webkit-box; display: -ms-flexbox; display: -webkit-flex; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; -webkit-justify-content: center; justify-content: center; -webkit-box-align: center; -ms-flex-align: center; -webkit-align-items: center; align-items: center; };
+            </style>
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <volist name="indexAdver" id="vo">
+                        <div class="swiper-slide"><a href="" style="width: 100%;margin-top: 23px;"><img style="width: 100%;" src="__UPLOAD__/ad/{$vo.img}" alt=""></a></div>
+                    </volist>
+                </div>
+                <!-- Add Arrows -->
+                <div class="swiper-button-next" style="margin-right: 1%"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+            <script>
+                var swiper = new Swiper('.swiper-container', {
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                    loop : true,
+                    autoplay:true,
+                });
+            </script>
+
+
+
+        </div>
+
+    </div>
+         <div class="bk-homeMarket market_tab_hd" name="bz" style="background:black;">
+            <div class="container">
+            <volist name="zhisucom_jiaoyiqu" id="v">
+                 <a style="width:33%;" class="" data-coin="qc" id="s{$i}">{$v}<i class="fa fa-caret-down fa-fw"></i></a>
+            </volist>     
+                <!-- <a class="" data-coin="usdt">USDT交易区<i class="fa fa-caret-down fa-fw"></i></a>
+                <a data-coin="btc">BB交易区<i class="fa fa-caret-down fa-fw"></i></a>
+                <a data-coin="aed">点对点交易区<i class="fa fa-caret-down fa-fw"></i></a> -->
+            </div>
+          </div>
+
+    </div>
+
+    <script type="text/javascript">
+        $(".bk-pageTop, .homeTab").height(function(){
+            var tHeight = $(window).height() * 0.8 ;
+            if(tHeight > 950) tHeight = 950;
+            if(tHeight < 600) tHeight = 600;
+            return tHeight ;
+        });
+
+
+        $(function(){
+
+            /*$.fn.peity.defaults.line = {
+                      delimiter: ",",
+                      fill: "",
+                      height: 25,
+                      max: null,
+                      min: 0,
+                      stroke: "#FF0000",
+                      strokeWidth: 2,
+                      width: 100
+            }
+            var updatingChart = [];
+            var lineColor = [ "#5e9e67","#4793e8","#f4922f","#f4d33e","#5c646f","#5e9e67","#4793e8","#f4922f","#f4d33e","#5c646f","#5e9e67","#4793e8","#f4922f","#f4d33e","#5c646f","#5e9e67","#4793e8","#f4922f","#f4d33e","#5c646f","#5e9e67","#4793e8","#f4922f","#f4d33e","#5c646f"];
+
+            $(".echart-line").each(function(index){
+                updatingChart[index] = $(this).peity("line",{"stroke":lineColor[index]});
+                setInterval(function() { updatingChart[index].change() },1000)
+            })*/
+
+
+
+          $(window).resize(function() {
+              $(".bk-pageTop, .homeTab").height(function(){
+                  var tHeight = $(window).height() * 0.8 ;
+                  if(tHeight > 950) tHeight = 950;
+                  if(tHeight < 600) tHeight = 600;
+                  return tHeight ;
+              });
+          });
+       });
+
+    </script>
+<style>
+    #zbCarousel{margin-top:-77px;}
+    .gsgkli{float:left; }
+    .gsgkli a{color:#898989;font-size: 13px;text-decoration: none;margin-top:8px;margin-bottom:8px;font-family:yahei;}
+    .gsgkli a:hover{color:#de211d;}
+    .searcoin-w{padding-top:13px;}
+    #mywallet_list{visibility:hidden}
+	
+	.market_usdt_list div{font-family:yahei!important;}
+	.market_usdt_list b{font-family:yahei!important;}
+	.market_usdt_list font{font-family:yahei!important;}
+	.market_usdt_list span{font-family:yahei!important;}
+	
+</style>
+     <div class="searcoin-w" >
+        <div class="container">
+            <div>
+                <ul id="gsgk" >
+                    <li class="gsgkli"><img style="width: 19px;margin-right:10px;" src="/public/home/ss/images/gsgk.png" alt="" ></li>
+                    <volist name="indexArticles" id="vo">
+                        <li class="gsgkli"><a href="{:U('Article/detail','id='.$vo['id'])}">{$vo['title']}&nbsp|&nbsp</a></li>
+                    </volist>
+                    <li class="gsgkli" style="float: right;"><a href="/Article/index/id/{$indexArticleType[0]['id']}" style="color: #de2a4a;" >查看更多</a></li>
+                </ul>
+            </div>
+<!--            <div class="searcoinlist">
+                <i class="iconfont">&#xe674;</i>
+                <input placeholder="交易币种搜索" id="searCoinName" >
+            </div>-->
+        </div>
+     </div>
+
+    <div class="h-marketlist market_tab_bd" style="padding-top:12px;" >
+        <div class="container">
+            <div class="allmarketshow" style="margin-right:20px" >
+                <a class="allmarket" href="/Trade/index/market/btc_bb"  target="_blank" ><i class="fa fa-bar-chart fa-fw mr-xs"></i>
+				<span colspan="8"  class="homeChoose-td cnys">BB交易区</span>
+				<span colspan="8"  class="homeChoose-td usdts">USDT交易区</span>
+				<span colspan="8"  class="homeChoose-td btcs">BTC交易区</span>
+				</a>
+            </div>
+
+            <table class="market_usdt_list on" >
+                <thead>
+                <tr>
+
+                    <th class="coin" style="padding-left:40px;">交易对</th>
+                    <th class="price">价格</th>
+                    <th class="high">最高价</th>
+                    <th class="low">最低价</th>
+                    <th class="amount">交易量</th>
+                    <th>日涨跌</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+
+                    <!--tr>
+                        <td colspan="8"  class="homeChoose-td cnys"><span>BB交易区</span></td>
+                    </tr-->
+
+                    <volist name="rmbjy" id="r" key="key">
+                    <tr class="H_bccqcMarket cnys" coinname="BCC" style="cursor: pointer;height:60px;" onclick="window.top.location.href='/trade/index/market/{$r.name}/'">
+                      <!--   <td>
+                            <a class="icon-isselected on"></a>
+                        </td> -->
+                        <td class="coin"><font style="font-size:12px;color:#999;margin-right:20px;margin-left:25px;font-family:arial;"><?php $aa=$key;if($aa<10) $aa='0'.$aa; echo $aa?></font><img style="width: 20px;margin-right:10px" src="/Upload/coin/{$r.xnbimg}" alt=""><b>{$r.s1}</b></td>
+                        <td><egt name="r.change" value="0">
+							<div ><b class="price text-primary" >{$r.new_price|sprintf="%.2f",###}<i class="rise iconfont icon-arrowup"></i></b></div>
+							<else/>
+							<div><b class="price text-second">{$r.new_price|sprintf="%.2f",###}<i class="rise iconfont icon-arrowdown"></i></b></div>
+							</egt></td>
+                        <td><span class="hightPrice">{$r.max_price|sprintf="%.2f",###}</span></td>
+                        <td><span class="lowPrice">{$r.min_price|sprintf="%.2f",###}</span></td>
+
+                        <td class="volume"><span><?php echo sprintf("%.2f",($r['volume']/10000)) ?>万
+							
+						</span></td>
+                        <td><span class="riseRate <egt name="r.change" value="0">text-primary<else/>text-second</egt>">{$r.change|round=2}%</span></td>
+
+                        <td>
+                            <a onclick="window.top.location.href='/trade/chart/market/{$r.name}/'" class="gotrade">现货交易 </a>
+							
+                            <a onclick="event.stopPropagation();window.top.location.href='/trade/chart/market/{$r.name}/'" class="klineg" ><i class="fa fa-line-chart fa-fw"></i></a>
+                        </td>
+                    </tr>
+                    </volist>
+
+                    <!--tr>
+                        <td colspan="8"  class="homeChoose-td usdts" ><span>USDT交易区</span></td>
+                    </tr-->
+
+                    <volist name="usdtjy" id="u">
+                        <tr class="H_bccqcMarket usdts" coinname="BCC"  id="usdtjs" style="cursor: pointer;height:60px" onclick="window.top.location.href='/trade/index/market/{$u.name}/'">
+                            <!--   <td>
+                                  <a class="icon-isselected on"></a>
+                              </td> -->
+                            <td class="coin"><font style="font-size:12px;color:#999;margin-right:20px;margin-left:25px;font-family:arial;"><?php $aa=$key+1;if($aa<10) $aa='0'.$aa; echo $aa?></font><img style="width: 20px;margin-right:10px" src="/Upload/coin/{$u.xnbimg}" alt=""><b>{$u.s1}</b></td>
+                            <td><egt name="u.change" value="0">
+							<div><b class="price text-primary">{$u.new_price|sprintf="%.4f",###}<i class="rise iconfont icon-arrowup"></i></b></div>
+							<else/>
+							<div><b class="price text-second">{$u.new_price|sprintf="%.4f",###}<i class="rise iconfont icon-arrowdown"></i></b></div>
+							</egt></td>
+                            <td><span class="hightPrice">{$u.max_price|sprintf="%.4f",###}</span></td>
+                            <td><span class="lowPrice">{$u.min_price|sprintf="%.4f",###}</span></td>
+
+                            <td class="volume "><span><?php echo sprintf("%.2f",($u['volume']/10000)) ?>万</span></td>
+                            <td><span class="riseRate <egt name="u.change" value="0">text-primary<else/>text-second</egt>">{$u.change|round=2}%</span></td>
+
+                            <td>
+                                <a onclick="window.top.location.href='/trade/chart/market/{$u.name}/'" class="gotrade">现货交易 </a>
+                                <a onclick="event.stopPropagation();window.top.location.href='/trade/chart/market/{$u.name}/'" class="klineg" ><i class="fa fa-line-chart fa-fw"></i></a>
+                            </td>
+                        </tr>
+                    </volist>
+                    <!--tr>
+                        <td colspan="8"  class="homeChoose-td btcs"><span>BTC交易区</span></td>
+                    </tr-->
+
+                    <volist name="bbjy" id="b">
+                        <tr class="H_bccqcMarket btcs" coinname="BCC" style="cursor: pointer;height:60px" onclick="window.top.location.href='/trade/index/market/{$b.name}/'">
+                            <!--   <td>
+                                  <a class="icon-isselected on"></a>
+                              </td> -->
+                            <td class="coin"><font style="font-size:12px;color:#999;margin-right:20px;margin-left:25px;font-family:arial;"><?php $aa=$key+1;if($aa<10) $aa='0'.$aa; echo $aa?></font><img style="width: 20px;margin-right:10px" src="/Upload/coin/{$b.xnbimg}" alt=""><b>{$b.s1}</b></td>
+                            <td>
+							<egt name="b.change" value="0">
+							<div><b class="price text-primary">{$b.new_price|sprintf="%.6f",###}<i class="rise iconfont icon-arrowup"></i></b></div>
+							<else/>
+							<div><b class="price text-second">{$b.new_price|sprintf="%.6f",###}<i class="rise iconfont icon-arrowdown"></i></b></div>
+							</egt>
+							
+							</td>
+                            <td><span class="hightPrice">{$b.max_price|sprintf="%.6f",###}</span></td>
+                            <td><span class="lowPrice">{$b.min_price|sprintf="%.6f",###}</span></td>
+
+                            <td class="volume"><span>
+							<?php echo sprintf("%.2f",($b['volume']/10000)) ?>万
+							<td><span class="riseRate <egt name="b.change" value="0">text-primary<else/>text-second</egt>">{$b.change|round=2}%</span></td>
+
+                            <td>
+                                <a onclick="window.top.location.href='/trade/chart/market/{$b.name}/'" class="gotrade">现货交易 </a>
+                                <a onclick="event.stopPropagation();window.top.location.href='/trade/chart/market/{$b.name}/'" class="klineg" ><i class="fa fa-line-chart fa-fw"></i></a>
+                            </td>
+                        </tr>
+                    </volist>
+                    <style>.usdts{display: none}.btcs{display: none}</style>
+                <script>
+                    $(function () {
+                        $("#s1").click(function () {
+                            $(".cnys").show();
+                            $(".usdts").hide();
+                            $(".btcs").hide();
+                        })
+                        $("#s2").click(function () {
+                            $(".cnys").hide();
+                            $(".usdts").show();
+                            $(".btcs").hide();
+                        })
+                        $("#s3").click(function () {
+                            $(".cnys").hide();
+                            $(".usdts").hide();
+                            $(".btcs").show();
+                        })
+                    })
+                </script>
+                </tbody>
+            </table>
+
+       </div>
+   </div>
+
+    <div class="bk-introduce bk-iconlistw">
+        <div class="container">
+            <h3>金融级别数字资产交易网</h3>
+            <p>超过4年的安全运营、多重技术安全防护、7×24小时服务支持</p>
+            <div class="row">
+                <div class="col-xs-3"><img src="/public/home/ss/images/a04.png" alt=""><h4>顶级</h4><h5>重金千万注册顶级域名<br>是您选择的信心保证</h5></div>
+                <div class="col-xs-3"><img src="/public/home/ss/images/a01.png" alt=""><h4>安全</h4><h5>一流团队打造专业安全<br>多重防御让您资产无忧</h5></div>
+                <div class="col-xs-3"><img src="/public/home/ss/images/a03.png" alt=""><h4>快捷</h4><h5>资产流转快速<br>交易畅通无阻</h5></div>
+                <div class="col-xs-3"><img src="/public/home/ss/images/a02.png" alt=""><h4>服务</h4><h5>全天候客服在线服务<br>保障您的优质使用</h5></div>
+            </div>
+<!--            <div class="row">
+                <div class="col-xs-3"><i class="bk-ico bk-ico-top"></i><h4>顶级</h4><h5>重金千万注册顶级域名<br>是您选择的信心保证</h5></div>
+                <div class="col-xs-3"><i class="bk-ico bk-ico-safe"></i><h4>安全</h4><h5>一流团队打造专业安全<br>多重防御让您资产无忧</h5></div>
+                <div class="col-xs-3"><i class="bk-ico bk-ico-quick"></i><h4>快捷</h4><h5>资产流转快速<br>交易畅通无阻</h5></div>
+                <div class="col-xs-3"><i class="bk-ico bk-ico-service"></i><h4>服务</h4><h5>全天候客服在线服务<br>保障您的优质使用</h5></div>
+            </div>-->
+        </div>
+    </div>
+
+
+
+    <div class="bk-homeNews" style="display:;">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="hd clearfix">
+                        <h3 class="pull-left">{$indexArticleType[1]['title']}</h3>
+                        <a class="pull-right" href="/Article/index/id/{$indexArticleType[1]['id']}" target="_self">查看更多</a>
+                    </div>
+                    <div class="bd" style=" overflow:hidden;">
+                        <ul>
+                            <volist name="indexArticle[1]" id="vo">
+                            <li><a href="{:U('Article/detail','id='.$vo['id'])}" title="{$vo['title']}" target="_self">{$vo['title']}</a>
+                                <div class="snote"></div>
+                            </li>
+                            </volist>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-xs-6 bk-homeNews2">
+                    <div class="hd clearfix">
+                        <h3 class="pull-left">{$indexArticleType[0]['title']}</h3>
+                        <a class="pull-right" href="/Article/index/id/{$indexArticleType[0]['id']}" target="_self">查看更多</a>
+                    </div>
+                    <div class="bd" style=" overflow:hidden;">
+                        <ul>
+                            <volist name="indexArticle[0]" id="vo">
+                            <li><a href="{:U('Article/detail','id='.$vo['id'])}" title="{$vo['title']}" target="_self">{$vo['title']}</a>
+                                <div class="snote"></div>
+                            </li>
+                            </volist>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="bk-introduce helplist">
+        <div class="container">
+            <h3>新手帮助</h3>
+            <p style="margin-bottom:60px;">为您提供基本细致的操作方法</p>
+            <div class="row">
+                <div class="col-xs-4">
+                    <div class="row list">
+                        <div class="col-xs-6 ">
+                            <h4>如何充值提现</h4>
+                            <a href="#" target="_blank">数字资产充值</a>
+                            <a href="#" target="_blank">数字资产提现</a>
+                        </div>
+
+                        <div class="col-xs-6">
+                            <h4>认证</h4>
+                            <a href="#" target="_blank">谷歌认证</a>
+                            <a href="#" target="_blank">实名认证</a>
+                        </div>
+
+                        <div class="col-xs-6">
+                            <h4>交易委托</h4>
+                            <a href="#" target="_blank">限价买入/卖出</a>
+                            <a href="#" target="_blank">计划买入/卖出</a>
+                            <a href="#" target="_blank">API文档</a>
+                        </div>
+
+                        <div class="col-xs-6">
+                            <h4>推荐奖励</h4>
+                            <a href="#" target="_blank">邀请人奖励如何获得？</a>
+                        </div>
+
+                 </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="help-pic">
+                        <img src="/public/home/ss/images/mac.png" style="width: 114%;margin-left:-8px;">
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="help-note">
+                        <h5>HELP CENTER</h5>
+                        <h6>在这里我们为你准备了很多实例视频和教学</h6>
+                        <p class="line"></p>
+                        <a class="btn" href="#">新手帮助 ></a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+   <div class="bk-introduce partner">
+        <div class="container">
+            <h3>合作伙伴</h3>
+            <p style="margin-bottom:30px;">优质的合作伙伴，为您提供全方位的服务</p>
+            <div class="row">
+                <div class="col-xs-2"><a href="#" target="_blank"><img src="/public/home/ss/images/logo_btc123_g.png" _src="https://s.bitkk.coms/statics/img/home/v2/logo_btc123_c.png" _srcy="https://s.bitkk.coms/statics/img/home/v2/logo_btc123_g.png"><span>Click into >>></span></a></div>
+                <div class="col-xs-2"><a href="#" target="_blank"><img src="/public/home/ss/images/logo_bikan_g.png" _src="https://s.bitkk.coms/statics/img/home/v2/logo_bikan_c.png" _srcy="https://s.bitkk.coms/statics/img/home/v2/logo_bikan_g.png"  ><span>Click into >>></span></a></div>
+                <div class="col-xs-2"><a href="#" target="_blank"><img src="/public/home/ss/images/logo_8btc_g.png" _src="https://s.bitkk.coms/statics/img/home/v2/logo_8btc_c.png" _srcy="https://s.bitkk.coms/statics/img/home/v2/logo_8btc_g.png"  ><span>Click into >>></span></a></div>
+                <div class="col-xs-2"><a href="#" target="_blank"><img src="/public/home/ss/images/logo_etctm_g.png" _src="https://s.bitkk.coms/statics/img/home/v2/logo_etctm_c.png" _srcy="https://s.bitkk.coms/statics/img/home/v2/logo_etctm_g.png"  ><span>Click into >>></span></a></div>
+                <div class="col-xs-2"><a href="#" target="_blank"><img src="/public/home/ss/images/logo_ethfans_g.png" _src="https://s.bitkk.coms/statics/img/home/v2/logo_ethfans_c.png" _srcy="https://s.bitkk.coms/statics/img/home/v2/logo_ethfans_g.png"  ><span>Click into >>></span></a></div>
+                <div class="col-xs-2"><a href="#" target="_blank"><img src="/public/home/ss/images/logo_coindesk_g.png" _src="https://s.bitkk.coms/statics/img/home/v2/logo_coindesk_c.png" _srcy="https://s.bitkk.coms/statics/img/home/v2/logo_coindesk_g.png"  ><span>Click into >>></span></a></div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="bk-firendLink">
+        <div class="container">
+            <div class="fd">
+                <ul class="clearfix">
+                    <b>友情链接</b>
+
+                        <li><a href="#" target="_blank"  >千氪财经</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="bk-focus-fixed" style="display:none;">
+        <div class="cd" onclick="$('.bk-focus-fixed').slideUp()" title="关闭"><i class="iconfont">&#xe656;</i></div>
+        <div class="hd"><ul></ul></div>
+        <div class="bd">
+            <ul class="clearfix">
+                <li><a class="bg-focus" target="_blank" href="#" style="background-image:url(/public/home/ss/images/teach_homebanner.jpg)"></a></li>
+                <li><a class="bg-focus" target="_blank" href="#" style="background-image:url(/public/home/ss/images/ganggan_video_banner.png)"></a></li>
+                <li><a class="bg-focus" target="_blank" href="#" style="background-image:url(/public/home/ss/images/home-foucs-b.jpg)"></a></li>
+                <li><a class="bg-focus" target="_blank" href="#" style="background-image:url(/public/home/ss/images/openaccout_banner.png)"></a></li>
+            </ul>
+        </div>
+    </div>
+    <script type="text/javascript">
+
+
+
+    <!-- $(window).scroll(function() { 
+        var scrollTop=document.body.scrollTop||document.documentElement.scrollTop;
+        if(scrollTop+$(".bk-anyEq").height() > $(".bk-anyEq").offset().top){
+            $(".bk-anyEq").addClass("on");
+        }
+    });-->
+
+
+
+
+
+
+        $(function(){
+
+
+            /*var shload = function() {
+
+
+            }
+
+            if ("FF" == mb || "Chrome" == mb || "Safari" == mb) {
+                var oneonoff = true;
+                $('.carousel').on('slid.bs.carousel', function () {
+                    if(oneonoff){
+                        oneonoff = false;
+                        $('#particles').particleground({
+                            dotColor: 'rgba(255,255,255,0.2)',
+                            lineColor: 'rgba(255,255,255,0.2)',
+                            proximity:120
+                        });
+
+                    }
+                });
+
+            } */
+
+
+            $("#searCoinName").on({
+                "keyup": function () {
+                   searCoin(this.value);
+                },
+                "blur": function () {
+                   searCoin(this.value);
+                },
+                "change": function () {
+                   searCoin(this.value);
+                }
+          });
+
+         function searCoin(coinValue){
+                 $(".h-marketlist tbody tr").each(function(){
+                     $(this).removeClass("hidediv");
+                     var theName = $(this).attr("coinname");
+                     if((theName.indexOf(coinValue) >= 0 ) || (theName.indexOf(coinValue.toUpperCase()) >= 0 ) || (theName.indexOf(coinValue.toLowerCase()) >= 0 )  ) {
+                         $(this).removeClass("hidediv").addClass("showdiv");
+                     }else {
+                         $(this).removeClass("showdiv").addClass("hidediv");
+                     }
+
+                 })
+
+             }
+
+            $(".market_tab_hd a").on('click',function(){
+                $(this).addClass("on").siblings("a").removeClass("on");
+                $(".market_tab_bd table").eq($(this).index()).addClass("on").siblings("table").removeClass("on");
+                var coin = $(this).data('coin');
+                var channel = "top_all_" + coin;
+                if (webSocket && channel != oldTopallChannel) {
+                    MARKET.closeTopallSocket(oldTopallChannel);
+                    webSocket.sendMessage("{'event':'addChannel','channel':'" + channel + "','isZip':'" + isZipData() + "'}");
+                }
+                oldTopallChannel = channel;
+            });
+
+
+            $(".partner a").hover(function(){
+                $src = $(this).find("img").attr("_src");
+                $(this).find("img").attr("src",$src);
+            },function(){
+                $src = $(this).find("img").attr("_srcy");
+                $(this).find("img").attr("src",$src);
+            });
+
+
+            //移动设备下移除AD
+            if(JuaBox.isMobile()) {
+                $(".bk-focus-fixed").remove();
+            }else{
+                setTimeout(function(){
+                    //$(".bk-focus-fixed").slideDown();
+                    //jQuery(".bk-focus-fixed").slide({mainCell:".bd ul",titCell:".hd ul", autoPage:true, effect:"top",interTime:5000,autoPlay:true});
+                },1000)
+            }
+        });
+    </script>
+
+    <input type="hidden" id="isSafe" value="1">
+    <script>
+
+
+        var inAjaxing = false;
+        function login() {
+            if (inAjaxing) {
+                return;
+            }
+
+            var nike = $('#nick').val();
+            if (!nike) {
+                JuaBox.showTip("请输入用户名");
+                return;
+            }
+            var pwd = $('#pwd').val();
+            if (!pwd) {
+                JuaBox.showTip("请输入密码");
+                return;
+            }
+
+            var encrypt = new JSEncrypt({default_public_exponent : '65537'});
+            var pubTag = $("input[name='pubTag']").val();
+            encrypt.setPublicKey(pubTag);
+            vpwd = encrypt.encrypt(pwd);
+
+            var datas = '&nike='+encodeURIComponent(nike)+'&pwd='+vpwd+'&pubTag='+pubTag;
+            var isSafe = $('#isSafe').val();
+            if (isSafe && isSafe == 1)
+                datas = datas + "&safe=1";
+            else
+                datas = datas + "&safe=0";
+            inAjaxing = true;
+
+            $.getJSON(zb.vipDomain + "/user/doLogin?callback=?", datas, function(json) {
+
+                if (json.isSuc) {
+                    if(json.datas && json.datas.needJump){
+                        window.top.location.href = json.datas.jumpUrl;
+                    }else{
+                        if (localStorage[ZNAME+"fromurl"]) {
+                            window.top.location.href = localStorage[ZNAME+"fromurl"];
+                        } else {
+                            window.top.location.href = DOMAIN_TRANS + '/zbqc';
+                        }
+                    }
+                }else {
+                        inAjaxing = false;
+                    JuaBox.sure(json.des,{
+                        closeFun: function() {
+                            window.top.location.href = DOMAIN_VIP + "/user/login";
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+
+
+
+
+
+
+
+    <include file="Base:footer"/>
+
+
+  <script>
+$(".toolbar .item-online").click(function(){
+    $("#chatBtn").trigger("click");
+})
+</script>
+
+
+    <!-- Common FootMain End -->
+</div>
+<script type="text/javascript" src="/public/home/ss/js/index.js"></script>
+<script type="text/javascript" src="/public/home/ss/js/baidupush.js"></script>
+
+
+</body>
+</html>

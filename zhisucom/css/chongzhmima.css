@@ -1,0 +1,92 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html,
+body {
+	height: 100%
+}
+
+.right_mcontent {
+	position: relative
+}
+
+.reset-psw-con .mairu {
+	float: none;
+	margin: 0 auto
+}
+
+.mairu .m_title,
+.maichu .m_title,
+.bottom_maidan .m_title {
+	height: 45px;
+	background: none;
+	text-indent: 0
+}
+
+.reset-psw-con .mairu h4 {
+	text-align: center;
+}
+
+.reset-psw-con .m_con_buy {
+	margin-top: 10px;
+	height: auto !important;
+	min-height: 290px
+}
+
+.reset-psw-con .mairu input {
+	font-size: 14px;
+	padding: 10px
+}
+
+.leftregi form,
+.rightlogin form {
+	text-align: center;
+	margin: 30px auto 55px;
+	width: 51%
+}
+
+dl {
+	text-align: left;
+	padding-top: 20px;
+}
+
+.reset-psw-con .mairu input {
+	font-size: 14px;
+	padding: 10px
+}
+
+.leftregi form input,
+.rightlogin form input {
+	margin: 5px 0 0 0;
+	width: 100%;
+	border: 1px solid #ccc;
+	text-indent: 5px;
+	box-sizing: border-box
+}
+
+#captcha,
+#login_captcha {
+	width: 200px;
+	margin-right: 10px;
+	margin-top: 10px;
+	float: left
+}
+
+img[alt="Captcha"] {
+	height: 38px;
+	margin-top: 20px;
+	float: left;
+}
+.sub-btn:hover {
+	  background: #ca4141 !important;
+}
+.leftregi form input.sub-btn,
+.rightlogin form input.sub-btn {
+	border: none;
+	font-size: 14px;
+    padding: 10px;
+    background: #d45858;
+    color: white;
+}

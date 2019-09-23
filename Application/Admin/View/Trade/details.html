@@ -1,0 +1,117 @@
+<include file="Base:header"/>
+<div id="main-content">
+	<div id="top-alert" class="fixed alert alert-error" style="display: none;">
+		<button class="close fixed" style="margin-top: 4px;">&times;</button>
+		<div class="alert-content">警告内容</div>
+	</div>
+	<div id="main" class="main">
+		<div class="main-title-h">
+			<span class="h1-title">订单详情</span>
+		</div>
+		<div class="tab-wrap">
+			<div class="tab-content">
+				<form  method="post" class="form-horizontal" enctype="multipart/form-data">
+					<div id="tab" class="tab-pane in tab">
+						<div class="form-item cf">
+							<table>
+								<tr class="controls">
+									<td class="item-label">订单号:</td>
+									<td>
+										<input type="text" class="form-control input-10x" disabled style="color:#333;" name="contact_moble" value="{$list.number}">
+									</td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">匹配时间:</td>
+									<td>
+										<input type="text" class="form-control input-10x" disabled style="color:#333;" name="contact_weibo" value="{$list.paytime|date="Y-m-d H:i",###}">
+									</td>
+								</tr>
+								
+								<tr class="controls">
+									<td class="item-label">订单币种:</td>
+									<td>
+										<input type="text" class="form-control input-10x" disabled style="color:#333;" name="contact_weixin" value="{$list.market}">
+									</td>
+								</tr>
+								
+								
+								<tr class="controls">
+									<td class="item-label">单价:</td>
+									<td>
+										<input type="text" class="form-control input-10x" disabled style="color:#333;" name="contact_tqq" value="{$list.price}">
+									</td>		
+								</tr>
+						
+								
+								<tr class="controls">
+									<td class="item-label">打款金额:</td>
+									<td>
+										<input type="text" class="form-control input-10x" disabled style="color:#333;" name="contact_qq" value="{$list.cprice}">
+									</td>
+									
+								</tr>
+								<tr class="controls">
+									<td class="item-label">买家姓名：</td>
+									<td>
+										<input type="text" class="form-control input-10x" disabled style="color:#333;" name="contact_qqun" value="<?php $buy=M("user")->where("id=".$list['bid'])->find();echo $buy['truename'];?>">
+									</td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">买家电话：</td>
+									<td>
+										<input type="text" class="form-control input-10x" disabled style="color:#333;" name="contact_qqun" value="{$buy['moble']}">
+									</td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">卖家姓名：</td>
+									<td>
+										<input type="text" class="form-control input-10x" disabled style="color:#333;" name="contact_qqun" value="<?php $sell=M("user")->where("id=".$list['sid'])->find();echo $sell['truename'];?>">
+									</td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">卖家电话：</td>
+									<td>
+										<input type="text" class="form-control input-10x" disabled style="color:#333;" name="contact_qqun" value="{$sell['moble']}">
+									</td>
+								</tr>
+									<tr class="controls">
+									<td class="item-label">支付方式：</td>
+									<td>
+										<input type="text" class="form-control input-10x" disabled style="color:#333;" name="contact_qqun" value="<eq name="list['pay']" value="1">银行卡</eq><eq name="list['pay']" value="2">微信</eq><eq name="list['pay']" value="3">支付宝</eq>">
+									</td>
+								</tr>
+								
+								<tr class="controls">
+									<td class="item-label">支付凭证 :</td>
+									<td>
+										<div id="addpicContainer">
+
+												<img id="up_img" style="cursor:pointer;max-width:493px;height:350px" src="{$list.img}">
+
+										</div>
+									</td>
+								</tr>
+								
+				
+								
+								
+								<tr class="controls">
+									<td class="item-label"></td>
+									<td>
+										<div class="form-item cf">
+							
+											<a class="btn btn-return" href="__CONTROLLER__/reset/id/{$list['id']}" style="background-color:red;">重置订单</a>
+											<a class="btn btn-return" href="__CONTROLLER__/query/id/{$list['id']}">成交订单</a>
+										</div>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</form>
+				
+			</div>
+		</div>
+	</div>
+</div>
+<include file="Public:footer"/>

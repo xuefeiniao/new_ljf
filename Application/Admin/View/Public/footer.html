@@ -1,0 +1,25 @@
+<script type="text/javascript" src="__PUBLIC__/Admin/js/common.js"></script>
+<script type="text/javascript">
+	function lockscreen(){
+		layer.prompt({
+			title: '输入一个锁屏密码',
+			formType: 1,
+			btn: ['锁屏','取消'] //按钮
+		}, function(pass){
+			if(!pass){
+				layer.msg('需要输入一个密码!');
+			}else{
+				$.post("{:U('Login/lockScreen')}",{pass:pass},function(data){
+					layer.msg(data.info);
+					layer.close();
+					if(data.status){
+						window.location.href = "{:U('Login/lockScreen')}";
+					}
+				},'json');
+			}
+		});
+	}
+</script>
+ 
+</body>
+</html>

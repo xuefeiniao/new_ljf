@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="比特币交易平台，比特币交易所，数字资产交易所,数字货币交易平台" />
+        <meta name="format-detection" content="telephone=no,email=no,address=no" />
+        <title>场外交易</title>
+        <link rel="icon" type="image/x-icon" href="__PUBLIC__/favicon.ico">
+        <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/base.css" />
+        <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/common.css" />
+        <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/legalTrade.css"/>
+        <script src="__PUBLIC__/Home/js/newjs/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/layer/layer.js"></script>
+    </head>
+    
+    <body>
+        <div data-server-rendered="true" id="__nuxt">
+            <div class="nuxt-progress" style="width: 0%; height: 2px; background-color: rgb(59, 128, 112); opacity: 0;"></div>
+            <div id="__layout">
+                <div>
+                    <!--头部-->
+                    <include file="Public:header2"/>
+                    <!--头部   end-->
+                    <div class="wrap" >
+                        <div class="container" >
+                            <div class="advertising flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                <a target="_blank">
+                                    <div class="advertising-left flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                        <div></div>
+                                        <h3>重要通知：
+                                            <span>关于场外交易升级完成的公告</span>
+                                        </h3>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+                                <div class="slider">
+                                    <div class="index-slider">
+                                        <h2>选择币种</h2>
+                                        <volist name="bz_coin" id="vo">
+                                        <div class="item flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap active">
+                                            <a href="/C2c/index/market/{$vo['name']}">
+                                                <p>{$vo['name']|strtoupper}</p></a>
+                                        </div>
+                                        </volist>
+                                        
+                                        
+                                    </div>
+                                    <div class="index-slider">
+                                        <h2>新手指导</h2>
+                                        <div class="item flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap">
+                                            <a href="/Article/detail" target="_blank">
+                                                <p>通用币如何购买币</p></a>
+                                        </div>
+                                        <div class="item flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap">
+                                            <a href="/Article/detail" target="_blank">
+                                                <p>币如何换成通用币</p></a>
+                                        </div>
+                                        <div class="item flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap">
+                                            <a href="/Article/detail" target="_blank">
+                                                <p>场外交易的规则</p></a>
+                                        </div>
+                                        <div class="item flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap">
+                                            <a href="/Article/detail" target="_blank">
+                                                <p>认证商家规则</p></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="index-content">
+                                    <!---->
+                                    <div class="good flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                        <div class="good-img flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                                            <div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                                <div class="img"></div>
+                                                <p>充币快，提币快</p></div>
+                                            <div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                                <div class="img"></div>
+                                                <p>安全可信赖</p></div>
+                                            <div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                                <div class="img"></div>
+                                                <p>大额交易</p></div>
+                                        </div>
+                                        <div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                            <!-- <div class="check flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                                <a class="checkbox"></a>仅显示认证商家</div> -->
+                                            <div class="index-select">
+                                                <div class="otc-index-select st-form-item" style="min-height: 30px;">
+                                                    <p class="label" style="padding-right: 16px;"></p>
+                                                    <div tabindex="0" value="0" class="st-select item" style="width: 90px;">
+                                                        <div class="box flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap" style="padding-left:undefined;">
+                                                            <p>金额筛选</p>
+                                                            <span></span>
+                                                        </div>
+                                                        <ul style="width: 90px; display: none;">
+                                                            <li class="st-option">全部</li>
+                                                            <li class="st-option">5万以下</li>
+                                                            <li class="st-option">5万-20万</li>
+                                                            <li class="st-option">20万以上</li></ul>
+                                                    </div>
+                                                    <p class="tips" style="display: none;"></p>
+                                                    <p class="message" style="display: none;"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="type-nav flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+                                        <div class="nav flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                                            <a class="active">买入</a>
+                                            <a>卖出</a></div>
+                                        <div class="no-price">
+                                            <span>没有合适的价格？</span>
+                                            <a href="/User/publishAd">发布广告</a></div>
+                                    </div>
+                                    <div class="index-list">
+                                        <table class="buyList">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width: 180px;">交易员昵称</th>
+                                                    <!-- <th>累计成交</th>
+                                                    <th>平均交易时间</th> -->
+                                                    <th>数量</th>
+                                                    <th>价格</th>
+                                                    <th>最小成交量</th>
+                                                    <th>支付方式</th>
+                                                    <th>操作</th></tr>
+                                            </thead>
+                                            <tbody>
+                                                <volist name="ucoin" id="vo">
+                                                    <if condition="$vo['type'] eq 2">
+                                                <tr>
+                                                    <td>
+                                                        <div class="nickName flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                                            <!---->
+                                                            <div class="name login"><?php $res=M("user")->where('id='.$vo['sid'])->find();echo $res['truename'];?></div></div>
+                                                    </td>
+                                                   <!--  <td>2345单</td>
+                                                    <td>约2分钟</td> -->
+                                                    
+                                                    <!-- <td><td align="right">{$vo.residue}</td>{$Think.get.market|strtoupper}</td> -->
+                                                    <td align="right">{$vo.residue}&nbsp;{$Think.get.market|strtoupper}</td>
+                                                    <td class="price">
+                                                        <div>{$vo.price}CNY</div>
+                                                    </td>
+                                                    <td><div>{$vo.minnum}CNY</div></td>
+                                                    <td>
+                                                        <div class="flex-box flex-direction-row flex-justify-end flex-align-item-start flex-wrap-nowrap">
+                                                            <eq name="vo['bank']"   value="1">
+                                                            <div class="img icon_0"><img class="pay_icon2" src="/public/home/001_files/03.png"></div></eq>
+                                                            <eq name="vo['alipay']" value="1">
+                                                            <div class="img icon_1"><img class="pay_icon2" src="/public/home/001_files/02.png"></div></eq>
+                                                            <eq name="vo['wechat']" value="1">
+                                                            <div class="img icon_1"><img class="pay_icon2" src="/public/home/001_files/01.png"></div></eq>
+                                                        </div>
+
+                                                    </td>
+                                                    <td>
+                                                        <div class="flex-box flex-direction-row flex-justify-end flex-align-item-start flex-wrap-nowrap">
+                                                            <!-- <a class="buy">买入</a> -->
+                                                            <a onclick="quick_buyac('{$res['truename']}',{$vo.price},{$vo.residue},{$vo.minnum},{$vo.sid},{$vo.id},{$vo.bank},{$vo.alipay},{$vo.wechat})"  class="buy" style="cursor:pointer;">买入</a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                </if>
+                                                </volist>
+                                            </tbody>
+                                        </table>
+
+                                        <table class="sellList" style="display: none">
+                                            <thead>
+                                            <tr>
+                                                <th style="width: 180px;">交易员昵称</th>
+                                               <!--  <th>累计成交</th>
+                                                <th>平均交易时间</th> -->
+                                                <th>数量</th>
+                                                <th>价格</th>
+                                                <th>最小成交量</th>
+                                                <th>支付方式</th>
+                                                <th>操作</th></tr>
+                                            </thead>
+                                            <tbody>
+                                                <volist name="ucoin" id="vo">
+                                                    <if condition="$vo['type'] eq 1">
+                                            <tr>
+                                                <td>
+                                                    <div class="nickName flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                                        <!---->
+                                                        <div class="name login">
+                                                            <?php $res=M("user")->where('id='.$vo['bid'])->find();echo $res['truename'];?>
+                                                        </div></div>
+                                                </td>
+                                               <!--  <td>2345单</td>
+                                                <td>约2分钟</td> -->
+                                                
+                                                <td>{$vo.residue} &nbsp;{$Think.get.market|strtoupper}</td>
+                                                <td class="price">
+                                                    <div>{$vo.cprice}CNY</div>
+                                                    
+                                                </td>
+                                                <td><div>{$vo.minnum}CNY</div></td>
+                                                <td>
+                                                    <div class="flex-box flex-direction-row flex-justify-end flex-align-item-start flex-wrap-nowrap">
+                                                            <eq name="vo['bank']"   value="1">
+                                                            <div class="img icon_0"><img class="pay_icon2" src="/public/home/001_files/03.png"></div></eq>
+                                                            <eq name="vo['alipay']" value="1">
+                                                            <div class="img icon_1"><img class="pay_icon2" src="/public/home/001_files/02.png"></div></eq>
+                                                            <eq name="vo['wechat']" value="1">
+                                                            <div class="img icon_1"><img class="pay_icon2" src="/public/home/001_files/01.png"></div></eq>
+                                                        </div>
+                                                </td>
+                                                <td>
+                                                    <div class="flex-box flex-direction-row flex-justify-end flex-align-item-start flex-wrap-nowrap">
+                                                        <!-- <a class="sell">卖出</a> -->
+                                                         <a onclick="quick_sellac('{$res['truename']}',{$vo.price},{$vo.residue},{$vo.minnum},{$vo.bid},{$vo.id},{$vo.bank},{$vo.alipay},{$vo.wechat})" class="sell" style="cursor:pointer;">卖出</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                           </if>
+                                       </volist>
+                                            </tbody>
+                                        </table>
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                        <!--买入弹框-->
+                                        <div  class="popup buy-in flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap" style="display: none;">
+                                            <div class="popup-box" style="width: 640px;">
+                                                <div  class="header flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                                    <h3>确定下单</h3>
+                                                    <a></a>
+                                                </div>
+                                                <div  class="index-buy-window" >
+                                                    <div class="title flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                                        <h6 >买入</h6>
+                                                        <p >订单以当前价格为准，45秒后自动取消</p>
+                                                    </div>
+                                                    <input type="hidden" name="quick_buy_sid" id="quick_buy_sid">
+                                                    <input type="hidden" name="quick_buy_id" id="quick_buy_id">
+                                                    <div class="price flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                                        <div >
+                                                            <span >价格</span>
+                                                            <input id="quick_buy_rate" name="quick_buy_rate" class="inputRate" style="background-color: #fff;" <if condition="$stat neq 2"> disabled</if> value="{$buy|number_format=3}">
+                                                        </div>
+                                                        <div >
+                                                            CNY
+                                                        </div>
+                                                    </div>
+                                                    <form class="st-form form">
+                                                        <div class="st-form-item" style="margin-left: 42px;">
+                                                            <p class="label" style="padding-right: 16px;">数量</p>
+                                                            <input id="quick_buy_vol"  maxlength="16"  name="quick_buy_vol" class="inputRate st-input" maxlength="10" value="" style="width: 360px;"  placeholder="请输入数量">
+                                                            <div class="all">
+                                                                <a>{$Think.get.market|strtoupper}</a>
+                                                            </div>
+                                                            <p class="tips" style="display: none;"></p>
+                                                            <p class="message" style="display: none;">请输入正确的金额！</p>
+                                                        </div>
+                                                        <div class="st-form-item" style="margin-left: 42px;">
+                                                            <p class="label" style="padding-right: 16px;">金额</p>
+                                                            <input  type="text" maxlength="16" placeholder="请输入金额" class="st-input totalBuy" style="width: 360px;" id="quick_buy_amount" />
+                                                            <div class="all">
+                                                                <a>CNY</a>
+                                                            </div>
+                                                            <p class="tips" style="display: none;"></p>
+                                                            <p class="message" style="display: none;">请输入正确的金额！</p>
+                                                        </div>
+                                                        <!---->
+                                                       <!-- <div class="remaining flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                                            <a ><span >当前剩余</span> <span>
+                                                                {$sy_sum}
+                                                            </span> JTC </a>
+                                                             <a ><span >OTC账户余额</span> 0.0000 UCC </a>
+                                                        </div> -->
+                                                        <div class="btn flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+                                                            <a >自动取消(<span class="autoCancel" >45</span>)</a>
+                                                            <input  type="button" class="btnAskBid jiaoyi_btn  button button-flat-action" value="下单"  onclick="quickBuySubmit();"/>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+<script type="text/javascript">
+    function quick_buyac(name,price,residue,minnum,sid,id,bank,alipay,wechat){
+
+        $("#buy_noty_center_layout_container").show();
+        $('#quick_buy_biz').html(name);
+        $('#quick_buy_rate').val(price);
+        $('#quick_buy_amount_limit').val(minnum);
+        $("#quick_buy_vol").val(minnum);
+        $('#quick_buy_amount_cj').val(residue);
+        $("#quick_buy_sid").val(sid);
+        $("#quick_buy_id").val(id);
+        $("#quick_buy_amount").val( $("#quick_buy_vol").val()*$('#quick_buy_rate').val());
+        $('#quick_buy_pay_bank').parent().removeClass('checked-item');
+        $('#quick_buy_pay_ali').parent().removeClass('checked-item');
+        $('#quick_buy_pay_wechat').parent().removeClass('checked-item');
+        if(bank==1){
+            $('#quick_buy_pay_bank').parent().addClass('checked-item');
+        }
+        if(alipay==1){
+            $('#quick_buy_pay_ali').parent().addClass('checked-item');
+        }
+        if(wechat==1){
+            $('#quick_buy_pay_wechat').parent().addClass('checked-item');
+        }
+    }
+    function quickBuySubmit(){
+       var id=$("#quick_buy_id").val();
+       var sid=$("#quick_buy_sid").val();
+       var number=$("#quick_buy_vol").val();
+            $.ajax({
+                url:"{:U('C2c/sellac')}",
+                type:"POST",
+                dataType:"json",
+                data:{id:id,sid:sid,num:number},
+                success:function(res){
+                    if(res.status==1){
+                        layer.msg(res.msg,{icon : 1 });
+                        location.reload();
+                    }else{
+                        layer.msg(res.msg,{icon : 2 });
+                    }
+                }
+            });
+    }
+</script>
+                                        <!--卖出弹框-->
+                                        <div  class="popup sell-in flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap" style="display: none;">
+                                            <div class="popup-box" style="width: 640px;">
+                                                <div  class="header flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                                    <h3>确定下单</h3>
+                                                    <a></a>
+                                                </div>
+                                                <input type="hidden" name="quick_sell_id" id="quick_sell_id">
+                                                <input type="hidden" name="quick_sell_bid" id="quick_sell_bid">
+                                                <div  class="index-buy-window" >
+                                                    <div class="title flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                                        <h6 >卖出</h6>
+                                                        <p >订单以当前价格为准，45秒后自动取消</p>
+                                                    </div>
+                                                    <div class="price flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                                        <div >
+                                                            <span >价格</span>
+                                                            <input id="quick_sell_rate" name="quick_sell_rate" class="inputRate" maxlength="10" style="background: #fff;" <if condition="$stat neq 2"> disabled</if> value="{$sell|number_format=3}">
+                                                        </div>
+                                                        <div >
+                                                            CNY
+                                                        </div>
+                                                    </div>
+                                                    <form class="st-form form">
+                                                        <div class="st-form-item" style="margin-left: 42px;">
+                                                            <p class="label" style="padding-right: 16px;">数量</p>
+                                                            <input id="quick_sell_vol" name="quick_sell_vol" type="text" maxlength="10" placeholder="请输入数量" class="st-input inputRate" value="" style="width: 360px;" />
+                                                            <div class="all">
+                                                                <a>{$Think.get.market|strtoupper}</a>
+                                                            </div>
+                                                            <p class="tips" style="display: none;"></p>
+                                                            <p class="message" style="display: none;">请输入正确的金额！</p>
+                                                        </div>
+                                                        <div class="st-form-item" style="margin-left: 42px;">
+                                                            <p class="label" style="padding-right: 16px;">金额</p>
+                                                            <input  type="text" maxlength="16" placeholder="请输入金额" class="st-input totalSell" style="width: 360px;" id="quick_sell_amount" />
+                                                            <div class="all">
+                                                                <a>CNY</a>
+                                                            </div>
+                                                            <p class="tips" style="display: none;"></p>
+                                                            <p class="message" style="display: none;">请输入正确的金额！</p>
+                                                        </div>
+                                                        <!--<div class="st-form-item financePwd" style="margin-left: 42px;">
+                                                            <p class="label" style="padding-right: 16px;">资金密码</p>
+                                                            <input  type="password" maxlength="16" placeholder="请输入资金密码" class="st-input" style="width: 360px;" />
+                                                            <p class="tips" style="display: none;"></p>
+                                                            <p class="message" style="display: none;">请输入正确的密码！</p>
+                                                        </div>
+                                                        
+                                                        <div class="remaining flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                                            <a ><span >当前剩余</span> <span>988000</span> UCC </a>
+                                                            <a ><span >OTC账户余额</span> 0.0000 UCC </a>
+                                                        </div>-->
+                                                        <div class="btn flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+                                                            <a >自动取消(<span class="autoCancel" >45</span>)</a>
+                                                            <input  type="button" class="btnAskBid jiaoyi_btn  button button-flat-action" value="下单" onclick="quickSellSubmitsell1();"/>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+<script type="text/javascript">
+    function quick_sellac(name,price,residue,minnum,bid,id,bank,alipay,wechat){
+
+        $("#sell_noty_center_layout_container1").show();
+        $('#quick_sell_biz').html(name);
+        $('#quick_sell_rate').val(price);
+        $('#quick_sell_amount_limit').val(minnum);
+        $("#quick_sell_vol").val(minnum);
+        $('#quick_sell_amount_cj').val(residue);
+        $('#quick_sell_id').val(id);
+        $('#quick_sell_bid').val(bid);
+        $('#quick_sell_pay_bank').parent().removeClass('checked-item');
+        $('#quick_sell_pay_ali').parent().removeClass('checked-item');
+        $('#quick_sell_pay_wechat').parent().removeClass('checked-item');
+        $("#quick_sell_amount").val( $("#quick_sell_vol").val()*$('#quick_sell_rate').val());
+        if(bank==1){
+            $('#quick_sell_pay_bank').parent().addClass('checked-item');
+        }
+        if(alipay==1){
+            $('#quick_sell_pay_ali').parent().addClass('checked-item');
+        }
+        if(wechat==1){
+            $('#quick_sell_pay_wechat').parent().addClass('checked-item');
+        }
+    }
+    function quickSellSubmitsell1() {
+        var id=$("#quick_sell_id").val();
+        var bid=$("#quick_sell_bid").val();
+        var number=$("#quick_sell_vol").val();
+        $.ajax({
+            url:"{:U('C2c/buyac')}",
+            type:"POST",
+            dataType:"json",
+            data:{id:id,bid:bid,num:number},
+            success:function(res){
+                if(res.status==1){
+                    layer.msg(res.msg,{icon : 1 });
+                    location.reload();
+                }else{
+                    layer.msg(res.msg,{icon : 2 });
+                }
+            }
+        });
+    }
+</script>
+                                        <!---->
+                                        <div class="popup no-verity flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap" style="display: none;">
+                                            <div class="popup-box" style="width: 450px;">
+                                                <div class="header flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                                    <h3>高级认证</h3><a></a></div>
+                                                <div class="order-cancel-window flex-box flex-direction-column flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                                    <h4>该订单只能通过高级认证的用户才能交易</h4>
+                                                    <div class="flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+                                                        <a href="/User/senior" class="btn1">去认证</a>
+                                                        <a  class="btn2">关闭</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--底部信息-->
+                        <include file="Public:footer"/>
+                        <!--底部信息 end-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script src="__PUBLIC__/Home/js/newjs/legalTrade.js"></script>
+        <script>
+            /*当前页*/
+            $(".nav>div:nth-child(1)").find("a").addClass("active");
+
+            /*买入/卖出订单切换*/
+            $(".nav a").click(function () {
+                $(".nav a").removeClass("active");
+                $(this).addClass("active");
+                if($(this).index()==0){
+                    $(".buyList").show();
+                    $(".sellList").hide();
+                }else{
+                    $(".buyList").hide();
+                    $(".sellList").show();
+                }
+            });
+
+            /*购买数量*/
+            $("#buyNumber").bind('input',function(){
+                var ttype=1;
+                var num=$('#buyNumber').val();
+
+                $.ajax({
+                    url:"{:U('C2c/gujia')}",
+                    type:"POST",
+                    dataType:"json",
+                    data:{ttype:ttype,num:num,},
+                    success:function(res){
+                        if(res.status==1){
+
+                            $('#buyUnitPrice').val(res.price);
+                        }
+
+                    }
+                });
+            });
+
+
+            // 卖出数量
+            $("#sellNumber").bind('input',function(){
+
+                var ttype=2;
+                var num=$('#sellNumber').val();
+
+                $.ajax({
+                    url:"{:U('C2c/gujia')}",
+                    type:"POST",
+                    dataType:"json",
+                    data:{ttype:ttype,num:num},
+                    success:function(res){
+                        if(res.status==1){
+
+                            $('#sellUnitPrice').val(res.price);
+                        }
+
+                    }
+                });
+            });
+
+        </script>
+
+        <script>
+            $(function () {
+
+                $('#buyBtn').click(function () {
+                    $(this).closest(".st-form").find(".st-input").each(function () {
+                        if ($(this).val() == "") {
+                            $(this).addClass("error").siblings("p.message").addClass("error").show();
+                            return false;
+                        } else {
+                            $(this).removeClass("error").siblings("p.message").removeClass("error").hide();
+                            $(".popup").hide();
+                            $(".st-input").val();
+
+                            $.post("/C2c/add1", {
+                                type: 1,
+                                price: $('#buyUnitPrice').val(),
+                                num: $('#buyNumber').val(),
+                            }, function (data) {
+                                if (data.status == 1) {
+                                    layer.msg(data.msg, {icon: 1});
+                                    if (data.url) {
+                                        window.location.replace(data.url);
+                                        return;
+                                    }
+                                    window.location.reload();
+                                } else {
+                                    layer.msg(data.msg, {icon: 2});
+                                    if (data.url) {
+                                        window.location.replace(data.url);
+                                    }
+                                }
+
+                            }, "json");
+                        }
+                    });
+                });
+
+
+
+
+                    $('#sellBtn').click(function () {
+
+                        $(this).closest(".st-form").find(".st-input").each(function(){
+                            if($(this).val()==""){
+                                $(this).addClass("error").siblings("p.message").addClass("error").show();
+                                return false;
+                            }else{
+                                $(this).removeClass("error").siblings("p.message").removeClass("error").hide();
+                                $(".popup").hide();
+                                $(".st-input").val();
+
+                                $.post("/C2c/add1", {
+                                    type:2,
+                                    price:$('#sellUnitPrice').val(),
+                                    num: $('#sellNumber').val(),
+                                }, function (data) {
+                                    if (data.status == 1) {
+                                        layer.msg(data.msg, {icon: 1});
+                                        if(data.url){
+                                            window.location.replace(data.url);return;
+                                        }
+                                        window.location.reload();
+                                    } else {
+                                        layer.msg(data.msg, {icon: 2});
+                                        if (data.url) {
+
+                                            window.location.replace(data.url);
+                                        }
+                                    }
+                                }, "json");
+                            }
+                        });
+
+
+
+                    });
+            });
+        </script>
+    </body>
+
+</html>

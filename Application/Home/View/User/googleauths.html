@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="比特币交易平台，比特币交易所，数字资产交易所,数字货币交易平台" />
+    <meta name="format-detection" content="telephone=no,email=no,address=no" />
+    <eq name="Think.session.lang" value="1">
+									<notempty name="coninfo['web_name']" value=" ">
+								
+										<title>{$coninfo['web_name']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="2">
+									<notempty name="coninfo['web_name_e']" value=" ">
+										<title>{$coninfo['web_name_e']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="3">
+									<notempty name="coninfo['web_name_en']" value=" ">
+										<title>{$coninfo['web_name_en']}</title>
+									</notempty>
+								</eq>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/base.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/common.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/newcss/bindGoogle.css" media="all"/>
+    <script data-n-head="true" src="__PUBLIC__/Home/js/newjs/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/layer/layer.js"></script>
+    <style>
+        .input-item input{
+            width:100%;
+            height:100%;
+            text-align: center;
+        }
+    </style>
+    
+</head>
+<body>
+
+<!--<img src="https://mon.58coin.com/mon.gif" id="img-hidden" />-->
+<div id="__nuxt">
+    <div class="nuxt-progress" style="width: 0%; height: 2px; background-color: rgb(59, 128, 112); opacity: 0;"></div>
+    <div id="__layout">
+        <div>
+            <!--头部内容-->
+            <include file="Public:header1"/>
+            <!--头部内容   end-->
+
+            <div class="wrap">
+                <div  class="container">
+                    <div  class="user-bread flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                        <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                            <a href="/User/index" class="nuxt-link-active">
+                                <div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <span>账户安全</span>
+                                    <i></i>
+                                </div></a>
+                        </div>
+                        <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                            <p>绑定谷歌</p>
+                        </div>
+                    </div>
+                    <div class="st-content" style="margin-top: 30px;">
+                        <h2>绑定Google验证</h2>
+                        <div class="line"></div>
+                        <div style="padding-top: 0px; padding-bottom: 0px;" class="bindDiv">
+                            <div class="st-form">
+                                <div class="st-form-item">
+                                    <p class="label" style="padding-right: 16px;">在Google验证器中添加该密钥</p>
+                                    <div class="google-key google-key">
+                                        <span class="key miyaochuan" id="gkey">{$goolekey}<a>复制</a></span>
+                                        <span class="or">或者</span>
+                                        <span>点击Google验证器中扫一扫</span>
+                                        <span class="code-img">
+                                            <div class="key-code flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap">
+                                             <img src="__ROOT__/{$orc}" alt="" style="width:100%;height:100%;">
+                                             <div class="arrow"></div>
+                                            </div>
+                                        </span>
+                                        <input type="text" id="copy-key" />
+                                    </div>
+                                    <p class="tips" style="display: none;"></p>
+                                    <p class="message" style="display: none;"></p>
+                                </div>
+                                <div class="st-form-item">
+                                    <p class="label" style="padding-right: 16px;">Google验证</p>
+                                    <div class="google-code">
+                                        <input maxlength="6" class="real-input" >
+                                        <div class="input-item" name="verify" id="verify"/>
+                                            <input type="text" maxlength="1">
+                                            <input type="text" maxlength="1">
+                                            <input type="text" maxlength="1">
+                                            <input type="text" maxlength="1">
+                                            <input type="text" maxlength="1">
+                                            <input type="text" maxlength="1">
+                                        </div>
+                                    </div>
+                                    <p class="tips" style="display: none;"></p>
+                                    <p class="message" style="display: none;">请输入正确的google验证码</p>
+                                </div>
+                                <div class="st-form-item">
+                                    <p class="label" style="padding-right: 16px;">短信验证码</p>
+                                    <input id="sendMsg" type="number" placeholder="请输入 6 位短信验证码" class="st-input" style="width: 200px;"  name="sendMsg"/>
+                                    <div class="send-SMS code">
+                                        <a class="get-code button" id="smsbtn" onclick="sendMessage()">
+                                            <div>
+                                                发送短信验证码
+                                            </div></a>
+                                        <!---->
+                                    </div>
+                                    <p class="tips" style="display: none;"></p>
+                                    <p class="message" style="display: none;">请输入正确的短信验证码</p>
+                                </div>
+                                <div class="twice st-form-item">
+                                    <p class="label" style="padding-right: 16px;"></p>
+                                    <p><span class="icon select"></span><span class="message">将二次认证方式改为谷歌验证</span></p>
+                                    <p class="tips" style="display: none;"></p>
+                                    <p class="message" style="display: none;"></p>
+                                </div>
+                                <input type="submit" value="绑 定" id="suresure" />
+                            </div>
+                        </div>
+                        <div style="padding-top:0;padding-bottom:0;display: none;" class="successDiv">
+                            <div class="success-email">
+                                <div class="icon-success"></div>
+                                <p>绑定谷歌成功</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="st-content download" style="margin-top: 20px;">
+                        <h2>扫一扫下载 Google 验证器</h2>
+                        <div class="line"></div>
+                        <div style="padding-top: 0px; padding-bottom: 0px;">
+                            <div class="row flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap">
+                                <figure>
+                                    <div class="ios"></div>
+                                    <figcaption>App Store 下载</figcaption>
+                                </figure>
+                                <figure>
+                                    <div class="android"></div>
+                                    <figcaption>Google Play 下载</figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--底部内容-->
+                <include file="Public:footer"/>
+                <!--底部内容   end-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="__PUBLIC__/Home/js/newjs/bindGoogle.js"></script>
+<script>
+    var InterValObj; //timer变量，控制时间
+    var count = 60; //间隔函数，1秒执行
+    var curCount;//当前剩余秒数
+    function sendMessage() {
+        if($("#smsbtn").find("div").attr("disabled")=="disabled"){
+            return false;
+        }else{
+            var mobile = "{$user.moble}";
+            //validatemobile(mobile);//调用上边的方法验证手机号码的正确性
+            $.ajax({
+                type: "POST", //用POST方式传输     　　
+                dataType: "json", //数据格式:JSON
+                data: {mobile:mobile},
+                url: "{:U('Login/real')}", //目标地址.
+                success:function(data){
+                    if(data.status= 1){
+                        layer.msg("发送成功！", {icon: 1});
+                    }
+                }
+
+            });
+
+            curCount = count;
+            //设置button效果，开始计时
+            $("#smsbtn").find("div").attr("disabled", "true");
+            $("#smsbtn").find("div").html( + curCount + "s");
+            InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+            //向后台发送处理数据
+        }
+
+    }
+    //timer处理函数
+    function SetRemainTime() {
+        if (curCount == 0) {
+            window.clearInterval(InterValObj);//停止计时器
+            $("#smsbtn").find("div").removeAttr("disabled");//启用按钮
+            $("#smsbtn").find("div").html("发送短信验证码");
+
+        }
+        else {
+            curCount--;
+            $("#smsbtn").find("div").html( + curCount + "s");
+        }
+    }
+
+
+
+    $(document).ready(function(){
+        $("#suresure").click(function(){
+            var key=$('#gkey').html();
+            var $v=$("#verify").find("input");
+            var verify=$v.eq(0).val()+$v.eq(1).val()+$v.eq(2).val()+$v.eq(3).val()+$v.eq(4).val()+$v.eq(5).val();
+            var sendMsg=$("#sendMsg").val();
+            if(key==""||key==null){
+                layer.msg("请刷新页面重新生成验证码", {icon: 2});
+                return false;
+            }
+
+            for(var i=0;i<6;i++){
+                if($v.eq(i).val()==''||$v.eq(i).val()==null){
+                    // layer.msg("请输入正确的谷歌验证码！", {icon: 2});
+                    $(".input-item").addClass("error").closest(".google-code").siblings("p.message").addClass("error").show();
+                    return false;
+                }
+            }
+            
+            if(sendMsg==""||sendMsg==null){
+                $("#sendMsg").addClass("error").siblings("p.message").addClass("error").show();
+                return false;
+            }
+
+            $.ajax({
+                type:"POST",
+                dataType:'json',
+                url:"{:U('User/goolesave')}",
+                data:{verify:verify,sendMsg:sendMsg,key:key},
+                success:function(data){
+                    console.log(data)
+                    if(data.status==1){
+                        layer.msg(data.msg,{icon:1});
+                        location.reload();
+                        $(".bindDiv").hide();
+                        $(".successDiv").show();
+                    }else{
+                        layer.msg(data.msg,{icon:2});
+                    }
+
+                }
+            });
+        });
+
+    });
+</script>
+
+<script>
+    // goole验证码
+    onload = function(){
+        var txts = $("#verify").find("input");
+        for(var i = 0; i<txts.length;i++){
+            var t = txts[i];
+            t.index = i;
+            t.setAttribute("readonly", true);
+            t.onkeyup=function(e){
+                var _this = $(this);
+                var ev = e;
+                this.value=this.value.replace((/[^\d]/g),'');
+                if(this.value!=''){
+                    var next = this.index + 1;
+                    if(next > txts.length - 1) return;
+                    txts[next].removeAttribute("readonly");
+                    txts[next].focus();
+                }
+                keyupFun(_this,ev);
+                $(this).closest(".input-item").removeClass("error").closest(".google-code").siblings("p.message").removeClass("error").hide();
+
+            }
+        }
+        txts[0].removeAttribute("readonly");
+    };
+
+
+    //监听backspace事件
+    function keyupFun(value,e) {
+        var k = e.keyCode;
+        var val = e.key;
+        if (k == 8) {				//8是backspace的keyCode
+            value.prev().focus();
+        } else {
+            return false;
+        }
+    }
+
+
+</script>
+</body>
+</html>

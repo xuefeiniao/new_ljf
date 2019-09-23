@@ -1,0 +1,203 @@
+﻿<include file="Base:header1"/>
+<include file="Base:header"/>
+<link rel="stylesheet" href="/public/home/ss/css/otc.css">
+
+<div class="page-main">
+    <div class="container">
+
+        <include file="Otc/lst" />
+
+
+
+
+        <div class="page-content">
+            <div class="page-title">
+                <h5>
+                    <span class="current">商家资料</span>
+
+                </h5>
+            </div>
+            <div class="user-info row">
+                <div class="base col-sm-3">
+                    <div class="avatar-wrap">
+                        <div class="avatar"></div>
+                        <div class="username">
+                            航哥专业场外<br>
+
+                        </div>
+                    </div>
+                    <ul>
+
+
+                        <li><span>注册时间</span> 2017-12-07 </li>
+                    </ul>
+                </div>
+                <div class="count col-sm-6">
+                    <div class="col-sm-4">
+                        <div class="title">总成交量</div>
+                        1319
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="title">总申诉量</div>
+                        31
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="title">总胜诉量</div>
+                        29
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="title">近30日成交</div>
+                        1057
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="title">近30日申诉</div>
+                        23
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="title">近30日胜诉</div>
+                        1
+                    </div>
+                </div>
+                <div class="auth col-sm-3">
+                    <div class="col-sm-6">
+                        <div class="title">实名认证</div>
+                        <i class="fa fa-check"></i>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="title">高级认证</div>
+                        <i class="fa fa-check"></i>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="title">邮箱认证</div>
+                        <i class="fa fa-check"></i>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="title">手机认证</div>
+                        <i class="fa fa-check"></i>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="page-title">
+                <h5><span class="current">航哥专业场外 发布的买卖</span></h5>
+            </div>
+            <div class="tabs order-type">
+                <a class="" href="/otc/user/1012055?type=2">在线卖出</a>
+                <a class="active" href="/otc/user/1012055?type=1">在线买入</a>
+            </div>
+            <div class="tab-content">
+                <div class="table-wrap">
+                    <table class="table table-noborder c2c-table">
+                        <thead>
+                        <tr>
+                            <td>广告ID</td>
+                            <td class="coin">市场</td>
+                            <td class="pay-method">付款方式</td>
+                            <td class="num">数量</td>
+                            <td class="price">价格</td>
+                            <td>备注（MEMO）</td>
+                            <td class="action">操作</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+
+
+
+                        <tr>
+                            <td style="width: 10%;">24733</td>
+                            <td style="width: 10%;" class="coin">USDT/CNY</td>
+                            <td style="width: 15%;" class="pay-method">
+
+                                <i class="pm-icon pm-unionpay"></i>
+
+                                <i class="pm-icon pm-alipay"></i>
+
+                            </td>
+                            <td style="width: 10%;" class="num">999817.23 USDT</td>
+                            <td style="width: 15%;" class="price">
+                                6.414 CNY <br>
+                                <span>100-1000000</span>
+                            </td>
+                            <td style="text-align: left; word-break:break-all;word-wrap:break-word;white-space: pre-wrap;width: 30%;">人在，专业场外，安心下单，通宵打款13807978887</td>
+                            <td style="width: 10%;" class="action">
+
+
+
+                                <a class="btn btn-sell" href="/otc/order/sell/24733">卖出</a>
+
+
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td style="width: 10%;">24184</td>
+                            <td style="width: 10%;" class="coin">QC/CNY</td>
+                            <td style="width: 15%;" class="pay-method">
+
+                                <i class="pm-icon pm-unionpay"></i>
+
+                                <i class="pm-icon pm-alipay"></i>
+
+                            </td>
+                            <td style="width: 10%;" class="num">400000 QC</td>
+                            <td style="width: 15%;" class="price">
+                                0.996 CNY <br>
+                                <span>5000-1000000</span>
+                            </td>
+                            <td style="text-align: left; word-break:break-all;word-wrap:break-word;white-space: pre-wrap;width: 30%;">通宵收qc，安心下单，秒打款13807978887</td>
+                            <td style="width: 10%;" class="action">
+
+
+
+                                <a class="btn btn-sell" href="/otc/order/sell/24184">卖出</a>
+
+
+                            </td>
+                        </tr>
+
+
+
+                        </tbody><tfoot>
+                        <tr>
+                            <td colspan="11">
+                                <div id="page_navA" class="page_nav">
+                                    <div class="con">
+
+
+
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        </tfoot>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+    <include file="Base:footer"/>
+
+
+  <script>
+$(".toolbar .item-online").click(function(){
+    $("#chatBtn").trigger("click");
+})
+</script>
+
+</div>
+<script type="text/javascript" src="/public/home/ss/js/index.js"></script>
+<script type="text/javascript" src="/public/home/ss/js/baidupush.js"></script>
+
+
+</body>
+</html>

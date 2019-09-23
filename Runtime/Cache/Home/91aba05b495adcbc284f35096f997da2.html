@@ -1,0 +1,635 @@
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="<?php echo ($web_keywords); ?>" />
+    <meta name="format-detection" content="telephone=no,email=no,address=no" />
+    <?php if(($_SESSION['lang']) == "1"): if(!empty($coninfo['web_name'])): ?><title><?php echo ($coninfo['web_name']); ?></title><?php endif; endif; ?>
+								<?php if(($_SESSION['lang']) == "2"): if(!empty($coninfo['web_name_e'])): ?><title><?php echo ($coninfo['web_name_e']); ?></title><?php endif; endif; ?>
+								<?php if(($_SESSION['lang']) == "3"): if(!empty($coninfo['web_name_en'])): ?><title><?php echo ($coninfo['web_name_en']); ?></title><?php endif; endif; ?>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="stylesheet" href="/Public/Home/css/newcss/base.css"/>
+    <link rel="stylesheet" href="/Public/Home/css/newcss/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/Public/Home/css/newcss/change_login_password.css" media="all"/>
+    <script data-n-head="true" src="/Public/Home/js/newjs/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="/Public/layer/layer.js"></script>
+
+    <style>
+        .st-select{
+            position: relative;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            outline: none
+        }
+
+        .st-select .box {
+            width: 100%;
+            height: 40px;
+            border: 1px solid #ced0da;
+            border-radius: 4px;
+            padding: 0 10px;
+            background: -webkit-gradient(linear, left top, left bottom, from(#fefeff), to(#f3f5f8));
+            background: linear-gradient(180deg, #fefeff 0, #f3f5f8);
+            cursor: pointer
+        }
+
+        .st-select .box p {
+            font-size: 14px
+        }
+
+        .st-select .box span {
+            display: block;
+            width: 8px;
+            height: 5px;
+            background: url(/Public/Home/image/accountMsg/icon-tkxl.9d30e44.png);
+            -webkit-transition: -webkit-transform .3s ease-in-out;
+            transition: -webkit-transform .3s ease-in-out;
+            transition: transform .3s ease-in-out;
+            transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out;
+            -moz-transition: transform ease-in-out .3s;
+            -webkit-transition: transform .3s ease-in-out;
+            -o-transition: transform ease-in-out .3s
+        }
+
+        .st-select .box span.active {
+            transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+            -moz-transform: rotate(180deg);
+            -webkit-transform: rotate(180deg);
+            -o-transform: rotate(180deg)
+        }
+
+        .st-select ul{
+            position: absolute;
+            margin-top: 4px;
+            max-height: 180px;
+            border: 1px solid #ced0da;
+            border-radius: 4px;
+            background-color: #f9fafc;
+            overflow: scroll;
+            z-index: 99;
+            overflow-x: hidden
+        }
+        .st-option {
+            width: 100%;
+            height: 40px;
+            padding: 0 10px;
+            line-height: 40px;
+            border-bottom: 1px solid #ced0da;
+            font-size: 14px;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+<body>
+
+<!--<img src="https://mon.58coin.com/mon.gif" id="img-hidden" />-->
+<div id="__nuxt">
+    <div class="nuxt-progress" style="width: 0%; height: 2px; background-color: rgb(59, 128, 112); opacity: 0;"></div>
+    <div id="__layout">
+        <div>
+            <!--头部内容-->
+            
+<style>
+.common-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    min-width: 1300px;
+    width: 100%;
+    border-bottom: 1px solid #c5d4ed;
+    -webkit-box-shadow: 0 3px 8px hsla(0, 0%, 80%, .5);
+    box-shadow: 0 3px 8px hsla(0, 0%, 80%, .5);
+    padding: 18.5px 42px 18.5px 50px;
+    background: #fff
+}
+
+.common-header .logo {
+    display: block;
+    width: 168px;
+    height: 46px;
+    /*background: url(/Public/Home/image/common/logo_be.png) no-repeat;*/
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    text-indent: -9999px
+}
+
+/*.common-header .logo.cn {*/
+    /*background-image: url(/Public/Home/image/common/logo_bc.png)*/
+/*}*/
+
+/*.common-header .logo.en {*/
+    /*background-image: url(/Public/Home/image/common/logo_be.png)*/
+/*}*/
+
+.common-header .line {
+    width: 1px;
+    background: #e2eafb
+}
+
+.common-header .line-10 {
+    margin: 0 20px;
+    height: 10px
+}
+
+.common-header .line-24 {
+    margin: 0 40px;
+    height: 24px
+}
+
+.common-header a {
+    font-size: 14px;
+    color: #6c85ae
+}
+
+.common-header a:hover {
+    color: #0976d9;
+}
+.common-header a.active {
+    color: #0976d9;
+}
+
+.common-header .account-nav {
+    margin-right: 60px
+}
+
+.common-header .account-nav a, .common-header .main-nav a {
+    margin-right: 30px
+}
+
+.common-header .account-nav a:last-child, .common-header .main-nav a:last-child {
+    margin-right: 0
+}
+
+.common-header .blank {
+    -webkit-box-flex: 1;
+    -moz-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1
+}
+
+@media screen and (max-width: 1500px) {
+    .common-header {
+        padding: 18.5px 28px
+    }
+
+    .common-header .line-24 {
+        margin: 0 20px
+    }
+
+    .common-header .account-nav a, .common-header .main-nav a {
+        margin-right: 20px
+    }
+}
+</style>
+
+<div class="common-header flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" style="background:#12122a;"> 
+    <a href="/Index/index" class="logo cn" style="background-image: url('/Upload/public/<?php echo ($web_logo); ?>'); width:115px;height:45px;"></a>
+    <div class="line line-24"></div>
+    <div class="main-nav flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+        <a onclick="cy()"><?php echo ($GLOBALS['c2c']); ?></a>
+        <a href="/Trade/index/market/eth_jeff"><?php echo ($GLOBALS['trade']); ?></a>
+        <a href="/Lever/borrowMoney/market/usdt_jeff"><?php echo ($GLOBALS['borrowMoney']); ?></a>
+		<a href="/Article/officialAdModal" target="_blank"><?php echo ($GLOBALS['office-notice']); ?></a>
+        <!---->
+        <!---->
+    </div>
+    <div class="blank"></div>
+    <div class="account-nav flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+        <a href="/Finance/qianbao" class="nuxt-link-exact-active nuxt-link-active"><?php echo ($GLOBALS['qianbao']); ?></a>
+        <a href="/Finance/myzr/name/jeff" class=""><?php echo ($GLOBALS['recharge']); ?></a>
+        <a href="/Finance/myzc/name/jeff" class=""><?php echo ($GLOBALS['withdraw']); ?></a>
+        <a href="/Article/index" target="_blank"><?php echo ($GLOBALS['article']); ?></a>
+    </div>
+    <?php if($_SESSION['userName'] != ''): ?><a class="nuxt-link-exact-active nuxt-link-active" href="/User/index"><?php echo ($GLOBALS['user']); ?>：<span id="userName"><?php echo ($_SESSION['userName']); ?></span></a>
+        <div class="line line-10"></div>
+        <a onclick="loginout();"><?php echo ($GLOBALS['loginout']); ?></a>
+    <?php else: ?>
+        <a style="margin-left: 30px;" href="/Login/register?login"><?php echo ($GLOBALS['login']); ?></a>
+        <div class="line line-10"></div>
+        <a href="/Login/register?register"><?php echo ($GLOBALS['register']); ?></a><?php endif; ?>
+
+</div>
+
+<script>
+function loginout(){
+						$.post("/Login/loginout",{},function(data){
+							if(data.status==1){
+								layer.msg(data.info,{icon:1});
+								window.setTimeout("window.location='/Index'",1000);
+							}
+						},"json");
+					}
+    /*隐藏手机号中间4位*/
+    var phone = $('#userName').html();
+    var mphone = phone.substr(0, 3) + '****' + phone.substr(7);
+    $('#userName').html(mphone);
+</script>
+<script>
+					function cy(){
+						var uid = "<?php echo ($uid); ?>";
+						var zhifubao = "<?php echo ($c2c_user['zhifubao']); ?>";
+						var weixin = "<?php echo ($c2c_user['weixin']); ?>";
+						var bank = "<?php echo ($c2c_user['bank']); ?>";
+						var paypwd = "<?php echo ($c2c_user['paypassword']); ?>";
+						//alert(zhifubao);
+						if(uid>0){
+							if((zhifubao == '' || zhifubao=='NULL')&&(weixin == '' || weixin=='NULL')&&(bank == '' || bank=='NULL')){
+								layer.msg('请设置收款方式', {icon: 2});
+								location.href="/User/myCenter";
+							}
+							else if(paypwd == "" || paypwd == "NULL"){
+								layer.msg('请设置资金密码', {icon: 2});
+								location.href="/User/resetFiancePwd";
+							}else{
+								location.href="/C2c/index/market/jeff/money/0";
+							}
+							
+						}else{
+							layer.msg('请先登录', {icon: 2});
+							location.href="/C2c/index/market/jeff/money/0";
+						}
+					}
+				</script>
+
+            <!--头部内容   end-->
+
+            <div class="wrap">
+                <div  class="container">
+                    <div  class="user-bread flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                        <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                            <a href="/User/index" class="nuxt-link-active">
+                                <div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <span>账户安全</span>
+                                    <i></i>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                            <p>初级认证</p>
+                        </div>
+                    </div>
+                    <div  class="st-content" style="margin-top: 30px;">
+                        <h2>初级认证</h2>
+                        <div class="line"></div>
+                        <div style="padding-top: 20px; padding-bottom: 112px;">
+                            <div class="st-prompt">
+                                <span></span>
+                                <p>根据国家关于虚拟货币交易监管政策，用户需完成实名认证才可进行提现操作。</p>
+                            </div>
+                            <div class="st-form">
+                                <div class="st-form-item">
+                                    <!-- <p class="label" style="padding-right: 16px;">请选择国家</p> -->
+                                    <div tabindex="0" class="st-select" style="width: 350px; display: none" >
+                                        <div class="box flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                            <p id="country_code" name="country_code">中国大陆</p><span class=""></span>
+                                        </div>
+                                        <ul  style="width: 350px; display: none;">
+                                            <li class="st-option">中国大陆</li>
+                                            <li class="st-option">中国澳门</li>
+                                            <li class="st-option">中国香港</li>
+                                            <li class="st-option">英国</li>
+                                            <li class="st-option">俄罗斯</li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                                <div class="st-form-item">
+                                    <p class="label" style="padding-right: 16px;">姓名</p>
+                                    <input  name="realname" id="realname"  type="text" placeholder="请输入姓名" class="st-input" <?php if($user['truename'] != ''): ?>value="<?php echo ($user['truename']); ?>" readonly="readonly"<?php endif; ?>/>
+                                    <p class="tips" style="">请务必使用真实本人姓名及身份证号，一旦认证成功不可再次修改</p>
+                                    <p class="message" style="display: none;">请输入姓名！</p>
+                                </div>
+                                <div class="st-form-item">
+                                    <p class="label" style="padding-right: 16px;">身份证号</p>
+                                    <input type="text" placeholder="请输入证件号！" class="st-input" id="myId" <?php if($user['idcard'] != ''): ?>value="<?php echo ($user['idcard']); ?>" readonly="readonly"<?php endif; ?>/>
+                                    <p class="tips" style="display: none;"></p>
+                                    <p class="message" style="display: none;">请输入证件号！</p>
+                                </div>
+                                <?php if(($user['idcardauth']) == "0"): ?><input type="submit" id="verity" onclick="verPrimy()" value="认证" /><?php endif; ?>
+                                <?php if(($user['idcardauth']) == "1"): ?><input type="submit" id="verity" value="待审核" /><?php endif; ?>
+								<?php if(($user['idcardauth']) == "2"): ?><input type="submit" id="verity" value="认证成功" /><?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--底部内容-->
+                <!--底部样式-->
+<style>
+    .st-footer {
+        position: absolute;
+        width: 100%;
+        min-width: 1300px;
+        height: 338px;
+        background-color: #16243d;
+        font-size: 20px
+    }
+
+    .st-footer .up {
+        width: 100%;
+        height: 260px;
+        padding: 60px 8% 0 10%;
+        border-bottom: 1px solid #04040f
+    }
+
+    .st-footer .up .left, .st-footer .up .right {
+        position: relative;
+        width: 30%
+    }
+
+    .st-footer .up .left ul li, .st-footer .up .right ul li {
+        position: relative
+    }
+
+    .st-footer .up .left ul li img, .st-footer .up .right ul li img {
+        position: absolute;
+        top: 50%;
+        right: -130px;
+        z-index: 2;
+        margin-top: -60px;
+        width: 120px;
+        height: 120px
+    }
+
+    .st-footer .up .left ul li a, .st-footer .up .right ul li a {
+        display: block;
+        margin-bottom: 14px;
+        line-height: 1em;
+        font-size: 12px;
+        color: #fff
+    }
+
+    .st-footer .up .left ul li a:hover, .st-footer .up .right ul li a:hover {
+        color: #0976d9;
+    }
+
+    .st-footer .up .left ul li:last-child a, .st-footer .up .right ul li:last-child a {
+        margin-bottom: 0
+    }
+
+    .st-footer .up .left ul li.first-li, .st-footer .up .right ul li.first-li {
+        margin-bottom: 14px;
+        line-height: 1em;
+        font-size: 12px;
+        color: #72829d
+    }
+
+    .st-footer .up .left .focus, .st-footer .up .right .focus {
+        width: 140px
+    }
+
+    .st-footer .up .left .focus h3, .st-footer .up .right .focus h3 {
+        margin-bottom: 14px;
+        line-height: 1em;
+        font-size: 12px;
+        color: #72829d
+    }
+
+    .st-footer .up .left .focus span, .st-footer .up .right .focus span {
+        display: block;
+        line-height: 1em;
+        margin-bottom: 23px;
+        font-size: 12px;
+        color: #72829d
+    }
+
+    .st-footer .up .left .focus .share a, .st-footer .up .right .focus .share a {
+        display: block;
+        margin-right: 20px;
+        width: 36px;
+        height: 36px;
+        border-radius: 100%;
+        background: #6c85ae;
+        background-repeat: no-repeat;
+        background-position: 50%
+    }
+
+    .st-footer .up .left .focus .share a:hover, .st-footer .up .right .focus .share a:hover {
+        background: #c5caea;
+        background-repeat: no-repeat;
+        background-position: 50%
+    }
+
+    .st-footer .up .left .focus .share a:first-child, .st-footer .up .right .focus .share a:first-child {
+        background-image: url("/Public/Home/image/common/facebook.png")
+    }
+
+    .st-footer .up .left .focus .share a:nth-child(2), .st-footer .up .right .focus .share a:nth-child(2) {
+        background-image: url("/Public/Home/image/common/feige.png")
+    }
+
+    .st-footer .up .left .focus .share a:nth-child(3), .st-footer .up .right .focus .share a:nth-child(3) {
+        background-image: url("/Public/Home/image/common/weibo.png")
+    }
+
+    .st-footer .up .center {
+        width: 185px;
+        height: 160px;
+        background: url(/Public/Home/image/common/footerimg.997816f.png) no-repeat center 10px
+    }
+
+    .st-footer .down {
+        width: 100%;
+        padding: 0 8% 0 10%;
+        border-top: 1px solid #212145
+    }
+
+    .st-footer .down p {
+        height: 77px;
+        line-height: 77px;
+        font-size: 12px;
+        text-align: center;
+        color: #6c85ae
+    }
+</style>
+
+<footer class="st-footer" style="bottom:0;background-color: #12122a;">
+    <div class="up flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+        <div class="left flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+            <ul>
+                <li class="first-li"><?php echo ($GLOBALS['series-produce']); ?></li>
+                <li><a href="/C2c/index"><?php echo ($GLOBALS['c2c']); ?></a></li>
+                <li><a href="/Trade/index"><?php echo ($GLOBALS['trade']); ?></a></li>
+                <li><a href="/Trade/borrowMoney"><?php echo ($GLOBALS['borrowMoney']); ?></a></li>
+            </ul>
+            <ul>
+                <li class="first-li"><?php echo ($GLOBALS['about-us']); ?></li>
+                <!-- <?php if(is_array($xinwen)): $i = 0; $__LIST__ = $xinwen;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>-->
+                <!-- <li><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank"><?php echo ($vo['title']); ?></a></li> -->
+                <!--<?php endforeach; endif; else: echo "" ;endif; ?> -->
+				<?php if(is_array($xinwen)): $i = 0; $__LIST__ = $xinwen;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; if(($_SESSION['lang']) == "1"): if(!empty($vo['title'])): ?><li ><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank" ><?php echo ($vo['title']); ?></a></li><?php endif; endif; ?>
+								<?php if(($_SESSION['lang']) == "2"): if(!empty($vo['title_e'])): ?><li ><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank" ><?php echo ($vo['title_e']); ?></a></li><?php endif; endif; ?>
+								<?php if(($_SESSION['lang']) == "3"): if(!empty($vo['title_en'])): ?><li ><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank" ><?php echo ($vo['title_en']); ?></a></li><?php endif; endif; endforeach; endif; else: echo "" ;endif; ?>
+							
+							 <li ><a href="/Article/officialAdModal" target="_blank" ><?php echo ($GLOBALS['office-notice']); ?></a></li>
+							<!-- <?php if(is_array($about)): $i = 0; $__LIST__ = $about;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?>-->
+							<!-- <li ><a href="/Article/detail/id/<?php echo ($v['id']); ?>" target="_blank" ><?php echo ($v['title']); ?></a></li> -->
+							<!--<?php endforeach; endif; else: echo "" ;endif; ?> -->
+							<?php if(is_array($about)): $i = 0; $__LIST__ = $about;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; if(($_SESSION['lang']) == "1"): if(!empty($vo['title'])): ?><li ><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank" ><?php echo ($vo['title']); ?></a></li><?php endif; endif; ?>
+								<?php if(($_SESSION['lang']) == "2"): if(!empty($vo['title_e'])): ?><li ><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank" ><?php echo ($vo['title_e']); ?></a></li><?php endif; endif; ?>
+								<?php if(($_SESSION['lang']) == "3"): if(!empty($vo['title_en'])): ?><li ><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank" ><?php echo ($vo['title_en']); ?></a></li><?php endif; endif; endforeach; endif; else: echo "" ;endif; ?>
+                <!-- <li><a href="/Article/detail" target="_blank">联系我们</a></li> -->
+                <li><a href="/Article/officialAdModal" target="_blank"><?php echo ($GLOBALS['office-notice']); ?></a></li>
+            </ul>
+            <ul>
+                <li class="first-li"><?php echo ($GLOBALS['server-support']); ?></li>
+                <li><a href="/Article/officialAdModal" target="_blank"><?php echo ($GLOBALS['help-center']); ?></a></li>
+                <li><a href="/Article/detail/id/188" target="_blank">下线币种说明</a></li>
+                <li><a href="/Article/detail/id/14" target="_blank"><?php echo ($GLOBALS['currentCoin-apply']); ?></a></li>
+            </ul>
+        </div>
+        <div class="center"></div>
+        <div class="right flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+            <ul>
+                <li class="first-li"><?php echo ($GLOBALS['official-community']); ?></li>
+                <li>
+                    <a><?php echo ($GLOBALS['weixinQ']); ?></a>
+                    <div style="display: none;">
+                        <em></em>
+                        <img src="/Public/Home/image/index/jiaoliu.png" alt="">
+                    </div>
+                </li>
+                <!--<li>
+                    <a href="" target="_blank">Telegram</a>
+                </li>-->
+            </ul>
+            <ul>
+                <li class="first-li"><?php echo ($GLOBALS['relative-download']); ?></li>
+                <li>
+                    <a class="download-ios">iOS App</a>
+                    <div style="display: none;">
+                        <em></em>
+                        <img src="/Public/Home/image/index/ios.14c5c18.png " alt="">
+                    </div>
+                </li>
+                <li>
+                    <a class="download-android">Android App</a>
+                    <div style="display: none;">
+                        <em></em>
+                        <img src="/Public/Home/image/index/Android.14c5c18.png " alt="">
+                    </div>
+                </li>
+                <!--<li>
+                    <a class="download-google-play">Google Play</a>
+                    <div style="display: none;">
+                        <em></em>
+                        <img src="/Public/Home/image/common/googlePlay.9e95ba4.png" alt="">
+                    </div>
+                </li>-->
+            </ul>
+            <div class="focus">
+                <h3><?php echo ($GLOBALS['attention-us']); ?></h3>
+                <span><?php echo ($GLOBALS['company-name']); ?></span>
+                <div class="share flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                    <a href="" target="_blank"></a>
+                    <a href="" target="_blank"></a>
+                    <a href="" target="_blank" style="margin-right:0;"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="down">
+        <p><?php echo ($GLOBALS['web_down']); ?> <?php echo ($GLOBALS['beian']); ?></p>
+    </div>
+</footer>
+
+<script>
+    /*底部二维码效果*/
+    $(".st-footer .right li").hover(
+        function () {
+            $(this).find("div").show();
+        },
+        function(){
+            $(this).find("div").hide();
+        }
+    );
+</script>
+
+                <!--底部内容   end-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/Public/Home/js/newjs/primaryVerify.js"></script>
+<script>
+    // 验证身份证
+    function IsHKID(str) {
+        var strValidChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        if (str.length < 8)
+            return false;
+        if (str.charAt(str.length-3) == '(' && str.charAt(str.length-1) == ')')
+            str = str.substring(0, str.length - 3) + str.charAt(str.length -2);
+        str = str.toUpperCase();
+        var hkidPat = /^([A-Z]{1,2})([0-9]{6})([A0-9])$/;
+        var matchArray = str.match(hkidPat);
+        if (matchArray == null)
+            return false;
+        var charPart = matchArray[1];
+        var numPart = matchArray[2];
+        var checkDigit = matchArray[3];
+        var checkSum = 0;
+        if (charPart.length == 2) {
+            checkSum += 9 * (10 + strValidChars.indexOf(charPart.charAt(0)));
+            checkSum += 8 * (10 + strValidChars.indexOf(charPart.charAt(1)));
+        } else {
+            checkSum += 9 * 36;
+            checkSum += 8 * (10 + strValidChars.indexOf(charPart));
+        }
+        for (var i = 0, j = 7; i < numPart.length; i++, j--)
+            checkSum += j * numPart.charAt(i);
+        var remaining = checkSum % 11;
+        var verify = remaining == 0 ? 0 : 11 - remaining;
+        return verify == checkDigit || (verify == 10 && checkDigit == 'A');
+    }
+
+
+    function verPrimy() {
+        var name = $('#realname').val();
+        var city = $('#country_code').html();
+        var myId = $('#myId').val();
+        var reg = /^[1-9]{1}[0-9]{14}$|^[1-9]{1}[0-9]{16}([0-9]|[xX])$/;
+
+
+        if (name == "" || name == null) {
+            $('#realname').addClass("error").siblings("p.message").addClass("error").show().siblings(".tips").hide();
+            return false;
+        }
+        if (myId == "" || myId == null) {
+            $('#myId').addClass("error").siblings("p.message").addClass("error").show().siblings(".tips").hide();
+            return false;
+        }else{
+            if(!reg.test(myId)){
+                layer.msg('身份证号格式错误', {icon: 2});
+
+                return false;
+            }
+        }
+        //IsHKID(myId);//调用上边的方法验证身份证的正确性
+        $.ajax({
+            type: "POST", //用POST方式传输     　　
+            dataType: "json", //数据格式:JSON
+            data: {name: name, myId: myId},
+            url: "<?php echo U('User/chuji');?>", //目标地址.
+            success: function (data) {
+                console.log(data)
+                if (data.status == 1) {
+                    layer.msg(data.info, {icon: 1});
+                    window.location.href = "<?php echo U('User/index');?>";
+                } else {
+                    layer.msg(data.info, {icon: 2});
+                }
+            }
+        });
+    }
+
+</script>
+</body>
+</html>

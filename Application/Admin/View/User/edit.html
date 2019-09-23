@@ -1,0 +1,191 @@
+<include file="Base:header"/>
+<style type="text/css">
+	.input-text,.select-box{width: 800px}
+</style>
+<body>
+<article class="page-container">
+	<form class="form form-horizontal" id="form-add" action="{:U('User/edit')}" method="post" enctype="multipart/form-data">
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">用户名：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$data.username}" placeholder="" id="articletitle" name="username">
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">所属组别：</label>
+			<div class="formControls col-xs-8 col-sm-9 skin-minimal">
+				<div class="radio-box">
+					<input name="lev" type="radio" value="0" <eq name="data.lev" value="0">checked</eq>>
+					<label>普通用户组</label>
+				</div>
+				<!--
+				<div class="radio-box">
+					<input name="lev" type="radio" value="1"<eq name="data.lev" value="1">checked</eq>>
+					<label>私募</label>
+				</div>
+				<div class="radio-box">
+					<input name="lev" type="radio" value="2" <eq name="data.lev" value="2">checked</eq>>
+					<label>天使合作</label>
+				</div>
+				<div class="radio-box">
+					<input name="lev" type="radio" value="3" <eq name="data.lev" value="3">checked</eq>>
+					<label>创始团队</label>
+				</div>
+				<div class="radio-box">
+					<input name="lev" type="radio" value="4" <eq name="data.lev" value="4">checked</eq>>
+					<label>平准基金</label>
+				</div>
+				<div class="radio-box">
+					<input name="lev" type="radio" value="5" <eq name="data.lev" value="5">checked</eq>>
+					<label>平仓</label>
+				</div>
+				-->
+			</div>
+		</div> 
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">用户密码：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="" id="articletitle" name="password">
+				<span style="width:100px;padding-left:200px;color: red;font-weight: bold;">留空不更新</span>
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>交易密码：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="" id="articletitle" name="paypassword">
+				<span style="width:100px;padding-left:200px;color: red;font-weight: bold;">留空不更新</span>
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>手机：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$data.moble}" placeholder=""  name="moble">
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>手机认证时间：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$data['mobletime']|addtime}" name="mobletime" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>一代：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$data.invit_1}" placeholder=""  name="invit_1">
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>真实姓名：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$data.truename}" placeholder=""  name="truename">
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>身份证：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$data.idcard}" placeholder=""  name="idcard">
+			</div>
+		</div>
+  
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">高级认证：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<div class="uploader-thum-container">
+					<?php 
+		        	$user_sen = M('User')->where(array('id' => $data['id']))->field('idcardimg1,idcardimg2,idcardimg3,idcardauth')->find();
+					?>
+					<neq name="user_sen.idcardauth" value="0">
+						<img id="up_img" src="/Upload/idcard/{$user_sen['idcardimg1']}" style="width:250px;">
+						<img id="up_img" src="/Upload/idcard/{$user_sen['idcardimg2']}" style="width:250px;">
+						
+					</neq>
+				</div>
+			</div>
+		</div>
+
+		<neq name="data.idcardauth" value="1">
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>未通过原因：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$data.idcardinfo}" placeholder=""  name="idcardinfo">
+				<span style="width:100px;padding-left:200px;color: red;font-weight: bold;">填写未通过认证原因</span>
+			</div>
+		</div>
+		</neq>
+
+
+		<div class="row cl" style="display:none">
+			<label class="form-label col-xs-4 col-sm-2">是否加入商户：</label>
+			<div class="formControls col-xs-8 col-sm-9 skin-minimal">
+				<div class="radio-box">
+					<input name="isshop" type="radio" value="1" <eq name="data.isshop" value="1">checked</eq>>
+					<label>加入商户</label>
+				</div>
+				<div class="radio-box">
+					<input name="isshop" type="radio" value="0"<eq name="data.isshop" value="0">checked</eq>>
+					<label>未加入商户</label>
+				</div>
+					<div class="radio-box">
+					<input name="isshop" type="radio" value="-1"<eq name="data.isshop" value="0">checked</eq>>
+					<label>申请加入商户</label>
+				</div>
+			</div>
+		</div>
+  
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>状态：</label>
+			<div class="formControls col-xs-8 col-sm-9 skin-minimal">
+				<div class="radio-box">
+					<input name="status" type="radio" value="1" <eq name="data.status" value="1">checked</eq>>
+					<label>可用</label>
+				</div>
+				<div class="radio-box">
+					<input name="status" type="radio" value="0"<eq name="data.status" value="0">checked</eq>>
+					<label>禁用</label>
+				</div>
+			</div>
+		</div> 
+		 
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+				<!-- <button onClick="article_save_submit();" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交审核</button> -->
+				<!-- <button onClick="article_save();" class="btn btn-secondary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存草稿</button> -->
+				<!-- <button onClick="removeIframe();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button> -->
+				<button class="ajax-post btn btn-primary radius" id="submit" type="submit" target-form="form-horizontal"><i class="Hui-iconfont">&#xe632;</i> 确 定
+			</button>
+			<!-- <a class="btn btn-default radius" href="{$Think.server.HTTP_REFERER}">返 回</a> -->
+			<notempty name="data.id"><input type="hidden" name="id" value="{$data.id}"/>
+			</notempty>
+			</div>
+		</div>
+	</form>
+</article>
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript">
+// alert(window.parent.location);
+// alert(window.location.href);
+	//提交表单
+	$(function() {
+        $("#form-add").ajaxForm(function(data){
+        	if (data.status==1) {
+        	layer.alert(data.info);
+        }else
+            layer.alert(data.info);
+        },'json');
+         
+    });
+</script>
+ 
+<!--/请在上方写此页面业务相关的脚本-->
+ 
+</body>
+</html>

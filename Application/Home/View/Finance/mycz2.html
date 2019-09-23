@@ -1,0 +1,215 @@
+<include file="Publics:header-black"/>
+<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			html,
+			body {
+				width: 100%;
+			}
+			
+			.header {
+				width: 100%;
+			}
+			
+			.content {
+				width: 100%;
+				clear: both;
+			}
+			
+			.leftbar {
+				width: 23%;
+				float: left;
+			}
+			
+			.main_content {
+				width: 75%;
+				float: right;
+				margin: 10px auto;
+				margin-left: 2%;
+			}
+			
+			.right_mcontent {
+				position: relative;
+			}
+			
+			.m_title {
+				height: 42px;
+				width: 100%;
+				font-size: 1.5em;
+				color: #111;
+				border-bottom: 1px solid #C8DAE2;
+				margin: 10px 0 20px;
+				line-height: 46px
+			}
+			
+			.m_title a {
+				color: #666;
+				text-decoration: none;
+			}
+			
+			.myacc-con .m_title h4 {
+				font-weight: normal;
+			}
+			
+			.sectioncont {
+				width: 100%;
+			}
+			
+			.sectioncont a {
+				color: #666;
+				text-decoration: none;
+			}
+			
+			.sectioncont a:hover {
+				color: #d45858;
+			}
+			
+			.sectioncont .coin_add {
+				border: 0;
+				box-shadow: none;
+				background: #f1f1f1;
+				width: 100%;
+				padding: 10px;
+				font-size: 26px;
+				color: #de5959;
+			}
+			
+			.sectioncont,
+			.sectioncont table {
+				width: 100%;
+			}
+			
+			thead,
+			thead tr {
+				height: 40px
+			}
+			
+			.sf-grid tr td:first-child,
+			.sf-grid tr th:first-child {
+				text-align: left;
+			}
+			
+			.myacc-con thead td {
+				border-bottom: 1px solid #e4ebf0;
+			}
+			
+			.sf-grid td {
+				padding: 8px 0;
+				border-bottom: 1px solid #f3f3f3;
+			}
+			
+			.footer {
+				margin: 0 auto;
+				width: 100%;
+				clear: both;
+				margin-bottom: -19px;
+				border-top: 1px solid #ddd;
+				z-index: 2;
+				position: relative;
+			}
+  .ddd li:nth-child(3){
+    
+  }
+		</style>
+	<body>
+		<!--
+			头部
+		<!--
+			右侧内容部分
+		-->
+		
+		<!--
+			查询币种地址
+		-->
+		<?php 
+			$where['name'] = $_GET['types'];
+			$map['tradeno'] = $_GET['id'];
+			$infos = M('mycz_type')->where($where)->find();
+			$infot = M('mycz')->where($map)->find();
+			//var_dump($infot);die;
+		?>
+		<div class="content">
+		<include file="Publics:leftbar"/>
+			
+			<div class="main_content acc-m-con">
+				<div class="right_mcontent myacc-con">
+
+					<div class="m_title">
+						<!-- <a href="/trade/"> -->
+							<h4>充值信息</h4>
+							<!-- </a> -->
+					</div>
+                  <ul class="ddd">
+                    <li>官方账号：{$infos['username']}</li>
+                    <li>开户名称：{$infos['truename']}</li>
+                    <li>开户地址：{$infos['kaihu']}</li>
+                    <li>支付金额：{$infot['num']}</li>
+                    <li>订单编号：{$infot['tradeno']}</li>
+                    <li>二维码：<img src="/Upload/idcard/{$infos['img']}"></li>
+                  </ul>
+                  <ul>
+                    <li>
+                    	<input type="button" name="submit_btn" id="submit_btn" value="  确认已汇款 " class="sub-btn" onclick="huikuan();">
+                    </li>
+                    
+                  </ul>
+
+					</div>
+
+					<br>
+					<br>
+					<br>
+				</div>
+			</div>
+		</div>
+		<!--
+			尾部
+		-->
+		<include file="Publics:footer"/>
+	</body>
+<script type="text/javascript" src="/zhisucom/js/jquery.qrcode.min.js"></script>
+<script type="text/javascript">
+		$('#codeaa').qrcode({
+		render: "table", //table方式
+		width: 100, //宽度
+		height: 100, //高度
+		text: "{$info1[$name]}" //任意内容
+	});
+	
+	
+	function copy(){
+		var content = document.getElementById('content');
+		content.select();
+		document.execCommand("Copy");
+		layer.msg('复制成功', {
+				icon: 1
+			});
+			return false;
+	}
+  
+  function huikuan(){
+  	var id = "{$infot['tradeno']}";
+    $.ajax({
+    	url:"/Finance/myczHuikuan",
+      	data:{id:id},
+      	type:"post",
+      	datatype:"json",
+      success:function(data){
+      	if(data.status==1){
+        	layer.msg('充值成功', {
+				icon: 1
+			});
+          window.location='/finance/mycz1';
+        }else{
+        layer.msg('充值失败', {
+				icon: 2
+			});
+        }
+      }
+    });
+  }
+	</script>
+</html>

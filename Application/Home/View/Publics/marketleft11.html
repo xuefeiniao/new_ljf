@@ -1,0 +1,108 @@
+<style>
+/*侧边币种类型*/
+         #zhong-lei .zhong-lei-border{width:3px;height:14px;background:#79adff;display:inline-block;border:1px solid #eee;margin-bottom:-2px;margin-right:6px;}
+         #marketlistTabCon #zhong-lei{display:inline-block}
+        body #marketlistTabCon tbody tr:nth-child(even) {
+    background: #fff;
+}
+ body #marketlistTabCon tbody tr{
+     border-bottom:1px solid #eee;
+ }
+ body #marketlistTabCon tr{ padding-left:1%;padding-right:1%; width:98%;}
+</style>
+<div class="leftbar trade-warn-mark">
+    <table class="marketlist dataTable" id="tradelist">
+        <tbody>
+        <tr>
+            <td class="alignRight" style="border-bottom:0">
+                <div id="market_controller" class="clearfix">
+                    <foreach name="coinlist" item="v" key="k" >
+                    <button id="click_{$k}" value="USDT" class="tline_btn left_btn tn_selected" title="对{$k}交易" style="width: 30%;">{$k}交易区</button>
+                    </foreach>
+                </div>
+                <!--<input type="text" class="search" id="marketSearch" placeholder="搜索...">-->
+            </td>
+        </tr>
+        <tr id="marketlistTabCon">
+            <td id="marketlist_container_usdt" class="alignRight" style="display:block">
+                <div class="market_wrapper">
+                   
+                    <table id="marketlist_usdt" >
+                        <thead>
+                        <tr style="height:40px">
+                            <th class="sortable sorting"><b>币种</b></th>
+                            <th class="sortable sorting">价格<span class="left-price-type">(USDT)</span></th>
+                            <th class="sortable sorting">日涨跌</th>
+                            <!--<th class="sorting_disabled sorting">自选</th>-->
+                        </tr>
+                        </thead>
+                        <style></style>
+                        <tbody id="usdtTbody">
+                            <tr id="zhong-lei" class="zhong-lei-one" style="display:none;">
+                                <td><span class="zhong-lei-border"></span><span class="zhong-lei-change">BDB</span>交易区</td>
+                            </tr>
+                            <!--<tbody class='new-way-list'>-->
+                    
+                                <volist name="coinlist.BDB" id="v">
+                                    
+                                <tr class="new-data-bb" id="" style="display:none;" onclick="window.top.location.href='/trade/index/market/{$v['name']}'">
+                                    <td><span><img src="__UPLOAD__/coin/{$v['xnbimg']}" alt="" style="margin-bottom: -4px;margin-right: 6px;width:20px;"></span><span class="bizhong_en">{$v['xnb']|strtoupper}/{$v['rmb']|strtoupper}</span>
+                                    </td>
+                                    <td><span class="left-price <egt name="v.change" value="0">rate_up<else/>rate_down</egt>">{$v.new_price|sprintf="%.6f",###}</span>
+                                    </td>
+                                    <td class="rzd"><span class="<egt name="v.change" value="0">red<else/>green</egt>"><span class="p-num">{$v.change|round=2}%</span> </span>
+                                    </td>
+                                    <!--<td class="custom-option"><i class="add-fav" data-id="eth_usdt" title="加自选"></i>-->
+                                    <!--</td>-->
+                                </tr>
+                               
+                           </volist>
+                           <tr id="zhong-lei" class="zhong-lei-two" style="display:none;">
+                                <td><span class="zhong-lei-border"></span><span class="zhong-lei-change">USDT</span>交易区</td>
+                            </tr>
+                      
+                           
+                            <!--</tr>-->
+                            <!--</tbody>-->
+                            
+                          
+                            <volist name="coinlist.USDT" id="u">
+                                <tr style="display:none;" class="new-data-usdt" id="" onclick="window.top.location.href='/trade/index/market/{$u['name']}'">
+                                    <td><span><img src="__UPLOAD__/coin/{$u['xnbimg']}" alt="" style="margin-bottom: -4px;margin-right: 6px;width:20px;"></span><span class="bizhong_en">{$u['xnb']|strtoupper}/{$u['rmb']|strtoupper}</span>
+                                    </td>
+                                    <td><span class="left-price <egt name="u.change" value="0">rate_up<else/>rate_down</egt>">{$u.new_price|sprintf="%.6f",###}</span>
+                                    </td>
+                                    <td class="rzd"><span class="<egt name="u.change" value="0">red<else/>green</egt>"><span class="p-num">{$u.change|round=2}%</span> </span>
+                                    </td>
+                                    <!--<td class="custom-option"><i class="add-fav" data-id="eth_usdt" title="加自选"></i>-->
+                                    <!--</td>-->
+                                </tr>
+                           </volist>
+                           <tr id="zhong-lei" class="zhong-lei-three" style="display:none;">
+                                <td><span class="zhong-lei-border"></span><span class="zhong-lei-change">BTC</span>交易区</td>
+                            </tr>
+                            <volist name="coinlist.BTC" id="b">
+                                
+                                    <tr style="display:none;" class="new-data-btc" id=""  onclick="window.top.location.href='/trade/index/market/{$b['name']}'">
+                                    <td><span><img src="__UPLOAD__/coin/{$b['xnbimg']}" alt="" style="margin-bottom: -4px;margin-right: 6px;width:20px;"></span><span class="bizhong_en">{$b['xnb']|strtoupper}/{$b['rmb']|strtoupper}</span>
+                                    </td>
+                                    <td><span class="left-price <egt name="b.change" value="0">rate_up<else/>rate_down</egt>">{$b.new_price|sprintf="%.6f",###}</span>
+                                    </td>
+                                    <td class="rzd"><span class="<egt name="b.change" value="0">red<else/>green</egt>"><span class="p-num">{$b.change|round=2}%</span> </span>
+                                    </td>
+                                    <!--<td class="custom-option"><i class="add-fav" data-id="eth_usdt" title="加自选"></i>-->
+                                    <!--</td>-->
+                                </tr>
+                                
+                           </volist>
+                        
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+            
+           
+        </tr>
+        </tbody>
+    </table>
+</div>

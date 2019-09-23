@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="keywords" content="{$web_keywords}" />
+    <meta name="format-detection" content="telephone=no,email=no,address=no"/>
+    <eq name="Think.session.lang" value="1">
+									<notempty name="coninfo['web_name']" value=" ">
+								
+										<title>{$coninfo['web_name']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="2">
+									<notempty name="coninfo['web_name_e']" value=" ">
+										<title>{$coninfo['web_name_e']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="3">
+									<notempty name="coninfo['web_name_en']" value=" ">
+										<title>{$coninfo['web_name_en']}</title>
+									</notempty>
+								</eq>
+    <link data-n-head="true" rel="icon" type="image/x-icon" href="__PUBLIC__/favicon.ico"/>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/base.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/common.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/newcss/newGuidance.css" media="all"/>
+    <script data-n-head="true" src="__PUBLIC__/Home/js/newjs/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/zhisucom/js/layer.js"></script>
+</head>
+<body>
+
+<div id="__nuxt">
+    <div class="nuxt-progress" style="width: 0%; height: 2px; background-color: rgb(59, 128, 112); opacity: 0;"></div>
+    <div id="__layout">
+        <div >
+            <div  class="wrap">
+                <div  class="common-header flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                    <?php $web = M('config')->where(array('id=1'))->find();?>
+					<a href="/Index/index" class="logo cn nuxt-link-active" style="background-image: url(/Upload/public/{$web['web_logo']}); width:250px;height:45px;"></a>
+                    <div class="line line-24"></div>
+                    <a href="/Lever/borrowMoney/market/usdt_jeff" class="nav-child" >{$GLOBALS['borrowMoney']}</a>
+                    <a href="/Lever/borrowMoney3/market/usdt" class="nav-child" >{$GLOBALS['borrowMoney3']}</a>
+                    <a href="newGuidance.html" class="nav-child nuxt-link-exact-active nuxt-link-active active" >{$GLOBALS['new-guide']}</a>
+                    <div class="blank"></div>
+                    <div class="account-nav flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                        <a onclick="logins(1)">{$GLOBALS['qianbao']}</a>
+                        <a onclick="logins(2)">{$GLOBALS['recharge']}</a>
+                        <a onclick="logins(3)">{$GLOBALS['withdraw']}</a>
+                    </div>
+                    <neq name="userId" value=" ">
+                        <a href="/User/index">{$GLOBALS['user']}：<span id="userName">{$_SESSION['userName']}</span></a>
+                        <div class="line line-10"></div>
+                        <a href="/Login/loginout">{$GLOBALS['loginout']}</a>
+                    <else/>
+                        <a href="/Login/register?login">{$GLOBALS['login']}</a>
+                        <div class="line line-10"></div>
+                        <a href="/Login/register?register">{$GLOBALS['register']}</a>
+                    </neq>
+                </div>
+                <?php $a=M('Article')->where(array('status'=>1,'type'=>'novice'))->order('id desc')->find() ?>
+                <div  class="direct" style="margin:0 auto;width:1160px;">
+				<eq name="Think.session.lang" value="1">
+					<notempty name="a['content']" value=" ">
+						<div class="cn">{$a['content']}</div>
+					</notempty>
+				</eq>
+				<eq name="Think.session.lang" value="2">
+					<notempty name="a['content_e']" value=" ">
+						<div class="cn">{$a['content_e']}</div>
+					</notempty>
+				</eq>
+				<eq name="Think.session.lang" value="3">
+					<notempty name="a['content_en']" value=" ">
+						<div class="cn">{$a['content_en']}</div>
+					</notempty>
+				</eq>
+				<!-- <div class="cn">{$a['content']}</div> -->
+                    <!--<div class="s-1 cn"></div>
+                    <div class="s-2 cn"></div>
+                    <div class="s-3 cn"></div>
+                    <div class="s-4 cn"></div>
+                    <div class="s-5 cn"></div>
+                    <div class="s-6 cn"></div>
+                    <div class="s-7 cn"></div>
+                    <div class="s-8 cn"></div>
+                    <div class="s-9 cn"></div>-->
+                </div>
+                <!--底部内容-->
+                <include file="Public:footer"/>
+                <!--底部内容   end-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    /*当前页*/
+    $(".nav .item:nth-child(3)").find("a").addClass("active");
+
+
+    /*隐藏手机号中间4位*/
+    var phone = $('#userName').html();
+    var mphone = phone.substr(0, 3) + '****' + phone.substr(7);
+    $('#userName').html(mphone);
+    
+    
+    function logins(id){
+	    var uid = "{$uid}";
+		if(uid>0){
+		    if(id == 1){
+		        location.href="/Finance/qianbao";
+		    }else if(id == 2){
+		        location.href="/Finance/myzr/name/usdt";
+		    }else if(id==3){
+		        location.href="/Finance/myzc/name/usdt";
+		    }
+		}else{
+			layer.msg("{$GLOBALS['first-login']}", {icon: 2});
+	    }
+	}
+</script>
+</body>
+</html>

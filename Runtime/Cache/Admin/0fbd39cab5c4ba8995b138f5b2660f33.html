@@ -1,0 +1,97 @@
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5shiv.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/Public/rs/static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="/Public/rs/static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="/Public/rs/lib/Hui-iconfont/1.0.8/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="/Public/rs/static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="/Public/rs/static/h-ui.admin/css/style.css" />
+
+<script type="text/javascript" src="/Public/rs/lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="/Public/rs/lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="/Public/rs/static/h-ui/js/H-ui.min.js"></script> 
+<script type="text/javascript" src="/Public/rs/static/h-ui.admin/js/H-ui.admin.js"></script>
+<script type="text/javascript" src="/Public/layer/laydate/laydate.js"></script>
+
+<script type="text/javascript" src="/Public/rs/lib/jquery.form.min.js"></script>
+<!--[if IE 6]>
+<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+</head>
+
+<style type="text/css" media="all">
+    .input-text{
+        width: 800px;
+    }
+    .select-box{
+        width: 800px;
+    }
+</style>
+<body>
+<article class="page-container">
+	<form class="form form-horizontal" id="form-article-add" action="<?php echo U('Config/mobleEdit');?>" method="post" enctype="multipart/form-data">
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>短信接口URL：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="<?php echo ($C['moble_url']); ?>" placeholder="" id="articletitle" name="moble_url">
+				&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#ef8b0a;font-weight:bold;">短信接口URL 接口申请地址:<a href="http://www.webchinese.com.cn/" target="_blank">立即申请</a></span>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>短信接口名称：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="<?php echo ($C['moble_user']); ?>" placeholder="" id="articletitle" name="moble_user">
+				&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#ef8b0a;font-weight:bold;">短信接口用户名</span>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>短信接口安全码：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="<?php echo ($C['moble_pwd']); ?>" placeholder="" id="articletitle" name="moble_pwd">
+				&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#ef8b0a;font-weight:bold;">短信接口安全秘钥</span>
+			</div>
+		</div>
+		
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+				<button class="ajax-post btn btn-primary radius" id="submit" type="submit" target-form="form-horizontal"><i class="Hui-iconfont">&#xe632;</i> 确 定
+			</button>
+			</div>
+		</div>
+	</form>
+</article>
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript">
+// alert(window.parent.location);
+// alert(window.location.href);
+	//提交表单
+	/*$('#submit').click(function () {
+		$('#form').submit();
+	});*/
+	$(function() {
+        $("#form-add").ajaxForm(function(data){
+        	if (data.status==1) {
+        	layer.alert(data.info);
+        }else
+            layer.alert(data.info);
+        },'json');
+         
+    });
+</script>
+
+
+<!--/请在上方写此页面业务相关的脚本-->
+ 
+</body>
+</html>

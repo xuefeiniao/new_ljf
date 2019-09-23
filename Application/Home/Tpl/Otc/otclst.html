@@ -1,0 +1,212 @@
+<include file="Public:header" />
+
+<div class="autobox ">
+	<div class="now">
+		<i class="fa fa-home fa-lg move mr5"></i><a href="/" class="movesay">首页</a> &gt; <a href="/finan/index.html" class="movesay">财务中心 </a> &gt; OTC交易设置	</div>
+	<div class="main-content">
+		<style>
+	.nav-tab-list .nav-tab-hover{
+		width:100%;
+		top:60px;
+		height:50px;
+		line-height:50px;
+		background:#EAEDF4;
+		position:absolute;
+		box-sizing:content-box;
+		z-index:1;
+		transition:all 0.5s;
+		-webkit-transition:all 0.5s;
+		display:none;
+	}
+</style>
+<script type="text/javascript">
+	$(function () {
+		(function () {
+			var tab   = $('.nav-tab-list dd');
+			var hover = $('.nav-tab-hover');
+			var pos   = 0;
+			tab.each(function (index) {
+				var $this = $(this);
+				if ($this.hasClass('active')) {
+					pos = index;
+				}
+				$this.hover(function () {
+					_moveTo(index);
+				}, function () {
+					_moveTo(pos);
+				});
+			});
+			_moveTo(pos);
+			$('.nav-tab-hover').show();
+			function _moveTo(index) {
+				hover.css("top", 60 + 50 * index);
+				tab.removeClass('active');
+				tab.eq(index).addClass('active');
+			}
+		})();
+	});
+	$(window).on('scroll resize', function () {
+		if (document.body.scrollTop < 100) {
+			$('#left-nav-bar').css("top", 0);
+		} else if (document.body.scrollTop > ($('.tag-list-content').height() - $('#left-nav-bar').height() + 100)) {
+			$('#left-nav-bar').css("top", ($('.tag-list-content').height() - $('#left-nav-bar').height()));
+		} else {
+			$('#left-nav-bar').css("top", document.body.scrollTop - 100);
+		}
+	});
+</script>
+
+
+<include file="Finance:left" />
+
+
+
+		<div class="tag-list-content assets_content bg_w">
+			<div class="safe_center clear">
+				<h1>
+					<span> OTC交易设置</span>
+					 <span>
+                         <a href="/otc/otclst"  class="step fz_12 ml50 pd6 active">交易记录</a>
+                         <a href="/otc/otclst/type/1"  class="step fz_12 ml50 pd6 <eq name='Think.get.type' value='1'>active</eq> ">买入</a>
+                         <a href="/otc/otclst/type/2"  class="step fz_12 ml50 pd6 <eq name='Think.get.type' value='2'>active</eq>">卖出</a>
+						  <a href="/otc/otcpay/"  class="step fz_12 ml50 pd6 ">支付设置</a>
+<!--                         <a href="/otc/orderlog" class="step fz_12 ml20 pd6 ">交易详情</a>-->
+                    </span>
+					<span>
+												<a class="right" onclick="$('#hints').slideToggle();"><i class="fa fa-hand-o-right move fz_14 mr5"></i><span class="fz_12 move">查看介绍</span></a>
+											</span>
+				</h1>
+			</div>
+			<div id="hints" class="mytips" style="display:none;">
+
+				<p style="color: #ff0000;">
+					交易有风险，请慎重交易！
+				</p>			</div>
+			<div class="mytable-body ">
+				<div class="step2 f_body  ">
+					<table class="f_table" id="investLog_content">
+						<thead>
+						<tr>
+							<th>订单号</th>
+							<th>交易时间</th>
+							<th>币种</th>
+							<th>交易数量</th>
+							<th>交易单价</th>
+							<th>交易总金额</th>
+							<th>交易类型</th>
+                            <th width="">
+								<span>
+									<select id="status-select">
+										<option value="" <eq name="status" value="">selected</eq> >全部状态</option>
+                                        <option value="1" <eq name="status" value="1">selected</eq> >待匹配</option>
+                                        <option value="2" <eq name="status" value="2">selected</eq> >已匹配</option>
+                                        <option value="3" <eq name="status" value="3">selected</eq> >待打款</option>
+                                        <option value="4" <eq name="status" value="4">selected</eq> >已打款</option>
+                                        <option value="5" <eq name="status" value="5">selected</eq> >完成</option>
+                                        <option value="11" <eq name="status" value="11">selected</eq> >撤销订单</option>
+									</select>
+								</span>
+                            </th>
+							<th>操作</th>
+
+						</tr>
+						</thead>
+						<tbody>
+
+
+						<volist name="list" id="vo">
+							<tr>
+								<td>{$vo.id}</td>
+								<td>{$vo['addtime']|date='Y-m-d H:i:s',###}</td>
+								<td>{$vo['names']}</td>
+								<td>{$vo['num']|round=6}</td>
+								<td>￥{$vo['price']|round=4}</td>
+								<td>￥{$vo['cprice']|round=4}</td>
+								<td>
+                                    <switch name="vo.type">
+                                        <case value="1">买入</case>
+                                        <case value="2">卖出</case>
+                                    </switch>
+                                </td>
+								<td>
+                                    <switch name="vo.status">
+                                        <case value="1">待匹配</case>
+                                        <case value="2">{$vo.s1}</case>
+                                        <case value="3">待打款</case>
+                                        <case value="4">{$vo.s1}</case>
+                                        <case value="5">订单完成</case>
+                                    </switch>
+								</td>
+                                <td>
+                                <if condition="$vo['status'] eq 1 ">
+									<a onclick="out_chexiao(this)" data="{$vo['id']}" href="javascript:void(0)" style="color:#2674FF!important;">撤销</a>&nbsp|</a>
+								</if>
+
+                                <if condition="(($vo['status'] eq 4) or ($vo['status'] eq 5))">
+                                    <a href="{:U('otc/orderlog/id/'.$vo['id'])}" class="cur" style=" color: #E55600!important;">查看</a>
+                                    <elseif condition="($vo['status'] eq 1) or (($vo['status'] eq 2) and ($vo['type'] eq 2)) "/>
+                                    <a href="{:U('otc/mmset/id/'.$vo['id'])}" class="cur" style=" color: #E55600!important;">查看</a>
+                                <elseif condition="($vo['status'] eq 2) and($vo['type'] eq 1) " />
+                                    <a href="{:U('otc/ordersell/id/'.$vo['id'])}" class="cur" style=" color: #E55600!important;">查看</a>
+                                </if>
+
+                                </td>
+							</tr>
+						</volist>
+
+
+
+						</tbody>
+					</table>
+					<div class="pages">{$page}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+    var cnyin_chakan = function (id) {
+        layer.open({
+            title: '账户充值',
+            type: 2,
+            area: ['650px', '500px'],
+            content: ["{:U('otc/orderinfo')}?id=" + id, 'no']
+        });
+    }
+
+	$("#status-select").val("{$status}");
+	$("#status-select").change(function () {
+		var status = $("#status-select option:selected").val();
+		var url    = '/Otc/otclst';
+		if (status) {
+			url += '/status/' + status;
+		}
+		window.location = url;
+	});
+	function out_chexiao(_this) {
+		var id = $(_this).attr('data');
+		$.post("{:U('otc/chexiao')}", {id: id}, function (data) {
+			if (data.status == 1) {
+				layer.msg(data.info, {icon: 1});
+				window.location.reload();
+			} else {
+				layer.msg(data.info, {icon: 2});
+			}
+		}, "json");
+	}
+</script>
+
+
+
+
+
+<script>
+	var hints = "0";
+	if(hints == 1){
+		$('#hints').show();
+	}
+	$('#finance_box').addClass('active');
+	$('.otc_otclst').addClass('active');
+</script>
+
+<include file="Public:footer" />

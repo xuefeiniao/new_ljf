@@ -1,0 +1,957 @@
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="<?php echo ($web_keywords); ?>" />
+    <meta name="format-detection" content="telephone=no,email=no,address=no" />
+    <!-- <title><?php echo ($GLOBALS['home']); ?></title> -->
+								<?php if(($_SESSION['lang']) == "1"): if(!empty($coninfo['web_name'])): ?><title><?php echo ($coninfo['web_name']); ?></title><?php endif; endif; ?>
+								<?php if(($_SESSION['lang']) == "2"): if(!empty($coninfo['web_name_e'])): ?><title><?php echo ($coninfo['web_name_e']); ?></title><?php endif; endif; ?>
+								<?php if(($_SESSION['lang']) == "3"): if(!empty($coninfo['web_name_en'])): ?><title><?php echo ($coninfo['web_name_en']); ?></title><?php endif; endif; ?>
+    <link rel="icon" type="image/x-icon" href="/Public/favicon.ico">
+    <link rel="stylesheet" href="/Public/Home/css/newcss/base.css" />
+    <link rel="stylesheet" href="/Public/Home/css/newcss/common.css" />
+    <link rel="stylesheet" href="/Public/Home/css/newcss/index.css" />
+	<script data-n-head="true" src="/Public/Home/js/newjs/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="/Public/layer/layer.js"></script>
+    <style type="text/css">
+        .header-sliding .login a:hover {
+            color: #fff;
+        }
+
+        .header-sliding .login a {
+            font-size: 14px;
+            color: #6c85ae;
+        }
+        .common-header a{
+            font-size: 14px;
+            color: #cbd7f0;
+        }
+        .common-header a:hover{
+            font-size: 14px;
+            color: #cbd7f0;;
+        }
+        .header-sliding a{
+            font-size: 14px;
+            color: #6c85ae;
+        }
+        .header-sliding a:hover {
+            color: #fff;
+        }
+
+        .carousel .content .introduce .introduce-content:first-child .icon {
+            background: url(/Public/Home/image/index/rebate.71613dc.png) no-repeat;
+            background-size: 100% 100%;
+        }
+        .carousel .content .introduce .introduce-content:nth-child(2) .icon {
+            background: url(/Public/Home/image/index/rebate.71614dc.png) no-repeat;
+            background-size: 100% 100%;
+        }
+        .carousel .content .introduce .introduce-content:nth-child(3) .icon {
+            background: url(/Public/Home/image/index/rebate.71615dc.png) no-repeat;
+            background-size: 100% 100%;
+        }
+        .carousel .content .introduce .introduce-content:last-child .icon {
+            background: url(/Public/Home/image/index/rebate.71616dc.png) no-repeat;
+            background-size: 100% 100%;
+        }
+        /*.banner-inner .carousel:first-child{*/
+            /*display: block!important;*/
+        /*}*/
+		.carousel{
+			cursor:pointer;
+		}
+    </style>
+
+</head>
+<body>
+<!--<img src="https://mon.58coin.com/mon.gif" id="img-hidden" />-->
+<div id="__nuxt">
+    <div class="nuxt-progress" style="width:0%;height:2px;background-color:#3B8070;opacity:0;"></div>
+    <div id="__layout">
+        <div>
+            <div class="index">
+                <div class="tips-status">
+                    <p><?php echo ($GLOBALS['add-self-success']); ?></p>
+                </div>
+                <!--头部内容-->
+                <div>
+                    <div class="banner">
+                        <div class="common-header flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+						<?php $web = M('config')->where(array('id=1'))->find();?>
+                            <!-- <a href="index.html" class="logo cn" style="background-image: url(/Public/Home/image/common/logo_bc.png);"></a> -->
+							<a href="index.html" class="logo cn" style="background-image: url(/Upload/public/<?php echo ($web['web_logo']); ?>); width:115px;"></a>
+                            <div class="main-nav flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                                <a onclick="cy()"><?php echo ($GLOBALS['c2c']); ?>
+                                    <!---->
+                                    <!----></a>
+                                <a href="/Trade/index/market/eth_jeff" ><?php echo ($GLOBALS['trade']); ?>
+                                    <!---->
+                                    <!-- --></a>
+                                <a href="/Lever/borrowMoney/market/usdt_jeff" ><?php echo ($GLOBALS['borrowMoney']); ?>
+                                    <!---->
+                                    <!----></a>
+								<a href="/Article/officialAdModal" target="_blank"><?php echo ($GLOBALS['office-notice']); ?></a>
+                            </div>
+                            <div class="blank" ></div>
+                            <div class="advertising-w cn" >
+                                <?php $header_title = M('article')->where(array('status'=>1,'type'=>'header-titile','index'=>1))->getField('title');?>
+                                <!-- <?php echo ($GLOBALS['all-only']); ?> ／ <?php echo ($GLOBALS['no-service']); ?> ／ <?php echo ($GLOBALS['free-online']); ?> -->
+                                <?php echo ($header_title); ?>
+                            </div>
+                            <div class="blank" ></div>
+                            <?php if(($userId) != " "): ?><a style="line-height:80px;font-weight:700;color: #cbd7f0;" href="/User/index"><?php echo ($GLOBALS['user']); ?>：<span id="userName"><?php echo ($_SESSION['userName']); ?></span></a>
+                                <div class="line line-10" style="line-height: 80px;"></div>
+                                <a style="line-height: 80px; font-weight: 700;" onclick="loginout();"><?php echo ($GLOBALS['loginout']); ?></a>
+                            <?php else: ?>
+                                <a href="/Login/register.html?login" style="line-height:80px;font-weight:700;" class="" ><?php echo ($GLOBALS['login']); ?></a>
+                                <div class="line line-10" style="line-height:80px;" ></div>
+                                <a href="/Login/register.html?register" style="line-height:80px;font-weight:700;" ><?php echo ($GLOBALS['register']); ?></a><?php endif; ?>
+                            <div class="st-language home flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" style="margin:30px 0 30px 30px;"  >
+                                <div class="current flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap"  >
+                                    <?php if(($yuyan) == ""): ?><span class="flag cn"  ></span><?php endif; ?>
+                                    <?php if(($yuyan) == "1"): ?><span class="flag cn"  ></span><?php endif; ?>
+                                    <?php if(($yuyan) == "2"): ?><span class="flag ru"  ></span><?php endif; ?>
+                                    <?php if(($yuyan) == "3"): ?><span class="flag en"  ></span><?php endif; ?>
+                                    <span>
+                                        <?php if(($yuyan) == ""): ?>中文简体<?php endif; ?>
+    									<?php if(($yuyan) == "1"): ?>中文简体<?php endif; ?>
+    									<?php if(($yuyan) == "2"): ?>Русский<?php endif; ?>
+    									<?php if(($yuyan) == "3"): ?>English<?php endif; ?>
+									</span>
+                                    <span  ></span>
+                                </div>
+                                <div class="options"  >
+                                    <span  ></span>
+                                    <div class="option flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap"  >
+                                        <span class="flag cn"  ></span>
+                                        <span><a href="/User/Lang/lang/1">中文简体</a></span>
+                                    </div>
+                                    <div class="option flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap"  >
+                                        <span class="flag en"  ></span>
+                                        <span  ><a href="/User/Lang/lang/3">English</a></span>
+                                    </div>
+									<div class="option flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap"  >
+                                        <span class="flag ru"  ></span>
+                                        <span  ><a href="/User/Lang/lang/2">Русский</a></span>
+                                    </div> 
+                                    <!-- <div class="option flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap"  >
+                                        <span class="flag ko"  ></span>
+                                        <span  >한국어</span>
+                                    </div>
+                                    <div class="option flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap"  >
+                                        <span class="flag ja"  ></span>
+                                        <span  >日本語</span>
+                                    </div>-->
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap header-sliding" >
+                            <a href="index.html" class="logo cn" style="background-image: url(/Upload/public/<?php echo ($web['web_logo']); ?>); width:115px;"></a>
+                            <div class="nav flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                                <a onclick="cy()">
+                                    <!---->
+                                    <!----><?php echo ($GLOBALS['c2c']); ?></a>
+                                <a href="/Trade/index" >
+                                    <!---->
+                                    <!----><?php echo ($GLOBALS['trade']); ?></a>
+                                <a href="/Lever/borrowMoney" >
+                                    <!---->
+                                    <!----><?php echo ($GLOBALS['borrowMoney']); ?></a>
+									<a href="/Article/officialAdModal" target="_blank"><?php echo ($GLOBALS['office-notice']); ?></a>
+                            </div>
+                            <div class="blank" ></div>
+                            <div class="advertising-b cn" ></div>
+                            <div class="blank" ></div>
+                            <div class="login flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                <?php if(($userId) != " "): ?><!--<a style="color:#fff;" href="/User/index">账户：<i class="userName" style="font-style:normal"><?php echo ($_SESSION['userName']); ?></i></a>-->
+                                    <a style="color:#fff;" href="/User/index"><?php echo ($GLOBALS['user']); ?>：<a id="userName2" href="/User/index"><?php echo ($_SESSION['userName']); ?></a></a>
+                                    <span></span>
+                                    <a onclick="loginout();"><?php echo ($GLOBALS['loginout']); ?></a>
+                                    <?php else: ?>
+                                    <a href="/Login/register.html?login" class="" ><?php echo ($GLOBALS['login']); ?></a>
+                                    <span ></span>
+                                    <a href="/Login/register.html?register"><?php echo ($GLOBALS['register']); ?></a><?php endif; ?>
+                            </div>
+							
+                            <div class="st-language home flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" style="margin:10px 0 0 30px;"  >
+                                <div class="current flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap"  >
+                                    <!--<span class="flag cn"  ></span>-->
+                                    <?php if(($yuyan) == ""): ?><span class="flag cn"  ></span><?php endif; ?>
+                                    <?php if(($yuyan) == "1"): ?><span class="flag cn"  ></span><?php endif; ?>
+                                    <?php if(($yuyan) == "2"): ?><span class="flag ru"  ></span><?php endif; ?>
+                                    <?php if(($yuyan) == "3"): ?><span class="flag en"  ></span><?php endif; ?>
+                                    <span >
+                                        <?php if(($yuyan) == ""): ?>中文简体<?php endif; ?>
+    									<?php if(($yuyan) == "1"): ?>中文简体<?php endif; ?>
+    									<?php if(($yuyan) == "2"): ?>Русский<?php endif; ?>
+    									<?php if(($yuyan) == "3"): ?>English<?php endif; ?>
+									</span>
+                                    <span  ></span>
+                                </div>
+                                <div class="options"  >
+                                    <span  ></span>
+                                    <div class="option flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap"  >
+                                        <span class="flag cn"  ></span>
+                                        <span><a href="/User/Lang/lang/1">中文简体</a></span>
+                                    </div>
+                                    <div class="option flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap"  >
+                                        <span class="flag en"  ></span>
+                                        <span  ><a href="/User/Lang/lang/3">English</a></span>
+                                    </div>
+                                    <!-- <div class="option flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap"  >
+                                        <span class="flag ko"  ></span>
+                                        <span  >한국어</span>
+                                    </div>
+                                    <div class="option flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap"  >
+                                        <span class="flag ja"  ></span>
+                                        <span  >日本語</span>
+                                    </div> -->
+                                    <div class="option flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap"  >
+                                        <span class="flag ru"  ></span>
+                                        <span  ><a href="/User/Lang/lang/2">Русский</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--头部内容 end-->
+                <div class="banner-wrapper" style="overflow: hidden;">
+                    <div class="banner-inner" style="overflow: hidden;">
+					<?php $img1 = M('adver')->where(array('status'=>1,'is_app'=>1))->limit(5)->select(); $a = count($img1); ?>
+                    <?php if(is_array($img1)): $i = 0; $__LIST__ = $img1;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; if(($_SESSION['lang']) == "1"): if(!empty($vo['img'])): ?><div class="carousel flex-box flex-direction-row flex-justify-start flex-align-item-column flex-wrap-nowrap" style="background-image: url(/Upload/ad/<?php echo ($vo['img']); ?>);"  url="<?php echo ($v['url']); ?>" >
+									<div class="content cn" >
+										<h1 class="cn">
+											<?php echo ($vo['name']); ?>
+										</h1>
+									   <!--<a href="<?php echo ($v['url']); ?>"><?php echo ($GLOBALS['lunbo-detail']); ?></a>-->
+									</div>
+								</div><?php endif; endif; ?>
+						<?php if(($_SESSION['lang']) == "2"): if(!empty($vo['img_e'])): ?><div class="carousel flex-box flex-direction-row flex-justify-start flex-align-item-column flex-wrap-nowrap" style="background-image: url(/Upload/ad/<?php echo ($vo['img_e']); ?>);"  url="<?php echo ($v['url']); ?>" >
+									<div class="content cn" >
+										<h1 class="cn">
+											<?php echo ($vo['name_e']); ?>
+										</h1>
+									   <!--<a href="<?php echo ($v['url']); ?>"><?php echo ($GLOBALS['lunbo-detail']); ?></a>-->
+									</div>
+								</div><?php endif; endif; ?>
+						<?php if(($_SESSION['lang']) == "3"): if(!empty($vo['img_en'])): ?><div class="carousel flex-box flex-direction-row flex-justify-start flex-align-item-column flex-wrap-nowrap" style="background-image: url(/Upload/ad/<?php echo ($vo['img_en']); ?>);"  url="<?php echo ($v['url']); ?>">
+									<div class="content cn" >
+										<h1 class="cn">
+											<?php echo ($vo['name_en']); ?>
+										</h1>
+									   <!--<a href="<?php echo ($v['url']); ?>"><?php echo ($GLOBALS['lunbo-detail']); ?></a>-->
+									</div>
+								</div><?php endif; endif; endforeach; endif; else: echo "" ;endif; ?>
+                       
+                        <div class="bullet">
+                            <!-- <span class=""></span> -->
+                            <!-- <span class=""></span> -->
+                            <!-- <span class=""></span> -->
+                            <!-- <span class=""></span> -->
+                            <!-- <span class="active"></span> -->
+                        </div>
+                    </div>
+                </div>
+				<script>
+					$(function(){
+						var bLength = $('.carousel').length;
+						var bHtml='';
+						for(var i = 0; i< bLength; i++){
+							bHtml +='<span></span>';
+						}
+						$('.bullet').html(bHtml);
+						$('.bullet span').eq(0).addClass('active');
+						
+						$(".carousel").click(function(){
+							var url=$(this).attr("url");
+							window.location.href=url;
+						})
+					})
+				</script>
+                <div class="market-notice flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                    <div class="index-notice" >
+                        <div style="position: relative;z-index: 2">
+                            <a target="_blank" class="notice_title" href="/Article/index"><span><?php echo ($GLOBALS['article']); ?></span> <?php echo ($new_notice['title']); ?></a>
+                            <ul>
+                                
+                                <?php if(is_array($notice)): $i = 0; $__LIST__ = $notice;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><li><span style="margin-right: 8px; display: inline-block; width: 3px; height: 3px; border-radius: 50%; background: rgb(126, 158, 253); vertical-align: super;"></span><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank"><span><?php echo ($vo['title']); ?></span><span><?php echo (date("y-m-d",$vo['addtime'])); ?></span></a></li><?php endforeach; endif; else: echo "" ;endif; ?>
+                                <!-- <li><span style="margin-right: 8px; display: inline-block; width: 3px; height: 3px; border-radius: 50%; background: rgb(126, 158, 253); vertical-align: super;"></span><a href="/Article/detail" target="_blank"><span>关于提前恢复永续合约交易手续费的公告 &nbsp;</span><span>18-08-15</span></a></li> -->
+                            </ul>
+                        </div>
+                        <a href="/Article/officialAdModal" class="more"><span class="active"><?php echo ($GLOBALS['check-more']); ?> &gt;</span></a>
+                    </div>
+                    <div style="width:80%;" >
+                        <div class="arrow flex-box flex-direction-row flex-justify-end flex-align-item-start flex-wrap-nowrap leftRight" >
+                            <!--<a  style="opacity: 0.5;"></a>-->
+                            <!--<a ></a>-->
+                        </div>
+                        <div class="market flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+                            <?php if(is_array($usdt)): $keyx = 0; $__LIST__ = $usdt;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$x): $mod = ($keyx % 2 );++$keyx;?><div >
+                                     <a href="/Trade/index/market/<?php echo ($x['name']); ?>">
+                                        <p ><span style="color:#9da5c8"><?php echo ($x['s1']); ?></span> <span  style="color: rgb(180, 66, 104);"><?php echo ($x["change"]); ?></span></p>
+                                        <p >$<?php echo (sprintf("%.2f",$x["new_price"])); ?></p>
+                                        <p ><?php echo ($GLOBALS['dayTrade']); ?>: <span ><?php echo sprintf("%.2f",($x['volume']/10000)) ?></span></p>
+                                    </a>
+                                    </div><?php endforeach; endif; else: echo "" ;endif; ?>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="market-list">
+                    <div class="nav flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap" >
+                        <div class="flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap dataList" >
+                            <a class="item active" >JEFF</a>
+                            <a class="item" >USDT</a>
+                            <a class="item" >BTC</a>
+                            <a class="item" >ETH</a>
+                           <!--  <div class="item flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap" >
+                                <span ></span>
+                                <p >自选</p>
+                            </div> -->
+                        </div>
+                        <div class="search" >
+                            <input type="hidden" placeholder="<?php echo ($GLOBALS['coin-place']); ?>" value=""  />
+                            <!---->
+                        </div>
+                    </div>
+                    <div class="market-table">
+                        <div class="title flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                            <div class="item col-1 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                <p ><?php echo ($GLOBALS['trade-coin']); ?></p>
+                                <div class="sort flex-box flex-direction-column flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                    <span onclick="upSort('n')"></span>
+                                    <span onclick="downSort('n')"></span>
+                                </div>
+                            </div>
+                            <div class="item col-2 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                <p ><?php echo ($GLOBALS['new-price']); ?></p>
+                                <div class="sort flex-box flex-direction-column flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                    <span onclick="upSort('p')"></span>
+                                    <span onclick="downSort('p')"></span>
+                                </div>
+                            </div>
+                            <div class="item col-3 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                <p ><?php echo ($GLOBALS['change-price']); ?></p>
+                                <div class="sort flex-box flex-direction-column flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                    <span onclick="upSort('c')"></span>
+                                    <span onclick="downSort('c')"></span>
+                                </div>
+                            </div>
+                            <div class="item col-4 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                <p ><?php echo ($GLOBALS['high-price']); ?></p>
+                            </div>
+                            <div class="item col-5 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                <p ><?php echo ($GLOBALS['low-price']); ?></p>
+                            </div>
+                            <div class="item col-6 flex-box flex-direction-row flex-justify-end flex-align-item-center flex-wrap-nowrap" >
+                                <p ><?php echo ($GLOBALS['dayNum']); ?></p>
+                            </div>
+                        </div>
+                        <div class="easy-scrollbar chromeScrollShow" style="max-height:650px;">
+                            <div class="easy-scrollbar__wrap" style="margin-right: -17px;">
+                                <div class="el-scrollbar__view" style="position: relative;">
+                                    <div class="wrapper" style="max-height:650px;padding-right:0px;">
+                                        <div class="area flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                            <div class="point flex-box flex-direction-column flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                                                <span ></span>
+                                                <span ></span>
+                                                <span ></span>
+                                            </div>
+                                            <!--主区-->
+                                            <p ><?php echo ($GLOBALS['main-area']); ?></p>
+                                        </div>
+                                        <div class="dataShow">
+										<div class="show-list">
+                                            <?php if(is_array($jtc)): $key = 0; $__LIST__ = $jtc;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$r): $mod = ($key % 2 );++$key;?><a href="/Trade/index/market/<?php echo ($r["urlname"]); ?>" target="_blank">
+                                                <div class="area-list flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                                                    <div class="item col-1 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p ><span ><?php echo ($r["s1"]); ?></span><span style="color:#666b93;" ></span> </p>
+                                                        <!--<span class="star no-optional" ></span>-->
+                                                    </div>
+                                                    <div class="item col-2 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p class="newPrice"> <?php echo (sprintf("%.4f",$r["new_price"])); ?>
+                                                        </p>
+                                                    </div>
+                                                    <div class="item col-3 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p style="color:#B92E5D;" class="changeNum"> <?php echo (round($r["change"],2)); ?> </p>
+                                                        <span class="arrow down" ></span>
+                                                    </div>
+                                                    <div class="item col-4 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > <?php echo (sprintf("%.4f",$r["max_price"])); ?></p>
+                                                    </div>
+                                                    <div class="item col-5 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > <?php echo (sprintf("%.4f",$r["min_price"])); ?></p>
+                                                    </div>
+                                                    <div class="item col-6 flex-box flex-direction-row flex-justify-end flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > <?php echo sprintf("%.2f",($r['volume']/10000)) ?></p>
+                                                    </div>
+                                                </div> 
+                                            </a><?php endforeach; endif; else: echo "" ;endif; ?>
+											</div>
+												<div class="show-list">
+                                                <?php if(is_array($usdt)): $key1 = 0; $__LIST__ = $usdt;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$u1): $mod = ($key1 % 2 );++$key1;?><a href="/Trade/index/market/<?php echo ($u1["urlname"]); ?>" target="_blank" show="true">
+                                                <div class="area-list flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                                                    <div class="item col-1 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p ><span ><?php echo ($u1["s1"]); ?></span><span style="color:#666b93;" ></span> </p>
+                                                        <!--<span class="star no-optional" ></span>-->
+                                                    </div>
+                                                    <div class="item col-2 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p class="newPrice"> <?php echo (sprintf("%.4f",$u1["new_price"])); ?></p>
+                                                        <!-- <span style="color:#666b93;" > ≈ ￥44347.86</span>  -->
+                                                    </div>
+                                                    <div class="item col-3 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p class="changeNum" style="color: rgb(185, 46, 93);" > <?php echo (round($u1["change"],2)); ?> </p>
+                                                        <span class="arrow down" ></span>
+                                                    </div>
+                                                    <div class="item col-4 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > <?php echo (sprintf("%.4f",$u1["max_price"])); ?></p>
+                                                    </div>
+                                                    <div class="item col-5 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > <?php echo (sprintf("%.4f",$u1["min_price"])); ?></p>
+                                                    </div>
+                                                    <div class="item col-6 flex-box flex-direction-row flex-justify-end flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > <?php echo sprintf("%.2f",($u1['volume']/10000)) ?></p>
+                                                    </div>
+                                                </div>
+                                            </a><?php endforeach; endif; else: echo "" ;endif; ?> 
+												</div>
+
+                                            <div class="show-list">
+                                            <?php if(is_array($btc)): $i = 0; $__LIST__ = $btc;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$b): $mod = ($i % 2 );++$i;?><a  target="_blank" href="/Trade/index/market/<?php echo ($b["urlname"]); ?>">
+                                                <div class="area-list flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                                                    <div class="item col-1 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p ><span ><?php echo ($b["s1"]); ?></span><span style="color:#666b93;" > </span> </p>
+                                                        <!--<span class="star no-optional" ></span>-->
+                                                    </div>
+                                                    <div class="item col-2 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p class="newPrice"> <?php echo (sprintf("%.4f",$b["new_price"])); ?>
+                                                        </p>
+                                                    </div>
+                                                    <div class="item col-3 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p style="color:#B92E5D;"  class="changeNum"> <?php echo (round($b["change"],2)); ?> </p>
+                                                        <span class="arrow down" ></span>
+                                                    </div>
+                                                    <div class="item col-4 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > <?php echo (sprintf("%.4f",$b["max_price"])); ?></p>
+                                                    </div>
+                                                    <div class="item col-5 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > <?php echo (sprintf("%.4f",$b["min_price"])); ?></p>
+                                                    </div>
+                                                    <div class="item col-6 flex-box flex-direction-row flex-justify-end flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > <?php echo sprintf("%.2f",($b['volume']/10000)) ?></p>
+                                                    </div>
+                                                </div> 
+                                            </a><?php endforeach; endif; else: echo "" ;endif; ?>
+											</div>
+											<div class="show-list">
+                                            <?php if(is_array($eth)): $i = 0; $__LIST__ = $eth;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$e): $mod = ($i % 2 );++$i;?><a href="/Trade/index/market/<?php echo ($e["urlname"]); ?>" target="_blank">
+                                                <div class="area-list flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                                                    <div class="item col-1 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p ><span ><?php echo ($e["s1"]); ?></span><span style="color:#666b93;" ></span> </p>
+                                                        <!--<span class="star no-optional" ></span>-->
+                                                    </div>
+                                                    <div class="item col-2 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p class="newPrice"> <?php echo (sprintf("%.4f",$e["new_price"])); ?>
+                                                        </p>
+                                                    </div>
+                                                    <div class="item col-3 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p style="color:#B92E5D;" class="changNum"> <?php echo (round($e["change"],2)); ?> </p>
+                                                        <span class="arrow down" ></span>
+                                                    </div>
+                                                    <div class="item col-4 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > <?php echo (sprintf("%.4f",$e["max_price"])); ?></p>
+                                                    </div>
+                                                    <div class="item col-5 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > <?php echo (sprintf("%.4f",$e["min_price"])); ?></p>
+                                                    </div>
+                                                    <div class="item col-6 flex-box flex-direction-row flex-justify-end flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > <?php echo sprintf("%.2f",($e['volume']/10000)) ?></p>
+                                                    </div>
+                                                </div>
+                                                 </a><?php endforeach; endif; else: echo "" ;endif; ?>
+											</div>
+                                            
+                                            <!--主区结束-->
+                                            
+                                        </div>
+                                         <div class="area flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" style="display:none">
+                                            <div class="point flex-box flex-direction-column flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                                                <span ></span>
+                                                <span ></span>
+                                                <span ></span>
+                                            </div>
+                                            <!--创新区-->
+                                            <p ><?php echo ($GLOBALS['chuangxin']); ?></p>
+                                        </div>
+                                        <div  class="dataShow">
+                                            	<a href="/Trade/index/market/<?php echo ($u1['name']); ?>" target="_blank">
+                                            <?php if(is_array($new_jtc)): $key = 0; $__LIST__ = $new_jtc;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$r): $mod = ($key % 2 );++$key;?><div class="area-list flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                                                    <div class="item col-1 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p ><span ><?php echo ($r["s1"]); ?></span><span style="color:#666b93;" ></span> </p>
+                                                        <!--<span class="star no-optional" ></span>-->
+                                                    </div>
+                                                    <div class="item col-2 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p class="newPrice"> <?php echo (sprintf("%.4f",$r["new_price"])); ?>
+                                                        </p>
+                                                    </div>
+                                                    <div class="item col-3 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p style="color:#B92E5D;" class="changeNum"> <?php echo (round($r["change"],2)); ?> </p>
+                                                        <span class="arrow down" ></span>
+                                                    </div>
+                                                    <div class="item col-4 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > <?php echo (sprintf("%.4f",$r["max_price"])); ?></p>
+                                                    </div>
+                                                    <div class="item col-5 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > <?php echo (sprintf("%.4f",$r["min_price"])); ?></p>
+                                                    </div>
+                                                    <div class="item col-6 flex-box flex-direction-row flex-justify-end flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > <?php echo sprintf("%.2f",($r['volume']/10000)) ?></p>
+                                                    </div>
+                                                </div><?php endforeach; endif; else: echo "" ;endif; ?>
+                                            </a>
+
+                                            <a href="/Trade/index/market/<?php echo ($u1['name']); ?>" target="_blank" show="true">
+                                                <?php if(is_array($new_usdt)): $key1 = 0; $__LIST__ = $new_usdt;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$u1): $mod = ($key1 % 2 );++$key1;?><div class="area-list flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                                                    <div class="item col-1 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p ><span ><?php echo ($u1["s1"]); ?></span><span style="color:#666b93;" ></span> </p>
+                                                        <!--<span class="star no-optional" ></span>-->
+                                                    </div>
+                                                    <div class="item col-2 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p class="newPrice"> <?php echo (sprintf("%.4f",$u1["new_price"])); ?></p>
+                                                        <!-- <span style="color:#666b93;" > ≈ ￥44347.86</span>  -->
+                                                    </div>
+                                                    <div class="item col-3 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p class="changeNum" style="color: rgb(185, 46, 93);" > <?php echo (round($u1["change"],2)); ?> </p>
+                                                        <span class="arrow down" ></span>
+                                                    </div>
+                                                    <div class="item col-4 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > <?php echo (sprintf("%.4f",$u1["max_price"])); ?></p>
+                                                    </div>
+                                                    <div class="item col-5 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > <?php echo (sprintf("%.4f",$u1["min_price"])); ?></p>
+                                                    </div>
+                                                    <div class="item col-6 flex-box flex-direction-row flex-justify-end flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > <?php echo sprintf("%.2f",($u1['volume']/10000)) ?></p>
+                                                    </div>
+                                                </div><?php endforeach; endif; else: echo "" ;endif; ?> 
+                                            </a>
+
+                                            
+                                            <a  target="_blank" href="/Trade/index/market/<?php echo ($u1['name']); ?>">
+                                            <?php if(is_array($new_btc)): $i = 0; $__LIST__ = $new_btc;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$b): $mod = ($i % 2 );++$i;?><div class="area-list flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                                                    <div class="item col-1 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p ><span ><?php echo ($b["s1"]); ?></span><span style="color:#666b93;" > </span> </p>
+                                                       <!-- <span class="star no-optional" ></span>-->
+                                                    </div>
+                                                    <div class="item col-2 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p class="newPrice"> <?php echo (sprintf("%.4f",$u1["new_price"])); ?>
+                                                        </p>
+                                                    </div>
+                                                    <div class="item col-3 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p style="color:#B92E5D;"  class="changeNum"> <?php echo (round($b["change"],2)); ?> </p>
+                                                        <span class="arrow down" ></span>
+                                                    </div>
+                                                    <div class="item col-4 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > <?php echo (sprintf("%.4f",$b["max_price"])); ?></p>
+                                                    </div>
+                                                    <div class="item col-5 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > <?php echo (sprintf("%.4f",$b["min_price"])); ?></p>
+                                                    </div>
+                                                    <div class="item col-6 flex-box flex-direction-row flex-justify-end flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > <?php echo sprintf("%.2f",($b['volume']/10000)) ?></p>
+                                                    </div>
+                                                </div><?php endforeach; endif; else: echo "" ;endif; ?>
+                                            </a>
+
+                                            <a href="/Trade/index/market/<?php echo ($u1['name']); ?>" target="_blank">
+                                            <?php if(is_array($new_eth)): $i = 0; $__LIST__ = $new_eth;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$e): $mod = ($i % 2 );++$i;?><div class="area-list flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                                                    <div class="item col-1 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p ><span ><?php echo ($e["s1"]); ?></span><span style="color:#666b93;" ></span> </p>
+                                                       <!-- <span class="star no-optional" ></span>-->
+                                                    </div>
+                                                    <div class="item col-2 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p class="newPrice"> <?php echo (sprintf("%.4f",$e["new_price"])); ?>
+                                                        </p>
+                                                    </div>
+                                                    <div class="item col-3 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p style="color:#B92E5D;" class="changNum"> <?php echo (round($e["change"],2)); ?> </p>
+                                                        <span class="arrow down" ></span>
+                                                    </div>
+                                                    <div class="item col-4 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > <?php echo (sprintf("%.4f",$e["max_price"])); ?></p>
+                                                    </div>
+                                                    <div class="item col-5 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > <?php echo (sprintf("%.4f",$e["min_price"])); ?></p>
+                                                    </div>
+                                                    <div class="item col-6 flex-box flex-direction-row flex-justify-end flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > <?php echo sprintf("%.2f",($e['volume']/10000)) ?></p>
+                                                    </div>
+                                                </div><?php endforeach; endif; else: echo "" ;endif; ?>
+                                                 </a>
+                                        </div> 
+                                        <!--创新区结束-->
+                                        <!---->
+                                    </div>
+                                    <div class="resize-triggers">
+                                        <div class="expand-trigger">
+                                            <div style="width: 1750px; height: 472px;"></div>
+                                        </div>
+                                        <div class="contract-trigger"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="esay-scrollbar__bar is-vertical" style="background-color: rgb(26, 27, 64); z-index: 50; width: 6px; right: 0px; display: none;">
+                                <div class="easy-scrollbar__thumb" style="transform: translateY(0%); background-color: rgb(59, 59, 99); width: 6px; opacity: 0.3;"></div>
+                            </div>
+                        </div>
+                        <!---->
+                    </div>
+                </div>
+               <div class="product">
+                    <div class="product-title flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap " >
+                        <a  class="bgStyle"><span ></span><em class="cn" ><?php echo ($GLOBALS['trade']); ?></em> <p class="cn" ><?php echo ($GLOBALS['trade-intro']); ?></p></a>
+                        <a  class=""><span ></span><em class="cn" ><?php echo ($GLOBALS['c2c']); ?></em> <p class="cn" ><?php echo ($GLOBALS['c2c-intro']); ?></p></a>
+                        <a  class=""><span ></span><em class="cn" ><?php echo ($GLOBALS['borrowMoney']); ?></em> <p class="cn" ><?php echo ($GLOBALS['borrow-intro']); ?></p></a>
+                        <a  class=""><span ></span><em class="cn" ><?php echo ($GLOBALS['num-qianbao']); ?></em> <p class="cn" ><?php echo ($GLOBALS['qianbao-intro']); ?></p></a>
+                    </div>
+                    <div class="flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap product-content cn" >
+                        <div class="product-left" >
+                            <h2 > <?php echo ($GLOBALS['trade-intro']); ?></h2>
+                            <div class="flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                                <ul >
+                                    <li ><span ></span><?php echo ($GLOBALS['trade-advantage1']); ?> </li>
+                                    <li ><span ></span><?php echo ($GLOBALS['trade-advantage2']); ?> </li>
+                                </ul>
+                                <ul >
+                                    <li ><span ></span><?php echo ($GLOBALS['trade-advantage3']); ?> </li>
+                                    <li ><span ></span><?php echo ($GLOBALS['trade-advantage4']); ?> </li>
+                                </ul>
+                            </div>
+                            <a href="/Trade/index" > <?php echo ($GLOBALS['lunbo-detail']); ?> <span ></span></a>
+                        </div>
+                        <div class="product-left dis" >
+                            <h2 > <?php echo ($GLOBALS['c2c-intro']); ?> </h2>
+                            <div class="flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                                <ul >
+                                    <li ><span ></span><?php echo ($GLOBALS['c2c-advantage1']); ?> </li>
+                                    <li ><span ></span><?php echo ($GLOBALS['c2c-advantage2']); ?> </li>
+                                </ul>
+                                <ul >
+                                    <li ><span ></span><?php echo ($GLOBALS['c2c-advantage3']); ?> </li>
+                                    <li ><span ></span><?php echo ($GLOBALS['c2c-advantage4']); ?> </li>
+                                </ul>
+                            </div>
+                            <a href="/C2c/index" > <?php echo ($GLOBALS['lunbo-detail']); ?> <span ></span></a>
+                        </div>
+                        <div class="product-left dis" >
+                            <h2 > <?php echo ($GLOBALS['borrow-intro']); ?> </h2>
+                            <div class="flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                                <ul >
+                                    <li ><span ></span><?php echo ($GLOBALS['highBorrow-advantage1']); ?> </li>
+                                    <li ><span ></span><?php echo ($GLOBALS['highBorrow-advantage2']); ?> </li>
+                                </ul>
+                                <ul >
+                                    <li ><span ></span><?php echo ($GLOBALS['highBorrow-advantage3']); ?> </li>
+                                    <li ><span ></span><?php echo ($GLOBALS['highBorrow-advantage4']); ?> </li>
+                                </ul>
+                            </div>
+                            <a href="/Lever/borrowMoney" > <?php echo ($GLOBALS['lunbo-detail']); ?> <span ></span></a>
+                        </div>
+                        <div class="product-left dis" >
+                            <h2 ><?php echo ($GLOBALS['coinStorage']); ?> </h2>
+                            <div class="flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                                <ul >
+                                    <li ><span ></span><?php echo ($GLOBALS['coinStorage-advantage1']); ?> </li>
+                                    <li ><span ></span><?php echo ($GLOBALS['coinStorage-advantage2']); ?> </li>
+                                </ul>
+                                <ul >
+                                    <li ><span ></span><?php echo ($GLOBALS['coinStorage-advantage3']); ?> </li>
+                                    <li ><span ></span><?php echo ($GLOBALS['coinStorage-advantage4']); ?> </li>
+                                </ul>
+                            </div>
+                            <a href="/Finance/qianbao" > <?php echo ($GLOBALS['lunbo-detail']); ?> <span ></span></a>
+                        </div>
+                        <div class="product-right" >
+                            <a class="dis" ></a>
+                            <a  class=""></a>
+                            <a class="dis" ></a>
+                            <a class="dis" ></a>
+                            <a class="dis" ></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-platform">
+                    <h2 class="service_active1"> <?php echo ($GLOBALS['companyTitle']); ?></h2>
+                    <div class="flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap content-box service_active2 cn" >
+                        <div class="content" >
+                            <img src="/Public/Home/image/index/sever-1.0ef7e32.png" alt=""  />
+                            <p ><?php echo ($GLOBALS['advantage1-title']); ?></p>
+                            <span ><?php echo ($GLOBALS['advantage1-intro1']); ?><br  /> <?php echo ($GLOBALS['advantage1-intro2']); ?> </span>
+                        </div>
+                        <div class="content" >
+                            <img src="/Public/Home/image/index/sever-2.ef528c8.png" alt=""  />
+                            <p ><?php echo ($GLOBALS['advantage2-title']); ?></p>
+                            <span > <?php echo ($GLOBALS['advantage2-intro1']); ?><br  /> <?php echo ($GLOBALS['advantage2-intro2']); ?> </span>
+                        </div>
+                        <div class="content" >
+                            <img src="/Public/Home/image/index/sever-3.fee8914.png" alt=""  />
+                            <p ><?php echo ($GLOBALS['advantage3-title']); ?></p>
+                            <span ><?php echo ($GLOBALS['advantage3-intro1']); ?> <br  /> <?php echo ($GLOBALS['advantage3-intro2']); ?> </span>
+                        </div>
+                        <div class="content" >
+                            <img src="/Public/Home/image/index/sever-4.8b6d2ee.png" alt=""  />
+                            <p ><?php echo ($GLOBALS['advantage4-title']); ?></p>
+                            <span ><?php echo ($GLOBALS['advantage4-intro1']); ?> <br  /><?php echo ($GLOBALS['advantage4-intro2']); ?> </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="down-load flex-box flex-direction-row flex-justify-center flex-align-item-start flex-wrap-nowrap" >
+                    <a class="down-load-img cn" ></a>
+                    <div class="down-load-content" >
+                        <h2 ><?php echo ($GLOBALS['total-title']); ?></h2>
+                        <p > <?php echo ($GLOBALS['total-intro1']); ?><br  /> <?php echo ($GLOBALS['total-intro2']); ?> </p>
+                        <div class="down-load-btn" >
+                            <div  class="hoverEwm hoverEwm1">
+                                 <a ><span ></span>Android</a> 
+                                
+                            </div>
+                            <div  class="hoverEwm hoverEwm2">
+                                <a ><span ></span>ios</a>
+                                <!---->
+                            </div>
+                        </div>
+                        <!---->
+                    </div>
+                </div>
+                <!--底部-->
+                <div class="footer flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap" >
+                    <div class="footer-left flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap" >
+                        <ul >
+                            <li ><?php echo ($GLOBALS['series-produce']); ?></li>
+                            <li ><a href="/C2c/index" ><?php echo ($GLOBALS['c2c']); ?></a></li>
+                            <li ><a href="/Trade/index" ><?php echo ($GLOBALS['trade']); ?></a> </li>
+                            <li ><a href="/Lever/borrowMoney" ><?php echo ($GLOBALS['borrowMoney']); ?></a> </li>
+                        </ul>
+                        <ul >
+                            <li ><?php echo ($GLOBALS['about-us']); ?></li>
+                            <?php if(is_array($xinwen)): $i = 0; $__LIST__ = $xinwen;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; if(($_SESSION['lang']) == "1"): if(!empty($vo['title'])): ?><li ><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank" ><?php echo ($vo['title']); ?></a></li><?php endif; endif; ?>
+								<?php if(($_SESSION['lang']) == "2"): if(!empty($vo['title_e'])): ?><li ><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank" ><?php echo ($vo['title_e']); ?></a></li><?php endif; endif; ?>
+								<?php if(($_SESSION['lang']) == "3"): if(!empty($vo['title_en'])): ?><li ><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank" ><?php echo ($vo['title_en']); ?></a></li><?php endif; endif; endforeach; endif; else: echo "" ;endif; ?>
+                            <!-- <li ><a href="/Article/type" target="_blank" >联系我们</a></li> -->
+                            <li ><a href="/Article/officialAdModal" target="_blank" ><?php echo ($GLOBALS['office-notice']); ?></a></li>
+							<!-- <?php if(is_array($about)): $i = 0; $__LIST__ = $about;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?>-->
+							<!-- <li ><a href="/Article/detail/id/<?php echo ($v['id']); ?>" target="_blank" ><?php echo ($v['title']); ?></a></li> -->
+							<!--<?php endforeach; endif; else: echo "" ;endif; ?> -->
+							<?php if(is_array($about)): $i = 0; $__LIST__ = $about;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; if(($_SESSION['lang']) == "1"): if(!empty($vo['title'])): ?><li ><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank" ><?php echo ($vo['title']); ?></a></li><?php endif; endif; ?>
+								<?php if(($_SESSION['lang']) == "2"): if(!empty($vo['title_e'])): ?><li ><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank" ><?php echo ($vo['title_e']); ?></a></li><?php endif; endif; ?>
+								<?php if(($_SESSION['lang']) == "3"): if(!empty($vo['title_en'])): ?><li ><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank" ><?php echo ($vo['title_en']); ?></a></li><?php endif; endif; endforeach; endif; else: echo "" ;endif; ?>
+                        </ul>
+                        <ul >
+                            <li ><?php echo ($GLOBALS['server-support']); ?></li>
+                            <li ><a href="/Article/officialAdModal" target="_blank" ><?php echo ($GLOBALS['help-center']); ?></a></li>
+                            <li ><a href="/Article/detail/id/188" target="_blank" >下线币种说明</a></li>
+                            <li ><a href="/Article/detail/id/14" target="_blank" ><?php echo ($GLOBALS['currentCoin-apply']); ?></a></li>
+                        </ul>
+                        <ul >
+                            <li ><?php echo ($GLOBALS['official-community']); ?></li>
+                            <li style="position:relative;">
+                                <a ><?php echo ($GLOBALS['weixinQ']); ?></a>
+                                <div style="display: none;">
+                                    <em></em>
+                                    <!--<img src="/Public/Home/image/index/wechat_ercode.4e8fc32.png" alt="">-->
+                                    <img src="/Public/Home/image/index/jiaoliu.png" alt="">
+                                    <span><?php echo ($GLOBALS['join-weixin']); ?></span>
+                                </div>
+                            </li>
+                            <!--<li ><a href="" target="_blank" ><?php echo ($GLOBALS['Telegram']); ?></a></li>-->
+                            <!--<li style="position:relative;" >-->
+                                <!--<a >API交流群</a>-->
+                                <!--<div style="display: none;">-->
+                                    <!--<em data-v-2a183b29=""></em>-->
+                                    <!--<img src="../image/index/API.ff33133.png" alt="">-->
+                                    <!--<span>扫码加入API交流群</span>-->
+                                <!--</div>-->
+                            <!--</li>-->
+                        </ul>
+                        <ul >
+                            <li ><?php echo ($GLOBALS['relative-download']); ?></li>
+                            <li style="position:relative;" >
+                                <a >Android App</a>
+                                <div style="display: none;">
+                                    <em data-v-2a183b29=""></em>
+                                    <img src="/Public/Home/image/index/Android.14c5c18.png " alt="">
+                                    <span>Android App</span>
+                                </div>
+                            </li>
+                            <li style="position:relative;" >
+                                <a >IOS App</a>
+                                <div style="display: none;">
+                                    <em data-v-2a183b29=""></em>
+                                    <img src="/Public/Home/image/index/ios.14c5c18.png " alt="">
+                                    <span>IOS App</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-right flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                        <ul >
+                            <li ><?php echo ($GLOBALS['attention-us']); ?></li>
+                            <li ><?php echo ($GLOBALS['our-global']); ?></li>
+                            <li ><a href="" target="_blank" ></a><a href="" target="_blank" ></a><a href="" target="_blank" ></a></li>
+                            <!--<li ><?php echo ($GLOBALS['web_down']); ?> <?php echo ($GLOBALS['beian']); ?></li>-->
+                        </ul>
+                    </div>
+                </div>
+                <div style="text-align:center;color:#7183a9;font-size:14px;margin-top:-20px;padding-bottom:20px;">
+                    <?php echo ($GLOBALS['web_down']); ?> <?php echo ($GLOBALS['beian']); ?>
+                </div>
+                <!--底部 end-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="toast" style="display: none;">
+    <span class="text"></span>
+</div>
+<!--在线客服-->
+
+<!--在线客服  end-->
+
+<script src="/Public/Home/js/newjs/jquery-3.3.1.min.js"></script>
+<script src="/Public/Home/js/newjs/index.js"></script>
+<script type="text/javascript">
+    $(window).ready(function () {
+        /* 默认显示第一个*/
+        $(".show-list").eq('0').show().siblings().hide();
+
+        /*数据切换*/
+        $(".dataList a").click(function(){
+            $(".show-list").eq($(this).index()).show().siblings().hide();
+        })
+
+
+        /*隐藏手机号中间4位*/
+        var phone = $('#userName').html();
+        var mphone = phone.substr(0, 3) + '****' + phone.substr(7);
+        $('#userName').html(mphone);
+
+        /*隐藏手机号中间4位*/
+        var phone = $('#userName2').html();
+        var mphone = phone.substr(0, 3) + '****' + phone.substr(7);
+        $('#userName2').html(mphone);
+
+
+
+        // 选择语言栏
+        $(".option").click(function () {
+            var oneSpan=$(this).find("span:first-child").attr("class");
+            var twoSpan=$(this).find("span:nth-child(2)").html();
+            $(".st-language .current").find("span:first-child").attr("class",oneSpan);
+            $(".st-language .current").find("span:nth-child(2)").html(twoSpan);
+			
+        });
+
+    });
+
+
+
+
+
+
+    /*价格升序排序*/
+    function upSort(v){
+        var len = $("a[show='true']").find(".area-list").length;
+       // debugger
+        for(var i=0;i<len;i++){
+            for( var j=0;j<len-i-1;j++){
+                if(v=='p'){
+                    var shu1=  Number($("a[show='true']").find(".newPrice").eq(j).html());
+                    var shu2=  Number($("a[show='true']").find(".newPrice").eq(j+1).html());
+                }else if(v=='c'){
+                    var shu1=  Number($("a[show='true']").find(".changeNum").eq(j).html());
+                    var shu2=  Number($("a[show='true']").find(".changeNum").eq(j+1).html());
+                }else{
+                    var shu1=  $("a[show='true']").find("b").eq(j).html().substr(0, 1).charCodeAt();
+                    var shu2=  $("a[show='true']").find("b").eq(j+1).html().substr(0, 1).charCodeAt();
+                }
+                if(shu1-shu2>0){
+                    var swap = $("a[show='true']").find(".area-list").eq(j).html();
+                    $("a[show='true']").find(".area-list").eq(j).html($("a[show='true']").find(".area-list").eq(j+1).html());
+                    $("a[show='true']").find(".area-list").eq(j+1).html(swap);
+                }
+            }
+        }
+    }
+
+    /*价格降序排序*/
+    function downSort(v) {
+        var len = $("a[show='true']").find(".area-list").length;
+        for (var i = 0; i < len; i++) {
+            for (var j = 0; j < len - i - 1; j++) {
+                if(v=='p'){
+                    var shu1=  Number($("a[show='true']").find(".newPrice").eq(j).html());
+                    var shu2=  Number($("a[show='true']").find(".newPrice").eq(j+1).html());
+                }else if(v=='c'){
+                    var shu1=  Number($("a[show='true']").find(".changeNum").eq(j).html());
+                    var shu2=  Number($("a[show='true']").find(".changeNum").eq(j+1).html());
+                }else {
+                    var shu1 = $("a[show='true']").find("b").eq(j).html().substr(0, 1).charCodeAt();
+                    var shu2 = $("a[show='true']").find("b").eq(j + 1).html().substr(0, 1).charCodeAt();
+                }
+
+                    if (shu1-shu2<0) {
+                    var swap = $("a[show='true']").find(".area-list").eq(j).html();
+                    $("a[show='true']").find(".area-list").eq(j).html($("a[show='true']").find(".area-list").eq(j+1).html());
+                    $("a[show='true']").find(".area-list").eq(j+1).html(swap);
+                }
+            }
+        }
+    }
+
+
+
+</script>
+<script>
+					function cy(){
+						var uid = "<?php echo ($uid); ?>";
+						var zhifubao = "<?php echo ($c2c_user['zhifubao']); ?>";
+						var weixin = "<?php echo ($c2c_user['weixin']); ?>";
+						var bank = "<?php echo ($c2c_user['bank']); ?>";
+						var paypwd = "<?php echo ($c2c_user['paypassword']); ?>";
+						//alert(zhifubao);
+						if(uid>0){
+							if((zhifubao == '' || zhifubao=='NULL')&&(weixin == '' || weixin=='NULL')&&(bank == '' || bank=='NULL')){
+								layer.msg('请设置收款方式', {icon: 2});
+								location.href="/User/myCenter";
+							}
+							else if(paypwd == "" || paypwd == "NULL"){
+								layer.msg('请设置资金密码', {icon: 2});
+								location.href="/User/resetFiancePwd";
+							}else{
+								location.href="/C2c/index/market/jeff/money/0";
+							}
+							
+						}else{
+							layer.msg('请先登录', {icon: 2});
+							location.href="/C2c/index/market/jeff/money/0";
+						}
+					}
+					
+					function loginout(){
+						$.post("/Login/loginout",{},function(data){
+							if(data.status==1){
+								layer.msg(data.info,{icon:1});
+								window.setTimeout("window.location='/Index'",1000);
+							}
+						},"json");
+					}
+				</script>
+</body>
+</html>

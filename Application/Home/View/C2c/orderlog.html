@@ -1,0 +1,164 @@
+<include file="Public:header" />
+
+<div class="autobox ">
+	<div class="now">
+		<i class="fa fa-home fa-lg move mr5"></i><a href="/" class="movesay">首页</a> &gt; <a href="/finan/index.html" class="movesay">财务中心 </a> &gt; OTC明细	</div>
+	<div class="main-content">
+    <style>
+	.nav-tab-list .nav-tab-hover{
+		width:100%;
+		top:60px;
+		height:50px;
+		line-height:50px;
+		background:#EAEDF4;
+		position:absolute;
+		box-sizing:content-box;
+		z-index:1;
+		transition:all 0.5s;
+		-webkit-transition:all 0.5s;
+		display:none;
+	}
+</style>
+    <script type="text/javascript">
+	$(function () {
+		(function () {
+			var tab   = $('.nav-tab-list dd');
+			var hover = $('.nav-tab-hover');
+			var pos   = 0;
+			tab.each(function (index) {
+				var $this = $(this);
+				if ($this.hasClass('active')) {
+					pos = index;
+				}
+				$this.hover(function () {
+					_moveTo(index);
+				}, function () {
+					_moveTo(pos);
+				});
+			});
+			_moveTo(pos);
+			$('.nav-tab-hover').show();
+			function _moveTo(index) {
+				hover.css("top", 60 + 50 * index);
+				tab.removeClass('active');
+				tab.eq(index).addClass('active');
+			}
+		})();
+	});
+	$(window).on('scroll resize', function () {
+		if (document.body.scrollTop < 100) {
+			$('#left-nav-bar').css("top", 0);
+		} else if (document.body.scrollTop > ($('.tag-list-content').height() - $('#left-nav-bar').height() + 100)) {
+			$('#left-nav-bar').css("top", ($('.tag-list-content').height() - $('#left-nav-bar').height()));
+		} else {
+			$('#left-nav-bar').css("top", document.body.scrollTop - 100);
+		}
+	});
+</script>
+
+<include file="Finance:left" />
+
+
+            <div class="tag-list-content assets_content bg_w">
+                <div class="safe_center clear">
+                    <h1>
+                        <span> 交易详情
+                            <if condition="($info['status'] eq 4) and ($info['stat'] eq 2)">
+                                <a href="javascript:;" id="qrdk" ><span style=" color: red; font-size: 15px;">(确认打款)</span></a>
+                            <elseif condition="$info['status'] eq 5" />
+                                <span style="font-size: 15px">(订单完成)</span>
+                            <elseif condition="$info['status'] eq 11" /><span style="font-size: 15px;color=red">(撤销订单)</span>
+<!--                                /<a href=""><span style="color: red;font-size: 15px;">申述</span></a>-->
+                            </if>
+                        </span>
+                        <span>
+                         <a href="/otc/otclst"  class="step fz_12 ml50 pd6 active" style="color:#b1b1b1;border: 1px solid #b1b1b1;">交易记录</a>
+                            <!--                         <a href="/otc/orderlog" class="step fz_12 ml20 pd6 ">交易详情</a>-->
+                    </span>
+                        <span>
+												<a class="right" onclick="$('#hints').slideToggle();"><i class="fa fa-hand-o-right move fz_14 mr5"></i><span class="fz_12 move">查看介绍</span></a>
+											</span>
+                    </h1>
+                </div>
+                <div id="hints" class="mytips" style="display:none;">
+
+                    <p>
+                        <notempty name="prompt_text">
+                            {$prompt_text}
+                        </notempty>
+                    </p>			</div>
+                <div class="pwtrade">
+
+                    <br>
+
+                    <div class="set_verify">
+                        <li>
+                            <li>订单号：{$info.id}</li>
+                            <li>币种：{$names}</li>
+                            <li>数量：{$info.num|round=6}</li>
+                            <li>单价：{$info.price|round=4}</li>
+                            <li>总额：{$info.cprice|round=4} <span style=" margin-left: -1px; font-size: 10px; color: red; ">(￥)</span></li>
+                            <li>订单时间：{$info.addtime|addtime}</li>
+                            <eq name="info.status" value="4">
+                                <li>打款时间：{$info.dktime|addtime}</li>
+                            </eq>
+                            <eq name="info.status" value="5">
+                                <li>完成时间：{$info.endtime|addtime}</li>
+                            </eq>
+                            <li>订单状态：
+                                <switch name="info.status">
+                                    <case value="1">待匹配</case>
+                                    <case value="2">已匹配</case>
+                                    <case value="3">待打款</case>
+                                    <case value="4">
+                                        <if condition="$info['stat'] eq 1"><span style="color: red;">已打款,等待商家确认</span><elseif condition="$info['stat'] eq 2" />已打款</if>
+                                    </case>
+                                    <case value="5">订单完成</case>
+                                    <case value="11"><span style="color:red;">撤销</span></case>
+                                </switch>
+                            </li>
+                            <if condition="($info['stat'] eq 1) and ($info['status'] eq 4)"><li>备注：{$info.remark}</li></if>
+                        <if condition="($info['status'] eq 5) or ($info['status'] eq 4)">
+                            <li>对方ID：{$match.id}</li>
+                            <li>对方电话：{$match.moble}</li>
+                            <li>对方留言：{$remark}</li>
+                            <li>打款凭证</li>
+                            <br />
+                            <img src="{$info['img']}" alt="" style="width:300px;">
+                        </if>
+                        </ul>
+
+                    </div>
+                    <a href="{:U('otc/otclst')}"><input type="button" class="btns2" style=" margin: 16px; margin-left: 30%;" value="返回列表" ></a>
+                </div>
+
+            </div>
+
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#qrdk").click(function(){
+            $.post("{:U('otc/qrdk')}", {
+                id:{$info.id},
+        }, function (data) {
+                if (data.status == 1) {
+                    layer.msg(data.info, {icon: 1});
+                    location.href='/otc/otclst';
+                } else {
+                    layer.msg(data.info, {icon: 2});
+                }
+            }, 'json');
+        });
+    });
+</script>
+<script>
+	var hints = "0";
+	if(hints == 1){
+		$('#hints').show();
+	}
+	$('#finance_box').addClass('active');
+	$('.finan_out').addClass('active');
+</script>
+
+<include file="Public:footer" />

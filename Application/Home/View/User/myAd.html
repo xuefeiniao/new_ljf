@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="{$web_keywords}" />
+    <meta name="format-detection" content="telephone=no,email=no,address=no" />
+    <eq name="Think.session.lang" value="1">
+									<notempty name="coninfo['web_name']" value=" ">
+								
+										<title>{$coninfo['web_name']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="2">
+									<notempty name="coninfo['web_name_e']" value=" ">
+										<title>{$coninfo['web_name_e']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="3">
+									<notempty name="coninfo['web_name_en']" value=" ">
+										<title>{$coninfo['web_name_en']}</title>
+									</notempty>
+								</eq>
+    <link data-n-head="true" rel="icon" type="image/x-icon" href="__PUBLIC__/favicon.ico"/>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/base.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/common.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/newcss/myAd.css" />
+    <script data-n-head="true" src="__PUBLIC__/Home/js/newjs/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/layer/layer.js"></script>
+
+</head>
+<body>
+    <style type="text/css">
+        td img{
+        display:inline-block!important;
+        }
+    </style>
+
+<!--<img src="https://mon.58coin.com/mon.gif" id="img-hidden" />-->
+<div id="__nuxt">
+    <div class="nuxt-progress" style="width: 0%; height: 2px; background-color: rgb(59, 128, 112); opacity: 0;"></div>
+    <div id="__layout">
+        <div>
+            <!--头部内容-->
+            <include file="Public:header2"/>
+            <!--头部内容   end-->
+
+            <div class="wrap">
+                <section class="container">
+                    <div class="type-nav flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+                        <div class="nav flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                            <a>{$GLOBALS['ad-manage']}</a>
+                        </div>
+                        <!---->
+                    </div>
+                    <div class="index-list">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th style="width: 120px;">{$GLOBALS['ad-oddNumber']}</th>
+                                <th style="width: 120px;">{$GLOBALS['publish-time']}</th>
+                                <th style="width: 120px;">{$GLOBALS['ad-type']}</th>
+								<th>{$GLOBALS['coin-name']}</th>
+                                <th>{$GLOBALS['trade-total-number']}</th>
+                                <th>{$GLOBALS['completed-number']}</th>
+                                <th>{$GLOBALS['price']}</th>
+                                <!-- <th>溢价率</th> -->
+                                <th>{$GLOBALS['pay-type']}</th>
+                                <th>{$GLOBALS['order-operate']}</th>
+                            </tr>
+                            </thead>
+                            <notempty name="shop" value="">
+                        <tbody>
+                            <foreach name="shop" item="c2c">
+                                <tr>
+                                    <td>{$c2c.number}</td>
+                                    <td>{$c2c.addtime|date="Y-m-d H:i",###}</td>
+                                    <td><if condition="$c2c['type'] eq 1">{$GLOBALS['buy']}<else/>{$GLOBALS['sell']}</if></td>
+									<td>{$c2c.market|strtoupper}</td>
+                                    <td>{$c2c.num}</td>
+                                    <td>{$c2c.trade}</td>
+                                    <td>{$c2c.price}</td>
+                                    <td>
+                                        <eq name="c2c['bank']"   value="1"> <img class="pay_icon2"src="/public/home/001_files/03.png"></eq>
+                                        <eq name="c2c['alipay']" value="1"><img class="pay_icon2" src="/public/home/001_files/02.png"></eq>
+                                        <eq name="c2c['wechat']" value="1"><img class="pay_icon2" src="/public/home/001_files/01.png"></eq>
+                                    </td>
+                                    <td>
+                                        <if condition="$c2c['residue'] gt 0">
+                        
+                                            <a onclick="javascript:if(confirm('{$GLOBALS[\'cancel-putOrder\']}')) {chexiao({$c2c.id});} else {return false;}" id="chexiao" class="btn-success od-btn" style="cursor:pointer;">{$GLOBALS['repeal']}</a>
+                                        <else/>
+                                                  
+                            
+                                 
+                                            <eq name="c2c['is_done']" value="1">
+                                                <a href="/C2c/deal/id/{$c2c['id']}" class="btn-success od-btn" style="cursor:pointer;">{$GLOBALS['completed']}</a>
+                                            <else/>
+                                                <a href="/C2c/deal/id/{$c2c['id']}" class="btn-success od-btn" style="cursor:pointer;">{$GLOBALS['matched']}</a>
+                                            </eq>
+                                 
+                                        </if>
+                                    </td>
+                                    <!-- <td>1</td> -->
+                                </tr>
+                            </foreach>
+                        </tbody>
+                        
+                        </notempty>
+                        </table>
+                        <empty name="shop" value="">
+                        <div class="no-list">
+                            <img src="/Public/Home/image/accountMsg/nolist.71d670a.jpg" alt="" />
+                            <h6 style="font-weight: normal;">{$GLOBALS['noData']}</h6>
+                        </div>
+                    </empty>
+                        <!---->
+                    </div>
+                </section>
+                <!--底部内容-->
+                <include file="Public:footer"/>
+                <!--底部内容   end-->
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+function chexiao(uid){  
+            var id=uid;
+            $.ajax({
+                url:"{:U('C2c/delete')}",
+                type:"POST",
+                dataType:"json",
+                data:{id:id},
+                success:function(res){
+                    if(res.status==1){
+                        layer.msg(res.msg,{icon : 1 ,time:5000});
+                        window.location.reload();
+                       
+                    }else{
+                        layer.msg(res.msg,{icon : 2 ,time:5000});
+                    }
+                }
+            });             
+    }
+</script>
+
+
+<!--<script src="../js/bindEmail.js"></script>-->
+</body>
+</html>

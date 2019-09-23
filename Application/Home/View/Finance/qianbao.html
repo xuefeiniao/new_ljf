@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="{$web_keywords}" />
+    <meta name="format-detection" content="telephone=no,email=no,address=no" />
+    <eq name="Think.session.lang" value="1">
+									<notempty name="coninfo['web_name']" value=" ">
+								
+										<title>{$coninfo['web_name']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="2">
+									<notempty name="coninfo['web_name_e']" value=" ">
+										<title>{$coninfo['web_name_e']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="3">
+									<notempty name="coninfo['web_name_en']" value=" ">
+										<title>{$coninfo['web_name_en']}</title>
+									</notempty>
+								</eq>
+    <link data-n-head="true" rel="icon" type="image/x-icon" href="__PUBLIC__/favicon.ico"/>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/base.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/common.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/newcss/account.css" media="all"/>
+    <script data-n-head="true" src="__PUBLIC__/Home/js/newjs/jquery-3.3.1.min.js"></script>
+
+</head>
+<body>
+<!--<img src="https://mon.58coin.com/mon.gif" id="img-hidden" />-->
+<div id="__nuxt">
+    <div class="nuxt-progress" style="width:0%;height:2px;background-color:#3B8070;opacity:0;"></div>
+    <div id="__layout">
+        <div>
+            <!--头部内容-->
+            <include file="Public:header1"/>
+            <!--头部内容   end-->
+            <div class="wrap">
+                <div class="account-index container">
+                    <div class="nav flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                        <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                            <!-- <a class="active">充值提现账户</a> -->
+                            <a class="active"> {$GLOBALS['bb-account']} </a>
+                            <a class=""> {$GLOBALS['gg-account']} </a>
+                        </div>
+                       <!-- <a href="/Finance/mywt" class="view">{$GLOBALS['check-orderDetail']}</a>-->
+                    </div>
+                    <div class="asset flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                        <!-- <div class="total flex-box flex-direction-row flex-justify-start flex-align-item-baseline flex-wrap-nowrap">
+                            <h3>净资产折合</h3>
+                            <p>0&nbsp;</p>
+                            <span>BTC ≈ 0CNY</span>
+                        </div> -->
+                        <div class="blank"></div>
+                        <!--<div class="hide flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">-->
+                            <!--<span class="active"></span>-->
+                            <!--<p>隐藏资产为0的币种</p>-->
+                        <!--</div>-->
+                        <!--<div class="search">
+                            <input type="text" placeholder="{$GLOBALS['coin-place']}" value="" />
+                            <span></span>
+                        </div>-->
+                    </div>
+                    <div class="detail">
+                        <div class="title flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                            <p class="col-1" style="text-align:center;">{$GLOBALS['coin-name']}</p>
+                            <p class="col-2" style="text-align:center;">{$GLOBALS['usable']}</p>
+                            <p class="col-3"  style="text-align:center;">{$GLOBALS['total']}</p>
+                           <!-- <p class="col-4">{$GLOBALS['order-operate']}</p>-->
+                        </div>
+                        <div class="accountB">
+                            <volist name="coin" id="vo">
+                            <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                <p class="col-1" style="text-align:center;">{$vo['name']|strtoupper}</p>
+                                <p class="col-2" style="text-align:center;"><?php echo M('User_coin')->where(array('userid'=>$userid))->getField($vo['name']);?></p>
+                                <p class="col-3" style="text-align:center;">
+                                    <?php
+                                    $ky = M('User_coin')->where(array('userid'=>$userid))->getField($vo['name']);
+                                    $dj = M('User_coin')->where(array('userid'=>$userid))->getField(array($vo['name'].'d'));
+                                    echo $ky + $dj;
+                                    ?>
+
+                                </p>
+                                <div class="handle col-4 flex-box flex-direction-row flex-justify-end flex-align-item-start flex-wrap-nowrap">
+                                    <a href="/Finance/myzr/name/{$vo['name']|strtoupper}" class="">{$GLOBALS['recharge']}</a>
+                                    <a href="/Finance/myzc/name/{$vo['name']|strtoupper}" class="">{$GLOBALS['withdraw']}</a>
+                                   <!-- <a>{$GLOBALS['transfer-accounts']}</a>-->
+                                </div>
+                            </div>
+                            </volist>
+                        </div>
+                        <div class="accountT" style="display: none;">
+                            <volist name="coin" id="vo">
+                                <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <p class="col-1" style="text-align:center;">{$vo['name']|strtoupper}</p>
+                                    <p class="col-2" style="text-align:center;">
+									<neq name="vo.name" value="jeff">
+										<?php echo M('Lever_coin')->where(array('userid'=>$userid,'name_en'=>$vo['name']))->getField('yue');?>
+									<else />
+										<?php echo M('Lever_coin')->where(array('userid'=>$userid))->sum('p_yue');?>
+									</neq>
+									</p>
+                                    <p class="col-3" style="text-align:center;">
+									<neq name="vo.name" value="jeff">
+                                        <?php
+										$ky = M('Lever_coin')->where(array('userid'=>$userid,'name_en'=>$vo['name']))->getField('yue');
+                                        $dj = M('Lever_coin')->where(array('userid'=>$userid,'name_en'=>$vo['name']))->getField('yued');
+                                        echo $ky + $dj;
+                                        ?>
+									<else />
+										<?php
+										$ky = M('Lever_coin')->where(array('userid'=>$userid))->sum('p_yue');
+                                        $dj = M('Lever_coin')->where(array('userid'=>$userid))->sum('p_yued');
+                                        echo $ky + $dj;
+                                        ?>
+									</neq>
+                                    </p>
+                                    <div class="handle col-4 flex-box flex-direction-row flex-justify-end flex-align-item-start flex-wrap-nowrap">
+                                        <!--<a>{$GLOBALS['transfer-accounts']}</a>-->
+                                    </div>
+                                </div>
+                            </volist>
+                        </div>
+                    </div>
+                    <!---->
+                    <div class="popup flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap" style="display: none;">
+                        <div class="popup-box">
+                            <div class="header flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                <h3><span id="bz"></span> {$GLOBALS['transfer-accounts']}</h3><a></a>
+                            </div>
+                            <!--<form class="st-form transfer-window">-->
+                            <div class="st-form transfer-window">
+                                <div class="st-form-item">
+                                    <p class="label" style="padding-right: 16px;">{$GLOBALS['from']}</p>
+                                    <div class="flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" style="width: 350px;">
+                                        <div tabindex="0" class="st-select" style="width: 100%;">
+                                            <div class="box flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                                <p class="styleAccon" id="turnOut" data-item="0">{$GLOBALS['from']}</p>
+                                                <!-- <span class=""></span> -->
+                                            </div>
+                                            <!-- <ul style="width: 100%; display: none;">
+                                                <li class="st-option">币币账户</li>
+                                                <li class="st-option">杠杆交易账户</li>
+                                                
+                                            </ul> -->
+                                        </div><!---->
+                                    </div>
+                                    <p class="tips" style="display: none;"></p>
+                                    <p class="message" style="display: none;"></p></div>
+                                <div class="st-form-item">
+                                    <p class="label" style="padding-right: 16px;">{$GLOBALS['to']}</p>
+                                    <div class="flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" style="width: 350px;">
+                                        <div tabindex="0" class="st-select" style="width: 100%;">
+                                            <div class="box flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                                <p id="turnIn" data-item="1">{$GLOBALS['gg-account']}</p>
+                                                <!-- <span class=""></span> -->
+                                            </div>
+                                           <!--  <ul style="width: 100%; display: none;">
+                                                <li class="st-option">币币账户</li>
+                                                <li class="st-option">杠杆交易账户</li>
+                                        
+                                            </ul> -->
+                                        </div><!---->
+                                    </div>
+                                    <p class="tips" style="display: none;"></p>
+                                    <p class="message" style="display: none;">{$GLOBALS['place-turnIn']}</p>
+                                </div>
+                                <div class="st-form-item" style="min-height: 76px;">
+                                    <p class="label" style="padding-right: 16px;">{$GLOBALS['turn-money']}</p>
+                                    <input type="text" placeholder="{$GLOBALS['place-turnMoney']}" class="st-input" id="turnNum">
+                                    <div class="tip flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                        <p>{$GLOBALS['turn-maximum']}<span class="maxNum" style="margin:0 5px;"></span><span id="coinType"></span></p>
+                                        <a>{$GLOBALS['turn-all']}</a></div>
+                                    <p class="tips" style="display: none;"></p>
+                                    <p class="message" style="display: none;">{$GLOBALS['place-correctMoney']}</p>
+                                </div>
+                                <input type="submit" value="{$GLOBALS['transfer-accounts']}" id="" onclick="aaa();">
+                                <p class="tip-2">{$GLOBALS['turn-service']}</p><!---->
+                            </div>
+                        </div>
+                    </div>
+                    <!---->
+                </div>
+                <!--底部内容-->
+                <include file="Public:footer"/>
+                <!--底部内容   end-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="__PUBLIC__/Home/js/newjs/account.js"></script>
+<script type="text/javascript" src="__PUBLIC__/layer/layer.js"></script>
+<script>
+    /*当前页*/
+    $(".account-nav>a:nth-child(1)").addClass("active");
+
+
+    /*菜单切换*/
+    $(".item>a").click(function(){
+        $(".item>a").removeClass("active");
+        $(this).addClass("active");
+        if($(this).index()==0){
+            $(".accountB").show();//币币账户
+            $(".accountT").hide();//杠杆交易账户
+            $("#turnOut").html("{$GLOBALS['bb-account']}").attr("data-item","0");
+             $("#turnIn").html("{$GLOBALS['gg-account']}").attr("data-item","1");
+        }else{
+            $(".accountB").hide();
+            $(".accountT").show();
+            $("#turnOut").html("{$GLOBALS['gg-account']}").attr("data-item","1");
+            $("#turnIn").html("{$GLOBALS['bb-account']}").attr("data-item","0");
+        }
+    });
+
+
+
+    function aaa(){
+        var turnout = $('#turnOut').attr('data-item');
+        var turnin = $('#turnIn').attr('data-item');
+        // alert(turnout);alert(turnin); return false;
+
+        var bz = $('#bz').html();
+        var turnnum = $('#turnNum').val();
+        if(turnnum == '' || turnnum == null){
+            layer.msg("{$GLOBALS['place-turnMoney']}",{icon:2});
+            return false;
+        }
+        // alert(zz);alert(bz);
+        $.ajax({
+            url:"/Finance/turnout",
+            data:{turnout:turnout,turnin:turnin,bz:bz,turnnum:turnnum},
+            type:'post',
+            dataType:'json',
+            success:function(data){
+                if(data.status == 1){
+                    layer.msg(data.info,{icon:1});
+                    window.location.reload();
+                }else{
+                    layer.msg(data.info,{icon:2});
+                    return false;
+                }
+            }
+        });
+    }
+
+</script>
+
+</body>
+</html>

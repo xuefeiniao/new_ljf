@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<!-- saved from url=(0030)https://gateio.io/c2c/usdt_cny -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>!</title>
+    <meta name="description" content="!">
+    <meta name="keywords" content="!">
+    <meta name="format-detection" content="telephone=no">
+        <!--[if lte IE 9]><script type="text/javascript">location.href = '/update.html';</script><![endif]-->
+    <link href="./001_files/style.css" rel="stylesheet" type="text/css">
+    <style>.icon-48,.icon-32,.icon-16{background-image:url("/images/coins48.png?v=1529488915")}</style>
+    <!-- <link href="./001_files/coins_16.css" rel="stylesheet" type="text/css"> -->
+    <!-- <link href="./001_files/coins_32.css" rel="stylesheet" type="text/css"> -->
+    <!-- <link href="./001_files/coins_48.css" rel="stylesheet" type="text/css"> -->
+                    
+<!--     <link href="./001_files/theme_dark.css" rel="stylesheet" type="text/css" id="darkStyle" disabled="disabled"> -->
+                
+                    
+    <link href="https://ss.ss/favicon.ico" rel="shortcut icon">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://ss.ss/images/apple-touch-icon-120x120.png">
+    <script src="./001_files/jquery-1.8.2.min.js"></script>
+    <!-- <script src="./001_files/jquery.common.tools.js"></script> -->
+</head>
+<body class="">
+<div class="header clearfix">
+    <br /><br />
+</div>
+
+<style>
+    html, body {height: 100%}
+    section {min-height: calc(100% - 451px);}
+    .content {border-top: 1px solid #ddd}
+    .login2-tab li{ width: 100%; text-align: center; font-size: 18px; padding: 20px 0; margin-bottom: 30px; border-bottom: 1px solid #eee;}
+    .login2-tab.show_tab li{ width: 50%;float: left; cursor: pointer}
+    .login2-tab .log-tab-active{ border-width: 3px; border-color: #de5959; color: #de5959}
+    .login2-table tr td:first-child{ width: 33.33%}
+    .sectioncont{ height: 350px;overflow: hidden; position: relative}
+    .sectioncont form{position: absolute;top:100px; width: 100%}
+    #disablelogin2{ height: 15px; margin-top: 3px; margin-right: 0}
+</style>
+<section>
+
+    <div id="content" class="content">
+        <div id="homepost" style="width: 950px; margin: 0 auto; padding-top: 30px">
+
+            <div class="m_title" style="border: none;text-align:center"><h4>用户登录 - 第二步验证</h4></div>
+            <div class="sectioncont">
+                <p style="text-align:center; color:#de5959">用户登录第二步验证，是通过 谷歌验证码 或 短信验证码 进一步保证账号的安全的高级安全机制，请输入以下信息：</p>
+                <ul class="login2-tab ">
+                    <li>短信验证码</li>                
+                </ul>
+                <form id="login2Form" enctype="application/x-www-form-urlencoded" method="post" action="https://gateio.io/login">
+                    <input type="hidden" name="login2" id="login2" value="1">
+                    <input type="hidden" name="password" id="password" value="930e4be3f2d3edca617e2ebbe3d2369d">
+                    <input type="hidden" name="email" id="email" value="13393733825">
+					<input type="hidden" name="usesms" id="usesms" value="0">
+                    <table class="login2-table">
+
+                        
+                        <!--
+                        <tr>
+                            <td align="right">图片验证码：</td>
+                            <td>
+                            <img id="login2Captcha" src="/captcha" alt="Captcha" title="看不清？换一张" onclick="document.getElementById('login2Captcha').src = '/captcha?' + Math.random(); return false"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right">请输入上面的验证码：</td><td><input type="text" name="captcha" id="captcha" class="login2-captcha" size="20" > </td>
+                        </tr>
+                        -->
+
+                        
+                                <tbody><tr name="smstr" id="smstr" style="">
+                                <td align="right" style="padding-right: 8px">短信验证码：</td>
+                                <td>
+                                    <input type="text" value="" size="20" name="smscode" id="smscode">
+                                    <button name="smsbtn" id="smsbtn" type="button">获取短信验证码</button>
+                                    <button name="voicebtn" id="voicebtn" type="button">获取电话语音验证码</button>
+                                    <input type="hidden" name="smsid" value="373976" id="smsid">
+                                </td>
+                            </tr>
+                        
+                        <tr style="display:none;">
+                            <td></td>
+                            <td>
+                                <input style="width: 20px;" type="hidden" name="iprestriction" id="iprestriction" value="1" checked="">绑定到IP地址 （<font color="red">为保证账号安全如非动态IP切勿去选！</font>）
+                            </td>
+                        </tr>
+
+                        <tr style="display:none;">
+                            <td align="right"></td>
+                            <td style="padding-top: 10px">
+                                <input style="width: 20px;" type="checkbox" name="disablelogin2" id="disablelogin2" value="1"> 取消登录第二步验证 （<font color="red"> 为保证账号安全，请切勿选择取消 </font>）
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input type="submit" name="submit" id="submit" class="sub-btn" value=" 登录 " style="margin-top: 20px">
+                            </td>
+                        </tr>
+                    </tbody></table>
+
+                </form>
+                <br><br>
+            </div> <!-- login -->
+
+
+        </div> <!-- homepost -->
+    </div> <!-- content -->
+
+
+</section>
+
+
+<script>
+    $(function (e) {
+
+        //页面初始化
+        var smstr = $("#smstr"),
+            totptr = $("#totptr"),
+            smsOn='1',
+            totpOn='';
+        if(smsOn=='1' && totpOn==''){smstr.show()}
+
+        if(smsOn=='1' && totpOn=='1') {
+            //tab切换
+            $(".login2-tab").find("li").click(function () {
+                if ($(this).index() == 1) {
+                    $("#login2Form").animate({left:'-950px'},100,function () {
+                        smstr.show();
+                        totptr.hide();
+                        $(this).css("left","950px").animate({left:'0'},100);
+						$("#usesms").val(1);
+                    });
+                } else {
+                    $("#login2Form").animate({left:'950px'},100,function () {
+                        smstr.hide();
+                        totptr.show();
+                        $(this).css("left","-950px").animate({left:'0'},100);
+						$("#usesms").val(0);
+                    });
+                }
+                $(this).addClass("log-tab-active").siblings().removeClass("log-tab-active");
+            })
+        }
+
+
+        $('#smsbtn').click(function () {
+            var self = $(this);
+
+            var currentTime = 60;
+            var orignialtext = $(this).text();
+            var form = self.closest('form');
+
+            self.prop('disabled', true);
+
+            var timer = $.timer(function () {
+                currentTime = currentTime - 1;
+                self.text(orignialtext + ' (' + currentTime + ')');
+
+                if (currentTime == 0) {
+                    resetTimer();
+                }
+            }, 1000, false);
+
+            var resetTimer = function () {
+                timer.stop();
+                currentTime = 60;
+                self.text(orignialtext).prop('disabled', false);
+            }
+
+            var smsid = $('#smsid', form).val();
+            var lang = "cn";
+            var view_code = "";
+            var msg = "";
+            $.ajax({
+                type: "post", url: "/sms/" + smsid,
+                success: function (data, textStatus) {
+                    var json_res = data;
+                    if (json_res && json_res.result) {
+                        self.text(orignialtext + ' (' + currentTime + ')');
+                        timer.play();
+                        msg = lang == "en" ? "The SMS code has been sent to your cellphone." : "手机短信验证码：" + json_res.msg;
+                        $('#smscode', form).prop('disabled', false);
+                    } else {
+                        msg = lang == "en" ? "Send SMS faild: " + json_res.msg + ", please check your phone number at <a href='/myaccount/sms_setup'>this link</a>." : "短信发送失败：" + json_res.msg;
+                        //resetTimer();
+                        timer.play();
+                    }
+                    //apprise( "<div>"+msg+"</div>", {animate:true,textOk:"确定"}, function(r){} );
+                    noty({text: msg, type: "error", layout: "bottomLeft",theme:'gateioNotyTheme',timeout: 10000});
+                },
+                error: function () {
+                    //resetTimer();
+                    timer.play();
+                    //apprise( "网络错误！",{animate:true,textOk:"确定"}, function(r){} );
+                    noty({text: '网络错误!', type: "error", layout: "bottomLeft",theme:'gateioNotyTheme', timeout: 10000});
+                },
+                complete: function () {
+                }
+            });
+
+            return false;
+        });
+
+
+        $('#voicebtn').click(function () {
+            var self = $(this);
+
+            var currentTime = 60;
+            var orignialtext = $(this).text();
+            var form = self.closest('form');
+
+            self.prop('disabled', true);
+
+            var timer = $.timer(function () {
+                currentTime = currentTime - 1;
+                self.text(orignialtext + ' (' + currentTime + ')');
+
+                if (currentTime == 0) {
+                    resetTimer();
+                }
+            }, 1000, false);
+
+            var resetTimer = function () {
+                timer.stop();
+                currentTime = 60;
+                self.text(orignialtext).prop('disabled', false);
+            }
+
+            var smsid = $('#smsid', form).val();
+            var lang = "cn";
+            var view_code = "";
+            var msg = "";
+            $.ajax({
+                type: "post", url: "/voiceverify/" + smsid,
+                success: function (data, textStatus) {
+                    var json_res = data;
+                    if (json_res && json_res.result) {
+                        self.text(orignialtext + ' (' + currentTime + ')');
+                        timer.play();
+                        msg = lang == "en" ? "The voide verification code has been sent to your cellphone." : "电话语音验证码：" + json_res.msg;
+                        $('#smscode', form).prop('disabled', false);
+                    } else {
+                        msg = lang == "en" ? "Send voice faild: " + json_res.msg + ", please check your phone number at <a href='/myaccount/sms_setup'>this link</a>." : "电话语音拨打失败：" + json_res.msg ;
+                        //resetTimer();
+                        timer.play();
+                    }
+                    //apprise( "<div>"+msg+"</div>", {animate:true,textOk:"确定"}, function(r){} );
+                    noty({text: msg, type: "error", layout: "bottomLeft",theme:'gateioNotyTheme', timeout: 10000});
+                },
+                error: function () {
+                    //resetTimer();
+                    timer.play();
+                    //apprise( "网络错误！",{animate:true,textOk:"确定"}, function(r){} );
+                    noty({text: '网络错误!', type: "error", layout: "bottomLeft",theme:'gateioNotyTheme', timeout: 10000});
+                },
+                complete: function () {
+                }
+            });
+
+            return false;
+        });
+
+
+    });
+
+</script>
+
+
+<!--<script src="/jsfile/ipd.js"></script>-->
+
+<div class="footer">
+<br /><br />    
+</div>
+
+ 
+<!-- <script src="./03_files/footer.js"></script> -->
+
+
+
+
+</body></html>

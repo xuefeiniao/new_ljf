@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html data-n-head="">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="比特币交易平台，比特币交易所，数字资产交易所,数字货币交易平台" />
+    <meta name="format-detection" content="telephone=no,email=no,address=no" />
+    <title>重置密码</title>
+    <link data-n-head="true" rel="icon" type="image/x-icon" href="__PUBLIC__/favicon.ico"/>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/base.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/common.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/newcss/resetPwd.css" media="all"/>
+    <script data-n-head="true" src="__PUBLIC__/Home/js/newjs/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/layer/layer.js"></script>
+
+</head>
+<body>
+<!--<img src="https://mon.58coin.com/mon.gif" id="img-hidden" />-->
+<div id="__nuxt">
+    <div class="nuxt-progress" style="width: 0%; height: 2px; background-color: rgb(59, 128, 112); "></div>
+    <div id="__layout">
+        <div>
+            <!--头部内容-->
+            <include file="Public:header1"/>
+            <!--头部内容   end-->
+
+            <div class="wrap">
+                <div class="account">
+                    <div class="title">重置登录密码</div>
+                    <!--重置新的密码-->
+                    <div class="st-form">
+                        <div class="st-form-item">
+                            <p class="label" style="padding-right: 16px;"></p>
+                            <span>设置新登录密码</span>
+                            <input type="password" name="oldpassword" id="moble_new" placeholder="请输入新登录密码" class="st-input" pwd/>
+                            <p class="tips" style="display: none;"></p>
+
+                            <p class="message" style="display: none;">请设置登录密码！</p>
+                            <!--<p class="message" style="display: none;">请输入8~20位密码！</p>-->
+                        </div>
+                        <div class="st-form-item" >
+                            <p class="label" style="padding-right: 16px;"></p>
+                            <span>重复新登录密码</span>
+                            <input type="password" name="repassword" id="remoble_new" placeholder="请再次输入新登录密码" class="st-input" pwd/>
+                            <p class="tips" style="display: none;"></p>
+
+                            <p class="message" style="display: none;">请输入确认登录密码！</p>
+                            <p class="message meg2" style="display: none;">两次密码输入不一致，请重新输入！</p>
+                        </div>
+                        <div class="last-code st-form-item">
+                            <p class="label" style="padding-right: 16px;"></p>
+                            <span>验证码</span>
+                            <input type="number" name="oldpassword" id="moble_verify_new"  placeholder="请输入 6 位短信验证码" class="SMSCode st-input" />
+                            <div class="send-SMS code" id="smsbtn"  onclick="sendMessage();">
+                                <a class="get-code button">
+                                    <div>
+                                        发送短信验证码
+                                    </div>
+                                </a>
+                                <!---->
+                            </div>
+                            <p class="tips" style="display: none;"></p>
+                            <p class="message" style="display: none;">请输入正确的短信验证码</p>
+                        </div>
+                        <!---->
+                        <input type="submit" class="button nextStep3" value="确认"  style="margin-bottom:50px;" onclick="moble_news()"/>
+                    </div>
+                </div>
+                <!--底部内容-->
+                <include file="Public:footer"/>
+                <!--底部内容   end-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="toast" style="display: none;">
+    <span class="text"></span>
+</div>
+
+
+<script src="__PUBLIC__/Home/js/newjs/resetPwd.js"></script>
+<script>
+    var InterValObj; //timer变量，控制时间
+    var count = 60; //间隔函数，1秒执行
+    var curCount;//当前剩余秒数
+    function sendMessage() {
+        if($("#smsbtn").find("div").attr("disabled")=="disabled"){
+            return false;
+        }else{
+            var mobile = "{$user.moble}";//注册手机号
+            $.ajax({
+                type: "POST", //用POST方式传输     　　
+                dataType: "json", //数据格式:JSON
+                data: {mobile:mobile},
+                url: "{:U('Login/real')}", //目标地址.
+                success:function(data){
+                    if(data.status = 1){
+                        layer.msg(data.info, {icon: 2});
+                        // layer.msg("发送成功！", {icon: 1});
+                    }
+                }
+            });
+
+            curCount = count;
+            //设置button效果，开始计时
+            $("#smsbtn").find("div").attr("disabled", "true");
+            $("#smsbtn").find("div").html( + curCount + "s");
+            InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+            //向后台发送处理数据
+        }
+    }
+
+    //timer处理函数
+    function SetRemainTime() {
+        if (curCount == 0) {
+            window.clearInterval(InterValObj);//停止计时器
+            $("#smsbtn").find("div").removeAttr("disabled");//启用按钮
+            $("#smsbtn").find("div").html("发送短信验证码");
+
+        }
+        else {
+            curCount--;
+            $("#smsbtn").find("div").html( + curCount + "s");
+        }
+    }
+    function moble_news() {
+        var moble_new = $("#moble_new").val();
+        var remoble_new = $("#remoble_new").val();
+        var moble_verify_new = $("#moble_verify_new").val();
+
+        if (moble_new == "" || moble_new == null) {
+            // layer.tips("请输入新密码", '#moble_new', {tips: 3});
+            $("#moble_new").addClass("error").siblings("p.message").addClass("error").show();
+            return false;
+        }
+        if (remoble_new == "" || remoble_new == null) {
+            $("#remoble_new").addClass("error").siblings("p.message").addClass("error").show();
+            $("#remoble_new").addClass("error").siblings("p.meg2").addClass("error").hide();
+            return false;
+        }else if (remoble_new !=moble_new){
+            $("#remoble_new").addClass("error").siblings("p.message").addClass("error").hide();
+            $("#remoble_new").addClass("error").siblings("p.meg2").addClass("error").show();
+            return false;
+        }
+
+
+        if (moble_verify_new == "" || moble_verify_new == null) {
+            $("#moble_verify_new").addClass("error").siblings("p.message").addClass("error").show();
+            return false;
+        }
+        $.post("/User/upmoble_zhisucom.html", {
+            moble_new: moble_new,
+            remoble_new: remoble_new,
+            moble_verify_new: moble_verify_new
+
+        }, function (data) {
+            if (data.status == 1) {
+                layer.msg(data.info, {icon: 1});
+                window.location = "/user/forget";
+            } else {
+                // layer.msg(data.info, {icon: 2});
+                layer.msg("修改密码失败！", {icon: 2});
+                if (data.url) {
+                    window.location = data.url;
+                }
+            }
+        }, "json");
+    }
+</script>
+</body>
+</html>

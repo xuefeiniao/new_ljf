@@ -1,0 +1,75 @@
+<include file="Base:header"/>
+<style type="text/css" media="all">
+    .input-text{
+        width: 800px;
+    }
+    .select-box{
+        width: 800px;
+    }
+</style>
+<body>
+<article class="page-container">
+	<form class="form form-horizontal" id="form-article-add" action="{:U('Config/setjsac')}" method="post" enctype="multipart/form-data">
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>释放比例：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="0" placeholder="" id="articletitle" name="bili">
+				&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#ef8b0a;font-weight:bold;">%设置为0不释放</span>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>锁仓用户：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="" placeholder="" id="articletitle" name="user">
+				&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#ef8b0a;font-weight:bold;">不填全部锁仓</span>
+			</div>
+		</div>
+		<!--<div class="row cl">
+		    <?php $config = M('coin')->where('status=1')->field('name')->select();?>
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>币种：</label>
+			<div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
+				<select name="coins" class="select">
+				    <option value="0"<eq name="data['eth_status']" value="1">selected</eq>>全部</option>
+				<volist name='config' id='vo'>
+													<if condition="$vo['name'] neq 'cny'">
+                                                    <option value="{$i}">{$vo['name']|strtoupper}</option>
+													</if>
+													</volist>
+				</select>
+				</span> &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#ef8b0a;font-weight:bold;">默认全部解锁</span></div>
+		</div>-->
+		
+		 
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+				<button class="ajax-post btn btn-primary radius" id="submit" type="submit" target-form="form-horizontal"><i class="Hui-iconfont">&#xe632;</i> 解 锁
+			</button>
+			</div>
+		</div>
+	</form>
+</article>
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript">
+// alert(window.parent.location);
+// alert(window.location.href);
+	//提交表单
+	/*$('#submit').click(function () {
+		$('#form').submit();
+	});*/
+	$(function() {
+        $("#form-add").ajaxForm(function(data){
+        	if (data.status==1) {
+        	layer.alert(data.info);
+        }else
+            layer.alert(data.info);
+        },'json');
+         
+    });
+</script>
+
+
+<!--/请在上方写此页面业务相关的脚本-->
+ 
+</body>
+</html>

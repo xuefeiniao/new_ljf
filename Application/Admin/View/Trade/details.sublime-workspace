@@ -1,0 +1,319 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"padding",
+				"padding-left\tproperty"
+			],
+			[
+				"ps",
+				"position\tproperty"
+			],
+			[
+				"text",
+				"text-align\tproperty"
+			],
+			[
+				"in",
+				"inline-block\tdisplay"
+			],
+			[
+				"margin",
+				"margin-top\tproperty"
+			],
+			[
+				"W",
+				"width\tproperty"
+			],
+			[
+				"al",
+				"absolute\tposition"
+			],
+			[
+				"marg",
+				"margin\tproperty"
+			],
+			[
+				"di",
+				"display\tproperty"
+			],
+			[
+				"font",
+				"font-size\tproperty"
+			],
+			[
+				"ma",
+				"margin\tproperty"
+			],
+			[
+				"ba",
+				"background\tproperty"
+			],
+			[
+				"padidng",
+				"padding-left\tproperty"
+			],
+			[
+				"m",
+				"margin-top\tproperty"
+			],
+			[
+				"p",
+				"placeholder\tAttr"
+			],
+			[
+				"wid",
+				"width\tproperty"
+			],
+			[
+				"pa",
+				"padding-left\tproperty"
+			],
+			[
+				"bo",
+				"border-bottom\tproperty"
+			],
+			[
+				"wi",
+				"width\tproperty"
+			],
+			[
+				"fl",
+				"float\tproperty"
+			],
+			[
+				"li",
+				"line-height\tproperty"
+			],
+			[
+				"mar",
+				"margin\tproperty"
+			],
+			[
+				"my",
+				"my_add"
+			],
+			[
+				"add",
+				"addtime"
+			],
+			[
+				"mu",
+				"my_num"
+			],
+			[
+				"lo",
+				"localStorage"
+			],
+			[
+				"con",
+				"console"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/D/admin/Application/Admin/View/Article/index.html",
+		"/D/admin/Application/Admin/View/Finance/mytx.html",
+		"/D/admin/Application/Admin/View/Finance/index.html",
+		"/D/admin/Application/Admin/View/Finance/mycz.html",
+		"/D/admin/Application/Admin/View/Finance/myczType.html",
+		"/D/admin/Application/Admin/View/Finance/myzc.html",
+		"/D/admin/Application/Admin/View/Finance/myzr.html",
+		"/D/admin/Application/Admin/View/Money/index.html",
+		"/D/admin/Application/Admin/View/AuthManager/index.html",
+		"/D/admin/Application/Admin/View/Article/adver.html",
+		"/D/admin/Application/Admin/View/Article/link.html",
+		"/C/Users/Administrator/Desktop/ha/index.html",
+		"/C/Users/Administrator/Desktop/mydemo/newPro(1)/newPro/html/about_us.html",
+		"/C/Users/Administrator/Desktop/m_demo/index.html",
+		"/C/Users/Administrator/Desktop/m_demo/inde",
+		"/C/Users/Administrator/Desktop/新建文件夹 (3)/hahh",
+		"/D/demo/html/about_us.html",
+		"/C/Users/Administrator/Desktop/新建文件夹 (3)/newPro(1)/newPro/html/market.html",
+		"/C/Users/Administrator/Desktop/新建文件夹 (3)/newPro(1)/newPro/html/about_us.html",
+		"/C/Users/Administrator/Desktop/新建文件夹 (3)/newPro(1)/newPro/html/exchange.html",
+		"/C/Users/Administrator/Desktop/新建文件夹 (3)/newPro(1)/newPro/html/line_chart.html",
+		"/C/Users/Administrator/Desktop/新建文件夹 (3)/newPro(1)/newPro/html/turn_out.html",
+		"/D/demo/css/askAnswer.css",
+		"/D/demo/html/purse_address.html",
+		"/D/demo/html/consultation_details_page.html",
+		"/C/Users/Administrator/Desktop/lianhejiaoyisuo/html/menu.html",
+		"/C/Users/Administrator/Desktop/lianhejiaoyisuo/html/market.html",
+		"/D/demo/html/consultation.html",
+		"/D/demo/html/market.html",
+		"/D/demo/html/index.html",
+		"/D/demo/html/open-AlDog.html",
+		"/D/demo/html/exchange.html",
+		"/D/demo/html/turn_out.html",
+		"/D/demo/html/change_into.html",
+		"/D/demo/css/main.css",
+		"/D/demo/html/record_exchange.html",
+		"/D/demo/html/al_dog.html",
+		"/D/demo/html/Frequently_asked_questions.html",
+		"/D/demo/html/apply_vip.html",
+		"/D/demo/html/Total_account_assets.html",
+		"/D/IB/html/record-dt.html",
+		"/D/IB/html/record.html",
+		"/D/BaiduNetdiskDownload/card/index.html",
+		"/D/BaiduNetdiskDownload/card/My_info.html",
+		"/D/IB/html/my_property.html",
+		"/E/IB/html/xianhuo.html",
+		"/C/Users/Administrator/Desktop/demo"
+	],
+	"find":
+	{
+		"height": 62.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 62.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "details.sublime-project",
+	"replace":
+	{
+		"height": 120.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": false,
+	"side_bar_visible": true,
+	"side_bar_width": 194.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

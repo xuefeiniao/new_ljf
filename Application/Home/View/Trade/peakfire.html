@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html data-n-head-ssr data-n-head="">
+    
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta data-hid="description" name="description" content="Nuxt.js project" />
+        <eq name="Think.session.lang" value="1">
+									<notempty name="coninfo['web_name']" value=" ">
+								
+										<title>{$coninfo['web_name']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="2">
+									<notempty name="coninfo['web_name_e']" value=" ">
+										<title>{$coninfo['web_name_e']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="3">
+									<notempty name="coninfo['web_name_en']" value=" ">
+										<title>{$coninfo['web_name_en']}</title>
+									</notempty>
+								</eq>
+        <link rel="icon" type="image/x-icon" href="__PUBLIC__/favicon.ico" />
+        <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/newcss/ws-rzshoper.css" />
+        <script data-n-head="true" src="__PUBLIC__/Home/js/newjs/jquery-3.3.1.min.js"></script>
+    </head>
+    
+    <body data-n-head="">
+        <div data-server-rendered="true" id="__nuxt">
+            <div class="nuxt-progress" style="width:0%;height:2px;background-color:#3B8070;opacity:0;"></div>
+            <div id="__layout">
+                <div >
+                    <!--头部内容-->
+                    <include file="Public:header2"/>
+                    <!--头部内容   end-->
+                    <div class="wrap" >
+                        <section class="helper-merchants container" >
+                            <div class="title flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                <h2>认证商家</h2>
+                                <a href="/Lever/newGuidance" target="_blank">认证商家规则</a></div>
+                            <div class="info">
+                                <div class="preferential flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+                                    <div>
+                                        <div></div>
+                                        <p>信誉保证</p></div>
+                                    <div>
+                                        <div></div>
+                                        <p>优先展示</p></div>
+                                    <div>
+                                        <div></div>
+                                        <p>费率最优</p></div>
+                                </div>
+                                <p class="stepsOne">步骤一: 请先通过高级认证</p>
+                                <div class="place">
+                                    <p class="place-p">步骤二: 请将如下材料发送至
+                                        <span>business_otc@5xx.com</span></p>
+                                    <div class="place-cl flex-box flex-direction-column flex-justify-between flex-align-item-start flex-wrap-nowrap">
+                                        <p>
+                                            <span></span>个人信息（身份信息和账户信息）</p>
+                                        <p>
+                                            <span></span>注册用手机号</p>
+                                        <p>
+                                            <span></span>个人微信和QQ</p>
+                                        <p>
+                                            <span></span>资产证明（数字资产和银行资产）</p>
+                                    </div>
+                                    <div class="place-message">
+                                        <p>注：身份信息包括：身份证正反面、手持身份证照片（或护照等）。</p>
+                                        <p>账户信息包括：银行卡、支付宝或微信。</p>
+                                        <p>银行资产：要求本人实名银行卡一个月的流水明细。</p>
+                                        <p>请将以上申请资料发送邮件至
+                                            <span style='color: #597ab9;'>business_otc@xx.com</span>,邮件主题为"申请成为商家"。</p>
+                                        <p>同时代表您同意冻结
+                                            <span>0.5BTC</span>作为商家保证金。</p></div>
+                                </div>
+                                <div class="stepsThree">
+                                    <p>步骤三:资料审核</p>
+                                    <p>我们将在3个工作日内对您的商家申请资料进行审核，请保持通讯畅通，我们会主动与您取得联系。</p></div>
+                                <div class="kf">
+                                    <div class="img">
+                                        <img src="/Public/Home/image/common/wechat_ercode.4e8fc32.png" alt>
+                                        <p>认证专属客服</p></div>
+                                    <div class="check flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap">
+                                        <a class="checkbox"></a>我已阅读并同意《 认证商家条款》，并冻结0.5BTC作为质押金。</div>
+                                </div>
+                                <a class="btn2 three">提交申请</a></div>
+                        </section>
+                        <!--底部内容-->
+                        <include file="Public:footer"/>
+                        <!--底部内容   end-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>

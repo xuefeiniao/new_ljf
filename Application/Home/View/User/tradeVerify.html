@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="比特币交易平台，比特币交易所，数字资产交易所,数字货币交易平台" />
+    <meta name="format-detection" content="telephone=no,email=no,address=no" />
+    <eq name="Think.session.lang" value="1">
+									<notempty name="coninfo['web_name']" value=" ">
+								
+										<title>{$coninfo['web_name']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="2">
+									<notempty name="coninfo['web_name_e']" value=" ">
+										<title>{$coninfo['web_name_e']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="3">
+									<notempty name="coninfo['web_name_en']" value=" ">
+										<title>{$coninfo['web_name_en']}</title>
+									</notempty>
+								</eq>
+    <link data-n-head="true" rel="icon" type="image/x-icon" href="__PUBLIC__/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/newcss/base.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/newcss/common.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/newcss/change_login_password.css"/>
+    <script data-n-head="true" src="__PUBLIC__/Home/js/newjs/jquery-3.3.1.min.js"></script>
+    <style>
+        .list-item {
+            margin-top: -1px;
+            height: 60px;
+            border: 1px solid #eff2f5;
+            padding-left: 22px;
+            padding-right: 18px;
+        }
+        .list-item .radio.active {
+            border: 4px solid #5879b8;
+        }
+        .list-item .blank {
+            -webkit-box-flex: 1;
+            -moz-flex-grow: 1;
+            -ms-flex-positive: 1;
+            flex-grow: 1;
+        }
+        .list-item .radio {
+            display: block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 1px solid #c9c9c9;
+        }
+        .list-item p {
+            margin-left: 10px;
+            font-size: 14px;
+        }
+        .list-item .tip {
+            font-size: 14px;
+            color: #999;
+        }
+        .users-verify-login a[data-v-6a41c036] {
+            color: #597ab9;
+        }
+
+    .list-item a {
+            font-size: 14px;
+            color: #597ab9;
+        }
+    .list-item p.disable {
+         color: #999;
+    }
+
+        .popup {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,.5);
+            z-index: 1000;
+        }
+        .popup .popup-box {
+            width: 712px;
+            min-height: 296px;
+            border-radius: 3px;
+            padding-bottom: 40px;
+            background-color: #fff;
+            overflow: hidden;
+        }
+        .popup .popup-box .header {
+            padding: 0 18px;
+            background-color: #e2e7ef;
+        }
+        .create-item{
+            position: relative;
+            padding-top: 50px;
+            border-bottom-left-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+        .popup .popup-box .header h3{
+            line-height: 50px;
+            font-size: 16px;
+        }
+        .popup .popup-box .header a{
+            display: block;
+            width: 8px;
+            height: 8px;
+            background: url(/Public/Home/image/common/icon-popupclose.0bfe1d7.png) no-repeat;
+        }
+        .st-form{
+            margin: 60px 0 30px 210px;
+        }
+        .list-item.able {
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+<body>
+
+<!--<img src="https://mon.58coin.com/mon.gif" id="img-hidden" />-->
+<div id="__nuxt">
+    <div class="nuxt-progress" style="width: 0%; height: 2px; background-color: rgb(59, 128, 112); opacity: 0;"></div>
+    <div id="__layout">
+        <div>
+            <!--头部内容-->
+            <include file="Public:header1"/>
+            <!--头部内容   end-->
+            <div class="wrap">
+                <div  class="container">
+                    <div  class="user-bread flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                        <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                            <a href="/User/accountMsg" class="nuxt-link-active">
+                                <div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <span>账户安全</span>
+                                    <i></i>
+                                </div></a>
+                        </div>
+                        <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                            <p>交易验证</p>
+                        </div>
+                    </div>
+                    <div class="st-content" style="margin-top: 30px;">
+                        <h2>交易验证</h2>
+                        <div class="line"></div>
+                        <div style="padding-top: 30px; padding-bottom: 340px;">
+                            <div class="list">
+                                <div class="list-item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" data-v-2c85288c="">
+                                    <span class="radio active"></span>
+                                    <p class="">交易时不输入资金密码</p>
+                                    <div class="blank"></div>
+                                    <span class="tip">当前设置</span>
+                                </div>
+                                <div  class="list-item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap able" data-v-2c85288c="">
+                                    <span class="radio"></span>
+                                    <p>交易时，每小时需要输入资金密码</p>
+                                    <div class="blank"></div>
+                                </div>
+                                <div  class="list-item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap able" data-v-2c85288c="">
+                                    <span class="radio"></span>
+                                    <p >每次交易都需要输入资金密码</p>
+                                    <div class="blank"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="popup flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap" style="display: none;">
+                        <div class="popup-box">
+                            <div class="header flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                <h3>验证</h3><a></a></div>
+                            <div class="st-form">
+                                <div class="st-form-item" >
+                                    <p class="label" style="padding-right: 16px;">短信验证码</p>
+                                    <input type="number" maxlength="6" placeholder="请输入 6 位短信验证码" class="st-input" style="width: 200px;">
+                                    <div class="send-SMS code" >
+                                        <a class="get-code button" onclick="settime(this)"><div >发送短信验证码</div></a><!---->
+                                    </div>
+                                    <p class="tips" style="display: none;"></p>
+                                    <p class="message" style="display: none;">请点击获取短信验证码！</p></div><!---->
+                                <input type="submit" value="确定">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--底部内容-->
+                <include file="Public:footer"/>
+                <!--底部内容   end-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="__PUBLIC__/Home/js/newjs/tradeVerify.js"></script>
+
+</body>
+</html>

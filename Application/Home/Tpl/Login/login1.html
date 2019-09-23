@@ -1,0 +1,452 @@
+ <include file="Publics:header"/>
+    <style>.icon-48,.icon-32,.icon-16{background-image:url("/images/coins48.png?v=1529488915")}</style>
+    <link rel="apple-touch-icon" sizes="120x120" href="https://ss.ss/images/apple-touch-icon-120x120.png">
+    <script src="/zhisucom/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="/zhisucom/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/zhisucom/js/jquery.cookies.2.2.0.js"></script>
+    <script type="text/javascript" src="/zhisucom/js/layer.js"></script>
+    <script type="text/javascript" src="/zhisucom/js/posfixed.js"></script>
+    <script type="text/javascript" src="/zhisucom/js/dot.min.js"></script>
+    <!-- <link rel="stylesheet" href="/zhisucom/css/slider.css"> -->
+    <script type="text/javascript" src="/zhisucom/js/slider.js"></script>
+ 
+<body class="">
+ <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .btn {
+        position: absolute;
+        width: 40px;
+        height: 32px;
+        background: #fff url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3hpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDIxIDc5LjE1NTc3MiwgMjAxNC8wMS8xMy0xOTo0NDowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo0ZDhlNWY5My05NmI0LTRlNWQtOGFjYi03ZTY4OGYyMTU2ZTYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NTEyNTVEMURGMkVFMTFFNEI5NDBCMjQ2M0ExMDQ1OUYiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NTEyNTVEMUNGMkVFMTFFNEI5NDBCMjQ2M0ExMDQ1OUYiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKE1hY2ludG9zaCkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo2MTc5NzNmZS02OTQxLTQyOTYtYTIwNi02NDI2YTNkOWU5YmUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NGQ4ZTVmOTMtOTZiNC00ZTVkLThhY2ItN2U2ODhmMjE1NmU2Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+YiRG4AAAALFJREFUeNpi/P//PwMlgImBQkA9A+bOnfsIiBOxKcInh+yCaCDuByoswaIOpxwjciACFegBqZ1AvBSIS5OTk/8TkmNEjwWgQiUgtQuIjwAxUF3yX3xyGIEIFLwHpKyAWB+I1xGSwxULIGf9A7mQkBwTlhBXAFLHgPgqEAcTkmNCU6AL9d8WII4HOvk3ITkWJAXWUMlOoGQHmsE45ViQ2KuBuASoYC4Wf+OUYxz6mQkgwAAN9mIrUReCXgAAAABJRU5ErkJggg==) center no-repeat;
+        background-size: 13px;//不设置这个属性，背景图片会不成比例的显示
+        border: 1px solid #ccc;
+        cursor: move;
+}
+        #box{
+            position: relative;
+            left: 347px;
+            width: 300px;
+            height: 40px;
+            /*margin: 0 auto;*/
+            margin-top: 10px; 
+            background-color: #e8e8e8;
+            box-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+        }
+        .bgColor{
+            position: absolute;
+            left:0;
+            top:0;
+            width:40px;
+            height: 40px;
+            background-color: lightblue;
+        }
+        .txt{
+            position: absolute;
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            font-size: 14px;
+            color: #000;
+            text-align: center;
+        }
+        .slider{
+            position: absolute;
+            left:0;
+            top:0;
+            width: 50px;
+            height: 38px;
+            border: 1px solid #ccc;
+            background: #fff;
+            text-align: center;
+            cursor: move;
+        }
+        .slider>i{
+            position: absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+        }
+        .slider.active>i{
+            color:green;
+        }
+	.footer{position: fixed;bottom: 0px;width:100%;}
+    </style>
+
+<section>
+
+    <div id="content" class="content">
+        <div id="homepost" style="width: 950px; margin: 0 auto; padding-top: 30px">
+
+            <div class="m_title" style="border: none;text-align:center"><h4>用户登录 - 第二步验证</h4></div>
+            <div class="sectioncont">
+                <p style="text-align:center; color:#de5959">用户登录第二步验证，是通过 谷歌验证码 或 短信验证码 进一步保证账号的安全的高级安全机制，请输入以下信息：</p>
+                <!--<ul class="login2-tab ">
+                    <li>短信验证码</li>                
+                </ul>-->
+                <!-- <form id="login2Form" enctype="application/x-www-form-urlencoded" method="post" action="#"> -->
+                    <input type="hidden" name="login2" id="login2" value="1">
+                    <input type="hidden" name="password" id="password" value="930e4be3f2d3edca617e2ebbe3d2369d">
+                    <input type="hidden" name="email" id="email" value="13393733825">
+					<input type="hidden" name="usesms" id="usesms" value="0">
+                    <table class="login2-table">
+
+                                <tbody><tr name="smstr" id="smstr" style="">
+                                <td align="right" style="padding-right: 8px">短信验证码：</td>
+                                <td>
+                                    <input style="margin-right:340px;" type="text" value="" size="20" name="smscode" id="smscode">
+                                    <!-- <button name="smsbtn" id="smsbtn" type="button">获取短信验证码</button>
+                                    <button name="voicebtn" id="voicebtn" type="button">获取电话语音验证码</button>-->
+                                    <input type="hidden" name="smsid" value="{$_GET['phone']}" id="smsid"> 
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                 <div id="box" onselectstart="return false;">
+        <div class="bgColor"></div>
+        <div class="txt" >滑动发送验证码</div>
+        <!--给i标签添加上相应字体图标的类名即可-->
+        <div class="slider"><i class="iconfont icon-double-right"></i></div>
+    </div>  </td>
+                            </tr>
+
+                        <tr style="display:none;">
+                            <td></td>
+                            <td>
+                                <input style="width: 20px;" type="hidden" name="iprestriction" id="iprestriction" value="1" checked="">绑定到IP地址 （<font color="red">为保证账号安全如非动态IP切勿去选！</font>）
+                            </td>
+                        </tr>
+
+                        <tr style="display:none;">
+                            <td align="right"></td>
+                            <td style="padding-top: 10px">
+                                <input style="width: 20px;" type="checkbox" name="disablelogin2" id="disablelogin2" value="1"> 取消登录第二步验证 （<font color="red"> 为保证账号安全，请切勿选择取消 </font>）
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input type="submit" name="submit" id="submit" class="sub-btn" value=" 登录 " onclick="yz();" style="margin-top: 20px">
+                            </td>
+                        </tr>
+                    </tbody></table>
+
+                <!-- </form> -->
+                <br><br>
+            </div> <!-- login -->
+
+
+        </div> <!-- homepost -->
+    </div> <!-- content -->
+
+
+</section>
+
+ <script>
+        //一、定义了一个获取元素的方法
+        function getEle(selector){
+            return document.querySelector(selector);
+        }
+        //二、获取到需要用到的DOM元素
+        var box = getEle("#box"),//容器
+            bgColor = getEle(".bgColor"),//背景色
+            txt = getEle(".txt"),//文本
+            slider = getEle(".slider"),//滑块
+            icon = getEle(".slider>i"),
+            successMoveDistance = box.offsetWidth- slider.offsetWidth,//解锁需要滑动的距离
+            downX,//用于存放鼠标按下时的位置
+            isSuccess = false;//是否解锁成功的标志，默认不成功
+
+        //三、给滑块添加鼠标按下事件
+        slider.onmousedown = mousedownHandler;
+
+        //3.1鼠标按下事件的方法实现
+        function mousedownHandler(e){
+            bgColor.style.transition = "";
+            slider.style.transition = "";
+            var e = e || window.event || e.which;
+            downX = e.clientX;
+            //在鼠标按下时，分别给鼠标添加移动和松开事件
+            document.onmousemove = mousemoveHandler;
+            document.onmouseup = mouseupHandler;
+        };
+
+        //四、定义一个获取鼠标当前需要移动多少距离的方法
+        function getOffsetX(offset,min,max){
+            if(offset < min){
+                offset = min;
+            }else if(offset > max){
+                offset = max;
+            }
+            return offset;
+        }
+
+        //3.1.1鼠标移动事件的方法实现
+        function mousemoveHandler(e){
+            var e = e || window.event || e.which;
+            var moveX = e.clientX;
+            var offsetX = getOffsetX(moveX - downX,0,successMoveDistance);
+            bgColor.style.width = offsetX + "px";
+            slider.style.left = offsetX + "px";
+
+            if(offsetX == successMoveDistance){
+                success();
+            }
+            //如果不设置滑块滑动时会出现问题（目前还不知道为什么）
+            e.preventDefault();
+        };
+
+        //3.1.2鼠标松开事件的方法实现
+        function mouseupHandler(e){
+            if(!isSuccess){
+                bgColor.style.width = 0 + "px";
+                slider.style.left = 0 + "px";
+                bgColor.style.transition = "width 0.8s linear";
+                slider.style.transition = "left 0.8s linear";
+            }
+            document.onmousemove = null;
+            document.onmouseup = null;
+        };
+
+        //五、定义一个滑块解锁成功的方法
+        function success(){
+            isSuccess = true;
+            txt.innerHTML = "发送成功";
+            bgColor.style.backgroundColor ="lightgreen";
+            slider.className = "slider active";
+            icon.className = "iconfont icon-xuanzhong";
+            //滑动成功时，移除鼠标按下事件和鼠标移动事件
+            slider.onmousedown = null;
+            document.onmousemove = null;
+			//
+			var  num=5;
+			console.log(num);
+			var t=setInterval(function(){
+			console.log(num)
+				$('.txt').html(num + '秒后重新发送验证码');
+					
+				num--;
+				if(num<0){
+					$('.txt').html("滑动发送验证码");
+					clearInterval(t);
+					bgColor.style.width = 0 + "px";
+					slider.style.left = 0 + "px";
+					bgColor.style.transition = "width 0.8s linear";
+					slider.style.transition = "left 0.8s linear";
+					slider.onmousedown = mousedownHandler;
+				}
+			},1000)
+			//
+            mm();
+        };
+
+        function mm(){
+             var mobile = $("#smsid").val();
+            $.ajax({
+                data:{mobile:mobile},
+                datatype:"json",
+                type:"post",
+                url:"{:U('Login/real')}",
+                /*success:function(data){
+                    if(data.status==1){
+                        alert(1111);
+                    }else{
+                        alert(222);
+                    }
+                }*/
+            });
+        }
+
+
+        function yz(){
+            var code = $('#smscode').val();
+            if (code == "" || code == null) {
+                layer.tips("请输入验证码", '#smscode', {tips: 2});
+                return false;
+            }
+            $.ajax({
+                data:{code:code},
+                datatype:"json",
+                type:"post",
+                url:"{:U('Login/loginac')}",
+                success:function(data){
+                    if(data.status==1){
+                        layer.msg(data.info, {icon: 1});
+                        window.location="{:U('Finance/index')}";
+                    }else{
+                        layer.msg(data.info, {icon: 2});
+                    }
+                }
+            });
+        }
+    </script>
+
+<script>
+    $(function (e) {
+
+        //页面初始化
+        var smstr = $("#smstr"),
+            totptr = $("#totptr"),
+            smsOn='1',
+            totpOn='';
+        if(smsOn=='1' && totpOn==''){smstr.show()}
+
+        if(smsOn=='1' && totpOn=='1') {
+            //tab切换
+            $(".login2-tab").find("li").click(function () {
+                if ($(this).index() == 1) {
+                    $("#login2Form").animate({left:'-950px'},100,function () {
+                        smstr.show();
+                        totptr.hide();
+                        $(this).css("left","950px").animate({left:'0'},100);
+						$("#usesms").val(1);
+                    });
+                } else {
+                    $("#login2Form").animate({left:'950px'},100,function () {
+                        smstr.hide();
+                        totptr.show();
+                        $(this).css("left","-950px").animate({left:'0'},100);
+						$("#usesms").val(0);
+                    });
+                }
+                $(this).addClass("log-tab-active").siblings().removeClass("log-tab-active");
+            })
+        }
+
+
+        $('#smsbtn').click(function () {
+            var self = $(this);
+
+            var currentTime = 60;
+            var orignialtext = $(this).text();
+            var form = self.closest('form');
+
+            self.prop('disabled', true);
+
+            var timer = $.timer(function () {
+                currentTime = currentTime - 1;
+                self.text(orignialtext + ' (' + currentTime + ')');
+
+                if (currentTime == 0) {
+                    resetTimer();
+                }
+            }, 1000, false);
+
+            var resetTimer = function () {
+                timer.stop();
+                currentTime = 60;
+                self.text(orignialtext).prop('disabled', false);
+            }
+
+            var smsid = $('#smsid', form).val();
+            var lang = "cn";
+            var view_code = "";
+            var msg = "";
+            $.ajax({
+                type: "post", url: "/sms/" + smsid,
+                success: function (data, textStatus) {
+                    var json_res = data;
+                    if (json_res && json_res.result) {
+                        self.text(orignialtext + ' (' + currentTime + ')');
+                        timer.play();
+                        msg = lang == "en" ? "The SMS code has been sent to your cellphone." : "手机短信验证码：" + json_res.msg;
+                        $('#smscode', form).prop('disabled', false);
+                    } else {
+                        msg = lang == "en" ? "Send SMS faild: " + json_res.msg + ", please check your phone number at <a href='/myaccount/sms_setup'>this link</a>." : "短信发送失败：" + json_res.msg;
+                        //resetTimer();
+                        timer.play();
+                    }
+                    //apprise( "<div>"+msg+"</div>", {animate:true,textOk:"确定"}, function(r){} );
+                    noty({text: msg, type: "error", layout: "bottomLeft",theme:'gateioNotyTheme',timeout: 10000});
+                },
+                error: function () {
+                    //resetTimer();
+                    timer.play();
+                    //apprise( "网络错误！",{animate:true,textOk:"确定"}, function(r){} );
+                    noty({text: '网络错误!', type: "error", layout: "bottomLeft",theme:'gateioNotyTheme', timeout: 10000});
+                },
+                complete: function () {
+                }
+            });
+
+            return false;
+        });
+
+
+        $('#voicebtn').click(function () {
+            var self = $(this);
+
+            var currentTime = 60;
+            var orignialtext = $(this).text();
+            var form = self.closest('form');
+
+            self.prop('disabled', true);
+
+            var timer = $.timer(function () {
+                currentTime = currentTime - 1;
+                self.text(orignialtext + ' (' + currentTime + ')');
+
+                if (currentTime == 0) {
+                    resetTimer();
+                }
+            }, 1000, false);
+
+            var resetTimer = function () {
+                timer.stop();
+                currentTime = 60;
+                self.text(orignialtext).prop('disabled', false);
+            }
+
+            var smsid = $('#smsid', form).val();
+            var lang = "cn";
+            var view_code = "";
+            var msg = "";
+            $.ajax({
+                type: "post", url: "/voiceverify/" + smsid,
+                success: function (data, textStatus) {
+                    var json_res = data;
+                    if (json_res && json_res.result) {
+                        self.text(orignialtext + ' (' + currentTime + ')');
+                        timer.play();
+                        msg = lang == "en" ? "The voide verification code has been sent to your cellphone." : "电话语音验证码：" + json_res.msg;
+                        $('#smscode', form).prop('disabled', false);
+                    } else {
+                        msg = lang == "en" ? "Send voice faild: " + json_res.msg + ", please check your phone number at <a href='/myaccount/sms_setup'>this link</a>." : "电话语音拨打失败：" + json_res.msg ;
+                        //resetTimer();
+                        timer.play();
+                    }
+                    //apprise( "<div>"+msg+"</div>", {animate:true,textOk:"确定"}, function(r){} );
+                    noty({text: msg, type: "error", layout: "bottomLeft",theme:'gateioNotyTheme', timeout: 10000});
+                },
+                error: function () {
+                    //resetTimer();
+                    timer.play();
+                    //apprise( "网络错误！",{animate:true,textOk:"确定"}, function(r){} );
+                    noty({text: '网络错误!', type: "error", layout: "bottomLeft",theme:'gateioNotyTheme', timeout: 10000});
+                },
+                complete: function () {
+                }
+            });
+
+            return false;
+        });
+
+
+    });
+
+</script>
+
+
+<include file="Publics:footer"/>
+
+ 
+<!-- <script src="./03_files/footer.js"></script> -->
+
+
+
+
+</body></html>

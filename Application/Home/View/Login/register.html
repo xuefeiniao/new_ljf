@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html data-n-head="">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="比特币交易平台，比特币交易所，数字资产交易所,数字货币交易平台" />
+    <meta name="format-detection" content="telephone=no,email=no,address=no" />
+    <eq name="Think.session.lang" value="1">
+									<notempty name="coninfo['web_name']" value=" ">
+								
+										<title>{$coninfo['web_name']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="2">
+									<notempty name="coninfo['web_name_e']" value=" ">
+										<title>{$coninfo['web_name_e']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="3">
+									<notempty name="coninfo['web_name_en']" value=" ">
+										<title>{$coninfo['web_name_en']}</title>
+									</notempty>
+								</eq>
+    <link rel="icon" type="image/x-icon" href="__PUBLIC__/favicon.ico">
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/base.css" />
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/common.css" />
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/login.css" />
+
+   <!--  <style>
+        .st-footer{
+            position: fixed!important;
+        }
+    </style> -->
+</head>
+<body>
+<!--<img src="https://mon.58coin.com/mon.gif" id="img-hidden" />-->
+<div id="__nuxt">
+    <div class="nuxt-progress" style="width: 0%; height: 2px; background-color: rgb(59, 128, 112); "></div>
+    <div id="__layout">
+        <include file="Public:header1"/>
+        <div class="wrap" style="padding-top:0;">
+            <div class="container">
+			<?php $web = M('config')->where(array('id=1'))->find();?>
+                <!--<a href="/Index/index" class="nuxt-link-active logo cn"></a>-->
+				<a href="/Index/index" class="logo cn nuxt-link-active" style="background-image: url(/Upload/public/{$web['web_logo']});width:270px;"></a>
+                <div class="login-and-register">
+                    <div class="title flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap">
+                        <h2>{$GLOBALS['welcome']}</h2>
+                    </div>
+                    <div class="nav flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                        <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                            <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                <a href="/Login/register.html?login" class="active">{$GLOBALS['login']}</a>
+                                <span></span>
+                            </div>
+                        </div>
+                        <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                            <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                <a href="/Login/register.html?register" class="">{$GLOBALS['register']}</a>
+                                <span style="display: none;"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <!--登录部分-->
+                        <div class="loginDiv" >
+                            <div class="st-form" autocomplete="off">
+                                <div class="st-form-item">
+                                    <p class="label" style="padding-right: 16px;"></p>
+                                    <input type="text" placeholder="{$GLOBALS['place-account']}" class="st-input" id="login_moble" />
+                                    <span class="icon"></span>
+                                    <p class="tips" style="display: none;"></p>
+                                    <p class="message" style="display: none;">{$GLOBALS['place-login-account']}</p>
+                                </div>
+                                <div class="st-form-item">
+                                    <p class="label" style="padding-right: 16px;"></p>
+                                    <input type="password" placeholder="{$GLOBALS['place-pwd']}" class="st-input" id="login_password" />
+                                    <span class="icon"></span>
+                                    <p class="tips" style="display: none;"></p>
+                                    <p class="message" style="display: none;">{$GLOBALS['place-pwd']}！</p>
+                                </div>
+                                <input type="submit" id="sub" value="{$GLOBALS['login']}"  onclick="login();" />
+                                <a href="/Login/forget_pwd" class="" style="display: block; margin-top: 20px; font-size: 14px; text-align: center; color: rgb(136, 136, 136);">{$GLOBALS['forgetPwd']}？</a>
+                            </div>
+                        </div>
+						
+                        <!--登录部分 end-->
+
+                        <!--注册部分-->
+                        <div class="st-form register" style="display: none;">
+                            <div class="st-form-item">
+                                <p class="label" style="padding-right: 16px;"></p>
+                                <div class="entrust-filter-item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <div class="select flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" style="height: 100%;">
+                                        <p class="">+86</p>
+                                        <div class="arrow"></div>
+                                        <input autocomplete="off" readonly="readonly" />
+                                        <ul style="display: none;">
+                                            <li class="select-option"><p>{$GLOBALS['china']} +86</p></li>
+                                            <li class="select-option"><p>{$GLOBALS['macao']} +853</p></li>
+                                            <li class="select-option"><p>{$GLOBALS['Hong-Kong']} +852</p></li>
+                                            <li class="select-option"><p>{$GLOBALS['England']} +44</p></li>
+                                            <li class="select-option"><p>{$GLOBALS['Russia']} +7</p></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <input type="text" placeholder="{$GLOBALS['place-mobile']}" class="st-input" id="register_mobile" />
+                                <p class="tips" style="display: none;"></p>
+                                <p class="message" style="display: none;">{$GLOBALS['place-mobile']}！</p>
+                            </div>
+                            <div class="st-form-item">
+                                <p class="label" style="padding-right: 16px;"></p>
+                                <span>{$GLOBALS['yzm']}</span>
+                                <input type="text" maxlength="6" placeholder="{$GLOBALS['6emailCode']}" class="down-input st-input" id="yzm" />
+                                <div class="send-SMS code" id="smsbtn">
+                                    <a class="get-code button" onclick="mobile_send();">
+                                        <div>
+                                            {$GLOBALS['send-emailCode']}
+                                        </div>
+                                    </a>
+                                    <!---->
+                                </div>
+                                <p class="tips" style="display: none;"></p>
+                                <p class="message" style="display: none;">{$GLOBALS['click-send']}！</p>
+                            </div>
+							
+							<div class="st-form-item">
+                                <p class="label" style="padding-right: 16px;"></p>
+                                <input type="password" placeholder="{$GLOBALS['new-financePwd']}" class="st-input" id="password" />
+                                <p class="tips" style="display: none;"></p>
+                                <p class="message" style="display: none;">{$GLOBALS['place-pwd']}！</p>
+                            </div>
+							
+                            <div class="st-form-item invit-input">
+                                <p class="label" style="padding-right: 16px;"></p>
+                                <span>{$GLOBALS['invit_s']}</span>
+                                <input type="text" maxlength="6" placeholder="{$GLOBALS['invits']}" class="down-input st-input" id="invit" style="padding-left: 80px; value=""/>
+                            </div>
+                            <div class="st-form-item" id="checkbox-one">
+                                <p class="label" style="padding-right: 16px;"></p>
+                                <label for="user-agree-one">
+                                    <input type="checkbox" id="user-agree-one" />
+                                    <span class="checkboxSpan active"></span>
+                                    <p >{$GLOBALS['no-support']}</p>
+                                </label>
+                                <p class="tips" style="display: none;"></p>
+                                <p class="message" style="display: none;margin-left:0;">{$GLOBALS['place-select']}</p>
+                            </div>
+                            <div class="st-form-item">
+                                <p class="label" style="padding-right: 16px;"></p>
+                                <label for="user-agree">
+                                    <input type="checkbox" id="user-agree" />
+                                    <span class="checkboxSpan active"></span>
+                                    <p>{$GLOBALS['agreement']}<a href="/Article/detail/id/189" target="_blank">{$GLOBALS['user-agreement']}</a></p>
+                                </label>
+                                <p class="tips" style="display: none;"></p>
+                                <p class="message" style="display: none;margin-left:0;">{$GLOBALS['read-agree']}</p>
+                            </div>
+                            <input type="submit" class="active" id="reg" value="{$GLOBALS['register']}" onclick="reg();"/>
+                            <p class="tip">{$GLOBALS['warning']}</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <include file="Public:footer"/>
+                
+        </div>
+     
+    </div>
+
+</div>
+
+<div class="toast" style="display: none;">
+    <span class="text"></span>
+</div>
+
+
+
+
+<script src="__PUBLIC__/Home/js/newjs/jquery-3.3.1.min.js"></script>
+<script src="__PUBLIC__/Home/js/newjs/login.js"></script>
+<script type="text/javascript" src="/zhisucom/js/layer.js"></script>
+<script type="text/javascript">
+
+var inviteTxt = location.href.split('?')[1];
+var invite = inviteTxt.split('/')[2];
+if(invite == undefined){
+	$('.invit-input').hide();
+}else{
+	$('.invit-input').show();
+	$('#invit').val(invite);
+}
+
+
+
+    var InterValObj; //timer变量，控制时间
+    var count = 60; //间隔函数，1秒执行
+    var curCount;//当前剩余秒数
+    function sendMessage() {
+            curCount = count;
+            //设置button效果，开始计时
+            $("#smsbtn").find("div").attr("disabled", "true");
+            $("#smsbtn").find("div").html( + curCount + "s");
+            InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+            //向后台发送处理数据
+    }
+
+    //timer处理函数
+    function SetRemainTime() {
+        if (curCount == 0) {
+            window.clearInterval(InterValObj);//停止计时器
+            $("#smsbtn").find("div").removeAttr("disabled");//启用按钮
+            $("#smsbtn").find("div").html("{$GLOBALS['send-emailCode']}");
+
+        }
+        else {
+            curCount--;
+            $("#smsbtn").find("div").html( + curCount + "s");
+        }
+    }
+
+    function mobile_send(){
+        var mobile = $('#register_mobile').val();
+        if (mobile == "" || mobile == null) {
+            // layer.tips("请输入手机号码", '#register_mobile', {tips: 2});
+            $('#register_mobile').addClass("error").siblings("p.message").addClass("error").show();
+            return false;
+        }
+        if($("#smsbtn").find("div").attr("disabled")=="disabled"){
+            return false;
+        }else{
+            $.ajax({
+                url:"{:U('login/real')}",
+                data:{mobile:mobile,bj:1},
+                dataType:'json',
+                type:'post',
+                success:function(data){
+                    if(data.status==1){
+                        layer.msg(data.info, {icon: 1});
+                        sendMessage();
+                    }else{
+                        layer.msg(data.info, {icon: 2});
+                    }
+                }
+            });
+        }
+    }
+
+    function reg(){
+        var mobile = $('#register_mobile').val();
+        var yzm = $('#yzm').val();
+        var password = $('#password').val();
+		var invit = $('#invit').val();
+        if (mobile == "" || mobile == null) {
+            // layer.tips("请输入手机号码", '#register_mobile', {tips: 2});
+            $('#register_mobile').addClass("error").siblings("p.message").addClass("error").show();
+            return false;
+        }
+        if (yzm == "" || yzm == null) {
+            // layer.tips("请输入验证码", '#yzm', {tips: 2});
+            $('#yzm').addClass("error").siblings("p.message").addClass("error").show();
+            return false;
+        }
+        if (password == "" || password == null) {
+            // layer.tips("请输入密码", '#password', {tips: 2});
+            $('#password').addClass("error").siblings("p.message").addClass("error").show();
+            return false;
+        }
+        $.ajax({
+            url:"{:U('login/new_reg')}",
+            data:{mobile:mobile,yzm:yzm,password:password,invit:invit},
+            dataType:'json',
+            type:'post',
+            success:function(data){
+                if(data.status==1){
+                    layer.msg(data.info, {icon: 1});
+                   // window.location.href="{:U('Login/register')}"+"?login";
+				   window.location.href="/Login/register"+"?login";
+                }else{
+                    layer.msg(data.info, {icon: 2});
+                }
+            }
+        });
+    }
+
+    function login(){
+        var moble = $('#login_moble').val();
+        var login_password = $('#login_password').val();
+
+        if (moble == "" || moble == null) {
+            $('#login_moble').addClass("error").siblings("p.message").addClass("error").show();
+            return false;
+        }
+        if (login_password == "" || login_password == null) {
+            $('#login_password').addClass("error").siblings("p.message").addClass("error").show();
+            return false;
+        }
+
+        $.ajax({
+            url:"{:U('Login/submit')}",
+            data:{moble:moble,login_password:login_password},
+            dataType:'json',
+            type:'post',
+            success:function(data){
+                if (data.status == 1) {
+                    layer.msg(data.info, {icon: 1});
+                    window.location.href = "{:U('Index/index')}";
+					//window.location.href = document.referrer;
+                } else {
+                    layer.msg(data.info, {icon: 2});
+                }
+            }
+        });
+    }
+	
+	//enter键登录 
+ document.onkeydown = function(e){  
+ var ev = document.all ? window.event : e; 
+ if(ev.keyCode==13) { 
+login();
+ } 
+ } 
+
+
+    /*根据地址栏参数显示登录或注册页面*/
+    var urlCode=window.location.href.split("?")[1];
+    // 登录
+    if(urlCode=='register'){
+        // 注册
+        $(".nav>.item").find("a").removeClass("active").next("span").hide();
+        $(".nav>.item:last-child").find("a").addClass("active").next("span").show();
+        $(".loginDiv").hide();
+        $(".register").show();
+    }else{
+        $(".nav>.item").find("a").removeClass("active").next("span").hide();
+        $(".nav>.item:first-child").find("a").addClass("active").next("span").show();
+        $(".loginDiv").show();
+        $(".register").hide();
+    }
+
+</script>
+</body>
+</html>

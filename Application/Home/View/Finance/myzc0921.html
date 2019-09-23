@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="比特币交易平台，比特币交易所，数字资产交易所,数字货币交易平台" />
+    <meta name="format-detection" content="telephone=no,email=no,address=no" />
+    <title>提现</title>
+    <link data-n-head="true" rel="icon" type="image/x-icon" href="__PUBLIC__/favicon.ico"/>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/base.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/common.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/newcss/withdraw.css" media="all"/>
+    <script data-n-head="true" src="__PUBLIC__/Home/js/newjs/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/layer/layer.js"></script>
+
+</head>
+<body>
+<!--<img src="https://mon.58coin.com/mon.gif" id="img-hidden" />-->
+<div id="__nuxt">
+    <div class="nuxt-progress" style="width:0%;height:2px;background-color:#3B8070;opacity:0;"></div>
+    <div id="__layout">
+        <div>
+            <!--头部内容-->
+            <include file="Public:header1"/>
+            <!--头部内容   end-->
+            <div class="wrap">
+
+                <div class="withdraw-name container flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+                    <div class="account-slider">
+                        <h2>提现</h2>
+                        <div class="item flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap active">
+                            <a class="nuxt-link-exact-active nuxt-link-active" href="/Finance/myzc/name/USDT">USDT</a>
+                        </div>
+                        <div class="item flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap">
+                            <a class="" href="/Finance/myzc/name/BTC">BTC</a>
+                        </div>
+                        <div class="item flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap">
+                            <a  class="" href="/Finance/myzc/name/UCC">UCC</a>
+                        </div>
+                        <div class="item flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap">
+                            <a  class="" href="/Finance/myzc/name/LTC">LTC</a>
+                        </div>
+                        <div class="item flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap">
+                            <a  class="" href="/Finance/myzc/name/ETH">ETH</a>
+                        </div>
+                        <div class="item flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap">
+                            <a class="" href="/Finance/myzc/name/BCH">BCH</a>
+                        </div>
+                        <div class="item flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap">
+                            <a class="" href="/Finance/myzc/name/DASH">DASH</a>
+                        </div>
+                    </div>
+                    <div class="main">
+                        <div class="st-content info" style="margin-top: 0px;">
+                            <h2>提现到{$_GET['name']}地址</h2>
+                            <div class="line"></div>
+                            <div style="padding-top: 30px; padding-bottom: 50px;">
+                                <div  class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <p>无地址可用</p>
+                                    <div>
+                                        <a>
+                                            <div class="address addDiv flex-box flex-direction-column flex-justify-center flex-align-item-center flex-wrap-nowrap">
+                                                <img src="/Public/Home/image/common/icon-an.77c9794.png" alt="" />
+                                                <p>添加新地址</p>
+                                            </div>
+
+                                            <div class="address have flex-box flex-direction-column flex-justify-start flex-align-item-start flex-wrap-nowrap" style="display: none;">
+                                                <h4 >aaaaa(内部地址)</h4>
+                                                <p class="address-content" >15838242472</p>
+                                                <div class="address-nav flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                                                    <a href="/Finance/mydz" class="">切换地址</a>
+                                                </div>
+                                                <div class="have-bg" ></div>
+                                            </div>
+                                        </a>
+                                        <!---->
+                                        <!--弹出框-->
+                                        <div  class="popup flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap" style="display: none;">
+                                            <div  class="popup-box">
+                                                <div  class="header flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                                    <h3 >添加新地址</h3>
+                                                    <a ></a>
+                                                </div>
+                                                <!--<form  class="st-form form">-->
+                                                <div  class="st-form form">
+                                                    <div  class="st-form-item">
+                                                        <p class="label" style="padding-right: 16px;">设置地址备注</p>
+                                                        <input  type="text" maxlength="18" class="st-input" />
+                                                        <p class="tips" style="display: none;"></p>
+                                                        <p class="message" style="display: none">请输入正确的地址备注！</p>
+                                                    </div>
+                                                    <div  class="st-form-item">
+                                                        <p class="label" style="padding-right: 16px;">选择地址类型</p>
+                                                        <div tabindex="0" class="select-something" style="width: 350px;">
+                                                            <div class="select-box">
+                                                                <span>账户地址</span>
+                                                                <span class="icon"></span>
+                                                            </div>
+                                                            <ul class="options" style="width: 350px; display: none;">
+                                                                <li class="item">账户地址</li>
+                                                                <li class="item">外部USDT地址</li>
+                                                            </ul>
+                                                        </div>
+                                                        <p class="tips" style="display: none;"></p>
+                                                        <p class="message" style="display: none;"></p>
+                                                    </div>
+                                                    <div  class="st-form-item">
+                                                        <p class="label changeTitle" style="padding-right: 16px;">账户手机号</p>
+                                                        <input  type="text" maxlength="14" class="st-input" />
+                                                        <p class="tips" style="display: none;"></p>
+                                                        <p class="message" style="display: none;">请输入正确的地址备注！</p>
+                                                    </div>
+                                                    <!---->
+                                                    <div  class="st-form-item">
+                                                        <p class="label" style="padding-right: 16px;">设置为信任地址</p>
+                                                        <div class="trust flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                                            <a class="st-switch"><span class=""></span></a>
+                                                            <p>向信任账户提现将不再输入资金密码，短信验证码以及 Google 验证码</p>
+                                                        </div>
+                                                        <p class="tips" style="display: none;"></p>
+                                                        <p class="message" style="display: none;"></p>
+                                                    </div>
+                                                    <div class="st-form-item"  style="display: none;">
+                                                        <p  class="label" style="padding-right: 16px;">资金密码</p>
+                                                        <input  type="password" name="fundpass" id="cnyout_paypassword" maxlength="20" autocomplete="new-password" placeholder="请输入资金密码" class="st-input"  />
+                                                        <p  class="tips" style="display: none;"></p>
+                                                        <p  class="message" style="display: none;">请输入正确的资金密码！</p>
+                                                    </div>
+                                                    <div   class="short st-form-item"  style="display: none;">
+                                                        <p  class="label" style="padding-right: 16px;">短信验证码</p>
+                                                        <input  type="number" placeholder="请输入 6 位短信验证码" class="st-input"  size="10" name="smscode" id="cnyout_moble_verify" autocomplete="off"/>
+                                                        <div  class="send-SMS code" >
+                                                            <input type="button"  class="get-code button" name="smsbtn" id="smsbtn" onclick="settime(this);" value="发送短信验证码" style="width:140px;"/>
+                                                            <!---->
+                                                        </div>
+                                                        <p  class="tips" style="display: none;"></p>
+                                                        <p  class="message"  style="display: none;;">请点击获取短信验证码！</p>
+                                                    </div>
+                                                    <!---->
+                                                    <input type="submit" value="添加" style="margin-left: 208px;" class="addAdr" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--<form class="st-form form">-->
+                                <div class="st-form form">
+                                    <!---->
+                                    <div class="st-form-item error">
+                                        <p class="label" style="padding-right: 16px;">提现数量</p>
+                                        <div class="max">
+                                            <input type="password" id="password" autocomplete="new-password" style="position: absolute; top: -9999px;" />
+                                            <input type="text" placeholder="请输入提现数量" class="st-input" value="" name="amount" id="cnyout_num" autocomplete="off" size="10" />
+                                            <span class="currency">{$_GET['name']}</span>
+                                            <div  class="create-item-tit flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" style="display: none;">
+                                                <a >可提: 0 <i>{$_GET['name']}</i></a>
+                                                <!---->
+                                            </div>
+                                            <p class="message" style="display: none;">请输入正确的提现数量</p>
+                                        </div>
+                                        <p class="tips" style="display: none;"></p>
+                                        <!--<p class="message" style="display: none;">提现金额不能超过账户余额</p>-->
+                                        <p class="message" style="display: none;">请输入正确的提现数量</p>
+                                    </div>
+                                    <!---->
+                                    <div class="st-form-item" style="min-height: 20px;">
+                                        <p class="label" style="padding-right: 16px;"></p>
+                                        <div  class="create-item-tit flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                            <span  style="font-size: 12px; color: rgb(153, 153, 153);">实际到账：0 <i>{$_GET['name']}</i></span>&nbsp;&nbsp;
+                                            <!---->
+                                        </div>
+                                        <p class="tips" style="display: none;"></p>
+                                        <p class="message" style="display: none;"></p>
+                                    </div>
+                                    <input type="submit" name="submit_btn" id="submit_btn" value="提现" style="margin-left: 208px;" class="txBtn sub-btn" onclick="coinout_up();"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div  class="st-content deposit-record" style="margin-top: 20px;">
+                            <!---->
+                            <div class="title flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap" >
+                                <h2>最近10笔提现记录</h2>
+                                <a href="/Finance/outlog" class="">更多 &gt;</a>
+                            </div>
+                            <div  class="line"></div>
+                            <div  style="padding-top: 20px; padding-bottom: 50px;">
+                                <div class="st-table" >
+                                    <div style="display: none;">
+                                        <div></div>
+                                        <div></div>
+                                        <div>
+                                            <p class="time"></p>
+                                        </div>
+                                        <div>
+                                        </div>
+                                    </div>
+                                    <table class="table-theme-1">
+                                        <thead>
+                                        <tr>
+                                            <!--<th>提现时间</th>-->
+                                            <!--<th style="text-align: left;">提现账户</th>-->
+                                            <!--<th>提现数量</th>-->
+                                            <!--<th>手续费</th>-->
+                                            <!--<th>实际手续费</th>-->
+                                            <!--<th>处理状态</th>-->
+                                            <!--<th>操作</th>-->
+                                            <th align="right" width="10%"><b>单号</b></th>
+                                            <th align="center"><b>提现地址(转账号码)</b></th>
+                                            <th align="center" width="15%"><b>金额</b></th>
+                                            <th align="center" width="20%"><b>提现时间</b></th>
+                                            <th align="center" width="15%"><b>状态/操作</b></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <if condition="$list neq null">
+                                            <volist name="list" id="vo">
+                                                <tr>
+                                                    <td>{$vo.addtime|addtime}</td>
+                                                    <td>{$vo.coinname}</td>
+                                                    <td>{$vo['num']|NumToStr}</td>
+                                                    <td>{$vo['fee']|NumToStr}</td>
+                                                    <td>
+                                                        <eq name="vo.status" value="1">
+                                                            <font color="#23a800">转入成功 </font>
+                                                            <else/>
+                                                            <font color="red">等待处理,还需要{$vo.status|abs}个确认</font>
+                                                        </eq>
+                                                    </td>
+                                                </tr>
+                                            </volist>
+                                            <else/>
+                                            <tr style="border:0;">
+                                                <td colspan="5">
+                                                    <div  class="no-list">
+                                                        <img  src="/Public/Home/image/accountMsg/noDate.jpg" alt="" />
+                                                        <p >暂无数据</p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </if>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!---->
+                </div>
+
+                <!--底部内容-->
+                <include file="Public:footer"/>
+                <!--底部内容   end-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="__PUBLIC__/Home/js/newjs/withdraw.js"></script>
+<script>
+    /*短信验证码倒计时*/
+    var countdown=60;
+    function settime(obj) {
+        if (countdown == 0) {
+            $(obj).attr("disabled","");
+            $(obj).val("发送短信验证码");
+            countdown = 60;
+            return;
+        } else {
+            $(obj).attr("disabled", true);
+            $(obj).val(+ countdown + "s");
+            countdown--;
+        }
+        setTimeout(function() {
+                settime(obj) }
+            ,1000)
+    }
+
+
+    function coinout_up() {
+        var num = $("#cnyout_num").val();
+        // var paypassword  = $("#cnyout_paypassword").val();
+        // var moble_verify = $("#cnyout_moble_verify").val();
+        // var bank         = $('#cnyout_bank').val();
+        // var select		 = $('#select_verify').val();
+        var addr=$(".address-content").html();
+
+
+        if (num == "" || num == null) {
+            $("#cnyout_num").closest(".max").siblings("message").show();
+            return false;
+        }
+
+        if($(".address").is(":hidden")){
+            layer.msg('请选择提现地址！', {icon: 2});
+        }
+
+
+        $.post("{:U('Finance/upmyzc')}", {
+            coin:"{$_GET['name']}",
+            num: num,
+            // paypassword: paypassword,
+            // moble_verify: moble_verify,
+            addr: addr
+            // type:select
+        }, function (data) {
+            if (data.status == 1) {
+                layer.msg(data.info, {
+                    icon: 1
+                });
+                window.location = "/finance/coinoutlog.html";
+            } else {
+                layer.msg(data.info, {
+                    icon: 2
+                });
+                if (data.url) {
+                    window.location = data.url;
+                }
+            }
+        }, "json");
+
+    }
+</script>
+
+</body>
+</html>

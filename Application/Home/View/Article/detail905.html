@@ -1,0 +1,219 @@
+<include file="Publics:header"/>
+
+	<body>
+	<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			html,
+			body {
+				width: 100%;
+			}
+			
+			.header {
+				width: 100%;
+				height: 45px;
+			}
+			
+			.content {
+				
+				clear: both;
+			}
+			
+			.leftbar {
+				width: 23%;
+				float: left;
+			}
+			
+			.main_content {
+				width: 100%;
+				float: right;
+				margin: 10px auto;
+				
+				min-width: 918px;
+				background: #fff;
+				margin-bottom: -18px;
+				float: left;
+				border-top: 1px solid #ddd;
+				position: relative;
+				box-sizing: border-box;
+			}
+			
+			.dtl-title {
+				width: 100%;
+				margin: 0 auto;
+				padding: 40px 20px 25px 5px;
+				text-align: center;
+				box-sizing: border-box;
+			}
+			
+			.contentdetail h2 {
+				font-weight: lighter;
+				font-size: 26px;
+			}
+			
+			#snsshare {
+				display: block;
+				margin: 20px auto;
+			}
+			
+			#snsshare:after {
+				visibility: hidden;
+				display: block;
+				font-size: 0;
+				content: " ";
+				clear: both;
+				height: 0;
+			}
+			
+			#snsshare b {
+				display: block;
+				font-weight: normal;
+			}
+			
+			#snsshare i {
+				float: right;
+				font-size: 10px;
+				opacity: 0.618;
+			}
+			
+			#snsshare a {
+				float: left;
+				height: 32px;
+				width: 32px;
+				margin: 2px;
+				overflow: hidden;
+				text-indent: -9em;
+				opacity: 0.7;
+				background-image: url('/images/share_icons.png');
+			}
+			
+			#snsshare a {
+				background-image: -webkit-image-set(url(/images/share_icons.png) 1x, url(/images/share_icons_2x.png) 2x);
+			}
+			
+			#snsshare a:hover {
+				opacity: 1;
+			}
+			
+			#snsshare a#L766 {
+				background-position: 35px -3px;
+			}
+			
+			#snsshare a#L398 {
+				background-position: -3px -3px;
+			}
+			
+			#snsshare a#L161 {
+				background-position: -38px -3px;
+			}
+			
+			#snsshare a#L301 {
+				background-position: -73px -38px;
+			}
+			
+			#snsshare a#L280 {
+				background-position: -38px -73px;
+			}
+			
+			#snsshare a#L315 {
+				background-position: -38px -38px;
+			}
+			
+			#snsshare a#L472 {
+				background-position: -3px -73px;
+			}
+			
+			#snsshare a#L937 {
+				background-position: -108px -38px;
+			}
+			
+			#snsshare a#L115 {
+				background-position: -73px -3px;
+			}
+			
+			#snsshare a#L944 {
+				background-position: -3px -38px;
+			}
+			
+			#snsshare a#L050 {
+				background-position: -108px -74px;
+			}
+			
+			#snsshare a#L918 {
+				background-position: -73px -74px;
+			}
+			
+			.dtl-content a {
+				text-decoration: none;
+				color: #333;
+			}
+			
+			ul li {
+				list-style: none;
+			}
+			
+			.footer {
+				margin: 0 auto;
+				width: 100%;
+				clear: both;
+				margin-bottom: -19px;
+				border-top: 1px solid #ddd;
+				z-index: 2;
+				position: relative;
+			}
+			.content{ width: 1200px; margin: 0 auto;}
+			.content .main_content{ height: 870px; overflow: auto;}
+			.main_content  p.returnlist{ color:#79ADFF; font-weight: bold; font-size: 18px; line-height: 30px;}
+			.main_content  p.returnlist:hover{ color: red;}
+		</style>
+	
+		
+		<div class="content">
+			<div class="main_content" style="border-left: solid #eee 1px;">
+				<div class="right_mcontent contentdetail">
+					<p  class="returnlist" onclick="window.history.back()">返回系统公告&lt;&lt;</p>
+					<div class="dtl-title">
+						<h2>{$data.title}</h2>
+					</div>
+					<div class="new-dtl-info"> <span>发布时间：{$data.addtime|date="Y-m-d H:i:s",###}</span> </div>
+					<br>
+					<div class="dtl-content"> 
+						{$data['content']}
+					</div>
+				</div>
+			</div>
+		</div>
+		<include file="Publics:footer"/>
+	</body>
+	<script>
+		function GetMetaValue(meta_name) {
+			var artiMain = $('#artiMain');
+			if(artiMain.length == 1) {
+				return artiMain.find('.article-content').text().substring(0, 300);
+			} else {
+				var my_arr = document.getElementsByTagName("META");
+				for(var counter = 0; counter < my_arr.length; counter++) {
+					if(my_arr[counter].name.toLowerCase() == meta_name.toLowerCase()) {
+						return my_arr[counter].content;
+					}
+				}
+				return "";
+			}
+		}
+		document.writeln("<a id=\"L398\" title=\"分享到新浪微博\" href=\"javascript:window.open(\'http:\/\/v.t.sina.com.cn\/share\/share.php?title=\'+encodeURIComponent(document.title.substring(0,76)+\' \'+GetMetaValue(\'description\').substring(0,300))+\'&url=\'+encodeURIComponent(location.href)+\'&rcontent=\',\'_blank\',\'scrollbars=no,width=660,height=450,left=75,top=20,status=no,resizable=yes\'); void 0\" style=\"color:#000000;text-decoration:none;font-size:12px;font-weight:normal\"><\/a>");
+
+		document.writeln("<a id=\"L161\" title=\"分享给QQ好友\" href=\"javascript:window.open(\'http:\/\/connect.qq.com\/widget\/shareqq\/index.html?title=\'+encodeURIComponent(document.title.substring(0,76)+\' \'+GetMetaValue(\'description\').substring(0,300))+\'&url=\'+encodeURIComponent(location.href)+\'&rcontent=\',\'_blank\',\'scrollbars=no,width=760,height=560,left=75,top=20,status=no,resizable=yes\'); void 0\" style=\"color:#000000;text-decoration:none;font-size:12px;font-weight:normal\"><\/a>");
+
+		document.writeln("<a id=\"L766\" title=\"分享到QQ空间\" href=\"javascript:window.open(\'http:\/\/sns.qzone.qq.com\/cgi-bin\/qzshare\/cgi_qzshare_onekey?title=\'+encodeURIComponent(document.title.substring(0,76))+\'&url=\'+encodeURIComponent(location.href)+\'&desc=\'+GetMetaValue(\'description\').substring(0,300)+\'&summary=&site=&pics=\',\'_blank\',\'scrollbars=no,width=660,height=450,left=75,top=20,status=no,resizable=yes\'); void 0\" style=\"color:#000000;text-decoration:none;font-size:12px;font-weight:normal\"><\/a>");
+
+		document.writeln("<a id=\"L280\" title=\"分享到百度贴吧\" href=\"javascript:window.open(\'http:\/\/tieba.baidu.com\/f\/commit\/share\/openShareApi?title=\'+encodeURIComponent(document.title.substring(0,76))+\'&url=\'+encodeURIComponent(location.href)+\'&desc=\'+GetMetaValue(\'description\').substring(0,300)+\'&comment=\'+GetMetaValue(\'description\').substring(0,300),\'_blank\',\'scrollbars=no,width=660,height=450,left=75,top=20,status=no,resizable=yes\'); void 0\" style=\"color:#000000;text-decoration:none;font-size:12px;font-weight:normal\"><\/a>");
+
+		document.writeln("<a id=\"L315\" title=\"分享到开心网\" href=\"javascript:window.open(\'http:\/\/www.kaixin001.com\/repaste\/share.php?rtitle=\'+encodeURIComponent(document.title.substring(0,76))+\'&rurl=\'+encodeURIComponent(location.href)+\'&rcontent=\',\'_blank\',\'scrollbars=no,width=660,height=450,left=75,top=20,status=no,resizable=yes\'); void 0\" style=\"color:#000000;text-decoration:none;font-size:12px;font-weight:normal\"><\/a>");
+
+		document.writeln("<a id=\"L301\" title=\"分享到人人网\" href=\"javascript:window.open(\'http://share.renren.com/share/buttonshare.do?title=\'+encodeURIComponent(document.title.substring(0,76))+\'&link=\'+encodeURIComponent(location.href)+\'&content=\',\'_blank\',\'scrollbars=no,width=660,height=450,left=75,top=20,status=no,resizable=yes\'); void 0\" style=\"color:#000000;text-decoration:none;font-size:12px;font-weight:normal\"><\/a>");
+	</script>
+
+</html>

@@ -1,0 +1,81 @@
+<include file="Base:header"/>
+<style>
+	.item-note{
+		color:#F5A80A;
+	}
+</style>
+<body>
+<article class="page-container">
+	<form class="form form-horizontal" id="form-mytxConfig-add" action="{:U('Finance/mytxConfig')}" method="post" enctype="multipart/form-data">
+
+
+
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>最小提现金额 :</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$C['mytx_min']}" placeholder="" id="articletitle" name="mytx_min">
+			</div>
+			<div class="item-note">最小提现金额</div>
+		</div>
+	
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>最大提现金额 :</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$C['mytx_max']}" placeholder=""  name="mytx_max"> 
+			 </div>
+			 <div class="item-note">最大提现金额 </div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">提现整倍数 :</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$C['mytx_bei']}" placeholder=""  name="mytx_bei">
+			</div>
+			<div class="item-note">提现整倍数</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">提现手续费 :</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$C['mytx_fee']}" placeholder=""  name="mytx_fee">
+			</div>
+			<div class="item-note">%提现手续费</div>
+		</div>
+		 
+
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+				<!-- <button onClick="article_save_submit();" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交审核</button> -->
+				<!-- <button onClick="article_save();" class="btn btn-secondary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存草稿</button> -->
+				<!-- <button onClick="removeIframe();" class="btn btn-default radius" type="button">&nbsp;&nbsp;取消&nbsp;&nbsp;</button> -->
+				<button class="ajax-post btn btn-primary radius" id="submit" type="submit" target-form="form-horizontal"><i class="Hui-iconfont">&#xe632;</i> 确 定
+			</button>
+			<a class="btn btn-default radius" href="{$Think.server.HTTP_REFERER}">返 回</a>
+			<notempty name="data.id"><input type="hidden" name="id" value="{$data.id}"/>
+			</notempty>
+			</div>
+		</div>
+	</form>
+</article>
+
+<!--请在下方写此页面业务相关的脚本-->
+
+<script type="text/javascript" src="__PUBLIC__/kindeditor/kindeditor-min.js"></script>
+<!--/请在上方写此页面业务相关的脚本-->
+ <script type="text/javascript">
+ 	//提交表单
+ 	$(function() {
+ 	        $("#form-mytxConfig-add").ajaxForm(function(data){
+ 	        	if (data.status==1) {
+ 	        	layer.alert(data.info);
+ 	        }else
+ 	            layer.alert(data.info);
+ 	        },'json');
+ 	         
+ 	    });
+ 
+ </script>
+
+</body>
+</html>

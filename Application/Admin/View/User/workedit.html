@@ -1,0 +1,146 @@
+<include file="Base:header"/>
+<style>
+  .maxs{
+  	width:45%;
+    height:auto;
+  }
+  .mins{
+  	width:50px;
+  }
+</style>
+<body>
+<article class="page-container">
+	<form class="form form-horizontal" id="form-add" action="{:U('User/workrepaly')}" method="post" enctype="multipart/form-data">
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>工单描述：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$user['send_content']}" placeholder="" id="articletitle" name="web_name">
+			</div>
+		</div>
+		 
+		
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">工单配图：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<if condition="$user['send_img1'] neq ''">
+					<img src="{$user['send_img1']}" width="50px" id="imgs" class="mins">
+				<else/>
+					&nbsp;
+				</if>
+				<!--<if condition="$user['send_img2'] neq ''">
+					<img src="{$user['send_img2']}" width="50px"><else/>&nbsp;
+				</if>
+				<if condition="$user['send_img3'] neq ''">
+					<img src="{$user['send_img3']}" width="50px"><else/>&nbsp;
+				</if>-->
+			</div>
+		</div>
+		 <input type="hidden" value="{$_GET['id']}" name="id">
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">工单回复：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<textarea name="content" cols="" rows="" class="textarea"<if condition="$user['reply_content'] neq ''">readonly="readonly"</if> datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="$.Huitextarealength(this,200)"><if condition="$user['reply_content'] neq ''">
+												{$user['reply_content']}
+											<else/>
+											
+											</if></textarea>
+				<p class="textarea-numberbar"><em class="textarea-length"></em></p>
+			</div>
+		</div>
+		 
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+				
+				<button class="ajax-post btn btn-primary radius" id="submit" type="submit" target-form="form-horizontal"><i class="Hui-iconfont">&#xe632;</i> 确 定
+			</button>
+			<!-- <a class="btn btn-default radius" href="{$Think.server.HTTP_REFERER}">返 回</a> -->
+			<notempty name="data.id"><input type="hidden" name="id" value="{$data.id}"/>
+			</notempty>
+			</div>
+		</div>
+	</form>
+</article>
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript">
+// alert(window.parent.location);
+// alert(window.location.href);
+	//提交表单
+	$(function() {
+        $("#form-add").ajaxForm(function(data){
+        	if (data.status==1) {
+        	layer.alert(data.info);
+        }else
+            layer.alert(data.info);
+        },'json');
+         
+    });
+  
+  $(function(){
+  	$("#imgs").click(function(){
+    	$(this).toggleClass('mins');
+      	$(this).toggleClass('maxs');
+    })
+  });
+</script>
+<script type="text/javascript" src="__PUBLIC__/kindeditor/kindeditor-min.js"></script>
+<script type="text/javascript">
+	var editor;
+	KindEditor.ready(function (K) {
+		editor = K.create('textarea[name="content"]', {
+			width: '1250px',
+			height: '250px',
+			allowPreviewEmoticons: false,
+			allowImageUpload: true,
+			uploadJson: "{:U('User/workrepaly','type=images')}",//图片上传后的处理地址
+			items: [
+				'source', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+				'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+				'insertunorderedlist', '|', 'emoticons', 'image', 'link', 'fullscreen'],
+			afterBlur: function () {
+				this.sync();
+			}
+		});
+	});
+	
+	
+	$(document).ready(function () {
+		//响应文件添加成功事件
+		$("#inputfile").change(function () {
+			//创建FormData对象
+			var data = new FormData();
+			//为FormData对象添加数据
+			$.each($('#inputfile')[0].files, function (i, file) {
+				data.append('upload_file' + i, file);
+			});
+
+
+			//发送数据
+			$.ajax({
+				url: '/Admin/User/articleimage',
+				type: 'POST',
+				data: data,
+				cache: false,
+				contentType: false,		//不可缺参数
+				processData: false,		//不可缺参数
+				success: function (data) {
+					if (data) {
+						$('#up_img').attr("src", '/Upload/article/' + data);
+						$('#img').val(data);
+						$('#up_img').show();
+					}
+				},
+				error: function () {
+					alert('上传出错');
+					$(".loading").hide();	//加载失败移除加载图片
+				}
+			});
+
+		});
+	});
+</script>
+
+<!--/请在上方写此页面业务相关的脚本-->
+ 
+</body>
+</html>

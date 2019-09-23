@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>USDT C2C</title>
+    <meta name="description" content="!">
+    <meta name="keywords" content="!">
+    <meta name="format-detection" content="telephone=no">
+	    <!--[if lte IE 9]><script type="text/javascript">location.href = '/update.html';</script><![endif]-->
+    <link href="/public/home/001_files/style.css" rel="stylesheet" type="text/css">
+    <style>.icon-48,.icon-32,.icon-16{background-image:url("/images/coins48.png?v=1529488915")}</style>
+    <script type="text/javascript" src="/zhisucom/js/layer.js"></script>
+    <script type="text/javascript" src="/zhisucom/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/zhisucom/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/zhisucom/js/jquery.cookies.2.2.0.js"></script>
+    <script type="text/javascript" src="/zhisucom/js/layer.js"></script>
+    <script type="text/javascript" src="/zhisucom/js/posfixed.js"></script>
+    <script type="text/javascript" src="/zhisucom/js/dot.min.js"></script>
+    <link rel="stylesheet" href="/zhisucom/css/slider.css">
+    <script type="text/javascript" src="/zhisucom/js/slider.js"></script>
+    <!-- <link href="/public/home/001_files/coins_16.css" rel="stylesheet" type="text/css"> -->
+    <!-- <link href="/public/home/001_files/coins_32.css" rel="stylesheet" type="text/css"> -->
+    <!-- <link href="/public/home/001_files/coins_48.css" rel="stylesheet" type="text/css"> -->
+                    
+<!--     <link href="/public/home/001_files/theme_dark.css" rel="stylesheet" type="text/css" id="darkStyle" disabled="disabled"> -->
+                
+                    
+    <link href="https://ss.ss/favicon.ico" rel="shortcut icon">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://ss.ss/images/apple-touch-icon-120x120.png">
+    <link rel="stylesheet" href="/Public/home/001_files/header.css">
+    <script src="/public/home/001_files/jquery-1.8.2.min.js"></script>
+    <!-- <script src="/public/home/001_files/jquery.common.tools.js"></script> -->
+</head>
+<body class="">
+<!--头部信息-->
+<div class="header">
+    <div class="header-content">
+        <ul class="header-content-right">
+            <li><a class="login" href="{:U('Login/register')}">注册</a></li>
+            <li class="header-content-right-border"></li>
+            <li><a class="register" href="">登录</a></li>
+        </ul>
+    </div>
+</div>
+<!--头部导航菜单-->
+<div class="header header-menu">
+    <div class="header-content">
+        <ul class="header-content-left">
+            <li><img src="/Public/home/001_files/logo.png" alt=""></li>
+            <li><a href="/">首页</a></li>
+            <li class="header-trade"><a href="">交易中心 <i class="arrow"></i></a>
+                <ul class="header-content-menu header-content-menu2">
+				<foreach name="coinlist" item="v" key="k" >
+                    <li  class="two-menue10"><a href="">{$k}交易区<i class="arrow1"></i></a>
+                        <ul class="three-menue" id="three-menue{$k}">
+						<foreach name="v" item="vs" >
+						    
+                            <li><a href="/Trade/index/market/{$vs['name']}"><img src="__UPLOAD__/coin/{$vs['xnbimg']}" alt="">{$vs['navtitle']}</a></li>
+							</foreach>
+                        </ul>
+                    </li>
+					</foreach>
+                    
+                    
+                   <!--
+                    <li  class="two-menue10"><a href="">限时交易区 <i class="arrow1"></i></a>
+                        <ul class="three-menue three-menue4">
+                            <li><a href=""><img src="http://ibinpc.finsys.net/Upload/coin/5b0dffc965738.png" alt="">爱币(IB)</a></li>
+                            <li><a href=""><img src="http://ibinpc.finsys.net/Upload/coin/5b0dffc965738.png" alt="">爱币(IB)</a></li>
+                            <li><a href=""><img src="http://ibinpc.finsys.net/Upload/coin/5b0dffc965738.png" alt="">爱币(IB)</a></li>
+                            <li><a href=""><img src="http://ibinpc.finsys.net/Upload/coin/5b0dffc965738.png" alt="">爱币(IB)</a></li>
+                            <li><a href=""><img src="http://ibinpc.finsys.net/Upload/coin/5b0dffc965738.png" alt="">爱币(IB)</a></li>
+                            <li><a href=""><img src="http://ibinpc.finsys.net/Upload/coin/5b0dffc965738.png" alt="">爱币(IB)</a></li>
+                        </ul></li>-->
+                </ul>
+            </li>
+			<volist name="daohang" id="vo">
+            <li><a href="/{$vo['url']}">{$vo['title']}</a></li>
+			</volist>
+        </ul>
+        <ul class="header-content-right">
+            <li><a href="">提交工单</a></li>
+        </ul>
+    </div>
+</div>
+<link href="/public/home/001_files/push.css" rel="stylesheet" type="text/css">
+<style>body{ overflow-y: scroll}</style>
+
+<div class="panel messages-menu dropdown-menu text-center" style="display: none;">
+    <div class="messages-head text-center">订单消息</div>
+    <div class="scrollable custom-scroll-style hover-scroll-bar">
+        <ul class="list-group massages-item" id="massages-item">
+            <div class="no-unread text-center">当前没有待处理订单消息</div>
+        </ul>
+    </div>
+</div>
+
+<div class="content push-con">
+                <div class="leftbar">
+    <div class="left-tab">
+        <ul id="market_controller" class="clearfix">
+            <button id="cny" class="tline_btn left_btn tn_selected">
+                CNY交易区
+            </button>
+            <button id="usd" class="tline_btn left_btn ">
+                USD交易区
+            </button>
+        </ul>
+        <table class="left-push-table" id="marketlist_cny" style="display:table">
+            <tbody>
+                            <tr id="USDT_CNY" class="even coin-selected">
+                    <td>
+                        <span class="icon-16 icon-16-usdt"></span>
+                        <span class="bizhong_en">USDT/CNY</span> USDT/人民币</td>
+                    <td class="go-push">&gt;</td>
+                </tr>
+                        </tbody>
+        </table>
+        <table class="left-push-table" id="marketlist_krw" style="display:">
+             <tbody>
+                            <tr id="USDT_CNY" class="even">
+                    <td>
+                        <span class="icon-16 icon-16-usdt"></span>
+                        <span class="bizhong_en">USDT/CNY</span> USDT/人民币</td>
+                    <td class="go-push">&gt;</td>
+                </tr>
+                        </tbody>
+        </table>
+    </div>
+</div>
+
+        
+    	<link href="/public/home/001_files/chatcss.css" rel="stylesheet" type="text/css">
+<!-- chatbox start-->
+<div id="boxposition" class="push-chat">
+<div id="box" status="close"> <!--<span class="title">聊天<sub id="chatNum"></sub></span> -->
+    <div class="chatbox">
+    	<div id="panelHeader" class="panel_header header">
+            <h1 id="panelTitle" class="text_ellipsis padding_20">
+            	<div id="chatRoom">与 <b id="bsName" class="red"></b> 交谈 <div><span>交易单号:</span><span id="txid"></span></div></div>
+            </h1>
+             <ul class="qqt" id="chatOption">
+             	<li id="aLeft"><b><span class="menu-ico"><i class="ico-solid"></i><i class="ico-empty"></i></span>靠左</b></li><li id="aTop">
+                <b><span class="menu-ico"><i class="ico-solid ico1-top"></i><i class="ico-empty ico1-bottom"></i></span>靠上</b></li><li id="aRight">
+                <b><span class="menu-ico"><i class="ico-empty ico-right"></i><i class="ico-solid"></i></span>靠右</b></li><li id="aBottom">
+                <b><span class="menu-ico"><i class="ico-solid ico3-top"></i><i class="ico-empty ico3-bottom"></i></span>靠下</b></li>
+                <div style="clear:both"></div>
+            </ul>
+            <ul id="closeWin">
+                <li id="clWin" title="最小化"><span></span></li><li id="bsWin" title="最大化"><span id="bigWin"></span></li><li id="smWin" title="还原"><span></span><span id="smallWin"></span></li><li id="moreSize"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52"><path id="setIcon" d="M50.22 21h-5.052c-2.62 0-3.93-3.167-2.08-5.018l3.573-3.572c.696-.695.696-1.823 0-2.518L42.11 5.34c-.695-.696-1.823-.696-2.518 0l-3.572 3.57C34.166 10.763 31 9.45 31 6.833v-5.05C31 .796 30.203 0 29.22 0h-6.44C21.797 0 21 .797 21 1.78v5.053c0 2.62-3.166 3.93-5.018 2.08L12.41 5.338c-.695-.696-1.823-.696-2.518 0L5.34 9.89c-.696.695-.696 1.823 0 2.518l3.57 3.572C10.764 17.832 9.45 21 6.833 21h-5.05C.796 21 0 21.797 0 22.78v6.44C0 30.203.797 31 1.78 31h5.052c2.62 0 3.93 3.167 2.08 5.018L5.338 39.59c-.696.696-.696 1.823 0 2.518L9.89 46.66c.695.696 1.823.696 2.518 0l3.572-3.57C17.834 41.236 21 42.55 21 45.167v5.05c0 .985.797 1.782 1.78 1.782h6.44c.983 0 1.78-.797 1.78-1.78v-5.052c0-2.62 3.166-3.93 5.018-2.08l3.572 3.573c.695.696 1.823.696 2.518 0l4.553-4.552c.696-.695.696-1.823 0-2.518l-3.57-3.572C41.236 34.168 42.55 31 45.167 31h5.05c.985 0 1.782-.797 1.782-1.78v-6.44c0-.983-.797-1.78-1.78-1.78zM26 34c-4.418 0-8-3.582-8-8s3.582-8 8-8 8 3.582 8 8-3.582 8-8 8z" fill="#fff"></path></svg></li>
+            </ul>
+        </div>
+        <!--<div style="height: 30px;line-height: 30px;color: #fff;padding: 0 10px;background: #7d1c1c;">平台不支持充值码交易，请勿使用充值码线下交易！</div>-->
+        <div id="panelPhone" class="phone-modal"></div>
+        <div class="panel chat-panel" id="panel_chat" style="display: block;">
+            <div id="panelBodyWrapper" class="panel_body_container" style="overflow: hidden;">
+                <div id="panelBody" class="panel_body chat_container" style=" -webkit-transition: -webkit-transform 0ms; transition: -webkit-transform 0ms; -webkit-transform-origin: 0px 0px; -webkit-transform: translate(0px, 0px) scale(1) translateZ(0px);">
+                    <ul id="chatBox" class="dialog" style="width: 100%; overflow-y: auto; overflow-x: hidden; height: 405px;"></ul>
+                </div>
+            </div>
+            <div id="panelFooter" class="chat_toolbar_footer footery">
+                <div class="chat_toolbar">
+                    <form onsubmit="sendMessage();return false" id="chatForm">
+                        <textarea id="message" autocomplete="off" class="input input_white chat_textarea" rows="" cols="" onkeydown="if (event.keyCode == 13) { sendMessage(); return false; }"></textarea>
+                    </form>
+                    <div class="right-btn">
+                        <button id="send_chat_btn" class="btny btn_small btn_blue" onclick="sendMessage();return false">
+                        	<span class="btn_text">发送</span>
+                            <div class="spinner">
+                              <div class="bounce1"></div>
+                              <div class="bounce2"></div>
+                              <div class="bounce3"></div>
+                            </div>
+                        </button><span class="press-key btny btn_small btn_blue"></span>
+                        <div class="press-tip"><i></i><span>按Enter键发送</span></div>
+                    </div>
+                    <div style="clear:both"></div>
+                </div>
+                <div class="rs-con"><div id="winResize"><p></p><p></p></div></div>
+            </div>
+        </div>
+    </div>
+    <div class="b-cover"></div>
+    <div id="resizeW"></div>
+    <div id="resizeH"></div>
+</div>
+</div>
+<textarea id="areaCopy" style="width: 275px;"></textarea>
+<!-- chatbox end --> 
+
+
+
+    <div class="main_content">
+
+        <div class="main_title clearfix">
+            <h1>
+                <ul id="mianTlist" class="clearfix pull-left">
+                    <li>
+                        <a href="https://ss.ss/coininfo/USDT" ><span class="icon-32 icon-32-usdt"></span></a>
+                        <a href="https://ss.ss/coininfo/USDT"  class="tooltip" title="Tether  USDT 对 CNY">Tether USDT</a> 对
+                        <strong> CNY </strong>
+                        <span class="market-opt">
+                            <i class="caret"></i>
+                            <ul>
+                                <li><a href="https://ss.ss/c2c/USDT_CNY">USDT/CNY</a></li>
+                                <!--<li><a href="/c2c/USDT_USD">USDT/USD</a></li>-->
+                            </ul>
+                        </span>
+                    </li>
+                </ul>
+                <div class="pull-right business-buy-sell">
+                    <a class="sub-btn" disabled="" href="javascript:busi_buy_show();">商家买入USDT</a>
+                    <a class="sub-btn sub-sell" disabled="" href="javascript:busi_sell_show();">商家卖出USDT</a>
+                </div>
+            </h1>
+        </div>
+        <ul class="curr-coin-info">
+            <li><em>实时价：</em>￥<span id="curr_rate">6.7</span></li>
+            <li><em>日涨跌：</em><span class="green" id="last_rate_change"><font class="green">+1.66%</font><i class="icon-arrow-up">↑</i></span></li>
+            <li><em>最高价：</em>￥<span id="ticker_high">6.79</span></li>
+            <li><em>最低价：</em>￥<span id="ticker_low">6.40</span></li>
+        </ul>
+        <div class="trade-main clearfix">
+            <div class="maichu maichu-form">
+                <div class="m_title">
+                    <span>买入USDT</span>
+                </div>
+                <div class="m_con_buy">
+					<div>
+						<a class="red" href="#" >如何买入？</a>
+					</div>
+                    <!--<table class="dealbox">
+						<tbody><tr>
+                            <td class="input-td">
+                                <span class="b-unit ask-bid-price input-title">买入估价 <span>CNY</span></span>
+                                <input id="buy_rate" class="inputRate red" readonly="" value="6.71">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="input-td">
+                                <span class="b-unit input-title">买入量 USDT</span>
+                                <input id="buy_vol" class="inputRate" maxlength="10" onkeydown="return check_number(event);" onkeyup="decimal2(this);on_input_buy_vol(get_element(&#39;buy_rate&#39;).value);" value="">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="input-td">
+                                <span class="b-unit input-title" id="buy_total_label">金额 CNY</span>
+                                <input id="buy_amount" class="inputRate" maxlength="10" onkeydown="return check_number(event);" onkeyup="decimal2(this);on_input_buy_amount(get_element(&#39;buy_rate&#39;).value);" value="">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="input-td">
+                                <span class="pull-left">支付方式<a href="" ><span class="button pay-type-set" title="设置"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-2.4 120.9 600 600" width="17" height="17"><path d="M594 473.5V368.8h-76c-5.7-23.8-15.2-46.4-27.5-66.4l53.8-53.8-73.9-73.9-53.8 53.4c-20.6-12.8-42.7-21.8-66.4-27.5v-75.9H245.5v75.9c-23.8 5.7-46.4 15.2-66.4 27.5l-53.8-53.8-73.9 73.9 53.4 53.8C92 322.6 83 344.7 77.3 368.4h-76V473h75.9c5.7 23.8 15.2 46.4 27.5 66.4L51 593.3l73.9 73.9 53.8-53.4c20.6 12.8 42.7 21.8 66.4 27.5v75.9h104.6v-75.9c23.8-5.7 46.4-15.2 66.4-27.5l53.8 53.8 73.9-73.9-53.4-53.8c12.8-20.6 21.8-42.7 27.5-66.4H594zm-296.4 69.7c-67.3 0-122.3-54.6-122.3-122.3 0-67.3 54.6-122.3 122.3-122.3 67.3 0 122.3 54.6 122.3 122.3-.4 67.4-54.9 122.3-122.3 122.3z"></path></svg></span></a>：</span>
+                                <ul class="pay-type-ul">
+                                   <li>
+                                        <i class="icon-empty"></i>
+                                        <input id="buy_pay_ali" type="checkbox" value="pay_ali" hidden="">
+                                        <span>支付宝</span>
+                                    </li>
+                                    <li>
+                                        <i class="icon-empty"></i>
+                                        <input id="buy_pay_wechat" type="checkbox" value="pay_wechat" hidden="">
+                                        <span>微信</span>
+                                    </li>
+                                    <li>
+                                        <i class="icon-empty"></i>
+                                        <input id="buy_pay_bank" type="checkbox" value="pay_bank" hidden="">
+                                        <span>银行转账</span>
+                                    </li>
+                                </ul>
+								<span class="red">（必须本人支付）</span>
+                                <a class="jyxz" href="#" >《交易须知》</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="input-td" style="border:0">
+                                <input type="button" class="btnAskBid jiaoyi_btn  button button-flat-action" t="ask" id="buy_submit" value="买入 (CNY→USDT)">
+                            </td>
+                        </tr>
+                    </tbody>
+                    </table>-->
+                    
+                    <table class="dealbox">
+						<tbody><tr>
+                            <td class="input-td">
+                                <span class="b-unit ask-bid-price input-title">买入估价 <span>CNY</span></span>
+                                <input id="buyUnitPrice" name="buyUnitPrice" class="inputRate red" readonly="" value="6.71">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="input-td">
+                                <span class="b-unit input-title">买入量 USDT</span>
+                                <input id="buyNumber" name="buyNumber" class="inputRate" maxlength="10" value="">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="input-td">
+                                <span class="b-unit input-title" id="buy_total_label">最低成交量</span>
+                                <input class="inputRate" maxlength="10" id="buyminNumber" name="buyminNumber" value="0">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="input-td">
+                                <span class="pull-left">支付方式<a href="" ><span class="button pay-type-set" title="设置"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-2.4 120.9 600 600" width="17" height="17"><path d="M594 473.5V368.8h-76c-5.7-23.8-15.2-46.4-27.5-66.4l53.8-53.8-73.9-73.9-53.8 53.4c-20.6-12.8-42.7-21.8-66.4-27.5v-75.9H245.5v75.9c-23.8 5.7-46.4 15.2-66.4 27.5l-53.8-53.8-73.9 73.9 53.4 53.8C92 322.6 83 344.7 77.3 368.4h-76V473h75.9c5.7 23.8 15.2 46.4 27.5 66.4L51 593.3l73.9 73.9 53.8-53.4c20.6 12.8 42.7 21.8 66.4 27.5v75.9h104.6v-75.9c23.8-5.7 46.4-15.2 66.4-27.5l53.8 53.8 73.9-73.9-53.4-53.8c12.8-20.6 21.8-42.7 27.5-66.4H594zm-296.4 69.7c-67.3 0-122.3-54.6-122.3-122.3 0-67.3 54.6-122.3 122.3-122.3 67.3 0 122.3 54.6 122.3 122.3-.4 67.4-54.9 122.3-122.3 122.3z"></path></svg></span></a>：</span>
+                                <ul class="pay-type-ul">
+                                   <li>
+                                        <i class="icon-empty"></i>
+                                        <input id="buy_pay_ali" type="checkbox" value="pay_ali" hidden="">
+                                        <span>支付宝</span>
+                                    </li>
+                                    <li>
+                                        <i class="icon-empty"></i>
+                                        <input id="buy_pay_wechat" type="checkbox" value="pay_wechat" hidden="">
+                                        <span>微信</span>
+                                    </li>
+                                    <li>
+                                        <i class="icon-empty"></i>
+                                        <input id="buy_pay_bank" type="checkbox" value="pay_bank" hidden="">
+                                        <span>银行转账</span>
+                                    </li>
+                                </ul>
+								<span class="red">（必须本人支付）</span>
+                                <a class="jyxz" href="#" >《交易须知》</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="input-td" style="border:0">
+                                <input type="button" class="btnAskBid jiaoyi_btn  button button-flat-action" id="buyBtn" value="买入 (CNY→USDT)">
+                            </td>
+                        </tr>
+                    </tbody>
+                    </table>
+                    
+                    
+                </div>
+                <i class="sp-top"></i>
+                <i class="sp-bottom"></i>
+            </div>
+            <div class="mairu mairu-form">
+                <div class="m_title">
+                    <span>卖出USDT</span>
+                    <span class="yu-e">
+                        <span>(</span>
+                        <span>USDT余额</span>
+                        <span id="balance_sell_able" class="green"></span>
+                        <span>)</span>
+                    </span>
+                    <span class="pull-right yu-e-link">
+                        <a class="dp-link" href="#" >USDT充值</a>
+                        <a class="dp-link" href="#" >USDT提现</a>
+                    </span>
+                </div>
+                <div class="m_con">
+					<div>
+						<a class="red" href="#" >如何卖出？</a>
+					</div>
+                    <table class="dealbox" cellspacing="0">						
+                        <tbody><tr>
+                            <td class="input-td">
+                                <span class="b-unit ask-bid-price input-title">卖出估价 <span>CNY</span></span>
+                                <input id="sellUnitPrice" name="sellUnitPrice" class="inputRate green" maxlength="10" readonly="" value="6.69">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="input-td">
+                                <span class="b-unit input-title">卖出量 USDT</span>
+                                <input id="sellNumber" name="sellNumber" class="inputRate" maxlength="10" value="">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="input-td">
+                                <span class="b-unit input-title">最小成交量</span>
+                                <input id="sellminNumber" name="sellminNumber" class="inputRate" maxlength="10" value="0">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="input-td">
+                                <span class="pull-left">支付方式<a href="" ><span class="button pay-type-set" title="设置"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-2.4 120.9 600 600" width="17" height="17"><path d="M594 473.5V368.8h-76c-5.7-23.8-15.2-46.4-27.5-66.4l53.8-53.8-73.9-73.9-53.8 53.4c-20.6-12.8-42.7-21.8-66.4-27.5v-75.9H245.5v75.9c-23.8 5.7-46.4 15.2-66.4 27.5l-53.8-53.8-73.9 73.9 53.4 53.8C92 322.6 83 344.7 77.3 368.4h-76V473h75.9c5.7 23.8 15.2 46.4 27.5 66.4L51 593.3l73.9 73.9 53.8-53.4c20.6 12.8 42.7 21.8 66.4 27.5v75.9h104.6v-75.9c23.8-5.7 46.4-15.2 66.4-27.5l53.8 53.8 73.9-73.9-53.4-53.8c12.8-20.6 21.8-42.7 27.5-66.4H594zm-296.4 69.7c-67.3 0-122.3-54.6-122.3-122.3 0-67.3 54.6-122.3 122.3-122.3 67.3 0 122.3 54.6 122.3 122.3-.4 67.4-54.9 122.3-122.3 122.3z"></path></svg></span></a>：</span>
+                                <ul class="pay-type-ul">
+                                    <li>
+                                        <i class="icon-empty"></i>
+                                        <input id="sell_pay_ali" type="checkbox" value="pay_ali" hidden="">
+                                        <span>支付宝</span>
+                                    </li>
+									<li>
+                                        <i class="icon-empty"></i>
+                                        <input id="sell_pay_wechat" type="checkbox" value="pay_wechat" hidden="">
+                                        <span>微信</span>
+                                    </li>
+                                    <li>
+                                        <i class="icon-empty"></i>
+                                        <input id="sell_pay_bank" type="checkbox" value="pay_bank" hidden="">
+                                        <span>银行转账</span>
+                                    </li>
+                                </ul>
+								<span class="red">（必须本人支付）</span>
+                                <a class="jyxz" href="#" >《交易须知》</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="input-td" style="border:0">
+                                <input type="button" class="btnAskBid jiaoyi_btn  button button-flat-action"  id="sellBtn" value="卖出 (USDT→CNY)">
+                            </td>
+                        </tr>
+                    </tbody></table>
+                    
+<!-- 原SCRIPT-->
+ <script>
+    $(function () {
+
+        $('#buyBtn').click(function () {
+		
+			$.post("/C2c/add1", {
+			    type:1,
+			    price:$('#buyUnitPrice').val(),
+				num: $('#buyNumber').val(),
+				minnum: $('#buyminNumber').val(),
+			}, function (data) {
+			   
+				if (data.status == 1) {
+					layer.msg(data.info, {icon: 1});
+					 window.location.href=window.location.href;
+				} else {
+				     
+					layer.msg(data.info, {icon: 2});
+					 window.location.href=window.location.href;
+					  
+					if (data.url) {
+				
+					}
+				}
+		
+			}, "json");
+
+        });
+        $('#sellBtn').click(function () {
+			
+            $.post("/C2c/add1", {
+			    type:2,
+			    price:$('#sellUnitPrice').val(),
+				num: $('#sellNumber').val(),
+				minnum: $('#sellminNumber').val(),
+			}, function (data) {
+			     
+				if (data.status == 1) {
+				    
+					layer.msg(data.info, {icon: 1});
+					 window.location.href=window.location.href;
+				} else {
+				   
+					layer.msg(data.info, {icon: 2});
+					 window.location.href=window.location.href;
+					   
+					if (data.url) {
+				
+					}
+				}
+			}, "json");
+
+        });
+    })
+</script>
+                        
+                    
+
+                </div>
+            </div>
+
+            <div style="width:100%;" id="divMyRecordSection" class="clearfix">
+                <div class="my-order-box">
+                    <div class="m_title">
+	市场挂单（只显示在线商家）
+	<div class="HideZeroDiv pull-right zero-active" id="hideZbtn">
+		<label for="hidezero">
+			<input type="checkbox" id="hidezero" name="hidezero" style="width: 20px;" checked="" class="zero-active">
+			<label for="hidezero" class="vr-btn"></label>
+			<span class="hidezero-span">显示市场挂单</span>
+		</label>
+		<input type="hidden" id="min"><input type="hidden" id="max">
+	</div>
+</div>
+<div class="sectioncont" id="divPushOrder" style="display: block;">
+	<table class="sf-grid table-inacc table-inacc-head">
+		<thead>
+		<tr>
+			<th align="left"><b>类型</b></th>
+			<th align="right"><b>价格</b>(CNY)</th>
+			<th align="right"><b>数量</b>(USDT)</th>
+			<th align="right"><b>总计</b>(CNY)</th>
+			<th align="right"><b>最小成交量</b>(USDT)</th>
+			<th align="right"><b>商家在线</b></th>
+			<th align="right"><b>成交单数</b></th>
+			<th align="right"><b>平均用时</b></th>
+			<th align="right"><b>付款方式</b></th>
+			<th align="right"></th>
+		</tr>
+		</thead>
+	</table>
+	<div class="table-scroll">
+		<table class="sf-grid table-inacc table-inacc-body" id="pushOrder">
+		    <tbody>
+		        <foreach name="ucoin" item="vo">
+    		        <tr class="odd" onclick="set_vol(7000.0000);">
+    		            <td align="left">
+    		                <span class="green">
+    		                    <if condition="$vo['type'] eq 1">买入<else />卖出</if>
+    		                </span>
+		                </td>
+    		            <td align="right">{$vo.price}</td>
+    		            <td align="right">{$vo.residue}</td>
+    		            <td align="right">{$vo.cprice}</td>
+    		            <td align="right">{$vo.minnum}</td>
+    		            <td align="right">
+    		               <if condition="$vo['type'] eq 1">
+    		                   <?php $res=M("user")->where('id='.$vo['bid'])->find(); echo $res['truename'];?>     
+    		               <else />
+		                        <?php $res=M("user")->where('id='.$vo['sid'])->find(); echo $res['truename'];?>  
+    		               </if>    		                
+    		                </td>
+    		            <td align="right">254</td>
+    		            <td align="right">14分钟</td>
+    		            <td align="right">
+    		                <img class="pay_icon2" src="/public/home/001_files/pay_type_icon2.svg">
+    		            </td>
+    		            
+    		            
+    		            <td align="right">
+    		                <if condition="$vo['type'] eq 1">
+        		                <a href="javascript:quick_show(1,894249,6.71,7000.0000,46970.00,&#39;1111.00~7000.00&#39;,&#39;2&#39;,&#39;项** 2分钟&#39;);" class="btn-error od-btn">卖出</a>
+    		                <else/>
+        		                <a href="javascript:quick_show(1,894249,6.71,7000.0000,46970.00,&#39;1111.00~7000.00&#39;,&#39;2&#39;,&#39;项** 2分钟&#39;);" class="btn-error od-btn">买入</a>
+    		                </if>
+    		            </td>
+    	            </tr>
+	            </foreach>
+            </tbody>
+		            
+            </table>
+	</div>
+</div>
+
+    
+
+<!--
+
+<script>
+
+	//检测cookie,显示市场挂单
+	if ($.cookie('hide_push_orders') === undefined || $.cookie('hide_push_orders') === '0') {//显示
+		$('#hidezero').prop('checked', true).addClass('zero-active');
+		$('#divPushOrder').show()
+	} else { //隐藏
+		$('#hidezero').prop('checked', false).removeClass('zero-active');
+	}
+	function fixLeftBar() {
+		var lb = $(".leftbar"), mc = $(".main_content"), lh = lb.height(), mh = mc.height();
+		lb.css("height", mh)
+	}
+
+	$('#hideZbtn').on('click', function() { //点击显示/隐藏有按钮
+
+		if ($('#hidezero').hasClass("zero-active")) {
+			$('#divPushOrder').hide();
+			setTimeout(function(){$('#hidezero').removeClass('zero-active')},200);
+			$.cookie('hide_push_orders', '1',{ expires:30,path: '/' });
+			fixLeftBar();
+		} else { //全部显示
+			$('#divPushOrder').show();
+			setTimeout(function(){$('#hidezero').addClass('zero-active')},200);
+			$.cookie('hide_push_orders', '0',{ expires:30,path: '/' });
+			fixLeftBar();
+		}
+	});
+	
+</script>-->
+                </div>
+                <div class="my-order-box my-orders" style="display:block;">
+                    
+<div class="m_title">
+	<span class="order-tab order-t-active" id="ot1">我的当前订单</span>
+	<span class="order-tab" id="ot2">已完成订单</span>
+	<span class="order-tab" id="ot3">已取消订单</span>
+	<span class="order-tab" id="ot4">已申诉订单</span>
+	<span><a href="https://ss.ss/myaccount/myc2chistory" style="color: #d45858;font-size: 13px" >更多&gt;&gt;</a></span>
+	<span class="pull-right yu-e-link">
+		<a class="dp-link" href="#" >
+		C2C交易操作说明
+		</a>
+	</span>
+</div>
+
+<div id="currOrder" class="sectioncont">
+	<table class="sf-grid table-inacc table-inacc-head">
+		<thead>
+		<tr>
+			<th><b>单号</b></th>
+			
+			<th align="right"><b>价格</b>(CNY)</th>
+			<th align="right"><b>数量</b>(USDT)</th>
+			<th align="right"><b>金额</b>(CNY)</th>			
+			<th align="right"><b>建立时间</b></th>			
+			<th align="right"><b>类型</b></th>
+			<th align="right"><b>对方姓名</b></th>
+			<th align="right"><b>状态</b></th>
+			<th align="right"><b>操作</b></th>
+		</tr>
+		</thead>
+	</table>
+	<div class="table-scroll">
+		<table class="sf-grid table-inacc table-inacc-body" id="myPushOrder">
+			<tbody>
+			   <foreach name="myucoin" item="v">
+        			<tr class="table-empty" style="display: table-row;">
+   
+							<td align="right">{$v.number}</td>
+        		            <td align="right">{$v.price}</td>
+        		            <td align="right">{$v.num}</td>
+        		            <td align="right">{$v.cprice}</td>       		     
+        		            <td align="right">{$v.paytime|date="Y-m-d H:i",###}</td>				
+							<if condition="$v['sid'] eq $uid">							
+								<td align="right"><span class="green">卖出</span></td>
+								<td align="right">
+								<?php $res=M("user")->where('id='.$v['bid'])->find(); echo $res['truename'];?> 
+								</td>							       		                
+
+								<td align="right">
+								<if condition="$v['is_pay'] eq 1">
+									<if condition="$v['is_done'] eq 0">
+										
+										<eq name="v['is_get']" value="0">
+											<span color="red">等待对方打款</a>
+											</span>
+										<else/>
+										<span class="green">等您收款</span>
+										</eq>   
+										<!--sid打开页面查看打款信息确认提交 包含确认收到款，未收到款投诉  -->																
+									</if>
+								</if>
+								<if condition="$v['match'] gt 0">剩余{$vo.residue}</if>
+								</td>
+								
+							</if>
+							<td align="right"><span class="green"><a href="__CONTROLLER__/deal/id/{$v.id}" style="color:red">操作</a></span></td>
+							
+							
+        			</tr>
+			 </foreach>  			 
+			</tbody>
+		</table>
+		
+	</div>
+</div>
+
+<div id="historyClosedOrder" class="sectioncont">
+	<table class="sf-grid table-inacc table-inacc-head">
+		<thead>
+		<tr>
+			<th><b>单号</b></th>
+			<th align="left"><b>类型</b></th>
+			<th align="right"><b>价格</b>(CNY)</th>
+			<th align="right"><b>数量</b>(USDT)</th>
+			<th align="right"><b>金额</b>(CNY)</th>
+			<th align="right"><b>状态</b></th>
+			<th align="right"><b>对方姓名</b></th>
+			<th align="right"><b>建立时间</b></th>
+			<th align="right"><b>操作</b></th>
+		</tr>
+		</thead>
+	</table>
+	<div class="table-scroll">
+		<table class="sf-grid table-inacc table-inacc-body" id="myClosedOrder">
+			<tbody>
+						<tr class="table-empty">
+				<td style="text-align: center"><p><i>i</i>暂无完成订单</p></td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+<div id="historyCancelOrder" class="sectioncont">
+	<table class="sf-grid table-inacc table-inacc-head">
+		<thead>
+		<tr>
+			<th><b>单号</b></th>
+			<th align="left"><b>类型</b></th>
+			<th align="right"><b>价格</b>(CNY)</th>
+			<th align="right"><b>数量</b>(USDT)</th>
+			<th align="right"><b>金额</b>(CNY)</th>
+			<th align="right"><b>状态</b></th>
+			<th align="right"><b>对方姓名</b></th>
+			<th align="right"><b>建立时间</b></th>
+			<th align="right"><b>操作</b></th>
+		</tr>
+		</thead>
+	</table>
+	<div class="table-scroll">
+		<table class="sf-grid table-inacc table-inacc-body" id="myCancelOrder">
+			<tbody>
+						<tr class="table-empty">
+				<td style="text-align: center"><p><i>i</i>暂无取消订单</p></td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+<br>
+<div>
+	<h3><i class="warn-iocn">!</i>交易须知：</h3>
+	<br>
+	<ul class="push-warn-tip">	
+		<li>1. <span> 超过<b>3笔取消订单</b>将<b>禁止2天</b>C2C交易</span></li>
+		<li>2. <span> 有<b>2个</b>买单未完成，<b>暂停</b>继续下单，完成后恢复</span></li>
+		<li>3. <span> 下单买入后<b>冒充已付款</b>，卖方可申诉举报，一经查实将<b>禁封</b>交易</span></li>
+		<li>4. <span> <b>17:00</b>以后及<b>非工作日</b>时间，每笔请拆分<b>5万</b>以内进行转账，否则将延迟到账</span></li>
+		<li>5. <span><b>卖方</b>收到的资金<b>非买方</b>本人转账,请卖方<b>原路退回</b></span></li>
+		<li>6. <span class="red"> 已取消订单，如已付款，请及时申诉，上传付款证明等资料，说明情况</span></li>
+		<li>7. <span class="red"> 转账时请勿备注“比特币”、“虚拟币”等信息，否则禁止C2C交易</span></li>
+	</ul>
+
+</div>
+                </div>
+                <div class="business-order-box" style="display:block;">
+                    <div class="m_title">我的商家接单
+	<em style="font-size: 14px;font-style: normal;"><a href="#" >(支付设置)</a> </em>
+	<span class="pull-right yu-e-link">
+		<a class="dp-link" href="#" >
+		商家操作说明
+		</a>
+	</span>
+</div>
+<div class="sectioncont">
+	<table class="sf-grid table-inacc table-inacc-head">
+		<thead>
+		<tr>
+			<th><b>单号</b></th>
+			<th align="right"><b>挂单时间</b></th>
+			<th align="right"><b>类型</b></th>
+			<th align="right"><b>价格(CNY)</b></th>
+			<th align="right"><b>数量(USDT)</b></th>
+			<th align="right"><b>金额(CNY)</b></th>
+			<th align="right"><b>交易限额(USDT)</b></th>
+			<th align="right"><b>已锁定(USDT)</b></th>
+			<th align="right"><b>付款方式</b></th>
+			<th align="right"><b>操作</b></th>
+		</tr>
+		</thead>
+	</table>
+	<div class="table-scroll">
+		<table class="sf-grid table-inacc table-inacc-body" id="businessPushOrder">
+			<tbody>
+						<tr class="table-empty" style="display: table-row;">
+				<td style="text-align: center"><p><i>i</i>暂无接单</p></td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+                </div>
+            </div>
+        </div>
+
+    </div> <!-- main_content -->
+
+</div> <!-- content -->
+
+<div class="quick-alert-form">
+    <ul id="buy_noty_center_layout_container" class="quick-buy-layout" style="position: fixed;height: auto; margin: 0; padding: 0; list-style-type: none; z-index: 200000;">
+        <li class="gateioNotyTheme noty_container_type_confirm">
+            <div class="noty_bar noty_type_confirm">
+                <div class="noty_message">
+                    <div class="noty_text">
+                        <h3 style="margin-bottom:10px; color: #de5959">买入:<span class="close pull-right" onclick="quick_hide(&#39;0&#39;);"></span></h3><hr>
+						<input type="hidden" name="quick_buy_oid" id="quick_buy_oid">
+                        <table>
+                            <tbody>
+								<tr>
+									<td align="right">商家在线: </td>
+									<td>
+                                        <span id="quick_buy_biz"></span>
+									</td>
+									<td></td>
+								</tr>
+                                <tr id="quick_buy_fixed_rate_setting">
+                                    <td class="noty-td">价格: </td>
+                                    <td><input id="quick_buy_rate" readonly=""></td>
+                                    <td><span class="coin-unit">CNY</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="noty-td">买入量: </td>
+                                    <td><input class="inputRate" type="text" name="quick_buy_vol" id="quick_buy_vol" placeholder="请输入买入量" onkeydown="return check_number(event);" onkeyup="decimal2(this);on_quick_input_buy_vol(get_element(&#39;quick_buy_rate&#39;).value);" value="">
+                                    </td>
+                                    <td><span class="coin-unit">USDT</span></td>
+                                </tr>
+                                <tr id="quick_buy_rate_amount_setting">
+                                    <td class="noty-td">金额: </td>
+                                    <td><input class="inputRate" type="text" name="quick_buy_amount" id="quick_buy_amount" onkeydown="return check_number(event);" onkeyup="decimal2(this);on_quick_input_buy_amount(get_element(&#39;quick_buy_rate&#39;).value);" value="">
+                                    </td>
+                                    <td><span class="coin-unit">CNY</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="noty-td">限额: </td>
+                                    <td> <input id="quick_buy_amount_limit" maxlength="10" readonly="">
+                                    </td>
+                                    <td><span class="coin-unit">USDT</span></td>
+                                </tr>
+                                <tr>
+								<td class="noty-td">支付方式: </td>
+								<td class="pt-checkbox">
+									<ul>
+										<li>
+											<i class="icon-empty"></i>
+											<input id="quick_buy_pay_ali" type="checkbox" name="quick_buy_pay_ali" hidden="">
+											<span>支付宝</span>
+										</li>
+										<li>
+											<i class="icon-empty"></i>
+											<input id="quick_buy_pay_wechat" type="checkbox" name="quick_buy_pay_wechat" hidden="">
+											<span>微信</span>
+										</li>
+										<li>
+											<i class="icon-empty"></i>
+											<input id="quick_buy_pay_bank" type="checkbox" name="quick_buy_pay_bank" hidden="">
+											<span>银行转账</span>
+										</li>
+									</ul>
+									<span class="red" style="font-size: 14px">（须本人账户支付）</span>
+								</td>
+								<td></td>
+							</tr>
+                            </tbody>
+                        </table>
+                        <label id="quick_buy_tips" class="biz-tips"></label>
+                    </div>
+                </div>
+                <div class="noty_buttons">
+                    <button class="sub-btn alert-sub pull-left" onclick="quickBuySubmit(&#39;USDT&#39;, &#39;CNY&#39;);">确定提交</button>
+                    <button class="sub-btn pull-right" onclick="quick_hide(&#39;0&#39;);">关闭</button>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div class="quick-alert-form">
+    <ul id="sell_noty_center_layout_container" class="quick-sell-layout" style="position: fixed;height: auto; margin: 0; padding: 0; list-style-type: none; z-index: 200000;">
+        <li class="gateioNotyTheme noty_container_type_confirm">
+            <div class="noty_bar noty_type_confirm">
+                <div class="noty_message">
+                    <div class="noty_text">
+                        <h3 style="margin-bottom:10px; color: #00b393">卖出:<span class="close pull-right" onclick="quick_hide(&#39;1&#39;);"></span></h3><hr>
+						<input type="hidden" name="quick_sell_oid" id="quick_sell_oid">
+                        <table>
+                            <tbody>      
+							<tr>
+								<td align="right">商家在线: </td>
+								<td>
+									<span id="quick_sell_biz"></span>
+								</td>
+								<td></td>
+							</tr>							
+                            <tr id="quick_sell_fixed_rate_setting">
+                                <td class="noty-td">价格: </td>
+                                <td><input id="quick_sell_rate" readonly=""></td>
+                                <td><span class="coin-unit">CNY</span></td>
+                            </tr>
+
+                            <tr>
+                                <td class="noty-td">卖出量: </td>
+                                <td><input class="inputRate" type="text" name="quick_sell_vol" id="quick_sell_vol" onkeydown="return check_number(event);" onkeyup="decimal2(this);on_quick_input_sell_vol(get_element(&#39;quick_sell_rate&#39;).value);" value="">
+                                </td>
+                                <td><span class="coin-unit">USDT</span></td>
+                            </tr>
+                            <tr id="quick_sell_rate_amount_setting">
+                                <td class="noty-td">金额: </td>
+                                <td><input class="inputRate" type="text" name="quick_sell_amount" id="quick_sell_amount" onkeydown="return check_number(event);" onkeyup="decimal2(this);on_quick_input_sell_amount(get_element(&#39;quick_sell_rate&#39;).value);" value="">
+                                </td>
+                                <td><span class="coin-unit">CNY</span></td>
+                            </tr>
+							<tr>
+								<td class="noty-td">限额: </td>
+								<td> <input id="quick_sell_amount_limit" maxlength="10" readonly="">
+								</td>
+								<td><span class="coin-unit">USDT</span></td>
+							</tr>
+                            <tr>
+								<td class="noty-td">支付方式: </td>
+								<td class="pt-checkbox">
+									<ul>
+										<li>
+											<i class="icon-empty"></i>
+											<input id="quick_sell_pay_ali" type="checkbox" name="quick_sell_pay_ali" hidden="">
+											<span>支付宝</span>
+										</li>
+										<li>
+											<i class="icon-empty"></i>
+											<input id="quick_sell_pay_wechat" type="checkbox" name="quick_sell_pay_wechat" hidden="">
+											<span>微信</span>
+										</li>
+										<li>
+											<i class="icon-empty"></i>
+											<input id="quick_sell_pay_bank" type="checkbox" name="quick_sell_pay_bank" hidden="">
+											<span>银行转账</span>
+										</li>
+									</ul>
+									<span class="red" style="font-size: 14px">（须本人账户支付）</span>
+								</td>
+								<td></td>
+							</tr>
+                            </tbody>
+                        </table>
+                        <label id="quick_sell_tips" class="biz-tips"></label>
+                    </div>
+                </div>
+                <div class="noty_buttons">
+                    <button class="sub-btn alert-sub pull-left" onclick="quickSellSubmit(&#39;USDT&#39;, &#39;CNY&#39;);">确定提交</button>
+                    <button class="sub-btn pull-right" onclick="quick_hide(&#39;1&#39;);">关闭</button>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <audio id="audio" src="/docs/order.mp3"></audio>
+</div>
+
+<div class="business-alert-form">
+    <ul id="buy_noty_center_layout_container" class="business-buy-layout" style="position: fixed;height: auto; margin: 0; padding: 0; list-style-type: none; z-index: 200000;">
+        <li class="gateioNotyTheme noty_container_type_confirm">
+            <div class="noty_bar noty_type_confirm">
+                <div class="noty_message">
+                    <div class="noty_text">
+                        <h3 style="margin-bottom:10px; color: #de5959">商家买入:<span class="close pull-right" onclick="busi_buy_hide();"></span></h3><hr>
+                        <table>
+                            <tbody>
+                                <tr class="label-tr">
+                                    <td class="noty-td">价格设置: </td>
+                                    <td class="radio-td">
+                                        <label><input name="buy_rate_fixed" type="radio" value="1" checked="">固定价格</label>
+                                        <!--<label><input name="buy_rate_fixed" type="radio" value="0" />浮动价格</label>-->
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr class="label-tr" id="buy_rate_ref_id_setting" style="display:none">
+                                    <td class="noty-td">参考市场: </td>
+                                    <td class="radio-td">
+                                                                                    <label><input name="buy_rate_ref_id" type="radio" value="21" rate="6.60" updated="2018-06-24 14:09:11" checked="">coinmarketcap</label>
+                                                                                    <label><input name="buy_rate_ref_id" type="radio" value="22" rate="6.60" updated="2018-06-24 14:09:12">bitfinex</label>
+                                                                            </td>
+                                    <td></td>
+                                </tr>
+                                <tr class="label-tr" id="buy_ref_rate_disp" style="display:none">
+                                    <td class="noty-td" colspan="2" style="text-align: left;text-indent: 12px;">
+                                        当前参考价格:
+                                        <span id="buy_ref_rate">6.60</span><span class="coin-unit">CNY<span style="margin-left: 15px">(以实际订单为准)</span></span>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr id="buy_rate_offset_setting" style="display:none">
+                                    <td class="noty-td">浮动百分比: </td>
+                                    <td>
+                                        <input class="inputRate" type="text" name="buy_rate_offset" id="buy_rate_offset" placeholder="请输入浮动百分比" onkeyup="on_input_biz_rate_offset(&#39;buy&#39;, get_element(&#39;buy_rate_offset&#39;));" onpaste="return false;">
+                                    </td>
+                                    <td class="coin-unit">%</td>
+                                </tr>
+                                <tr id="buy_fixed_rate_setting">
+                                    <td class="noty-td">价格: </td>
+                                    <td><input class="inputRate" type="text" name="biz_buy_rate" id="biz_buy_rate" placeholder="请输入价格" onkeydown="return check_number(event);" onkeyup="decimal2(this);this.value=this.value.replace(/D/g,&#39;&#39;);
+                                               on_input_biz_buy_rate(get_element(&#39;biz_buy_rate&#39;).value);" onpaste="return false;">
+                                    </td>
+                                    <td><span class="coin-unit">CNY</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="noty-td">买入量: </td>
+                                    <td><input class="inputRate" type="text" name="biz_buy_vol" id="biz_buy_vol" placeholder="请输入买入量" onkeydown="return check_number(event);" onkeyup="this.value=this.value.replace(/D/g,&#39;&#39;); on_input_biz_buy_vol(get_element(&#39;biz_buy_rate&#39;).value);" onpaste="return false;">
+                                    </td>
+                                    <td><span class="coin-unit">USDT</span></td>
+                                </tr>
+                                <tr id="buy_rate_amount_setting">
+                                    <td class="noty-td">金额: </td>
+                                    <td><input class="inputRate" type="text" name="biz_buy_amount" id="biz_buy_amount" placeholder="请输入金额" onkeydown="return check_number(event);" onkeyup="this.value=this.value.replace(/D/g,&#39;&#39;); on_input_biz_buy_total(get_element(&#39;biz_buy_rate&#39;).value);" onpaste="return false;">
+                                    </td>
+                                    <td><span class="coin-unit">CNY</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="noty-td">单笔最小交易量: </td>
+                                    <td><input class="inputRate" type="text" name="buy_vol_min" id="buy_vol_min" value="100" placeholder="请输入最小交易量,最低100" onkeydown="return check_number(event);" onkeyup="decimal2(this);this.value=this.value.replace(/D/g,&#39;&#39;); on_input_biz_buy_min_vol();" onblur="if(this.value==&#39;&#39;)this.value=100" onpaste="return false;">
+                                    </td>
+                                    <td><span class="coin-unit">USDT</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="noty-td">单笔最大交易量: </td>
+                                    <td><input class="inputRate" type="text" name="buy_vol_max" id="buy_vol_max" value="30000" placeholder="请输入最大交易量" onkeydown="return check_number(event);" onkeyup="decimal2(this);this.value=this.value.replace(/D/g,&#39;&#39;);" onblur="if(this.value==&#39;&#39;){if($(&#39;#biz_buy_vol&#39;).val()==&#39;&#39;){this.value=30000 }else{ this.value=$(&#39;#biz_buy_vol&#39;).val()}}" onpaste="return false;">
+                                    </td>
+                                    <td><span class="coin-unit">USDT</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="noty-td">支付方式: </td>
+                                    <td class="pt-checkbox">
+                                        <ul>
+                                            <li>
+                                                <i class="icon-empty"></i>
+                                                <input id="biz_buy_pay_ali" type="checkbox" name="biz_buy_pay_ali" hidden="">
+                                                <span>支付宝</span>
+                                            </li>
+                                            <li>
+                                                <i class="icon-empty"></i>
+                                                <input id="biz_buy_pay_wechat" type="checkbox" name="biz_buy_pay_wechat" hidden="">
+                                                <span>微信</span>
+                                            </li>
+                                            <li>
+                                                <i class="icon-empty"></i>
+                                                <input id="biz_buy_pay_bank" type="checkbox" name="biz_buy_pay_bank" hidden="">
+                                                <span>银行转账</span>
+                                            </li>
+                                        </ul>
+                                        <span class="red" style="font-size: 14px">（须本人账户支付）</span>
+                                    </td>
+                                    <td></td>
+                                </tr>
+								<tr>
+									<td align="right">手续费: </td>
+									<td>
+                                        <span id="biz_buy_fee">0.2%</span><span class="coin-unit" style="font-size: 14px">(成交才收)</span>
+									</td>
+									<td></td>
+								</tr>
+                            </tbody>
+                        </table>
+                        <label id="biz_buy_tips" class="biz-tips"></label>
+                    </div>
+                </div>
+                <div class="noty_buttons">
+                    <button class="sub-btn alert-sub pull-left" onclick="bizBuySubmit(&#39;USDT&#39;, &#39;CNY&#39;);">确定提交</button>
+                    <button class="sub-btn pull-right" onclick="busi_buy_hide();">关闭</button>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div class="business-alert-form">
+    <ul id="sell_noty_center_layout_container" class="business-sell-layout" style="position: fixed;height: auto; margin: 0; padding: 0; list-style-type: none; z-index: 200000;">
+        <li class="gateioNotyTheme noty_container_type_confirm">
+            <div class="noty_bar noty_type_confirm">
+                <div class="noty_message">
+                    <div class="noty_text">
+                        <h3 style="margin-bottom:10px; color: #00b393">商家卖出:<span class="close pull-right" onclick="busi_sell_hide();"></span></h3><hr>
+                        <table>
+                            <tbody>
+
+                            <tr>
+                                <td class="noty-td">价格设置: </td>
+                                <td>
+                                    <label><input name="sell_rate_fixed" type="radio" value="1" checked="">固定价格</label>
+                                    <!--<label><input name="sell_rate_fixed" type="radio" value="0" />浮动价格</label>-->
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr id="sell_rate_ref_id_setting" style="display:none">
+                                <td class="noty-td">参考市场: </td>
+                                <td>
+                                                                            <label><input name="sell_rate_ref_id" type="radio" value="21" rate="6.60" updated="2018-06-24 14:09:11" checked="">coinmarketcap</label>
+                                                                            <label><input name="sell_rate_ref_id" type="radio" value="22" rate="6.60" updated="2018-06-24 14:09:12">bitfinex</label>
+                                                                    </td>
+                                <td></td>
+                            </tr>
+                            <tr id="sell_ref_rate_disp" style="display: none;">
+                                <td class="noty-td" colspan="2" style="text-align: left;text-indent: 12px;">
+                                    当前参考价格:
+                                    <span id="sell_ref_rate">6.60</span><span class="coin-unit">CNY<span style="margin-left: 15px">(以实际订单为准)</span></span>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr id="sell_rate_offset_setting" style="display:none">
+                                <td class="noty-td">浮动百分比: </td>
+                                <td>
+                                    <input class="inputRate" type="text" name="sell_rate_offset" id="sell_rate_offset" placeholder="请输入浮动百分比" onkeyup="on_input_biz_rate_offset(&#39;sell&#39;, get_element(&#39;sell_rate_offset&#39;));" onpaste="return false;">
+                                </td>
+                                <td class="coin-unit">%</td>
+                            </tr>
+                            <tr id="sell_fixed_rate_setting">
+                                <td class="noty-td">价格: </td>
+                                <td><input class="inputRate" type="text" name="biz_sell_rate" id="biz_sell_rate" placeholder="请输入价格" onkeydown="return check_number(event);" onkeyup="this.value=this.value.replace(/D/g,&#39;&#39;); on_input_biz_sell_rate(get_element(&#39;biz_sell_rate&#39;).value);" onpaste="return false;">
+                                </td>
+                                <td><span class="coin-unit">CNY</span></td>
+                            </tr>
+
+                            <tr>
+                                <td class="noty-td">卖出量: </td>
+                                <td><input class="inputRate" type="text" name="biz_sell_vol" id="biz_sell_vol" placeholder="请输入卖出量" onkeydown="return check_number(event);" onblur="decimal2(this);" onkeyup="decimal2(this); on_input_biz_sell_vol(get_element(&#39;biz_sell_rate&#39;).value);" onpaste="return false;">
+                                </td>
+                                <td><span class="coin-unit">USDT</span></td>
+                            </tr>
+                            <tr id="sell_rate_amount_setting">
+                                <td class="noty-td">金额: </td>
+                                <td><input class="inputRate" type="text" name="biz_sell_amount" id="biz_sell_amount" placeholder="请输入金额" onkeydown="return check_number(event);" onkeyup="this.value=this.value.replace(/D/g,&#39;&#39;); on_input_biz_sell_total(get_element(&#39;biz_sell_rate&#39;).value);" onpaste="return false;">
+                                </td>
+                                <td><span class="coin-unit">CNY</span></td>
+                            </tr>
+                            <tr>
+                                <td class="noty-td">单笔最小交易量: </td>
+                                <td><input class="inputRate" type="text" name="sell_vol_min" id="sell_vol_min" value="100" placeholder="请输入最小交易量,最低100" onkeydown="return check_number(event);" onkeyup="decimal2(this);this.value=this.value.replace(/D/g,&#39;&#39;); on_input_biz_sell_min_vol();" onblur="if(this.value==&#39;&#39;)this.value=100" onpaste="return false;">
+                                </td>
+                                <td><span class="coin-unit">USDT</span></td>
+                            </tr>
+                            <tr>
+                                <td class="noty-td">单笔最大交易量: </td>
+                                <td><input class="inputRate" type="text" name="sell_vol_max" id="sell_vol_max" value="30000" placeholder="请输入最大交易量" onkeydown="return check_number(event);" onkeyup="decimal2(this);this.value=this.value.replace(/D/g,&#39;&#39;);" onblur="if(this.value==&#39;&#39;){if($(&#39;#biz_sell_vol&#39;).val()==&#39;&#39;){this.value=30000 }else{ this.value=$(&#39;#biz_sell_vol&#39;).val()}}" onpaste="return false;">
+                                </td>
+                                <td><span class="coin-unit">USDT</span></td>
+                            </tr>
+                            <tr>
+                                <td class="noty-td">支付方式: </td>
+                                <td class="pt-checkbox">
+                                    <ul>
+                                        <li>
+                                            <i class="icon-empty"></i>
+                                            <input id="biz_sell_pay_ali" type="checkbox" name="biz_sell_pay_ali" hidden="">
+                                            <span>支付宝</span>
+                                        </li>
+                                        <li>
+                                            <i class="icon-empty"></i>
+                                            <input id="biz_sell_pay_wechat" type="checkbox" name="biz_sell_pay_wechat" hidden="">
+                                            <span>微信</span>
+                                        </li>
+                                        <li>
+                                            <i class="icon-empty"></i>
+                                            <input id="biz_sell_pay_bank" type="checkbox" name="biz_sell_pay_bank" hidden="">
+                                            <span>银行转账</span>
+                                        </li>
+                                    </ul>
+									<span class="red" style="font-size: 14px">（须本人账户支付）</span>
+                                </td>
+                                <td></td>
+                            </tr>
+							<tr>
+								<td align="right">手续费: </td>
+								<td>
+                                    <span id="biz_sell_fee">0.2%</span><span class="coin-unit" style="font-size: 14px">(成交才收)</span>
+								</td>
+								<td></td>
+							</tr>
+                            </tbody>
+                        </table>
+                        <label id="biz_sell_tips" class="biz-tips"></label>
+                    </div>
+                </div>
+                <div class="noty_buttons">
+                    <button class="sub-btn alert-sub pull-left" onclick="bizSellSubmit(&#39;USDT&#39;, &#39;CNY&#39;);">确定提交</button>
+                    <button class="sub-btn pull-right" onclick="busi_sell_hide();">关闭</button>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <audio id="audio" src="/docs/order.mp3"></audio>
+</div>
+<div class="noty_container"></div>
+<div class="noty_con_custom"></div>
+<script src="/public/home/001_files/push.js"></script>
+<script src="/public/home/001_files/clipboard.min.js"></script>
+<include file="Publics:footer"/>
+
+	
+
+
+<!-- <script src="/public/home/001_files/footer.js"></script> -->
+
+
+
+
+</body></html>

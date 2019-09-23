@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="比特币交易平台，比特币交易所，数字资产交易所,数字货币交易平台" />
+    <meta name="format-detection" content="telephone=no,email=no,address=no" />
+    <title>首页</title>
+    <link rel="icon" type="image/x-icon" href="__PUBLIC__/favicon.ico">
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/base.css" />
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/common.css" />
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/index.css" />
+    <style type="text/css">
+        .market div{
+            width:17%!important;
+        }
+        .header-sliding .login a:hover {
+            color: #fff;
+        }
+
+        .header-sliding .login a {
+            font-size: 14px;
+            color: #6c85ae;
+        }
+        .common-header a{
+            font-size: 14px;
+            color: #cbd7f0;
+        }
+        .common-header a:hover{
+            font-size: 14px;
+            color: #cbd7f0;;
+        }
+        .header-sliding a{
+            font-size: 14px;
+            color: #6c85ae;
+        }
+        .header-sliding a:hover {
+            color: #fff;
+        }
+    </style>
+
+</head>
+<body>
+<!--<img src="https://mon.58coin.com/mon.gif" id="img-hidden" />-->
+<div id="__nuxt">
+    <div class="nuxt-progress" style="width:0%;height:2px;background-color:#3B8070;opacity:0;"></div>
+    <div id="__layout">
+        <div>
+            <div class="index">
+                <div class="tips-status">
+                    <p> 添加自选成功</p>
+                </div>
+                <!--头部内容-->
+                <div>
+                    <div class="banner">
+                        <div class="common-header flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                            <a href="index.html" class="logo cn" ></a>
+                            <div class="main-nav flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                                <a href="/C2c/index/market/ltc" >场外交易
+                                    <!---->
+                                    <!----></a>
+                                <a href="/Trade/index/market/btc_usdt" >币币交易
+                                    <!---->
+                                    <!----></a>
+                                <a href="/Lever/borrowMoney/market/usdt_jtc" >杠杆交易
+                                    <!---->
+                                    <!----></a>
+                            </div>
+                            <div class="blank" ></div>
+                            <div class="advertising-w cn" ></div>
+                            <div class="blank" ></div>
+                            <neq name="userId" value=" ">
+                                <a style="line-height:80px;font-weight:700;color: #cbd7f0;" href="/User/index">账户：<span id="userName">{$_SESSION['userName']}</span></a>
+                                <div class="line line-10" style="line-height: 80px;"></div>
+                                <a style="line-height: 80px; font-weight: 700;" href="/Login/loginout">退出</a>
+                            <else/>
+                                <a href="/Login/register.html" style="line-height:80px;font-weight:700;" class="" >登录</a>
+                                <div class="line line-10" style="line-height:80px;" ></div>
+                                <a href="/Login/register.html" style="line-height:80px;font-weight:700;" >注册</a>
+                            </neq>
+                            <div class="st-language home flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" style="margin:30px 0 30px 30px;"  >
+                                <div class="current flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap"  >
+                                    <span class="flag cn"  ></span>
+                                    <span  >中文简体</span>
+                                    <span  ></span>
+                                </div>
+                                <div class="options"  >
+                                    <span  ></span>
+                                    <div class="option flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap"  >
+                                        <span class="flag cn"  ></span>
+                                        <span  >中文简体</span>
+                                    </div>
+                                    <div class="option flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap"  >
+                                        <span class="flag en"  ></span>
+                                        <span  >English</span>
+                                    </div>
+                                    <!-- <div class="option flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap"  >
+                                        <span class="flag ko"  ></span>
+                                        <span  >한국어</span>
+                                    </div>
+                                    <div class="option flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap"  >
+                                        <span class="flag ja"  ></span>
+                                        <span  >日本語</span>
+                                    </div>-->
+                                    <div class="option flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap"  >
+                                        <span class="flag ru"  ></span>
+                                        <span  >Русский</span>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap header-sliding" >
+                            <a href="index.html" class="logo cn" ></a>
+                            <div class="nav flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                                <a href="/C2c/index/market/ltc" >
+                                    <!---->
+                                    <!---->场外交易</a>
+                                <a href="/Trade/index" >
+                                    <!---->
+                                    <!---->币币交易</a>
+                                <a href="/Lever/borrowMoney" >
+                                    <!---->
+                                    <!---->杠杆交易</a>
+                            </div>
+                            <div class="blank" ></div>
+                            <div class="advertising-b cn" ></div>
+                            <div class="blank" ></div>
+                            <div class="login flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                <neq name="userId" value=" ">
+                                    <!--<a style="color:#fff;" href="/User/index">账户：<i class="userName" style="font-style:normal">{$_SESSION['userName']}</i></a>-->
+                                    <a style="color:#fff;" href="/User/index">账户：<a id="userName2">{$_SESSION['userName']}</a></a>
+                                    <span></span>
+                                    <a href="/Login/loginout">退出</a>
+                                    <else/>
+                                    <a href="/Login/register.html" class="" >登录</a>
+                                    <span ></span>
+                                    <a href="/Login/register.html">注册</a>
+                                </neq>
+                            </div>
+
+                            <div class="st-language home flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" style="margin:10px 0 0 30px;"  >
+                                <div class="current flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap"  >
+                                    <span class="flag cn"  ></span>
+                                    <span  >中文简体</span>
+                                    <span  ></span>
+                                </div>
+                                <div class="options"  >
+                                    <span  ></span>
+                                    <div class="option flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap"  >
+                                        <span class="flag cn"  ></span>
+                                        <span  >中文简体</span>
+                                    </div>
+                                    <div class="option flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap"  >
+                                        <span class="flag en"  ></span>
+                                        <span  >English</span>
+                                    </div>
+                                    <!-- <div class="option flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap"  >
+                                        <span class="flag ko"  ></span>
+                                        <span  >한국어</span>
+                                    </div>
+                                    <div class="option flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap"  >
+                                        <span class="flag ja"  ></span>
+                                        <span  >日本語</span>
+                                    </div> -->
+                                    <div class="option flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap"  >
+                                        <span class="flag ru"  ></span>
+                                        <span  >Русский</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--头部内容 end-->
+                <div class="banner-wrapper">
+                    <div class="banner-inner">
+                        <div class="carousel agent flex-box flex-direction-row flex-justify-start flex-align-item-column flex-wrap-nowrap" >
+                            <div class="content-agent cn" >
+                                <h1 class="cn">
+                                全球经纪人 <span>火热招募中</span>
+                                </h1>
+                                <div class="introduce flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                                    <div class="introduce-content">
+                                        <div class="icon"></div>
+                                        <div class="text cn">返佣高达60%</div>
+                                    </div>
+                                    <div class="introduce-content">
+                                        <div class="icon"></div>
+                                        <div class="text cn">永久返佣</div>
+                                    </div>
+                                    <div class="introduce-content">
+                                        <div class="icon"></div>
+                                        <div class="text cn">邀请双方均可返佣</div>
+                                    </div>
+                                </div>
+                                <a href="/Article/detail">查看详情</a>
+                            </div>
+                        </div>
+                        <div class="carousel flex-box flex-direction-row flex-justify-start flex-align-item-column flex-wrap-nowrap" style="display: none;">
+                            <div class="content cn" >
+                                <p class="cn" ></p>
+                                <a href="/Article/detail" >查看详情</a>
+                            </div>
+                        </div>
+                        <div class="bullet">
+                            <span class=""></span>
+                            <span class="active"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="market-notice flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                    <div class="index-notice" >
+                        <div style="position: relative;z-index: 2">
+                            <a target="_blank" class="notice_title" href="/Article/type"><span>公告</span> {$new_notice['title']}</a>
+                            <ul>
+                                
+                                <volist name="notice" id="vo">
+                                <li><span style="margin-right: 8px; display: inline-block; width: 3px; height: 3px; border-radius: 50%; background: rgb(126, 158, 253); vertical-align: super;"></span><a href="/Article/detail/id/{$vo['id']}" target="_blank"><span>{$vo['title']}</span><span>{$vo['addtime']|date="y-m-d",###}</span></a></li>
+                                </volist>
+                                <!-- <li><span style="margin-right: 8px; display: inline-block; width: 3px; height: 3px; border-radius: 50%; background: rgb(126, 158, 253); vertical-align: super;"></span><a href="/Article/detail" target="_blank"><span>关于提前恢复永续合约交易手续费的公告 &nbsp;</span><span>18-08-15</span></a></li> -->
+                            </ul>
+                        </div>
+                        <a href="/Article/officialAdModal" class="more"><span class="active">查看更多 &gt;</span></a>
+                    </div>
+                    <div style="width:80%;" >
+                        <div class="arrow flex-box flex-direction-row flex-justify-end flex-align-item-start flex-wrap-nowrap leftRight" >
+                            <a  style="opacity: 0.5;"></a>
+                            <a ></a>
+                        </div>
+                        <div class="market flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap" style="display: -webkit-box;">
+                            <volist name="usdt" id="x" key="keyx">
+                                    <div >
+                                     <a href="/Trade/index/market/{$x['name']}">
+                                        <p >{$x['s1']} <span  style="color: rgb(180, 66, 104);">{$x.change}</span></p>
+                                        <p >${$x.new_price|sprintf="%.2f",###}</p>
+                                        <p >24H成交量: <span ><?php echo sprintf("%.2f",($x['volume']/10000)) ?></span></p>
+                                    </a>
+                                    </div>
+                            </volist>
+                            <!-- <div >
+                                <p >EOSUSD <span  style="color: rgb(180, 66, 104);">-5.25%</span></p>
+                                <p >$4.79</p>
+                                <p >成交量: <span >486661434</span> EOS</p>
+                            </div>
+                            <div >
+                                <p >ETHUSD <span  style="color: rgb(180, 66, 104);">-2.57%</span></p>
+                                <p >$279.19</p>
+                                <p >成交量: <span >117566867</span> ETH</p>
+                            </div>
+                            <div >
+                                <p >BCHUSD <span  style="color: rgb(180, 66, 104);">-3.31%</span></p>
+                                <p >$528.40</p>
+                                <p >成交量: <span >79571466</span> BCH</p>
+                            </div>
+                            <div >
+                                <p >LTCUSD <span  style="color: rgb(180, 66, 104);">-1.82%</span></p>
+                                <p >$55.04</p>
+                                <p >成交量: <span >187747906</span> LTC</p>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="market-list">
+                    <div class="nav flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap" >
+                        <div class="flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap dataList" >
+                            <a class="item active" >USDT</a>
+                            <a class="item" >JTC</a>
+                            <a class="item" >BTC</a>
+                            <a class="item" >ETH</a>
+                           <!--  <div class="item flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap" >
+                                <span ></span>
+                                <p >自选</p>
+                            </div> -->
+                        </div>
+                        <div class="search" >
+                            <input type="text" placeholder="请输入币种" value=""  />
+                            <!---->
+                        </div>
+                    </div>
+                    <div class="market-table">
+                        <div class="title flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                            <div class="item col-1 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                <p >交易对</p>
+                                <div class="sort flex-box flex-direction-column flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                    <span ></span>
+                                    <span ></span>
+                                </div>
+                            </div>
+                            <div class="item col-2 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                <p >最新价</p>
+                                <div class="sort flex-box flex-direction-column flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                    <span ></span>
+                                    <span ></span>
+                                </div>
+                            </div>
+                            <div class="item col-3 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                <p >涨幅</p>
+                                <div class="sort flex-box flex-direction-column flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                    <span ></span>
+                                    <span ></span>
+                                </div>
+                            </div>
+                            <div class="item col-4 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                <p >最高价</p>
+                            </div>
+                            <div class="item col-5 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                <p >最低价</p>
+                            </div>
+                            <div class="item col-6 flex-box flex-direction-row flex-justify-end flex-align-item-center flex-wrap-nowrap" >
+                                <p >24H量</p>
+                            </div>
+                        </div>
+                        <div class="easy-scrollbar chromeScrollShow" style="max-height:650px;">
+                            <div class="easy-scrollbar__wrap" style="margin-right: -17px;">
+                                <div class="el-scrollbar__view" style="position: relative;">
+                                    <div class="wrapper" style="max-height:650px;padding-right:0px;">
+                                        <div class="area flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                            <div class="point flex-box flex-direction-column flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                                                <span ></span>
+                                                <span ></span>
+                                                <span ></span>
+                                            </div>
+                                            <p >主区</p>
+                                        </div>
+                                        <div class="dataShow">
+                                            <a href="/Trade/index/market/{$u1['name']}" target="_blank" >
+                                                <volist name="usdt" id="u1" key="key1">
+                                                <div class="area-list flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                                                    <div class="item col-1 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p ><span >{$u1.s1}</span><span style="color:#666b93;" ></span> </p>
+                                                        <span class="star no-optional" ></span>
+                                                    </div>
+                                                    <div class="item col-2 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > {$u1.new_price|sprintf="%.4f",###} 
+                                                            <!-- <span style="color:#666b93;" > ≈ ￥44347.86</span>  -->
+                                                        </p>
+                                                    </div>
+                                                    <div class="item col-3 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p style="color: rgb(185, 46, 93);" > {$u1.change|round=2} </p>
+                                                        <span class="arrow down" ></span>
+                                                    </div>
+                                                    <div class="item col-4 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > {$u1.max_price|sprintf="%.4f",###}</p>
+                                                    </div>
+                                                    <div class="item col-5 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > {$u1.min_price|sprintf="%.4f",###}</p>
+                                                    </div>
+                                                    <div class="item col-6 flex-box flex-direction-row flex-justify-end flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > <?php echo sprintf("%.2f",($u1['volume']/10000)) ?></p>
+                                                    </div>
+                                                </div>
+                                                </volist> 
+                                            </a>
+
+                                            <a href="/Trade/index/market/{$u1['name']}" target="_blank">
+                                            <volist name="jtc" id="r" key="key">
+                                                <div class="area-list flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                                                    <div class="item col-1 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p ><span >{$r.s1}</span><span style="color:#666b93;" ></span> </p>
+                                                        <span class="star no-optional" ></span>
+                                                    </div>
+                                                    <div class="item col-2 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > {$r.new_price|sprintf="%.4f",###} 
+                                                            <!-- <span style="color:#666b93;" > ≈ ￥3675.61</span>  -->
+                                                        </p>
+                                                    </div>
+                                                    <div class="item col-3 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p style="color:#B92E5D;" > {$r.change|round=2} </p>
+                                                        <span class="arrow down" ></span>
+                                                    </div>
+                                                    <div class="item col-4 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > {$r.max_price|sprintf="%.4f",###}</p>
+                                                    </div>
+                                                    <div class="item col-5 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > {$r.min_price|sprintf="%.4f",###}</p>
+                                                    </div>
+                                                    <div class="item col-6 flex-box flex-direction-row flex-justify-end flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > <?php echo sprintf("%.2f",($r['volume']/10000)) ?></p>
+                                                    </div>
+                                                </div> 
+                                            </volist>
+                                            </a>
+
+                                            <a  target="_blank" href="/Trade/index/market/{$u1['name']}">
+                                            <volist name="btc" id="b">
+                                                <div class="area-list flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                                                    <div class="item col-1 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p ><span >{$b.s1}</span><span style="color:#666b93;" > </span> </p>
+                                                        <span class="star no-optional" ></span>
+                                                    </div>
+                                                    <div class="item col-2 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > {$u1.new_price|sprintf="%.4f",###} 
+                                                            <!-- <span style="color:#666b93;" > ≈ ￥382.36</span>  -->
+                                                        </p>
+                                                    </div>
+                                                    <div class="item col-3 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p style="color:#B92E5D;" > {$b.change|round=2} </p>
+                                                        <span class="arrow down" ></span>
+                                                    </div>
+                                                    <div class="item col-4 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > {$b.max_price|sprintf="%.4f",###}</p>
+                                                    </div>
+                                                    <div class="item col-5 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > {$b.min_price|sprintf="%.4f",###}</p>
+                                                    </div>
+                                                    <div class="item col-6 flex-box flex-direction-row flex-justify-end flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > <?php echo sprintf("%.2f",($b['volume']/10000)) ?></p>
+                                                    </div>
+                                                </div> 
+                                            </volist>
+                                            </a>
+
+                                            <a href="/Trade/index/market/{$u1['name']}" target="_blank">
+                                            <volist name="eth" id="e">
+                                                <div class="area-list flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                                                    <div class="item col-1 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p ><span >{$e.s1}</span><span style="color:#666b93;" ></span> </p>
+                                                        <span class="star no-optional" ></span>
+                                                    </div>
+                                                    <div class="item col-2 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > {$e.new_price|sprintf="%.4f",###} 
+                                                            <!-- <span style="color:#666b93;" > ≈ ￥1942.10</span>  -->
+                                                        </p>
+                                                    </div>
+                                                    <div class="item col-3 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p style="color:#B92E5D;" > {$e.change|round=2} </p>
+                                                        <span class="arrow down" ></span>
+                                                    </div>
+                                                    <div class="item col-4 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > {$e.max_price|sprintf="%.4f",###}</p>
+                                                    </div>
+                                                    <div class="item col-5 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > {$e.min_price|sprintf="%.4f",###}</p>
+                                                    </div>
+                                                    <div class="item col-6 flex-box flex-direction-row flex-justify-end flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > <?php echo sprintf("%.2f",($e['volume']/10000)) ?></p>
+                                                    </div>
+                                                </div>
+                                            </volist>
+                                                 </a>
+
+                                            
+
+                                            <!-- <a href="index.html" target="_blank">
+                                                <div class="area-list flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                                                    <div class="item col-1 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p ><span >ETC</span><span style="color:#666b93;" > / UCC</span> </p>
+                                                        <span class="star no-optional" ></span>
+                                                    </div>
+                                                    <div class="item col-2 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > 86.95 <span style="color:#666b93;" > ≈ ￥86.95</span> </p>
+                                                    </div>
+                                                    <div class="item col-3 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p style="color:#B92E5D;" > -4.72% </p>
+                                                        <span class="arrow down" ></span>
+                                                    </div>
+                                                    <div class="item col-4 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > 92.44</p>
+                                                    </div>
+                                                    <div class="item col-5 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > 84.96</p>
+                                                    </div>
+                                                    <div class="item col-6 flex-box flex-direction-row flex-justify-end flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > 2529886.538</p>
+                                                    </div>
+                                                </div> </a> -->
+                                            <!-- <a href="index.html" target="_blank">
+                                                <div class="area-list flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                                                    <div class="item col-1 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p ><span >EOS</span><span style="color:#666b93;" > / UCC</span> </p>
+                                                        <span class="star no-optional" ></span>
+                                                    </div>
+                                                    <div class="item col-2 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > 32.61 <span style="color:#666b93;" > ≈ ￥32.61</span> </p>
+                                                    </div>
+                                                    <div class="item col-3 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p style="color:#B92E5D;" > -4.95% </p>
+                                                        <span class="arrow down" ></span>
+                                                    </div>
+                                                    <div class="item col-4 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > 36.33</p>
+                                                    </div>
+                                                    <div class="item col-5 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > 31.81</p>
+                                                    </div>
+                                                    <div class="item col-6 flex-box flex-direction-row flex-justify-end flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > 23361940.866</p>
+                                                    </div>
+                                                </div> </a>
+                                            <a href="index.html" target="_blank">
+                                                <div class="area-list flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                                                    <div class="item col-1 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p ><span >USDT</span><span style="color:#666b93;" > / UCC</span> </p>
+                                                        <span class="star no-optional" ></span>
+                                                    </div>
+                                                    <div class="item col-2 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > 6.99 <span style="color:#666b93;" > ≈ ￥6.99</span> </p>
+                                                    </div>
+                                                    <div class="item col-3 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p style="color:#32B28F;" > +0% </p>
+                                                        <span class="arrow up" ></span>
+                                                    </div>
+                                                    <div class="item col-4 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > 7.07</p>
+                                                    </div>
+                                                    <div class="item col-5 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > 6.98</p>
+                                                    </div>
+                                                    <div class="item col-6 flex-box flex-direction-row flex-justify-end flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > 205950.020</p>
+                                                    </div>
+                                                </div> </a>
+                                            <a href="index.html" target="_blank">
+                                                <div class="area-list flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                                                    <div class="item col-1 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p ><span >XRP</span><span style="color:#666b93;" > / UCC</span> </p>
+                                                        <span class="star no-optional" ></span>
+                                                    </div>
+                                                    <div class="item col-2 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > 2.28 <span style="color:#666b93;" > ≈ ￥2.28</span> </p>
+                                                    </div>
+                                                    <div class="item col-3 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p style="color: rgb(185, 46, 93);" > -0.12% </p>
+                                                        <span class="arrow down" ></span>
+                                                    </div>
+                                                    <div class="item col-4 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > 2.36</p>
+                                                    </div>
+                                                    <div class="item col-5 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > 2.16</p>
+                                                    </div>
+                                                    <div class="item col-6 flex-box flex-direction-row flex-justify-end flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > 73278240.855</p>
+                                                    </div>
+                                                </div> </a> -->
+                                        </div>
+                                       <!--  <div class="area flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                            <div class="point flex-box flex-direction-column flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                                                <span ></span>
+                                                <span ></span>
+                                                <span ></span>
+                                            </div>
+                                            <p >创新区</p>
+                                        </div>
+                                        <div>
+                                            <a href="index.html" target="_blank">
+                                                <div class="area-list flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                                                    <div class="item col-1 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p ><span >58B</span><span style="color:#666b93;" > / UCC</span> </p>
+                                                        <span class="star no-optional" ></span>
+                                                    </div>
+                                                    <div class="item col-2 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > 0.08 <span style="color:#666b93;" > ≈ ￥0.08</span> </p>
+                                                    </div>
+                                                    <div class="item col-3 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p style="color:#B92E5D;" > -1.81% </p>
+                                                        <span class="arrow down" ></span>
+                                                    </div>
+                                                    <div class="item col-4 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > 0.08</p>
+                                                    </div>
+                                                    <div class="item col-5 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > 0.08</p>
+                                                    </div>
+                                                    <div class="item col-6 flex-box flex-direction-row flex-justify-end flex-align-item-center flex-wrap-nowrap" >
+                                                        <p > 37024279.333</p>
+                                                    </div>
+                                                </div> </a>
+                                        </div> -->
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                    <div class="resize-triggers">
+                                        <div class="expand-trigger">
+                                            <div style="width: 1750px; height: 472px;"></div>
+                                        </div>
+                                        <div class="contract-trigger"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="esay-scrollbar__bar is-vertical" style="background-color: rgb(26, 27, 64); z-index: 50; width: 6px; right: 0px; display: none;">
+                                <div class="easy-scrollbar__thumb" style="transform: translateY(0%); background-color: rgb(59, 59, 99); width: 6px; opacity: 0.3;"></div>
+                            </div>
+                        </div>
+                        <!---->
+                    </div>
+                </div>
+               <div class="product">
+                    <div class="product-title flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap " >
+                        <a  class="bgStyle"><span ></span><em class="cn" >币币交易</em> <p class="cn" >多种数字货币等点对点交易</p></a>
+                        <a  class=""><span ></span><em class="cn" >场外交易</em> <p class="cn" >支持法币获取数字资产</p></a>
+                        <a  class=""><span ></span><em class="cn" >杠杆交易</em> <p class="cn" >最高100倍杠杆</p></a>
+                        <a  class=""><span ></span><em class="cn" >数字货币钱包</em> <p class="cn" >安全、便捷的数字货币存储</p></a>
+                    </div>
+                    <div class="flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap product-content cn" >
+                        <div class="product-left" >
+                            <h2 > 多种数字货币等点对点交易</h2>
+                            <div class="flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                                <ul >
+                                    <li ><span ></span>网罗高价值币种 </li>
+                                    <li ><span ></span>高效撮合交易 </li>
+                                </ul>
+                                <ul >
+                                    <li ><span ></span>免手续费 </li>
+                                    <li ><span ></span>数百个交易对 </li>
+                                </ul>
+                            </div>
+                            <a href="/Trade/index" > 查看详情 <span ></span></a>
+                        </div>
+                        <div class="product-left dis" >
+                            <h2 > 支持法币获取数字资产 </h2>
+                            <div class="flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                                <ul >
+                                    <li ><span ></span>保证买卖双方利益 </li>
+                                    <li ><span ></span>平台担保 </li>
+                                </ul>
+                                <ul >
+                                    <li ><span ></span>零手续＆零广告费 </li>
+                                    <li ><span ></span>严谨的用户认证体系 </li>
+                                </ul>
+                            </div>
+                            <a href="/C2c/index" > 查看详情 <span ></span></a>
+                        </div>
+                        <div class="product-left dis" >
+                            <h2 > 最高100倍杠杆 </h2>
+                            <div class="flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                                <ul >
+                                    <li ><span ></span>空间大＆收益大 </li>
+                                    <li ><span ></span>本金加杠杆 </li>
+                                </ul>
+                                <ul >
+                                    <li ><span ></span>支持多空双向 </li>
+                                    <li ><span ></span>利率行业最低 </li>
+                                </ul>
+                            </div>
+                            <a href="/Lever/borrowMoney" > 查看详情 <span ></span></a>
+                        </div>
+                        <div class="product-left dis" >
+                            <h2 >安全、便捷的数字货币存储 </h2>
+                            <div class="flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                                <ul >
+                                    <li ><span ></span>冷热分离 </li>
+                                    <li ><span ></span>多重签名 </li>
+                                </ul>
+                                <ul >
+                                    <li ><span ></span>高效的安全机制 </li>
+                                    <li ><span ></span>数据备份 </li>
+                                </ul>
+                            </div>
+                            <a href="/Finance/qianbao" > 查看详情 <span ></span></a>
+                        </div>
+                        <div class="product-right" >
+                            <a class="dis" ></a>
+                            <a  class=""></a>
+                            <a class="dis" ></a>
+                            <a class="dis" ></a>
+                            <a class="dis" ></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-platform">
+                    <h2 class="service_active1"> 易尔国际一站式数字资产服务平台</h2>
+                    <div class="flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap content-box service_active2 cn" >
+                        <div class="content" >
+                            <img src="/Public/Home/image/index/sever-1.0ef7e32.png" alt=""  />
+                            <p >技术超前</p>
+                            <span >自主研发集群式内存撮合系统<br  /> 7*24h稳定运行不停机 </span>
+                        </div>
+                        <div class="content" >
+                            <img src="/Public/Home/image/index/sever-2.ef528c8.png" alt=""  />
+                            <p >资金安全</p>
+                            <span > 资深金融风控专家全程风险把控<br  /> 采用冷钱包&多重签名机制 </span>
+                        </div>
+                        <div class="content" >
+                            <img src="/Public/Home/image/index/sever-3.fee8914.png" alt=""  />
+                            <p >量化支持</p>
+                            <span >丰富等API接口助力用户定制交易策略 <br  /> 支持IOC，FOK等多种交易指令量 </span>
+                        </div>
+                        <div class="content" >
+                            <img src="/Public/Home/image/index/sever-4.8b6d2ee.png" alt=""  />
+                            <p >24h服务体系</p>
+                            <span >7*24h专业客服在线 <br  />多语种客服服务 </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="down-load flex-box flex-direction-row flex-justify-center flex-align-item-start flex-wrap-nowrap" >
+                    <a class="down-load-img cn" ></a>
+                    <div class="down-load-content" >
+                        <h2 >领先的数字货币综合服务平台</h2>
+                        <p > 实时撮合 · 秒速充提<br  /> 杠杆抵押 · 随心体验 </p>
+                        <div class="down-load-btn" >
+                            <div  class="hoverEwm">
+                                <a ><span ></span>Android</a>
+                                <!---->
+                            </div>
+                            <div  class="hoverEwm">
+                                <a ><span ></span>ios</a>
+                                <!---->
+                            </div>
+                        </div>
+                        <!---->
+                    </div>
+                </div>
+                <!--底部-->
+                <div class="footer flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap" >
+                    <div class="footer-left flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap" >
+                        <ul >
+                            <li >系列产品</li>
+                            <li ><a href="/C2c/index" >场外交易</a></li>
+                            <li ><a href="/Trade/index" >币币交易</a> </li>
+                            <li ><a href="/Lever/borrowMoney" >杠杆交易</a> </li>
+                        </ul>
+                        <ul >
+                            <li >关于我们</li>
+                            <volist name="xinwen" id="vo">
+                            <li ><a href="/Article/detail/id/{$vo['id']}" target="_blank" >公司介绍</a></li>
+                            </volist>
+                            <!-- <li ><a href="/Article/type" target="_blank" >联系我们</a></li> -->
+                            <li ><a href="/Article/officialAdModal" target="_blank" >官方公告</a></li>
+                        </ul>
+                        <ul >
+                            <li >服务支持</li>
+                            <li ><a href="/Article/officialAdModal" target="_blank" >帮助中心</a></li>
+                            <li ><a href="/Article/officialAdModal" target="_blank" >数字资产介绍</a></li>
+                            <li ><a href="/Article/officialAdModal" target="_blank" >上币申请及说明</a></li>
+                        </ul>
+                        <ul >
+                            <li >官方社群</li>
+                            <li style="position:relative;">
+                                <a >微信群</a>
+                                <div style="display: none;">
+                                    <em></em>
+                                    <img src="/Public/Home/image/index/wechat_ercode.4e8fc32.png" alt="">
+                                    <span>扫码加入微信群</span>
+                                </div>
+                            </li>
+                            <li ><a href="" target="_blank" >Telegram</a></li>
+                            <!--<li style="position:relative;" >-->
+                                <!--<a >API交流群</a>-->
+                                <!--<div style="display: none;">-->
+                                    <!--<em data-v-2a183b29=""></em>-->
+                                    <!--<img src="../image/index/API.ff33133.png" alt="">-->
+                                    <!--<span>扫码加入API交流群</span>-->
+                                <!--</div>-->
+                            <!--</li>-->
+                        </ul>
+                        <ul >
+                            <li >相关下载</li>
+                            <li style="position:relative;" >
+                                <a >Android App</a>
+                                <div style="display: none;">
+                                    <em data-v-2a183b29=""></em>
+                                    <img src="/Public/Home/image/index/iosAndAndroid.14c5c18.png " alt="">
+                                    <span>Android App</span>
+                                </div>
+                            </li>
+                            <li style="position:relative;" >
+                                <a >IOS App</a>
+                                <div style="display: none;">
+                                    <em data-v-2a183b29=""></em>
+                                    <img src="/Public/Home/image/index/iosAndAndroid.14c5c18.png " alt="">
+                                    <span>IOS App</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-right flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                        <ul >
+                            <li >关注我们</li>
+                            <li >xxxx GLOBAL</li>
+                            <li ><a href="" target="_blank" ></a><a href="" target="_blank" ></a><a href="" target="_blank" ></a></li>
+                            <li >Copyright &copy; 2018 xxxx. All rights reserved.</li>
+                        </ul>
+                    </div>
+                </div>
+                <!--底部 end-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="toast" style="display: none;">
+    <span class="text"></span>
+</div>
+<!--在线客服-->
+<!--<div id="udesk_container">-->
+    <!--<div id="udesk_btn">-->
+        <!--<a style="display: block; position: fixed; box-sizing: border-box; font-size: 13px; color: rgb(255, 255, 255); text-align: center; cursor: pointer; text-decoration: none; z-index: 1000000000; border-width: 1px 1px 0px; border-top-style: solid; border-right-style: solid; border-left-style: solid; border-top-color: rgba(0, 0, 0, 0.1); border-right-color: rgba(0, 0, 0, 0.1); border-left-color: rgba(0, 0, 0, 0.1); border-image: initial; border-bottom-style: initial; border-bottom-color: initial; background-color: rgb(48, 122, 232); height: 40px; right: 0px; bottom: 0px; margin: 3px 30px;"><span-->
+                <!--style="display:block;float:left;width:20px;height:20px;margin:10px 10px 0;background:url(https://app-widget-cdn-s0.b0.upaiyun.com/dist/images/icon-mq.png?v=npyjcj3l6o17nwmi) no-repeat 0 -20px;background-size:40px auto;"></span><span-->
+                <!--style="display:block;float:left;width:1px;height:100%;background-color:rgba(0, 0, 0, .08);vertical-align:middle;background-color:#000\9;filter:alpha(opacity=10)\9;"></span><span-->
+                <!--id="udesk_btn_text"-->
+                <!--style="display:block;float:left;height:40px;margin:0 10px;line-height:40px;overflow-y:hidden; font-size: 13px; color: #fff;">在线客服</span><span-->
+                <!--id="udesk_btn_circle"-->
+                <!--style="display:none;position:absolute;top:-13px;right:-13px;width:26px;height:26px;text-align:center;line-height:26px;font-size:14px;color:#fff;border-radius:15px;background-color: #ff3b30;"></span></a>-->
+    <!--</div>-->
+    <!--<div id="udesk_panel" style="position:fixed;bottom:-482px;right:60px;z-index:-1;width:320px;height:480px;overflow:hidden;display:none;background-color:transparent;box-shadow:0 0 20px 0 rgba(0, 0, 0, .15);border:1px solid #ddd\9;transition:bottom 0.2s;-webkit-transition:bottom 0.2s;-moz-transition:bottom 0.2s;-ms-transition:bottom 0.2s;-o-transition:bottom 0.2s;">-->
+        <!--<iframe id="udesk_iframe" frameborder="0" scrolling="no" allowtransparency="true" style="width:100%;height:0;border:none;padding:0;margin:0;float:none;background:none;transition:height 0.1s;-webkit-transition:height 0.1s;-moz-transition:height 0.1s;-ms-transition:height 0.1s;-o-transition:height 0.1s;" allowfullscreen="" mozallowfullscreen="" webkitallowfullscreen="" src=""></iframe>-->
+    <!--</div>-->
+<!--</div>-->
+<!--在线客服  end-->
+
+<script src="__PUBLIC__/Home/js/newjs/jquery-3.3.1.min.js"></script>
+<script src="__PUBLIC__/Home/js/newjs/index.js"></script>
+<script type="text/javascript">
+    /* 默认显示第一个*/
+    $(".dataShow a:nth-child(1)").show();
+    $(".dataShow a:nth-child(2)").hide();
+    $(".dataShow a:nth-child(3)").hide();
+    $(".dataShow a:nth-child(4)").hide();
+    $(".dataShow a:nth-child(5)").hide();
+
+    /*数据切换*/
+    $(".dataList a").click(function(){
+        if($(this).index()=="0"){
+            $(".dataShow a:nth-child(1)").show();
+            $(".dataShow a:nth-child(2)").hide();
+            $(".dataShow a:nth-child(3)").hide();
+            $(".dataShow a:nth-child(4)").hide();
+            $(".dataShow a:nth-child(5)").hide();
+
+        }else if($(this).index()=="1"){
+            $(".dataShow a:nth-child(1)").hide();
+            $(".dataShow a:nth-child(2)").show();
+            $(".dataShow a:nth-child(3)").hide();
+            $(".dataShow a:nth-child(4)").hide();
+            $(".dataShow a:nth-child(5)").hide();
+
+        }else if($(this).index()=="2"){
+            $(".dataShow a:nth-child(1)").hide();
+            $(".dataShow a:nth-child(2)").hide();
+            $(".dataShow a:nth-child(3)").show();
+            $(".dataShow a:nth-child(4)").hide();
+            $(".dataShow a:nth-child(5)").hide();
+
+        }else if($(this).index()=="3"){
+            $(".dataShow a:nth-child(1)").hide();
+            $(".dataShow a:nth-child(2)").hide();
+            $(".dataShow a:nth-child(3)").hide();
+            $(".dataShow a:nth-child(4)").show();
+            $(".dataShow a:nth-child(5)").hide();
+
+        }else{
+            $(".dataShow a:nth-child(1)").hide();
+            $(".dataShow a:nth-child(2)").hide();
+            $(".dataShow a:nth-child(3)").hide();
+            $(".dataShow a:nth-child(4)").hide();
+            $(".dataShow a:nth-child(5)").show();
+
+        }
+    })
+
+
+    /*隐藏手机号中间4位*/
+    var phone = $('#userName').html();
+    var mphone = phone.substr(0, 3) + '****' + phone.substr(7);
+    $('#userName').html(mphone);
+
+    /*隐藏手机号中间4位*/
+    var phone = $('#userName2').html();
+    var mphone = phone.substr(0, 3) + '****' + phone.substr(7);
+    $('#userName2').html(mphone);
+
+
+
+</script>
+
+</body>
+</html>

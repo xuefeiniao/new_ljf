@@ -1,0 +1,915 @@
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
+<html data-n-head="">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="比特币交易平台，比特币交易所，数字资产交易所,数字货币交易平台" />
+    <meta name="format-detection" content="telephone=no,email=no,address=no" />
+    <?php if(($_SESSION['lang']) == "1"): if(!empty($coninfo['web_name'])): ?><title><?php echo ($coninfo['web_name']); ?></title><?php endif; endif; ?>
+								<?php if(($_SESSION['lang']) == "2"): if(!empty($coninfo['web_name_e'])): ?><title><?php echo ($coninfo['web_name_e']); ?></title><?php endif; endif; ?>
+								<?php if(($_SESSION['lang']) == "3"): if(!empty($coninfo['web_name_en'])): ?><title><?php echo ($coninfo['web_name_en']); ?></title><?php endif; endif; ?>
+    <link data-n-head="true" rel="icon" type="image/x-icon" href="/Public/favicon.ico"/>
+    <link rel="stylesheet" href="/Public/Home/css/newcss/base.css"/>
+    <link rel="stylesheet" href="/Public/Home/css/newcss/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/Public/Home/css/newcss/myCenter.css" />
+    <script data-n-head="true" src="/Public/Home/js/newjs/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="/Public/layer/layer.js"></script>
+    <style>
+        .account-list .item .cart .cart-sm i{
+            position: relative;
+            display: block;
+            width: 20px;
+            height: 20px;
+            background: url(/Public/Home/image/my/ewmSmall.png);
+            background-size: 100%;
+        }
+        .account-list .item .go, .account-list .item .operation a{
+            color: #6c85ae;
+        }
+        .st-switch.active {
+            border-color: #597ab9;
+            background: #597ab9;
+        }
+        .st-switch span {
+            position: absolute;
+            display: block;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #fff;
+            transition: all .3s;
+            -moz-transition: all .3s;
+            -webkit-transition: all .3s;
+            -o-transition: all .3s;
+        }
+        .st-switch{
+            position: relative;
+            display: block;
+            width: 40px;
+            height: 20px;
+            border: 1px solid #e5e5e5;
+            border-radius: 10px;
+            background: #e5e5e5;
+            transition: all .3s;
+            -moz-transition: all .3s;
+            -webkit-transition: all .3s;
+            -o-transition: all .3s;
+        }
+        .account-list .switch{
+            transform: scale(.8);
+            -ms-transform: scale(.8);
+            -moz-transform: scale(.8);
+            -webkit-transform: scale(.8);
+            -o-transform: scale(.8);
+        }
+        .st-switch span.active{
+            transform: translate3d(20px,0,0);
+            -ms-transform: translate3d(20px,0,0);
+            -moz-transform: translate3d(20px,0,0);
+            -webkit-transform: translate3d(20px,0,0);
+            -o-transform: translate3d(20px,0,0);
+        }
+		td img{
+		display:inline-block!important;
+		}
+
+        .my-user .kyc a{
+            min-width:120px;
+            width:auto;
+        }
+    </style>
+
+</head>
+<body>
+<!--<img src="https://mon.58coin.com/mon.gif" id="img-hidden" />-->
+<div id="__nuxt">
+    <div class="nuxt-progress" style="width: 0%; height: 2px; background-color: rgb(59, 128, 112); opacity: 0;"></div>
+    <div id="__layout">
+        <div>
+            <!--头部内容-->
+            <style>
+    .header-sliding .nav {
+        margin: 0px;
+        padding: 0px;
+        list-style: outside none none;
+    }
+
+    .header-sliding {
+        position: relative;
+        margin-bottom: 50px;
+        box-sizing: border-box;
+        padding: 0px 45px 0px 60px;
+        background: none repeat scroll 0% 0% rgb(255, 255, 255);
+        width: 100%;
+        min-width: 1300px;
+        height: 74px;
+        transition: top 0.5s linear 0s;
+        box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+        z-index: 1;
+    }
+
+    .header-sliding-left {
+        flex: 1 1 0%;
+        background: url("/Public/Home/image/common/nav_bg.0e86e2c.png") no-repeat scroll 100% center transparent;
+    }
+
+    .header-sliding .left .coin .img {
+        width: 146.5px;
+        height: 40.5px;
+        /*background: url("/Public/Home/image/common/logo_bc.png") no-repeat scroll 0% 0% / transparent;*/
+        background-repeat: no-repeat;
+        background-size: 100% 100% ;
+    }
+
+    .header-sliding .left .line {
+        width: 1px;
+        height: 24px;
+        background: none repeat scroll 0% 0% rgb(226, 234, 251);
+        margin: 0px 40px;
+    }
+
+    .header-sliding .left .nav div .a, .header-sliding .left .nav div a {
+        display: block;
+        height: 74px;
+        line-height: 74px;
+        text-decoration: none;
+        font-size: 14px;
+        color: rgb(108, 133, 174);
+        margin-right: 30px;
+    }
+
+    @media screen and (max-width: 1360px) {
+        .header-sliding .left .nav div .a, .header-sliding .left .nav div a {
+            margin-right: 18px;
+        }
+    }
+
+    .header-sliding .left .nav div .a.active, .header-sliding .left .nav div a.active {
+        border-bottom: 2px solid #0976d9;
+        color:#0976d9;
+    }
+
+    .header-sliding .left .nav div .a:hover, .header-sliding .left .nav div a:hover {
+        color: #0976d9;
+    }
+
+    .header-sliding .advertising-b {
+        height: 75px;
+    }
+
+    .header-sliding .advertising-b .newsAdv {
+        width: 80px;
+        height: 32px;
+        text-align: center;
+        line-height: 32px;
+        color: rgb(255, 255, 255);
+        font-size: 14px;
+        background-color: rgb(89, 122, 185);
+        border-radius: 3px;
+    }
+
+    .header-sliding .advertising-b .newsAdv:hover {
+        background: none repeat scroll 0% 0% rgb(74, 109, 174);
+    }
+    .header-sliding .right .go a, .header-sliding .right .login a {
+        font-size: 14px;
+        color: rgb(108, 133, 174);
+        text-decoration: none;
+    }
+
+    .header-sliding .right .go a:first-child, .header-sliding .right .login a:first-child {
+        margin-right: 10px;
+    }
+
+    .header-sliding .right .go a:hover, .header-sliding .right .login a:hover {
+        color: rgb(17, 34, 102);
+    }
+
+    .header-sliding .right {
+        margin-left: 10px;
+    }
+
+    .header-sliding .right .line {
+        margin: 0px 15px;
+        width: 1px;
+        height: 11px;
+        background-color: rgb(108, 133, 174);
+    }
+
+    .header-sliding .left .nav div .down, .header-sliding .right .login.down {
+        position: relative;
+        padding-right: 14px;
+        height: 74px;
+        cursor: pointer;
+    }
+
+    .header-sliding .left .nav div .down div, .header-sliding .right .login.down div {
+        position: absolute;
+        display: none;
+        top: 60px;
+        left: 50%;
+        margin-left: -58px;
+        padding: 16px 0px;
+        width: 116px;
+        background-color: rgb(248, 249, 251);
+        border-radius: 3px;
+        box-shadow: 0px 0px 10px rgba(99, 99, 99, 0.4);
+    }
+
+    .header-sliding .left .nav div .down div:after, .header-sliding .right .login.down div:after {
+        position: absolute;
+        top: -4px;
+        left: 50%;
+        margin-left: -4px;
+        width: 8px;
+        height: 8px;
+        background-color: rgb(248, 249, 251);
+        content: "";
+        transform: rotate(45deg);
+        border-radius: 2px 0px 0px;
+        box-shadow: -2px -2px 2px rgba(99, 99, 99, 0.1);
+    }
+
+    .header-sliding .left .nav div .down div a, .header-sliding .right .login.down div a {
+        display: block;
+        margin-right: 0px;
+        width: 116px;
+        height: 34px;
+        line-height: 34px;
+        text-align: center;
+    }
+
+    .header-sliding .left .nav div .down div a:hover, .header-sliding .right .login.down div a:hover {
+        background-color: rgb(239, 241, 246);
+    }
+
+    .header-sliding .left .nav div .down:hover div, .header-sliding .right .login.down:hover div.hoverDiv {
+        display: block;
+    }
+
+    .header-sliding .left .nav div .down:hover:before, .header-sliding .right .login.down:hover:before {
+        background-image: url("/Public/Home/image/ad/up.png");
+    }
+
+    .header-sliding .left .nav div .down:before, .header-sliding .right .login.down:before {
+        position: absolute;
+        right: 0px;
+        top: 50%;
+        margin-top: -2px;
+        content: "";
+        width: 7px;
+        height: 5px;
+        background-image: url("/Public/Home/image/ad/down.png");
+    }
+    .advertising-b .message {
+        position: relative;
+        display: block;
+        margin-right: 30px;
+        width: 24px;
+        height: 25px;
+        background-image: url(/Public/Home/image/common/message.png);
+    }
+    .advertising-b h2{
+        margin-right: 30px;
+        font-weight: 700;
+        font-size: 14px;
+        color: #6c85ae;
+    }
+     .header-sliding .right .login.openDown:before{
+        width:0!important;
+        height:0!important;
+    }
+</style>
+
+<div class="header-sliding flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap" data-v-314f53c6=""  style="background:#12122a;">
+    <div class="header-sliding-left flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+        <div class="left flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+            <div class="coin">
+                <a href="/Index/index">
+                    <div class="img cn" style="background-image: url('/Upload/public/5cd91668310ac.png'); width:115px;height:45px;"></div>
+                </a>
+            </div>
+            <div class="line"></div>
+            <div class="nav flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                <div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                    <a onclick="cy()"  class="nuxt-link-exact-active nuxt-link-active" ><?php echo ($GLOBALS['c2c']); ?></a>
+                </div>
+				
+				<script>
+					function cy(){
+						var uid = "<?php echo ($uid); ?>";
+						var zhifubao = "<?php echo ($c2c_user['zhifubao']); ?>";
+						var weixin = "<?php echo ($c2c_user['weixin']); ?>";
+						var bank = "<?php echo ($c2c_user['bank']); ?>";
+						var paypwd = "<?php echo ($c2c_user['paypassword']); ?>";
+						//alert(zhifubao);
+						if(uid>0){
+							if((zhifubao == '' || zhifubao=='NULL')&&(weixin == '' || weixin=='NULL')&&(bank == '' || bank=='NULL')){
+								layer.msg('请设置收款方式', {icon: 2});
+								location.href="/User/myCenter";
+							}
+							else if(paypwd == "" || paypwd == "NULL"){
+								layer.msg('请设置资金密码', {icon: 2});
+								location.href="/User/resetFiancePwd";
+							}else{
+								location.href="/C2c/index/market/jeff/money/0";
+							}
+							
+						}else{
+							layer.msg('请先登录', {icon: 2});
+							location.href="/C2c/index/market/jeff/money/0";
+						}
+					}
+				</script>
+                <div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                    <div class="a down">
+                        <?php echo ($GLOBALS['trade-manage']); ?>
+                        <div>
+                            <a onclick="orders(1)"  class=""><?php echo ($GLOBALS['myAd']); ?></a>
+                            <a onclick="orders(2)"  class=""><?php echo ($GLOBALS['myOrder']); ?></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                    <a href="/Article/officialAdModal" target="_blank" ><?php echo ($GLOBALS['office-notice']); ?></a>
+                </div>
+               <!--  <div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                    <a href="/User/peakfire"  class="">认证商家</a>
+                </div> -->
+            </div>
+        </div>
+        <div class="advertising-b flex-box flex-direction-row flex-justify-end flex-align-item-center flex-wrap-nowrap">
+             <!--<h2>承诺OTC永久免费！</h2>
+            <a class="message">
+               </a>-->
+               
+            <!--<a href="/User/publishAd" class="newsAdv" ><?php echo ($GLOBALS['publish-ad']); ?></a>-->
+             <a onclick="logins();" class="newsAdv" ><?php echo ($GLOBALS['publish-ad']); ?></a>
+        </div>
+    </div>
+    <div class="right flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+        <div class="go">
+            <a href="/Trade/index/market/eth_jeff"><?php echo ($GLOBALS['go-trade']); ?></a>
+            <a onclick="qianbao();"><?php echo ($GLOBALS['qianbao']); ?></a>
+        </div>
+        <div class="line"></div>
+        <div class="login down flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+            <!-- <neq name="userId" value=" "> -->
+            <?php if($_SESSION['userName'] != ''): ?><a href="/User/myCenter" title="<?php echo ($_SESSION['userName']); ?>" class="name"><?php echo ($GLOBALS['user']); ?>：<span id="userName"><?php echo ($_SESSION['userName']); ?></span></a>
+                <div class="hoverDiv">
+                    <a href="/User/myCenter"  class=""><?php echo ($GLOBALS['myCenter']); ?></a>
+                    <a onclick="loginout();"><?php echo ($GLOBALS['loginout']); ?></a>
+                </div>
+            <?php else: ?>
+                <a href="/Login/register?login"><?php echo ($GLOBALS['login']); ?></a>
+                <div class="line line-10"></div>
+                <a href="/Login/register?register"><?php echo ($GLOBALS['register']); ?></a><?php endif; ?>
+        </div>
+    </div>
+    <!---->
+</div>
+
+<script>
+function loginout(){
+						$.post("/Login/loginout",{},function(data){
+							if(data.status==1){
+								layer.msg(data.info,{icon:1});
+								window.setTimeout("window.location='/Index'",1000);
+							}
+						},"json");
+					}
+
+    function logins(){
+        var uid = "<?php echo ($uid); ?>";
+						var zhifubao = "<?php echo ($c2c_user['zhifubao']); ?>";
+						var weixin = "<?php echo ($c2c_user['weixin']); ?>";
+						var bank = "<?php echo ($c2c_user['bank']); ?>";
+						var paypwd = "<?php echo ($c2c_user['paypassword']); ?>";
+						//alert(zhifubao);
+						if(uid>0){
+							if((zhifubao == '' || zhifubao=='NULL')&&(weixin == '' || weixin=='NULL')&&(bank == '' || bank=='NULL')){
+								layer.msg('请设置收款方式', {icon: 2});
+								location.href="/User/myCenter";
+							}
+							else if(paypwd == "" || paypwd == "NULL"){
+								layer.msg('请设置资金密码', {icon: 2});
+								location.href="/User/resetFiancePwd";
+							}else{
+								location.href="/User/publishAd/coin/jeff";
+							}
+							
+						}else{
+							layer.msg('请先登录', {icon: 2});
+							location.href="/C2c/index/market/jeff/money/0";
+						}
+    }
+    
+    function qianbao(){
+        var uid = "<?php echo ($uid); ?>";
+        if(uid.length > 0){
+            location.href="/Finance/qianbao";
+        }else{
+            layer.msg("<?php echo ($GLOBALS['first-login']); ?>",{icon : 2 });
+// 			location.href="/Login/register";
+        }
+    }
+    
+    function orders(id){
+        // alert(id);return false;
+        var uid = "<?php echo ($uid); ?>";
+        if(id == 1){
+            if(uid.length > 0){
+                location.href="/User/myAd";
+            }else{
+                layer.msg("<?php echo ($GLOBALS['first-login']); ?>",{icon : 2 });
+            }
+        }else if(id == 2){
+            if(uid.length > 0){
+                location.href="/Otc/otclst";
+            }else{
+                layer.msg("<?php echo ($GLOBALS['first-login']); ?>",{icon : 2 });
+            }
+        }
+        
+    }
+    if($(".login").find("a:first-child").html()=="登录"){
+        $(".login").addClass("openDown");
+    }
+
+    /*隐藏手机号中间4位*/
+    var phone = $('#userName').html();
+    var mphone = phone.substr(0, 3) + '****' + phone.substr(7);
+    $('#userName').html(mphone);
+</script>
+
+
+            <!--头部内容   end-->
+            <div class="wrap">
+                <section class="container">
+                    <div class="my-user flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                        <div class="user flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                            <div class="round flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap">
+                                <div class="img">
+                                    <?php echo ($tu); ?>
+                                </div>
+                            </div>
+                            <div class="name">
+                                <h4><?php echo ($user['truename']); ?></h4>
+                                <div class="certification flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                                    <!----><a href="/User/nameauth">
+                                    <div class="certification-kyc flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                                        <span><?php echo ($GLOBALS['real-name']); ?></span>
+                                    </div></a>
+                                    <!---->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="line"></div>
+                        <div class="number flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+                            <div>
+                                <p><?php echo ($GLOBALS['trade-succeed']); ?></p>
+                                <h6><?php echo ($success_num); ?></h6>
+                            </div>
+                            <!--<div>
+                                <p><?php echo ($GLOBALS['favorable-rate']); ?></p>
+                                <h6>0<span>%</span></h6>
+                            </div>-->
+                            <div>
+                                <p><?php echo ($GLOBALS['ready-pay']); ?></p>
+                                <h6><?php echo ($not_pay); ?></h6>
+                            </div>
+                        </div>
+                        <div class="line"></div>
+                        <div class="kyc">
+                            <?php if(($user['idcardauth']) == "2"): ?><a href="/User/senior" class=""><?php echo ($GLOBALS['success-verity']); ?></a><?php endif; ?>
+                            <?php if(($user['idcardauth']) == "0"): ?><a href="/User/senior" class=""><?php echo ($GLOBALS['go-senior']); ?></a><?php endif; ?>
+                            <?php if(($user['idcardauth']) == "1"): ?><a href="/User/senior" class=""><?php echo ($GLOBALS['rady-audit']); ?></a><?php endif; ?>
+                        </div>
+                    </div>
+					<div class="my-title flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap" style="margin-top: 20px;">
+                        <p><?php echo ($GLOBALS['Account-gather']); ?></p>
+                        <!---->
+                    </div>
+                    <div class="account-list flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                        <a class="item" href="/User/zhifushezhi">
+                            <div class="have-bg"></div><h4></h4>
+                            <div class="cart flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+                                <?php if(empty($bank)): ?><div class="cart-img flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <div class="bank"></div>
+                                    <p><?php echo ($GLOBALS['bank-noset']); ?></p>
+                                </div>
+                                <div class="cart-sm">
+                                    <span class="go"><?php echo ($GLOBALS['go-set']); ?></span>
+                                </div>
+                                <?php else: ?>
+                                <div class="cart-img flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <div class="bank"></div>
+                                    <p><?php echo ($bank['bankuname']); ?></p>
+                                    <p><?php echo ($bank['bankcard']); ?></p>
+                                </div>
+                                <div class="cart-sm">
+                                    <span class="go"><?php echo ($GLOBALS['go-set']); ?></span>
+                                </div><?php endif; ?>
+                            </div>
+                        </a>
+                        <?php if(empty($user['ali_img'])): ?><a class="item" href="/User/setPay">
+                            <div class="have-bg"></div><h4></h4>
+                            <div class="cart flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+                                <div class="cart-img flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <div class="pay"></div>
+                                    <p><?php echo ($GLOBALS['pay-noset']); ?></p>
+                                </div>
+                                <div class="cart-sm">
+                                    <span class="go"><?php echo ($GLOBALS['go-set']); ?></span>
+                                </div>
+                            </div>
+                        </a>
+                        <?php else: ?>
+                        <!--已设置支付宝-->
+                        <div class="item" style="display: ;">
+                            <div class="have-bg"></div>
+                            <div class="operation flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                <h4><?php echo ($user['ddpayname']); ?> <a href="/User/setPay" class="" style="margin-left: 20px;"><?php echo ($GLOBALS['editBtn']); ?></a></h4>
+                                <div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <!-- <span style="margin-right: 5px;">展示</span>
+                                    <a class="st-switch switch"><span class=""></span></a> -->
+                                </div>
+                            </div>
+                            <div class="cart flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+                                <div class="cart-img flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <div class="pay"></div>
+                                    <p><?php echo ($user['zhifubao']); ?></p>
+                                    <p><?php echo ($GLOBALS['pay']); ?></p>
+                                </div>
+                                <div class="cart-sm">
+                                    <i>
+                                        <div class="cart-sm-ewm">
+                                            <span></span>
+                                            <img src="/Upload/zhifu/<?php echo ($user['ali_img']); ?>" />
+                                        </div></i>
+                                </div>
+                            </div>
+                        </div><?php endif; ?>
+                        <!--已设置支付宝 end-->
+                        <?php if(empty($user['weixin_img'])): ?><a class="item" href="/User/setWebchat">
+                            <div class="have-bg"></div><h4></h4>
+                            <div class="cart flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+                                <div class="cart-img flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <div class="wechat"></div>
+                                    <p><?php echo ($GLOBALS['weixin-noset']); ?></p>
+                                </div>
+                                <div class="cart-sm">
+                                    <span class="go"><?php echo ($GLOBALS['go-set']); ?></span>
+                                </div>
+                            </div></a>
+                            <?php else: ?>
+                            <div class="item" style="display: ;">
+                            <div class="have-bg"></div>
+                            <div class="operation flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                <h4><?php echo ($user['weixin_name']); ?> <a href="/User/setWebchat" class="" style="margin-left: 20px;"><?php echo ($GLOBALS['editBtn']); ?></a></h4>
+                                <div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <!-- <span style="margin-right: 5px;">展示</span>
+                                    <a class="st-switch switch"><span class=""></span></a> -->
+                                </div>
+                            </div>
+                            <div class="cart flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+                                <div class="cart-img flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <div class="wechat"></div>
+                                    <p><?php echo ($user['weixin']); ?></p>
+                                    <p><?php echo ($GLOBALS['weixin']); ?></p>
+                                </div>
+                                <div class="cart-sm">
+                                    <i>
+                                        <div class="cart-sm-ewm">
+                                            <span></span>
+                                            <img src="/Upload/zhifu/<?php echo ($user['weixin_img']); ?>" />
+                                        </div></i>
+                                </div>
+                            </div>
+                        </div><?php endif; ?>
+                    </div>
+                    <div class="my-title flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                        <p>在线广告</p>
+                        <div>
+                            <a href="/User/myAd" class=""><?php echo ($GLOBALS['go-adManage']); ?></a>
+                        </div>
+                    </div>
+                    <div class="index-list" style="padding-bottom: 50px;">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th style="width: 120px;"><?php echo ($GLOBALS['ad-oddNumber']); ?></th>
+                                <th style="width: 120px;"><?php echo ($GLOBALS['publish-time']); ?></th>
+                                <th style="width: 120px;"><?php echo ($GLOBALS['ad-type']); ?></th>
+								<th><?php echo ($GLOBALS['coin-name']); ?></th>
+                                <th><?php echo ($GLOBALS['trade-total-number']); ?></th>
+                                <th><?php echo ($GLOBALS['completed-number']); ?></th>
+                                <th><?php echo ($GLOBALS['price']); ?></th>
+                                <!-- <th>溢价率</th> -->
+                                <th><?php echo ($GLOBALS['pay-type']); ?></th>
+                                <th><?php echo ($GLOBALS['order-operate']); ?></th>
+                            </tr>
+                            </thead>
+                            <?php if(!empty($shop)): ?><tbody>
+                            <?php if(is_array($shop)): foreach($shop as $key=>$c2c): ?><tr>
+                                    <td><?php echo ($c2c["number"]); ?></td>
+                                    <td><?php echo (date("Y-m-d H:i",$c2c["addtime"])); ?></td>
+                                    <td><?php if($c2c['type'] == 1): echo ($GLOBALS['buy']); else: echo ($GLOBALS['sell']); endif; ?></td>
+									<td><?php echo (strtoupper($c2c["market"])); ?></td>
+                                    <td><?php echo ($c2c["num"]); ?></td>
+                                    <td><?php echo ($c2c["trade"]); ?></td>
+                                    <td><?php echo ($c2c["price"]); ?></td>
+                                    <td>
+                                        <?php if(($c2c['bank']) == "1"): ?><img class="pay_icon2"src="/public/home/001_files/03.png"><?php endif; ?>
+                                        <?php if(($c2c['alipay']) == "1"): ?><img class="pay_icon2" src="/public/home/001_files/02.png"><?php endif; ?>
+                                        <?php if(($c2c['wechat']) == "1"): ?><img class="pay_icon2" src="/public/home/001_files/01.png"><?php endif; ?>
+                                    </td>
+                                    <td>
+                                        <?php if($c2c['residue'] > 0): ?><a onclick="javascript:if(confirm('<?php echo ($GLOBALS['cancel-putOrder']); ?>')) {chexiao(<?php echo ($c2c["id"]); ?>);} else {return false;}" id="chexiao" class="btn-success od-btn" style="cursor:pointer;">撤销</a>
+                                        <?php else: ?>
+                                                  
+                            
+                                            <?php if(($c2c['is_done']) == "1"): ?><a class="btn-success od-btn" style="cursor:pointer;"><?php echo ($GLOBALS['completed']); ?></a>
+                                            <?php else: ?>
+                                                <a class="btn-success od-btn" style="cursor:pointer;"><?php echo ($GLOBALS['matched']); ?></a><?php endif; endif; ?>
+                                    </td>
+                                    <!-- <td>1</td> -->
+                                </tr><?php endforeach; endif; ?>
+                        </tbody><?php endif; ?>
+                        </table>
+                        <?php if(empty($shop)): ?><div class="no-list">
+                            <img src="/Public/Home/image/accountMsg/nolist.71d670a.jpg" alt="" />
+                            <h6 style="font-weight: normal;"><?php echo ($GLOBALS['noData']); ?></h6>
+                        </div><?php endif; ?>
+                        <!---->
+                    </div>
+                    
+                </section>
+
+                <!--底部内容-->
+                <!--底部样式-->
+<style>
+    .st-footer {
+        position: absolute;
+        width: 100%;
+        min-width: 1300px;
+        height: 338px;
+        background-color: #16243d;
+        font-size: 20px
+    }
+
+    .st-footer .up {
+        width: 100%;
+        height: 260px;
+        padding: 60px 8% 0 10%;
+        border-bottom: 1px solid #04040f
+    }
+
+    .st-footer .up .left, .st-footer .up .right {
+        position: relative;
+        width: 30%
+    }
+
+    .st-footer .up .left ul li, .st-footer .up .right ul li {
+        position: relative
+    }
+
+    .st-footer .up .left ul li img, .st-footer .up .right ul li img {
+        position: absolute;
+        top: 50%;
+        right: -130px;
+        z-index: 2;
+        margin-top: -60px;
+        width: 120px;
+        height: 120px
+    }
+
+    .st-footer .up .left ul li a, .st-footer .up .right ul li a {
+        display: block;
+        margin-bottom: 14px;
+        line-height: 1em;
+        font-size: 12px;
+        color: #fff
+    }
+
+    .st-footer .up .left ul li a:hover, .st-footer .up .right ul li a:hover {
+        color: #0976d9;
+    }
+
+    .st-footer .up .left ul li:last-child a, .st-footer .up .right ul li:last-child a {
+        margin-bottom: 0
+    }
+
+    .st-footer .up .left ul li.first-li, .st-footer .up .right ul li.first-li {
+        margin-bottom: 14px;
+        line-height: 1em;
+        font-size: 12px;
+        color: #72829d
+    }
+
+    .st-footer .up .left .focus, .st-footer .up .right .focus {
+        width: 140px
+    }
+
+    .st-footer .up .left .focus h3, .st-footer .up .right .focus h3 {
+        margin-bottom: 14px;
+        line-height: 1em;
+        font-size: 12px;
+        color: #72829d
+    }
+
+    .st-footer .up .left .focus span, .st-footer .up .right .focus span {
+        display: block;
+        line-height: 1em;
+        margin-bottom: 23px;
+        font-size: 12px;
+        color: #72829d
+    }
+
+    .st-footer .up .left .focus .share a, .st-footer .up .right .focus .share a {
+        display: block;
+        margin-right: 20px;
+        width: 36px;
+        height: 36px;
+        border-radius: 100%;
+        background: #6c85ae;
+        background-repeat: no-repeat;
+        background-position: 50%
+    }
+
+    .st-footer .up .left .focus .share a:hover, .st-footer .up .right .focus .share a:hover {
+        background: #c5caea;
+        background-repeat: no-repeat;
+        background-position: 50%
+    }
+
+    .st-footer .up .left .focus .share a:first-child, .st-footer .up .right .focus .share a:first-child {
+        background-image: url("/Public/Home/image/common/facebook.png")
+    }
+
+    .st-footer .up .left .focus .share a:nth-child(2), .st-footer .up .right .focus .share a:nth-child(2) {
+        background-image: url("/Public/Home/image/common/feige.png")
+    }
+
+    .st-footer .up .left .focus .share a:nth-child(3), .st-footer .up .right .focus .share a:nth-child(3) {
+        background-image: url("/Public/Home/image/common/weibo.png")
+    }
+
+    .st-footer .up .center {
+        width: 185px;
+        height: 160px;
+        background: url(/Public/Home/image/common/footerimg.997816f.png) no-repeat center 10px
+    }
+
+    .st-footer .down {
+        width: 100%;
+        padding: 0 8% 0 10%;
+        border-top: 1px solid #212145
+    }
+
+    .st-footer .down p {
+        height: 77px;
+        line-height: 77px;
+        font-size: 12px;
+        text-align: center;
+        color: #6c85ae
+    }
+</style>
+
+<footer class="st-footer" style="bottom:0;background-color: #12122a;">
+    <div class="up flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+        <div class="left flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+            <ul>
+                <li class="first-li"><?php echo ($GLOBALS['series-produce']); ?></li>
+                <li><a href="/C2c/index"><?php echo ($GLOBALS['c2c']); ?></a></li>
+                <li><a href="/Trade/index"><?php echo ($GLOBALS['trade']); ?></a></li>
+                <li><a href="/Trade/borrowMoney"><?php echo ($GLOBALS['borrowMoney']); ?></a></li>
+            </ul>
+            <ul>
+                <li class="first-li"><?php echo ($GLOBALS['about-us']); ?></li>
+                <!-- <?php if(is_array($xinwen)): $i = 0; $__LIST__ = $xinwen;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>-->
+                <!-- <li><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank"><?php echo ($vo['title']); ?></a></li> -->
+                <!--<?php endforeach; endif; else: echo "" ;endif; ?> -->
+				<?php if(is_array($xinwen)): $i = 0; $__LIST__ = $xinwen;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; if(($_SESSION['lang']) == "1"): if(!empty($vo['title'])): ?><li ><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank" ><?php echo ($vo['title']); ?></a></li><?php endif; endif; ?>
+								<?php if(($_SESSION['lang']) == "2"): if(!empty($vo['title_e'])): ?><li ><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank" ><?php echo ($vo['title_e']); ?></a></li><?php endif; endif; ?>
+								<?php if(($_SESSION['lang']) == "3"): if(!empty($vo['title_en'])): ?><li ><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank" ><?php echo ($vo['title_en']); ?></a></li><?php endif; endif; endforeach; endif; else: echo "" ;endif; ?>
+							
+							 <li ><a href="/Article/officialAdModal" target="_blank" ><?php echo ($GLOBALS['office-notice']); ?></a></li>
+							<!-- <?php if(is_array($about)): $i = 0; $__LIST__ = $about;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$v): $mod = ($i % 2 );++$i;?>-->
+							<!-- <li ><a href="/Article/detail/id/<?php echo ($v['id']); ?>" target="_blank" ><?php echo ($v['title']); ?></a></li> -->
+							<!--<?php endforeach; endif; else: echo "" ;endif; ?> -->
+							<?php if(is_array($about)): $i = 0; $__LIST__ = $about;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; if(($_SESSION['lang']) == "1"): if(!empty($vo['title'])): ?><li ><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank" ><?php echo ($vo['title']); ?></a></li><?php endif; endif; ?>
+								<?php if(($_SESSION['lang']) == "2"): if(!empty($vo['title_e'])): ?><li ><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank" ><?php echo ($vo['title_e']); ?></a></li><?php endif; endif; ?>
+								<?php if(($_SESSION['lang']) == "3"): if(!empty($vo['title_en'])): ?><li ><a href="/Article/detail/id/<?php echo ($vo['id']); ?>" target="_blank" ><?php echo ($vo['title_en']); ?></a></li><?php endif; endif; endforeach; endif; else: echo "" ;endif; ?>
+                <!-- <li><a href="/Article/detail" target="_blank">联系我们</a></li> -->
+                <li><a href="/Article/officialAdModal" target="_blank"><?php echo ($GLOBALS['office-notice']); ?></a></li>
+            </ul>
+            <ul>
+                <li class="first-li"><?php echo ($GLOBALS['server-support']); ?></li>
+                <li><a href="/Article/officialAdModal" target="_blank"><?php echo ($GLOBALS['help-center']); ?></a></li>
+                <li><a href="/Article/detail/id/188" target="_blank">下线币种说明</a></li>
+                <li><a href="/Article/detail/id/14" target="_blank"><?php echo ($GLOBALS['currentCoin-apply']); ?></a></li>
+            </ul>
+        </div>
+        <div class="center"></div>
+        <div class="right flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+            <ul>
+                <li class="first-li"><?php echo ($GLOBALS['official-community']); ?></li>
+                <li>
+                    <a><?php echo ($GLOBALS['weixinQ']); ?></a>
+                    <div style="display: none;">
+                        <em></em>
+                        <img src="/Public/Home/image/index/jiaoliu.png" alt="">
+                    </div>
+                </li>
+                <!--<li>
+                    <a href="" target="_blank">Telegram</a>
+                </li>-->
+            </ul>
+            <ul>
+                <li class="first-li"><?php echo ($GLOBALS['relative-download']); ?></li>
+                <li>
+                    <a class="download-ios">iOS App</a>
+                    <div style="display: none;">
+                        <em></em>
+                        <img src="/Public/Home/image/index/ios.14c5c18.png " alt="">
+                    </div>
+                </li>
+                <li>
+                    <a class="download-android">Android App</a>
+                    <div style="display: none;">
+                        <em></em>
+                        <img src="/Public/Home/image/index/Android.14c5c18.png " alt="">
+                    </div>
+                </li>
+                <!--<li>
+                    <a class="download-google-play">Google Play</a>
+                    <div style="display: none;">
+                        <em></em>
+                        <img src="/Public/Home/image/common/googlePlay.9e95ba4.png" alt="">
+                    </div>
+                </li>-->
+            </ul>
+            <div class="focus">
+                <h3><?php echo ($GLOBALS['attention-us']); ?></h3>
+                <span><?php echo ($GLOBALS['company-name']); ?></span>
+                <div class="share flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                    <a href="" target="_blank"></a>
+                    <a href="" target="_blank"></a>
+                    <a href="" target="_blank" style="margin-right:0;"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="down">
+        <p><?php echo ($GLOBALS['web_down']); ?> <?php echo ($GLOBALS['beian']); ?></p>
+    </div>
+</footer>
+
+<script>
+    /*底部二维码效果*/
+    $(".st-footer .right li").hover(
+        function () {
+            $(this).find("div").show();
+        },
+        function(){
+            $(this).find("div").hide();
+        }
+    );
+</script>
+
+                <!--底部内容   end-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/Public/Home/js/newjs/myCenter.js"></script>
+<script>
+    $(".switch").click(function () {
+        $(this).toggleClass("active").find("span").toggleClass("active");
+    });
+</script>
+<script>
+function chexiao(uid){  
+            var id=uid;
+            $.ajax({
+                url:"<?php echo U('C2c/delete');?>",
+                type:"POST",
+                dataType:"json",
+                data:{id:id},
+                success:function(res){
+                    if(res.status==1){
+                        layer.msg(res.msg,{icon : 1 ,time:5000});
+                        window.location.reload();
+                       
+                    }else{
+                        layer.msg(res.msg,{icon : 2 ,time:5000});
+                    }
+                }
+            });             
+    }
+</script>
+</body>
+</html>

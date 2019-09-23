@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="{$web_keywords}" />
+    <meta name="format-detection" content="telephone=no,email=no,address=no" />
+    <eq name="Think.session.lang" value="1">
+									<notempty name="coninfo['web_name']" value=" ">
+								
+										<title>{$coninfo['web_name']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="2">
+									<notempty name="coninfo['web_name_e']" value=" ">
+										<title>{$coninfo['web_name_e']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="3">
+									<notempty name="coninfo['web_name_en']" value=" ">
+										<title>{$coninfo['web_name_en']}</title>
+									</notempty>
+								</eq>
+    <link data-n-head="true" rel="icon" type="image/x-icon" href="__PUBLIC__/favicon.ico"/>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/base.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/common.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/newcss/accountBill.css" media="all"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/001_files/datetimepicker.css"/>
+    <script data-n-head="true" src="__PUBLIC__/Home/js/newjs/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/layer/layer.js"></script>
+    <style>
+        .filter-detail .st-select .box input{
+            width:99%;
+            background: -webkit-gradient(linear, left top, left bottom, from(#fefeff), to(#f3f5f8));
+            background: linear-gradient(180deg, #fefeff 0, #f3f5f8);
+            vertical-align: middle;
+            margin-top: 3px;
+        }
+        /*查询按钮*/
+        .sub-btn{
+            width: 100%;
+            height: 30px;
+            border: 1px solid #ced0da;
+            border-radius: 4px;
+            padding: 0 10px;
+            background: #0976d9;
+            cursor: pointer;
+            color:#fff;
+        }
+
+    </style>
+</head>
+<body>
+<!--<img src="https://mon.58coin.com/mon.gif" id="img-hidden" />-->
+<div id="__nuxt">
+    <div class="nuxt-progress" style="width:0%;height:2px;background-color:#3B8070;opacity:0;"></div>
+    <div id="__layout">
+        <div>
+            <!--头部内容-->
+            <include file="Public:header1"/>
+            <!--头部内容   end-->
+            <div class="wrap">
+                <div class="st-content detail-index container" style="margin-top: 0px;">
+                    <h2 >{$GLOBALS['billing-details ']}</h2>
+                    <div  class="line"></div>
+                    <div  style="padding-top: 0px; padding-bottom: 30px;">
+                        <div  class="filter-detail flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap" >
+                            <div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                <!--<div class="st-form-item" style="min-height: 30px;">-->
+                                    <!--<p class="label" style="padding-right: 10px;">选择账户</p>-->
+                                    <!--<div tabindex="0" class="st-select item" value="3" style="width: 150px; margin-right: 110px;">-->
+                                        <!--<div class="box flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">-->
+                                            <!--<p>充值提现账户</p>-->
+                                            <!--<span class=""></span>-->
+                                        <!--</div>-->
+                                        <!--<ul style="width: 150px; display: none;">-->
+                                            <!--<li class="st-option" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">币币账户</li>-->
+                                            <!--<li class="st-option" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">充值提现账户</li>-->
+                                            <!--<li class="st-option" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">永续合约账户</li>-->
+                                            <!--<li class="st-option" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">融资融币账户</li>-->
+                                        <!--</ul>-->
+                                    <!--</div>-->
+                                    <!--<p class="tips" style="display: none;"></p>-->
+                                    <!--<p class="message" style="display: none;"></p>-->
+                                <!--</div>-->
+                                <div class="st-form-item" style="min-height: 30px;">
+                                    <p class="label" style="padding-right: 10px;">{$GLOBALS['coin-name']}</p>
+                                    <div tabindex="0" class="st-select item" value="" style="width: 100px;">
+                                        <div class="box flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                            <p>{$GLOBALS['all']}</p>
+                                            <span class=""></span>
+                                        </div>
+                                        <ul style="width: 100px; display: none;">
+                                            <volist name="coin" id="vo">
+                                                <li class="st-option" value="{$vo.id}" <if condition="$vo['id'] eq $cointype">selected</if>><?php echo str_replace('_',"/",strtoupper($vo['curr']));?></li>
+                                            </volist>
+                                        </ul>
+                                    </div>
+                                    <p class="tips" style="display: none;"></p>
+                                    <p class="message" style="display: none;"></p>
+                                </div>
+                                <div class="st-form-item" style="min-height: 30px;">
+                                    <p class="label" style="padding-right: 10px;">{$GLOBALS['business-state']}</p>
+                                    <div tabindex="0" class="st-select item" value="3" style="width: 150px; margin-right: 110px;">
+                                        <div class="box flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                            <p>{$GLOBALS['all']}</p>
+                                            <span class=""></span>
+                                        </div>
+                                        <ul style="width: 150px; display: none;" name="curr_type" id="curr_type" class="inputRate">
+                                            <li value="0" class="st-option" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" <eq name="type" value="0">selected</eq>>{$GLOBALS['all']}</li>
+                                            <li value="1" class="st-option" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" <eq name="type" value="0">selected</eq>>{$GLOBALS['buy']}</li>
+                                            <li value="2" class="st-option" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" <eq name="type" value="0">selected</eq>>{$GLOBALS['sell']}</li>
+                                            <li value="3" class="st-option" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" <eq name="type" value="0">selected</eq>>{$GLOBALS['repeal']}</li>
+                                            <li value="4" class="st-option" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" <eq name="type" value="0">selected</eq>>{$GLOBALS['withdraw']}</li>
+                                            <li value="5" class="st-option" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" <eq name="type" value="0">selected</eq>>{$GLOBALS['recharge']}</li>
+                                            <li value="6" class="st-option" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" <eq name="type" value="0">selected</eq>>{$GLOBALS['turnIn']}</li>
+                                            <li value="7" class="st-option" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" <eq name="type" value="0">selected</eq>>{$GLOBALS['turnOut']}</li>
+                                            <li value="8" class="st-option" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" <eq name="type" value="0">selected</eq>>{$GLOBALS['present']}</li>
+                                            <li value="9" class="st-option" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" <eq name="type" value="0">selected</eq>>{$GLOBALS['commission']}</li>
+                                        </ul>
+                                    </div>
+                                    <p class="tips" style="display: none;"></p>
+                                    <p class="message" style="display: none;"></p>
+                                </div>
+                                <!---->
+                                <div class="st-form-item" style="min-height: 30px;">
+                                    <p class="label" style="padding-right: 10px;">{$GLOBALS['time']}</p>
+                                    <div tabindex="0" class="st-select item" value="" style="width: 250px;margin-right:10px;">
+                                        <div class="box flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap" style="width:40%;display: inline-block;">
+                                            <input type="text" id="beginDate" class="date-search-input inputLeft datetimepicker inputRate" autocomplete="off" tabindex="1" value="{$yesterday}" name="start_time">
+                                        </div>
+                                        <span style="color:#aaa;">-</span>
+                                        <div class="box flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap" style="width:40%;display: inline-block;">
+                                            <input type="text" id="endDate" class="date-search-input datetimepicker inputRate" autocomplete="off" tabindex="2" value="{$nowday}" name="end_time">
+                                        </div>
+                                    </div>
+                                    <p class="tips" style="display: none;"></p>
+                                    <p class="message" style="display: none;"></p>
+                                </div>
+                                <input type="submit" class='sub-btn pull-left' value="{$GLOBALS['inquire']}" style="width:72px;height:30px">
+                            </div>
+                            <!---->
+                        </div>
+                        <div class="detail-list" >
+                            <table>
+                                <thead>
+                                <!--<tr>-->
+                                    <!--<th width="170" align="left">操作时间</th>-->
+                                    <!--<th width="156" align="right">账户</th>-->
+                                    <!--<th width="126" align="right">币种</th>-->
+                                    <!--<th width="136" align="right">类型</th>-->
+                                    <!--<th width="172" align="right">数额</th>-->
+                                    <!--<th width="172" align="right">手续费</th>-->
+                                    <!--<th width="188" align="right">余额</th>-->
+                                <!--</tr>-->
+                                <tr>
+                                    <!--<th width="136" align="left">账户</th>-->
+                                    <th align="">{$GLOBALS['coin-name']}</th>
+                                    <th align="">{$GLOBALS['trade-time']}</th>
+                                    <th align="">{$GLOBALS['business-state']}</th>
+                                    <th align="">{$GLOBALS['trade-price2']}</th>
+                                    <th align="">{$GLOBALS['trade-number']}</th>
+                                    <th align="">{$GLOBALS['amount-account']}</th>
+                                    <th align="">{$GLOBALS['remark']}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <if condition="$list neq null">
+                                            <volist name="list" id="vo">
+                                                <tr data-id="zero" role="row" class="odd log">
+                                                    <?php $name=M("status")->where("id=".$vo['coin'])->find();?>
+                                                    <td class="no-od" align="center"><span> <if condition="$name['img'] neq '' "> <img src="{$name.img}" style="width:26px;height:24px;vertical-align:middle"> </if><?php echo str_replace('_',"/",strtoupper($name['curr']));?></span></td>
+                                                    <td class="no-od" align="center">{$vo.time|date='m-d H:i:s',###}</td>
+                                                    <td class="no-od" align="center">{$vo.action_type}</td>
+                                                    <td class="no-od" align="center">{$vo['price']|NumToStr}</td>
+                                                    <td class="no-od" align="center">{$vo['num']}</td>
+                                                    <td class="no-od" align="center">{$vo['wallet']}</td>
+                                                    <td class="no-od" align="center">{$vo['detail']}</td>
+                                                    <!--		<td class="no-od"><eq name="vo.status" value="0">交易中 | <a class="cancel" id="{$vo.id}" href="javascript:void(0);" sytle="color:red!important;">撤销</a></eq> <eq name="vo.status" value="1">已完成</eq> <eq name="vo.status" value="2">已撤销</eq></td> -->
+                                                </tr>
+                                            </volist>
+                                        <else/>
+                                        <tr style="border:0;">
+                                            <td colspan="7">
+                                                <div class="no-list" >
+                                                    <img src="/Public/Home/image/accountMsg/noDate.jpg" alt="" />
+                                                    <h6>{$GLOBALS['noData']}</h6>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </if>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!--底部内容-->
+                <include file="Public:footer"/>
+                <!--底部内容   end-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="__PUBLIC__/Home/js/newjs/accountBill.js"></script>
+<script src="__PUBLIC__/Home/001_files/dpicker.js"></script>
+<script>
+    // 日期选择器
+    $('.datetimepicker').datetimepicker({
+        format: 'Y-m-d',
+        timepicker: false,
+        yearStart: 2008,
+        autoclose: true,
+        lang: 'ch'
+    });
+</script>
+
+</body>
+</html>

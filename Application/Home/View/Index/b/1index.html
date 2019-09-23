@@ -1,0 +1,773 @@
+﻿<include file="Base:header1"/>
+<include file="Base:header"/>
+
+<!--<script type="text/javascript" src="/public/home/ss/js/note.js" charset="UTF-8"></script>-->
+<script type="text/javascript" src="/public/home/ss/js/sxb.js" charset="UTF-8"></script>
+<div id="h_import" class="ctips" style="display:none;"></div>
+<input id="languageInput" value="cn" type="hidden"/>
+<div class="bk-app" style="display:none;">
+    <div class="clearfix">
+        <div class="app-info pull-left">
+            <img src="/public/home/ss/images/app_zb57_red.png" alt="ZB APP">
+            <p>ZB APP<br>浏览行情酣畅交易指尖掌握</p>
+        </div>
+        <div class="app-btn pull-right">
+            <a href="#" class="btn btn-primary" target="_blank">立即下载</a>
+        </div>
+        <div class="app-close" onclick="$('.bk-app').slideUp()"><i class="iconfont">&#xe656;</i></div>
+    </div>
+</div>
+
+
+
+
+
+<!-- <script>
+    $(function(){
+
+        $("#m-asset-tabs a").on('click', function(){
+            var target = $(this).attr('href');
+            $("#m-asset-tabs a").removeClass('on');
+            $(this).addClass('on');
+            $("#M_userDrop2 .tab-content").removeClass('active');
+            $(target).addClass('active');
+            if (target == '#m-userLeverAssets') {
+                $("#pay-action").hide();
+                window.assetType = 'lever';
+				ASSET.changeUserAssetType('lever');
+			} else {
+				window.assetType = 'spot';
+				ASSET.changeUserAssetType('spot');
+				$("#pay-action").show();
+            }
+            return false;
+        });
+        $('#fund-dropdown').on('mouseenter', function(e){
+            $(this).addClass('open');
+        });
+        $('#fund-dropdown').on('mouseleave', function(e){
+            var _this = $(this);
+            setTimeout(function () {
+                _this.removeClass('open');
+            }, 300);
+        });
+
+        $('body').on('click', function (e) {
+            if (!$('#fund-dropdown').is(e.target)
+                && $('#fund-dropdown').has(e.target).length === 0
+            ) {
+                $('#fund-dropdown').removeClass('open');
+            }
+        });
+
+        $(".topmenuhover .titlelist a").on('mouseenter',function(){
+            $(this).addClass("on").siblings("a").removeClass("on");
+            $(this).parents(".topmenuhover").find("ul").eq($(this).index()).addClass("on").siblings("ul").removeClass("on");
+        })
+
+        $(".down-market-table .d-hd a").on('mouseenter',function(){
+            $(this).addClass("on").siblings("a").removeClass("on");
+            $(this).parents(".down-market-table").find("table").eq($(this).index()).addClass("on").siblings("table").removeClass("on");
+            var coin = $(this).data('coin');
+            var channel = "top_all_" + coin;
+            if (webSocket && channel != oldTopallChannel) {
+                MARKET.closeTopallSocket(oldTopallChannel);
+                webSocket.sendMessage("{'event':'addChannel','channel':'" + channel + "','isZip':'" + isZipData() + "'}");
+            }
+            oldTopallChannel = channel;
+        });
+
+        $(".top-market-show").on('mouseleave', function(){
+            var moneyType = "";
+            if (webSocket && moneyType) {
+                var channel = "top_all_" + moneyType.toLowerCase();
+                if (channel != oldTopallChannel) {
+                    MARKET.closeTopallSocket(oldTopallChannel);
+                    webSocket.sendMessage("{'event':'addChannel','channel':'" + channel + "','isZip':'" + isZipData() + "'}");
+                }
+                oldTopallChannel = channel;
+            }
+        });
+
+
+        $(".cnyonoff").on("click",function(){
+            $(this).toggleClass("on");
+            $(".nocny").toggleClass("on");
+            $(".iscny").toggleClass("on");
+        })
+
+    })
+</script> -->
+    <!-- Common TopMenu End -->
+    <!-- Body From mainPage Begin -->
+    <script type="text/javascript">
+        $(".bk-nav").removeClass("navbar-black");
+        $(".bk-toolBar").css("visibility","hidden");
+    </script>
+    <input type="hidden" name="pubTag" value=""/>
+
+    <div id="zbCarousel" class="carousel slide carousel-fade" data-ride="carousel" style="min-width: 1440px;height: auto;
+min-height: 490px;">
+
+        <div class="redbagicon hide" style="z-index: 1;">
+            <a href="#"><i></i><span>2月15-17日</span></a>
+        </div>
+
+        <ol class="carousel-indicators" style="margin-bottom: 0px!important">
+            <li data-target="#zbCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#zbCarousel" data-slide-to="1"></li>
+            <li data-target="#zbCarousel" data-slide-to="2"></li>
+            <!-- <li data-target="#zbCarousel" data-slide-to="3"></li> -->
+        </ol>
+
+        <div class="carousel-inner">
+
+
+            <div class="item active">
+                <div class="homebannerList tradeLevel">
+                    <div class="tradeLevel_activity_banner">
+                        <div class="tradeLevel_activity_banner_title" >
+                            <img  src="/public/home/ss/images/a1200-300-1.jpg" style="width:100%;margin-top: -50px"/>
+<!--                            <div class="activity_banner_text_button" style="margin-bottom:10px;">-->
+<!--                                <a href="/" target="_blank"  class="button button-border button-rounded button-primary"  style="display:inline-block; margin-right: 15px; background: #de211d;">前往星空区块链</a>-->
+<!--                            </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+                        <div class="item active">
+                            <div class="homebannerList tradeLevel">
+                             <div class="tradeLevel_activity_banner">
+                                <div class="tradeLevel_activity_banner_title" >
+                                    <div class="tradeLevel_activity_banner_text">
+                                        <img  src="/public/home/ss/images/a1200-300-2.jpg" style="width:100%;margin-top: -50px"/>
+                                    </div>
+<!--                                   <div class="activity_banner_text_button" style="margin-bottom:10px;">
+                                                <a href="/" target="_blank"  class="button button-border button-rounded button-primary"  style="display:inline-block; margin-right: 15px; background: #de211d;">前往星空区块链</a>
+                                   </div>-->
+                                </div>
+                             </div>
+                            </div>
+                        </div>
+
+            <!--<div class="item">
+               <div class="homebannerList zbg">
+                   <div class="zbg_activity_banner">
+                       <div class="zbg_activity_banner_title" >
+                           <div class="zbg_activity_banner_text">
+                               <img  src="/public/home/ss/images/a1200-300-3.jpg" style="width:100%"/>
+                                            <div class="activity_banner_text_button" style="margin-bottom:10px;">
+                                                <a href="/" target="_blank"  class="button button-border button-rounded button-primary"  style="display:inline-block; margin-right: 15px; background: #de211d;">前往星空区块链</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>-->
+
+
+             <div class="item">
+                <div class="homebannerlist business">
+                 <div class="business_activity_banner">
+                    <div class="business_activity_banner_title" >
+                        <div class="business_activity_banner_text">
+                            <img  src="/public/home/ss/images/a1200-300-3.jpg" style="width:100%; margin-top: -24px"/>
+<!--                             <div class="activity_banner_text_button" id="tradematch-activity" style="margin-bottom:10px;">
+                                 <a href="#"  class="button button-border button-rounded button-primary buymember"  style="display:inline-block;">查看详情</a>
+                            </div>-->
+                        </div>
+                    </div>
+                 </div>
+                </div>
+            </div>
+
+            <div class="item ">
+                <div class="homebannerList zbotc">
+                    <div class="zbotc_activity_banner">
+                        <div class="zbotc_activity_banner_title" >
+                            <div class="zbotc_activity_banner_text">
+<!--                                <img  src="/public/home/ss/images/a1200-300-3.jpg" style="width:100%;  margin-bottom:0px;  "/>-->
+<!--                                <div class="activity_banner_text_button" id="tradeMatch-activity" style="margin-bottom:10px;">-->
+<!--                                    <a href="#" target="_blank"   class="button button-border button-rounded button-primary opacitybtn"  style="display:inline-block;">使用教程</a>-->
+<!--                                    <a href="#"  class="button button-border button-rounded button-primary"  style="display:inline-block;">立即交易</a>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+<!--        <a class="carousel-control left" href="#"   data-slide="prev"></a>
+        <a class="carousel-control right" href="#"  data-slide="next"></a>-->
+
+         <div class="bk-homeMarket market_tab_hd" name="bz" style="background:black;">
+            <div class="container">
+            <volist name="zhisucom_jiaoyiqu" id="v">
+                 <a style="width:33%;" class="on" data-coin="qc" id="s{$i}">{$v}<i class="fa fa-caret-down fa-fw"></i></a>
+            </volist>     
+                <!-- <a class="" data-coin="usdt">USDT交易区<i class="fa fa-caret-down fa-fw"></i></a>
+                <a data-coin="btc">BB交易区<i class="fa fa-caret-down fa-fw"></i></a>
+                <a data-coin="aed">点对点交易区<i class="fa fa-caret-down fa-fw"></i></a> -->
+            </div>
+          </div>
+
+    </div>
+
+    <script type="text/javascript">
+        $(".bk-pageTop, .homeTab").height(function(){
+            var tHeight = $(window).height() * 0.8 ;
+            if(tHeight > 950) tHeight = 950;
+            if(tHeight < 600) tHeight = 600;
+            return tHeight ;
+        });
+
+
+        $(function(){
+
+            /*$.fn.peity.defaults.line = {
+                      delimiter: ",",
+                      fill: "",
+                      height: 25,
+                      max: null,
+                      min: 0,
+                      stroke: "#FF0000",
+                      strokeWidth: 2,
+                      width: 100
+            }
+            var updatingChart = [];
+            var lineColor = [ "#5e9e67","#4793e8","#f4922f","#f4d33e","#5c646f","#5e9e67","#4793e8","#f4922f","#f4d33e","#5c646f","#5e9e67","#4793e8","#f4922f","#f4d33e","#5c646f","#5e9e67","#4793e8","#f4922f","#f4d33e","#5c646f","#5e9e67","#4793e8","#f4922f","#f4d33e","#5c646f"];
+
+            $(".echart-line").each(function(index){
+                updatingChart[index] = $(this).peity("line",{"stroke":lineColor[index]});
+                setInterval(function() { updatingChart[index].change() },1000)
+            })*/
+
+
+
+          $(window).resize(function() {
+              $(".bk-pageTop, .homeTab").height(function(){
+                  var tHeight = $(window).height() * 0.8 ;
+                  if(tHeight > 950) tHeight = 950;
+                  if(tHeight < 600) tHeight = 600;
+                  return tHeight ;
+              });
+          });
+       });
+
+    </script>
+<style>
+    #zbCarousel{margin-top:-77px;}
+    .gsgkli{float:left;}
+    .gsgkli a{color:#898989;font-size: 14px;text-decoration: none;}
+    .gsgkli a:hover{color:#de211d;}
+    .searcoin-w{padding-top:13px;}
+    #mywallet_list{visibility:hidden}
+</style>
+     <div class="searcoin-w" >
+        <div class="container">
+            <div>
+                <ul id="gsgk">
+                    <li class="gsgkli"><img style="width: 19px;margin-right:10px;" src="/public/home/ss/images/gsgk.png" alt="" ></li>
+                    <volist name="indexArticles" id="vo">
+                        <li class="gsgkli"><a href="{:U('Article/detail','id='.$vo['id'])}">{$vo['title']}&nbsp|&nbsp</a></li>
+                    </volist>
+                    <li class="gsgkli" style="float: right;"><a href="/Article/index/id/{$indexArticleType[0]['id']}" style="color: #de2a4a;" >查看更多</a></li>
+                </ul>
+            </div>
+<!--            <div class="searcoinlist">
+                <i class="iconfont">&#xe674;</i>
+                <input placeholder="交易币种搜索" id="searCoinName" >
+            </div>-->
+        </div>
+     </div>
+
+    <div class="h-marketlist market_tab_bd" style="padding-top:12px;" >
+        <div class="container">
+            <div class="allmarketshow">
+                <a class="allmarket" href="#" target="_blank"><i class="fa fa-bar-chart fa-fw mr-xs"></i>全球市场</a>
+            </div>
+
+            <table class="market_usdt_list on">
+                <thead>
+                <tr>
+
+                    <th class="coin" style="padding-left:20px;">币种</th>
+                    <th class="price">价格</th>
+                    <th class="high">最高价</th>
+                    <th class="low">最低价</th>
+                    <th class="amount">交易量</th>
+                    <th>日涨跌</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td colspan="8"  class="homeChoose-td cnys"><span>CNY交易区</span></td>
+                    </tr>
+
+                    <volist name="rmbjy" id="r">
+                    <tr class="H_bccqcMarket cnys" coinname="BCC" style="cursor: pointer;" onclick="window.top.location.href='/trade/index/market/{$r.name}/'">
+                      <!--   <td>
+                            <a class="icon-isselected on"></a>
+                        </td> -->
+                        <td class="coin"><img style="width: 20px;margin-right:10px" src="/Upload/coin/{$r.img}" alt=""><b>{$r.bm}</b></td>
+                        <td><div><b class="price text-primary">{$r.new_price|round=2}<i class="rise iconfont icon-arrowup"></i></b></div></td>
+                        <td><span class="hightPrice">{$r.max_price|round=2}</span></td>
+                        <td><span class="lowPrice">{$r.min_price|round=2}</span></td>
+
+                        <td class="volume"><span>1.33万</span></td>
+                        <td><span class="riseRate">-0.18%</span></td>
+
+                        <td>
+                            <a onclick="window.top.location.href='/trade/chart/market/{$r.name}/'" class="gotrade">专业交易 </a>
+                            <a onclick="event.stopPropagation();window.top.location.href='/trade/chart/market/{$r.name}/'" class="klineg" ><i class="fa fa-line-chart fa-fw"></i></a>
+                        </td>
+                    </tr>
+                    </volist>
+
+                    <tr>
+                        <td colspan="8"  class="homeChoose-td usdts" ><span>USDT交易区</span></td>
+                    </tr>
+
+                    <volist name="usdtjy" id="u">
+                        <tr class="H_bccqcMarket usdts" coinname="BCC"  id="usdtjs" style="cursor: pointer;" onclick="window.top.location.href='/trade/index/market/{$u.name}/'">
+                            <!--   <td>
+                                  <a class="icon-isselected on"></a>
+                              </td> -->
+                            <td class="coin"><img style="width: 20px;margin-right:10px" src="/Upload/coin/{$u.img}" alt=""><b>{$u.bm}</b></td>
+                            <td><div><b class="price text-primary">{$u.new_price|round=2}<i class="rise iconfont icon-arrowup"></i></b></div></td>
+                            <td><span class="hightPrice">{$u.max_price|round=2}</span></td>
+                            <td><span class="lowPrice">{$u.min_price|round=2}</span></td>
+
+                            <td class="volume"><span>1.33万</span></td>
+                            <td><span class="riseRate">-0.18%</span></td>
+
+                            <td>
+                                <a onclick="window.top.location.href='/trade/chart/market/{$u.name}/'" class="gotrade">专业交易 </a>
+                                <a onclick="event.stopPropagation();window.top.location.href='/trade/chart/market/{$u.name}/'" class="klineg" ><i class="fa fa-line-chart fa-fw"></i></a>
+                            </td>
+                        </tr>
+                    </volist>
+                    <tr>
+                        <td colspan="8"  class="homeChoose-td btcs"><span>BTC交易区</span></td>
+                    </tr>
+
+                    <volist name="bbjy" id="b">
+                        <tr class="H_bccqcMarket btcs" coinname="BCC" style="cursor: pointer;" onclick="window.top.location.href='/trade/index/market/{$b.name}/'">
+                            <!--   <td>
+                                  <a class="icon-isselected on"></a>
+                              </td> -->
+                            <td class="coin"><img style="width: 20px;margin-right:10px" src="/Upload/coin/{$b.img}" alt=""><b>{$b.bm}</b></td>
+                            <td><div><b class="price text-primary">{$b.new_price|round=4}<i class="rise iconfont icon-arrowup"></i></b></div></td>
+                            <td><span class="hightPrice">{$b.max_price|round=4}</span></td>
+                            <td><span class="lowPrice">{$b.min_price|round=4}</span></td>
+
+                            <td class="volume"><span>1.33万</span></td>
+                            <td><span class="riseRate">-0.18%</span></td>
+
+                            <td>
+                                <a onclick="window.top.location.href='/trade/chart/market/{$b.name}/'" class="gotrade">专业交易 </a>
+                                <a onclick="event.stopPropagation();window.top.location.href='/trade/chart/market/{$b.name}/'" class="klineg" ><i class="fa fa-line-chart fa-fw"></i></a>
+                            </td>
+                        </tr>
+                    </volist>
+                    <style>.usdts{display: none}.btcs{display: none}</style>
+                <script>
+                    $(function () {
+                        $("#s1").click(function () {
+                            $(".cnys").show();
+                            $(".usdts").hide();
+                            $(".btcs").hide();
+                        })
+                        $("#s2").click(function () {
+                            $(".cnys").hide();
+                            $(".usdts").show();
+                            $(".btcs").hide();
+                        })
+                        $("#s3").click(function () {
+                            $(".cnys").hide();
+                            $(".usdts").hide();
+                            $(".btcs").show();
+                        })
+                    })
+                </script>
+                </tbody>
+            </table>
+
+       </div>
+   </div>
+
+    <div class="bk-introduce bk-iconlistw">
+        <div class="container">
+            <h3>金融级别数字资产交易网</h3>
+            <p>超过4年的安全运营、多重技术安全防护、7×24小时服务支持</p>
+            <div class="row">
+                <div class="col-xs-3"><img src="/public/home/ss/images/a04.png" alt=""><h4>顶级</h4><h5>重金千万注册顶级域名<br>是您选择的信心保证</h5></div>
+                <div class="col-xs-3"><img src="/public/home/ss/images/a01.png" alt=""><h4>安全</h4><h5>一流团队打造专业安全<br>多重防御让您资产无忧</h5></div>
+                <div class="col-xs-3"><img src="/public/home/ss/images/a03.png" alt=""><h4>快捷</h4><h5>资产流转快速<br>交易畅通无阻</h5></div>
+                <div class="col-xs-3"><img src="/public/home/ss/images/a02.png" alt=""><h4>服务</h4><h5>全天候客服在线服务<br>保障您的优质使用</h5></div>
+            </div>
+<!--            <div class="row">
+                <div class="col-xs-3"><i class="bk-ico bk-ico-top"></i><h4>顶级</h4><h5>重金千万注册顶级域名<br>是您选择的信心保证</h5></div>
+                <div class="col-xs-3"><i class="bk-ico bk-ico-safe"></i><h4>安全</h4><h5>一流团队打造专业安全<br>多重防御让您资产无忧</h5></div>
+                <div class="col-xs-3"><i class="bk-ico bk-ico-quick"></i><h4>快捷</h4><h5>资产流转快速<br>交易畅通无阻</h5></div>
+                <div class="col-xs-3"><i class="bk-ico bk-ico-service"></i><h4>服务</h4><h5>全天候客服在线服务<br>保障您的优质使用</h5></div>
+            </div>-->
+        </div>
+    </div>
+
+
+
+    <div class="bk-homeNews" style="display:;">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="hd clearfix">
+                        <h3 class="pull-left">{$indexArticleType[1]['title']}</h3>
+                        <a class="pull-right" href="/Article/index/id/{$indexArticleType[1]['id']}" target="_self">查看更多</a>
+                    </div>
+                    <div class="bd" style=" overflow:hidden;">
+                        <ul>
+                            <volist name="indexArticle[1]" id="vo">
+                            <li><a href="{:U('Article/detail','id='.$vo['id'])}" title="{$vo['title']}" target="_self">{$vo['title']}</a>
+                                <div class="snote"></div>
+                            </li>
+                            </volist>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-xs-6 bk-homeNews2">
+                    <div class="hd clearfix">
+                        <h3 class="pull-left">{$indexArticleType[0]['title']}</h3>
+                        <a class="pull-right" href="/Article/index/id/{$indexArticleType[0]['id']}" target="_self">查看更多</a>
+                    </div>
+                    <div class="bd" style=" overflow:hidden;">
+                        <ul>
+                            <volist name="indexArticle[0]" id="vo">
+                            <li><a href="{:U('Article/detail','id='.$vo['id'])}" title="{$vo['title']}" target="_self">{$vo['title']}</a>
+                                <div class="snote"></div>
+                            </li>
+                            </volist>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="bk-introduce helplist">
+        <div class="container">
+            <h3>新手帮助</h3>
+            <p style="margin-bottom:60px;">为您提供基本细致的操作方法</p>
+            <div class="row">
+                <div class="col-xs-4">
+                    <div class="row list">
+                        <div class="col-xs-6 ">
+                            <h4>如何充值提现</h4>
+                            <a href="#" target="_blank">数字资产充值</a>
+                            <a href="#" target="_blank">数字资产提现</a>
+                        </div>
+
+                        <div class="col-xs-6">
+                            <h4>认证</h4>
+                            <a href="#" target="_blank">谷歌认证</a>
+                            <a href="#" target="_blank">实名认证</a>
+                        </div>
+
+                        <div class="col-xs-6">
+                            <h4>交易委托</h4>
+                            <a href="#" target="_blank">限价买入/卖出</a>
+                            <a href="#" target="_blank">计划买入/卖出</a>
+                            <a href="#" target="_blank">API文档</a>
+                        </div>
+
+                        <div class="col-xs-6">
+                            <h4>推荐奖励</h4>
+                            <a href="#" target="_blank">邀请人奖励如何获得？</a>
+                        </div>
+
+                 </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="help-pic">
+                        <img src="/public/home/ss/images/mac.png" style="width: 114%;margin-left:-8px;">
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="help-note">
+                        <h5>HELP CENTER</h5>
+                        <h6>在这里我们为你准备了很多实例视频和教学</h6>
+                        <p class="line"></p>
+                        <a class="btn" href="#">新手帮助 ></a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+   <div class="bk-introduce partner">
+        <div class="container">
+            <h3>合作伙伴</h3>
+            <p style="margin-bottom:30px;">优质的合作伙伴，为您提供全方位的服务</p>
+            <div class="row">
+                <div class="col-xs-2"><a href="#" target="_blank"><img src="/public/home/ss/images/logo_btc123_g.png" _src="https://s.bitkk.coms/statics/img/home/v2/logo_btc123_c.png" _srcy="https://s.bitkk.coms/statics/img/home/v2/logo_btc123_g.png"><span>Click into >>></span></a></div>
+                <div class="col-xs-2"><a href="#" target="_blank"><img src="/public/home/ss/images/logo_bikan_g.png" _src="https://s.bitkk.coms/statics/img/home/v2/logo_bikan_c.png" _srcy="https://s.bitkk.coms/statics/img/home/v2/logo_bikan_g.png"  ><span>Click into >>></span></a></div>
+                <div class="col-xs-2"><a href="#" target="_blank"><img src="/public/home/ss/images/logo_8btc_g.png" _src="https://s.bitkk.coms/statics/img/home/v2/logo_8btc_c.png" _srcy="https://s.bitkk.coms/statics/img/home/v2/logo_8btc_g.png"  ><span>Click into >>></span></a></div>
+                <div class="col-xs-2"><a href="#" target="_blank"><img src="/public/home/ss/images/logo_etctm_g.png" _src="https://s.bitkk.coms/statics/img/home/v2/logo_etctm_c.png" _srcy="https://s.bitkk.coms/statics/img/home/v2/logo_etctm_g.png"  ><span>Click into >>></span></a></div>
+                <div class="col-xs-2"><a href="#" target="_blank"><img src="/public/home/ss/images/logo_ethfans_g.png" _src="https://s.bitkk.coms/statics/img/home/v2/logo_ethfans_c.png" _srcy="https://s.bitkk.coms/statics/img/home/v2/logo_ethfans_g.png"  ><span>Click into >>></span></a></div>
+                <div class="col-xs-2"><a href="#" target="_blank"><img src="/public/home/ss/images/logo_coindesk_g.png" _src="https://s.bitkk.coms/statics/img/home/v2/logo_coindesk_c.png" _srcy="https://s.bitkk.coms/statics/img/home/v2/logo_coindesk_g.png"  ><span>Click into >>></span></a></div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="bk-firendLink">
+        <div class="container">
+            <div class="fd">
+                <ul class="clearfix">
+                    <b>友情链接</b>
+
+                        <li><a href="#" target="_blank"  >千氪财经</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="bk-focus-fixed" style="display:none;">
+        <div class="cd" onclick="$('.bk-focus-fixed').slideUp()" title="关闭"><i class="iconfont">&#xe656;</i></div>
+        <div class="hd"><ul></ul></div>
+        <div class="bd">
+            <ul class="clearfix">
+                <li><a class="bg-focus" target="_blank" href="#" style="background-image:url(/public/home/ss/images/teach_homebanner.jpg)"></a></li>
+                <li><a class="bg-focus" target="_blank" href="#" style="background-image:url(/public/home/ss/images/ganggan_video_banner.png)"></a></li>
+                <li><a class="bg-focus" target="_blank" href="#" style="background-image:url(/public/home/ss/images/home-foucs-b.jpg)"></a></li>
+                <li><a class="bg-focus" target="_blank" href="#" style="background-image:url(/public/home/ss/images/openaccout_banner.png)"></a></li>
+            </ul>
+        </div>
+    </div>
+    <script type="text/javascript">
+
+
+
+    <!-- $(window).scroll(function() { 
+        var scrollTop=document.body.scrollTop||document.documentElement.scrollTop;
+        if(scrollTop+$(".bk-anyEq").height() > $(".bk-anyEq").offset().top){
+            $(".bk-anyEq").addClass("on");
+        }
+    });-->
+
+
+
+
+
+
+        $(function(){
+
+
+            /*var shload = function() {
+
+
+            }
+
+            if ("FF" == mb || "Chrome" == mb || "Safari" == mb) {
+                var oneonoff = true;
+                $('.carousel').on('slid.bs.carousel', function () {
+                    if(oneonoff){
+                        oneonoff = false;
+                        $('#particles').particleground({
+                            dotColor: 'rgba(255,255,255,0.2)',
+                            lineColor: 'rgba(255,255,255,0.2)',
+                            proximity:120
+                        });
+
+                    }
+                });
+
+            } */
+
+
+            $("#searCoinName").on({
+                "keyup": function () {
+                   searCoin(this.value);
+                },
+                "blur": function () {
+                   searCoin(this.value);
+                },
+                "change": function () {
+                   searCoin(this.value);
+                }
+          });
+
+         function searCoin(coinValue){
+                 $(".h-marketlist tbody tr").each(function(){
+                     $(this).removeClass("hidediv");
+                     var theName = $(this).attr("coinname");
+                     if((theName.indexOf(coinValue) >= 0 ) || (theName.indexOf(coinValue.toUpperCase()) >= 0 ) || (theName.indexOf(coinValue.toLowerCase()) >= 0 )  ) {
+                         $(this).removeClass("hidediv").addClass("showdiv");
+                     }else {
+                         $(this).removeClass("showdiv").addClass("hidediv");
+                     }
+
+                 })
+
+             }
+
+            $(".market_tab_hd a").on('click',function(){
+                $(this).addClass("on").siblings("a").removeClass("on");
+                $(".market_tab_bd table").eq($(this).index()).addClass("on").siblings("table").removeClass("on");
+                var coin = $(this).data('coin');
+                var channel = "top_all_" + coin;
+                if (webSocket && channel != oldTopallChannel) {
+                    MARKET.closeTopallSocket(oldTopallChannel);
+                    webSocket.sendMessage("{'event':'addChannel','channel':'" + channel + "','isZip':'" + isZipData() + "'}");
+                }
+                oldTopallChannel = channel;
+            });
+
+
+            $(".partner a").hover(function(){
+                $src = $(this).find("img").attr("_src");
+                $(this).find("img").attr("src",$src);
+            },function(){
+                $src = $(this).find("img").attr("_srcy");
+                $(this).find("img").attr("src",$src);
+            });
+
+
+            //移动设备下移除AD
+            if(JuaBox.isMobile()) {
+                $(".bk-focus-fixed").remove();
+            }else{
+                setTimeout(function(){
+                    //$(".bk-focus-fixed").slideDown();
+                    //jQuery(".bk-focus-fixed").slide({mainCell:".bd ul",titCell:".hd ul", autoPage:true, effect:"top",interTime:5000,autoPlay:true});
+                },1000)
+            }
+        });
+    </script>
+
+    <input type="hidden" id="isSafe" value="1">
+    <script>
+
+
+        var inAjaxing = false;
+        function login() {
+            if (inAjaxing) {
+                return;
+            }
+
+            var nike = $('#nick').val();
+            if (!nike) {
+                JuaBox.showTip("请输入用户名");
+                return;
+            }
+            var pwd = $('#pwd').val();
+            if (!pwd) {
+                JuaBox.showTip("请输入密码");
+                return;
+            }
+
+            var encrypt = new JSEncrypt({default_public_exponent : '65537'});
+            var pubTag = $("input[name='pubTag']").val();
+            encrypt.setPublicKey(pubTag);
+            vpwd = encrypt.encrypt(pwd);
+
+            var datas = '&nike='+encodeURIComponent(nike)+'&pwd='+vpwd+'&pubTag='+pubTag;
+            var isSafe = $('#isSafe').val();
+            if (isSafe && isSafe == 1)
+                datas = datas + "&safe=1";
+            else
+                datas = datas + "&safe=0";
+            inAjaxing = true;
+
+            $.getJSON(zb.vipDomain + "/user/doLogin?callback=?", datas, function(json) {
+
+                if (json.isSuc) {
+                    if(json.datas && json.datas.needJump){
+                        window.top.location.href = json.datas.jumpUrl;
+                    }else{
+                        if (localStorage[ZNAME+"fromurl"]) {
+                            window.top.location.href = localStorage[ZNAME+"fromurl"];
+                        } else {
+                            window.top.location.href = DOMAIN_TRANS + '/zbqc';
+                        }
+                    }
+                }else {
+                        inAjaxing = false;
+                    JuaBox.sure(json.des,{
+                        closeFun: function() {
+                            window.top.location.href = DOMAIN_VIP + "/user/login";
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+    <!-- Body From mainPage End -->
+    <!-- Common FootMain Begin -->
+
+
+
+
+
+
+    <include file="Base:footer"/>
+
+
+  <script>
+$(".toolbar .item-online").click(function(){
+    $("#chatBtn").trigger("click");
+})
+</script>
+
+<!-- <script type="text/javascript"> 
+seajs.use(["module_market","module_asset","module_common"],function(market,asset){
+    market.init();
+    asset.init();
+});
+</script> -->
+
+
+
+<!-- 工单 -->
+<!-- <script src="/public/home/ss/js/udesk_feedback.js"></script>
+<style type="text/css" media="screen, projection">
+    @import url(css/udesk_feedback.css);
+</style>
+<script type="text/javascript">
+      if ("undefined" !== typeof(UdeskFeedback)) {
+          UdeskFeedback.init({
+              url: "//zb.udesk.cn",
+              mode: "neither",
+              color: "#494C80",
+              title: "提交工单",
+              position: "right"
+          });
+      }
+</script>
+
+<a href="#"></a> -->
+
+    <!-- Common FootMain End -->
+</div>
+<script type="text/javascript" src="/public/home/ss/js/index.js"></script>
+<script type="text/javascript" src="/public/home/ss/js/baidupush.js"></script>
+
+
+</body>
+</html>

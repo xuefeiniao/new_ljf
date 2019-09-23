@@ -1,0 +1,150 @@
+<include file="Base:header"/>
+<style type="text/css">
+	.input-text,.select-box{width: 800px}
+</style>
+<body>
+<article class="page-container">
+	<form class="form form-horizontal" id="form-add" action="{:U('User/shop_tongguo')}" method="post" enctype="multipart/form-data">
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">状态:</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" <eq name="data.status" value="1">value="待审核"<else />value="已通过"</eq> placeholder="" id="articletitle" name="password" readonly>
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">用户名：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$data.username}" placeholder="" id="articletitle" name="username" readonly="readonly">
+			</div>
+		</div>
+
+		
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">微信号:</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$data.weixin}" placeholder="" id="articletitle" name="password" readonly>
+			</div>
+		</div>
+
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>手机：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$data.moble}" placeholder=""  name="moble" readonly>
+			</div>
+		</div>
+
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>真实姓名：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$data.truename}" placeholder=""  name="truename" readonly>
+			</div>
+		</div>
+
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>身份证：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" value="{$data.idcard}" placeholder=""  name="idcard" readonly>
+			</div>
+		</div>
+  
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">高级认证：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<div class="uploader-thum-container">
+					<?php 
+		        	$user_sen = M('User')->where(array('id' => $data['userid']))->field('idcardimg1,idcardimg2,idcardimg3,idcardauth')->find();
+					?>
+					<neq name="user_sen.idcardauth" value="0">
+                      	<neq name="user_sen.idcardimg1" value="">
+						<img id="up_img" src="/Upload/idcard/{$user_sen['idcardimg1']}" width="180">
+                          <else/>
+                           
+                          </neq>
+                      <neq name="user_sen.idcardimg2" value="">
+						<img id="up_img" src="/Upload/idcard/{$user_sen['idcardimg2']}" width="180">
+                        <else/>
+                           
+                          </neq>
+					</neq>
+				</div>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>申请说明 :</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<textarea name="web_keywords" cols="" rows="" class="textarea" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="$.Huitextarealength(this,200)" readonly>{$data['content']}</textarea>
+			</div>
+		</div>
+  		
+  		<div class="row cl" style="display:none">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>驳回原因 :</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<textarea name="bohui" id="bohui"  cols="" rows="" class="textarea" datatype="*10-100" dragonfly="true" nullmsg="！" onKeyUp="$.Huitextarealength(this,200)" ></textarea>
+			</div>
+		</div>
+		 
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+				<!-- <button onClick="article_save_submit();" class="btn btn-primary radius" type="submit"><i class="Hui-iconfont">&#xe632;</i> 保存并提交审核</button> -->
+				<!-- <button onClick="article_save();" class="btn btn-secondary radius" type="button"><i class="Hui-iconfont">&#xe632;</i> 保存草稿</button> -->
+				<button onClick="removeIframe();" class="btn btn-default radius" type="button">&nbsp;&nbsp;驳回&nbsp;&nbsp;</button> 
+				<button class="ajax-post btn btn-primary radius" id="submit" type="submit" target-form="form-horizontal"><i class="Hui-iconfont">&#xe632;</i> 通 过
+			</button>
+			<!-- <a class="btn btn-default radius" href="{$Think.server.HTTP_REFERER}">返 回</a> -->
+			<notempty name="data.id"><input type="hidden" name="id" value="{$data.id}" id="ids"/>
+			</notempty>
+			</div>
+		</div>
+	</form>
+</article>
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript">
+// alert(window.parent.location);
+// alert(window.location.href);
+	//提交表单
+	$(function() {
+        $("#form-add").ajaxForm(function(data){
+        	if (data.status==1) {
+        	layer.alert(data.info);
+        }else
+            layer.alert(data.info);
+        },'json');
+         
+    });
+</script>
+
+<script>
+function removeIframe()
+{
+	var id = $('#ids').val();
+  	var bohui = $('#bohui').val();
+	$.ajax({
+		url:"{:U('User/shop_remove')}",
+		data:{id:id,bohui:bohui},
+		dataType:'json',
+		type:'post',
+		success:function(data){
+			if(data.status == 1)
+			{
+				layer.alert(data.info);
+			}else{
+				layer.alert(data.info);
+			}
+		}
+	})
+}
+
+</script>
+ 
+<!--/请在上方写此页面业务相关的脚本-->
+ 
+
+
+</body>
+</html>

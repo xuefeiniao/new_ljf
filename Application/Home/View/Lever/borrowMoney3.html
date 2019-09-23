@@ -1,0 +1,2099 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta data-n-head="true" charset="utf-8"/>
+    <meta data-n-head="true" name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta data-n-head="true" data-hid="description" name="description" content="Nuxt.js project"/>
+    <meta data-n-head="true" name="format-detection" content="telephone=no,email=no,address=no"/>
+    <meta name="keywords" content="{$web_keywords}" />
+    <eq name="Think.session.lang" value="1">
+									<notempty name="coninfo['web_name']" value=" ">
+								
+										<title>{$coninfo['web_name']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="2">
+									<notempty name="coninfo['web_name_e']" value=" ">
+										<title>{$coninfo['web_name_e']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="3">
+									<notempty name="coninfo['web_name_en']" value=" ">
+										<title>{$coninfo['web_name_en']}</title>
+									</notempty>
+								</eq>
+    <link data-n-head="true" rel="icon" type="image/x-icon" href="__PUBLIC__/favicon.ico"/>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/base.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/common.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/newcss/borrowMoney.css" media="all"/>
+    <script data-n-head="true" src="__PUBLIC__/Home/js/newjs/jquery-3.3.1.min.js"></script>
+    <style type="text/css">
+        .ws-tab-act {
+            color: rgb(126, 158, 253);
+            border-bottom: 2px solid rgb(126, 158, 253);
+            border-bottom: 2px solid rgb(126, 158, 253);
+        }
+
+        .ws-tabp-none {
+            display: none;
+        }
+
+        .loan-trade {
+            width: 100%;
+            background-color: #141625;
+            height: 345px;
+            -webkit-box-flex: 1;
+            -ms-flex: 1;
+            flex: 1
+        }
+
+        .loan-trade .title {
+            width: 100%;
+            height: 40px;
+            padding-left: 16px;
+            line-height: 40px;
+            font-size: 14px;
+            color: #cbd7f0;
+            background: #1b1d2f
+        }
+
+        .loan-trade .main {
+            margin: 40px 50px 0
+        }
+
+        .loan-trade .main .details p {
+            margin-right: 10px;
+            color: #666b93;
+            font-size: 14px;
+            white-space: nowrap
+        }
+
+        .loan-trade .main .details .tips {
+            margin-right: 10px
+        }
+
+        .loan-trade .main .details .tips p {
+            margin: 0
+        }
+
+        .loan-trade .main .details div {
+            color: #cbd7f0;
+            font-size: 14px;
+            font-family: PingFangSC-Light
+        }
+
+        .loan-trade .main .borrow {
+            margin-top: 33px
+        }
+
+        .loan-trade .main .borrow p {
+            margin-right: 13px;
+            color: #cbd7f0;
+            font-size: 12px
+        }
+
+        .loan-trade .main .borrow div {
+            height: 40px;
+            border: 1px solid #2b2c58;
+            position: relative;
+            -webkit-box-flex: 1;
+            -moz-flex-grow: 1;
+            -ms-flex-positive: 1;
+            flex-grow: 1
+        }
+
+        .loan-trade .main .borrow div span {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 38px;
+            line-height: 38px;
+            background-color: #2b2c58;
+            color: #666b93;
+            font-size: 12px;
+            text-align: center
+        }
+
+        .loan-trade .main .borrow div input {
+            height: 100%;
+            width: 100%;
+            padding: 0 10px 0 50px;
+            background-color: #1c1c36;
+            font-size: 20px;
+            text-align: right;
+            color: #cbd7f0
+        }
+
+        .loan-trade .main .slider {
+            margin-top: 30px
+        }
+
+        .loan-trade .main .slider.error {
+            margin-top: 20px
+        }
+
+        .loan-trade .main .error {
+            margin-top: 6px;
+            line-height: 1;
+            text-align: right;
+            font-size: 12px;
+            color: #d64172
+        }
+
+        .loan-trade .main button {
+            margin-top: 30px;
+            height: 40px;
+            width: 100%;
+            background-color: #37375f;
+            border: none;
+            border-radius: 3px;
+            font-size: 16px;
+            color: #cbd7f0;
+            cursor: pointer
+        }
+
+        .loan-trade .main button:hover {
+            background-color: #464674
+        }
+
+        .loan-trade .main button:active {
+            background-color: #2b2c58
+        }
+        /*当前借款*/
+        .my-current-loan {
+            background: #141625;
+            overflow-y: hidden;
+            transition: height .15s ease-in-out;
+            -moz-transition: height ease-in-out .15s;
+            -webkit-transition: height .15s ease-in-out;
+            -o-transition: height ease-in-out .15s
+        }
+
+        .my-current-loan .title {
+            height: 40px;
+            padding-left: 16px;
+            padding-right: 16px;
+            background-color: #1b1d2f
+        }
+
+        .my-current-loan .title .arrow {
+            width: 30px;
+            height: 30px;
+            cursor: pointer
+        }
+
+        .my-current-loan .title .arrow a {
+            display: block;
+            width: 10px;
+            height: 6px;
+            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAAb0lEQVQImW3LMQrCUBAE0PcljXgiqxQBPYadjWDpAbyARZqUKmkMqRLQ4Ak8ls1GgmSqZeZt2h/KGne8zWeD3QIdWuQzKI+ty9BgGQ9bfAKt0eOIRxblLfALBRKeOOEKI4Qq8BDwHJ1/CBesJvcvX4PfEtz7lrELAAAAAElFTkSuQmCC);
+            -webkit-transition: -webkit-transform .15s ease-in-out;
+            transition: -webkit-transform .15s ease-in-out;
+            transition: transform .15s ease-in-out;
+            transition: transform .15s ease-in-out, -webkit-transform .15s ease-in-out;
+            -moz-transition: transform ease-in-out .15s;
+            -webkit-transition: transform .15s ease-in-out;
+            -o-transition: transform ease-in-out .15s
+        }
+
+        .my-current-loan .title .arrow a.rotate {
+            transform: rotate(-90deg);
+            -ms-transform: rotate(-90deg);
+            -moz-transform: rotate(-90deg);
+            -webkit-transform: rotate(-90deg);
+            -o-transform: rotate(-90deg)
+        }
+
+        .my-current-loan .title h3 {
+            height: 40px;
+            line-height: 36px;
+            padding-top: 2px;
+            font-size: 14px;
+            color: #cbd7f0;
+            cursor: pointer
+        }
+
+        .my-current-loan .title h3:hover {
+            color: #7e9efd
+        }
+
+        .my-current-loan .title h3:first-child {
+            color: #7e9efd;
+            border-bottom: 2px solid #7e9efd
+        }
+
+        .my-current-loan .title a {
+            font-size: 12px;
+            color: #7e9efd
+        }
+
+        .my-current-loan .title a:hover {
+            color: #cbd7f0
+        }
+
+        .my-current-loan .title .blank {
+            -webkit-box-flex: 1;
+            -moz-flex-grow: 1;
+            -ms-flex-positive: 1;
+            flex-grow: 1
+        }
+
+        .my-current-loan .wrapper {
+            min-height: 120px;
+            max-height: 540px
+        }
+
+        .my-current-loan .wrapper .repay-single {
+            color: #7e9efd;
+            cursor: pointer
+        }
+
+        .my-current-loan .wrapper .repay-single:hover {
+            color: #cbd7f0
+        }
+
+        .my-current-loan .button {
+            width: 100%;
+            height: 34px;
+            padding-right: 20px;
+            text-align: right;
+            margin-top: 6px
+        }
+
+        .my-current-loan .button a {
+            display: inline-block;
+            min-width: 65px;
+            height: 26px;
+            line-height: 26px;
+            padding: 0 5px;
+            border-radius: 3px;
+            border: 1px solid #2b2c58;
+            text-align: center;
+            color: #cbd7f0;
+            font-size: 12px;
+            background-color: #313151
+        }
+
+        .my-current-loan .button a:hover {
+            color: #7e9efd
+        }
+
+        .my-current-loan table {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+
+        .my-current-loan table thead {
+            width: 500px
+        }
+
+        .my-current-loan table thead tr {
+            height: 30px;
+            border-bottom: 1px solid #212340
+        }
+
+        .my-current-loan table thead tr th {
+            font-size: 12px;
+            font-weight: 400;
+            color: #666b93;
+            text-align: right;
+            min-width: 90px;
+            width:12.5%;
+        }
+
+        .my-current-loan table thead tr th:first-child {
+            padding-left: 16px;
+            text-align: left
+        }
+
+        .my-current-loan table thead tr th:last-child {
+            padding-right: 20px
+        }
+
+        .my-current-loan table thead tr th .type1, .my-current-loan table thead tr th .type2 {
+            color: #666b93
+        }
+
+        .my-current-loan table tbody tr {
+            height: 30px;
+            border-bottom: 1px solid #212340
+        }
+
+        .my-current-loan table tbody tr td {
+            padding: 0;
+            color: #cbd7f0;
+            font-size: 12px;
+            text-align: right;
+            min-width: 90px;
+            width:12.5%;
+        }
+
+        .my-current-loan table tbody tr td:first-child {
+            padding-left: 16px;
+            text-align: left
+        }
+
+        .my-current-loan table tbody tr td:first-child span:last-child {
+            color: #666b93
+        }
+
+        .my-current-loan table tbody tr td:last-child {
+            padding-right: 16px
+        }
+
+        .my-current-loan table tbody tr td span {
+            color: #cbd7f0
+        }
+
+        .my-current-loan table tbody tr td span.buy {
+            color: #3ac79f
+        }
+
+        .my-current-loan table tbody tr td span.sell {
+            color: #d64172
+        }
+
+        .my-current-loan table tbody tr td span span {
+            color: #cbd7f0;
+            cursor: pointer
+        }
+
+        .my-current-loan table .paddingRight {
+            padding-right: 20px
+        }
+
+        .my-current-loan .no-list {
+            width: 100%
+        }
+
+        .my-current-loan .no-list p {
+            height: 120px;
+            line-height: 120px;
+            font-size: 14px;
+            color: #666b93;
+            text-align: center
+        }
+
+        .my-current-loan .message {
+            margin: 70px 0 40px;
+            width: 500px;
+            font-size: 16px;
+            color: #597ab9;
+            text-align: center
+        }
+        /*历史记录*/
+
+        .my-history-loan {
+            background: #141625;
+            overflow-y: hidden;
+            transition: height .15s ease-in-out;
+            -moz-transition: height ease-in-out .15s;
+            -webkit-transition: height .15s ease-in-out;
+            -o-transition: height ease-in-out .15s
+        }
+
+        .my-history-loan .title {
+            height: 40px;
+            padding-left: 16px;
+            padding-right: 16px;
+            background-color: #1b1d2f
+        }
+
+        .my-history-loan .title .arrow {
+            width: 30px;
+            height: 30px;
+            cursor: pointer
+        }
+
+        .my-history-loan .title .arrow a {
+            display: block;
+            width: 10px;
+            height: 6px;
+            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAGCAYAAAD68A/GAAAAb0lEQVQImW3LMQrCUBAE0PcljXgiqxQBPYadjWDpAbyARZqUKmkMqRLQ4Ak8ls1GgmSqZeZt2h/KGne8zWeD3QIdWuQzKI+ty9BgGQ9bfAKt0eOIRxblLfALBRKeOOEKI4Qq8BDwHJ1/CBesJvcvX4PfEtz7lrELAAAAAElFTkSuQmCC);
+            -webkit-transition: -webkit-transform .15s ease-in-out;
+            transition: -webkit-transform .15s ease-in-out;
+            transition: transform .15s ease-in-out;
+            transition: transform .15s ease-in-out, -webkit-transform .15s ease-in-out;
+            -moz-transition: transform ease-in-out .15s;
+            -webkit-transition: transform .15s ease-in-out;
+            -o-transition: transform ease-in-out .15s
+        }
+
+        .my-history-loan .title .arrow a.rotate {
+            transform: rotate(-90deg);
+            -ms-transform: rotate(-90deg);
+            -moz-transform: rotate(-90deg);
+            -webkit-transform: rotate(-90deg);
+            -o-transform: rotate(-90deg)
+        }
+
+        .my-history-loan .title h3 {
+            height: 40px;
+            line-height: 36px;
+            padding-top: 2px;
+            font-size: 14px;
+            color: #cbd7f0;
+            cursor: pointer
+        }
+
+        .my-history-loan .title h3:hover {
+            color: #7e9efd
+        }
+
+        .my-history-loan .title h3:last-child {
+            color: #7e9efd;
+            border-bottom: 2px solid #7e9efd
+        }
+
+        .my-history-loan .title a {
+            font-size: 12px;
+            color: #7e9efd
+        }
+
+        .my-history-loan .title a:hover {
+            color: #cbd7f0
+        }
+
+        .my-history-loan .title .blank {
+            -webkit-box-flex: 1;
+            -moz-flex-grow: 1;
+            -ms-flex-positive: 1;
+            flex-grow: 1
+        }
+
+        .my-history-loan .bg {
+            position: absolute;
+            right: 0;
+            top: 80px;
+            width: 20px;
+            height: 120px;
+            background-color: #141625;
+            z-index: 199
+        }
+
+        .my-history-loan .wrapper {
+            min-height: 120px;
+            max-height: 540px
+        }
+
+        .my-history-loan .button {
+            margin-top: 6px;
+            width: 100%;
+            height: 34px;
+            padding-right: 20px;
+            text-align: right
+        }
+
+        .my-history-loan .button a {
+            display: inline-block;
+            min-width: 65px;
+            height: 26px;
+            line-height: 26px;
+            padding: 0 5px;
+            border-radius: 3px;
+            border: 1px solid #2b2c58;
+            text-align: center;
+            color: #cbd7f0;
+            font-size: 12px;
+            background-color: #313151
+        }
+
+        .my-history-loan .button a:hover {
+            color: #7e9efd
+        }
+
+        .my-history-loan table {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0
+        }
+
+        .my-history-loan table thead {
+            width: 500px
+        }
+
+        .my-history-loan table thead tr {
+            height: 30px;
+            border-bottom: 1px solid #212340
+        }
+
+        .my-history-loan table thead tr th {
+            min-width: 90px;
+            font-size: 12px;
+            font-weight: 400;
+            color: #666b93;
+            text-align: right;
+            width:17%;
+        }
+
+        .my-history-loan table thead tr th:first-child {
+            padding-left: 16px;
+            text-align: left
+        }
+
+        .my-history-loan table thead tr th:last-child {
+            padding-right: 20px
+        }
+
+        .my-history-loan table thead tr th .type1, .my-history-loan table thead tr th .type2 {
+            color: #666b93
+        }
+
+        .my-history-loan table tbody tr {
+            height: 30px;
+            border-bottom: 1px solid #212340
+        }
+
+        .my-history-loan table tbody tr td {
+            padding: 0;
+            color: #cbd7f0;
+            font-size: 12px;
+            text-align: right;
+            min-width:90px;
+            width:17%;
+        }
+
+        .my-history-loan table tbody tr td:first-child {
+            padding-left: 16px;
+            text-align: left
+        }
+
+        .my-history-loan table tbody tr td:first-child span:last-child {
+            color: #666b93
+        }
+
+        .my-history-loan table tbody tr td:last-child {
+            padding-right: 16px
+        }
+
+        .my-history-loan table tbody tr td span {
+            color: #cbd7f0
+        }
+
+        .my-history-loan table tbody tr td span.buy {
+            color: #3ac79f
+        }
+
+        .my-history-loan table tbody tr td span.sell {
+            color: #d64172
+        }
+
+        .my-history-loan table .paddingRight {
+            padding-right: 20px
+        }
+
+        .my-history-loan .no-list {
+            width: 100%
+        }
+
+        .my-history-loan .no-list p {
+            height: 120px;
+            line-height: 120px;
+            font-size: 14px;
+            color: #666b93;
+            text-align: center
+        }
+
+        .my-history-loan .message {
+            margin: 70px 0 40px;
+            width: 500px;
+            font-size: 16px;
+            color: #597ab9;
+            text-align: center
+        }
+
+        h3.active{
+            color: #0976d9!important;
+            border-bottom: 2px solid #0976d9;
+        }
+
+        .account .title{
+            width: 100%;
+            height: 40px;
+            padding-left: 16px;
+            line-height: 40px;
+            font-size: 14px;
+            color: #cbd7f0;
+            background: #1b1d2f;
+        }
+
+        /*爆仓所占百分比*/
+        .account-details .grade {
+            margin: 0 4px;
+            width: 170px;
+            height: 30px;
+            border: 1px solid #212340;
+            background-color: #1b1d2f!important;
+        }
+        .account-details .grade div {
+            height: 100%;
+            background-color: #313151;
+        }
+        .account-details span.level1 {
+            color: #32b28f;
+        }
+        /*弹窗*/
+        .popup {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, .5);
+            z-index: 1000;
+        }
+
+        .popup .popup-box {
+            width: 500px;
+            background-color: #262a43;
+            border-radius: 3px
+        }
+
+        .popup .popup-box .header {
+            padding: 0 18px;
+            background: #303551;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px
+        }
+
+        .popup .popup-box .header h3 {
+            line-height: 50px;
+            font-size: 16px;
+            color: #cbd7f0
+        }
+
+        .popup .popup-box .header a {
+            display: block;
+            width: 8px;
+            height: 8px;
+            background: url(/Public/Home/image/common/icon-popupclose.0bfe1d7.png) no-repeat
+        }
+
+        .popup.hui .popup-box .header {
+            background: #e9e9e9
+        }
+
+        .popup.hui .popup-box .header h3 {
+            color: #333
+        }
+
+        .popup.hui .popup-box .header a {
+            background: url(/Public/Home/image/common/icon-popupclose.0bfe1d7.png) no-repeat;
+            background-size: 100%
+        }
+        .repayment{
+            width: 500px;
+            padding: 40px 0 10px 72px;
+            background-color: #262a43;
+        }
+        .repayment .item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        .repayment p {
+            color: #cbd7f0;
+            line-height: 1;
+        }
+        .repayment p.label {
+            margin-right: 12px;
+            color: #666b93;
+            font-size: 12px;
+        }
+
+        .repayment .item input{
+            width: 100%;
+            height: 100%;
+            padding-left: 10px;
+            background-color: #1c1c36;
+            border: 1px solid #2b2c58;
+            border-radius: 4px;
+            color: #cbd7f0;
+            font-size: 14px;
+        }
+        .repayment input[type=submit] {
+            width: 150px;
+            height: 40px;
+            padding: 0;
+            border: 1px solid #7e9efd;
+            background-color: #262a43;
+            cursor: pointer;
+        }
+        .repayment .item .inner{
+            margin-right: 27px;
+        }
+        .repayment input[type=submit]:hover {
+            background-color: #7e9efd;
+        }
+    /*转入弹出框*/
+        .transfer-accounts {
+            margin: 0 40px 0 100px;
+            padding: 20px 0 50px
+        }
+
+        .transfer-accounts .item {
+            position: relative;
+            margin-top: 20px;
+            width: 360px;
+            height: 40px
+        }
+
+        .transfer-accounts .item .label {
+            position: absolute;
+            left: -10px;
+            top: center;
+            transform: translate(-100%);
+            -ms-transform: translate(-100%);
+            -moz-transform: translate(-100%);
+            -webkit-transform: translate(-100%);
+            -o-transform: translate(-100%);
+            color: #666b93;
+            font-size: 14px
+        }
+
+        .transfer-accounts .item input {
+            width: 100%;
+            height: 100%;
+            padding-left: 10px;
+            background-color: #1c1c36;
+            border: 1px solid #2b2c58;
+            border-radius: 4px;
+            color: #cbd7f0;
+            font-size: 14px
+        }
+
+        .transfer-accounts .item input::-webkit-input-placeholder {
+            color: #666b93
+        }
+
+        .transfer-accounts .item input:-moz-placeholder, .transfer-accounts .item input::-moz-placeholder {
+            color: #666b93
+        }
+
+        .transfer-accounts .item input:-ms-input-placeholder {
+            color: #666b93
+        }
+
+        .transfer-accounts .item .transfer-all {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #7e9efd;
+            font-size: 14px;
+            cursor: pointer
+        }
+
+        .transfer-accounts .tip1 {
+            margin-top: 7px;
+            color: #666b93;
+            font-size: 12px
+        }
+
+        .transfer-accounts .error {
+            margin: 7px 0 10px;
+            font-size: 12px;
+            color: #d64172
+        }
+
+        .transfer-accounts input[type=submit] {
+            margin-top: 26px;
+            width: 100%;
+            height: 40px;
+            background-color: #7e9efd;
+            border-radius: 3px;
+            color: #cbd7f0;
+            font-size: 16px;
+            cursor: pointer
+        }
+
+        .transfer-accounts input[type=submit]:hover {
+            background-color: #7093fa
+        }
+
+        .transfer-accounts .tip2 {
+            margin-top: 12px;
+            color: #666b93;
+            font-size: 12px
+        }
+        .loan-select .box{
+            width: 100%;
+            height: 40px;
+            border: 1px solid #2b2c58;
+            border-radius: 4px;
+            padding: 0 10px;
+            background-color: #1c1c36;
+            cursor: pointer;
+            color: #cbd7f0;
+        }
+        .loan-select .box p[data-v-863c9216] {
+            line-height: 40px;
+            font-size: 14px;
+            color: #cbd7f0;
+        }
+        .loan-select .box span {
+            display: block;
+            width: 8px;
+            height: 5px;
+            background: url(/Public/Home/image/accountMsg/icon-tkxl.9d30e44.png);
+            -webkit-transition: -webkit-transform .3s ease-in-out;
+            transition: -webkit-transform .3s ease-in-out;
+            transition: transform .3s ease-in-out;
+            transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out;
+            -moz-transition: transform ease-in-out .3s;
+            -web-transition: transform ease-in-out .3s;
+        }
+        .loan-select .box span.active{
+            transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+            -moz-transform: rotate(180deg);
+            -o-transform: rotate(180deg);
+            -webkit-transform: rotate(180deg);
+        }
+        .loan-select .box p {
+            line-height: 40px;
+            font-size: 14px;
+            color: #cbd7f0;
+        }
+        .loan-select ul {
+            border: 1px solid #2b2c58;
+            border-radius: 4px;
+            background-color: #1c1c36;
+        }
+        .transfer-option {
+            width: 100%;
+            height: 40px;
+            padding: 0 10px;
+            line-height: 40px;
+            border-bottom: 1px solid #2b2c58;
+            font-size: 14px;
+            color: #cbd7f0;
+            cursor: pointer;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .loan-select .options {
+            margin-top: 4px;
+            position: absolute;
+            width: 100%;
+            z-index: 99;
+        }
+        .red,.red span{
+            color:#d64172!important;
+        }
+        .green,.green span{
+            color:#3ac79f!important;
+        }
+        /*滚动条*/
+        .zUIpanelScrollBox,.zUIpanelScrollBar{
+            width:6px;
+            top:4px;
+            right:2px;
+            border-radius:5px;
+
+        }
+        .zUIpanelScrollBox{
+            background:rgb(29, 31, 53);
+            opacity:0.9;
+            filter:alpha(opacity=10);
+            display: block!important;
+        }
+        .zUIpanelScrollBar{
+            background:rgb(59, 59, 99);opacity:0.8;
+            filter:alpha(opacity=80);
+            display: block!important;
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="__nuxt">
+    <div class="nuxt-progress" style="width: 0%; height: 2px; background-color: rgb(59, 128, 112); opacity: 0;"></div>
+    <div id="__layout">
+        <div class="layout-blank">
+            <!--头部内容-->
+            <include file="Public:header3"/>
+            <!--头部内容   end-->
+            <div class="trade flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                <div class="left">
+                    <div class="product-list">
+                        <div class="title flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                            <h3>{$GLOBALS['borrowMoney3']}</h3>
+
+                        </div>
+                        <div class="flex-box flex-direction-row flex-justify-between flex-align-item-start flex-wrap-nowrap">
+                            <div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap nav cn">
+                                <a class="active">JEFF</a>
+                            </div>
+
+                        </div>
+                        <div class="container">
+                            <div class="list-title item-border flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap"
+                                 style="padding-left: 16px;">
+                                <h4 class="col-1">{$GLOBALS['coin-name']}</h4>
+                                <h4 class="col-2">{$GLOBALS['new-price']}</h4>
+                                <h4 class="col-3">{$GLOBALS['change-price']}</h4>
+
+                            </div>
+                            <div class="easy-scrollbar chromeScrollShow" style="max-height: 300px;">
+                                <div style="margin-right: -17px;" class="easy-scrollbar__wrap">
+                                    <div style="position: relative;" class="el-scrollbar__view">
+                                        <div class="wrapper" style="max-height: 300px;">
+                                            <!--<div class="area">-->
+                                                <!--<span></span>主区-->
+                                            <!--</div>-->
+                                            <volist name="jeff" id="vo">
+                                            <a href="/Lever/borrowMoney3/market/{$vo['xnb']}">
+                                            <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap item-border"
+                                                 style="padding: 0px 16px;">
+                                                <p class="col-1">{$vo['xnb']|strtoupper}</p>
+                                                <p class="col-2">{$vo['new_price']}</p>
+                                                <p class="col-3 buy">{$vo['change']}%</p>
+                                                <!-- <p><a class="col-4"></a></p> -->
+                                            </div>
+                                            </a>
+                                            </volist>
+                                            <!---->
+                                            <!---->
+                                        </div>
+                                        <div class="resize-triggers">
+                                            <div class="expand-trigger">
+                                                <div style="width: 361px; height: 186px;"></div>
+                                            </div>
+                                            <div class="contract-trigger"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="esay-scrollbar__bar is-vertical"
+                                     style="background-color: rgb(29, 31, 53); z-index: 200; width: 6px; right: 0px; display: none;">
+                                    <div class="easy-scrollbar__thumb"
+                                         style="transform: translateY(0%); background-color: rgb(59, 59, 99); width: 6px; opacity: 0.3;"></div>
+                                </div>
+                            </div>
+                            <!---->
+                        </div>
+                    </div>
+
+                    <div class="notice-list margin">
+                        <h3>{$GLOBALS['article']}</h3>
+                        <div class="list">
+                        <volist name="notice" id="vo">
+						<eq name="Think.session.lang" value="1">
+							<notempty name="vo['title']" value=" ">
+								<a class="item" target="_top" href="/Article/detail/id/{$vo['id']}">
+									<h4>{$vo['title']}</h4>
+									<p>{$vo['addtime']|addtime}</p>
+								</a>
+							</notempty>
+						</eq>
+						<eq name="Think.session.lang" value="2">
+							<notempty name="vo['title_e']" value=" ">
+								<a class="item" target="_top" href="/Article/detail/id/{$vo['id']}">
+									<h4>{$vo['title_e']}</h4>
+									<p>{$vo['addtime']|addtime}</p>
+								</a>
+							</notempty>
+						</eq>
+						<eq name="Think.session.lang" value="3">
+							<notempty name="vo['title_en']" value=" ">
+								<a class="item" target="_top" href="/Article/detail/id/{$vo['id']}">
+									<h4>{$vo['title_en']}</h4>
+									<p>{$vo['addtime']|addtime}</p>
+								</a>
+							</notempty>
+						</eq>
+                        </volist>
+                            <!-- <a class="item" target="_top"
+                               href="adDetail.html">
+                                <h4>第九周回购信息披露</h4>
+                                <p>2018-08-20 18:32:51</p></a>
+                            <a class="item" target="_top"
+                               href="adDetail.html">
+                                <h4>关于法币OTC维护升级的公告</h4>
+                                <p>2018-08-17 15:25:28</p></a>
+                            <a class="item" target="_top"
+                               href="adDetail.html">
+                                <h4>关于提前恢复永续合约交易手续费的公告 &nbsp;</h4>
+                                <p>2018-08-15 14:11:02</p></a> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="account margin show">
+                        <h3 class="title">{$Think.get.market|strtoupper}/JEFF </h3>
+                        <div class="account-details flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                            <div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-wrap">
+                                <p>{$GLOBALS['usable']} {$Think.get.market|strtoupper}</p>
+                                <div class="flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap">
+                                    <div>
+                                        <gt name="ky_coin.yue" value="0">
+                                            {$ky_coin.yue}
+                                        <else/>
+                                            --
+                                        </gt>
+                                    </div>
+                                    <a class="turnInto turnIn-one">{$GLOBALS['turnIn']}</a>
+                                </div>
+                            </div>
+                            <div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-wrap">
+                                <p>{$GLOBALS['usable']} JEFF</p>
+                                <div class="flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap">
+                                    <div>
+                                        <gt name="ky_coin.p_yue" value="0">
+                                            {$ky_coin.p_yue}
+                                        <else/>
+                                            --
+                                        </gt>
+                                    </div>
+                                    <a class="turnInto turnIn-two">{$GLOBALS['turnIn']}</a>
+                                </div>
+                            </div>
+                            <div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-wrap">
+                                <p style="white-space: nowrap;">{$GLOBALS['Blowing-up-price']} (JEFF)</p>
+                                <div>
+                                    --
+                                </div>
+                            </div>
+                            <div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-wrap">
+                                <div class="risk flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <p>{$GLOBALS['hazard-rate']}</p>
+                                    <div class="st-tip">
+                                        <div style="width: 220px; transform: translate(-80%);">
+                                            {$GLOBALS['hazard-rate']} = （{$GLOBALS['total-finance']}-{$GLOBALS['total-interest']}）／{$GLOBALS['total-lend']}
+                                            <span style="left: 80%;"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap">
+                                    <span class="level1"></span>
+                                    <div class="limit"></div>
+                                    <div class="grade">
+                                        <div style=""></div>
+                                    </div>
+                                    <div class="currentNum"></div>
+                                </div>
+                            </div>
+                            <!---->
+                            <!---->
+                        </div>
+                        <!--转入弹出框-->
+                        <div   class="popup popup1 flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap" style="display: none;">
+                            <div   class="popup-box">
+                                <div   class="header flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                    <h3  >{$Think.get.market|strtoupper} {$GLOBALS['turnIn']}</h3>
+                                    <a  ></a>
+                                </div>
+                                <form  class="transfer-accounts" >
+                                    <div  class="item flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                        <p  class="label">{$GLOBALS['from']}</p>
+                                        <div   tabindex="0" class="loan-select"  style="width: 360px;">
+                                            <div   class="box flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap" style="cursor: pointer;">
+                                                <p  class="inAccount">{$GLOBALS['bb-account']}</p>
+                                                <!--<span   class=""></span>-->
+                                            </div>
+                                            <!--<div  class="options easy-scrollbar chromeScrollShow" style="max-height: 180px;">-->
+                                                <!--<div class="easy-scrollbar__wrap" style="margin-right: -17px;">-->
+                                                    <!--<div class="el-scrollbar__view" style="position: relative;">-->
+                                                        <!--<div  class="wrapper" style="max-height: 180px;">-->
+                                                            <!--<ul  style="display: none;">-->
+                                                                <!--&lt;!&ndash; <li  class="transfer-option">币币账户</li> &ndash;&gt;-->
+                                                                <!--&lt;!&ndash; <li  class="transfer-option">充值提现账户</li>-->
+                                                                <!--<li  class="transfer-option">OTC账户</li>-->
+                                                                <!--<li  class="transfer-option">永续合约账户</li>-->
+                                                                <!--<li  class="transfer-option">杠杆交易账户</li>-->
+                                                                <!--<li  class="transfer-option">抵押贷款账户</li> &ndash;&gt;-->
+                                                            <!--</ul>-->
+                                                        <!--</div>-->
+                                                        <!--<div class="resize-triggers">-->
+                                                            <!--<div class="expand-trigger">-->
+                                                                <!--<div style="width: 361px; height: 1px;"></div>-->
+                                                            <!--</div>-->
+                                                            <!--<div class="contract-trigger"></div>-->
+                                                        <!--</div>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                                <!--<div class="esay-scrollbar__bar is-vertical" style="background-color: rgb(29, 31, 53); z-index: 200; width: 6px; right: 0px; display: none;">-->
+                                                    <!--<div class="easy-scrollbar__thumb" style="transform: translateY(0%); background-color: rgb(59, 59, 99); width: 6px; opacity: 0.3;"></div>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        </div>
+                                        <!---->
+                                        <div  tabindex="0" class="loan-select loan-select2" style="width: 360px; margin-left: 12px;display: none;">
+                                            <div  class="box flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap" style="cursor: pointer;">
+                                                <!-- <p >ETH/UCC</p> -->
+                                                <span  class="">{$Think.get.market|strtoupper}</span>
+                                            </div>
+                                            <!--<div  class="options easy-scrollbar chromeScrollShow" style="max-height: 180px;">-->
+                                                <!--<div class="easy-scrollbar__wrap" style="margin-right: -17px;">-->
+                                                    <!--<div class="el-scrollbar__view" style="position: relative;">-->
+                                                        <!--<div  class="wrapper" style="max-height: 180px;">-->
+                                                            <!--&lt;!&ndash; <ul  style="display: none;">-->
+                                                                <!--<li class="transfer-option">BTC/UCC</li>-->
+                                                                <!--<li class="transfer-option">LTC/UCC</li>-->
+                                                                <!--<li class="transfer-option">ETH/UCC</li>-->
+                                                                <!--<li class="transfer-option">BCH/UCC</li>-->
+                                                                <!--<li class="transfer-option">EOS/UCC</li>-->
+                                                            <!--</ul> &ndash;&gt;-->
+                                                        <!--</div>-->
+                                                        <!--<div class="resize-triggers">-->
+                                                            <!--<div class="expand-trigger">-->
+                                                                <!--<div style="width: 175px; height: 1px;"></div>-->
+                                                            <!--</div>-->
+                                                            <!--<div class="contract-trigger"></div>-->
+                                                        <!--</div>-->
+                                                    <!--</div>-->
+                                                <!--</div>-->
+                                                <!--<div class="esay-scrollbar__bar is-vertical" style="background-color: rgb(29, 31, 53); z-index: 200; width: 6px; right: 0px; display: none;">-->
+                                                    <!--<div class="easy-scrollbar__thumb" style="transform: translateY(0%); background-color: rgb(59, 59, 99); width: 6px; opacity: 0.3;"></div>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        </div>
+                                    </div>
+                                    <!---->
+                                    <p  class="error error11" style="display: none;">{$GLOBALS['no-same']}</p>
+                                    <div  class="item flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                        <p  class="label">{$GLOBALS['to']}</p>
+                                        <div   tabindex="0" class="loan-select"  style="width: 360px;">
+                                            <div   class="box flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap" style="cursor: initial;">
+                                                <p  class="outAccount">{$GLOBALS['gg-account']}</p>
+                                                <!---->
+                                            </div>
+                                            <div  class="options easy-scrollbar chromeScrollShow" style="max-height: 180px;display: none;">
+                                                <div class="easy-scrollbar__wrap" style="margin-right: -17px;">
+                                                    <div class="el-scrollbar__view" style="position: relative;">
+                                                        <div  class="wrapper" style="max-height: 180px;">
+                                                            <!-- <ul  style="display: none;">
+                                                                <li  class="transfer-option">币币账户</li>
+                                                                <li  class="transfer-option">充值提现账户</li>
+                                                                <li  class="transfer-option">OTC账户</li>
+                                                                <li  class="transfer-option">永续合约账户</li>
+                                                                <li  class="transfer-option">杠杆交易账户</li>
+                                                                <li  class="transfer-option">抵押贷款账户</li>
+                                                            </ul> -->
+                                                        </div>
+                                                        <div class="resize-triggers">
+                                                            <div class="expand-trigger">
+                                                                <div style="width: 175px; height: 1px;"></div>
+                                                            </div>
+                                                            <div class="contract-trigger"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="esay-scrollbar__bar is-vertical" style="background-color: rgb(29, 31, 53); z-index: 200; width: 6px; right: 0px; display: none;">
+                                                    <div class="easy-scrollbar__thumb" style="transform: translateY(0%); background-color: rgb(59, 59, 99); width: 6px; opacity: 0.3;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div   tabindex="0" class="loan-select"  style="width: 360px; margin-left: 12px;">
+                                            <div   class="box flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap" style="cursor: initial;">
+                                                <p  >{$Think.get.market|strtoupper}</p>
+                                                <!---->
+                                            </div>
+                                            <div  class="options easy-scrollbar chromeScrollShow" style="max-height: 180px;">
+                                                <div class="easy-scrollbar__wrap" style="margin-right: -17px;">
+                                                    <div class="el-scrollbar__view" style="position: relative;">
+                                                        <div  class="wrapper" style="max-height: 180px;">
+                                                           <!--  <ul  style="display: none;">
+                                                                <li  class="transfer-option">ETH/UCC</li>
+                                                            </ul> -->
+                                                        </div>
+                                                        <div class="resize-triggers">
+                                                            <div class="expand-trigger">
+                                                                <div style="width: 175px; height: 1px;"></div>
+                                                            </div>
+                                                            <div class="contract-trigger"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="esay-scrollbar__bar is-vertical" style="background-color: rgb(29, 31, 53); z-index: 200; width: 6px; right: 0px; display: none;">
+                                                    <div class="easy-scrollbar__thumb" style="transform: translateY(0%); background-color: rgb(59, 59, 99); width: 6px; opacity: 0.3;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!---->
+                                    <div  class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                        <p  class="label">{$GLOBALS['turn-money']}</p>
+                                        <input  type="text" placeholder="{$GLOBALS['place-turnMoney']}" id="infonum"/>
+                                        <p  class="transfer-all quanbu2">{$GLOBALS['turn-all']}</p>
+                                    </div>
+                                    <?php  $xnbs = M('User_coin')->where(array('userid'=>$_SESSION['userId']))->getField($_GET['market']);?>
+                                    <p  class="tip1">{$GLOBALS['turn-maximum']} <span class="trun_num1">{$xnbs}</span> {$Think.get.market|strtoupper}</p>
+                                    <input  type="submit" value="{$GLOBALS['transfer-accounts']}"  onclick="turn_xnb()" />
+                                    <p  class="tip2">{$GLOBALS['turn-service']}</p>
+                                    <!---->
+                                </form>
+                            </div>
+                        </div>
+                        <script>
+                            $(".quanbu2").click(function () {
+                                var num = $('.trun_num1').text();
+                                $("#infonum").val(num);
+                            });
+                        </script>
+
+
+                        <!--转入弹出框-->
+                        <div   class="popup popup11 flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap" style="display: none;">
+                            <div   class="popup-box">
+                                <div   class="header flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                    <h3  >JEFF {$GLOBALS['turnIn']}</h3>
+                                    <a  ></a>
+                                </div>
+                                <form  class="transfer-accounts" >
+                                    <div  class="item flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                        <p  class="label">{$GLOBALS['from']}</p>
+                                        <div   tabindex="0" class="loan-select"  style="width: 360px;">
+                                            <div   class="box flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap" style="cursor: pointer;">
+                                                <p  class="inAccount">{$GLOBALS['bb-account']}</p>
+                                                
+                                            </div>
+                                            <div  class="options easy-scrollbar chromeScrollShow" style="max-height: 180px;">
+                                                <div class="easy-scrollbar__wrap" style="margin-right: -17px;">
+                                                    <div class="el-scrollbar__view" style="position: relative;">
+                                                        <div  class="wrapper" style="max-height: 180px;">
+                                                            <ul  style="display: none;">
+                                                                <!-- <li  class="transfer-option">币币账户</li> -->
+                                                                <!-- <li  class="transfer-option">充值提现账户</li>
+                                                                <li  class="transfer-option">OTC账户</li>
+                                                                <li  class="transfer-option">永续合约账户</li>
+                                                                <li  class="transfer-option">杠杆交易账户</li>
+                                                                <li  class="transfer-option">抵押贷款账户</li> -->
+                                                            </ul>
+                                                        </div>
+                                                        <div class="resize-triggers">
+                                                            <div class="expand-trigger">
+                                                                <div style="width: 361px; height: 1px;"></div>
+                                                            </div>
+                                                            <div class="contract-trigger"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="esay-scrollbar__bar is-vertical" style="background-color: rgb(29, 31, 53); z-index: 200; width: 6px; right: 0px; display: none;">
+                                                    <div class="easy-scrollbar__thumb" style="transform: translateY(0%); background-color: rgb(59, 59, 99); width: 6px; opacity: 0.3;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!---->
+                                        <div  tabindex="0" class="loan-select loan-select2" style="width: 360px; margin-left: 12px;display: none;">
+                                            <div  class="box flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap" style="cursor: pointer;">
+                                                <p >JEFF</p>
+                                                <span  class=""></span>
+                                            </div>
+                                            <div  class="options easy-scrollbar chromeScrollShow" style="max-height: 180px;">
+                                                <div class="easy-scrollbar__wrap" style="margin-right: -17px;">
+                                                    <div class="el-scrollbar__view" style="position: relative;">
+                                                        <div  class="wrapper" style="max-height: 180px;">
+                                                            <!-- <ul  style="display: none;">
+                                                                <li class="transfer-option">BTC/UCC</li>
+                                                                <li class="transfer-option">LTC/UCC</li>
+                                                                <li class="transfer-option">ETH/UCC</li>
+                                                                <li class="transfer-option">BCH/UCC</li>
+                                                                <li class="transfer-option">EOS/UCC</li>
+                                                            </ul> -->
+                                                        </div>
+                                                        <div class="resize-triggers">
+                                                            <div class="expand-trigger">
+                                                                <div style="width: 175px; height: 1px;"></div>
+                                                            </div>
+                                                            <div class="contract-trigger"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="esay-scrollbar__bar is-vertical" style="background-color: rgb(29, 31, 53); z-index: 200; width: 6px; right: 0px; display: none;">
+                                                    <div class="easy-scrollbar__thumb" style="transform: translateY(0%); background-color: rgb(59, 59, 99); width: 6px; opacity: 0.3;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!---->
+                                    <p  class="error error11" style="display: none;">{$GLOBALS['no-same']}</p>
+                                    <div  class="item flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                        <p  class="label">{$GLOBALS['to']}</p>
+                                        <div   tabindex="0" class="loan-select"  style="width: 360px;">
+                                            <div   class="box flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap" style="cursor: initial;">
+                                                <p  class="outAccount">{$GLOBALS['gg-account']}</p>
+                                                <!---->
+                                            </div>
+                                            <div  class="options easy-scrollbar chromeScrollShow" style="max-height: 180px;display: none;">
+                                                <div class="easy-scrollbar__wrap" style="margin-right: -17px;">
+                                                    <div class="el-scrollbar__view" style="position: relative;">
+                                                        <div  class="wrapper" style="max-height: 180px;">
+                                                            <ul  style="display: none;">
+                                                                <li  class="transfer-option">{$GLOBALS['bb-account']}</li>
+                                                                <li  class="transfer-option">{$GLOBALS['gg-account']}</li>
+                                                            </ul>
+                                                        </div>
+                                                        <div class="resize-triggers">
+                                                            <div class="expand-trigger">
+                                                                <div style="width: 175px; height: 1px;"></div>
+                                                            </div>
+                                                            <div class="contract-trigger"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="esay-scrollbar__bar is-vertical" style="background-color: rgb(29, 31, 53); z-index: 200; width: 6px; right: 0px; display: none;">
+                                                    <div class="easy-scrollbar__thumb" style="transform: translateY(0%); background-color: rgb(59, 59, 99); width: 6px; opacity: 0.3;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div   tabindex="0" class="loan-select"  style="width: 360px; margin-left: 12px;">
+                                            <div   class="box flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap" style="cursor: initial;">
+                                                <p  >JEFF</p>
+                                                <!---->
+                                            </div>
+                                            <div  class="options easy-scrollbar chromeScrollShow" style="max-height: 180px;">
+                                                <div class="easy-scrollbar__wrap" style="margin-right: -17px;">
+                                                    <div class="el-scrollbar__view" style="position: relative;">
+                                                        <div  class="wrapper" style="max-height: 180px;">
+                                                            <ul  style="display: none;">
+                                                                <!-- <li  class="transfer-option">ETH/UCC</li> -->
+                                                            </ul>
+                                                        </div>
+                                                        <div class="resize-triggers">
+                                                            <div class="expand-trigger">
+                                                                <div style="width: 175px; height: 1px;"></div>
+                                                            </div>
+                                                            <div class="contract-trigger"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="esay-scrollbar__bar is-vertical" style="background-color: rgb(29, 31, 53); z-index: 200; width: 6px; right: 0px; display: none;">
+                                                    <div class="easy-scrollbar__thumb" style="transform: translateY(0%); background-color: rgb(59, 59, 99); width: 6px; opacity: 0.3;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!---->
+                                    <div  class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                        <p  class="label">{$GLOBALS['turn-money']}</p>
+                                        <input  type="number" placeholder="{$GLOBALS['place-turnMoney']}" id="turnnum" />
+                                        <p  class="transfer-all quanbu">{$GLOBALS['turn-all']}</p>
+                                    </div>
+                                    <?php $bz = M('User_coin')->where(array('userid'=>$_SESSION['userId']))->getField('jeff');?>
+                                    <p  class="tip1">{$GLOBALS['turn-maximum']} <span class="trun_num">{$bz}</span> JEFF</p>
+                                    <input  type="submit" value="{$GLOBALS['transfer-accounts']}" onclick="turn_jtc();" />
+                                    <p  class="tip2">{$GLOBALS['turn-service']}</p>
+                                    <!---->
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                        $(".quanbu").click(function () {
+                            var num = $('.trun_num').text();
+                            $("#turnnum").val(num);
+                        });
+                        /*点击“转入”出现弹框*/
+                        $(".turnIn-one").click(function () {
+                            $(".popup1").show();
+                        });
+                         $(".turnIn-two").click(function () {
+                            $(".popup11").show();
+                        });
+                         //虚拟币转入
+                         function turn_xnb(){
+                            var infonum = $('#infonum').val();
+                            var bz = "{$Think.get.market}";
+                             //alert(bz);return false;
+                            if(infonum == '' || infonum==null){
+                                layer.msg("{$GLOBALS['place-turnMoney']}",{icon : 2 });return false;
+                            }
+                            $.ajax({
+                                url:'/Lever/turn_xnbs',
+                                type:"POST",
+                                dataType:"json",
+                                data:{infonum:infonum,bz:bz},
+                                success:function(res){
+                                    if(res.status==1){
+                                        layer.msg(res.info,{icon : 1 });
+                                        // location.reload();
+                                        // window.location.href= res.url;
+                                    }else{
+                                        layer.msg(res.info,{icon : 2 });
+                                    }
+                                }
+                            });
+                        }
+
+                        //jtc转入
+                        function turn_jtc(){
+                            var turnnum = $('#turnnum').val();
+							var bz = "{$Think.get.market}";
+                            if(turnnum == '' || turnnum==null){
+                                layer.msg("{$GLOBALS['place-turnMoney']}",{icon : 2 });return false;
+                            }
+                            $.ajax({
+                                url:"{:U('Lever/turninto')}",
+                                type:"POST",
+                                dataType:"json",
+                                data:{turnnum:turnnum,bz:bz},
+                                success:function(res){
+                                    if(res.status==1){
+                                        layer.msg(res.info,{icon : 1 });
+                                        // location.reload();
+                                        window.location.href= res.url;
+                                    }else{
+                                        layer.msg(res.info,{icon : 2 });
+                                    }
+                                }
+                            });
+                        }
+                    </script>
+                    <div
+                            class="flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap"
+                            style="margin-top: 10px;">
+                        <div class="loan-trade">
+							<h3 class="title">{$Think.get.market|strtoupper} {$GLOBALS['lend-money']}</h3>
+                            <div class="main">
+                                <div
+                                        class="details flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                    <div
+                                            class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-wrap">
+                                        <p
+                                        >{$GLOBALS['already-lend']}</p>
+                                        <div>
+                                            <gt name="ky_coin.borrow" value="0">
+                                                {$ky_coin.borrow}
+                                            <else/>
+                                                --
+                                            </gt>
+                                        </div>
+                                    </div>
+                                    <div
+                                            class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-wrap"
+                                            style="margin: 0px 5px;">
+                                        <div
+                                                class="tips flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                            <p
+                                            >{$GLOBALS['can-lend']}</p>
+                                            <div class="st-tip">
+                                                <div style="width: 220px; transform: translate(-50%);">{$GLOBALS['can-lend']} = {$GLOBALS['Own-assets']}
+                                                    *（{$GLOBALS['lever']}-1）-{$GLOBALS['already-lend-number']}<span
+                                                            style="left: 50%;"></span></div>
+                                            </div>
+                                        </div>
+                                        <div class="canBorrow">
+                                            <gt name="ky_coin.q_lend" value="0">
+                                                {$ky_coin.q_lend}
+                                            <else/>
+                                               --
+                                            </gt>
+                                        </div>
+                                    </div>
+                                    <div
+                                            class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-wrap">
+                                        <p
+                                        >{$GLOBALS['rate']}</p>
+                                        <div>{$ky_coin['lever_lixi']}%</div>
+                                    </div>
+                                </div>
+                                <div
+                                        class="borrow flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <p
+                                    >{$GLOBALS['len-number']}</p>
+                                    <div><span>{$Think.get.market|strtoupper}</span>
+                                        <input type="number" id="borrow_num"></div>
+                                </div><!---->
+                                <div class="st-slider slider">
+                                    <div class="area area1">
+                                        <div class="percent0"></div>
+                                        <div class="percent25"></div>
+                                        <div class="percent50"></div>
+                                        <div class="percent75"></div>
+                                        <div class="end"></div>
+                                        <div class="progress" style="width: 0px;"></div>
+                                        <div class="st-slider-button" width="652" style="left: 0px;"></div>
+                                    </div>
+                                    <div
+                                            class="flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                        <p style="margin-left: -4px;">0</p>
+                                        <p>0%</p>
+                                    </div>
+                                </div>
+                                <button onclick="borrow();">{$GLOBALS['apply']} {$Think.get.market|strtoupper}</button>
+                            </div>
+                        </div>
+                        <div class="loan-trade" style="margin-left: 10px;">
+                            <h3 class="title">JEFF {$GLOBALS['lend-money']}</h3>
+                            <div class="main">
+                                <div
+                                        class="details flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                    <div
+                                            class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-wrap">
+                                        <p
+                                        >{$GLOBALS['already-lend']}</p>
+                                        <div>
+                                            <gt name="ky_coin.p_borrow" value="0">
+                                                {$ky_coin.p_borrow}
+                                            <else/>
+                                                --
+                                            </gt>
+                                        </div>
+                                    </div>
+                                    <div
+                                            class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-wrap"
+                                            style="margin: 0px 5px;">
+                                        <div
+                                                class="tips flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                            <p
+                                            >{$GLOBALS['can-lend']}</p>
+                                            <div class="st-tip">
+                                                <div style="width: 220px; transform: translate(-50%);">{$GLOBALS['can-lend']} = {$GLOBALS['Own-assets']}
+                                                    *（{$GLOBALS['lever']}-1）-{$GLOBALS['already-lend-number']}<span
+                                                            style="left: 50%;"></span></div>
+                                            </div>
+                                        </div>
+                                        <div id="borTotal">
+                                            <gt name="ky_coin.r_lend" value="0">
+                                                {$ky_coin.r_lend}
+                                            <else/>
+                                                --
+                                            </gt>
+                                        </div>
+                                    </div>
+                                    <div
+                                            class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-wrap">
+                                        <p
+                                        >{$GLOBALS['rate']}</p>
+                                        <div>{$ky_coin['lever_lixi']}%</div>
+                                    </div>
+                                </div>
+                                <div
+                                        class="borrow flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <p
+                                    >{$GLOBALS['len-number']}</p>
+                                    <div><span>JEFF</span><input type="number" id="rgb_borrow"></div>
+                                </div><!---->
+                                <div class="st-slider slider">
+                                    <div class="area area2">
+                                        <div class="percent0"></div>
+                                        <div class="percent25"></div>
+                                        <div class="percent50"></div>
+                                        <div class="percent75"></div>
+                                        <div class="end"></div>
+                                        <div class="progress" style="width: 0px;"></div>
+                                        <div class="st-slider-button" width="652" style="left: 0px;"></div>
+                                    </div>
+                                    <div
+                                            class="flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap">
+                                        <p
+                                                style="margin-left: -4px;">0</p>
+                                        <p>0%</p></div>
+                                </div>
+                                <button onclick="borrow1();">{$GLOBALS['apply']} JEFF</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="my-current-entrust margin" style="height: 160px;">
+                        <div class="title flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                            <div class="dataChange flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                                <h3 style="margin-right: 40px;" class="active">{$GLOBALS['current-lend']}</h3>
+                                <h3 class="ws-tab">{$GLOBALS['history-lend']}</h3>
+                            </div>
+                            <div class="blank"></div>
+                            <a class="cancel-all" style="display:none;">{$GLOBALS['cancel-all-entrust']}</a>
+                        </div>
+                        <!--当前借款-->
+                        <div class="my-current-loan" >
+                            <div class="wrapper flex-box flex-direction-column flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                                <div style="width: 100%;">
+                                    <table class="thead">
+                                        <thead>
+                                        <tr>
+                                            <th><span class="type1">{$GLOBALS['lend-time']}</span></th>
+                                            <th><span class="type1">{$GLOBALS['lend-oddNum']}</span></th>
+                                            <th><span class="type1">{$GLOBALS['coin-name']}</span></th>
+                                            <th><span class="type1">{$GLOBALS['number']}</span></th>
+                                            <th><span class="type2">{$GLOBALS['rate']} (%)</span></th>
+                                            <th><span class="type1">{$GLOBALS['interest']}</span></th>
+                                            <th><span class="type2">{$GLOBALS['Unreturned-number']}</span></th>
+                                            <th><span class="type2">{$GLOBALS['order-operate']}</span></th>
+                                        </tr>
+                                        </thead>
+                                    </table>
+                                    <div class="scroll" style="overflow: hidden;height:90px;">
+                                        <table>
+                                            <tbody>
+                                            <notempty name="info1" value="">
+                                            <volist name="info1" id="v">
+                                            <tr>
+                                                <td><span>{$v['addtime']|addtime}</span></td>
+                                                <td><span>{$v['b_order']}</span></td>
+                                                <td><span>{$v['currency']|strtoupper}</span></td>
+                                                <td><span>{$v['borrow']}</span></td>
+                                                <td><span>{$v['interest_fee']}</span></td>
+                                                <td><span>{$v['interest']}</span></td>
+                                                <td><span>{$v['borrow']}</span></td>
+                                                <?php $str="'$v[b_order]'"?>
+                                                <td><span><span class="repay-single" onclick="repay({$str});">{$GLOBALS['repayment']}</span></span></td>
+                                            </tr>
+                                            </volist>
+                                            <else/>
+                                                <div class="no-list">
+                                                    <p class="ws-tabp">{$GLOBALS['noData']}</p>
+                                                </div>
+                                            </notempty>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <!---->
+                                </div>
+                            </div>
+                            <!---->
+                        </div>
+                        <!--历史记录-->
+                        <div class="my-history-loan" style="display: none;">
+                            <div style="min-height: 40px;">
+                                <div class="wrapper flex-box flex-direction-column flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                                    <div style="width: 100%;">
+                                        <table class="thead">
+                                            <thead>
+                                            <tr>
+                                                <th><span class="type1">{$GLOBALS['lend-time']}</span></th>
+                                                <th><span class="type1">{$GLOBALS['lend-oddNum']}</span></th>
+                                                <th><span class="type1">{$GLOBALS['coin-name']}</span></th>
+                                                <th><span class="type1">{$GLOBALS['number']}</span></th>
+                                                <th><span class="type2">{$GLOBALS['rate']} (%)</span></th>
+                                                <th><span class="type1">{$GLOBALS['interest']}</span></th>
+                                            </tr>
+                                            </thead>
+                                        </table>
+                                        <div class="scroll" style="overflow: hidden;height:90px;">
+                                            <table>
+                                                <tbody>
+                                                <notempty name="info2" value="">
+                                                <volist name="info2" id="vo">
+                                                <tr>
+                                                    <td><span>{$vo['addtime']|addtime}</span></td>
+                                                    <td><span>{$vo['r_order']}</span></td>
+                                                    <td><span>{$vo['currency']|strtoupper}</span></td>
+                                                    <td><span>{$vo['repayment']}</span></td>
+                                                    <td><span>{$vo['interest_fee']}</span></td>
+                                                    <td><span>{$vo['interest']}</span></td>
+                                                </tr>
+                                                </volist>
+                                                <else/>
+                                                    <div class="no-list">
+                                                        <p class="ws-tabp">{$GLOBALS['noData']}</p>
+                                                    </div>
+                                                </notempty>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!---->
+                                </div>
+                                <!---->
+                            </div>
+                        </div>
+                    </div>
+                    <!--还款弹窗-->
+                    <div class="popup popup2 flex-box flex-direction-row flex-justify-center flex-align-item-center flex-wrap-nowrap" style="display: none;">
+                        <div class="popup-box">
+                            <div class="header flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap" >
+                                <h3 class="res1"></h3>
+                                <a ></a>
+                            </div>
+                            <div class="repayment" >
+                                <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" id="order">
+                                    <p class="label">{$GLOBALS['lend-oddNum']}</p>
+                                    <p class="res2"></p>
+                                </div>
+                                <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <p class="label">{$GLOBALS['should-repayment']}</p>
+                                    <p class="res3"></p>
+                                </div>
+                                <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <div class="inner flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                        <p class="label">{$GLOBALS['lend-money']}</p>
+                                        <p class="res4"></p>
+                                    </div>
+                                    <div class="inner flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                        <p class="label">{$GLOBALS['interest']}</p>
+                                        <p class="res5"></p>
+                                    </div>
+                                </div>
+                                <div class="item flex-box flex-direction-row flex-justify-between flex-align-item-center flex-wrap-nowrap" style="margin-right: 84px;">
+                                    <input type="submit" value="{$GLOBALS['cancelBtn']}" />
+                                    <input type="submit" value="{$GLOBALS['sureBtn']}" onclick="repayment();" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" name="" value="{$Think.get.market}" id="coin_type">
+            <!--底部内容-->
+            <include file="Public:footer"/>
+            <!--底部内容   end-->
+        </div>
+    </div>
+</div>
+
+<div style="display: none;" class="toast">
+    <span class="text"></span>
+</div>
+
+<script data-n-head="true" src="__PUBLIC__/Home/js/newjs/zlib.pretty.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/js/newjs/ws-index3.js"></script>
+<script src="__PUBLIC__/Home/js/newjs/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/zhisucom/js/layer.js"></script>
+<script src="__PUBLIC__/Home/js/newjs/zUI.js"></script>
+<script>
+    /*当前页*/
+    $(".nav .item:nth-child(2)").find("a").addClass("active");
+
+    /*禁止鼠标滚动*/
+    $("input").bind('mousewheel', function(event, delta) { return false; });
+</script>
+</body>
+<script type="text/javascript">
+    function borrow(){
+
+        var borrow_num = $('#borrow_num').val();
+        var coin_type = $('#coin_type').val();
+        if(borrow_num == "" || borrow_num == 'NULL'){
+            layer.msg("{$GLOBALS['lend-noEmpty']}", {icon: 2});
+            return false;
+        }
+
+        if(borrow_num < 0){
+            layer.msg("{$GLOBALS['lend-formatError']}", {icon: 2});
+            return false;
+        }
+        
+        if(borrow_num>{$ky_coin['r_lend']}){
+            layer.msg("{$GLOBALS['lend-repay']}", {icon: 2});
+            return false;
+        }
+
+        $.ajax({
+            url:"/Lever/xnb_borrow",
+            data:{borrow_num:borrow_num,coin_type:coin_type},
+            type:'post',
+            dataType:'json',
+            success:function(data){
+                if(data.status == 1){
+                    layer.msg(data.info, {icon: 1});
+                    window.location.reload();
+                }else{
+                    layer.msg(data.info, {icon: 2});
+                }
+            }
+        });
+    }
+
+    function borrow1(){
+        var rgb_borrow = $('#rgb_borrow').val();
+		var coin_type = $('#coin_type').val();
+        if(rgb_borrow == "" || rgb_borrow == 'NULL'){
+            layer.msg("{$GLOBALS['lend-noEmpty']}", {icon: 2});
+            return false;
+        }
+
+        if(rgb_borrow < 0){
+            layer.msg("{$GLOBALS['lend-formatError']}", {icon: 2});
+            return false;
+        }
+        
+        if(rgb_borrow>{$ky_coin['r_lend']}){
+            layer.msg("{$GLOBALS['lend-repay']}", {icon: 2});
+            return false;
+        }
+
+        $.ajax({
+            url:"/Lever/rgb_borrow",
+            data:{borrow_num:rgb_borrow,coin_type:coin_type},
+            type:'post',
+            dataType:'json',
+            success:function(data){
+                if(data.status == 1){
+                    layer.msg(data.info, {icon: 1});
+                    window.location.reload();
+                }else{
+                    layer.msg(data.info, {icon: 2});
+                }
+            }
+        });
+    }
+
+    //还款信息
+    function repay(b_order){
+        // alert(b_order);
+        $.ajax({
+            
+			url:'/Lever/repay_info',
+            data:{b_order:b_order},
+            type:"post",
+            dataType:"json",
+            success:function(data){
+                if(data.code == 200){
+                    $(".res1").html(data['res']['currency'].toUpperCase()+"{$GLOBALS['repayment']}");
+                    $(".res2").html(data['res']['b_order']);
+                    $(".res3").html(data['res']['yh']+data['res']['currency'].toUpperCase());
+                    $(".res4").html(data['res']['borrow']+data['res']['currency'].toUpperCase());
+                    $(".res5").html(data['res']['interest']+data['res']['currency'].toUpperCase());
+                    $(".res6").html(data['res']['currency']);
+                }
+            }
+        });
+    }
+
+    //还款
+    function repayment(){
+        var order = $('.res2').html();
+		var coin_type = $('#coin_type').val();
+        //alert(order);
+        $.ajax({
+            url:"/Lever/repayment",
+            data:{order:order,coin_type:coin_type},
+            type:"post",
+            dataType:'json',
+            success:function(data){
+                if(data.status == 1){
+                    layer.msg(data.info, {icon: 1});
+                    window.location.reload();
+                }else{
+                    layer.msg(data.info, {icon: 2});
+                }
+            }
+        });
+    }
+
+
+    /*当前借款和历史记录切换效果*/
+    $(".dataChange h3").click(function () {
+        $(".dataChange h3").removeClass("active");
+        $(this).addClass("active");
+        if($(this).index()==0){
+            $(".my-current-loan").show();
+            $(".my-history-loan").hide();
+        }else{
+            $(".my-current-loan").hide();
+            $(".my-history-loan").show();
+        }
+    });
+
+</script>
+<script>
+        function  showWidth() {
+            /*根据借款数量显示借款占比*/
+            var htmlHref = window.location.href;
+            htmlHref = htmlHref.replace(/^http:\/\/[^/]+/, "");
+            var addr = htmlHref.substr(htmlHref.lastIndexOf('/', htmlHref.lastIndexOf('/') - 1) + 1);
+            var index = addr.lastIndexOf("\/");
+            //js 获取字符串中最后一个斜杠后面的内容==当前币种
+            var coinType = decodeURI(addr.substring(index + 1, addr.length));
+            $.ajax({
+                url:"/Lever/ajax_fx",
+                data: {market: coinType},
+                type: 'post',
+                dataType: 'json',
+                success: function (data) {
+                    if (data.code == 200) {
+                        $(".limit").html(data['result']['lever_fx']+"%");
+                        $(".currentNum").html(data['result']['fxl']*100+"%");
+                        var downNumber=200-parseFloat($(".limit").html());//200-110
+                        var current=parseFloat($(".currentNum").html())-parseFloat($(".limit").html());//当前-100
+                        var tWidth=parseFloat($(".grade").css("width"));//总宽度条
+                        var showWidth=current/downNumber*tWidth;
+                        if(showWidth>=170){
+                            $(".grade div").css("width","170px")
+                        }else if(0<showWidth<170){
+                            $(".grade div").css("width",showWidth+"px");
+                        }if(showWidth<=0){
+                            $(".grade div").css("width","0px");
+                        }
+                        if(parseFloat($(".currentNum").html())>120){
+                            $(".level1").css("color","#32b28f").html("{$GLOBALS['safe']}");
+                        }else{
+                            $(".level1").css("color","red").html("{$GLOBALS['alert']}");
+                        }
+                    } else {
+                        // layer.msg(data.info, {icon: 2});
+                    }
+                },
+                // error: function (data) {
+                //     console.log("000")
+                // }
+            });
+            setTimeout(function(){
+                showWidth();
+            }, 1000)
+        }
+        showWidth();
+
+        /*显示输入数字的格式*/
+        var vue=parseFloat($(".canBorrow").html());
+        if((/^(\+|-)?\d+$/.test(vue))&&vue>0){
+            var l=vue.toString().length;
+        }else{
+            if(vue.toString().split(".")[1]){
+                var l=vue.toString().split(".")[1].length;
+            }
+        }
+
+        /*输入借款量显示可借与已借占比*/
+        $("#borrow_num").keyup(function () {
+            clearNoNum($(this));
+            $(this).closest(".borrow ").next(".error").remove();
+            var current=parseFloat($(this).val());
+            if(current.toString().indexOf(".")>0) {
+                var vue1=current.toString().split(".")[1];
+                var vue0=current.toString().split(".")[0];
+                current=vue1.substring(0,l);
+                $(this).val(vue0+"."+current);
+            }
+
+            var current=parseFloat($(this).val());
+                var down = parseFloat($(".canBorrow").html());
+                var chartWidth = parseFloat($(".area1").css("width"));//总进度条宽
+                var curChart = parseFloat(current / down * chartWidth);
+                var showChar = (curChart / chartWidth * 100).toFixed(2);
+                if (current >= down) {
+                    $(".area1 .progress").css("width", "565px");//线条占款
+                    $(".area1 .st-slider-button").css("left", "565px");//原点位置
+                    $(".area1").next("div").find("p:last-child").html("100%");//线条显示百分比
+                    $(".area1").find(".percent0,.percent25,.percent50,.percent75,.end").css("background", "#0976d9");//原点颜色
+                } else if (current < down) {
+                    $(".area1 .progress").css("width", curChart + "px");
+                    $(".area1 .st-slider-button").css("left", curChart + "px");
+                    $(".area1").next("div").find("p:last-child").html(showChar + "%");
+                    if (curChart >= chartWidth) {
+                        $(".area1").find(".percent0,.percent25,.percent50,.percent75,.end").css("background", "#0976d9");
+                    } else if (curChart >= 489) {
+                        $(".area1").find(".percent0,.percent25,.percent50,.percent75").css("background", "#0976d9");
+                        $(".area1").find(".end").css("background-color", "rgb(102, 107, 147)");
+                    } else if (curChart >= 326) {
+                        $(".area1").find(".percent0,.percent25,.percent50").css("background", "#0976d9");
+                        $(".area1").find(".end,.percent75").css("background-color", "rgb(102, 107, 147)");
+                    } else if (curChart >= 163) {
+                        $(".area1").find(".percent0,.percent25").css("background", "#0976d9");
+                        $(".area1").find(".end,.percent75,.percent50").css("background-color", "rgb(102, 107, 147)");
+                    } else {
+                        $(".area1").find(".percent0").css("background", "#0976d9");
+                        $(".area1").find(".end,.percent75,.percent50,.percent25").css("background-color", "rgb(102, 107, 147)");
+                    }
+                } else {
+                    $(".area1 .progress").css("width", 0);
+                    $(".area1 .st-slider-button").css("left", 0);
+                    $(".area1").next("div").find("p:last-child").html("0%");
+                    $(".area1").find(".percent0,.percent25,.percent50,.percent75,.end").css("background-color", "rgb(102, 107, 147)");
+                }
+
+         });
+        if(parseInt($("#borrow_num").val())==0){
+            // $("#borrow_num").val("0")
+            console.log(11)
+        }
+
+        // 失去焦点
+        $("#borrow_num").blur(function () {
+            if($(this).val()==''||$(this).val()=='0'){
+                if($(this).closest(".borrow ").next(".error").length <= 0){
+                    $(this).closest(".borrow ").after("<p class='error'>{$GLOBALS['correct-number']}</p>");
+                }else{
+                    $(this).closest(".borrow ").next(".error").remove();
+                }
+
+            }
+        });
+
+
+        /*显示输入数字的格式*/
+        var vue=parseFloat($("#borTotal").html());
+        if((/^(\+|-)?\d+$/.test(vue))&&vue>0){
+            var s=vue.toString().length;
+        }else{
+            var s=vue.toString().split(".")[1].length;
+        }
+        /*JTC借款*/
+        $("#rgb_borrow").keyup(function () {
+            clearNoNum($(this));
+            console.log($(this).val())
+            $(this).closest(".borrow ").next(".error").remove();
+            var current=parseFloat($(this).val());
+
+            if(current.toString().indexOf(".")>0) {
+                var vue1=current.toString().split(".")[1];
+                var vue0=current.toString().split(".")[0];
+                current=vue1.substring(0,s);
+                $(this).val(vue0+"."+current);
+            }
+            var current=parseFloat($(this).val());
+            var down=parseFloat($("#borTotal").html());
+            var chartWidth=parseFloat($(".area2").css("width"));//总进度条宽
+            var curChart=parseFloat(current/down*chartWidth);
+            var showChar=(curChart/chartWidth*100).toFixed(2);
+            if(current>=down){
+                $(".area2 .progress").css("width","565px");//线条占款
+                $(".area2 .st-slider-button").css("left","565px");//原点位置
+                $(".area2").next("div").find("p:last-child").html("100%");//线条显示百分比
+                $(".area2").find(".percent0,.percent25,.percent50,.percent75,.end").css("background","#0976d9");//原点颜色
+            }else if(current<down){
+                $(".area2 .progress").css("width",curChart+"px");
+                $(".area2 .st-slider-button").css("left",curChart+"px");
+                $(".area2").next("div").find("p:last-child").html(showChar+"%");
+                if(curChart>=chartWidth){
+                    $(".area2").find(".percent0,.percent25,.percent50,.percent75,.end").css("background","#0976d9");
+                }else if(curChart>=489){
+                    $(".area2").find(".percent0,.percent25,.percent50,.percent75").css("background","#0976d9");
+                    $(".area2").find(".end").css("background-color","rgb(102, 107, 147)");
+                }else if(curChart>=326){
+                    $(".area2").find(".percent0,.percent25,.percent50").css("background","#0976d9");
+                    $(".area2").find(".end,.percent75").css("background-color","rgb(102, 107, 147)");
+                }else if(curChart>=163){
+                    $(".area2").find(".percent0,.percent25").css("background","#0976d9");
+                    $(".area2").find(".end,.percent75,.percent50").css("background-color","rgb(102, 107, 147)");
+                }else{
+                    $(".area2").find(".percent0").css("background","#0976d9");
+                    $(".area2").find(".end,.percent75,.percent50,.percent25").css("background-color","rgb(102, 107, 147)");
+                }
+            }else {
+                $(".area2 .progress").css("width",0);
+                $(".area2 .st-slider-button").css("left",0);
+                $(".area2").next("div").find("p:last-child").html("0%");
+                $(".area2").find(".percent0,.percent25,.percent50,.percent75,.end").css("background-color","rgb(102, 107, 147)");
+            }
+
+        });
+        // 失去焦点
+        $("#rgb_borrow").blur(function () {
+            if($(this).val()==''||$(this).val()=='0'){
+                if($(this).closest(".borrow ").next(".error").length <= 0){
+                    $(this).closest(".borrow ").after("<p class='error'>{$GLOBALS['correct-number']}</p>");
+                }else{
+                    $(this).closest(".borrow ").next(".error").remove();
+                }
+
+            }
+        })
+
+        /*滚动条*/
+        $(function(){
+            $(".scroll").panel({iWheelStep:32});
+        });
+
+
+
+
+        // 限制input输入框输入
+    function clearNoNum(obj)
+    {
+//先把非数字的都替换掉，除了数字和.
+        $(obj)[0].value = $(obj)[0].value.replace(/[^\d.]/g,"");
+//必须保证第一个为数字而不是.
+        $(obj)[0].value = $(obj)[0].value.replace(/^\./g,"");
+//保证只有出现一个.而没有多个.
+        $(obj)[0].value = $(obj)[0].value.replace(/\.{2,}/g,".");
+//保证.只出现一次，而不能出现两次以上
+        $(obj)[0].value = $(obj)[0].value.replace(".","$#$").replace(/\./g,"").replace("$#$",".");
+    }
+
+</script>
+</html>

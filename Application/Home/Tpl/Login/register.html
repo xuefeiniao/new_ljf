@@ -1,0 +1,551 @@
+
+<meta name="description" content="!">
+    <meta name="keywords" content="!">
+    <meta name="format-detection" content="telephone=no">
+    
+	
+    <style>.icon-48,.icon-32,.icon-16{background-image:url("/images/coins48.png?v=1529488915")}</style>         
+    <!-- <link href="https://ss.ss/favicon.ico" rel="shortcut icon"> -->
+    <link rel="apple-touch-icon" sizes="120x120" href="https://ss.ss/images/apple-touch-icon-120x120.png">
+	<include file="Publics:header"/>
+	<link rel="stylesheet" href="/zhisucom/header.css">
+<link href="/zhisucom/style.css" rel="stylesheet" type="text/css">
+
+
+
+
+<!--div class="autobox">
+	<div class="now">
+		<i class="fa fa-home fa-lg move mr5"></i><a href="/" class="">首页 </a>&gt; 注册账户	</div>
+	<div class="login_step">
+		<ul class="order clear">
+			<li><i class="fa fa-circle  fz_40 move"><span>1</span></i> 用户注册				<div class="order_line"></div>
+			</li>
+			<li><i class="fa fa-circle  fz_40"><span>2</span></i>交易密码				<div class="order_line"></div>
+			</li>
+			<li><i class="fa fa-circle  fz_40"><span>3</span></i>实名认证				<div class="order_line"></div>
+			</li>
+			<li><i class="fa fa-circle  fz_40"><span>4</span></i>成功</li>
+		</ul>
+	</div>
+	<div class="reg_box ">
+		<div class="mt50">
+			<div id="reg_index" class="reg_wrap">
+				<div class="reg_input_box reg-fb" id="email_reg">
+					<div class="reg_title">手机号：</div>
+					<input type="text" id="mobles" class="texts" style="display: none;"> 
+					<input type="text" id="moble" class="texts wh300 hg40" placeholder="请输入手机号码" onblur="check_moble()" style="padding-left: 40px;    width: 295px;"/>
+					<link rel="stylesheet" href="/zhisucom/css/intlTelInput.css">
+					<script src="/zhisucom/js/intlTelInput.js"></script>
+					<script>
+						$("#mobles").intlTelInput({
+							autoHideDialCode: false,
+							defaultCountry: "cn",
+							nationalMode: false,
+							preferredCountries: ['cn', 'us', 'hk', 'tw', 'mo'],
+						});
+					</script>
+					<a class="move" onclick="new_sends()">点击发送验证码</a>
+				</div>
+				<div class="reg_input_box reg-fb">
+					<div class="reg_title">验证码：</div>
+					<input id="moble_verify" type="text" class="texts w300 hg40" placeholder="请输入验证码"> <span id="reg_moble" class="" style="position: absolute;
+    left: 210px;top: 2px;"></span>
+				</div>
+				<div class="reg_input_box reg-fb">
+					<div class="reg_title">密码：</div>
+					<input type="password" id="password" class="texts w300 hg40" placeholder="请输入登陆密码" style="line-height: 34px;"/>
+				</div>
+				<div class="reg_input_box reg-fb">
+					<div class="reg_title">邀请码：</div>
+					<input id="invit" type="text" class="texts w300 hg40" placeholder="没有可不填" value=""/>
+				</div>
+				<div class="reg_radio_box">
+					<label> <input type="checkbox" id="regweb" checked="checked" style="vertical-align: -2px;"> 注册即视为同意 <a href="javascript:void(0)" class="move" onclick="regWeb();">用户注册协议</a></label>
+				</div>
+				<div class="formbody">
+					<input type="button" class="btns2 w300 hg40" onclick="reg_up();" value="立即注册">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="all_mask_loginbox" id="step1" style="display: none;width:420px;">
+	<div class="login_title pl20">验证手机</div>
+	<form id="form-login" class="mask_wrap login-fb">
+		<div class="login_text zin80">
+			<div class="mask_wrap_title">图形验证码：</div>
+			<input type="text" id="verify" value="" class="texts" style="width: 98px; box-shadow: none;"/>
+			<span style="vertical-align: -14px;line-height: 20px;">
+				<img id="verify_up" class="codeImg reloadverify" src="{:U('Verify/code')}" title="换一张" onclick="this.src=this.src+'?t='+Math.random()" width="100" height="34">
+			</span>
+		</div>
+		<div class="login_text zin80">
+			<div class="mask_wrap_title">获取验证码：</div>
+						<input type="button" value="发送短信验证码" class="btns" onclick="moble_reg('sms')" style="width: 100px;font-size: 12px;"/>
+								</div>
+	</form>
+	<div class="mask_wrap_close" onclick="showB()"><i class="fa fa-times fz_20 move" aria-hidden="true"></i></div>
+</div>
+<div id="step2" class="all_mask" style="height: 0px;display: none;"></div> -->
+<style type="text/css">
+html,body{ height: 100%}
+.glyphicon-ok:before {  content: "\221A";  }
+	.leftregi form, .rightlogin form{ width:100%;text-align: left}
+	.rightlogin{ display: flex;align-items: center; }
+	label{ float: left;  width: 30%;font-weight: bold;text-align: right;  padding: 15px 15px 0 0;-webkit-box-sizing: border-box;  -moz-box-sizing: border-box;  box-sizing: border-box;}
+	.btn-block.sub-btn{width: 40%; margin: 10px auto}
+	.btn-block.sub-btn:focus{ background: #f60 !important;}
+	p.red{ margin: 20px 0;text-align: center}
+	.form-group .red,p.red{ font-size: 13px}
+	.r-tip{ font-size: 13px;  font-weight: normal;  vertical-align: middle;  height: 48px;  display: table-cell;  padding-left: 5px;}
+	.code-box{ position: relative;  width: 70%;  float: left;}
+	.code-box .help-block{ margin-left: 0;padding-top: 5px;}
+	#code,#codeReg{ position: absolute;left: 160px; top: -5px;}
+	.checkbox{clear: both;  margin-left: 30%;}
+	.checkbox a{ margin-bottom: 15px}
+	#agrCheckLabel{ width: auto;user-select: none; padding-top: 0}
+	.m_title h4{ text-align: center; font-weight: normal; font-size: 24px}
+	/*注册*/
+	.password-level { clear: both; width: 40%; margin: 0 auto; }
+	.password-level .col-md-11 { padding-left: 0 }
+	.password-level .col-md-4 { width:33.33%;float:left; }
+	.password-level span { display: block; width: 100%;height: 3px;text-align: center;line-height: 0;font-size: 14px;font-weight:bold}
+	#signPswLevel.password-level span,#fundPswLevel.password-level span { height:16px; line-height:16px;font-size:12px; font-weight:bold}
+	.discount{ color:#ff5e23;margin: 10px 0 18px;font-weight: bold;}
+	#signupSub{ margin:0 auto}
+	.input-item-info{ width: 30%; float: left}
+	.code-box .form-control-feedback{ right: auto;left: 114px; top: 8px;}
+
+/*bootstrap*/
+	.has-feedback{ position: relative; clear: both }
+	.has-feedback .form-control { float: left;  width: 40%;padding-right: 42.5px; font-size: 15px;margin-bottom: 0; }
+	.form-control-feedback { position: absolute; top: 0; right: 30%; z-index: 2; display: block; width: 34px; height: 34px; line-height: 34px; text-align: center; pointer-events: none }
+	.has-success .help-block, .has-success .control-label, .has-success .radio, .has-success .checkbox, .has-success .radio-inline, .has-success .checkbox-inline, .has-success.radio label, .has-success.checkbox label, .has-success.radio-inline label, .has-success.checkbox-inline label { color: #3c763d }
+	.has-success .form-control { border-color: #3c763d !important; }
+	.has-success .form-control:focus { border-color: #2b542c; }
+	.has-success .input-group-addon { color: #3c763d; border-color: #3c763d; background-color: #dff0d8 }
+	.has-success .form-control-feedback { color: #0da77d;  font-size: 18px;  font-weight: bold; }
+	.has-error .help-block, .has-error .control-label, .has-error .radio, .has-error .checkbox, .has-error .radio-inline, .has-error .checkbox-inline, .has-error.radio label, .has-error.checkbox label, .has-error.radio-inline label, .has-error.checkbox-inline label { color: #a94442 }
+	.has-error .form-control { border-color: #a94442 !important; }
+	.has-error .form-control:focus { border-color: #843534; }
+	.has-error .input-group-addon { color: #a94442; border-color: #a94442; background-color: #f2dede }
+	.has-error .form-control-feedback { color: #a94442 }
+	.has-feedback label~.form-control-feedback { top: 8px }
+	.has-feedback label.sr-only~.form-control-feedback { top: 0 }
+	.help-block { display: block;clear: both;  width: 40%;  margin-left: 30%; margin-top: 5px; margin-bottom: 10px; color: #737373 }
+	.has-feedback .form-control.code-input{ width: 152px}
+  body .has-feedback .form-control{border:1px solid #ccc;}
+	#codeGroup .form-control-feedback{ left: 114px; top:8px}
+
+	/*auto email*/
+	.auto-tip{ background:#fff;color: #2c3e50;border:2px solid #dce4ec; border-top:none;border-radius: 4px;z-index:10000; text-align:left}
+	.auto-tip li { width: 100%; height: 28px; line-height: 28px;padding: 0 15px; font-size: 14px; }
+	.auto-tip li.hoverBg { background: #ecf0f1; cursor: pointer; }
+	.auto-tip em{ font-style:normal}
+	#signupForm .auto-tip{top:71px !important}
+  .zhu-register{
+  	margin-top:7px;
+    margin-left:5px;
+  }
+
+	.completer-container,.pla { position: absolute; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; padding: 0; margin: 0; font-family: inherit; font-size: 14px; line-height: normal; list-style: none; background-color: #fff;border: 1px solid #eee;border-radius: 3px; }
+	.completer-container li,.pla li { padding: .5em .8em; margin: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; cursor: pointer; background-color: #fff; border-bottom: 1px solid #eee; }
+	.completer-container .completer-selected, .completer-container li:hover,.pla .completer-selected{ margin-left: -1px; background-color: #eee; border-left: 1px solid #ff5e23; }
+.glyphicon-ok:before {  content: "\221A";  }
+</style>
+<div class="left_con_login">
+	<div class="login_incontent login-con">
+	
+		<div class="right_mcontent clearfix">
+		 <div class="maichu">
+			<div class="m_title"><h4>登录</h4></div>
+			<div class="m_con rightlogin" style="height: 452px;">
+				<form role="form" id="loginForm" name="login" method="post" action="#">
+
+					<div class="form-group parentCls has-feedback" id="emailGroup">
+						<label for="email">手机号/邮箱</label>
+						<div class="automail-list"></div>
+						<input type="text" class="form-control inputElem" name="login_moble" id="login_moble" value="">
+						<span class="glyphicon glyphicon-ok form-control-feedback"></span>
+						<span class="help-block"></span>
+					</div>
+
+					<div class="form-group has-feedback" id="pswGroup">
+						<label for="password">登录密码</label>
+						<input type="password" class="form-control" name="login_password" id="login_password" autocomplete="new-password">
+						<div class="input-item-info"><a href="/login/forget_pwd" style="line-height: 48px;margin-left: 5px;">忘记密码？</a></div>
+						<span class="help-block"></span>
+					</div>
+					<div class="form-group has-feedback clearfix" id="codeGroup" style="width:100%;">
+						<label for="captcha_code">图片验证码</label>
+						<div class="clearfix code-box">
+							<input type="text" class="form-control code-input" name="login_verify" id="login_verify" maxlength="8" autocomplete="off">
+							<!-- <div id="code"><img class="cap-img" id="loginCaptcha" src="./002_files/captcha" alt="Captcha" title="看不清？换一张" onclick="document.getElementById(&#39;loginCaptcha&#39;).src = &#39;/captcha?&#39; + Math.random(); return false"></div> -->
+							<!-- <img id="verify_up" class="codeImg reloadverify" src="{:U('Verify/code')}" title="换一张" onclick="this.src=this.src+'?t='+Math.random();" width="100" height="34"> -->
+							<img id="verify_up" class="codeImg reloadverify zhu-register" src="__URL__/code" title="换一张" onclick="this.src=this.src+'?t='+Math.random();" width="100" height="34">
+							<span class="help-block"></span>
+						</div>
+					</div>
+
+
+					<!-- <div class="form-group" id="ipGroup">
+						<label for="iprestriction" style="user-select: none;">安全选项</label>
+						<div class="pull-left" style="margin-top: 0px">
+						<label class="haschecked pull-left" style="width: auto;user-select: none;">
+							<input class="form-control" type="checkbox" name="iprestriction" id="iprestriction" value="1" checked=""> 绑定到IP地址 <span class="red">（为保证账号安全如非动态IP切勿去选！）</span>
+						</label>
+						</div>
+						<span class="help-block"></span>
+					</div> -->
+
+					<button type="button" class="btn btn-error btn-block sub-btn" id="loginSub" onclick="footer_login();"><span>登录</span>
+						<div class="spinner">
+							<div class="bounce1"></div>
+							<div class="bounce2"></div>
+							<div class="bounce3"></div>
+						</div>
+					</button>
+					<p class="red"><i id="dpIcon">!</i>提醒：谨防骗子，切勿泄露密码给任何人，官方从不会向用户询问密码。</p>
+					<span class="errmsg" id="errmsg"></span>
+				</form>
+			</div> <!-- login -->
+		</div>
+
+		 <div class="mairu">
+			<div class="m_title"><h4>注册</h4></div>
+			<div class="m_con_buy leftregi">
+				<!-- <form role="form" id="signupForm" name="signup" method="post" action="https://gateio.io/signup"> -->
+					<input type="hidden" name="ref_uid" id="ref_uid" value="">
+					<input type="hidden" name="language" id="language" value="cn">
+					<div>
+						<div class="form-group parentCls has-feedback" id="signup_userNameGroup">
+							<label for="sig_email">用户名</label>
+							<input type="text" class="form-control" name="nickname" id="sig_userName" value="" autocomplete="off">
+							<div class="input-item-info"><span class="r-tip">(字母或字母与数字组合)</span></div><span class="glyphicon glyphicon-ok form-control-feedback"></span> <span class="help-block"></span>
+						</div>
+					</div>
+					<div>
+						<div class="form-group has-feedback" id="signup_pswGroup">
+							<label for="sig_password">登录密码</label>
+							<input type="password" name="password" class="form-control" id="sig_password" autocomplete="new-password">
+							<div class="input-item-info"><span class="r-tip">(至少6位字符，非纯数字)</span></div><span class="glyphicon glyphicon-ok form-control-feedback"></span>
+							<div class="password-level hide clearfix" id="signPswLevel">
+								<div class="col-md-4"><span id="loWeak">弱</span></div>
+								<div class="col-md-4"><span id="loNormal">中</span></div>
+								<div class="col-md-4"><span id="loStrong">强</span></div>
+							</div>
+							<span class="help-block"></span>
+						</div>
+					</div>
+					<!--<div>
+						<div class="form-group has-feedback" id="signup_repswGroup">
+							<label for="sig_password">手机号</label>
+							<input type="text" name="moble" class="form-control" id="moble" autocomplete="new-password">
+							<div class="input-item-info"><span class="r-tip">(手机号用于接收验证码，请填写您的常用手机号)</span></div>
+							<span class="glyphicon glyphicon-ok form-control-feedback"></span>
+							<span class="help-block"></span>
+						</div>
+					</div>-->
+					<div>
+						<div class="form-group parentCls has-feedback" id="signup_emailGroup">
+							<label for="sig_email">邮箱</label>
+							<input type="eamil" class="form-control" name="email" id="sig_email" value="" autocomplete="off">
+							<div class="input-item-info"><span class="r-tip">(邮箱用于验证，请填写您的常用邮箱)</span></div><span class="glyphicon glyphicon-ok form-control-feedback"></span> <span class="help-block"></span>
+						</div>
+					</div>
+					<div>
+						<div class="form-group has-feedback" id="fund_pswGroup">
+							<label for="fund_password">资金密码</label>
+							<input type="password" name="fundpass" class="form-control" id="fund_password" autocomplete="new-password">
+							<div class="input-item-info"><span class="r-tip">(用于提现，请牢记。不可与登录密码相同)</span></div><span class="glyphicon glyphicon-ok form-control-feedback"></span>
+							<span class="help-block"></span>
+						</div>
+					</div>
+					<div>
+						<div class="form-group has-feedback" id="fund_repswGroup">
+							<label for="fund_password">推荐码</label>
+							<input type="text" name="invit" class="form-control" id="invit" autocomplete="new-password" value="{$_GET['invit']}">
+							<div class="input-item-info"><span class="r-tip">(没有可不填)</span></div>
+							<span class="glyphicon glyphicon-ok form-control-feedback"></span>
+							<span class="help-block"></span>
+						</div>
+					</div>
+					<div class="form-group has-feedback" id="signup_codeGroup">
+						<label for="captcha_code">图片验证码</label>
+						<div class="clearfix code-box">
+							<input type="text" class="form-control code-input" name="captcha" id="captcha_reg" maxlength="8" autocomplete="off">
+							<!-- <div id="codeReg"><img class="cap-img" id="regCaptcha" src="./002_files/captcha_reg" alt="Captcha" title="看不清？换一张" onclick="resetCode();document.getElementById(&#39;regCaptcha&#39;).src = &#39;/captcha_reg?&#39; + Math.random(); return false"></div> -->
+							<img id="verify_up" class="codeImg reloadverify zhu-register" src="__URL__/code" title="换一张" onclick="this.src=this.src+'?t='+Math.random()" width="100" height="34">
+							<div class="input-item-info"></div>
+							<span class="help-block"></span>
+						</div>
+					</div>
+					<div class="checkbox clearfix">
+						<label id="agrCheckLabel" class="haschecked pull-left">
+							<input class="form-control pull-left" type="checkbox" name="agreeCheck" id="agreeCheck" value="1" checked="">
+							<span id="agrTxt" class="pull-left">我已阅读并同意</span>
+						</label>
+						<a class="pull-left" target="_blank" href="https://gateio.io/docs/agreement.pdf">《用户使用协议》</a>
+					</div>
+										<!-- <button type="button" class="btn btn-error btn-block sub-btn" id="signupSub"><span>立即注册</span> -->
+							<input type="submit" name="" class="btn btn-error btn-block sub-btn" id="signupSub" value="立即注册" onclick="reg_up();" />
+						<div class="spinner">
+							<div class="bounce1"></div>
+							<div class="bounce2"></div>
+							<div class="bounce3"></div>
+						</div>
+					</button>
+					<div class="login-tip">
+						<p></p>
+					</div>
+				<!-- </form> -->
+				<div style="clear:both"></div>
+			</div> <!-- signup -->
+		</div>
+
+
+		</div>
+	</div>
+	
+</div>
+<include file="Publics:footer"/>
+<script type="text/javascript" src="/zhisucom/js/jquery.min.js"></script>
+<script type="text/javascript" src="/zhisucom/js/jquery.cookies.2.2.0.js"></script>
+<script type="text/javascript" src="/zhisucom/js/layer.js"></script>
+<script type="text/javascript" src="/zhisucom/js/posfixed.js"></script>
+<script type="text/javascript" src="/zhisucom/js/dot.min.js"></script>
+<!-- <link rel="stylesheet" href="/zhisucom/css/slider.css"> -->
+<script type="text/javascript" src="/zhisucom/js/slider.js"></script>
+
+<script type="text/javascript">
+	function footer_login() {
+        var moble = $("#login_moble").val();
+        var mobles = $("#login_mobles").val();
+        var password = $("#login_password").val();
+        var verify = $("#login_verify").val();
+        if (moble == "" || moble == null) {
+            layer.tips('请输入手机号或邮箱', '#login_moble', {tips: 2});
+            return false;
+        }
+        if (password == "" || password == null) {
+            layer.tips('请输入登录密码', '#login_password', {tips: 2});
+            return false;
+        }
+        if (verify == "" || verify == null) {
+            layer.tips('请输入验证码', '#login_verify', {tips: 2});
+            return false;
+        }
+        $.post("/login/submit.html", {
+            moble: moble,
+            mobles: mobles,
+            password: password,
+            verify: verify,
+            login_token: "",
+        }, function (data) {
+            if (data.status == 1) {
+                $.cookies.set('move_moble', moble);
+                layer.msg(data.info, {icon: 1});
+                if (data.url) {
+                    window.location =data.url;
+                } else {
+                    window.location = "/";
+                }
+            } else {
+                $("#login_verify_up").click();
+                layer.msg(data.info, {icon: 2});
+                if (data.url) {
+                    window.location = data.url;
+                }
+            }
+        }, "json");
+    }
+</script>
+
+
+<script>
+	$(function () {
+		var height = $(document).height();
+		if (height < 1000) {
+			height = 1000;
+		}
+		$('#step2').height(height);
+		$("#moble").focus();
+	});
+	function regWeb() {
+		layer.open({
+			type: 2,
+			skin: 'layui-layer-rim', // 边框
+			area: ['800px', '600px'], // 宽高
+			title: '用户注册协议', // 标题
+			content: "{:U('Login/webreg')}"
+		});
+	}
+	function showB() {
+		$("#step1").hide();
+		$("#step2").hide();
+		$("#verify").focus();
+	}
+	function check_moble() {
+		var moble  = $('#moble').val();
+		var mobles = $('#mobles').val();
+		if (moble == "" || moble == null) {
+			layer.tips("请输入手机号", '#moble', {tips: 2});
+			return false;
+		}
+		$.post("/login/check_moble.html", {
+			moble: moble,
+			mobles: mobles,
+			token: ""
+		}, function (data) {
+			if (data.status == 1) {
+				$("#step1").show();
+				$("#step2").show();
+				$("#verify").focus();
+				$('#reg_moble').html('<a class="move" onclick="new_send()">点击发送验证码</a>');
+			} else {
+				layer.tips(data.info, '#moble', {tips: 2});
+				return false;
+			}
+		}, 'json');
+	}
+	function verify_ups() {
+		$('#verify_up').attr('src', "/ajax/verify.html?t=" + Math.random());
+	}
+	function new_send() {
+		$("#step1").show();
+		$("#step2").show();
+		$("#verify").focus();
+	}
+	function new_sends() {
+		var moble  = $('#moble').val();
+		var mobles = $('#mobles').val();
+		if (moble == "" || moble == null) {
+			layer.tips("请输入手机号", '#moble', {tips: 2});
+			return false;
+		}
+		$.post("/login/check_moble.html", {
+			moble: moble,
+			mobles: mobles,
+			token: ""
+		}, function (data) {
+			if (data.status == 1) {
+				$("#step1").show();
+				$("#step2").show();
+				$("#verify").focus();
+			} else {
+				layer.tips(data.info, '#moble', {tips: 2});
+				return false;
+			}
+		}, 'json');
+	}
+	function moble_reg(type) {
+		var moble  = $("#moble").val();
+		var mobles = $("#mobles").val();
+		var verify = $("#verify").val();
+		if (moble == "" || moble == null) {
+			layer.tips("请输入手机号码", '#moble', {tips: 2});
+			return false;
+		}
+		if (verify == "" || verify == null) {
+			layer.tips("请输入图形验证码", '#verify', {tips: 2});
+			return false;
+		}
+		$.post("/login/real.html", {
+			moble: moble,
+			mobles: mobles,
+			type: type,
+			verify: verify,
+			token: ""
+		}, function (data) {
+			if (data.status == 1) {
+				layer.msg(data.info, {icon: 1});
+				$("#step1").hide();
+				$("#step2").hide();
+				$("#moble_verify").focus();
+				$('#moble').attr("disabled", "disabled");
+				$('#mobles').attr("disabled", "disabled");
+				var obj      = $('#reg_moble');
+				var wait     = 30;
+				var interval = setInterval(function () {
+					obj.html("<a>" + wait + "秒可再次发送" + "</a>");
+					wait--;
+					if (wait < 0) {
+						clearInterval(interval);
+						$(".reloadverify").click();
+						$("#verify").val('');
+						obj.html('<a class="move" onclick="new_send()">点击重新发送</a>');
+					}
+					;
+				}, 1000);
+			} else {
+				$(".reloadverify").click();
+				layer.msg(data.info, {icon: 2});
+				if (data.url) {
+					window.location = data.url;
+				}
+			}
+		}, "json");
+	}
+	function reg_up() {
+		//var moble        = $("#moble").val();
+		var mobles       = $("#mobles").val();
+		var moble_verify = $("#captcha_reg").val();
+		var password     = $("#sig_password").val();
+		var invit        = $("#invit").val();
+		var username     = $("#sig_userName").val();
+		var email 		 = $("#sig_email").val();
+		var fund_psd     = $("#fund_password").val();
+		if (username == "" || username == null) {
+			layer.tips("请输入用户名", '#sig_userName', {tips: 2});
+			return false;
+		}
+		if (password == "" || password == null) {
+			layer.tips("请输入密码", '#sig_password', {tips: 2});
+			return false;
+		}
+		/*if (moble == "" || moble == null) {
+			layer.tips("请输入手机号", '#moble', {tips: 2});
+			return false;
+		}*/
+		if (email == "" || email == null) {
+			layer.tips("请输入常用邮箱", '#sig_email', {tips: 2});
+			return false;
+		}
+		if (fund_psd == "" || fund_psd == null) {
+			layer.tips("请输入资金密码", '#fund_password', {tips: 2});
+			return false;
+		}
+		if (moble_verify == "" || moble_verify == null) {
+			layer.tips("请输入验证码", '#captcha_reg', {tips: 2});
+			return false;
+		}
+		
+		if (!$("#agreeCheck").is(':checked')) {
+			layer.tips("请勾选用户注册协议", '#agreeCheck', {tips: 3});
+			return false;
+		}
+		$.post("/login/upregister.html", {
+			//moble: moble,
+			mobles: mobles,
+			moble_verify: moble_verify,
+			password: password,
+			invit: invit,
+			token: "",
+			username:username,
+			email:email,
+			fund_psd:fund_psd
+		}, function (data) {
+			if (data.status == 1) {
+				layer.msg(data.info, {icon: 1});
+				//$.cookies.set('move_moble', moble);
+				//$.cookies.set('move_mobles', mobles);
+					window.location = '/Login/identity';
+			} else {
+				layer.msg(data.info, {icon: 2});			
+			}
+		}, "json");
+	}
+
+</script>
+

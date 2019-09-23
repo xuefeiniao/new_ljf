@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="{$web_keywords}" />
+    <meta name="format-detection" content="telephone=no,email=no,address=no" />
+    <eq name="Think.session.lang" value="1">
+									<notempty name="coninfo['web_name']" value=" ">
+								
+										<title>{$coninfo['web_name']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="2">
+									<notempty name="coninfo['web_name_e']" value=" ">
+										<title>{$coninfo['web_name_e']}</title>
+									</notempty>
+								</eq>
+								<eq name="Think.session.lang" value="3">
+									<notempty name="coninfo['web_name_en']" value=" ">
+										<title>{$coninfo['web_name_en']}</title>
+									</notempty>
+								</eq>
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/base.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/newcss/common.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/newcss/change_login_password.css" media="all"/>
+    <script data-n-head="true" src="__PUBLIC__/Home/js/newjs/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/layer/layer.js"></script>
+
+    <style>
+        .st-select{
+            position: relative;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            outline: none
+        }
+
+        .st-select .box {
+            width: 100%;
+            height: 40px;
+            border: 1px solid #ced0da;
+            border-radius: 4px;
+            padding: 0 10px;
+            background: -webkit-gradient(linear, left top, left bottom, from(#fefeff), to(#f3f5f8));
+            background: linear-gradient(180deg, #fefeff 0, #f3f5f8);
+            cursor: pointer
+        }
+
+        .st-select .box p {
+            font-size: 14px
+        }
+
+        .st-select .box span {
+            display: block;
+            width: 8px;
+            height: 5px;
+            background: url(/Public/Home/image/accountMsg/icon-tkxl.9d30e44.png);
+            -webkit-transition: -webkit-transform .3s ease-in-out;
+            transition: -webkit-transform .3s ease-in-out;
+            transition: transform .3s ease-in-out;
+            transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out;
+            -moz-transition: transform ease-in-out .3s;
+            -webkit-transition: transform .3s ease-in-out;
+            -o-transition: transform ease-in-out .3s
+        }
+
+        .st-select .box span.active {
+            transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+            -moz-transform: rotate(180deg);
+            -webkit-transform: rotate(180deg);
+            -o-transform: rotate(180deg)
+        }
+
+        .st-select ul{
+            position: absolute;
+            margin-top: 4px;
+            max-height: 180px;
+            border: 1px solid #ced0da;
+            border-radius: 4px;
+            background-color: #f9fafc;
+            overflow: scroll;
+            z-index: 99;
+            overflow-x: hidden
+        }
+        .st-option {
+            width: 100%;
+            height: 40px;
+            padding: 0 10px;
+            line-height: 40px;
+            border-bottom: 1px solid #ced0da;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        /**/
+        .st-form{
+            margin-left:80px;
+            margin-top:20px;
+        }
+        .beizhu{
+            margin-top:60px;
+        }
+        .st-prompt{
+            margin-bottom: 0;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<!--<img src="https://mon.58coin.com/mon.gif" id="img-hidden" />-->
+<div id="__nuxt">
+    <div class="nuxt-progress" style="width: 0%; height: 2px; background-color: rgb(59, 128, 112); opacity: 0;"></div>
+    <div id="__layout">
+        <div>
+            <!--头部内容-->
+            <include file="Public:header1"/>
+            <!--头部内容   end-->
+
+            <div class="wrap">
+                <div  class="container">
+                    <div  class="user-bread flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap">
+                        <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                            <a href="/User/index" class="nuxt-link-active">
+                                <div class="flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                                    <span>账户安全</span>
+                                    <i></i>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="item flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap">
+                            <p>商家认证</p>
+                        </div>
+                    </div>
+                    <div  class="st-content" style="margin-top: 30px;height:auto;">
+                        <h2>商家认证</h2>
+                        <div class="line"></div>
+                        <div style="padding-top: 20px; padding-bottom: 112px;">
+                            
+                            <div class="st-form">
+                                
+                                <div class="st-form-item">
+                                    <p class="label" style="padding-right: 16px;">姓名</p>
+                                    <input  name="realname" id="realname"  type="text" placeholder="请输入姓名" class="st-input"readonly="readonly" value="{$user['truename']}" />
+                                </div>
+                                <div class="st-form-item">
+                                    <p class="label" style="padding-right: 16px;">身份证号</p>
+                                    <input type="text" placeholder="请输入证件号！" class="st-input" id="myId" readonly="readonly" value="{$user['idcard']}"/>
+                                </div>
+                                <div class="st-form-item">
+                                    <p class="label" style="padding-right: 16px;">手机号</p>
+                                    <input type="text" placeholder="请输入绑定手机号！" class="st-input" id="moble" readonly="readonly" value="{$user['moble']}"/>
+                                </div>
+                                <div class="st-form-item">
+                                    <p class="label" style="padding-right: 16px;">微信号</p>
+                                    <input type="text" placeholder="请输入微信号！" class="st-input" id="weixin"/>
+                                </div>
+
+                                <div class="st-form-item">
+                                    <p class="label" style="padding-right: 16px;">申请说明</p>
+                                    <textarea id="content" name="content" cols="" rows="" class="textarea"  placeholder="说点什么...最少输入10个字符" datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！" onKeyUp="$.Huitextarealength(this,200)">{$data.content}</textarea>
+                                    <p class="textarea-numberbar"><em class="textarea-length"></em></p>
+                                </div>
+
+                                
+                                <input type="submit" id="verity" onclick="verPrimy()" value="下一步" style="margin-top:50px;margin-left:325px;" />
+								
+                            </div>
+                            <div class="beizhu">
+                                <div class="st-prompt">
+                                    <span></span>
+                                    <p>认证商家具有专属标识，与未认证商家进行区分。</p>
+                                </div>
+                                <div class="st-prompt">
+                                    <span></span>
+                                    <p>认证商家自愿同意冻结10000USDT作为商家保证金，保证金划转至认证商家所属的保证金账户。</p>
+                                </div>
+                                <div class="st-prompt">
+                                    <span></span>
+                                    <p>认证商家如需解除认证，需提交解除申请。如认证商家账户无不良记录等影响交易安全的行为，认证解除申请将在3个工作日内审核通过，商家保证金划转至需解除认证商家的可操作账户中。</p>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <!--底部内容-->
+                <include file="Public:footer"/>
+                <!--底部内容   end-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="__PUBLIC__/Home/js/newjs/primaryVerify.js"></script>
+<script type="text/javascript" src="__PUBLIC__/kindeditor/kindeditor-min.js"></script>
+<script type="text/javascript">
+    var editor;
+    KindEditor.ready(function (K) {
+        editor = K.create('textarea[name="content"]', {
+            width: '100%',
+            height: '250px',
+            allowPreviewEmoticons: false,
+            allowImageUpload: true,
+            uploadJson: "{:U('Article/typeEdit','type=images')}",//图片上传后的处理地址
+            items: [
+                'source', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+                'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+                'insertunorderedlist', '|', 'emoticons', 'image', 'link', 'fullscreen'],
+            afterBlur: function () {
+                this.sync();
+            }
+        });
+    });
+    
+</script>
+<script>
+    // 验证身份证
+    function IsHKID(str) {
+        var strValidChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        if (str.length < 8)
+            return false;
+        if (str.charAt(str.length-3) == '(' && str.charAt(str.length-1) == ')')
+            str = str.substring(0, str.length - 3) + str.charAt(str.length -2);
+        str = str.toUpperCase();
+        var hkidPat = /^([A-Z]{1,2})([0-9]{6})([A0-9])$/;
+        var matchArray = str.match(hkidPat);
+        if (matchArray == null)
+            return false;
+        var charPart = matchArray[1];
+        var numPart = matchArray[2];
+        var checkDigit = matchArray[3];
+        var checkSum = 0;
+        if (charPart.length == 2) {
+            checkSum += 9 * (10 + strValidChars.indexOf(charPart.charAt(0)));
+            checkSum += 8 * (10 + strValidChars.indexOf(charPart.charAt(1)));
+        } else {
+            checkSum += 9 * 36;
+            checkSum += 8 * (10 + strValidChars.indexOf(charPart));
+        }
+        for (var i = 0, j = 7; i < numPart.length; i++, j--)
+            checkSum += j * numPart.charAt(i);
+        var remaining = checkSum % 11;
+        var verify = remaining == 0 ? 0 : 11 - remaining;
+        return verify == checkDigit || (verify == 10 && checkDigit == 'A');
+    }
+
+
+    function verPrimy() {
+        var name = $('#realname').val();
+        var myId = $('#myId').val();
+        var weixin = $('#weixin').val();
+        var content = $('#content').val();
+        var reg = /^[1-9]{1}[0-9]{14}$|^[1-9]{1}[0-9]{16}([0-9]|[xX])$/;
+        if(weixin == "" || weixin == 'NULL')
+        {
+            layer.msg('请输入微信号！',{icon:2});return false;
+        }
+
+        if(content == "" || content == 'NULL')
+        {
+            layer.msg('请输入申请说明！',{icon:2});return false;
+        }
+
+
+        /*if (name == "" || name == null) {
+            $('#realname').addClass("error").siblings("p.message").addClass("error").show().siblings(".tips").hide();
+            return false;
+        }
+        if (myId == "" || myId == null) {
+            $('#myId').addClass("error").siblings("p.message").addClass("error").show().siblings(".tips").hide();
+            return false;
+        }else{
+            if(!reg.test(myId)){
+                layer.msg('身份证号格式错误', {icon: 2});
+
+                return false;
+            }
+        }*/
+        //IsHKID(myId);//调用上边的方法验证身份证的正确性   
+        $.ajax({
+            type: "POST", //用POST方式传输     　　
+            dataType: "json", //数据格式:JSON
+            data: {name: name, myId: myId,weixin:weixin,content:content},
+            url: "{:U('User/shop_session')}", //目标地址.
+            success: function (data) {
+                // console.log(data)
+                if (data.status == 1) {
+                    layer.msg(data.info, {icon: 1});
+                    window.location.href = "{:U('User/shop_bzj')}";
+                } else {
+                    layer.msg(data.info, {icon: 2});
+                }
+            }
+        });
+    }
+
+</script>
+</body>
+</html>
