@@ -5,11 +5,7 @@ class HomeController extends \Think\Controller
 {
 	protected function _initialize()
 	{
-	    if (ismobile()) {
-	        //设置默认默认主题为 Mobile
-	        //C('DEFAULT_V_LAYER', 'Tpl');
-	       // C('DEFAULT_THEME','Tpl');
-	    }
+		// dumpS(1212);
 		$web_log = M('config')->getField('web_logo');
 		$this->assign('web_logo',$web_log);
 		if($_SESSION['lang']==1) {include "./lang/zh-cn.php";}
@@ -116,13 +112,13 @@ class HomeController extends \Think\Controller
 			$market = M('Market')->where(array('status' => 1))->order('jiaoyiqu,sorts')->select();
 			S('home_market', $market);
 		}
-		// dumpS(C('coin'));
 		foreach ($market as $k => $v) {
 			$v['new_price'] 	= round($v['new_price'], $v['round']);
 			$v['buy_price'] 	= round($v['buy_price'], $v['round']);
 			$v['sell_price'] 	= round($v['sell_price'], $v['round']);
 			$v['min_price'] 	= round($v['min_price'], $v['round']);
 			$v['max_price'] 	= round($v['max_price'], $v['round']);
+			if ($v['name'] == null) dumpS($v);
 			$v['xnb'] 			= explode('_', $v['name'])[0];
 			$v['rmb'] 			= explode('_', $v['name'])[1];
 			$v['xnbimg'] 		= C('coin')[$v['xnb']]['img'];
@@ -138,6 +134,7 @@ class HomeController extends \Think\Controller
 			$coin_on[]							 = $v['xnb'];
 			$marketList['market'][$v['name']] 	 = $v;
 		}
+
 		C('market_type',$market_type);
 		C('coin_on',$coin_on);
 		C($marketList);
@@ -155,6 +152,7 @@ class HomeController extends \Think\Controller
 
 			S('daohang_aa', 1);
 		}
+
 		if (!S('daohang')) {
 			$this->daohang = M('Daohang')->where(array('status' => 1))->order('sort asc')->select();
 			S('daohang', $this->daohang);
@@ -190,12 +188,14 @@ class HomeController extends \Think\Controller
         $this->assign('hqlist', $lst);
 		$coin 		= C('MARKET');
 		$coinKeys 	= ['BDB','USDT','BTC','ETH']; 
+
         foreach ($coin as $k=>$v) $list[$coinKeys[$v['jiaoyiqu']]] = $v;
         $this->assign('coinlist', $list);
       	$usermylog['myzr'] = M('myzr')->where(['userid'=>$uid])->order('id desc')->select();
       	$usermylog['myzc'] = M('myzc')->where(['userid'=>$uid])->order('id desc')->select();
       	$usermylog['mytx'] = M('mytx')->where(['userid'=>$uid])->order('id desc')->select();
       	$usermylog['mycz'] = M('mycz')->where(['userid'=>$uid])->order('id desc')->select();
+
       	S('usermylog', $usermylog);
       	$this->assign('usermylog', $usermylog);
 	  	$empty=" <table class='sf-grid table-inacc table-inacc-body'>
@@ -206,6 +206,7 @@ class HomeController extends \Think\Controller
                         </tbody>
                     </table>";
 		$this->assign('empty', $empty);	
+
 	    //登陆状态查询用户VIP级别
     	if ($uid) {
     	    $arr_user_vip = get_vip_fee($uid);

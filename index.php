@@ -44,6 +44,7 @@
 	
     // 后台安全入口
     define('ADMIN_KEY', 'zhisucom');
+
     //定义授权码
     //define('MSCODE', '95D3A7E98EE9F913B462B87C73DS');
     define('DIR_SECURE_CONTENT', 'deny Access!');

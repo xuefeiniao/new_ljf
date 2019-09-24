@@ -370,6 +370,16 @@ function getUrl($url)
 	return $data;
 }
 
+function getCoinPrice($from, $to)
+{
+    $from   = strtolower($from);
+    $url    = "http://api.zb.plus/data/v1/ticker?market=".$from."_".$to;
+    $result = file_get_contents($url);
+    $arr    = json_decode($result,true);
+    $price  = $arr['ticker']['last'];
+    return $price;
+}
+
 function huafei($moble = NULL, $num = NULL, $orderid = NULL)
 {
 	if (empty($moble)) {
@@ -2505,6 +2515,3 @@ function dumpS($var)
 
 
 
-
-
-?>

@@ -3,38 +3,28 @@ namespace Home\Controller;
 
 class IndexController extends HomeController
 {
-	
-	
 	public function index()
 	{
-        dumpS(111222);
 		$this->assign('userId',$_SESSION['userId']);
 		$indexAdver = (APP_DEBUG ? null : S('index_indexAdver'));
-		dumpS($indexAdver);
 		if (!$indexAdver) {
 			$indexAdver = M('Adver')->where(array('status' => 1))->order('id asc')->select();
 			S('index_indexAdver', $indexAdver);
 		}
 
 		$this->assign('indexAdver', $indexAdver);
-		
-		
 		switch(C('index_html')){
+            //如果a模版
 			case "a":
-				//如果a模版
-				
 				$indexArticle = (APP_DEBUG ? null : S('index_indexArticle'));
-				
 				$indexArticleType = array(
 					"gonggao" => "aaa",
 					"taolun"  => "币友说币",
 					"hangye"  => "bbb"
 				);
-				
 				if (!$indexArticle) {
 					foreach ($indexArticleType as $k => $v) {
 						$indexArticle[$k] = M('Article')->where(array('type' => $v, 'status' => 1, 'index' => 1))->order('id desc')->limit(4)->select();
-						
 						foreach($indexArticle[$k] as $kk =>$vv){
 							$indexArticle[$k][$kk]['content'] = mb_substr(clear_html($vv['content']),0,40,'utf-8');
 							if($indexArticle[$k][$kk]['img']){
@@ -44,26 +34,21 @@ class IndexController extends HomeController
 							}	
 						}
 					}
-
 					S('index_indexArticle', $indexArticle);
 				}
 				break;
-				
 			default:
 				$indexArticleType = (APP_DEBUG ? null : S('index_indexArticleType'));
-
 				if (!$indexArticleType) {
 					$indexArticleType = M('ArticleType')->where(array('status' => 1, 'index' => 1))->order('sort asc ,id desc')->limit(3)->select();
 					S('index_indexArticleType', $indexArticleType);
 				}
 				$indexArticle = (APP_DEBUG ? null : S('index_indexArticle'));
-
 				if (!$indexArticle) {
 					foreach ($indexArticleType as $k => $v) {
-						$indexArticle[$k] = M('Article')->where(array('type' => $v['name'], 'status' => 1, 'index' => 1))->order('id desc')->limit(6)->select();
-                        $indexArticles[$k] = M('Article')->where(array('type' => $v['name'], 'status' => 1, 'index' => 1))->order('id desc')->limit(3)->select();
+						$indexArticle[$k]   = M('Article')->where(array('type' => $v['name'], 'status' => 1, 'index' => 1))->order('id desc')->limit(6)->select();
+                        $indexArticles[$k]  = M('Article')->where(array('type' => $v['name'], 'status' => 1, 'index' => 1))->order('id desc')->limit(3)->select();
 					}
-
 					S('index_indexArticle', $indexArticle);
                     S('index_indexArticles', $indexArticles);
 				}
@@ -71,115 +56,94 @@ class IndexController extends HomeController
 		$this->assign('indexArticleType', $indexArticleType);
 		$this->assign('indexArticle', $indexArticle);
 		$this->assign('indexArticles', $indexArticles[0]);
-
-		
-		
-		
-		
 		$indexLink = (APP_DEBUG ? null : S('index_indexLink'));
-
-		if (!$indexLink) {
-			$indexLink = M('Link')->where(array('status' => 1))->order('sort asc ,id desc')->select();
-		}
-		
-		
+		if (!$indexLink) $indexLink = M('Link')->where(array('status' => 1))->order('sort asc ,id desc')->select();
 		$zhisucom_getCoreConfig = zhisucom_getCoreConfig();
 		if(!$zhisucom_getCoreConfig){
 			$this->error('核心配置有误');
 		}
-		
 		$this->assign('zhisucom_jiaoyiqu', $zhisucom_getCoreConfig['zhisucom_indexcat']);
-		
 		$this->assign('indexLink', $indexLink);
-
-        $ajaxMenu = new AjaxController();
-        $indexMenu = $ajaxMenu->getJsonMenu('');
+        $ajaxMenu   = new AjaxController();
+        $indexMenu  = $ajaxMenu->getJsonMenu('');
         $this->assign('indexMenu', $indexMenu);
-
-		$huobi = A("Huobi");
-		$coin=C('MARKET');
+		$huobi      = A("Huobi");
+		$coin       = C('MARKET');
 		foreach($coin as $ks=>$vs){
 			$b1=strtoupper($vs['xnb']);
 			$b2=strtoupper($vs['rmb']);
-			$coin[$ks]['s1']="<b>$b1</b><font color='#bbb'>/ $b2</font>";
-			$coin[$ks]['urlname'] = $vs['xnb'].'_'.$vs['rmb'];
+			$coin[$ks]['s1']         ="<b>$b1</b><font color='#bbb'>/ $b2</font>";
+			$coin[$ks]['urlname']    = $vs['xnb'].'_'.$vs['rmb'];
 		}
-				
- 		//dump($coin);die;
-/*
-*is_new==1主区，is_new==2创新区
-*/
-      
-//dump($this->amfcfbt());die;
-$name_en = ['usdt'=>'usdt','btc'=>'btc','eth'=>'eth'];
+        /*
+        *is_new==1主区，is_new==2创新区
+        */
+        $name_en = ['usdt'=>'usdt','btc'=>'btc','eth'=>'eth'];
 		foreach ($name_en as $k => $v) {
 			$name_en_str = $v.'_qc';
-			$price = getUrl("http://api.zb.cn/data/v1/ticker?market={$name_en_str}");
-			$price = json_decode($price,1);
-			$prices = $price['ticker']['last'] ? $price['ticker']['last'] : 1;
-			$name = $k.'_cny';
+			$price       = getUrl("http://api.zb.plus/data/v1/ticker?market={$name_en_str}");
+			$price       = json_decode($price,1);
+			$prices      = $price['ticker']['last'] ? $price['ticker']['last'] : 1;
+			$name        = $k.'_cny';
 			M('Market')->where(array('name'=>$name))->save(array('new_price'=>$prices));
 		}
-        foreach ($coin as $k=>$v){
+        /*foreach ($coin as $k=>$v){
+            
             if($v['is_new'] == 1){
                 if ($v['jiaoyiqu']==0){
                   $xnb=explode('_',$v['name'])[0];
                   if($xnb == 'amfc')
                   {
                   	$rrs = $this->amfcfbt();
-                    //dump($rrs);
                     if($rrs)
                     {
-                    	 $v['new_price']=$rrs['last'];
-                        $v['min_price']=$rrs['low'];
-                        $v['max_price']=$rrs['high'];
-                        $v['volume']=$rrs['vol24hour'];
-                      	$v['change'] = $rrs['chg'];
+                    	$v['new_price'] =$rrs['last'] ? $rrs['last'] : 0;
+                        $v['min_price'] =$rrs['low'];
+                        $v['max_price'] =$rrs['high'];
+                        $v['volume']    =$rrs['vol24hour'];
+                      	$v['change']    = $rrs['chg'];
                        M('market')->where(['name'=>$v['name']])->save(['new_price'=>$v['new_price'],'min_price'=>$v['min_price'],'max_price'=>$v['max_price'],'volume'=>$v['volume'],'change'=>$v['change']]);
                     }
                   }
-                $list['JEFF'][]=$v;
-                //  dump($list['JEFF']);
+                    $list['JEFF'][]=$v;
                 }
+
                 if ($v['jiaoyiqu']==1){
-                    $xnb=explode('_',$v['name'])[0];
-                    $xnb_h=$xnb.'usdt';
-                  	
-                    // echo $xnb_h;
-                    $hb_price=$huobi->hangqing($xnb_h);
-                   
+                    $xnb        = explode('_',$v['name'])[0];
+                    $xnb_h      = $xnb.'usdt';
+                    $hb_price   = $huobi->hangqing($xnb_h);
                     if ($hb_price['status']!=='error'){
-                        $v['new_price']=$hb_price['tick']['close'];
-                        $v['min_price']=$hb_price['tick']['low'];
-                        $v['max_price']=$hb_price['tick']['high'];
-                        $v['volume']=$hb_price['tick']['amount'];
-                      	$v['change'] = round(($hb_price['tick']['close']-$hb_price['tick']['open'])/$hb_price['tick']['close'],2);
+                        $v['new_price'] = $hb_price['tick']['close'] ? $hb_price['tick']['close']: 0;
+                        $v['min_price'] = $hb_price['tick']['low'] ? $hb_price['tick']['low']: 0;
+                        $v['max_price'] = $hb_price['tick']['high'] ? $hb_price['tick']['high']: 0;
+                        $v['volume']    = $hb_price['tick']['amount'] ? $hb_price['tick']['amount']: 0;
+                      	$v['change']    = round(($hb_price['tick']['close']-$hb_price['tick']['open'])/$hb_price['tick']['close'],2);
                     }
+                    if (is_nan($v['change'])) $v['change']=0;
                     M('market')->where(['name'=>$v['name']])->save(['new_price'=>$v['new_price'],'min_price'=>$v['min_price'],'max_price'=>$v['max_price'],'volume'=>$v['volume'],'change'=>$v['change']]);
                     $list['USDT'][]=$v;
                 }
                 if ($v['jiaoyiqu']==2){
-                    $xnb=explode('_',$v['name'])[0];
-                    $xnb_h=$xnb.'btc';
-                    $hb_price=$huobi->hangqing($xnb_h);
-                    //  dump($hb_price);
+                    $xnb        = explode('_',$v['name'])[0];
+                    $xnb_h      = $xnb.'btc';
+                    $hb_price   = $huobi->hangqing($xnb_h);
                     if ($hb_price['status']!=='error'){
-                        $v['new_price']=$hb_price['tick']['close'];
-                        $v['min_price']=$hb_price['tick']['low'];
-                        $v['max_price']=$hb_price['tick']['high'];
-                        $v['volume']=$hb_price['tick']['amount'];
+                        $v['new_price'] = $hb_price['tick']['close'];
+                        $v['min_price'] = $hb_price['tick']['low'];
+                        $v['max_price'] = $hb_price['tick']['high'];
+                        $v['volume']    = $hb_price['tick']['amount'];
                     }
                     $list['BTC'][]=$v;
                 }
     			if ($v['jiaoyiqu']==3){
-    			    $xnb=explode('_',$v['name'])[0];
-                     $xnb_h=$xnb.'eth';
-                     $hb_price=$huobi->hangqing($xnb_h);
+    			    $xnb         = explode('_',$v['name'])[0];
+                     $xnb_h      = $xnb.'eth';
+                     $hb_price   = $huobi->hangqing($xnb_h);
                      if ($hb_price['status']!=='error'){
                          $v['new_price']=$hb_price['tick']['close'];
                          $v['min_price']=$hb_price['tick']['low'];
                          $v['max_price']=$hb_price['tick']['high'];
-                         $v['volume']=$hb_price['tick']['amount'];
+                         $v['volume']   =$hb_price['tick']['amount'];
                      }
                     $list['ETH'][]=$v;
                 }
@@ -198,45 +162,28 @@ $name_en = ['usdt'=>'usdt','btc'=>'btc','eth'=>'eth'];
                 }
             }
             
-        }
-		 //dump($list['JEFF']);die;
+        }*/
 		$this->assign('list', $list['JEFF']);
 		$this->assign('jtc', $list['JEFF']);
 		$this->assign('usdt', $list['USDT']);
 		$this->assign('btc', $list['BTC']);
 		$this->assign('eth', $list['ETH']);
-		
 		$this->assign('new_jtc', $new_list['JEFF']);
 		$this->assign('new_usdt', $new_list['USDT']);
 		$this->assign('new_btc', $new_list['BTC']);
 		$this->assign('new_eth', $new_list['ETH']);
-		
-		
-    //    $this->assign('usdtjy', $list['USDT']);
-    //    $this->assign('bbjy', $list['BTC']);
-
-		
-	//	$Ajaxma = new \Home\Controller\AjaxmarketController();
-	//	$bigArr = $Ajaxma->index();
-		//$usdt=M("usdt")->select();
-		//$btc=M('btc')->select();	
-		//$this->assign('usdt',$usdt);
-		//$this->assign('btc',$btc);
-		//$this->assign('rmbjy', $list['BDB']);
 
 		/*
 		*首页公告开始
 		*/
-		$notice = M('Article')->where(array('type'=>'notice','index'=>1,'status'=>1,'sort'=>array('gt','0')))->limit(3)->select();
-		$new_notice = M('Article')->where(array('type'=>'notice','index'=>1,'status'=>1,'sort'=>0))->order('addtime desc')->find();
-		// dump($notice);die;
-		$xinwen = M('Article')->where(array('status'=>1,'type'=>'info','footer'=>1))->select();
-		$about = M('Article')->where(array('status'=>1,'type'=>'aboutus','footer'=>1))->select();
+		$notice       = M('Article')->where(array('type'=>'notice','index'=>1,'status'=>1,'sort'=>array('gt','0')))->limit(3)->select();
+		$new_notice   = M('Article')->where(array('type'=>'notice','index'=>1,'status'=>1,'sort'=>0))->order('addtime desc')->find();
+		$xinwen       = M('Article')->where(array('status'=>1,'type'=>'info','footer'=>1))->select();
+		$about        = M('Article')->where(array('status'=>1,'type'=>'aboutus','footer'=>1))->select();
 		$this->assign('xinwen',$xinwen);
 		$this->assign('about',$about);
 		$this->assign('new_notice',$new_notice);
 		$this->assign('notice',$notice);
-		
 		/*结束*/
 		$this->assign('yuyan',$_SESSION['lang']);
 		if (C('index_html')) {
