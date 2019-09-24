@@ -5,7 +5,6 @@ class HomeController extends \Think\Controller
 {
 	protected function _initialize()
 	{
-	    
 	    if (ismobile()) {
 	        //设置默认默认主题为 Mobile
 	        //C('DEFAULT_V_LAYER', 'Tpl');
@@ -22,10 +21,8 @@ class HomeController extends \Think\Controller
 
 		if (!session('userId')) {
 			session('userId', 0);
-		}
-		else if (CONTROLLER_NAME != 'Login') {
+		} else if (CONTROLLER_NAME != 'Login') {
 			$user = D('user')->where('id = ' . session('userId'))->find();
-            
 			//没有绑手机号去绑手机号
 			/*if (!$user['moble']) {
 			    redirect('/Login/identity');
@@ -38,23 +35,21 @@ class HomeController extends \Think\Controller
 			if (!$user['truename']) {
 				redirect('/Login/truename');
 			}*/
-			
 			if($user['token']!=session('token_user')){
 				//登录
 				session(null);
 				session('zhisucom_already',1);
 				redirect('/');
 			}
-			
 		}
-		$c2c_user = M('User')->where(array('id'=>userid()))->field('zhifubao,weixin,paypassword')->find();
-		$c2c_user['bank'] = M('user_bank')->where(array('userid'=>userid()))->order('addtime desc')->getField('bankcard');
+		$uid = userid();
+		$c2c_user 			= M('User')->where(array('id'=>$uid))->field('zhifubao,weixin,paypassword')->find();
+		$c2c_user['bank'] 	= M('user_bank')->where(array('userid'=>$uid))->order('addtime desc')->getField('bankcard');
 		$this->assign('c2c_user',$c2c_user);
-		//dump($c2c_user);
-		$this->assign('uid',userid());
-		$coninfo = M('Config')->where('id=1')->find();
+		$this->assign('uid',$uid);
+		$coninfo 			= M('Config')->where('id=1')->find();
 		$this->assign('coninfo',$coninfo);
-		$keywords = M('Config')->where('id=1')->getField('web_keywords');
+		$keywords 			= $coninfo['web_keywords'];
 		$this->assign('web_keywords',$keywords);
 		
 		//手机端开发完成再打开
@@ -80,176 +75,93 @@ class HomeController extends \Think\Controller
 				die();
 			} 
 		}*/
-		
 		//20170511 zhisucom 增加获取币类型函数
-		
-		//C('coin_menu_zhisucom',array('CNY','BTC','ETH'));
-		
-		
-		
-		
-		if (userid()) {
-			$userCoin_top = M('UserCoin')->where(array('userid' => userid()))->find();
-			$userCoin_top['cny'] = round($userCoin_top['cny'], 2);
-			$userCoin_top['cnyd'] = round($userCoin_top['cnyd'], 2);
+		if ($uid) {
+			$userCoin_top 			= M('UserCoin')->where(array('userid' => $uid))->find();
+			$userCoin_top['cny'] 	= round($userCoin_top['cny'], 2);
+			$userCoin_top['cnyd'] 	= round($userCoin_top['cnyd'], 2);
 			$userCoin_top['allcny'] = round($userCoin_top['bb']+$userCoin_top['bbd'],2);
 			$this->assign('userCoin_top', $userCoin_top);
 		}
-
-		if (isset($_GET['invit'])) {
-			session('invit', $_GET['invit']);
-		}
-
+		if (isset($_GET['invit'])) session('invit', $_GET['invit']);
 		$config = (APP_DEBUG ? null : S('home_config'));
-
 		if (!$config) {
 			$config = M('Config')->where(array('id' => 1))->find();
-			
 			S('home_config', $config);
 		}
-//S('home_config', '');
-
-		if ($_GET['zhisucom'] == 'debug') {
-			session('web_close', 1);
-		}
-
-		if (!session('web_close')) {
-			if (!$config['web_close']) {
-				exit($config['web_close_cause']);
-			}
-		}
-
+		if ($_GET['zhisucom'] == 'debug') session('web_close', 1);
+		if (!session('web_close') && !$config['web_close']) exit($config['web_close_cause']);
 		C($config);
 		C('contact_qq', explode('|', C('contact_qq')));
 		C('contact_qqun', explode('|', C('contact_qqun')));
 		C('contact_bank', explode('|', C('contact_bank')));
-
 		$coin = (APP_DEBUG ? null : S('home_coin'));
-	
 		if (!$coin) {
 			$coin = M('Coin')->where(array('status' => 1))->select();
 			S('home_coin', $coin);
 		}
-		
 		$coinList = array();
-
 		foreach ($coin as $k => $v) {
 			$coinList['coin'][$v['name']] = $v;
-
-			if ($v['name'] != 'cny') {
-				$coinList['coin_list'][$v['name']] = $v;
-			}
-
-			if ($v['type'] == 'rmb') {
-				$coinList['rmb_list'][$v['name']] = $v;
-			}
-			else {
+			if (in_array($v['name'], ['cny','rmb','rgb','qbb'])) 
+				$coinList[$v['name'].'_list'][$v['name']] = $v;
+			else 
 				$coinList['xnb_list'][$v['name']] = $v;
-			}
-
-			if ($v['type'] == 'rgb') {
-				$coinList['rgb_list'][$v['name']] = $v;
-			}
-
-			if ($v['type'] == 'qbb') {
-				$coinList['qbb_list'][$v['name']] = $v;
-			}
 		}
-		
 		C($coinList);
-		
-		$market = (APP_DEBUG ? null : S('home_market'));
-		
-		
-		
-		
-		$market_type = array();
-		$coin_on = array();
-		
+		$market 		= (APP_DEBUG ? null : S('home_market'));
+		$market_type 	= array();
+		$coin_on 		= array();
 		if (!$market) {
 			$market = M('Market')->where(array('status' => 1))->order('jiaoyiqu,sorts')->select();
 			S('home_market', $market);
 		}
-
+		// dumpS(C('coin'));
 		foreach ($market as $k => $v) {
+			$v['new_price'] 	= round($v['new_price'], $v['round']);
+			$v['buy_price'] 	= round($v['buy_price'], $v['round']);
+			$v['sell_price'] 	= round($v['sell_price'], $v['round']);
+			$v['min_price'] 	= round($v['min_price'], $v['round']);
+			$v['max_price'] 	= round($v['max_price'], $v['round']);
+			$v['xnb'] 			= explode('_', $v['name'])[0];
+			$v['rmb'] 			= explode('_', $v['name'])[1];
+			$v['xnbimg'] 		= C('coin')[$v['xnb']]['img'];
+			$v['rmbimg'] 		= C('coin')[$v['rmb']]['img'];
+			$v['volume'] 		= $v['volume'] * 1;
+			$v['change'] 		= $v['change'] * 1;
+			$v['title'] 		= C('coin')[$v['xnb']]['title'] . '(' . strtoupper($v['xnb']) . '/' . strtoupper($v['rmb']) . ')';
+			$v['navtitle'] 		= C('coin')[$v['xnb']]['title'] . '(' . strtoupper($v['xnb']). ')';
 			
-			
-			
-			$v['new_price'] = round($v['new_price'], $v['round']);
-			$v['buy_price'] = round($v['buy_price'], $v['round']);
-			$v['sell_price'] = round($v['sell_price'], $v['round']);
-			$v['min_price'] = round($v['min_price'], $v['round']);
-			$v['max_price'] = round($v['max_price'], $v['round']);
-			$v['xnb'] = explode('_', $v['name'])[0];
-			$v['rmb'] = explode('_', $v['name'])[1];
-			$v['xnbimg'] = C('coin')[$v['xnb']]['img'];
-			$v['rmbimg'] = C('coin')[$v['rmb']]['img'];
-			$v['volume'] = $v['volume'] * 1;
-			$v['change'] = $v['change'] * 1;
-			$v['title'] = C('coin')[$v['xnb']]['title'] . '(' . strtoupper($v['xnb']) . '/' . strtoupper($v['rmb']) . ')';
-			$v['navtitle'] = C('coin')[$v['xnb']]['title'] . '(' . strtoupper($v['xnb']). ')';
-			
-			if($v['begintrade']){
-				$v['begintrade'] = $v['begintrade'];
-			}else{
-				$v['begintrade'] = "00:00:00";
-			}
-			if($v['endtrade']){
-				$v['endtrade']    = $v['endtrade'];
-			}else{
-				$v['endtrade']    = "23:59:59";
-			}
-			
-			
-			
-			$market_type[$v['xnb']]=$v['name'];
-			$coin_on[]= $v['xnb'];
-			$marketList['market'][$v['name']] = $v;
+			if($v['begintrade']) $v['begintrade']= $v['begintrade']; else $v['begintrade'] = "00:00:00"; 
+			if($v['endtrade']) $v['endtrade']    = $v['endtrade']; else $v['endtrade']    = "23:59:59";
+			$market_type[$v['xnb']] 			 = $v['name'];
+			$coin_on[]							 = $v['xnb'];
+			$marketList['market'][$v['name']] 	 = $v;
 		}
-	
 		C('market_type',$market_type);
 		C('coin_on',$coin_on);
-	
 		C($marketList);
 		$C = C();
-
-		foreach ($C as $k => $v) {
-			$C[strtolower($k)] = $v;
-		}
-
+		foreach ($C as $k => $v)  $C[strtolower($k)] = $v;
 		$this->assign('C', $C);
 		$this->kefu = './Application/Home/View/Kefu/' . $C['kefu'] . '/index.html';
-
 		if (!S('daohang_aa')) {
-			$tables = M()->query('show tables');
-			$tableMap = array();
-
-			foreach ($tables as $table) {
-				$tableMap[reset($table)] = 1;
-			}
-
+			$tables 	= M()->query('show tables');
+			$tableMap 	= array();
+			foreach ($tables as $table)  $tableMap[reset($table)] = 1;
 			if (!isset($tableMap['zhisucom_daohang'])) {
 				M()->execute("\r\n" . '                    CREATE TABLE `zhisucom_daohang` (' . "\r\n" . '                        `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT \'自增id\',' . "\r\n" . '                        `name` VARCHAR(255) NOT NULL COMMENT \'名称\',' . "\r\n" . '                         `title` VARCHAR(255) NOT NULL COMMENT \'名称\',' . "\r\n" . '                        `url` VARCHAR(255) NOT NULL COMMENT \'url\',' . "\r\n" . '                        `sort` INT(11) UNSIGNED NOT NULL COMMENT \'排序\',' . "\r\n" . '                        `addtime` INT(11) UNSIGNED NOT NULL COMMENT \'添加时间\',' . "\r\n" . '                        `endtime` INT(11) UNSIGNED NOT NULL COMMENT \'编辑时间\',' . "\r\n" . '                        `status` TINYINT(4)  NOT NULL COMMENT \'状态\',' . "\r\n" . '                        PRIMARY KEY (`id`)' . "\r\n\r\n" . '                  )' . "\r\n" . 'COLLATE=\'gbk_chinese_ci\'' . "\r\n" . 'ENGINE=MyISAM' . "\r\n" . 'AUTO_INCREMENT=1' . "\r\n" . ';' . "\r\n\r\n\r\n\r\n" . 'INSERT INTO `zhisucom_daohang` (`name`,`title`, `url`, `sort`, `status`) VALUES (\'finance\',\'财务中心\', \'Finance/index\', 1, 1);' . "\r\n" . 'INSERT INTO `zhisucom_daohang` (`name`,`title`, `url`, `sort`, `status`) VALUES (\'user\',\'安全中心\', \'User/index\', 2, 1);' . "\r\n" . 'INSERT INTO `zhisucom_daohang` (`name`, `title`,`url`, `sort`, `status`) VALUES (\'game\',\'应用中心\', \'Game/index\', 3, 1);' . "\r\n" . 'INSERT INTO `zhisucom_daohang` (`name`, `title`,`url`, `sort`, `status`) VALUES (\'article\',\'帮助中心\', \'Article/index\', 4, 1);' . "\r\n\r\n\r\n" . '                ');
 			}
 
 			S('daohang_aa', 1);
 		}
-		
-		
-		//echo C('reg_award').C('reg_award_coin').C('reg_award_num');
-		//die();
-		
-
 		if (!S('daohang')) {
 			$this->daohang = M('Daohang')->where(array('status' => 1))->order('sort asc')->select();
 			S('daohang', $this->daohang);
-		}
-		else {
+		} else {
 			$this->daohang = S('daohang');
 		}
-
 		$footerArticleType = (APP_DEBUG ? null : S('footer_indexArticleType'));
-
 		if (!$footerArticleType) {
 			$footerArticleType = M('ArticleType')->where(array('status' => 1, 'footer' => 1, 'shang' => ''))->order('sort asc ,id desc')->limit(3)->select();
 			S('footer_indexArticleType', $footerArticleType);
@@ -262,76 +174,43 @@ class HomeController extends \Think\Controller
 			foreach ($footerArticleType as $k => $v) {
 				$footerArticle[$v['name']] = M('ArticleType')->where(array('shang' => $v['name'], 'footer' => 1, 'status' => 1))->order('id asc')->limit(4)->select();
 			}
-
 			S('footer_indexArticle', $footerArticle);
 		}
-		
-		
 		$this->assign('footerArticle', $footerArticle);
 		$xinwen = M('Article')->where(array('status'=>1,'type'=>'info','footer'=>1))->select();
-		$about = M('Article')->where(array('status'=>1,'type'=>'aboutus','footer'=>1))->select();
+		$about 	= M('Article')->where(array('status'=>1,'type'=>'aboutus','footer'=>1))->select();
 		$this->assign('xinwen',$xinwen);
 		$this->assign('about',$about);
-        $mk = M('market');
-        $lst = $mk->where("status=1")->field('name,new_price,change')->select();
+        $mk 	= M('market');
+        $lst 	= $mk->where("status=1")->field('name,new_price,change')->select();
         foreach ($lst as $k=>$v){
             $lst[$k]['name']=strtoupper(str_replace('_', '/', $v['name']));
             $lst[$k]['new_price']=round($v['new_price'],2);
         }
-
         $this->assign('hqlist', $lst);
-
-		
-		$coin=C('MARKET');
-		
-        foreach ($coin as $k=>$v){
-            if ($v['jiaoyiqu']==0){
-                $list['BDB'][]=$v;
-            }
-            if ($v['jiaoyiqu']==1){
-                $list['USDT'][]=$v;
-            }
-            if ($v['jiaoyiqu']==2){
-                $list['BTC'][]=$v;
-            }
-			if ($v['jiaoyiqu']==3){
-                $list['ETH'][]=$v;
-            }
-        }
-	
-    //    dump($list['BDB']);die;
+		$coin 		= C('MARKET');
+		$coinKeys 	= ['BDB','USDT','BTC','ETH']; 
+        foreach ($coin as $k=>$v) $list[$coinKeys[$v['jiaoyiqu']]] = $v;
         $this->assign('coinlist', $list);
-        //dump($list['BB']);
-		
-      
-      	$usermylog['myzr'] = M('myzr')->where(['userid'=>userid()])->order('id desc')->select();
-      	$usermylog['myzc'] = M('myzc')->where(['userid'=>userid()])->order('id desc')->select();
-      	$usermylog['mytx'] = M('mytx')->where(['userid'=>userid()])->order('id desc')->select();
-      	$usermylog['mycz'] = M('mycz')->where(['userid'=>userid()])->order('id desc')->select();
-      	
+      	$usermylog['myzr'] = M('myzr')->where(['userid'=>$uid])->order('id desc')->select();
+      	$usermylog['myzc'] = M('myzc')->where(['userid'=>$uid])->order('id desc')->select();
+      	$usermylog['mytx'] = M('mytx')->where(['userid'=>$uid])->order('id desc')->select();
+      	$usermylog['mycz'] = M('mycz')->where(['userid'=>$uid])->order('id desc')->select();
       	S('usermylog', $usermylog);
       	$this->assign('usermylog', $usermylog);
-      	//dump($usermylog);
-      
-	  
-	  
-	  $empty=" <table class='sf-grid table-inacc table-inacc-body'>
+	  	$empty=" <table class='sf-grid table-inacc table-inacc-body'>
                         <tbody>
                         <tr class='table-empty' style='display: table-row;'>
                             <td style='text-align: center'><p><i>i</i>暂无成交记录</p></td>
                         </tr>
                         </tbody>
                     </table>";
-			$this->assign('empty', $empty);	
-			
-		
+		$this->assign('empty', $empty);	
 	    //登陆状态查询用户VIP级别
-    	if (userid()) {
-    	    $arr_user_vip = get_vip_fee(userid());
+    	if ($uid) {
+    	    $arr_user_vip = get_vip_fee($uid);
     	    $this->assign('vip', $arr_user_vip[0]);
     	}
-		
-		
 	}
 
     public function _empty() {

@@ -1,5 +1,4 @@
 <?php
-    echo 11;die;
  // 定义系统编码
     header("Content-Type: text/html;charset=utf-8");
     // 定义应用路径
@@ -17,7 +16,7 @@
     // 定义数据库地址
     define('DB_HOST', '127.0.0.1');
     // 定义数据库名
-    define('DB_NAME', 'jifu_test');
+    define('DB_NAME', 'ljf');
     // 定义数据库账号
     define('DB_USER', 'root');
     // 定义数据库密码
@@ -37,11 +36,11 @@
 	define('M_ONLY',1);
 	
     // 定义手机端网址123
-    define('WAP_URL', 'http://www.jeff.com');
+    define('WAP_URL', 'http://new_ljf.test');
     
     // 定义pc端网址
     // define('PC_URL', 'http://szjys.finsys.net');
-    define('PC_URL', 'http://www.jeff.com');
+    define('PC_URL', 'http://new_ljf.test');
 	
     // 后台安全入口
     define('ADMIN_KEY', 'zhisucom');

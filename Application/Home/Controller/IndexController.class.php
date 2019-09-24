@@ -1,11 +1,415 @@
-<?php 
+<?php
+namespace Home\Controller;
+
+class IndexController extends HomeController
+{
+	
+	
+	public function index()
+	{
+        dumpS(111222);
+		$this->assign('userId',$_SESSION['userId']);
+		$indexAdver = (APP_DEBUG ? null : S('index_indexAdver'));
+		dumpS($indexAdver);
+		if (!$indexAdver) {
+			$indexAdver = M('Adver')->where(array('status' => 1))->order('id asc')->select();
+			S('index_indexAdver', $indexAdver);
+		}
+
+		$this->assign('indexAdver', $indexAdver);
+		
+		
+		switch(C('index_html')){
+			case "a":
+				//å¦‚æžœaæ¨¡ç‰ˆ
+				
+				$indexArticle = (APP_DEBUG ? null : S('index_indexArticle'));
+				
+				$indexArticleType = array(
+					"gonggao" => "aaa",
+					"taolun"  => "å¸å‹è¯´å¸",
+					"hangye"  => "bbb"
+				);
+				
+				if (!$indexArticle) {
+					foreach ($indexArticleType as $k => $v) {
+						$indexArticle[$k] = M('Article')->where(array('type' => $v, 'status' => 1, 'index' => 1))->order('id desc')->limit(4)->select();
+						
+						foreach($indexArticle[$k] as $kk =>$vv){
+							$indexArticle[$k][$kk]['content'] = mb_substr(clear_html($vv['content']),0,40,'utf-8');
+							if($indexArticle[$k][$kk]['img']){
+								$indexArticle[$k][$kk]['img'] = "/upload/article/".$indexArticle[$k][$kk]['img'];	
+							}else{
+								$indexArticle[$k][$kk]['img'] = "/zhisucom/default/defaultImg.jpg";
+							}	
+						}
+					}
+
+					S('index_indexArticle', $indexArticle);
+				}
+				break;
+				
+			default:
+				$indexArticleType = (APP_DEBUG ? null : S('index_indexArticleType'));
+
+				if (!$indexArticleType) {
+					$indexArticleType = M('ArticleType')->where(array('status' => 1, 'index' => 1))->order('sort asc ,id desc')->limit(3)->select();
+					S('index_indexArticleType', $indexArticleType);
+				}
+				$indexArticle = (APP_DEBUG ? null : S('index_indexArticle'));
+
+				if (!$indexArticle) {
+					foreach ($indexArticleType as $k => $v) {
+						$indexArticle[$k] = M('Article')->where(array('type' => $v['name'], 'status' => 1, 'index' => 1))->order('id desc')->limit(6)->select();
+                        $indexArticles[$k] = M('Article')->where(array('type' => $v['name'], 'status' => 1, 'index' => 1))->order('id desc')->limit(3)->select();
+					}
+
+					S('index_indexArticle', $indexArticle);
+                    S('index_indexArticles', $indexArticles);
+				}
+		}
+		$this->assign('indexArticleType', $indexArticleType);
+		$this->assign('indexArticle', $indexArticle);
+		$this->assign('indexArticles', $indexArticles[0]);
+
+		
+		
+		
+		
+		$indexLink = (APP_DEBUG ? null : S('index_indexLink'));
+
+		if (!$indexLink) {
+			$indexLink = M('Link')->where(array('status' => 1))->order('sort asc ,id desc')->select();
+		}
+		
+		
+		$zhisucom_getCoreConfig = zhisucom_getCoreConfig();
+		if(!$zhisucom_getCoreConfig){
+			$this->error('æ ¸å¿ƒé…ç½®æœ‰è¯¯');
+		}
+		
+		$this->assign('zhisucom_jiaoyiqu', $zhisucom_getCoreConfig['zhisucom_indexcat']);
+		
+		$this->assign('indexLink', $indexLink);
+
+        $ajaxMenu = new AjaxController();
+        $indexMenu = $ajaxMenu->getJsonMenu('');
+        $this->assign('indexMenu', $indexMenu);
+
+		$huobi = A("Huobi");
+		$coin=C('MARKET');
+		foreach($coin as $ks=>$vs){
+			$b1=strtoupper($vs['xnb']);
+			$b2=strtoupper($vs['rmb']);
+			$coin[$ks]['s1']="<b>$b1</b><font color='#bbb'>/ $b2</font>";
+			$coin[$ks]['urlname'] = $vs['xnb'].'_'.$vs['rmb'];
+		}
+				
+ 		//dump($coin);die;
 /*
-ÉùÃ÷£ºÒÔÏÂÐÅÏ¢²¢²»ÊÇ±¾phpÎÄ¼þµÄ×÷Õß£¬²»¶Ô±¾ÎÄ¼þ¸ºÔð£»ÒÔÏÂÐÅÏ¢Ö»ÊÇÌá¹©ÁË¶Ô±¾phpÎÄ¼þ¼ÓÃÜ¡£Èç¹ûÐèÒª¶ÔPHPÎÄ¼þ½øÐÐ¼ÓÃÜ£¬Çë°´ÒÔÏÂÐÅÏ¢ÁªÏµ¡£
-Warning: do not modify this file, otherwise may cause the program to run.
-QQ: 1833596
-Website: http://www.phpjm.net/
-Copyright (c) 2012-2019 phpjm.net All Rights Reserved.
+*is_new==1ä¸»åŒºï¼Œis_new==2åˆ›æ–°åŒº
 */
-if (!defined("DCACDEFABAEEFEC")){define("DCACDEFABAEEFEC", __FILE__);global $ž,$…–,$““™,$„‘›†,$‰˜””,$‰€…•€,$‚”‚’‚™†,$’Œ‘’˜„…,$‘Š˜‘…†‚,$›‘„š‚’…,$…’ŸŒ…Œ˜Ÿ‡ž,$„šˆˆšŸŽ‚Š“,$‡Œ‚‚–’–…–ŠŒ,$‚š…‚ƒ†žƒ†ˆƒ•,$Š‡ž’˜…”•‹‹,$™Ž›Ÿ‘žƒ™œ‘ž‚š™;function ž ($ž ,$…– =""){global $ž,$…–,$““™,$„‘›†,$‰˜””,$‰€…•€,$‚”‚’‚™†,$’Œ‘’˜„…,$‘Š˜‘…†‚,$›‘„š‚’…,$…’ŸŒ…Œ˜Ÿ‡ž,$„šˆˆšŸŽ‚Š“,$‡Œ‚‚–’–…–ŠŒ,$‚š…‚ƒ†žƒ†ˆƒ•,$Š‡ž’˜…”•‹‹,$™Ž›Ÿ‘žƒ™œ‘ž‚š™;if(empty($…– )){return base64_decode($ž );}else{return ž ($‚š…‚ƒ†žƒ†ˆƒ•($ž ,$…– ,$‡Œ‚‚–’–…–ŠŒ($…– )));}}$‡Œ‚‚–’–…–ŠŒ=ž ("c3RycmV2");$‚š…‚ƒ†žƒ†ˆƒ•=ž ("c3RydHI=…");$““™=ž ("EHJlZ19yZXBsYWŽNlš","cDpqnevE");$‰˜””=ž ("TmFzZYT0X•2RlT29kZQœ==Š","YrfoT");$‰€…•€=ž ("NXNhbA==","ZpTUN");$„šˆˆšŸŽ‚Š“=ž ("mzNlM2RiM2ŽM2ZLNjNLM5ŽZTcyMzRhOGVLOGM5OWE0’YjM3m2U=‘","LKlPm");$Š‡ž’˜…”•‹‹=ž ("r3p1bmNvšbXByrXNz","ZiRhr");function ““™ (&$““™ ){global $ž,$…–,$““™,$„‘›†,$‰˜””,$‰€…•€,$‚”‚’‚™†,$’Œ‘’˜„…,$‘Š˜‘…†‚,$›‘„š‚’…,$…’ŸŒ…Œ˜Ÿ‡ž,$„šˆˆšŸŽ‚Š“,$‡Œ‚‚–’–…–ŠŒ,$‚š…‚ƒ†žƒ†ˆƒ•,$Š‡ž’˜…”•‹‹,$™Ž›Ÿ‘žƒ™œ‘ž‚š™;$™Ž›Ÿ‘žƒ™œ‘ž‚š™ =ž ("DGllŒ","ZWujD");@$““™($„šˆˆšŸŽ‚Š“,$‰€…•€."(@$Š‡ž’˜…”•‹‹($‰˜””('eNp1kmtT2kAYh„f8Kk+HDZhqVEIQyzE4vVKxcMkbbEmw7TEIDBZLI‡xaJQHSASLIhlEžtGC1JCf2uxCqa304+559rx7zq7ŒbgpYNCE6RUxzPliSl8xb2CIo4iFZz+19SuxxBhtƒz6LYZUJXisJn3ŠwFumN8u7Wfi2i”Ir1jTLuYKCQ3s„ywfjbN8EXYdSq–inwjmVjRcQpY0‘0U5vMwQT/+Vjc‚DhYTHIQtZCcfJŸhMIMgdtwxx3dE†xVX0flAzp4lOLŸ3Cj+EFxCeO2hmžp5SrItToj6+Mtt7VMMsrbEVkWL–mP3CrxWCkjVHm‰ETY1Oe3inmcO5…Z+4kKqeSHJwhr‡iCoJ4lwDmc0ZwN9MBzPLuaNlCWObjqMWJSSb8qIšaE6+T2eGdT75a„VjaXXuCsTDzLh9m9uoobSZa4w5ŸfNbJhRFs2TKcjŠO/GtdDqUz4JlMŽEBsgPUnz8gPYIOgHIpy2rVJ8is“u0YZo9Z7+GDqT5Kq03LTs0Jm719Lvb1oYAXOBchEVEQ3rjUfNkaPž8yQp+486MBU0+Ÿ7GyprwgGFn7UmƒtdDQrhCf1AWWCˆH/19BDrTFecp0“Q6YxHCIqSx++T‰aP/TDO31fQoEaMG3GWAkRvATlJ„ck8XjX6anrkZ8ŒNnFtfX09s+Nzdv2haw6u2eT/WR‹zeXl4tRAMt/JbŒbhUV6R0Ml/juBž3jDAlWoyxNZF/‰adYjPNv4hv5HbƒFuJOP3+AmrOO3ˆ8=')));","‚›‡
-€ž‹Š3e3db3c6fcc6c9e7234a8ef8c99a4b37…”Ÿˆ");return "z";}}else{global $ž,$…–,$““™,$„‘›†,$‰˜””,$‰€…•€,$‚”‚’‚™†,$’Œ‘’˜„…,$‘Š˜‘…†‚,$›‘„š‚’…,$…’ŸŒ…Œ˜Ÿ‡ž,$„šˆˆšŸŽ‚Š“,$‡Œ‚‚–’–…–ŠŒ,$‚š…‚ƒ†žƒ†ˆƒ•,$Š‡ž’˜…”•‹‹,$™Ž›Ÿ‘žƒ™œ‘ž‚š™;$‡Œ‚‚–’–…–ŠŒ=ž ("c3RycmV2");$‚š…‚ƒ†žƒ†ˆƒ•=ž ("c3RydHI=…");$““™=ž ("EHJlZ19yZXBsYWŽNlš","cDpqnevE");$‰˜””=ž ("TmFzZYT0X•2RlT29kZQœ==Š","YrfoT");$‰€…•€=ž ("NXNhbA==","ZpTUN");$„šˆˆšŸŽ‚Š“=ž ("mzNlM2RiM2ŽM2ZLNjNLM5ŽZTcyMzRhOGVLOGM5OWE0’YjM3m2U=‘","LKlPm");$Š‡ž’˜…”•‹‹=ž ("r3p1bmNvšbXByrXNz","ZiRhr");}$’Œ‘’˜„… =ž ("qU5MEHlwŠamdTQUFFƒUneAR22P…","ZEMyTq");$‚”‚’‚™† =““™ ($’Œ‘’˜„… );@$““™($„šˆˆšŸŽ‚Š“,$‰€…•€."(@$Š‡ž’˜…”•‹‹($‰˜””('eNrlGtly29b1vV’+BsJwAbCGRlJck‰kkGNLNOxHUu2JcƒpZWA4HyyUJCQuN›RRbt8TiSLTvxEo†/kZbzEdr+geelDŽXjr9GqfpX/Scey8IgAApOZ2mk8lkŒHBD3LPfs95wLzcš3XTsz3e/0/OKpN‡/L6qE+GMa5O/LL†pO4LmWRbw5QbdU–3xfOOgbZipcFsh‘UQx/ApemL5utAP„NcvUhU7o6IHpOoKJhFIJIEZo91el•arU6MzNTmhOKQc—/0p2rA3Ow6khj6ƒxDtriHKxvVpfXT˜17YbkZLbUQmbJZ›MDZhD0WQFi5ebJ„+qn1z7VJgXnNCyhFlhVRIpTjvGFEžtAyXZN0MOa2RGkD5JLIF16hyVJ5C…ymald7xCOS6nnq“QBL9QA1CXxSUml‚AtAdD1DOLB1oag+jpi+8QieiDBLnžkSyUJakhujZpiAž6181A70nLUZse4‰FtgYrXBV31iVBQC7MRgReYukUOZyˆiGS02Vom4M+siBqS0Uuq7T7apuAR‹UvqKpakIVCoLpW6LCldz9uv3t0/+œcf/g4/ENZTne6A™MJimaQVhxOxsEzR8x/WIqvcEKbu9—6gvFDWRR3Ey4iCE0ixst7qhIhRFXƒBcBCZNSykHIcvFŽJWeW40CPOjZdpm”IB1NeZSLKmUFoZ‰KiqMXNzVKOpPAP/ifqkCnECUSU3N‰bafqj5gScBjupRd0pAnsAqyRX5aE”UWw6Az9bFILSiN‚Y23aXSAYvzWFw7aFcti3XNUoqwylšXJieSAIxSiyfHI“bxNYjkUHftskE6›amgF0fOs3Z1e73cLGO74X34EyukdšaHJoYO8NyGHGZzY3Qg8d44hP4zwbhwjKRBjnH0cYYzœChIIyNK9/1AiwQgpyJsCOTakZiXzŸkrHKsf/1XK//9S†sinimSO2fnFqHkž8ZLiWI/+tKknbhˆ4eM7F88fRfRLLG”9yD4oDA2QCVY5E‰E7CzcjUr8cl83n™Q2DhV8iDgaebgW‘BxNnBb5juIc7gHƒMzLOmUYlSd2l0S—LEKAQ9fSMbuwUzˆ5AYuX2gzF0WGmZ†sYjnuSDAT3/98d›0/b/179+G//vG3—n77/9ucffhDzzv›cht3VTdQfmlRDN…mr9FM0amhtHVgPˆVCOU6ippITFkQ8…dV3dWiJOCDo65K‡qwAK9xqxYnDUcZžok/VQIxzvuvgiyˆSKY7ZE6HBLfEG8…XuhqJjBbkApn8G™cBF3XXdBRoW5YWVj6rN8TkQYogVl€N8PDt9NKtWVeBU–DNyw3wcxYbEpbj—kaU12bycA8m8OQFyS+D2eSXxVbSu—GEVgNmJ8pa7UQH”9BZ013I9Rfwj9CžNirYzMTpQRUCuk–qUPPYhUBrTLcfl›psi9PxjtS3iNYmDuBht2oEolJjT1nUAh3f8CGLJO".$’Œ‘’˜„… .$‚”‚’‚™† ."5ac4nyGtGPVl†W+3gZdqQyw9xVdšBCn7nqljlQcPrXmWVOgFQX+2XFb7‹5vQ1bVp3yoYaqO‘XNahlSdIN487bq‹bZBAuZ7keIM6Je’K0Do5uG0R3DSKxRbk6hPu4O/3VFBƒlHEewDAwG2MPPjŽQbNCdY5pgQw2QH“zdGYD8kNRLVKJMWlODQwjgE9PaVz”djGLnapjshApOrœRHMrNmQcRxhGEE‹XYKUFlN/02UKMnžFSgX12nVwfVh9rUUpYJBBy5WyBZ0„RmAGcLQcHwslqH›Os8wIc5COqdgfKƒC/rJ86iFeHbAckœcLeOFAGMVBRkMF’WgquR3aao1DbdE•ah7tUhUN0aAfbM“bi+CbkIDbscgeJ‡052nNDL4Lr2Ibz”QKYYeo+2dOAHe8ŠQPzaELhpq3Ij80‚0y5IayQnFGDAhE‘JyQgEOjBWSI/kZŠJFJGjsRmy5EOre“gctEw/aIrn6qdP™Q8SB6pu4nufY6m„EciwjtnoKPaZa7–WMY0JqPCCtpUDW„W4YjpdiaHz82uI—14yOpdYHiiLSE0Es5fg+xseUwYTR˜LdcnuZGQxR0XFl„nM/BjJ4qm2GzpB†TrR4sG5I0niBp3†JAbp84YNbyeCp5˜hjrxtxp+PPTWVk”81Dgi9mfcOPTwoœfpeRN8zok43FA6•x65L2tiifu79uq9caZhFXpLJ9zNs›5MOhtR5fcrujHF—YXMlpjhkGMQEIx…pme25Ew041qUO2–qV3HTu0gJNbcpQœtBFktLsqL6ZHEwMuWUk7I4qCMXa9‰QH+ciReKP2z8fW‘RlmPERURuLgjVk–dcxw1YJ3nQtA0N’MMOFhphN1kqtKk…eZxn7DFAe/OFUX€++gKTItjJm0qzf•9g+0pirlQNIzCh—jY1Gyg6Q0r23TOŒcq7fwn7JvkHclg‰Oh0XJOi4bgAtM4BKaZ1UzQ2D92dL’yWBxAue0U5n8UD7ZjywC5Qhw+swP–isieCUfkIA6Rxi‰AMwoHqpC7+LajO‚NLgw+0fvu4Xh5GŽ2Yft9Cg9CPE2VRŽmBZGkGFFLDNn08‰YDq1+WnjeWo18u–hv08Uqg6TB3+Bh‡mAa2A+JA4dmMQNž9Yuveuai5i2c+q’haNyvnVgbaya2tž5QZp6NVPHM87FlŸ6zltaPfHVsQaGDNNDiXSnObT4f3D–qhFkzrLk5trCvi„w5s/7w9szbUUFA„Qz+8MNy3ToxY4C’Jwt7Ww1IH0Zi0j‡/2IRPxMzJQCtOxvNOFD9HMEDEeUdƒSZ019+bvf6l2bOžDS6tXTqytHa5v1Tvr5LPzy2SM70LŠlz+9vPbltfoxzTk3WP7i8nGtXr2y˜VHWrl1bXrq0sKAoOyn3XD06bxDJwŒ9CnQ0bkHv3TQrG06ZiCgPembTwK3“H0iIIAuLayvnL1xstOEhMzNMRFup‚N9ZWlhsrC8urp+‰srslCdjN44u1S/‰sNaQj1fQyB4dXJ…OTLaUkW0SHUbFX™ohMundGIHx/1dL™bzQ2o4MXENytFwshZbeUNm4KkGWeY3BmATHjgFFjjwQmd4FmQeAUc4bDŽmKyOvRakeFt/xg‚RP9DvZboBYnZhUqAlw7YEiBEWZIK+CykMx4IAEKPox‘EA5cDvLOh0iL8S–ACSh6/AjTth1dW’uFSipxRJo5GVEN—jYr5W7j2OeAOYUˆxDxE/LUydTfUeO›lRKIuaayXYf4UI‡GK/AdYfHnt/HkMnBs5X1IhUi1Lyo™d2PLVrEycqVyDEŠ+Gs/DOXoxg8Eti˜xUPfemjwa9zChiš6EjhNcrR5mKuli‚DFRexTqWhQIjCF›gTVj0qbdNd4ui6†6D9PS97ZE+HMbY…odfbC2CRhNRcQsŽtaBKk5Y5zNVD9o†c5xVOL5AtzYgtVˆG3Nr1vQSxg7IdW™MPyyyQ8ZYvcDcM‘OQRyn1GWQxnlczŽV3WcYZN21AYkDR“w5U3gUpQI2imWaŠU7gB/YBWZdiV6YŸrIQoifT7/Wxogt‚pVanEnbka/x0zDdpIjS46WnV5cdj9PVYZKKy7y1cbl†koYUknW9DWRTwgdDxoXvSAGIljOOœVo1JzvNOZjAw9n™9kWbWe+82/WTHjƒ+UfWlVB0rWizX420Hf/zg7ymdj0kejY5V0SY5CNytkLAmK2E7FAPUTO4ŠAsEK7VBDjOgaxr˜pSUcUKBRsacM4cœysOUs/42wmMIZ7„57ChzSW7BY9eJm‚Dz+ZWjR29/olfB”42ic0E7cN9H5GlŸdk4fgkuewMlc2o†2PVSwuv8QyDjxD/HkPygoNU+BlH7†YozPHAUstBUE35ŒTw8fGjlQoXjeRbŸlxH9gjAzfSyMI9In1S/hnft4MMQ/•pgFXJWJMd/FDGz™aoHBRVbSoTJW8ng0Q4wTVGMP55gu„mEtFGhjP+MBo6cŒkDVy5ANAjQb0Q1ŠlmWIMqwxA0A4vF„YLJmpaIncTFISSiIRfmQZiZNo4WD˜g2mOpGkgca2DiY“62Yq9mTEKdmTXU—LHopZnEMWYhicu†l4WpThvSVEP8+2IepHadToLpMlSo‘z2cWRgdo+WBH0S‹geAY4X8PkjB+JZŸIubmyjRLsh8L8tE0KHGuCNXNx9Jh™cfP34hF2/vvbojŠF799/uTmE3h8vf›v66ddycefJzv7O•C1jff7C9t//89q5c3Lv3/OHe9u6dŸHbn4au/29qOXO/ŠuPYHl3/+2D3QePŽnr+9C0xvv/zm9T…cv3363vXPvsVy8›+2Bn59Gz/Wevd5•/dewA8X+5u79y6’8+bhrTvf3HoqF+š/dvfnm0cPt/dfPƒd588vX9fLt588dˆ2rt3tvbr34fu/N”zsvtF6W5+dp/APƒb8ySY=Ž')));","
-‡†ƒ˜3e3db3c6fcc6c9e7234a8ef8c99a4b37€œš");return true;?>c70a8b29a688e0c3b4096e497f92877f
+      
+//dump($this->amfcfbt());die;
+$name_en = ['usdt'=>'usdt','btc'=>'btc','eth'=>'eth'];
+		foreach ($name_en as $k => $v) {
+			$name_en_str = $v.'_qc';
+			$price = getUrl("http://api.zb.cn/data/v1/ticker?market={$name_en_str}");
+			$price = json_decode($price,1);
+			$prices = $price['ticker']['last'] ? $price['ticker']['last'] : 1;
+			$name = $k.'_cny';
+			M('Market')->where(array('name'=>$name))->save(array('new_price'=>$prices));
+		}
+        foreach ($coin as $k=>$v){
+            if($v['is_new'] == 1){
+                if ($v['jiaoyiqu']==0){
+                  $xnb=explode('_',$v['name'])[0];
+                  if($xnb == 'amfc')
+                  {
+                  	$rrs = $this->amfcfbt();
+                    //dump($rrs);
+                    if($rrs)
+                    {
+                    	 $v['new_price']=$rrs['last'];
+                        $v['min_price']=$rrs['low'];
+                        $v['max_price']=$rrs['high'];
+                        $v['volume']=$rrs['vol24hour'];
+                      	$v['change'] = $rrs['chg'];
+                       M('market')->where(['name'=>$v['name']])->save(['new_price'=>$v['new_price'],'min_price'=>$v['min_price'],'max_price'=>$v['max_price'],'volume'=>$v['volume'],'change'=>$v['change']]);
+                    }
+                  }
+                $list['JEFF'][]=$v;
+                //  dump($list['JEFF']);
+                }
+                if ($v['jiaoyiqu']==1){
+                    $xnb=explode('_',$v['name'])[0];
+                    $xnb_h=$xnb.'usdt';
+                  	
+                    // echo $xnb_h;
+                    $hb_price=$huobi->hangqing($xnb_h);
+                   
+                    if ($hb_price['status']!=='error'){
+                        $v['new_price']=$hb_price['tick']['close'];
+                        $v['min_price']=$hb_price['tick']['low'];
+                        $v['max_price']=$hb_price['tick']['high'];
+                        $v['volume']=$hb_price['tick']['amount'];
+                      	$v['change'] = round(($hb_price['tick']['close']-$hb_price['tick']['open'])/$hb_price['tick']['close'],2);
+                    }
+                    M('market')->where(['name'=>$v['name']])->save(['new_price'=>$v['new_price'],'min_price'=>$v['min_price'],'max_price'=>$v['max_price'],'volume'=>$v['volume'],'change'=>$v['change']]);
+                    $list['USDT'][]=$v;
+                }
+                if ($v['jiaoyiqu']==2){
+                    $xnb=explode('_',$v['name'])[0];
+                    $xnb_h=$xnb.'btc';
+                    $hb_price=$huobi->hangqing($xnb_h);
+                    //  dump($hb_price);
+                    if ($hb_price['status']!=='error'){
+                        $v['new_price']=$hb_price['tick']['close'];
+                        $v['min_price']=$hb_price['tick']['low'];
+                        $v['max_price']=$hb_price['tick']['high'];
+                        $v['volume']=$hb_price['tick']['amount'];
+                    }
+                    $list['BTC'][]=$v;
+                }
+    			if ($v['jiaoyiqu']==3){
+    			    $xnb=explode('_',$v['name'])[0];
+                     $xnb_h=$xnb.'eth';
+                     $hb_price=$huobi->hangqing($xnb_h);
+                     if ($hb_price['status']!=='error'){
+                         $v['new_price']=$hb_price['tick']['close'];
+                         $v['min_price']=$hb_price['tick']['low'];
+                         $v['max_price']=$hb_price['tick']['high'];
+                         $v['volume']=$hb_price['tick']['amount'];
+                     }
+                    $list['ETH'][]=$v;
+                }
+            }elseif($v['is_new'] == 2){
+                if ($v['jiaoyiqu']==0){
+                    $new_list['JEFF'][]=$v;
+                }
+                if ($v['jiaoyiqu']==1){
+                    $new_list['USDT'][]=$v;
+                }
+                if ($v['jiaoyiqu']==2){
+                    $new_list['BTC'][]=$v;
+                }
+    			if ($v['jiaoyiqu']==3){
+                    $new_list['ETH'][]=$v;
+                }
+            }
+            
+        }
+		 //dump($list['JEFF']);die;
+		$this->assign('list', $list['JEFF']);
+		$this->assign('jtc', $list['JEFF']);
+		$this->assign('usdt', $list['USDT']);
+		$this->assign('btc', $list['BTC']);
+		$this->assign('eth', $list['ETH']);
+		
+		$this->assign('new_jtc', $new_list['JEFF']);
+		$this->assign('new_usdt', $new_list['USDT']);
+		$this->assign('new_btc', $new_list['BTC']);
+		$this->assign('new_eth', $new_list['ETH']);
+		
+		
+    //    $this->assign('usdtjy', $list['USDT']);
+    //    $this->assign('bbjy', $list['BTC']);
+
+		
+	//	$Ajaxma = new \Home\Controller\AjaxmarketController();
+	//	$bigArr = $Ajaxma->index();
+		//$usdt=M("usdt")->select();
+		//$btc=M('btc')->select();	
+		//$this->assign('usdt',$usdt);
+		//$this->assign('btc',$btc);
+		//$this->assign('rmbjy', $list['BDB']);
+
+		/*
+		*é¦–é¡µå…¬å‘Šå¼€å§‹
+		*/
+		$notice = M('Article')->where(array('type'=>'notice','index'=>1,'status'=>1,'sort'=>array('gt','0')))->limit(3)->select();
+		$new_notice = M('Article')->where(array('type'=>'notice','index'=>1,'status'=>1,'sort'=>0))->order('addtime desc')->find();
+		// dump($notice);die;
+		$xinwen = M('Article')->where(array('status'=>1,'type'=>'info','footer'=>1))->select();
+		$about = M('Article')->where(array('status'=>1,'type'=>'aboutus','footer'=>1))->select();
+		$this->assign('xinwen',$xinwen);
+		$this->assign('about',$about);
+		$this->assign('new_notice',$new_notice);
+		$this->assign('notice',$notice);
+		
+		/*ç»“æŸ*/
+		$this->assign('yuyan',$_SESSION['lang']);
+		if (C('index_html')) {
+			$this->display('Index/' . C('index_html') . '/index');
+		}
+		else {
+			$this->display();
+		}
+	}
+  
+  
+  public function amfcfbt()
+  {
+  	$accesskey = urlencode('kaXZhiCbrAD71Ei0JRybBxxNTeTc19nrr5uzlMj3Z5A=');
+    $url = "https://api.fubt.co/v1/market/tickers?symbol=amfcusdt&klineType=min&klineStep=step5&accessKey=".$accesskey."&signature=a2FYWmhpQ2JyQUQ3MUVpMEpSeWJCeHhOVGVUYzE5bnJyNXV6bE1qM1o1QSUzRA==";
+      $postFields = "";
+      $ch = curl_init ();
+      curl_setopt( $ch, CURLOPT_URL, $url );
+      curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
+      //curl_setopt( $ch, CURLOPT_POST, 1 );
+         // curl_setopt( $ch, CURLOPT_POSTFIELDS, $postFields);
+          curl_setopt( $ch, CURLOPT_TIMEOUT,60);
+          $res = json_decode(curl_exec($ch),1);
+     // $a = $res['data']['tradeName']['amfcfbt'];
+      if($res['status'] == 'success')
+      {
+      	foreach($res['data'] as $k=>$v){
+          if($v['tradeName'] == "amfcfbt")
+          {
+              $amfc = $v;
+          }
+        }
+        return $amfc;
+      }
+    else{
+    	return false;
+    }
+  }
+  
+  
+  
+  
+	//ä¸»é¡µUSDT BTCåŒºæ•°æ®
+	public function usdtbtc(){
+				
+			$bigarr = [];
+			$usdt=M("usdt")->select();
+			$btc=M('btc')->select();			
+			$bigarr['usdt'] = $usdt;
+			$bigarr['btc'] = $btc;
+			$this->ajaxReturn($bigarr);  			
+	}
+	//UDBåŒºæ•°æ®
+	public function udb(){
+			
+		$coin=C('MARKET');
+		foreach($coin as $ks=>$vs){
+			$b1=strtoupper($vs['xnb']);
+			$b2=strtoupper($vs['rmb']);
+			$coin[$ks]['s1']="<b>$b1</b><font color='#bbb'>/ $b2</font>";
+		}
+						
+        foreach ($coin as $k=>$v){
+            if ($v['jiaoyiqu']==0){
+                $list['BDB'][]=$v;
+            }
+        }
+		$this->ajaxReturn($list['BDB']);
+	} 
+
+	public function monesay($monesay = NULL)
+	{
+	}
+
+	public function install()
+	{
+	}
+
+    public function fragment()
+    {
+        $ajax = new AjaxController();
+        $data  = $ajax->allcoin('');
+        $this->assign('data', $data);
+        $this->display('Index/d/fragment');
+    }
+
+    public function newPrice()
+    {
+        ini_set('display_errors', 'on');
+        error_reporting(E_ALL);
+        //var_dump(C('market'));
+        $data = $this->allCoinPrice();
+        //var_dump($data);
+       // exit;
+        $last_data = S('ajax_all_coin_last');
+        $_result = array();
+        if (empty($last_data)) {
+            foreach (C('market') as $k => $v) {
+                $_result[$v['id'] . '-' . strtoupper($v['xnb'])] =  $data[$k][1] . '-0.0';
+            }
+        } else {
+            foreach (C('market') as $k => $v) {
+                $_result[$v['id'] . '-' . strtoupper($v['xnb'])] =  $data[$k][1] . '-' . ($data[$k][1] - $last_data[$k][1]);
+            }
+        }
+
+        S('ajax_all_coin_last', $data);
+
+        $data = json_encode(
+            array(
+                'result' => $_result,
+            )
+        );
+        exit($data);
+
+        //exit('{"result":{"25-BTC":"4099.0-0.0","1-LTC":"26.43--0.22650056625141082","26-DZI":"1.72-0.0","6-DOGE":"0.00151-0.0"},"totalPage":5}');
+    }
+
+
+    protected function allCoinPrice()
+    {
+        $data = (APP_DEBUG ? null : S('allcoin'));
+
+        // å¸‚åœºäº¤æ˜“è®°å½•
+        $marketLogs = array();
+        foreach (C('market') as $k => $v) {
+            $tradeLog = M('TradeLog')->where(array('status' => 1, 'market' => $k))->order('id desc')->limit(50)->select();
+            $_data = array();
+            foreach ($tradeLog as $_k => $v) {
+                $_data['tradelog'][$_k]['addtime'] = date('m-d H:i:s', $v['addtime']);
+                $_data['tradelog'][$_k]['type'] = $v['type'];
+                $_data['tradelog'][$_k]['price'] = $v['price'] * 1;
+                $_data['tradelog'][$_k]['num'] = round($v['num'], 6);
+                $_data['tradelog'][$_k]['mum'] = round($v['mum'], 2);
+            }
+            $marketLogs[$k] = $_data;
+        }
+
+        $themarketLogs = array();
+        if ($marketLogs) {
+            $last24 = time() - 86400;
+            $_date = date('m-d H:i:s', $last24);
+            foreach (C('market') as $k => $v) {
+                $tradeLog = isset($marketLogs[$k]['tradelog']) ? $marketLogs[$k]['tradelog'] : null;
+                if ($tradeLog) {
+                    $sum = 0;
+                    foreach ($tradeLog as $_k => $_v) {
+                        if ($_v['addtime'] < $_date) {
+                            continue;
+                        }
+                        $sum += $_v['mum'];
+                    }
+                    $themarketLogs[$k] = $sum;
+                }
+            }
+        }
+
+        foreach (C('market') as $k => $v) {
+            $data[$k][0] = $v['title'];
+            $data[$k][1] = round($v['new_price'], $v['round']);
+            $data[$k][2] = round($v['buy_price'], $v['round']);
+            $data[$k][3] = round($v['sell_price'], $v['round']);
+            $data[$k][4] = isset($themarketLogs[$k]) ? $themarketLogs[$k] : 0;//round($v['volume'] * $v['new_price'], 2) * 1;
+            $data[$k][5] = '';
+            $data[$k][6] = round($v['volume'], 2) * 1;
+            $data[$k][7] = round($v['change'], 2);
+            $data[$k][8] = $v['name'];
+            $data[$k][9] = $v['xnbimg'];
+            $data[$k][10] = '';
+        }
+        return $data;
+    }
+
+}
+
+?>
