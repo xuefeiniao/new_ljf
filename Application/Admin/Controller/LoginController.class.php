@@ -15,7 +15,7 @@ class LoginController extends \Think\Controller
 				S('5df4g5dsh8shnfsf', $admin['id']);
 				session('admin_username', $admin['username']);
 				session('admin_password', $admin['password']);
-				$this->success('登陆成功!', U('Index/index'));
+				$this->success('登陆成功!', U('Admin/Index/index'));
 			}
 		} else {
 			defined('ADMIN_KEY') || define('ADMIN_KEY', '');

@@ -88,7 +88,7 @@
 	$(function() {
       $("#form-add").ajaxForm(function(data){
       var code = $('#code').val();
-      if(code=="" || code==null)  layer.msg("请输入验证码", {icon: 2});return false;
+      if(code=="" || code==null)  {layer.msg("请输入验证码", {icon: 2});return false;}
     	if (data.status==1) {
         	 layer.msg(data.info, {icon: 1});
 			     window.location = data.url;
