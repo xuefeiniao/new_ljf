@@ -33,7 +33,6 @@ class Dispatcher {
         }elseif(IS_CLI){ // CLI模式下 index.php module/controller/action/params/...
             $_SERVER['PATH_INFO'] = isset($_SERVER['argv'][1]) ? $_SERVER['argv'][1] : '';
         }
-
         // 开启子域名部署
         if(C('APP_SUB_DOMAIN_DEPLOY')) {
             $rules      = C('APP_SUB_DOMAIN_RULES');
@@ -236,7 +235,6 @@ class Dispatcher {
         // 获取控制器的命名空间（路径）
         define('CONTROLLER_PATH',   self::getSpace($varAddon,$urlCase));
         // 获取控制器和操作名
-
         define('CONTROLLER_NAME',   defined('BIND_CONTROLLER')? BIND_CONTROLLER : self::getController($varController,$urlCase));
         define('ACTION_NAME',       defined('BIND_ACTION')? BIND_ACTION : self::getAction($varAction,$urlCase));
 
@@ -264,7 +262,6 @@ class Dispatcher {
      * 获得实际的控制器名称
      */
     static private function getController($var,$urlCase) {
-
         $controller = (!empty($_GET[$var])? $_GET[$var]:C('DEFAULT_CONTROLLER'));
         unset($_GET[$var]);
         if($maps = C('URL_CONTROLLER_MAP')) {

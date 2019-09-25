@@ -36,11 +36,11 @@
 	define('M_ONLY',1);
 	
     // 定义手机端网址123
-    define('WAP_URL', 'http://new_ljf.test');
+    define('WAP_URL', 'http://new_ljf.test:81');
     
     // 定义pc端网址
     // define('PC_URL', 'http://szjys.finsys.net');
-    define('PC_URL', 'http://new_ljf.test');
+    define('PC_URL', 'http://new_ljf.test:81');
 	
     // 后台安全入口
     define('ADMIN_KEY', 'zhisucom');

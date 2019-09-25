@@ -86,69 +86,63 @@
 <script type="text/javascript">
 	//提交表单
 	$(function() {
-        $("#form-add").ajaxForm(function(data){
-          var code = $('#code').val();
-      if(code=="" || code==null)
-      {
-      	layer.msg("请输入验证码", {icon: 2});return false;
-      }
-        	if (data.status==1) {
-        	layer.msg(data.info, {icon: 1});
-			window.location = data.url;
+      $("#form-add").ajaxForm(function(data){
+      var code = $('#code').val();
+      if(code=="" || code==null)  layer.msg("请输入验证码", {icon: 2});return false;
+    	if (data.status==1) {
+        	 layer.msg(data.info, {icon: 1});
+			     window.location = data.url;
         }else{
             layer.msg(data.info, {icon: 2});return false;
-			window.location = data.url;
+			      window.location = data.url;
         }
-        },'json');
-         
-    });
+      },'json');
+  });
   
     
-     var InterValObj; //timer变量，控制时间
+    var InterValObj; //timer变量，控制时间
     var count = 60; //间隔函数，1秒执行
     var curCount;//当前剩余秒数
     function sendMessage() {
-            curCount = count;
-            //设置button效果，开始计时
-            $(".sendBtn").addClass("disabled");
-            $(".sendBtn").html( + curCount + "s");
-            InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
-            //向后台发送处理数据
+          curCount = count;
+          //设置button效果，开始计时
+          $(".sendBtn").addClass("disabled");
+          $(".sendBtn").html( + curCount + "s");
+          InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+          //向后台发送处理数据
     }
       
-        //timer处理函数
+    //timer处理函数
     function SetRemainTime() {
         if (curCount == 0) {
             window.clearInterval(InterValObj);//停止计时器
             $(".sendBtn").removeClass("disabled");//启用按钮
             $(".sendBtn").html("发送验证码");
-
-        }
-        else {
-            curCount--;
-            $(".sendBtn").html( + curCount + "s");
+        } else {
+          curCount--;
+          $(".sendBtn").html( + curCount + "s");
         }
     }
 
     $(".sendBtn").click(function(){
       //sendMessage();
-         var username = $('#username').val();
+      var username = $('#username').val();
       	
-      // alert(username);
-       $.ajax({
-          url:"{:U('Login/send_moble')}",
-          data:{username:username},
-          dataType:'json',
-          type:'post',
-          success:function(data){
-            if(data.status==1){
-              layer.msg(data.info, {icon: 1});
-              sendMessage();
-            }else{
-              layer.msg(data.info, {icon: 2});
-            }
+     // alert(username);
+     $.ajax({
+        url:"{:U('Login/send_moble')}",
+        data:{username:username},
+        dataType:'json',
+        type:'post',
+        success:function(data){
+          if(data.status==1){
+            layer.msg(data.info, {icon: 1});
+            sendMessage();
+          }else{
+            layer.msg(data.info, {icon: 2});
           }
-        });
+        }
+      });
     })
 
       
@@ -157,7 +151,5 @@
 <script type="text/javascript" src="__PUBLIC__/rs/lib/jquery/1.9.1/jquery.min.js"></script> 
 <script type="text/javascript" src="__PUBLIC__/rs/static/h-ui/js/H-ui.min.js"></script>
  
-
-<!--/此乃百度统计代码，请自行删除
 </body>
 </html>

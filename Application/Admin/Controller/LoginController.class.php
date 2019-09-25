@@ -6,39 +6,21 @@ class LoginController extends \Think\Controller
 	public function index($username = NULL, $password = NULL, $verify = NULL, $zhisucom = NULL,$code=NULL)
 	{
 		if (IS_POST) {
-			/*if (!check_verify($verify)) {
-				$this->error('验证码输入错误！');
-			}*/
-
 			$admin = M('Admin')->where(array('username' => $username))->find();
-
 			if ($admin['password'] != md5($password)) {
 				$this->error('用户名或密码错误！');
-			}
-			else {
-              if($code != session('codes'))
-              {
-              	//$this->error('验证码错误');
-              }
+			} else {
+              // if($code != session('codes')) $this->error('验证码错误');
 				session('admin_id', $admin['id']);
 				S('5df4g5dsh8shnfsf', $admin['id']);
 				session('admin_username', $admin['username']);
 				session('admin_password', $admin['password']);
 				$this->success('登陆成功!', U('Index/index'));
 			}
-		}
-		else {
-			dumpS(111);
+		} else {
 			defined('ADMIN_KEY') || define('ADMIN_KEY', '');
-
-			if (ADMIN_KEY && ($zhisucom != ADMIN_KEY)) {
-				$this->redirect('Home/Index/index');
-			}
-
-			if (session('admin_id')) {
-				$this->redirect('Admin/Index/index');
-			}
-
+			if (ADMIN_KEY && ($zhisucom != ADMIN_KEY))  $this->redirect('Home/Index/index');
+			if (session('admin_id'))  $this->redirect('Admin/Index/index');
 			$this->display('Admin/Login/mmmm');
 		}
 	}

@@ -6,9 +6,7 @@ class AdminController extends \Think\Controller
     public function __construct()
     {
         parent::__construct();
-
         defined('APP_DEMO') || define('APP_DEMO', 0);
-
         if (!session('admin_id')) {
             $this->redirect('Admin/Login/index');
         }
@@ -130,7 +128,6 @@ class AdminController extends \Think\Controller
 		
 		$path=M('menu')->where("url='$url' and pid!=0 and hide=0")->field('id,title,url,group')->find();
 		$this->assign('path',$path);
-        
     }
 
     public function index()

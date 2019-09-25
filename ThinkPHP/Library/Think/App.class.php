@@ -22,6 +22,7 @@ class App
      */
     static public function init()
     {
+
         // 加载动态应用公共文件和配置
         load_ext_file(COMMON_PATH);
 
@@ -38,7 +39,6 @@ class App
 
         // URL调度
         Dispatcher::dispatch();
-
         if (C('REQUEST_VARS_FILTER')) {
             // 全局安全过滤
             array_walk_recursive($_GET, 'think_filter');
@@ -199,8 +199,10 @@ class App
      */
     static public function run()
     {
+
         // 应用初始化标签
         Hook::listen('app_init');
+
         App::init();
         // 应用开始标签
         Hook::listen('app_begin');
@@ -210,6 +212,7 @@ class App
         }
         // 记录应用初始化时间
         G('initTime');
+
         App::exec();
 
         // 应用结束标签

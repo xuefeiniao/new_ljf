@@ -5,26 +5,17 @@ class IndexController extends AdminController
 {
 	public function index()
 	{
-		//$this->checkUpdata();
 		$arr = array();
 		$arr['reg_sum'] = M('User')->count();
-		dumpS(M('UserCoin')->limit(30)->select());
-		$arr['cny_num'] = M('UserCoin')->sum('cny') + M('UserCoin')->sum('cnyd');
+		$arr['cny_num'] = M('Usercoin')->sum('cny') + M('Usercoin')->sum('cnyd');
 		$arr['trance_mum'] = M('TradeLog')->sum('mum');
 
-		if (10000 < $arr['trance_mum']) {
-			$arr['trance_mum'] = round($arr['trance_mum'] / 10000) . '万';
-		}
-
-		if (100000000 < $arr['trance_mum']) {
-			$arr['trance_mum'] = round($arr['trance_mum'] / 100000000) . '亿';
-		}
-
+		if (10000 < $arr['trance_mum'])  $arr['trance_mum'] = round($arr['trance_mum'] / 10000) . '万';
+		if (100000000 < $arr['trance_mum'])  $arr['trance_mum'] = round($arr['trance_mum'] / 100000000) . '亿';
 		$arr['art_sum'] = M('Article')->count();
-		$data = array();
-		$time = mktime(0, 0, 0, date('m'), date('d'), date('Y')) - (29 * 24 * 60 * 60);
-		$i = 0;
-
+		$data 	= array();
+		$time 	= mktime(0, 0, 0, date('m'), date('d'), date('Y')) - (29 * 24 * 60 * 60);
+		$i 		= 0;
 		for (; $i < 30; $i++) {
 			$a = $time;
 			$time = $time + (60 * 60 * 24);
@@ -71,7 +62,6 @@ class IndexController extends AdminController
 		$this->assign('cztx', json_encode($data['cztx']));
 		$this->assign('reg', json_encode($data['reg']));
 		$this->assign('arr', $arr);
-
 		$this->display();
 	}
 
