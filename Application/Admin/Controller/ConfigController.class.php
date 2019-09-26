@@ -23,7 +23,6 @@ class ConfigController extends AdminController
 			$this->error('测试站暂时不能修改！');
 		}
 
-
 		if (M('Config')->where(array('id' => 1))->save($_POST)) {
 			$this->success('修改成功！');
 		}
@@ -126,24 +125,14 @@ class ConfigController extends AdminController
 	public function coin($name = NULL, $field = NULL, $status = NULL)
 	{
 		$where = array();
-
 		if ($field && $name) {
-			if ($field == 'username') {
-				$where['userid'] = M('User')->where(array('username' => $name))->getField('id');
-			}
-			else {
-				$where[$field] = $name;
-			}
+			if ($field == 'username') $where['userid'] = M('User')->where(array('username' => $name))->getField('id'); else $where[$field] = $name; 
 		}
-
-		if ($status) {
-			$where['status'] = $status - 1;
-		}
-
-		$count = M('Coin')->where($where)->count();
-		$Page = new \Think\Page($count, 50);
-		$show = $Page->show();
-		$list = M('Coin')->where($where)->order('id desc')->limit($Page->firstRow . ',' . $Page->listRows)->select();
+		if ($status) $where['status'] = $status - 1;
+		$count 	= M('Coin')->where($where)->count();
+		$Page 	= new \Think\Page($count, 50);
+		$show 	= $Page->show();
+		$list 	= M('Coin')->where($where)->order('id desc')->limit($Page->firstRow . ',' . $Page->listRows)->select();
 		// $count = M('Coin')->where(array('status'=>1))->count();
 		$this->assign('list', $list);
 		$this->assign('page', $show);
@@ -480,6 +469,7 @@ class ConfigController extends AdminController
 	public function qita()
 	{
 		$this->data = M('Config')->where(array('id' => 1))->find();
+		// dumpS($this->data);
 		$this->display();
 	}
 

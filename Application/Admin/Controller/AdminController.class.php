@@ -10,7 +10,6 @@ class AdminController extends \Think\Controller
         if (!session('admin_id')) {
             $this->redirect('Admin/Login/index');
         }
-
         define('UID', session('admin_id'));
         $config = M('Config')->where(array('id' => 1))->find();
         C($config);
@@ -44,7 +43,6 @@ class AdminController extends \Think\Controller
                 $coinList['qbb_list'][$v['name']] = $v;
             }
         }
-
         C($coinList);
         $market = (APP_DEBUG ? null : S('home_market'));
 
@@ -68,14 +66,12 @@ class AdminController extends \Think\Controller
             $v['title'] = C('coin')[$v['xnb']]['title'] . '(' . strtoupper($v['xnb']) . '/' . strtoupper($v['rmb']) . ')';
             $marketList['market'][$v['name']] = $v;
         }
-
         C($marketList);
         $C = C();
 
         foreach ($C as $k => $v) {
             $C[strtolower($k)] = $v;
         }
-
         $this->assign('C', $C);
         //这里限定_admin表中id=1的做IS_ROOT授权
         if (session('admin_id') == 1){
@@ -123,9 +119,7 @@ class AdminController extends \Think\Controller
 		$this->assign('cate',$cate);//dump($cate);
 		
 		
-		
 		$url=CONTROLLER_NAME.'/'.ACTION_NAME;
-		
 		$path=M('menu')->where("url='$url' and pid!=0 and hide=0")->field('id,title,url,group')->find();
 		$this->assign('path',$path);
     }
