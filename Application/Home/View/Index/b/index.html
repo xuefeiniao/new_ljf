@@ -245,13 +245,12 @@
                     <volist name="img1" id="vo">
 						<eq name="Think.session.lang" value="1">
 							<notempty name="vo['img']" value=" ">
-							
 								<div class="carousel flex-box flex-direction-row flex-justify-start flex-align-item-column flex-wrap-nowrap" style="background-image: url(/Upload/ad/{$vo['img']});"  url="{$v['url']}" >
 									<div class="content cn" >
 										<h1 class="cn">
 											{$vo['name']}
 										</h1>
-									   <!--<a href="{$v['url']}">{$GLOBALS['lunbo-detail']}</a>-->
+									   <!-- <a href="{$v['url']}">{$GLOBALS['lunbo-detail']}</a> -->
 									</div>
 								</div>
 								 
@@ -317,7 +316,6 @@
                         <div style="position: relative;z-index: 2">
                             <a target="_blank" class="notice_title" href="/Article/index"><span>{$GLOBALS['article']}</span> {$new_notice['title']}</a>
                             <ul>
-                                
                                 <volist name="notice" id="vo">
                                 <li><span style="margin-right: 8px; display: inline-block; width: 3px; height: 3px; border-radius: 50%; background: rgb(126, 158, 253); vertical-align: super;"></span><a href="/Article/detail/id/{$vo['id']}" target="_blank"><span>{$vo['title']}</span><span>{$vo['addtime']|date="y-m-d",###}</span></a></li>
                                 </volist>
@@ -411,121 +409,121 @@
                                         <div class="dataShow">
 										<div class="show-list">
                                             <volist name="jtc" id="r" key="key">
-										<a href="/Trade/index/market/{$r.urlname}" target="_blank">
-                                                <div class="area-list flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
-                                                    <div class="item col-1 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
-                                                        <p ><span >{$r.s1}</span><span style="color:#666b93;" ></span> </p>
-                                                        <!--<span class="star no-optional" ></span>-->
-                                                    </div>
-                                                    <div class="item col-2 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
-                                                        <p class="newPrice"> {$r.new_price|sprintf="%.4f",###}
-                                                        </p>
-                                                    </div>
-                                                    <div class="item col-3 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
-                                                        <p style="color:#B92E5D;" class="changeNum"> {$r.change|round=2} </p>
-                                                        <span class="arrow down" ></span>
-                                                    </div>
-                                                    <div class="item col-4 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
-                                                        <p > {$r.max_price|sprintf="%.4f",###}</p>
-                                                    </div>
-                                                    <div class="item col-5 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
-                                                        <p > {$r.min_price|sprintf="%.4f",###}</p>
-                                                    </div>
-                                                    <div class="item col-6 flex-box flex-direction-row flex-justify-end flex-align-item-center flex-wrap-nowrap" >
-                                                        <p > <?php echo sprintf("%.2f",($r['volume']/10000)) ?></p>
-                                                    </div>
-                                                </div> 
-                                            </a>
+        										<a href="/Trade/index/market/{$r.urlname}" target="_blank">
+                                                    <div class="area-list flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                                                        <div class="item col-1 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                            <p ><span >{$r.s1}</span><span style="color:#666b93;" ></span> </p>
+                                                            <!--<span class="star no-optional" ></span>-->
+                                                        </div>
+                                                        <div class="item col-2 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                            <p class="newPrice"> {$r.new_price|sprintf="%.4f",###}
+                                                            </p>
+                                                        </div>
+                                                        <div class="item col-3 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                            <p style="color:#B92E5D;" class="changeNum"> {$r.change|round=2} </p>
+                                                            <span class="arrow down" ></span>
+                                                        </div>
+                                                        <div class="item col-4 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                            <p > {$r.max_price|sprintf="%.4f",###}</p>
+                                                        </div>
+                                                        <div class="item col-5 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                            <p > {$r.min_price|sprintf="%.4f",###}</p>
+                                                        </div>
+                                                        <div class="item col-6 flex-box flex-direction-row flex-justify-end flex-align-item-center flex-wrap-nowrap" >
+                                                            <p > <?php echo sprintf("%.2f",($r['volume']/10000)) ?></p>
+                                                        </div>
+                                                    </div> 
+                                                </a>
                                             </volist>
-											</div>
-												<div class="show-list">
-                                                <volist name="usdt" id="u1" key="key1">
-                                            <a href="/Trade/index/market/{$u1.urlname}" target="_blank" show="true">
-                                                <div class="area-list flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
-                                                    <div class="item col-1 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
-                                                        <p ><span >{$u1.s1}</span><span style="color:#666b93;" ></span> </p>
-                                                        <!--<span class="star no-optional" ></span>-->
+										</div>
+										<div class="show-list">
+                                            <volist name="usdt" id="u1" key="key1">
+                                                <a href="/Trade/index/market/{$u1.urlname}" target="_blank" show="true">
+                                                    <div class="area-list flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                                                        <div class="item col-1 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                            <p ><span >{$u1.s1}</span><span style="color:#666b93;" ></span> </p>
+                                                            <!--<span class="star no-optional" ></span>-->
+                                                        </div>
+                                                        <div class="item col-2 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                            <p class="newPrice"> {$u1.new_price|sprintf="%.4f",###}</p>
+                                                            <!-- <span style="color:#666b93;" > ≈ ￥44347.86</span>  -->
+                                                        </div>
+                                                        <div class="item col-3 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                            <p class="changeNum" style="color: rgb(185, 46, 93);" > {$u1.change|round=2} </p>
+                                                            <span class="arrow down" ></span>
+                                                        </div>
+                                                        <div class="item col-4 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                            <p > {$u1.max_price|sprintf="%.4f",###}</p>
+                                                        </div>
+                                                        <div class="item col-5 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                            <p > {$u1.min_price|sprintf="%.4f",###}</p>
+                                                        </div>
+                                                        <div class="item col-6 flex-box flex-direction-row flex-justify-end flex-align-item-center flex-wrap-nowrap" >
+                                                            <p > <?php echo sprintf("%.2f",($u1['volume']/10000)) ?></p>
+                                                        </div>
                                                     </div>
-                                                    <div class="item col-2 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
-                                                        <p class="newPrice"> {$u1.new_price|sprintf="%.4f",###}</p>
-                                                        <!-- <span style="color:#666b93;" > ≈ ￥44347.86</span>  -->
-                                                    </div>
-                                                    <div class="item col-3 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
-                                                        <p class="changeNum" style="color: rgb(185, 46, 93);" > {$u1.change|round=2} </p>
-                                                        <span class="arrow down" ></span>
-                                                    </div>
-                                                    <div class="item col-4 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
-                                                        <p > {$u1.max_price|sprintf="%.4f",###}</p>
-                                                    </div>
-                                                    <div class="item col-5 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
-                                                        <p > {$u1.min_price|sprintf="%.4f",###}</p>
-                                                    </div>
-                                                    <div class="item col-6 flex-box flex-direction-row flex-justify-end flex-align-item-center flex-wrap-nowrap" >
-                                                        <p > <?php echo sprintf("%.2f",($u1['volume']/10000)) ?></p>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                                </volist> 
-												</div>
+                                                </a>
+                                            </volist> 
+										</div>
 
-                                            <div class="show-list">
+                                        <div class="show-list">
                                             <volist name="btc" id="b">
-                                            <a  target="_blank" href="/Trade/index/market/{$b.urlname}">
-                                                <div class="area-list flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
-                                                    <div class="item col-1 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
-                                                        <p ><span >{$b.s1}</span><span style="color:#666b93;" > </span> </p>
-                                                        <!--<span class="star no-optional" ></span>-->
-                                                    </div>
-                                                    <div class="item col-2 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
-                                                        <p class="newPrice"> {$b.new_price|sprintf="%.4f",###}
-                                                        </p>
-                                                    </div>
-                                                    <div class="item col-3 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
-                                                        <p style="color:#B92E5D;"  class="changeNum"> {$b.change|round=2} </p>
-                                                        <span class="arrow down" ></span>
-                                                    </div>
-                                                    <div class="item col-4 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
-                                                        <p > {$b.max_price|sprintf="%.4f",###}</p>
-                                                    </div>
-                                                    <div class="item col-5 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
-                                                        <p > {$b.min_price|sprintf="%.4f",###}</p>
-                                                    </div>
-                                                    <div class="item col-6 flex-box flex-direction-row flex-justify-end flex-align-item-center flex-wrap-nowrap" >
-                                                        <p > <?php echo sprintf("%.2f",($b['volume']/10000)) ?></p>
-                                                    </div>
-                                                </div> 
-                                            </a>
+                                                <a  target="_blank" href="/Trade/index/market/{$b.urlname}">
+                                                    <div class="area-list flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                                                        <div class="item col-1 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                            <p ><span >{$b.s1}</span><span style="color:#666b93;" > </span> </p>
+                                                            <!--<span class="star no-optional" ></span>-->
+                                                        </div>
+                                                        <div class="item col-2 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                            <p class="newPrice"> {$b.new_price|sprintf="%.4f",###}
+                                                            </p>
+                                                        </div>
+                                                        <div class="item col-3 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                            <p style="color:#B92E5D;"  class="changeNum"> {$b.change|round=2} </p>
+                                                            <span class="arrow down" ></span>
+                                                        </div>
+                                                        <div class="item col-4 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                            <p > {$b.max_price|sprintf="%.4f",###}</p>
+                                                        </div>
+                                                        <div class="item col-5 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                            <p > {$b.min_price|sprintf="%.4f",###}</p>
+                                                        </div>
+                                                        <div class="item col-6 flex-box flex-direction-row flex-justify-end flex-align-item-center flex-wrap-nowrap" >
+                                                            <p > <?php echo sprintf("%.2f",($b['volume']/10000)) ?></p>
+                                                        </div>
+                                                    </div> 
+                                                </a>
                                             </volist>
-											</div>
-											<div class="show-list">
+										</div>
+										<div class="show-list">
                                             <volist name="eth" id="e">
-                                            <a href="/Trade/index/market/{$e.urlname}" target="_blank">
-                                                <div class="area-list flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
-                                                    <div class="item col-1 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
-                                                        <p ><span >{$e.s1}</span><span style="color:#666b93;" ></span> </p>
-                                                        <!--<span class="star no-optional" ></span>-->
+                                                <a href="/Trade/index/market/{$e.urlname}" target="_blank">
+                                                    <div class="area-list flex-box flex-direction-row flex-justify-start flex-align-item-start flex-wrap-nowrap" >
+                                                        <div class="item col-1 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                            <p ><span >{$e.s1}</span><span style="color:#666b93;" ></span> </p>
+                                                            <!--<span class="star no-optional" ></span>-->
+                                                        </div>
+                                                        <div class="item col-2 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                            <p class="newPrice"> {$e.new_price|sprintf="%.4f",###}
+                                                            </p>
+                                                        </div>
+                                                        <div class="item col-3 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                            <p style="color:#B92E5D;" class="changNum"> {$e.change|round=2} </p>
+                                                            <span class="arrow down" ></span>
+                                                        </div>
+                                                        <div class="item col-4 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                            <p > {$e.max_price|sprintf="%.4f",###}</p>
+                                                        </div>
+                                                        <div class="item col-5 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
+                                                            <p > {$e.min_price|sprintf="%.4f",###}</p>
+                                                        </div>
+                                                        <div class="item col-6 flex-box flex-direction-row flex-justify-end flex-align-item-center flex-wrap-nowrap" >
+                                                            <p > <?php echo sprintf("%.2f",($e['volume']/10000)) ?></p>
+                                                        </div>
                                                     </div>
-                                                    <div class="item col-2 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
-                                                        <p class="newPrice"> {$e.new_price|sprintf="%.4f",###}
-                                                        </p>
-                                                    </div>
-                                                    <div class="item col-3 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
-                                                        <p style="color:#B92E5D;" class="changNum"> {$e.change|round=2} </p>
-                                                        <span class="arrow down" ></span>
-                                                    </div>
-                                                    <div class="item col-4 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
-                                                        <p > {$e.max_price|sprintf="%.4f",###}</p>
-                                                    </div>
-                                                    <div class="item col-5 flex-box flex-direction-row flex-justify-start flex-align-item-center flex-wrap-nowrap" >
-                                                        <p > {$e.min_price|sprintf="%.4f",###}</p>
-                                                    </div>
-                                                    <div class="item col-6 flex-box flex-direction-row flex-justify-end flex-align-item-center flex-wrap-nowrap" >
-                                                        <p > <?php echo sprintf("%.2f",($e['volume']/10000)) ?></p>
-                                                    </div>
-                                                </div>
                                                  </a>
                                             </volist>
-											</div>
+										</div>
                                             
                                             <!--主区结束-->
                                             
@@ -1001,44 +999,41 @@
             }
         }
     }
-
-
-
 </script>
 <script>
-					function cy(){
-						var uid = "{$uid}";
-						var zhifubao = "{$c2c_user['zhifubao']}";
-						var weixin = "{$c2c_user['weixin']}";
-						var bank = "{$c2c_user['bank']}";
-						var paypwd = "{$c2c_user['paypassword']}";
-						//alert(zhifubao);
-						if(uid>0){
-							if((zhifubao == '' || zhifubao=='NULL')&&(weixin == '' || weixin=='NULL')&&(bank == '' || bank=='NULL')){
-								layer.msg('请设置收款方式', {icon: 2});
-								location.href="/User/myCenter";
-							}
-							else if(paypwd == "" || paypwd == "NULL"){
-								layer.msg('请设置资金密码', {icon: 2});
-								location.href="/User/resetFiancePwd";
-							}else{
-								location.href="/C2c/index/market/jeff/money/0";
-							}
-							
-						}else{
-							layer.msg('请先登录', {icon: 2});
-							location.href="/C2c/index/market/jeff/money/0";
-						}
-					}
-					
-					function loginout(){
-						$.post("/Login/loginout",{},function(data){
-							if(data.status==1){
-								layer.msg(data.info,{icon:1});
-								window.setTimeout("window.location='/Index'",1000);
-							}
-						},"json");
-					}
-				</script>
+	function cy(){
+		var uid = "{$uid}";
+		var zhifubao = "{$c2c_user['zhifubao']}";
+		var weixin = "{$c2c_user['weixin']}";
+		var bank = "{$c2c_user['bank']}";
+		var paypwd = "{$c2c_user['paypassword']}";
+		//alert(zhifubao);
+		if(uid>0){
+			if((zhifubao == '' || zhifubao=='NULL')&&(weixin == '' || weixin=='NULL')&&(bank == '' || bank=='NULL')){
+				layer.msg('请设置收款方式', {icon: 2});
+				location.href="/User/myCenter";
+			}
+			else if(paypwd == "" || paypwd == "NULL"){
+				layer.msg('请设置资金密码', {icon: 2});
+				location.href="/User/resetFiancePwd";
+			}else{
+				location.href="/C2c/index/market/jeff/money/0";
+			}
+			
+		}else{
+			layer.msg('请先登录', {icon: 2});
+			location.href="/C2c/index/market/jeff/money/0";
+		}
+	}
+	
+	function loginout(){
+		$.post("/Login/loginout",{},function(data){
+			if(data.status==1){
+				layer.msg(data.info,{icon:1});
+				window.setTimeout("window.location='/Index'",1000);
+			}
+		},"json");
+	}
+</script>
 </body>
 </html>

@@ -5,13 +5,15 @@ class HomeController extends \Think\Controller
 {
 	protected function _initialize()
 	{
-		// dumpS(1212);
 		$web_log = M('config')->getField('web_logo');
+
 		$this->assign('web_logo',$web_log);
+
 		if($_SESSION['lang']==1) {include "./lang/zh-cn.php";}
 		elseif($_SESSION['lang']==2) {include "./lang/e-yu.php";}
 		elseif($_SESSION['lang']==3) {include "./lang/zh-en.php";}
 		else {$_SESSION['lang']=1;include "./lang/zh-cn.php";}
+
 	    $this->assign('yuyan',$_SESSION['lang']);
 		defined('APP_DEMO') || define('APP_DEMO', 0);
 

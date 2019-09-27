@@ -87,8 +87,8 @@ class IndexController extends HomeController
 			$name        = $k.'_cny';
 			M('Market')->where(array('name'=>$name))->save(array('new_price'=>$prices));
 		}
-        /*foreach ($coin as $k=>$v){
-            
+        foreach ($coin as $k=>$v)
+        {
             if($v['is_new'] == 1){
                 if ($v['jiaoyiqu']==0){
                   $xnb=explode('_',$v['name'])[0];
@@ -162,7 +162,9 @@ class IndexController extends HomeController
                 }
             }
             
-        }*/
+        }
+
+
 		$this->assign('list', $list['JEFF']);
 		$this->assign('jtc', $list['JEFF']);
 		$this->assign('usdt', $list['USDT']);
