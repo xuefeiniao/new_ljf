@@ -14,7 +14,6 @@ class LoginController extends HomeController
 	}
 
 	public function new_reg(){
-		// dump($_POST);die;
 		$moble = I('post.mobile');
 		$password = I('post.password');
 		$moble_verify = I('post.yzm');
@@ -31,9 +30,9 @@ class LoginController extends HomeController
 			$this->error('短信验证码格式错误！');
 		}
 
-		if ($moble_verify != session('real_verify')) {
+		/*if ($moble_verify != session('real_verify')) {
 			$this->error('短信验证码错误！');
-		}
+		}*/
 
 		if (!check($password, 'password')) {
 			$this->error('密码格式错误！');

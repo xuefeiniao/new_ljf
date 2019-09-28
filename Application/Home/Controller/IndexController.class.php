@@ -78,46 +78,67 @@ class IndexController extends HomeController
         /*
         *is_new==1主区，is_new==2创新区
         */
-        $name_en = ['usdt'=>'usdt','btc'=>'btc','eth'=>'eth'];
-		foreach ($name_en as $k => $v) {
+        $name_en    = ['usdt'=>'usdt','btc'=>'btc','eth'=>'eth'];
+        $allmarket  = json_decode(getUrl("http://api.zb.plus/data/v1/allTicker"),1);
+        $names      = '';
+        $sql        = "UPDATE zhisucom_market SET new_price = CASE name ";
+        foreach ($name_en as $k => $v) {
+            $names .= "'".$v."_cny',";
+            $price = $allmarket[$v.'qc']['last'] ? $allmarket[$v.'qc']['last'] : 1;
+            $sql .= sprintf("WHEN %s THEN %s ", "'".$k."_cny'", "'".$price."'");
+        }
+        $names = rtrim($names,',');
+        $sql .= "END WHERE name IN ($names)";
+        M('')->execute($sql);
+		/*foreach ($name_en as $k => $v) {
 			$name_en_str = $v.'_qc';
 			$price       = getUrl("http://api.zb.plus/data/v1/ticker?market={$name_en_str}");
 			$price       = json_decode($price,1);
 			$prices      = $price['ticker']['last'] ? $price['ticker']['last'] : 1;
 			$name        = $k.'_cny';
 			M('Market')->where(array('name'=>$name))->save(array('new_price'=>$prices));
-		}
+		}*/
+        // dumpS($allmarket);
         foreach ($coin as $k=>$v)
         {
-            if($v['is_new'] == 1){
-                if ($v['jiaoyiqu']==0){
-                  $xnb=explode('_',$v['name'])[0];
-                  if($xnb == 'amfc')
-                  {
-                  	$rrs = $this->amfcfbt();
-                    if($rrs)
+            if($v['is_new'] == 1)
+            {
+                if ($v['jiaoyiqu']==0)
+                {
+                    $xnb=explode('_',$v['name'])[0];
+                    /*if($xnb == 'amfc')
                     {
-                    	$v['new_price'] =$rrs['last'] ? $rrs['last'] : 0;
-                        $v['min_price'] =$rrs['low'];
-                        $v['max_price'] =$rrs['high'];
-                        $v['volume']    =$rrs['vol24hour'];
-                      	$v['change']    = $rrs['chg'];
-                       M('market')->where(['name'=>$v['name']])->save(['new_price'=>$v['new_price'],'min_price'=>$v['min_price'],'max_price'=>$v['max_price'],'volume'=>$v['volume'],'change'=>$v['change']]);
-                    }
-                  }
+                      	$rrs = $this->amfcfbt();
+                        if($rrs)
+                        {
+                        	$v['new_price'] =$rrs['last'] ? $rrs['last'] : 0;
+                            $v['min_price'] =$rrs['low'];
+                            $v['max_price'] =$rrs['high'];
+                            $v['volume']    =$rrs['vol24hour'];
+                          	$v['change']    = $rrs['chg'];
+                            M('market')->where(['name'=>$v['name']])->save(['new_price'=>$v['new_price'],'min_price'=>$v['min_price'],'max_price'=>$v['max_price'],'volume'=>$v['volume'],'change'=>$v['change']]);
+                        }
+                    }*/
                     $list['JEFF'][]=$v;
                 }
 
                 if ($v['jiaoyiqu']==1){
                     $xnb        = explode('_',$v['name'])[0];
                     $xnb_h      = $xnb.'usdt';
-                    $hb_price   = $huobi->hangqing($xnb_h);
+                    /*$hb_price   = $huobi->hangqing($xnb_h);
                     if ($hb_price['status']!=='error'){
                         $v['new_price'] = $hb_price['tick']['close'] ? $hb_price['tick']['close']: 0;
                         $v['min_price'] = $hb_price['tick']['low'] ? $hb_price['tick']['low']: 0;
                         $v['max_price'] = $hb_price['tick']['high'] ? $hb_price['tick']['high']: 0;
                         $v['volume']    = $hb_price['tick']['amount'] ? $hb_price['tick']['amount']: 0;
                       	$v['change']    = round(($hb_price['tick']['close']-$hb_price['tick']['open'])/$hb_price['tick']['close'],2);
+                    }*/
+                    if (array_key_exists($xnb_h, $allmarket)){
+                        $v['new_price'] = $allmarket[$xnb_h]['close'] ? $allmarket[$xnb_h]['close']: 0;
+                        $v['min_price'] = $allmarket[$xnb_h]['low'] ? $allmarket[$xnb_h]['low']: 0;
+                        $v['max_price'] = $allmarket[$xnb_h]['high'] ? $allmarket[$xnb_h]['high']: 0;
+                        $v['volume']    = $allmarket[$xnb_h]['vol'] ? $allmarket[$xnb_h]['vol']: 0;
+                        $v['change']    = round(($allmarket[$xnb_h]['close']-$allmarket[$xnb_h]['open'])/$allmarket[$xnb_h]['close'],2);
                     }
                     if (is_nan($v['change'])) $v['change']=0;
                     M('market')->where(['name'=>$v['name']])->save(['new_price'=>$v['new_price'],'min_price'=>$v['min_price'],'max_price'=>$v['max_price'],'volume'=>$v['volume'],'change'=>$v['change']]);
@@ -126,25 +147,39 @@ class IndexController extends HomeController
                 if ($v['jiaoyiqu']==2){
                     $xnb        = explode('_',$v['name'])[0];
                     $xnb_h      = $xnb.'btc';
-                    $hb_price   = $huobi->hangqing($xnb_h);
+                    /*$hb_price   = $huobi->hangqing($xnb_h);
                     if ($hb_price['status']!=='error'){
                         $v['new_price'] = $hb_price['tick']['close'];
                         $v['min_price'] = $hb_price['tick']['low'];
                         $v['max_price'] = $hb_price['tick']['high'];
                         $v['volume']    = $hb_price['tick']['amount'];
+                    }*/
+                    if (array_key_exists($xnb_h, $allmarket)){
+                        $v['new_price'] = $allmarket[$xnb_h]['close'] ? $allmarket[$xnb_h]['close']: 0;
+                        $v['min_price'] = $allmarket[$xnb_h]['low'] ? $allmarket[$xnb_h]['low']: 0;
+                        $v['max_price'] = $allmarket[$xnb_h]['high'] ? $allmarket[$xnb_h]['high']: 0;
+                        $v['volume']    = $allmarket[$xnb_h]['vol'] ? $allmarket[$xnb_h]['vol']: 0;
+                        $v['change']    = round(($allmarket[$xnb_h]['close']-$allmarket[$xnb_h]['open'])/$allmarket[$xnb_h]['close'],2);
                     }
                     $list['BTC'][]=$v;
                 }
     			if ($v['jiaoyiqu']==3){
     			    $xnb         = explode('_',$v['name'])[0];
-                     $xnb_h      = $xnb.'eth';
-                     $hb_price   = $huobi->hangqing($xnb_h);
-                     if ($hb_price['status']!=='error'){
+                    $xnb_h      = $xnb.'eth';
+                    /*$hb_price   = $huobi->hangqing($xnb_h);
+                    if ($hb_price['status']!=='error'){
                          $v['new_price']=$hb_price['tick']['close'];
                          $v['min_price']=$hb_price['tick']['low'];
                          $v['max_price']=$hb_price['tick']['high'];
                          $v['volume']   =$hb_price['tick']['amount'];
-                     }
+                    }*/
+                    if (array_key_exists($xnb_h, $allmarket)){
+                        $v['new_price'] = $allmarket[$xnb_h]['close'] ? $allmarket[$xnb_h]['close']: 0;
+                        $v['min_price'] = $allmarket[$xnb_h]['low'] ? $allmarket[$xnb_h]['low']: 0;
+                        $v['max_price'] = $allmarket[$xnb_h]['high'] ? $allmarket[$xnb_h]['high']: 0;
+                        $v['volume']    = $allmarket[$xnb_h]['vol'] ? $allmarket[$xnb_h]['vol']: 0;
+                        $v['change']    = round(($allmarket[$xnb_h]['close']-$allmarket[$xnb_h]['open'])/$allmarket[$xnb_h]['close'],2);
+                    }
                     $list['ETH'][]=$v;
                 }
             }elseif($v['is_new'] == 2){
@@ -161,7 +196,6 @@ class IndexController extends HomeController
                     $new_list['ETH'][]=$v;
                 }
             }
-            
         }
 
 
@@ -199,30 +233,27 @@ class IndexController extends HomeController
   
   public function amfcfbt()
   {
-  	$accesskey = urlencode('kaXZhiCbrAD71Ei0JRybBxxNTeTc19nrr5uzlMj3Z5A=');
-    $url = "https://api.fubt.co/v1/market/tickers?symbol=amfcusdt&klineType=min&klineStep=step5&accessKey=".$accesskey."&signature=a2FYWmhpQ2JyQUQ3MUVpMEpSeWJCeHhOVGVUYzE5bnJyNXV6bE1qM1o1QSUzRA==";
-      $postFields = "";
-      $ch = curl_init ();
-      curl_setopt( $ch, CURLOPT_URL, $url );
-      curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
-      //curl_setopt( $ch, CURLOPT_POST, 1 );
-         // curl_setopt( $ch, CURLOPT_POSTFIELDS, $postFields);
-          curl_setopt( $ch, CURLOPT_TIMEOUT,60);
-          $res = json_decode(curl_exec($ch),1);
-     // $a = $res['data']['tradeName']['amfcfbt'];
+  	   $accesskey = urlencode('kaXZhiCbrAD71Ei0JRybBxxNTeTc19nrr5uzlMj3Z5A=');
+       $url = "https://api.fubt.co/v1/market/tickers?symbol=amfcusdt&klineType=min&klineStep=step5&accessKey=".$accesskey."&signature=a2FYWmhpQ2JyQUQ3MUVpMEpSeWJCeHhOVGVUYzE5bnJyNXV6bE1qM1o1QSUzRA==";
+       $postFields = "";
+       $ch = curl_init ();
+       curl_setopt( $ch, CURLOPT_URL, $url );
+       curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
+       //curl_setopt( $ch, CURLOPT_POST, 1 );
+       // curl_setopt( $ch, CURLOPT_POSTFIELDS, $postFields);
+       curl_setopt( $ch, CURLOPT_TIMEOUT,60);
+       $res = json_decode(curl_exec($ch),1);
+       // $a = $res['data']['tradeName']['amfcfbt'];
+      dumpS($res);
       if($res['status'] == 'success')
       {
       	foreach($res['data'] as $k=>$v){
-          if($v['tradeName'] == "amfcfbt")
-          {
-              $amfc = $v;
-          }
+          if($v['tradeName'] == "amfcfbt") $amfc = $v;
         }
         return $amfc;
-      }
-    else{
+      } else {
     	return false;
-    }
+      }
   }
   
   
